@@ -154,10 +154,14 @@ export function CommandOutput() {
 
   if (error) {
     return (
-      <Card className="p-6 border-destructive">
-        <div className="text-center text-destructive">
-          <p className="font-medium">Failed to generate command</p>
-          <p className="text-sm mt-1">{error}</p>
+      <Card className="p-6">
+        <div className="text-center text-muted-foreground">
+          <Terminal className="w-12 h-12 mx-auto mb-3 opacity-50" />
+          <p className="font-medium">Unable to generate install command</p>
+          <p className="text-sm mt-1">
+            Some packages may not be available for your selected distribution.
+            Try selecting different apps or changing your distribution.
+          </p>
         </div>
       </Card>
     );

@@ -18,7 +18,7 @@ export async function GET(request: NextRequest) {
     const popular = searchParams.get('popular');
     const search = searchParams.get('search');
 
-    let query = db.query.apps.findMany({
+    const query = db.query.apps.findMany({
       with: {
         category: true,
         packages: {
@@ -36,7 +36,10 @@ export async function GET(request: NextRequest) {
 
     // Apply filters
     if (category) {
-      allApps = allApps.filter(app => app.category.slug === category);
+      // Support filtering by both category slug AND category id
+      allApps = allApps.filter(app =>
+        app.category.slug === category || app.categoryId === category
+      );
     }
 
     if (popular === 'true') {
