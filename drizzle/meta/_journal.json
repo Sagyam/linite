@@ -1,0 +1,13 @@
+{
+  "version": "7",
+  "dialect": "sqlite",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "6",
+      "when": 1767001383312,
+      "tag": "0000_left_colonel_america",
+      "breakpoints": true
+    }
+  ]
+}
