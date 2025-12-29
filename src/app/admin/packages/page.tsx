@@ -1,10 +1,11 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState, useMemo } from 'react';
 import { DataTable, Column } from '@/components/admin/data-table';
 import { Breadcrumb } from '@/components/admin/breadcrumb';
 import { Button } from '@/components/ui/button';
 import { Plus, Search as SearchIcon } from 'lucide-react';
+import { useAdminPackages, useDeletePackage, useAdminApps, useAdminSources } from '@/hooks/use-admin';
 import {
   Dialog,
   DialogContent,
@@ -55,16 +56,18 @@ interface Source {
 }
 
 export default function PackagesPage() {
-  const [packages, setPackages] = useState<Package[]>([]);
-  const [apps, setApps] = useState<App[]>([]);
-  const [sources, setSources] = useState<Source[]>([]);
-  const [loading, setLoading] = useState(true);
+  const { data: packages = [], isLoading: packagesLoading } = useAdminPackages();
+  const { data: apps = [] } = useAdminApps();
+  const { data: sources = [] } = useAdminSources();
+  const deletePackageMutation = useDeletePackage();
   const [dialogOpen, setDialogOpen] = useState(false);
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [searchDialogOpen, setSearchDialogOpen] = useState(false);
   const [editingPackage, setEditingPackage] = useState<Package | null>(null);
   const [deletingPackage, setDeletingPackage] = useState<Package | null>(null);
   const [filterSource, setFilterSource] = useState<string>('all');
+
+  const loading = packagesLoading;
 
   const [formData, setFormData] = useState({
     appId: '',
@@ -81,50 +84,6 @@ export default function PackagesPage() {
     query: '',
   });
 
-  useEffect(() => {
-    fetchPackages();
-    fetchApps();
-    fetchSources();
-  }, []);
-
-  const fetchPackages = async () => {
-    try {
-      const response = await fetch('/api/packages');
-      if (response.ok) {
-        const data = await response.json();
-        setPackages(data);
-      }
-    } catch (error) {
-      console.error('Failed to fetch packages:', error);
-      toast.error('Failed to fetch packages');
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const fetchApps = async () => {
-    try {
-      const response = await fetch('/api/apps');
-      if (response.ok) {
-        const data = await response.json();
-        setApps(data);
-      }
-    } catch (error) {
-      console.error('Failed to fetch apps:', error);
-    }
-  };
-
-  const fetchSources = async () => {
-    try {
-      const response = await fetch('/api/sources');
-      if (response.ok) {
-        const data = await response.json();
-        setSources(data);
-      }
-    } catch (error) {
-      console.error('Failed to fetch sources:', error);
-    }
-  };
 
   const handleAdd = () => {
     setEditingPackage(null);
@@ -180,7 +139,6 @@ export default function PackagesPage() {
       if (response.ok) {
         toast.success(`Package ${editingPackage ? 'updated' : 'created'} successfully`);
         setDialogOpen(false);
-        fetchPackages();
       } else {
         const error = await response.json();
         toast.error(error.error || 'Failed to save package');
@@ -191,27 +149,15 @@ export default function PackagesPage() {
     }
   };
 
-  const confirmDelete = async () => {
+  const confirmDelete = () => {
     if (!deletingPackage) return;
 
-    try {
-      const response = await fetch(`/api/packages/${deletingPackage.id}`, {
-        method: 'DELETE',
-      });
-
-      if (response.ok) {
-        toast.success('Package deleted successfully');
+    deletePackageMutation.mutate(deletingPackage.id, {
+      onSuccess: () => {
         setDeleteDialogOpen(false);
         setDeletingPackage(null);
-        fetchPackages();
-      } else {
-        const error = await response.json();
-        toast.error(error.error || 'Failed to delete package');
-      }
-    } catch (error) {
-      console.error('Failed to delete package:', error);
-      toast.error('Failed to delete package');
-    }
+      },
+    });
   };
 
   const handleSearch = async () => {
@@ -239,9 +185,10 @@ export default function PackagesPage() {
     }
   };
 
-  const filteredPackages = filterSource === 'all'
-    ? packages
-    : packages.filter((pkg) => pkg.source.slug === filterSource);
+  const filteredPackages = useMemo(() => {
+    if (filterSource === 'all') return packages;
+    return packages.filter((pkg) => pkg.source.slug === filterSource);
+  }, [packages, filterSource]);
 
   const columns: Column<Package>[] = [
     { header: 'App', accessor: (row) => row.app.displayName },

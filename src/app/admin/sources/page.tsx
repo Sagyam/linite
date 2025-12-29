@@ -1,10 +1,11 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { DataTable, Column } from '@/components/admin/data-table';
 import { Breadcrumb } from '@/components/admin/breadcrumb';
 import { Button } from '@/components/ui/button';
 import { Plus } from 'lucide-react';
+import { useAdminSources, useDeleteSource } from '@/hooks/use-admin';
 import {
   Dialog,
   DialogContent,
@@ -32,8 +33,8 @@ interface Source {
 }
 
 export default function SourcesPage() {
-  const [sources, setSources] = useState<Source[]>([]);
-  const [loading, setLoading] = useState(true);
+  const { data: sources = [], isLoading: loading } = useAdminSources();
+  const deleteSourceMutation = useDeleteSource();
   const [dialogOpen, setDialogOpen] = useState(false);
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [editingSource, setEditingSource] = useState<Source | null>(null);
@@ -48,25 +49,6 @@ export default function SourcesPage() {
     priority: 50,
     apiEndpoint: '',
   });
-
-  useEffect(() => {
-    fetchSources();
-  }, []);
-
-  const fetchSources = async () => {
-    try {
-      const response = await fetch('/api/sources');
-      if (response.ok) {
-        const data = await response.json();
-        setSources(data);
-      }
-    } catch (error) {
-      console.error('Failed to fetch sources:', error);
-      toast.error('Failed to fetch sources');
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const handleAdd = () => {
     setEditingSource(null);
@@ -121,7 +103,6 @@ export default function SourcesPage() {
       if (response.ok) {
         toast.success(`Source ${editingSource ? 'updated' : 'created'} successfully`);
         setDialogOpen(false);
-        fetchSources();
       } else {
         const error = await response.json();
         toast.error(error.error || 'Failed to save source');
@@ -132,27 +113,15 @@ export default function SourcesPage() {
     }
   };
 
-  const confirmDelete = async () => {
+  const confirmDelete = () => {
     if (!deletingSource) return;
 
-    try {
-      const response = await fetch(`/api/sources/${deletingSource.id}`, {
-        method: 'DELETE',
-      });
-
-      if (response.ok) {
-        toast.success('Source deleted successfully');
+    deleteSourceMutation.mutate(deletingSource.id, {
+      onSuccess: () => {
         setDeleteDialogOpen(false);
         setDeletingSource(null);
-        fetchSources();
-      } else {
-        const error = await response.json();
-        toast.error(error.error || 'Failed to delete source');
-      }
-    } catch (error) {
-      console.error('Failed to delete source:', error);
-      toast.error('Failed to delete source');
-    }
+      },
+    });
   };
 
   const columns: Column<Source>[] = [

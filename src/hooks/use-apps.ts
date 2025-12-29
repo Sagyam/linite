@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useQuery } from '@tanstack/react-query';
 
 export interface App {
   id: string;
@@ -36,39 +36,30 @@ interface UseAppsOptions {
   search?: string;
 }
 
+async function fetchApps(options: UseAppsOptions = {}): Promise<App[]> {
+  const params = new URLSearchParams();
+  if (options.category) params.set('category', options.category);
+  if (options.popular) params.set('popular', 'true');
+  if (options.search) params.set('search', options.search);
+
+  const response = await fetch(`/api/apps?${params.toString()}`);
+
+  if (!response.ok) {
+    throw new Error('Failed to fetch apps');
+  }
+
+  return response.json();
+}
+
 export function useApps(options: UseAppsOptions = {}) {
-  const [apps, setApps] = useState<App[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const { data, isLoading, error } = useQuery({
+    queryKey: ['apps', options],
+    queryFn: () => fetchApps(options),
+  });
 
-  useEffect(() => {
-    const fetchApps = async () => {
-      try {
-        setLoading(true);
-        setError(null);
-
-        const params = new URLSearchParams();
-        if (options.category) params.set('category', options.category);
-        if (options.popular) params.set('popular', 'true');
-        if (options.search) params.set('search', options.search);
-
-        const response = await fetch(`/api/apps?${params.toString()}`);
-
-        if (!response.ok) {
-          throw new Error('Failed to fetch apps');
-        }
-
-        const data = await response.json();
-        setApps(data);
-      } catch (err) {
-        setError(err instanceof Error ? err.message : 'An error occurred');
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchApps();
-  }, [options.category, options.popular, options.search]);
-
-  return { apps, loading, error };
+  return {
+    apps: data ?? [],
+    loading: isLoading,
+    error: error?.message ?? null,
+  };
 }

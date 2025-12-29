@@ -1,6 +1,6 @@
 import { db } from '@/db';
-import { apps, packages, sources, distros, distroSources } from '@/db/schema';
-import { eq, and, inArray } from 'drizzle-orm';
+import { apps, packages, distros } from '@/db/schema';
+import { eq, inArray } from 'drizzle-orm';
 
 export interface GenerateCommandRequest {
   distroSlug: string;

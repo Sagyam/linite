@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState, useMemo } from 'react';
 import { DataTable, Column } from '@/components/admin/data-table';
 import { Breadcrumb } from '@/components/admin/breadcrumb';
 import { Button } from '@/components/ui/button';
@@ -15,9 +15,9 @@ import {
 } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
-import { toast } from 'sonner';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { useAdminApps, useDeleteApp } from '@/hooks/use-admin';
 
 interface App {
   id: string;
@@ -33,45 +33,21 @@ interface App {
 
 export default function AppsPage() {
   const router = useRouter();
-  const [apps, setApps] = useState<App[]>([]);
-  const [filteredApps, setFilteredApps] = useState<App[]>([]);
-  const [loading, setLoading] = useState(true);
+  const { data: apps = [], isLoading: loading } = useAdminApps();
+  const deleteAppMutation = useDeleteApp();
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [deletingApp, setDeletingApp] = useState<App | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
 
-  useEffect(() => {
-    fetchApps();
-  }, []);
+  const filteredApps = useMemo(() => {
+    if (!searchTerm) return apps;
 
-  useEffect(() => {
-    if (searchTerm) {
-      const filtered = apps.filter(
-        (app) =>
-          app.displayName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          app.description?.toLowerCase().includes(searchTerm.toLowerCase())
-      );
-      setFilteredApps(filtered);
-    } else {
-      setFilteredApps(apps);
-    }
+    return apps.filter(
+      (app) =>
+        app.displayName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        app.description?.toLowerCase().includes(searchTerm.toLowerCase())
+    );
   }, [searchTerm, apps]);
-
-  const fetchApps = async () => {
-    try {
-      const response = await fetch('/api/apps');
-      if (response.ok) {
-        const data = await response.json();
-        setApps(data);
-        setFilteredApps(data);
-      }
-    } catch (error) {
-      console.error('Failed to fetch apps:', error);
-      toast.error('Failed to fetch apps');
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const handleEdit = (app: App) => {
     router.push(`/admin/apps/${app.id}/edit`);
@@ -82,27 +58,15 @@ export default function AppsPage() {
     setDeleteDialogOpen(true);
   };
 
-  const confirmDelete = async () => {
+  const confirmDelete = () => {
     if (!deletingApp) return;
 
-    try {
-      const response = await fetch(`/api/apps/${deletingApp.id}`, {
-        method: 'DELETE',
-      });
-
-      if (response.ok) {
-        toast.success('App deleted successfully');
+    deleteAppMutation.mutate(deletingApp.id, {
+      onSuccess: () => {
         setDeleteDialogOpen(false);
         setDeletingApp(null);
-        fetchApps();
-      } else {
-        const error = await response.json();
-        toast.error(error.error || 'Failed to delete app');
-      }
-    } catch (error) {
-      console.error('Failed to delete app:', error);
-      toast.error('Failed to delete app');
-    }
+      },
+    });
   };
 
   const columns: Column<App>[] = [

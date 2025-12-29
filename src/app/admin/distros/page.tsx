@@ -1,10 +1,11 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { DataTable, Column } from '@/components/admin/data-table';
 import { Breadcrumb } from '@/components/admin/breadcrumb';
 import { Button } from '@/components/ui/button';
 import { Plus } from 'lucide-react';
+import { useAdminDistros, useDeleteDistro } from '@/hooks/use-admin';
 import {
   Dialog,
   DialogContent,
@@ -30,8 +31,8 @@ interface Distro {
 }
 
 export default function DistrosPage() {
-  const [distros, setDistros] = useState<Distro[]>([]);
-  const [loading, setLoading] = useState(true);
+  const { data: distros = [], isLoading: loading } = useAdminDistros();
+  const deleteDistroMutation = useDeleteDistro();
   const [dialogOpen, setDialogOpen] = useState(false);
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [editingDistro, setEditingDistro] = useState<Distro | null>(null);
@@ -45,25 +46,6 @@ export default function DistrosPage() {
     basedOn: '',
     isPopular: false,
   });
-
-  useEffect(() => {
-    fetchDistros();
-  }, []);
-
-  const fetchDistros = async () => {
-    try {
-      const response = await fetch('/api/distros');
-      if (response.ok) {
-        const data = await response.json();
-        setDistros(data);
-      }
-    } catch (error) {
-      console.error('Failed to fetch distros:', error);
-      toast.error('Failed to fetch distros');
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const handleAdd = () => {
     setEditingDistro(null);
@@ -116,7 +98,6 @@ export default function DistrosPage() {
       if (response.ok) {
         toast.success(`Distro ${editingDistro ? 'updated' : 'created'} successfully`);
         setDialogOpen(false);
-        fetchDistros();
       } else {
         const error = await response.json();
         toast.error(error.error || 'Failed to save distro');
@@ -127,27 +108,15 @@ export default function DistrosPage() {
     }
   };
 
-  const confirmDelete = async () => {
+  const confirmDelete = () => {
     if (!deletingDistro) return;
 
-    try {
-      const response = await fetch(`/api/distros/${deletingDistro.id}`, {
-        method: 'DELETE',
-      });
-
-      if (response.ok) {
-        toast.success('Distro deleted successfully');
+    deleteDistroMutation.mutate(deletingDistro.id, {
+      onSuccess: () => {
         setDeleteDialogOpen(false);
         setDeletingDistro(null);
-        fetchDistros();
-      } else {
-        const error = await response.json();
-        toast.error(error.error || 'Failed to delete distro');
-      }
-    } catch (error) {
-      console.error('Failed to delete distro:', error);
-      toast.error('Failed to delete distro');
-    }
+      },
+    });
   };
 
   const columns: Column<Distro>[] = [

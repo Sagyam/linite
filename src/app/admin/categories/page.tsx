@@ -1,10 +1,11 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { DataTable, Column } from '@/components/admin/data-table';
 import { Breadcrumb } from '@/components/admin/breadcrumb';
 import { Button } from '@/components/ui/button';
 import { Plus } from 'lucide-react';
+import { useAdminCategories, useDeleteCategory } from '@/hooks/use-admin';
 import {
   Dialog,
   DialogContent,
@@ -28,8 +29,8 @@ interface Category {
 }
 
 export default function CategoriesPage() {
-  const [categories, setCategories] = useState<Category[]>([]);
-  const [loading, setLoading] = useState(true);
+  const { data: categories = [], isLoading: loading } = useAdminCategories();
+  const deleteCategoryMutation = useDeleteCategory();
   const [dialogOpen, setDialogOpen] = useState(false);
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [editingCategory, setEditingCategory] = useState<Category | null>(null);
@@ -42,25 +43,6 @@ export default function CategoriesPage() {
     description: '',
     displayOrder: 0,
   });
-
-  useEffect(() => {
-    fetchCategories();
-  }, []);
-
-  const fetchCategories = async () => {
-    try {
-      const response = await fetch('/api/categories');
-      if (response.ok) {
-        const data = await response.json();
-        setCategories(data);
-      }
-    } catch (error) {
-      console.error('Failed to fetch categories:', error);
-      toast.error('Failed to fetch categories');
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const handleAdd = () => {
     setEditingCategory(null);
@@ -107,7 +89,6 @@ export default function CategoriesPage() {
       if (response.ok) {
         toast.success(`Category ${editingCategory ? 'updated' : 'created'} successfully`);
         setDialogOpen(false);
-        fetchCategories();
       } else {
         const error = await response.json();
         toast.error(error.error || 'Failed to save category');
@@ -118,27 +99,15 @@ export default function CategoriesPage() {
     }
   };
 
-  const confirmDelete = async () => {
+  const confirmDelete = () => {
     if (!deletingCategory) return;
 
-    try {
-      const response = await fetch(`/api/categories/${deletingCategory.id}`, {
-        method: 'DELETE',
-      });
-
-      if (response.ok) {
-        toast.success('Category deleted successfully');
+    deleteCategoryMutation.mutate(deletingCategory.id, {
+      onSuccess: () => {
         setDeleteDialogOpen(false);
         setDeletingCategory(null);
-        fetchCategories();
-      } else {
-        const error = await response.json();
-        toast.error(error.error || 'Failed to delete category');
-      }
-    } catch (error) {
-      console.error('Failed to delete category:', error);
-      toast.error('Failed to delete category');
-    }
+      },
+    });
   };
 
   const columns: Column<Category>[] = [

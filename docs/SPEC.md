@@ -27,6 +27,14 @@ This document tracks the implementation status of Linite features.
 - ✅ Session management
 - ✅ Route protection middleware
 
+### Data Fetching & State Management
+- ✅ React Query (TanStack Query) integration
+- ✅ Query client configuration with caching
+- ✅ React Query DevTools setup
+- ✅ Optimized data fetching hooks for all public endpoints
+- ✅ Admin data fetching hooks with mutations
+- ✅ Automatic cache invalidation on mutations
+
 ---
 
 ## API Endpoints
@@ -236,9 +244,9 @@ This document tracks the implementation status of Linite features.
 
 ## Deployment
 
-- ❌ Turso database setup
+- ✅ Turso database setup
 - ❌ Vercel deployment
-- ❌ Environment variables configuration
+- ✅ Environment variables configuration
 - ❌ Cron job configuration
 - ❌ First admin user creation
 - ❌ Initial data population

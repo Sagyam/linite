@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useQuery } from '@tanstack/react-query';
 
 export interface Distro {
   id: string;
@@ -22,34 +22,25 @@ export interface Distro {
   }>;
 }
 
+async function fetchDistros(): Promise<Distro[]> {
+  const response = await fetch('/api/distros');
+
+  if (!response.ok) {
+    throw new Error('Failed to fetch distributions');
+  }
+
+  return response.json();
+}
+
 export function useDistros() {
-  const [distros, setDistros] = useState<Distro[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const { data, isLoading, error } = useQuery({
+    queryKey: ['distros'],
+    queryFn: fetchDistros,
+  });
 
-  useEffect(() => {
-    const fetchDistros = async () => {
-      try {
-        setLoading(true);
-        setError(null);
-
-        const response = await fetch('/api/distros');
-
-        if (!response.ok) {
-          throw new Error('Failed to fetch distributions');
-        }
-
-        const data = await response.json();
-        setDistros(data);
-      } catch (err) {
-        setError(err instanceof Error ? err.message : 'An error occurred');
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchDistros();
-  }, []);
-
-  return { distros, loading, error };
+  return {
+    distros: data ?? [],
+    loading: isLoading,
+    error: error?.message ?? null,
+  };
 }
