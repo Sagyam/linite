@@ -99,8 +99,8 @@ export default function RefreshPage() {
 
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">Package Refresh</h1>
-          <p className="text-gray-500 mt-2">
+          <h1 className="text-3xl font-bold ">Package Refresh</h1>
+          <p className="text-muted-foreground mt-2">
             Manage automatic package metadata updates
           </p>
         </div>

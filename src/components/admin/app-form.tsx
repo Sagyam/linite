@@ -214,7 +214,7 @@ export function AppForm({ appId, onSuccess }: AppFormProps) {
             <div className="flex items-center justify-between">
               <div className="space-y-0.5">
                 <Label htmlFor="isPopular">Popular App</Label>
-                <p className="text-sm text-gray-500">
+                <p className="text-sm text-muted-foreground">
                   Mark this app as popular to feature it
                 </p>
               </div>
@@ -230,7 +230,7 @@ export function AppForm({ appId, onSuccess }: AppFormProps) {
             <div className="flex items-center justify-between">
               <div className="space-y-0.5">
                 <Label htmlFor="isFoss">Free and Open Source</Label>
-                <p className="text-sm text-gray-500">
+                <p className="text-sm text-muted-foreground">
                   Mark this app as FOSS to display a badge
                 </p>
               </div>

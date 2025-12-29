@@ -65,15 +65,15 @@ export function AdminSidebar() {
   };
 
   return (
-    <div className="flex h-full w-64 flex-col border-r bg-gray-50">
+    <div className="flex h-full w-64 flex-col border-r bg-muted/40">
       <div className="p-6">
         <Link href="/admin" className="flex items-center space-x-2">
-          <div className="h-8 w-8 rounded-lg bg-blue-600 flex items-center justify-center text-white font-bold">
+          <div className="h-8 w-8 rounded-lg bg-primary flex items-center justify-center text-primary-foreground font-bold">
             L
           </div>
           <div>
-            <h2 className="text-lg font-bold">Linite</h2>
-            <p className="text-xs text-gray-500">Admin Panel</p>
+            <h2 className="text-lg font-bold text-foreground">Linite</h2>
+            <p className="text-xs text-muted-foreground">Admin Panel</p>
           </div>
         </Link>
       </div>
@@ -93,8 +93,8 @@ export function AdminSidebar() {
               className={cn(
                 'flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors',
                 isActive
-                  ? 'bg-blue-100 text-blue-700'
-                  : 'text-gray-700 hover:bg-gray-100'
+                  ? 'bg-primary/10 text-primary'
+                  : 'text-foreground hover:bg-muted'
               )}
             >
               <Icon className="h-5 w-5" />
@@ -115,12 +115,12 @@ export function AdminSidebar() {
           View Public Site
         </Button>
         <div className="flex items-center justify-between px-3 py-2">
-          <span className="text-sm font-medium">Theme</span>
+          <span className="text-sm font-medium text-foreground">Theme</span>
           <ThemeToggle />
         </div>
         <Button
           variant="ghost"
-          className="w-full justify-start text-red-600 hover:text-red-700 hover:bg-red-50"
+          className="w-full justify-start text-destructive hover:text-destructive hover:bg-destructive/10"
           onClick={handleLogout}
         >
           <LogOut className="h-5 w-5 mr-3" />

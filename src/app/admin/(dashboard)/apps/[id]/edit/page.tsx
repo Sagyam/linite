@@ -24,8 +24,8 @@ export default function EditAppPage() {
       />
 
       <div className="mb-6">
-        <h1 className="text-3xl font-bold text-gray-900">Edit App</h1>
-        <p className="text-gray-500 mt-2">Update application information</p>
+        <h1 className="text-3xl font-bold">Edit App</h1>
+        <p className="text-muted-foreground mt-2">Update application information</p>
       </div>
 
       <AppForm appId={appId} onSuccess={handleSuccess} />

@@ -32,6 +32,7 @@ export const session = sqliteTable('session', {
     .notNull()
     .references(() => user.id, { onDelete: 'cascade' }),
   expiresAt: integer('expires_at', { mode: 'timestamp' }).notNull(),
+  token: text('token').notNull().unique(),
   ipAddress: text('ip_address'),
   userAgent: text('user_agent'),
   ...timestamps,
@@ -48,10 +49,10 @@ export const account = sqliteTable('account', {
   providerId: text('provider_id').notNull(),
   accessToken: text('access_token'),
   refreshToken: text('refresh_token'),
+  idToken: text('id_token'),
   accessTokenExpiresAt: integer('access_token_expires_at', { mode: 'timestamp' }),
   refreshTokenExpiresAt: integer('refresh_token_expires_at', { mode: 'timestamp' }),
   scope: text('scope'),
-  password: text('password'),
   ...timestamps,
 });
 

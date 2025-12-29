@@ -36,6 +36,14 @@ const envSchema = z.object({
     .url('BETTER_AUTH_URL must be a valid URL')
     .default('http://localhost:3000'),
 
+  // GitHub OAuth - Required for admin login
+  GITHUB_CLIENT_ID: z
+    .string()
+    .min(1, 'GITHUB_CLIENT_ID is required for GitHub OAuth'),
+  GITHUB_CLIENT_SECRET: z
+    .string()
+    .min(1, 'GITHUB_CLIENT_SECRET is required for GitHub OAuth'),
+
   // Vercel Blob - Required for image uploads
   BLOB_READ_WRITE_TOKEN: z
     .string()

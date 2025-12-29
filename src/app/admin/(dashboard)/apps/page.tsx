@@ -103,8 +103,8 @@ export default function AppsPage() {
 
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">Applications</h1>
-          <p className="text-gray-500 mt-2">Manage application catalog</p>
+          <h1 className="text-3xl font-bold">Applications</h1>
+          <p className="text-muted-foreground mt-2">Manage application catalog</p>
         </div>
         <Link href="/admin/apps/new">
           <Button>

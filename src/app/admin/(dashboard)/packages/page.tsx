@@ -196,7 +196,7 @@ export default function PackagesPage() {
     {
       header: 'Identifier',
       accessor: (row) => (
-        <code className="text-xs bg-gray-100 px-2 py-1 rounded">
+        <code className="text-xs bg-muted px-2 py-1 rounded">
           {row.identifier}
         </code>
       ),
@@ -223,8 +223,8 @@ export default function PackagesPage() {
 
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">Packages</h1>
-          <p className="text-gray-500 mt-2">Manage application packages</p>
+          <h1 className="text-3xl font-bold">Packages</h1>
+          <p className="text-muted-foreground mt-2">Manage application packages</p>
         </div>
         <div className="flex gap-2">
           <Button variant="outline" onClick={() => setSearchDialogOpen(true)}>

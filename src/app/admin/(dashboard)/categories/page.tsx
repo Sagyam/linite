@@ -133,8 +133,8 @@ export default function CategoriesPage() {
 
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">Categories</h1>
-          <p className="text-gray-500 mt-2">Manage application categories</p>
+          <h1 className="text-3xl font-bold">Categories</h1>
+          <p className="text-muted-foreground mt-2">Manage application categories</p>
         </div>
         <Button onClick={handleAdd}>
           <Plus className="h-4 w-4 mr-2" />

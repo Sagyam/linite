@@ -77,6 +77,8 @@ bun run db:generate   # Generate migrations
 bun run db:migrate    # Run migrations
 bun run db:push       # Push schema changes
 bun run db:studio     # Open Drizzle Studio
+bun run db:wipe       # Wipe all data from database
+bun run db:seed       # Seed database with initial data
 ```
 
 **Environment variables:**

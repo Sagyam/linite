@@ -60,7 +60,7 @@ export function DataTable<T>({
             <TableRow>
               <TableCell
                 colSpan={columns.length + (onEdit || onDelete ? 1 : 0)}
-                className="h-24 text-center text-gray-500"
+                className="h-24 text-center text-muted-foreground"
               >
                 No data available
               </TableCell>
@@ -90,7 +90,7 @@ export function DataTable<T>({
                           variant="ghost"
                           size="sm"
                           onClick={() => onDelete(row)}
-                          className="text-red-600 hover:text-red-700 hover:bg-red-50"
+                          className="text-destructive hover:text-destructive hover:bg-destructive/10"
                         >
                           <Trash2 className="h-4 w-4" />
                         </Button>

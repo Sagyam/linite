@@ -326,7 +326,7 @@
 - [ ] Configure build settings
 
 ### 10.3 Post-Deployment
-- [ ] Create first admin user
+- [x] Create first admin user
 - [ ] Populate initial data (categories, sources, distros)
 - [ ] Add initial apps
 - [ ] Verify cron job execution

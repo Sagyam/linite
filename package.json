@@ -12,9 +12,12 @@
     "db:migrate": "drizzle-kit migrate",
     "db:push": "drizzle-kit push",
     "db:studio": "drizzle-kit studio",
-    "db:seed": "bun run scripts/seed.ts"
+    "db:seed": "bun run scripts/seed.ts",
+    "db:wipe": "bun run scripts/wipe-db.ts",
+    "db:drop": "bun run scripts/drop-schema.ts"
   },
   "dependencies": {
+    "@better-auth/cli": "^1.4.9",
     "@hookform/resolvers": "^5.2.2",
     "@libsql/client": "^0.14.0",
     "@paralleldrive/cuid2": "^2.2.2",

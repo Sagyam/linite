@@ -1,6 +1,4 @@
-export const runtime = 'nodejs';
-
-export default function AdminLayout({
+export default function AuthLayout({
   children,
 }: {
   children: React.ReactNode;

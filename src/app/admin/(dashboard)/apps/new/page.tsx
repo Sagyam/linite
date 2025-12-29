@@ -22,8 +22,8 @@ export default function NewAppPage() {
       />
 
       <div className="mb-6">
-        <h1 className="text-3xl font-bold text-gray-900">Add New App</h1>
-        <p className="text-gray-500 mt-2">
+        <h1 className="text-3xl font-bold">Add New App</h1>
+        <p className="text-muted-foreground mt-2">
           Create a new application in the catalog
         </p>
       </div>

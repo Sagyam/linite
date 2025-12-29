@@ -23,17 +23,20 @@ This document tracks the implementation status of Linite features.
 ### Authentication
 - ✅ BetterAuth server configuration
 - ✅ BetterAuth client configuration
-- ✅ Admin login page
+- ✅ Admin login page (using Next.js route groups)
 - ✅ Session management
-- ✅ Route protection middleware
+- ✅ Route protection via layout (dashboard layout)
+- ✅ Proper route separation using (auth) and (dashboard) groups
 
 ### Data Fetching & State Management
 - ✅ React Query (TanStack Query) integration
-- ✅ Query client configuration with caching
+- ✅ Query client configuration with caching (1min stale time, 5min garbage collection)
 - ✅ React Query DevTools setup
 - ✅ Optimized data fetching hooks for all public endpoints
 - ✅ Admin data fetching hooks with mutations
 - ✅ Automatic cache invalidation on mutations
+- ✅ Stable query client using useState to prevent re-initialization
+- ✅ Retry strategy configured (1 retry, no refetch on window focus)
 
 ---
 
@@ -248,8 +251,8 @@ This document tracks the implementation status of Linite features.
 - ❌ Vercel deployment
 - ✅ Environment variables configuration
 - ❌ Cron job configuration
-- ❌ First admin user creation
-- ❌ Initial data population
+- ✅ First admin user creation
+- ✅ Initial data population
 
 ---
 
@@ -286,12 +289,7 @@ This document tracks the implementation status of Linite features.
 - Improved error handling and user messages
 - Loading states and skeleton loaders
 - Comprehensive documentation (README, API docs, deployment guide)
-- Database configuration for both dev (SQLite) and production (Turso)
+- Database configuration for Turso
 
-### 🚧 Next Steps (Phase 10+)
-- Icon upload functionality (Vercel Blob)
-- Theme switcher
-- Production deployment to Vercel
-- Turso database setup
 
 *Last updated: 2025-12-29*

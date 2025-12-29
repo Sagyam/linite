@@ -144,8 +144,8 @@ export default function DistrosPage() {
 
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">Distributions</h1>
-          <p className="text-gray-500 mt-2">Manage Linux distributions</p>
+          <h1 className="text-3xl font-bold">Distributions</h1>
+          <p className="mt-2">Manage Linux distributions</p>
         </div>
         <Button onClick={handleAdd}>
           <Plus className="h-4 w-4 mr-2" />

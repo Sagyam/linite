@@ -130,7 +130,7 @@ export default function SourcesPage() {
     {
       header: 'Install Command',
       accessor: (row) => (
-        <code className="text-xs bg-gray-100 px-2 py-1 rounded">
+        <code className="text-xs bg-muted px-2 py-1 rounded">
           {row.installCommand}
         </code>
       ),
@@ -156,8 +156,8 @@ export default function SourcesPage() {
 
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">Sources</h1>
-          <p className="text-gray-500 mt-2">Manage package sources</p>
+          <h1 className="text-3xl font-bold ">Sources</h1>
+          <p className="text-muted-foreground mt-2">Manage package sources</p>
         </div>
         <Button onClick={handleAdd}>
           <Plus className="h-4 w-4 mr-2" />

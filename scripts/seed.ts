@@ -1,27 +1,9 @@
-import { db, categories, sources, distros, distroSources, apps, packages, user, account } from '../src/db';
+import { db, categories, sources, distros, distroSources, apps, packages } from '../src/db';
 
 async function seed() {
   console.log('🌱 Seeding database...');
 
-  // 1. Create admin user
-  console.log('Creating admin user...');
-  const [adminUser] = await db.insert(user).values({
-    email: 'admin@linite.local',
-    name: 'Admin User',
-    emailVerified: true,
-    role: 'superadmin',
-  }).returning();
-
-  await db.insert(account).values({
-    userId: adminUser.id,
-    accountId: adminUser.id,
-    providerId: 'credential',
-    password: '$2a$10$rKXN5qYwXqY.kXJx4BoOyO.zF8vC8bqH9kbYkUJZ0a8XqKoK0qK0K', // Password: admin123
-  });
-
-  console.log('✅ Admin user created (email: admin@linite.local, password: admin123)');
-
-  // 2. Create categories
+  // 1. Create categories
   console.log('Creating categories...');
   const categoriesData = [
     { name: 'Browsers', slug: 'browsers', icon: 'Globe', displayOrder: 1 },
@@ -39,7 +21,7 @@ async function seed() {
   const createdCategories = await db.insert(categories).values(categoriesData).returning();
   console.log(`✅ Created ${createdCategories.length} categories`);
 
-  // 3. Create sources
+  // 2. Create sources
   console.log('Creating sources...');
   const sourcesData = [
     {
@@ -101,7 +83,7 @@ async function seed() {
   const createdSources = await db.insert(sources).values(sourcesData).returning();
   console.log(`✅ Created ${createdSources.length} sources`);
 
-  // 4. Create distros
+  // 3. Create distros
   console.log('Creating distros...');
   const distrosData = [
     { name: 'Ubuntu', slug: 'ubuntu', family: 'debian', basedOn: 'debian', isPopular: true },
@@ -117,7 +99,7 @@ async function seed() {
   const createdDistros = await db.insert(distros).values(distrosData).returning();
   console.log(`✅ Created ${createdDistros.length} distros`);
 
-  // 5. Map distros to sources
+  // 4. Map distros to sources
   console.log('Mapping distros to sources...');
   const sourceMap = Object.fromEntries(createdSources.map(s => [s.slug, s.id]));
   const distroMap = Object.fromEntries(createdDistros.map(d => [d.slug, d.id]));
@@ -161,7 +143,7 @@ async function seed() {
   await db.insert(distroSources).values(distroSourceMappings);
   console.log(`✅ Created ${distroSourceMappings.length} distro-source mappings`);
 
-  // 6. Create sample apps
+  // 5. Create sample apps
   console.log('Creating sample apps...');
   const categoryMap = Object.fromEntries(createdCategories.map(c => [c.slug, c.id]));
 
@@ -216,7 +198,7 @@ async function seed() {
   const createdApps = await db.insert(apps).values(appsData).returning();
   console.log(`✅ Created ${createdApps.length} apps`);
 
-  // 7. Create sample packages
+  // 6. Create sample packages
   console.log('Creating sample packages...');
   const appMap = Object.fromEntries(createdApps.map(a => [a.slug, a.id]));
 
@@ -251,10 +233,9 @@ async function seed() {
   console.log(`✅ Created ${packagesData.length} packages`);
 
   console.log('\n✅ Database seeded successfully!');
-  console.log('\n📝 Admin credentials:');
-  console.log('   Email: admin@linite.local');
-  console.log('   Password: admin123');
   console.log('\n🚀 You can now start the dev server with: bun run dev');
+  console.log('\n📝 Note: Sign in with GitHub OAuth at /admin/login');
+  console.log('   Only sagyamthapa32@gmail.com will be granted superadmin role');
 }
 
 seed().catch((error) => {
