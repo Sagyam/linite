@@ -12,7 +12,7 @@ export function StructuredData() {
     operatingSystem: 'Linux',
     description:
       'Select apps from our curated catalog and generate a single command to install everything on your Linux distribution. Supports apt, dnf, pacman, Flatpak, Snap, and more.',
-    url: process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000',
+    url: 'https://linite.sagyamthapa.com.np/',
     offers: {
       '@type': 'Offer',
       price: '0',
