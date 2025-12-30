@@ -1,9 +1,9 @@
 'use client';
 
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { toast } from 'sonner';
+import { createCrudHooks } from './use-crud';
+import type { Category, Source, Distro, PackageWithRelations } from '@/types/entities';
 
-// Apps
+// App type with category relation for admin list view
 export interface App {
   id: string;
   slug: string;
@@ -16,241 +16,65 @@ export interface App {
   } | null;
 }
 
-export function useAdminApps() {
-  return useQuery({
-    queryKey: ['admin', 'apps'],
-    queryFn: async () => {
-      const response = await fetch('/api/apps');
-      if (!response.ok) throw new Error('Failed to fetch apps');
-      return response.json() as Promise<App[]>;
-    },
-  });
-}
+// Re-export types for backward compatibility
+export type { Category, Source, Distro };
+export type Package = PackageWithRelations;
 
-export function useDeleteApp() {
-  const queryClient = useQueryClient();
+// ============================================================================
+// CRUD HOOKS
+// ============================================================================
 
-  return useMutation({
-    mutationFn: async (appId: string) => {
-      const response = await fetch(`/api/apps/${appId}`, {
-        method: 'DELETE',
-      });
+// Apps
+const appHooks = createCrudHooks<App>({
+  entityName: 'App',
+  pluralName: 'apps',
+  endpoint: '/api/apps',
+  queryKey: 'apps',
+});
 
-      if (!response.ok) {
-        const error = await response.json();
-        throw new Error(error.error || 'Failed to delete app');
-      }
-
-      return response.json();
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['admin', 'apps'] });
-      queryClient.invalidateQueries({ queryKey: ['apps'] });
-      toast.success('App deleted successfully');
-    },
-    onError: (error: Error) => {
-      toast.error(error.message || 'Failed to delete app');
-    },
-  });
-}
+export const useAdminApps = appHooks.useList;
+export const useDeleteApp = appHooks.useDelete;
 
 // Categories
-export interface Category {
-  id: string;
-  name: string;
-  slug: string;
-  icon: string | null;
-  description: string | null;
-  displayOrder: number;
-}
+const categoryHooks = createCrudHooks<Category>({
+  entityName: 'Category',
+  pluralName: 'categories',
+  endpoint: '/api/categories',
+  queryKey: 'categories',
+});
 
-export function useAdminCategories() {
-  return useQuery({
-    queryKey: ['admin', 'categories'],
-    queryFn: async () => {
-      const response = await fetch('/api/categories');
-      if (!response.ok) throw new Error('Failed to fetch categories');
-      return response.json() as Promise<Category[]>;
-    },
-  });
-}
-
-export function useDeleteCategory() {
-  const queryClient = useQueryClient();
-
-  return useMutation({
-    mutationFn: async (categoryId: string) => {
-      const response = await fetch(`/api/categories/${categoryId}`, {
-        method: 'DELETE',
-      });
-
-      if (!response.ok) {
-        const error = await response.json();
-        throw new Error(error.error || 'Failed to delete category');
-      }
-
-      return response.json();
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['admin', 'categories'] });
-      queryClient.invalidateQueries({ queryKey: ['categories'] });
-      toast.success('Category deleted successfully');
-    },
-    onError: (error: Error) => {
-      toast.error(error.message || 'Failed to delete category');
-    },
-  });
-}
+export const useAdminCategories = categoryHooks.useList;
+export const useDeleteCategory = categoryHooks.useDelete;
 
 // Sources
-export interface Source {
-  id: string;
-  name: string;
-  slug: string;
-  installCmd: string;
-  requireSudo: boolean;
-  setupCmd: string | null;
-  priority: number;
-  apiEndpoint: string | null;
-}
+const sourceHooks = createCrudHooks<Source>({
+  entityName: 'Source',
+  pluralName: 'sources',
+  endpoint: '/api/sources',
+  queryKey: 'sources',
+});
 
-export function useAdminSources() {
-  return useQuery({
-    queryKey: ['admin', 'sources'],
-    queryFn: async () => {
-      const response = await fetch('/api/sources');
-      if (!response.ok) throw new Error('Failed to fetch sources');
-      return response.json() as Promise<Source[]>;
-    },
-  });
-}
-
-export function useDeleteSource() {
-  const queryClient = useQueryClient();
-
-  return useMutation({
-    mutationFn: async (sourceId: string) => {
-      const response = await fetch(`/api/sources/${sourceId}`, {
-        method: 'DELETE',
-      });
-
-      if (!response.ok) {
-        const error = await response.json();
-        throw new Error(error.error || 'Failed to delete source');
-      }
-
-      return response.json();
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['admin', 'sources'] });
-      toast.success('Source deleted successfully');
-    },
-    onError: (error: Error) => {
-      toast.error(error.message || 'Failed to delete source');
-    },
-  });
-}
+export const useAdminSources = sourceHooks.useList;
+export const useDeleteSource = sourceHooks.useDelete;
 
 // Distros
-export interface Distro {
-  id: string;
-  name: string;
-  slug: string;
-  family: string;
-  iconUrl: string | null;
-  basedOn: string | null;
-  isPopular: boolean;
-}
+const distroHooks = createCrudHooks<Distro>({
+  entityName: 'Distribution',
+  pluralName: 'distros',
+  endpoint: '/api/distros',
+  queryKey: 'distros',
+});
 
-export function useAdminDistros() {
-  return useQuery({
-    queryKey: ['admin', 'distros'],
-    queryFn: async () => {
-      const response = await fetch('/api/distros');
-      if (!response.ok) throw new Error('Failed to fetch distros');
-      return response.json() as Promise<Distro[]>;
-    },
-  });
-}
-
-export function useDeleteDistro() {
-  const queryClient = useQueryClient();
-
-  return useMutation({
-    mutationFn: async (distroId: string) => {
-      const response = await fetch(`/api/distros/${distroId}`, {
-        method: 'DELETE',
-      });
-
-      if (!response.ok) {
-        const error = await response.json();
-        throw new Error(error.error || 'Failed to delete distro');
-      }
-
-      return response.json();
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['admin', 'distros'] });
-      queryClient.invalidateQueries({ queryKey: ['distros'] });
-      toast.success('Distribution deleted successfully');
-    },
-    onError: (error: Error) => {
-      toast.error(error.message || 'Failed to delete distro');
-    },
-  });
-}
+export const useAdminDistros = distroHooks.useList;
+export const useDeleteDistro = distroHooks.useDelete;
 
 // Packages
-export interface Package {
-  id: string;
-  appId: string;
-  sourceId: string;
-  identifier: string;
-  version: string | null;
-  downloadSize: string | null;
-  isAvailable: boolean;
-  app: {
-    displayName: string;
-  };
-  source: {
-    name: string;
-    slug: string;
-  };
-}
+const packageHooks = createCrudHooks<Package>({
+  entityName: 'Package',
+  pluralName: 'packages',
+  endpoint: '/api/packages',
+  queryKey: 'packages',
+});
 
-export function useAdminPackages() {
-  return useQuery({
-    queryKey: ['admin', 'packages'],
-    queryFn: async () => {
-      const response = await fetch('/api/packages');
-      if (!response.ok) throw new Error('Failed to fetch packages');
-      return response.json() as Promise<Package[]>;
-    },
-  });
-}
-
-export function useDeletePackage() {
-  const queryClient = useQueryClient();
-
-  return useMutation({
-    mutationFn: async (packageId: string) => {
-      const response = await fetch(`/api/packages/${packageId}`, {
-        method: 'DELETE',
-      });
-
-      if (!response.ok) {
-        const error = await response.json();
-        throw new Error(error.error || 'Failed to delete package');
-      }
-
-      return response.json();
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['admin', 'packages'] });
-      toast.success('Package deleted successfully');
-    },
-    onError: (error: Error) => {
-      toast.error(error.message || 'Failed to delete package');
-    },
-  });
-}
+export const useAdminPackages = packageHooks.useList;
+export const useDeletePackage = packageHooks.useDelete;

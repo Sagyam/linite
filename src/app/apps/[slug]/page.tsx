@@ -34,21 +34,19 @@ export default function AppDetailPage() {
         setLoading(true);
         setError(null);
 
-        // Fetch all apps and find the one with matching slug
-        const response = await fetch('/api/apps');
+        // Fetch app by slug using dedicated endpoint
+        const response = await fetch(`/api/apps/by-slug/${slug}`);
         if (!response.ok) {
-          throw new Error('Failed to fetch app details');
-        }
-
-        const apps: App[] = await response.json();
-        const foundApp = apps.find((a) => a.slug === slug);
-
-        if (!foundApp) {
-          setError('App not found');
+          if (response.status === 404) {
+            setError('App not found');
+          } else {
+            throw new Error('Failed to fetch app details');
+          }
           return;
         }
 
-        setApp(foundApp);
+        const app: App = await response.json();
+        setApp(app);
       } catch (err) {
         setError(err instanceof Error ? err.message : 'An error occurred');
       } finally {

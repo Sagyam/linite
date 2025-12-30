@@ -1,24 +1,14 @@
 import { db } from '@/db';
 import { apps, packages, distros } from '@/db/schema';
 import { eq, inArray } from 'drizzle-orm';
+import type {
+  GenerateCommandRequest,
+  GenerateCommandResponse,
+  PackageBreakdown,
+} from '@/types/entities';
 
-export interface GenerateCommandRequest {
-  distroSlug: string;
-  appIds: string[];
-  sourcePreference?: string; // Optional preferred source slug
-}
-
-export interface PackageBreakdown {
-  source: string;
-  packages: string[];
-}
-
-export interface GenerateCommandResponse {
-  commands: string[];
-  setupCommands: string[];
-  warnings: string[];
-  breakdown: PackageBreakdown[];
-}
+// Re-export for backward compatibility
+export type { GenerateCommandRequest, GenerateCommandResponse, PackageBreakdown };
 
 interface SelectedPackage {
   appName: string;

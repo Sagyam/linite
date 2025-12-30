@@ -1,21 +1,31 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { Copy, Check, Terminal, Download } from 'lucide-react';
+import { Terminal } from 'lucide-react';
 import { Card } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
 import { LoadingSpinner } from '@/components/loading-spinner';
 import { useCommand } from '@/hooks/use-command';
 import { useSelectionStore } from '@/stores/selection-store';
+import { useClipboard, useMultiClipboard } from '@/hooks/use-clipboard';
 import { toast } from 'sonner';
+import { CommandHeader } from './command-output/command-header';
+import { SetupCommands } from './command-output/setup-commands';
+import { InstallCommands } from './command-output/install-commands';
+import { CommandWarnings } from './command-output/command-warnings';
+import { EmptyState } from './command-output/empty-state';
 
 export function CommandOutput() {
   const { selectedApps, selectedDistro, sourcePreference } = useSelectionStore();
   const { generate, loading, error, result } = useCommand();
-  const [copied, setCopied] = useState(false);
-  const [copiedSetup, setCopiedSetup] = useState(false);
-  const [copiedCommands, setCopiedCommands] = useState<Record<number, boolean>>({});
+
+  // Clipboard hooks
+  const { copied: copiedAll, copy: copyAll } = useClipboard();
+  const { copied: copiedSetup, copy: copySetup } = useClipboard({
+    successMessage: 'Setup commands copied!',
+  });
+  const { copiedItems: copiedCommands, copy: copyCommand } = useMultiClipboard({
+    successMessage: 'Command copied!',
+  });
 
   // Track previous values to prevent unnecessary calls
   const prevSelectionRef = useRef<{
@@ -50,7 +60,7 @@ export function CommandOutput() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedApps, selectedDistro, sourcePreference]);
 
-  const handleCopy = async () => {
+  const handleCopyAll = async () => {
     if (!result) return;
 
     const fullCommand = [
@@ -58,46 +68,17 @@ export function CommandOutput() {
       ...result.commands,
     ].join('\n\n');
 
-    try {
-      await navigator.clipboard.writeText(fullCommand);
-      setCopied(true);
-      toast.success('Copied to clipboard!');
-      setTimeout(() => setCopied(false), 2000);
-    } catch {
-      toast.error('Failed to copy to clipboard');
-    }
+    await copyAll(fullCommand);
   };
 
   const handleCopySetup = async () => {
     if (!result?.setupCommands) return;
-
-    try {
-      await navigator.clipboard.writeText(result.setupCommands.join('\n\n'));
-      setCopiedSetup(true);
-      toast.success('Setup commands copied!');
-      setTimeout(() => setCopiedSetup(false), 2000);
-    } catch {
-      toast.error('Failed to copy to clipboard');
-    }
+    await copySetup(result.setupCommands.join('\n\n'));
   };
 
   const handleCopyCommand = async (index: number) => {
     if (!result) return;
-
-    try {
-      await navigator.clipboard.writeText(result.commands[index]);
-      setCopiedCommands({ ...copiedCommands, [index]: true });
-      toast.success('Command copied!');
-      setTimeout(() => {
-        setCopiedCommands((prev) => {
-          const newState = { ...prev };
-          delete newState[index];
-          return newState;
-        });
-      }, 2000);
-    } catch {
-      toast.error('Failed to copy to clipboard');
-    }
+    await copyCommand(result.commands[index], index);
   };
 
   const handleDownload = () => {
@@ -125,20 +106,12 @@ export function CommandOutput() {
     toast.success('Script downloaded!');
   };
 
+  // Empty state
   if (selectedApps.size === 0 || !selectedDistro) {
-    return (
-      <Card className="p-6">
-        <div className="text-center text-muted-foreground">
-          <Terminal className="w-12 h-12 mx-auto mb-3 opacity-50" />
-          <p className="font-medium">No command generated yet</p>
-          <p className="text-sm mt-1">
-            Select a distribution and some apps to get started
-          </p>
-        </div>
-      </Card>
-    );
+    return <EmptyState />;
   }
 
+  // Loading state
   if (loading) {
     return (
       <Card className="p-6">
@@ -152,6 +125,7 @@ export function CommandOutput() {
     );
   }
 
+  // Error state
   if (error) {
     return (
       <Card className="p-6">
@@ -167,142 +141,38 @@ export function CommandOutput() {
     );
   }
 
+  // No result
   if (!result) {
     return null;
   }
 
+  // Success state with commands
   return (
     <div className="space-y-4">
       <Card className="p-6">
         <div className="space-y-4">
-          {/* Header */}
-          <div className="flex items-start justify-between">
-            <div>
-              <h3 className="font-semibold text-lg flex items-center gap-2">
-                <Terminal className="w-5 h-5" />
-                Install Command
-              </h3>
-              <p className="text-sm text-muted-foreground mt-1">
-                {selectedApps.size} {selectedApps.size === 1 ? 'app' : 'apps'} selected
-                {sourcePreference && ` • Preferring ${sourcePreference}`}
-              </p>
-            </div>
+          <CommandHeader
+            appCount={selectedApps.size}
+            sourcePreference={sourcePreference}
+            copied={copiedAll}
+            onCopy={handleCopyAll}
+            onDownload={handleDownload}
+          />
 
-            <div className="flex gap-2">
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={handleDownload}
-                className="gap-2"
-              >
-                <Download className="w-4 h-4" />
-                Download
-              </Button>
-              <Button
-                variant="default"
-                size="sm"
-                onClick={handleCopy}
-                className="gap-2"
-              >
-                {copied ? (
-                  <>
-                    <Check className="w-4 h-4" />
-                    Copied
-                  </>
-                ) : (
-                  <>
-                    <Copy className="w-4 h-4" />
-                    Copy
-                  </>
-                )}
-              </Button>
-            </div>
-          </div>
+          <SetupCommands
+            commands={result.setupCommands || []}
+            copied={copiedSetup}
+            onCopy={handleCopySetup}
+          />
 
-          {/* Setup Commands */}
-          {result.setupCommands && result.setupCommands.length > 0 && (
-            <div className="space-y-2">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <Badge variant="secondary">Setup</Badge>
-                  <span className="text-sm text-muted-foreground">
-                    Run these first
-                  </span>
-                </div>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={handleCopySetup}
-                  className="h-8 px-2 gap-1.5"
-                >
-                  {copiedSetup ? (
-                    <Check className="w-3.5 h-3.5" />
-                  ) : (
-                    <Copy className="w-3.5 h-3.5" />
-                  )}
-                  <span className="text-xs">
-                    {copiedSetup ? 'Copied' : 'Copy'}
-                  </span>
-                </Button>
-              </div>
-              <div className="bg-muted rounded-md p-4 font-mono text-sm overflow-x-auto">
-                {result.setupCommands.map((cmd, i) => (
-                  <div key={i} className="whitespace-pre-wrap">
-                    {cmd}
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
+          <InstallCommands
+            commands={result.commands}
+            breakdown={result.breakdown}
+            copiedItems={copiedCommands}
+            onCopyCommand={handleCopyCommand}
+          />
 
-          {/* Install Commands */}
-          <div className="space-y-3">
-            {result.breakdown.map((item, i) => (
-              <div key={i} className="space-y-2">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <Badge variant="outline">{item.source}</Badge>
-                    <span className="text-xs text-muted-foreground">
-                      {item.packages.length}{' '}
-                      {item.packages.length === 1 ? 'package' : 'packages'}
-                    </span>
-                  </div>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => handleCopyCommand(i)}
-                    className="h-8 px-2 gap-1.5"
-                  >
-                    {copiedCommands[i] ? (
-                      <Check className="w-3.5 h-3.5" />
-                    ) : (
-                      <Copy className="w-3.5 h-3.5" />
-                    )}
-                    <span className="text-xs">
-                      {copiedCommands[i] ? 'Copied' : 'Copy'}
-                    </span>
-                  </Button>
-                </div>
-                <div className="bg-muted rounded-md p-4 font-mono text-sm overflow-x-auto">
-                  <div className="whitespace-pre-wrap">{result.commands[i]}</div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Warnings */}
-          {result.warnings && result.warnings.length > 0 && (
-            <div className="space-y-2">
-              <Badge variant="destructive">Warnings</Badge>
-              <div className="bg-destructive/10 border border-destructive/20 rounded-md p-4 text-sm space-y-1">
-                {result.warnings.map((warning, i) => (
-                  <p key={i} className="text-destructive">
-                    • {warning}
-                  </p>
-                ))}
-              </div>
-            </div>
-          )}
+          <CommandWarnings warnings={result.warnings || []} />
         </div>
       </Card>
     </div>

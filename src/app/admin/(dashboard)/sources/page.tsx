@@ -6,6 +6,8 @@ import { Breadcrumb } from '@/components/admin/breadcrumb';
 import { Button } from '@/components/ui/button';
 import { Plus } from 'lucide-react';
 import { useAdminSources, useDeleteSource, type Source } from '@/hooks/use-admin';
+import { useCrudDialogs } from '@/hooks/use-crud-dialogs';
+import { DeleteDialog } from '@/components/admin/delete-dialog';
 import {
   Dialog,
   DialogContent,
@@ -19,15 +21,24 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Switch } from '@/components/ui/switch';
 import { Badge } from '@/components/ui/badge';
-import { toast } from 'sonner';
 
 export default function SourcesPage() {
   const { data: sources = [], isLoading: loading } = useAdminSources();
   const deleteSourceMutation = useDeleteSource();
-  const [dialogOpen, setDialogOpen] = useState(false);
-  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
-  const [editingSource, setEditingSource] = useState<Source | null>(null);
-  const [deletingSource, setDeletingSource] = useState<Source | null>(null);
+
+  const {
+    dialogOpen,
+    deleteDialogOpen,
+    editingItem: editingSource,
+    deletingItem: deletingSource,
+    openCreateDialog,
+    openEditDialog,
+    openDeleteDialog,
+    closeDialog,
+    closeDeleteDialog,
+    handleSubmit,
+    confirmDelete,
+  } = useCrudDialogs<Source>();
 
   const [formData, setFormData] = useState({
     name: '',
@@ -40,7 +51,6 @@ export default function SourcesPage() {
   });
 
   const handleAdd = () => {
-    setEditingSource(null);
     setFormData({
       name: '',
       slug: '',
@@ -50,11 +60,10 @@ export default function SourcesPage() {
       priority: 50,
       apiEndpoint: '',
     });
-    setDialogOpen(true);
+    openCreateDialog();
   };
 
   const handleEdit = (source: Source) => {
-    setEditingSource(source);
     setFormData({
       name: source.name,
       slug: source.slug,
@@ -64,53 +73,21 @@ export default function SourcesPage() {
       priority: source.priority,
       apiEndpoint: source.apiEndpoint || '',
     });
-    setDialogOpen(true);
+    openEditDialog(source);
   };
 
-  const handleDelete = (source: Source) => {
-    setDeletingSource(source);
-    setDeleteDialogOpen(true);
-  };
+  const onSubmit = async () => {
+    const url = editingSource
+      ? `/api/sources/${editingSource.id}`
+      : '/api/sources';
+    const method = editingSource ? 'PUT' : 'POST';
+    const message = `Source ${editingSource ? 'updated' : 'created'} successfully`;
 
-  const handleSubmit = async () => {
-    try {
-      const url = editingSource
-        ? `/api/sources/${editingSource.id}`
-        : '/api/sources';
-      const method = editingSource ? 'PUT' : 'POST';
-
-      const response = await fetch(url, {
-        method,
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          ...formData,
-          setupCommand: formData.setupCommand || null,
-          apiEndpoint: formData.apiEndpoint || null,
-        }),
-      });
-
-      if (response.ok) {
-        toast.success(`Source ${editingSource ? 'updated' : 'created'} successfully`);
-        setDialogOpen(false);
-      } else {
-        const error = await response.json();
-        toast.error(error.error || 'Failed to save source');
-      }
-    } catch (error) {
-      console.error('Failed to save source:', error);
-      toast.error('Failed to save source');
-    }
-  };
-
-  const confirmDelete = () => {
-    if (!deletingSource) return;
-
-    deleteSourceMutation.mutate(deletingSource.id, {
-      onSuccess: () => {
-        setDeleteDialogOpen(false);
-        setDeletingSource(null);
-      },
-    });
+    await handleSubmit(url, method, {
+      ...formData,
+      setupCommand: formData.setupCommand || null,
+      apiEndpoint: formData.apiEndpoint || null,
+    }, message);
   };
 
   const columns: Column<Source>[] = [
@@ -158,11 +135,11 @@ export default function SourcesPage() {
         data={sources}
         columns={columns}
         onEdit={handleEdit}
-        onDelete={handleDelete}
+        onDelete={openDeleteDialog}
         getRowId={(row) => row.id}
       />
 
-      <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
+      <Dialog open={dialogOpen} onOpenChange={closeDialog}>
         <DialogContent className="max-w-2xl">
           <DialogHeader>
             <DialogTitle>
@@ -252,35 +229,28 @@ export default function SourcesPage() {
             </div>
           </div>
           <DialogFooter>
-            <Button variant="outline" onClick={() => setDialogOpen(false)}>
+            <Button variant="outline" onClick={closeDialog}>
               Cancel
             </Button>
-            <Button onClick={handleSubmit}>
+            <Button onClick={onSubmit}>
               {editingSource ? 'Update' : 'Create'}
             </Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
 
-      <Dialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>Delete Source</DialogTitle>
-            <DialogDescription>
-              Are you sure you want to delete &quot;{deletingSource?.name}&quot;? This action
-              cannot be undone and may affect existing packages.
-            </DialogDescription>
-          </DialogHeader>
-          <DialogFooter>
-            <Button variant="outline" onClick={() => setDeleteDialogOpen(false)}>
-              Cancel
-            </Button>
-            <Button variant="destructive" onClick={confirmDelete}>
-              Delete
-            </Button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
+      <DeleteDialog
+        open={deleteDialogOpen}
+        onOpenChange={closeDeleteDialog}
+        entityName="Source"
+        itemName={deletingSource?.name}
+        onConfirm={() => confirmDelete(deleteSourceMutation, (item) => item.id)}
+        description={
+          deletingSource
+            ? `Are you sure you want to delete "${deletingSource.name}"? This action cannot be undone and may affect existing packages.`
+            : undefined
+        }
+      />
     </div>
   );
 }

@@ -6,6 +6,8 @@ import { Breadcrumb } from '@/components/admin/breadcrumb';
 import { Button } from '@/components/ui/button';
 import { Plus } from 'lucide-react';
 import { useAdminCategories, useDeleteCategory, type Category } from '@/hooks/use-admin';
+import { useCrudDialogs } from '@/hooks/use-crud-dialogs';
+import { DeleteDialog } from '@/components/admin/delete-dialog';
 import {
   Dialog,
   DialogContent,
@@ -17,15 +19,24 @@ import {
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
-import { toast } from 'sonner';
 
 export default function CategoriesPage() {
   const { data: categories = [], isLoading: loading } = useAdminCategories();
   const deleteCategoryMutation = useDeleteCategory();
-  const [dialogOpen, setDialogOpen] = useState(false);
-  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
-  const [editingCategory, setEditingCategory] = useState<Category | null>(null);
-  const [deletingCategory, setDeletingCategory] = useState<Category | null>(null);
+
+  const {
+    dialogOpen,
+    deleteDialogOpen,
+    editingItem: editingCategory,
+    deletingItem: deletingCategory,
+    openCreateDialog,
+    openEditDialog,
+    openDeleteDialog,
+    closeDialog,
+    closeDeleteDialog,
+    handleSubmit,
+    confirmDelete,
+  } = useCrudDialogs<Category>();
 
   const [formData, setFormData] = useState({
     name: '',
@@ -36,7 +47,6 @@ export default function CategoriesPage() {
   });
 
   const handleAdd = () => {
-    setEditingCategory(null);
     setFormData({
       name: '',
       slug: '',
@@ -44,11 +54,10 @@ export default function CategoriesPage() {
       description: '',
       displayOrder: categories.length,
     });
-    setDialogOpen(true);
+    openCreateDialog();
   };
 
   const handleEdit = (category: Category) => {
-    setEditingCategory(category);
     setFormData({
       name: category.name,
       slug: category.slug,
@@ -56,49 +65,17 @@ export default function CategoriesPage() {
       description: category.description || '',
       displayOrder: category.displayOrder,
     });
-    setDialogOpen(true);
+    openEditDialog(category);
   };
 
-  const handleDelete = (category: Category) => {
-    setDeletingCategory(category);
-    setDeleteDialogOpen(true);
-  };
+  const onSubmit = async () => {
+    const url = editingCategory
+      ? `/api/categories/${editingCategory.id}`
+      : '/api/categories';
+    const method = editingCategory ? 'PUT' : 'POST';
+    const message = `Category ${editingCategory ? 'updated' : 'created'} successfully`;
 
-  const handleSubmit = async () => {
-    try {
-      const url = editingCategory
-        ? `/api/categories/${editingCategory.id}`
-        : '/api/categories';
-      const method = editingCategory ? 'PUT' : 'POST';
-
-      const response = await fetch(url, {
-        method,
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      });
-
-      if (response.ok) {
-        toast.success(`Category ${editingCategory ? 'updated' : 'created'} successfully`);
-        setDialogOpen(false);
-      } else {
-        const error = await response.json();
-        toast.error(error.error || 'Failed to save category');
-      }
-    } catch (error) {
-      console.error('Failed to save category:', error);
-      toast.error('Failed to save category');
-    }
-  };
-
-  const confirmDelete = () => {
-    if (!deletingCategory) return;
-
-    deleteCategoryMutation.mutate(deletingCategory.id, {
-      onSuccess: () => {
-        setDeleteDialogOpen(false);
-        setDeletingCategory(null);
-      },
-    });
+    await handleSubmit(url, method, formData, message);
   };
 
   const columns: Column<Category>[] = [
@@ -137,11 +114,11 @@ export default function CategoriesPage() {
         data={categories}
         columns={columns}
         onEdit={handleEdit}
-        onDelete={handleDelete}
+        onDelete={openDeleteDialog}
         getRowId={(row) => row.id}
       />
 
-      <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
+      <Dialog open={dialogOpen} onOpenChange={closeDialog}>
         <DialogContent>
           <DialogHeader>
             <DialogTitle>
@@ -201,35 +178,23 @@ export default function CategoriesPage() {
             </div>
           </div>
           <DialogFooter>
-            <Button variant="outline" onClick={() => setDialogOpen(false)}>
+            <Button variant="outline" onClick={closeDialog}>
               Cancel
             </Button>
-            <Button onClick={handleSubmit}>
+            <Button onClick={onSubmit}>
               {editingCategory ? 'Update' : 'Create'}
             </Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
 
-      <Dialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>Delete Category</DialogTitle>
-            <DialogDescription>
-              Are you sure you want to delete &quot;{deletingCategory?.name}&quot;? This action
-              cannot be undone.
-            </DialogDescription>
-          </DialogHeader>
-          <DialogFooter>
-            <Button variant="outline" onClick={() => setDeleteDialogOpen(false)}>
-              Cancel
-            </Button>
-            <Button variant="destructive" onClick={confirmDelete}>
-              Delete
-            </Button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
+      <DeleteDialog
+        open={deleteDialogOpen}
+        onOpenChange={closeDeleteDialog}
+        entityName="Category"
+        itemName={deletingCategory?.name}
+        onConfirm={() => confirmDelete(deleteCategoryMutation, (item) => item.id)}
+      />
     </div>
   );
 }

@@ -6,9 +6,11 @@
 import { db } from '@/db';
 import { packages, sources, refreshLogs } from '@/db/schema';
 import { eq } from 'drizzle-orm';
-import { getFlathubAppMetadata, checkFlathubAvailability } from './external-apis/flathub';
-import { getSnapcraftPackageMetadata, checkSnapcraftAvailability } from './external-apis/snapcraft';
-import { getAURPackageMetadata, checkAURAvailability } from './external-apis/aur';
+import { getRefreshStrategy } from './refresh-strategies';
+import type { RefreshResult, RefreshOptions } from '@/types/entities';
+
+// Re-export for backward compatibility
+export type { RefreshResult, RefreshOptions };
 
 interface SourceRecord {
   id: string;
@@ -25,20 +27,6 @@ interface PackageRecord {
   isAvailable: boolean | null;
   lastChecked: Date | null;
   metadata: unknown;
-}
-
-export interface RefreshResult {
-  sourceId: string;
-  sourceName: string;
-  packagesChecked: number;
-  packagesUpdated: number;
-  errors: string[];
-  duration: number;
-}
-
-export interface RefreshOptions {
-  sourceId?: string; // If specified, only refresh packages from this source
-  dryRun?: boolean; // If true, don't actually update the database
 }
 
 /**
@@ -136,38 +124,24 @@ async function refreshSourcePackages(
 }
 
 /**
- * Refresh a single package
+ * Refresh a single package using the appropriate strategy
  */
 async function refreshSinglePackage(
   pkg: PackageRecord,
   source: SourceRecord,
   dryRun: boolean
 ): Promise<boolean> {
-  let metadata = null;
-  let isAvailable = false;
+  // Get the refresh strategy for this source
+  const strategy = getRefreshStrategy(source.slug);
 
-  // Fetch metadata based on source type
-  switch (source.slug) {
-    case 'flatpak':
-      metadata = await getFlathubAppMetadata(pkg.identifier);
-      isAvailable = metadata !== null;
-      break;
-
-    case 'snap':
-      metadata = await getSnapcraftPackageMetadata(pkg.identifier);
-      isAvailable = metadata !== null;
-      break;
-
-    case 'aur':
-      metadata = await getAURPackageMetadata(pkg.identifier);
-      isAvailable = metadata !== null;
-      break;
-
-    default:
-      // For native package managers (apt, dnf, pacman, etc.), we can't easily check availability
-      // without actually running commands on the system. Skip these for now.
-      return false;
+  // If no strategy exists, skip (e.g., for native package managers)
+  if (!strategy) {
+    return false;
   }
+
+  // Fetch metadata using the strategy
+  const metadata = await strategy.getMetadata(pkg.identifier);
+  const isAvailable = metadata !== null;
 
   // Check if anything changed
   const hasChanges =
@@ -239,7 +213,7 @@ export async function getRefreshLogs(limit: number = 50) {
 }
 
 /**
- * Check the availability of a specific package
+ * Check the availability of a specific package using the appropriate strategy
  */
 export async function checkPackageAvailability(
   packageId: string
@@ -255,39 +229,24 @@ export async function checkPackageAvailability(
     throw new Error('Package not found');
   }
 
-  let available = false;
+  // Get the refresh strategy for this source
+  const strategy = getRefreshStrategy(pkg.source.slug);
+
+  // If no strategy exists, assume available (e.g., for native package managers)
+  if (!strategy) {
+    return {
+      available: true,
+      version: pkg.version || undefined,
+    };
+  }
+
+  // Check availability using the strategy
+  const available = await strategy.checkAvailability(pkg.identifier);
   let version: string | undefined;
 
-  switch (pkg.source.slug) {
-    case 'flatpak':
-      available = await checkFlathubAvailability(pkg.identifier);
-      if (available) {
-        const metadata = await getFlathubAppMetadata(pkg.identifier);
-        version = metadata?.version;
-      }
-      break;
-
-    case 'snap':
-      available = await checkSnapcraftAvailability(pkg.identifier);
-      if (available) {
-        const metadata = await getSnapcraftPackageMetadata(pkg.identifier);
-        version = metadata?.version;
-      }
-      break;
-
-    case 'aur':
-      available = await checkAURAvailability(pkg.identifier);
-      if (available) {
-        const metadata = await getAURPackageMetadata(pkg.identifier);
-        version = metadata?.version;
-      }
-      break;
-
-    default:
-      // For native package managers, assume available
-      available = true;
-      version = pkg.version || undefined;
-      break;
+  if (available) {
+    const metadata = await strategy.getMetadata(pkg.identifier);
+    version = metadata?.version;
   }
 
   return { available, version };
