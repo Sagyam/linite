@@ -1,139 +1,197 @@
-# Linite
+# Linite Documentation
 
-A Ninite-style bulk package installer for Linux distributions.
+Complete documentation for the Linite project - a Ninite-style bulk package installer for Linux distributions.
 
-## Overview
+## Quick Links
 
-Linite allows users to select multiple applications from a curated catalog, choose their Linux distribution and preferred package sources, and receive a single command to install all selected packages.
-
-**Key Features:**
-- Curated application catalog with rich metadata
-- Support for multiple package sources (Flatpak, Snap, APT, DNF, Pacman, AUR, Zypper)
-- Smart package selection based on distribution
-- One-command installation
-- Admin panel for managing apps, packages, and distributions
-
-## Tech Stack
-
-- **Frontend**: Next.js 14+ (App Router), shadcn/ui, Tailwind CSS
-- **Backend**: Drizzle ORM, Turso/SQLite
-- **Auth**: BetterAuth
-- **State Management**: Zustand
-- **Package Manager**: bun
+- [Project Overview](./docs/PROJECT_OVERVIEW.md) - Architecture and tech stack
+- [API Reference](./docs/API_REFERENCE.md) - REST API endpoints
+- [Database Schema](./docs/DATABASE_SCHEMA.md) - Database structure
+- [Repository Structure](./docs/REPOSITORY_STRUCTURE.md) - Code organization
+- [Environment Setup](./docs/ENVIRONMENT.md) - Configuration guide
+- [Initial Data](./docs/INITIAL_DATA.md) - Seed data reference
 
 ## Getting Started
 
 ### Prerequisites
-
-- [Bun](https://bun.sh) (v1.0.0 or higher)
-- Node.js 20+ (for Next.js)
+- Bun 1.0+
+- Node.js 20+
+- Turso account (or local SQLite)
 
 ### Installation
 
-1. Clone the repository:
 ```bash
-git clone <repository-url>
-cd linite
-```
-
-2. Install dependencies:
-```bash
+# Install dependencies
 bun install
-```
 
-3. Set up environment variables:
-```bash
-cp .env.example .env
-# Edit .env with your values
-```
+# Copy environment variables
+cp .env.example .env.local
 
-See [docs/ENVIRONMENT.md](./docs/ENVIRONMENT.md) for detailed setup instructions.
+# Edit .env.local with your values
+# DATABASE_URL, DATABASE_AUTH_TOKEN, BETTER_AUTH_SECRET, etc.
 
-4. Validate your environment:
-```bash
-bun run check-env
-```
+# Run database migrations
+bun run db:push
 
-5. Set up the database:
-```bash
-bun run db:generate  # Generate migrations
-bun run db:migrate   # Run migrations
-bun run db:seed      # Seed with initial data
-```
+# Seed the database
+bun run db:seed
 
-6. Start the development server:
-```bash
+# Start development server
 bun run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to see the application.
+Visit `http://localhost:3000` to see the app.
 
-### Admin Access
+## Project Structure
 
-After seeding, you can access the admin panel at `/admin/login` with:
-- Email: `admin@linite.local`
-- Password: `admin123`
-
-**Important:** Change these credentials after first login!
-
-## Available Scripts
-
-- `bun run dev` - Start development server
-- `bun run build` - Build for production
-- `bun run start` - Start production server
-- `bun run lint` - Run ESLint
-- `bun run check-env` - Validate environment variables
-- `bun run db:generate` - Generate database migrations
-- `bun run db:migrate` - Run database migrations
-- `bun run db:push` - Push schema changes to database
-- `bun run db:studio` - Open Drizzle Studio (database GUI)
-- `bun run db:seed` - Seed database with sample data
-
-## Deployment
-
-### Production with Turso
-
-1. Create a Turso database:
-```bash
-turso db create linite
-turso db show linite
+```
+linite/
+├── src/
+│   ├── app/              # Next.js App Router (pages & API routes)
+│   ├── components/       # React components
+│   ├── db/              # Database schema & client
+│   ├── hooks/           # Custom React hooks
+│   ├── lib/             # Utilities & helpers
+│   ├── services/        # Business logic & external APIs
+│   ├── stores/          # Zustand state management
+│   ├── test/            # Test configuration
+│   └── types/           # TypeScript type definitions
+├── docs/                # Documentation
+├── public/              # Static assets
+└── scripts/             # Database & utility scripts
 ```
 
-2. Get your database URL and auth token:
-```bash
-turso db show linite --url
-turso db tokens create linite
-```
+## Key Features
 
-3. Update production environment variables:
-```env
-DATABASE_URL="libsql://your-database-url"
-DATABASE_AUTH_TOKEN="your-auth-token"
-```
+### User-Facing
+- ✅ Browse curated app catalog by category
+- ✅ Select multiple apps for installation
+- ✅ Choose your Linux distribution
+- ✅ Optional source preference (Flatpak, Snap, APT, etc.)
+- ✅ Generate single install command
+- ✅ Copy commands with one click
 
-4. Deploy to Vercel and configure environment variables
+### Admin Features
+- ✅ Manage apps, packages, categories
+- ✅ Manage distributions and sources
+- ✅ Configure distro-source mappings
+- ✅ Search external APIs (Flathub, Snap, AUR, Repology)
+- ✅ Trigger package metadata refresh
+- ✅ View refresh job logs
 
-### Vercel Cron
-
-The project includes a cron job (`vercel.json`) that automatically refreshes package metadata every 24 hours.
-
-## Documentation
-
-Full documentation is available in the `/docs` folder:
-
-- [Project Overview](./docs/PROJECT_OVERVIEW.md)
-- [Database Schema](./docs/DATABASE_SCHEMA.md)
-- [API Reference](./docs/API_REFERENCE.md)
-- [Environment Setup](./docs/ENVIRONMENT.md)
-- [Repository Structure](./docs/REPOSITORY_STRUCTURE.md)
-- [Initial Data](./docs/INITIAL_DATA.md)
-- [Tasks](./docs/TASKS.md)
-- [Implementation Status](./docs/SPEC.md)
+### Technical
+- ✅ Rate-limited public APIs
+- ✅ Protected admin endpoints
+- ✅ Automated package refresh (cron)
+- ✅ External API caching (15min TTL)
+- ✅ Image uploads (Vercel Blob)
 
 ## Development
 
-See [CLAUDE.md](./CLAUDE.md) for development guidelines and instructions.
+### Available Scripts
 
-## License
+```bash
+bun run dev              # Start dev server
+bun run build            # Build for production
+bun run start            # Start production server
+bun run lint             # Run ESLint
+bun run check-env        # Validate environment variables
 
-MIT
+# Database
+bun run db:generate      # Generate migrations
+bun run db:migrate       # Run migrations
+bun run db:push          # Push schema changes
+bun run db:studio        # Open Drizzle Studio
+bun run db:seed          # Seed database
+bun run db:wipe          # Wipe all data
+
+# Testing
+bun test                 # Run tests in watch mode
+bun test:run             # Run tests once
+bun test:ui              # Open test UI
+bun test:coverage        # Generate coverage report
+```
+
+## Testing
+
+The project has comprehensive test coverage with **239 passing tests**:
+
+- External API clients (Flathub, AUR, Snapcraft, Repology)
+- Command generation logic
+- State management (Zustand)
+- API utilities (rate limiting, auth, error handling)
+- Custom hooks (clipboard)
+- Utility functions
+
+See `../TEST_COVERAGE_SUMMARY.md` for details.
+
+## Architecture
+
+### Tech Stack
+- **Framework**: Next.js 14+ (App Router)
+- **Database**: Drizzle ORM + Turso (libSQL)
+- **Auth**: BetterAuth
+- **UI**: shadcn/ui + Tailwind CSS
+- **State**: Zustand
+- **Storage**: Vercel Blob
+- **Package Manager**: Bun
+
+### API Structure
+- **Public**: `/api/apps`, `/api/distros`, `/api/sources`, `/api/categories`, `/api/generate`
+- **Admin**: All CRUD operations + `/api/refresh`, `/api/search`, `/api/upload`
+- **Cron**: `/api/cron/refresh` (automated package updates)
+
+### External APIs
+- **Flathub**: App search and metadata
+- **Snapcraft**: Snap package information
+- **AUR**: Arch User Repository packages
+- **Repology**: Cross-distro package availability
+
+## Deployment
+
+### Environment Variables
+
+Required:
+- `DATABASE_URL` - Turso database URL
+- `DATABASE_AUTH_TOKEN` - Turso auth token
+- `BETTER_AUTH_SECRET` - Auth secret (min 32 chars)
+- `BETTER_AUTH_URL` - Base URL (e.g., https://linite.example.com)
+
+Optional:
+- `UPSTASH_REDIS_REST_URL` - Redis for rate limiting
+- `UPSTASH_REDIS_REST_TOKEN` - Redis auth token
+- `BLOB_READ_WRITE_TOKEN` - Vercel Blob token
+- `CRON_SECRET` - Secret for cron endpoint
+
+### Vercel Deployment
+
+1. Connect repository to Vercel
+2. Set environment variables
+3. Deploy
+
+The app will automatically:
+- Build the Next.js app
+- Connect to Turso database
+- Enable rate limiting (if Redis configured)
+- Set up cron jobs for package refresh
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests for new features
+5. Ensure all tests pass (`bun test:run`)
+6. Submit a pull request
+
+## Support
+
+For issues or questions:
+- Check existing documentation
+- Review test files for usage examples
+- Open an issue on GitHub
+
+
+---
+
+**Built with ❤️ using Next.js, Drizzle, and Bun**

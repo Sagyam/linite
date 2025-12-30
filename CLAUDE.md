@@ -1,10 +1,10 @@
-# Linite - Development Instructions
+# Linite - Development Guide
 
 ## Project Overview
 
-Linite is a Ninite-style bulk package installer for Linux distributions. Users select apps from a curated catalog, choose their distro and source preferences, then receive a single command to install everything.
+Linite is a Ninite-style bulk package installer for Linux distributions. Users select apps, choose their distro, and get a single install command.
 
-**Full documentation**: See `/docs` folder
+**Documentation**: See `/docs/README.md` for complete guide
 
 ## Key Technologies
 
@@ -87,16 +87,21 @@ bun run check-env     # Validate environment setup
 ```
 See `.env.example` for required variables. All env vars are validated using Zod on startup.
 
-## Current Task
+## Documentation
 
-Check `/docs/TASKS.md` for the full implementation breakdown. Work through tasks in order, updating `/docs/SPEC.md` as you complete features.
+- **Getting Started**: `/docs/README.md`
+- **Architecture**: `/docs/PROJECT_OVERVIEW.md`
+- **API Docs**: `/docs/API_REFERENCE.md`
+- **Database**: `/docs/DATABASE_SCHEMA.md`
+- **Testing**: `/docs/TESTING.md`
+- **Environment**: `/docs/ENVIRONMENT.md`
 
-## Getting Help
+## Testing
 
-- Full project spec: `/docs/PROJECT_OVERVIEW.md`
-- Database schema: `/docs/DATABASE_SCHEMA.md`
-- API reference: `/docs/API_REFERENCE.md`
-- Environment setup: `/docs/ENVIRONMENT.md`
-- Initial data: `/docs/INITIAL_DATA.md`
-- Task breakdown: `/docs/TASKS.md`
-- Implementation status: `/docs/SPEC.md`
+```bash
+bun test                  # Watch mode
+bun test:run              # Run once
+bun test:coverage         # With coverage
+```
+
+**239 tests, 100% pass rate** - See `/docs/TESTING.md`

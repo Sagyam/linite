@@ -1,190 +1,108 @@
 # Repository Structure
 
+## Overview
+
 ```
 linite/
-├── .github/
-│   └── workflows/
-│       └── ci.yml                    # CI/CD pipeline
-├── drizzle/                          # Generated migrations
-│   └── migrations/
-├── docs/                             # Project documentation
-│   ├── PROJECT_OVERVIEW.md
-│   ├── DATABASE_SCHEMA.md
-│   ├── API_REFERENCE.md
-│   ├── REPOSITORY_STRUCTURE.md
-│   ├── INITIAL_DATA.md
-│   ├── TASKS.md
-│   └── SPEC.md
-├── public/
-│   ├── icons/
-│   │   ├── distros/                  # Distro logos
-│   │   └── sources/                  # Source logos (flatpak, snap, etc.)
-│   └── og-image.png
-├── src/
-│   ├── app/
-│   │   ├── (public)/                 # Public routes group
-│   │   │   ├── page.tsx              # Homepage - app selector
-│   │   │   ├── layout.tsx
-│   │   │   └── apps/
-│   │   │       └── [slug]/
-│   │   │           └── page.tsx      # Individual app detail page
-│   │   ├── admin/                    # Admin routes (protected)
-│   │   │   ├── layout.tsx
-│   │   │   ├── page.tsx              # Admin dashboard
-│   │   │   ├── login/
-│   │   │   │   └── page.tsx          # Admin login page
-│   │   │   ├── apps/
-│   │   │   │   ├── page.tsx          # App management list
-│   │   │   │   ├── new/
-│   │   │   │   │   └── page.tsx      # Add new app
-│   │   │   │   └── [id]/
-│   │   │   │       └── edit/
-│   │   │   │           └── page.tsx  # Edit app
-│   │   │   ├── packages/
-│   │   │   │   └── page.tsx          # Package management
-│   │   │   ├── distros/
-│   │   │   │   └── page.tsx          # Distro management
-│   │   │   ├── sources/
-│   │   │   │   └── page.tsx          # Source management
-│   │   │   ├── categories/
-│   │   │   │   └── page.tsx          # Category management
-│   │   │   └── refresh/
-│   │   │       └── page.tsx          # Manual refresh trigger + logs
-│   │   ├── api/
-│   │   │   ├── apps/
-│   │   │   │   ├── route.ts          # GET all, POST new
-│   │   │   │   └── [id]/
-│   │   │   │       └── route.ts      # GET, PUT, DELETE single
-│   │   │   ├── packages/
-│   │   │   │   ├── route.ts
-│   │   │   │   └── [id]/
-│   │   │   │       └── route.ts
-│   │   │   ├── distros/
-│   │   │   │   ├── route.ts
-│   │   │   │   └── [id]/
-│   │   │   │       └── route.ts
-│   │   │   ├── sources/
-│   │   │   │   ├── route.ts
-│   │   │   │   └── [id]/
-│   │   │   │       └── route.ts
-│   │   │   ├── categories/
-│   │   │   │   ├── route.ts
-│   │   │   │   └── [id]/
-│   │   │   │       └── route.ts
-│   │   │   ├── distro-sources/
-│   │   │   │   ├── route.ts
-│   │   │   │   └── [id]/
-│   │   │   │       └── route.ts
-│   │   │   ├── generate/
-│   │   │   │   └── route.ts          # Generate install command
-│   │   │   ├── search/
-│   │   │   │   └── route.ts          # Search external APIs
-│   │   │   ├── refresh/
-│   │   │   │   └── route.ts          # Trigger data refresh
-│   │   │   ├── cron/
-│   │   │   │   └── refresh/
-│   │   │   │       └── route.ts      # Vercel cron endpoint
-│   │   │   └── auth/
-│   │   │       └── [...all]/
-│   │   │           └── route.ts      # BetterAuth catch-all
-│   │   ├── layout.tsx
-│   │   └── globals.css
-│   ├── components/
-│   │   ├── ui/                       # shadcn/ui components
-│   │   │   ├── button.tsx
-│   │   │   ├── card.tsx
-│   │   │   ├── dialog.tsx
-│   │   │   ├── input.tsx
-│   │   │   ├── select.tsx
-│   │   │   ├── table.tsx
-│   │   │   ├── tabs.tsx
-│   │   │   ├── toast.tsx
-│   │   │   └── ...
-│   │   ├── app-card.tsx              # App display card
-│   │   ├── app-grid.tsx              # Grid of app cards
-│   │   ├── app-detail-modal.tsx      # Rich app metadata modal
-│   │   ├── category-filter.tsx       # Category sidebar/tabs
-│   │   ├── distro-selector.tsx       # Distro dropdown
-│   │   ├── source-preference.tsx     # Source priority selector
-│   │   ├── command-output.tsx        # Generated command display
-│   │   ├── selection-summary.tsx     # Selected apps summary
-│   │   ├── search-bar.tsx            # App search
-│   │   ├── header.tsx
-│   │   ├── footer.tsx
-│   │   └── admin/
-│   │       ├── app-form.tsx          # Add/edit app form
-│   │       ├── package-form.tsx      # Add/edit package form
-│   │       ├── data-table.tsx        # Reusable admin table
-│   │       ├── sidebar.tsx           # Admin navigation
-│   │       ├── stats-cards.tsx       # Dashboard stats
-│   │       ├── login-form.tsx        # Email/password login
-│   │       └── refresh-status.tsx    # Refresh job status
-│   ├── db/
-│   │   ├── index.ts                  # Drizzle client
-│   │   └── schema.ts                 # Drizzle schema
-│   ├── lib/
-│   │   ├── auth.ts                   # BetterAuth config
-│   │   ├── auth-client.ts            # BetterAuth client
-│   │   ├── utils.ts                  # General utilities
-│   │   └── constants.ts              # App constants
-│   ├── services/
-│   │   ├── command-generator.ts      # Install command generation logic
-│   │   ├── package-refresh.ts        # Background refresh logic
-│   │   └── external-apis/
-│   │       ├── flathub.ts            # Flathub API client
-│   │       ├── snapcraft.ts          # Snapcraft API client
-│   │       ├── repology.ts           # Repology API client
-│   │       ├── aur.ts                # AUR RPC client
-│   │       └── types.ts              # Shared API types
-│   ├── stores/
-│   │   └── selection-store.ts        # Zustand store for selections
-│   ├── hooks/
-│   │   ├── use-apps.ts               # App data fetching
-│   │   ├── use-selection.ts          # Selection management
-│   │   └── use-command.ts            # Command generation
-│   └── types/
-│       ├── app.ts
-│       ├── package.ts
-│       ├── distro.ts
-│       └── api.ts
-├── .env.example
-├── .env.local
-├── .gitignore
-├── drizzle.config.ts
-├── next.config.js
-├── package.json
-├── tailwind.config.ts
-├── tsconfig.json
-├── vercel.json
-├── CLAUDE.md                          # Essential Claude instructions
-└── README.md
+├── .github/workflows/     # CI/CD pipelines
+├── docs/                  # Documentation
+├── drizzle/              # Database migrations
+├── public/               # Static assets (icons, images)
+├── scripts/              # Database & utility scripts
+└── src/                  # Source code
+    ├── app/              # Next.js App Router
+    │   ├── (public)/     # Public routes
+    │   ├── admin/        # Protected admin routes
+    │   └── api/          # REST API endpoints
+    ├── components/       # React components
+    │   ├── ui/           # shadcn/ui primitives
+    │   └── admin/        # Admin-specific components
+    ├── db/               # Database schema & client
+    ├── hooks/            # Custom React hooks
+    ├── lib/              # Utilities & configuration
+    ├── services/         # Business logic
+    │   ├── external-apis/    # API clients
+    │   └── refresh-strategies/ # Package refresh
+    ├── stores/           # Zustand state management
+    ├── test/             # Test configuration
+    └── types/            # TypeScript definitions
 ```
 
-## Directory Explanations
+## Key Directories
 
-### /src/app
-Next.js App Router structure with route groups for public and admin areas
+### `/src/app`
+Next.js App Router structure:
+- `(public)/` - User-facing pages (app selector, details)
+- `admin/` - Protected admin pages (login, dashboard, CRUD)
+- `api/` - REST API routes (public + admin endpoints)
 
-### /src/components
-React components organized by purpose (ui primitives, public components, admin components)
+### `/src/services`
+Business logic layer:
+- `command-generator.ts` - Install command generation
+- `package-refresh.ts` - Background refresh workflow
+- `external-apis/` - Flathub, AUR, Snapcraft, Repology clients
+- `refresh-strategies/` - Source-specific refresh logic
 
-### /src/db
-Database client and Drizzle ORM schema
+### `/src/components`
+React components:
+- `ui/` - shadcn/ui primitives (button, card, dialog, etc.)
+- `admin/` - Admin UI (forms, tables, sidebar)
+- Root level - Public UI (app grid, command output, etc.)
 
-### /src/lib
-Shared utilities, authentication config, constants
+### `/src/lib`
+Utilities and configuration:
+- `auth.ts` - BetterAuth server configuration
+- `api-utils.ts` - Rate limiting, error handling, middleware
+- `utils.ts` - General utilities (className merger, etc.)
 
-### /src/services
-Business logic for command generation, package refresh, external API clients
+## File Naming
 
-### /src/stores
-Zustand stores for client-side state management
+- **Pages**: `page.tsx` (Next.js convention)
+- **API Routes**: `route.ts` (Next.js convention)
+- **Components**: `kebab-case.tsx` (e.g., `app-card.tsx`)
+- **Utilities**: `kebab-case.ts` (e.g., `api-utils.ts`)
+- **Types**: `entities.ts`, `api.ts`, etc.
+- **Tests**: `*.test.ts` or `*.test.tsx` (co-located with source)
 
-### /src/hooks
-Custom React hooks for data fetching and state management
+## Import Aliases
 
-### /src/types
-TypeScript type definitions
+```typescript
+import { db } from '@/db';                    // src/db
+import { Button } from '@/components/ui';     // src/components/ui
+import { useApps } from '@/hooks';            // src/hooks
+import { cn } from '@/lib/utils';             // src/lib/utils
+```
 
-### /docs
-Project documentation (moved from CLAUDE.md)
+## API Route Structure
+
+```
+/api/
+├── apps/           # GET (list), POST (create)
+│   └── [id]/       # GET, PUT, DELETE (single)
+├── packages/       # Package CRUD
+├── distros/        # Distribution CRUD
+├── sources/        # Source CRUD
+├── categories/     # Category CRUD
+├── distro-sources/ # Distro-source mapping
+├── generate/       # Command generation (public)
+├── search/         # External API search (admin)
+├── refresh/        # Trigger refresh (admin)
+├── upload/         # Image uploads (admin)
+├── cron/refresh/   # Automated refresh (cron)
+└── auth/[...all]/  # BetterAuth endpoints
+```
+
+## Documentation Files
+
+- `README.md` - Getting started guide
+- `PROJECT_OVERVIEW.md` - Architecture overview
+- `API_REFERENCE.md` - API endpoint documentation
+- `DATABASE_SCHEMA.md` - Database structure
+- `ENVIRONMENT.md` - Environment variables
+- `INITIAL_DATA.md` - Seed data reference
+- `TESTING.md` - Test documentation
+- `SEO.md` - SEO configuration
+
+---
+
+For detailed architecture, see [PROJECT_OVERVIEW.md](./PROJECT_OVERVIEW.md).
