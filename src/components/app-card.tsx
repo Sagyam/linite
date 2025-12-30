@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { Info } from 'lucide-react';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -38,10 +39,12 @@ export function AppCard({ app }: AppCardProps) {
         </div>
 
         {app.iconUrl && (
-          <img
+          <Image
             src={app.iconUrl}
             alt={app.displayName}
-            className="w-12 h-12 rounded-md flex-shrink-0"
+            width={48}
+            height={48}
+            className="w-12 h-12 rounded-md flex-shrink-0 object-cover"
             onError={(e) => {
               // Hide broken images
               e.currentTarget.style.display = 'none';

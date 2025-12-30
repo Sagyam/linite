@@ -6,7 +6,8 @@
 import { PackageSearchResult, PackageMetadata, SimpleCache } from './types';
 
 const AUR_RPC_BASE = 'https://aur.archlinux.org/rpc';
-const cache = new SimpleCache<any>(15); // 15 minute cache
+const searchCache = new SimpleCache<PackageSearchResult[]>(15); // 15 minute cache
+const metadataCache = new SimpleCache<PackageMetadata>(15); // 15 minute cache
 
 interface AURResponse {
   version: number;
@@ -50,7 +51,7 @@ export async function searchAUR(query: string): Promise<PackageSearchResult[]> {
   }
 
   const cacheKey = `aur:search:${query.toLowerCase()}`;
-  const cached = cache.get(cacheKey);
+  const cached = searchCache.get(cacheKey);
   if (cached) return cached;
 
   try {
@@ -87,7 +88,7 @@ export async function searchAUR(query: string): Promise<PackageSearchResult[]> {
       source: 'aur' as const,
     }));
 
-    cache.set(cacheKey, results);
+    searchCache.set(cacheKey, results);
     return results;
   } catch (error) {
     console.error('AUR search error:', error);
@@ -106,7 +107,7 @@ export async function getAURPackageMetadata(packageName: string): Promise<Packag
   }
 
   const cacheKey = `aur:package:${packageName}`;
-  const cached = cache.get(cacheKey);
+  const cached = metadataCache.get(cacheKey);
   if (cached) return cached;
 
   try {
@@ -161,7 +162,7 @@ export async function getAURPackageMetadata(packageName: string): Promise<Packag
       },
     };
 
-    cache.set(cacheKey, metadata);
+    metadataCache.set(cacheKey, metadata);
     return metadata;
   } catch (error) {
     console.error('AUR metadata fetch error:', error);
@@ -257,5 +258,6 @@ export async function getAURPackagesMetadata(
  * Clear the AUR cache
  */
 export function clearAURCache(): void {
-  cache.clear();
+  searchCache.clear();
+  metadataCache.clear();
 }

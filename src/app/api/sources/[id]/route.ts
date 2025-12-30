@@ -60,9 +60,9 @@ export async function PUT(
     }
 
     return successResponse(updated);
-  } catch (error: any) {
+  } catch (error) {
     console.error('Error updating source:', error);
-    if (error.message?.includes('UNIQUE')) {
+    if (error instanceof Error && error.message?.includes('UNIQUE')) {
       return errorResponse('Source with this slug already exists', 409);
     }
     return errorResponse('Failed to update source', 500);

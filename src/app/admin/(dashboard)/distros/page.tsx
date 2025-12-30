@@ -5,7 +5,7 @@ import { DataTable, Column } from '@/components/admin/data-table';
 import { Breadcrumb } from '@/components/admin/breadcrumb';
 import { Button } from '@/components/ui/button';
 import { Plus } from 'lucide-react';
-import { useAdminDistros, useDeleteDistro } from '@/hooks/use-admin';
+import { useAdminDistros, useDeleteDistro, type Distro } from '@/hooks/use-admin';
 import {
   Dialog,
   DialogContent,
@@ -19,16 +19,6 @@ import { Label } from '@/components/ui/label';
 import { Switch } from '@/components/ui/switch';
 import { Badge } from '@/components/ui/badge';
 import { toast } from 'sonner';
-
-interface Distro {
-  id: string;
-  name: string;
-  slug: string;
-  family: string;
-  iconUrl: string | null;
-  basedOn: string | null;
-  isPopular: boolean;
-}
 
 export default function DistrosPage() {
   const { data: distros = [], isLoading: loading } = useAdminDistros();
@@ -250,7 +240,7 @@ export default function DistrosPage() {
           <DialogHeader>
             <DialogTitle>Delete Distribution</DialogTitle>
             <DialogDescription>
-              Are you sure you want to delete "{deletingDistro?.name}"? This action
+              Are you sure you want to delete &quot;{deletingDistro?.name}&quot;? This action
               cannot be undone.
             </DialogDescription>
           </DialogHeader>

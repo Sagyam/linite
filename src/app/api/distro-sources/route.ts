@@ -40,8 +40,11 @@ export async function POST(request: NextRequest) {
     }).returning();
 
     return successResponse(newMapping, 201);
-  } catch (error: any) {
+  } catch (error) {
     console.error('Error creating distro-source mapping:', error);
+    if (error instanceof Error && error.message?.includes('UNIQUE')) {
+      return errorResponse('Distro source mapping already exists', 409);
+    }
     return errorResponse('Failed to create distro-source mapping', 500);
   }
 }

@@ -26,7 +26,7 @@ async function dropSchema() {
       try {
         await db.run(sql.raw(`DROP TABLE IF EXISTS ${table}`));
         console.log(`  ✓ Dropped ${table}`);
-      } catch (error) {
+      } catch {
         console.log(`  ⚠️  Skipped ${table} (may not exist)`);
       }
     }

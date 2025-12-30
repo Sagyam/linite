@@ -6,13 +6,16 @@ import { AppGrid } from '@/components/app-grid';
 import { DistroSelector } from '@/components/distro-selector';
 import { SelectionSummary } from '@/components/selection-summary';
 import { CommandOutput } from '@/components/command-output';
+import { StructuredData } from '@/components/structured-data';
 import { Card } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen flex flex-col">
-      <Header />
+    <>
+      <StructuredData />
+      <div className="min-h-screen flex flex-col">
+        <Header />
 
       <main className="flex-1 container mx-auto px-4 py-8">
         {/* Hero Section */}
@@ -66,6 +69,7 @@ export default function HomePage() {
       </main>
 
       <Footer />
-    </div>
+      </div>
+    </>
   );
 }

@@ -1,0 +1,23 @@
+{
+  "name": "Linite - Bulk Linux Package Installer",
+  "short_name": "Linite",
+  "description": "Select apps and generate a single command to install them on your Linux distribution",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#3b82f6",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/favicon.svg",
+      "sizes": "32x32",
+      "type": "image/svg+xml"
+    }
+  ]
+}

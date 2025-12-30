@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { Monitor, HelpCircle } from 'lucide-react';
 import {
   Select,
@@ -59,10 +60,12 @@ export function DistroSelector() {
               <SelectItem key={distro.id} value={distro.slug}>
                 <div className="flex items-center gap-2">
                   {distro.iconUrl && (
-                    <img
+                    <Image
                       src={distro.iconUrl}
                       alt={distro.name}
-                      className="w-4 h-4"
+                      width={16}
+                      height={16}
+                      className="w-4 h-4 object-cover"
                     />
                   )}
                   <span>{distro.name}</span>

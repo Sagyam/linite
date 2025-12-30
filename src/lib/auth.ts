@@ -2,6 +2,7 @@ import { betterAuth } from 'better-auth';
 import { drizzleAdapter } from 'better-auth/adapters/drizzle';
 import { db } from '@/db';
 import * as schema from '@/db/schema';
+import { eq } from 'drizzle-orm';
 
 const ADMIN_EMAIL = 'sagyamthapa32@gmail.com';
 
@@ -37,10 +38,10 @@ export const auth = betterAuth({
       },
     },
   },
-  async onSignUp({ user }) {
+  async onSignUp({ user }: { user: { id: string; email: string } }) {
     // Automatically assign superadmin role to specific email
     if (user.email === ADMIN_EMAIL) {
-      await db.update(schema.user).set({ role: 'superadmin' }).where({ id: user.id });
+      await db.update(schema.user).set({ role: 'superadmin' }).where(eq(schema.user.id, user.id));
     }
   },
 });

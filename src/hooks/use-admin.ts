@@ -4,7 +4,7 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'sonner';
 
 // Apps
-interface App {
+export interface App {
   id: string;
   slug: string;
   displayName: string;
@@ -55,7 +55,7 @@ export function useDeleteApp() {
 }
 
 // Categories
-interface Category {
+export interface Category {
   id: string;
   name: string;
   slug: string;
@@ -103,13 +103,15 @@ export function useDeleteCategory() {
 }
 
 // Sources
-interface Source {
+export interface Source {
   id: string;
   name: string;
   slug: string;
-  type: string;
-  installCommand: string | null;
-  iconUrl: string | null;
+  installCmd: string;
+  requireSudo: boolean;
+  setupCmd: string | null;
+  priority: number;
+  apiEndpoint: string | null;
 }
 
 export function useAdminSources() {
@@ -150,7 +152,7 @@ export function useDeleteSource() {
 }
 
 // Distros
-interface Distro {
+export interface Distro {
   id: string;
   name: string;
   slug: string;
@@ -199,7 +201,7 @@ export function useDeleteDistro() {
 }
 
 // Packages
-interface Package {
+export interface Package {
   id: string;
   appId: string;
   sourceId: string;
@@ -212,6 +214,7 @@ interface Package {
   };
   source: {
     name: string;
+    slug: string;
   };
 }
 

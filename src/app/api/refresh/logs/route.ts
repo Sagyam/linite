@@ -4,9 +4,9 @@ import { getRefreshLogs } from '@/services/package-refresh';
 
 export async function GET(request: NextRequest) {
   // Require admin authentication
-  const authError = await requireAuth(request);
-  if (authError) {
-    return authError;
+  const authResult = await requireAuth(request);
+  if (authResult.error) {
+    return authResult.error;
   }
 
   try {

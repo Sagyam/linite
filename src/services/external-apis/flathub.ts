@@ -6,7 +6,8 @@
 import { PackageSearchResult, PackageMetadata, SimpleCache } from './types';
 
 const FLATHUB_API_BASE = 'https://flathub.org/api/v2';
-const cache = new SimpleCache<any>(15); // 15 minute cache
+const searchCache = new SimpleCache<PackageSearchResult[]>(15); // 15 minute cache
+const metadataCache = new SimpleCache<PackageMetadata>(15); // 15 minute cache
 
 interface FlathubSearchResponse {
   hits: Array<{
@@ -49,7 +50,7 @@ export async function searchFlathub(query: string): Promise<PackageSearchResult[
   }
 
   const cacheKey = `flathub:search:${query.toLowerCase()}`;
-  const cached = cache.get(cacheKey);
+  const cached = searchCache.get(cacheKey);
   if (cached) return cached;
 
   try {
@@ -73,7 +74,7 @@ export async function searchFlathub(query: string): Promise<PackageSearchResult[
       source: 'flatpak' as const,
     }));
 
-    cache.set(cacheKey, results);
+    searchCache.set(cacheKey, results);
     return results;
   } catch (error) {
     console.error('Flathub search error:', error);
@@ -92,7 +93,7 @@ export async function getFlathubAppMetadata(appId: string): Promise<PackageMetad
   }
 
   const cacheKey = `flathub:app:${appId}`;
-  const cached = cache.get(cacheKey);
+  const cached = metadataCache.get(cacheKey);
   if (cached) return cached;
 
   try {
@@ -132,7 +133,7 @@ export async function getFlathubAppMetadata(appId: string): Promise<PackageMetad
       },
     };
 
-    cache.set(cacheKey, metadata);
+    metadataCache.set(cacheKey, metadata);
     return metadata;
   } catch (error) {
     console.error('Flathub metadata fetch error:', error);
@@ -159,5 +160,5 @@ export async function checkFlathubAvailability(appId: string): Promise<boolean> 
  * Clear the Flathub cache
  */
 export function clearFlathubCache(): void {
-  cache.clear();
+  searchCache.clear(); metadataCache.clear();
 }

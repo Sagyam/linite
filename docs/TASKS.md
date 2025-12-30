@@ -320,9 +320,9 @@
 - [x] Test connection
 
 ### 10.2 Vercel Deployment
-- [ ] Connect GitHub repository
-- [ ] Configure environment variables
-- [ ] Set up custom domain (optional)
+- [x] Connect GitHub repository
+- [x] Configure environment variables
+- [x] Set up custom domain (optional)
 - [ ] Configure build settings
 
 ### 10.3 Post-Deployment

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -40,14 +40,7 @@ export function AppForm({ appId, onSuccess }: AppFormProps) {
     isFoss: false,
   });
 
-  useEffect(() => {
-    fetchCategories();
-    if (appId) {
-      fetchApp();
-    }
-  }, [appId]);
-
-  const fetchCategories = async () => {
+  const fetchCategories = useCallback(async () => {
     try {
       const response = await fetch('/api/categories');
       if (response.ok) {
@@ -57,9 +50,10 @@ export function AppForm({ appId, onSuccess }: AppFormProps) {
     } catch (error) {
       console.error('Failed to fetch categories:', error);
     }
-  };
+  }, []);
 
-  const fetchApp = async () => {
+  const fetchApp = useCallback(async () => {
+    if (!appId) return;
     try {
       const response = await fetch(`/api/apps/${appId}`);
       if (response.ok) {
@@ -79,7 +73,12 @@ export function AppForm({ appId, onSuccess }: AppFormProps) {
       console.error('Failed to fetch app:', error);
       toast.error('Failed to load app');
     }
-  };
+  }, [appId]);
+
+  useEffect(() => {
+    fetchCategories();
+    fetchApp();
+  }, [fetchCategories, fetchApp]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

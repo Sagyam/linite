@@ -6,7 +6,8 @@
 import { PackageSearchResult, PackageMetadata, SimpleCache } from './types';
 
 const REPOLOGY_API_BASE = 'https://repology.org/api/v1';
-const cache = new SimpleCache<any>(15); // 15 minute cache
+const searchCache = new SimpleCache<PackageSearchResult[]>(15); // 15 minute cache
+const metadataCache = new SimpleCache<PackageMetadata>(15); // 15 minute cache
 
 interface RepologyProject {
   repo: string;
@@ -60,7 +61,7 @@ export async function searchRepology(projectName: string): Promise<PackageSearch
   }
 
   const cacheKey = `repology:search:${projectName.toLowerCase()}`;
-  const cached = cache.get(cacheKey);
+  const cached = searchCache.get(cacheKey);
   if (cached) return cached;
 
   try {
@@ -112,7 +113,7 @@ export async function searchRepology(projectName: string): Promise<PackageSearch
       });
     }
 
-    cache.set(cacheKey, results);
+    searchCache.set(cacheKey, results);
     return results;
   } catch (error) {
     console.error('Repology search error:', error);
@@ -133,7 +134,7 @@ export async function getRepologyProjectMetadata(
   }
 
   const cacheKey = `repology:project:${projectName}`;
-  const cached = cache.get(cacheKey);
+  const cached = metadataCache.get(cacheKey);
   if (cached) return cached;
 
   try {
@@ -181,7 +182,7 @@ export async function getRepologyProjectMetadata(
       },
     };
 
-    cache.set(cacheKey, metadata);
+    metadataCache.set(cacheKey, metadata);
     return metadata;
   } catch (error) {
     console.error('Repology metadata fetch error:', error);
@@ -236,5 +237,5 @@ export async function getRepologyPackagesForDistro(
  * Clear the Repology cache
  */
 export function clearRepologyCache(): void {
-  cache.clear();
+  searchCache.clear(); metadataCache.clear();
 }

@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
-import { ArrowLeft, Package, Download, ExternalLink, CheckCircle, XCircle } from 'lucide-react';
+import Image from 'next/image';
+import { ArrowLeft, Package, ExternalLink, CheckCircle, XCircle } from 'lucide-react';
 import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
 import { Button } from '@/components/ui/button';
@@ -24,7 +25,7 @@ export default function AppDetailPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const { selectedApps, toggleApp, selectApp } = useSelectionStore();
+  const { selectedApps, toggleApp } = useSelectionStore();
   const isSelected = app ? selectedApps.has(app.id) : false;
 
   useEffect(() => {
@@ -57,12 +58,6 @@ export default function AppDetailPage() {
 
     fetchApp();
   }, [slug]);
-
-  const handleAddToSelection = () => {
-    if (!app) return;
-    selectApp(app.id);
-    toast.success(`${app.displayName} added to selection`);
-  };
 
   const handleToggleSelection = () => {
     if (!app) return;
@@ -131,10 +126,12 @@ export default function AppDetailPage() {
         <div className="mb-8">
           <div className="flex items-start gap-6">
             {app.iconUrl && (
-              <img
+              <Image
                 src={app.iconUrl}
                 alt={app.displayName}
-                className="w-24 h-24 rounded-lg shadow-md"
+                width={96}
+                height={96}
+                className="w-24 h-24 rounded-lg shadow-md object-cover"
                 onError={(e) => {
                   e.currentTarget.style.display = 'none';
                 }}

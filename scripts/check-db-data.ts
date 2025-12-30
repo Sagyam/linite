@@ -10,11 +10,6 @@ async function checkData() {
   console.log('🔍 Checking database for seeded data...\n');
 
   try {
-    const [categoryCount] = await db.select().from(categories);
-    const [sourceCount] = await db.select().from(sources);
-    const [distroCount] = await db.select().from(distros);
-    const [appCount] = await db.select().from(apps);
-
     const categoriesLength = (await db.select().from(categories)).length;
     const sourcesLength = (await db.select().from(sources)).length;
     const distrosLength = (await db.select().from(distros)).length;

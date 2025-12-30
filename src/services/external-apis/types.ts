@@ -31,7 +31,7 @@ export interface PackageMetadata {
   screenshots?: string[];
   releaseDate?: string;
   source: 'flatpak' | 'snap' | 'repology' | 'aur';
-  metadata?: Record<string, any>; // Source-specific extra data
+  metadata?: Record<string, unknown>; // Source-specific extra data
 }
 
 export interface APIError {

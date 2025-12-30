@@ -19,8 +19,82 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Linite - Bulk Linux Package Installer",
-  description: "Select apps and generate a single command to install them on your Linux distribution",
+  metadataBase: new URL('http://linite.sagyamthapa.com.np'),
+  title: {
+    default: "Linite - Bulk Linux Package Installer",
+    template: "%s | Linite",
+  },
+  description: "Select apps from our curated catalog and generate a single command to install everything on your Linux distribution. Supports apt, dnf, pacman, Flatpak, Snap, and more.",
+  keywords: [
+    "linux",
+    "package installer",
+    "bulk install",
+    "linux apps",
+    "apt",
+    "dnf",
+    "pacman",
+    "flatpak",
+    "snap",
+    "ubuntu",
+    "fedora",
+    "arch linux",
+    "debian",
+    "linux distro",
+    "package manager",
+  ],
+  authors: [{ name: "Sagyam Thapa" }],
+  creator: "Sagyam Thapa",
+  publisher: "Linite",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  icons: {
+    icon: [
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+    ],
+    shortcut: '/favicon.svg',
+    apple: '/logo.svg',
+  },
+  manifest: '/manifest.json',
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "/",
+    title: "Linite - Bulk Linux Package Installer",
+    description: "Select apps from our curated catalog and generate a single command to install everything on your Linux distribution.",
+    siteName: "Linite",
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "Linite - Bulk Linux Package Installer",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Linite - Bulk Linux Package Installer",
+    description: "Select apps from our curated catalog and generate a single command to install everything on your Linux distribution.",
+    images: ["/opengraph-image"],
+    creator: "@linite",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  alternates: {
+    canonical: "/",
+  },
 };
 
 export const runtime = 'nodejs';

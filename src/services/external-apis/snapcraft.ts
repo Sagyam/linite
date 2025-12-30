@@ -6,7 +6,8 @@
 import { PackageSearchResult, PackageMetadata, SimpleCache } from './types';
 
 const SNAPCRAFT_API_BASE = 'https://api.snapcraft.io/v2';
-const cache = new SimpleCache<any>(15); // 15 minute cache
+const searchCache = new SimpleCache<PackageSearchResult[]>(15); // 15 minute cache
+const metadataCache = new SimpleCache<PackageMetadata>(15); // 15 minute cache
 
 interface SnapSearchResponse {
   results: Array<{
@@ -73,7 +74,7 @@ export async function searchSnapcraft(query: string): Promise<PackageSearchResul
   }
 
   const cacheKey = `snapcraft:search:${query.toLowerCase()}`;
-  const cached = cache.get(cacheKey);
+  const cached = searchCache.get(cacheKey);
   if (cached) return cached;
 
   try {
@@ -111,7 +112,7 @@ export async function searchSnapcraft(query: string): Promise<PackageSearchResul
       };
     });
 
-    cache.set(cacheKey, results);
+    searchCache.set(cacheKey, results);
     return results;
   } catch (error) {
     console.error('Snapcraft search error:', error);
@@ -130,7 +131,7 @@ export async function getSnapcraftPackageMetadata(snapName: string): Promise<Pac
   }
 
   const cacheKey = `snapcraft:snap:${snapName}`;
-  const cached = cache.get(cacheKey);
+  const cached = metadataCache.get(cacheKey);
   if (cached) return cached;
 
   try {
@@ -175,7 +176,7 @@ export async function getSnapcraftPackageMetadata(snapName: string): Promise<Pac
       },
     };
 
-    cache.set(cacheKey, metadata);
+    metadataCache.set(cacheKey, metadata);
     return metadata;
   } catch (error) {
     console.error('Snapcraft metadata fetch error:', error);
@@ -202,5 +203,5 @@ export async function checkSnapcraftAvailability(snapName: string): Promise<bool
  * Clear the Snapcraft cache
  */
 export function clearSnapcraftCache(): void {
-  cache.clear();
+  searchCache.clear(); metadataCache.clear();
 }

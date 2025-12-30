@@ -5,7 +5,7 @@ import { DataTable, Column } from '@/components/admin/data-table';
 import { Breadcrumb } from '@/components/admin/breadcrumb';
 import { Button } from '@/components/ui/button';
 import { Plus, Search as SearchIcon } from 'lucide-react';
-import { useAdminPackages, useDeletePackage, useAdminApps, useAdminSources } from '@/hooks/use-admin';
+import { useAdminPackages, useDeletePackage, useAdminApps, useAdminSources, type Package } from '@/hooks/use-admin';
 import {
   Dialog,
   DialogContent,
@@ -26,34 +26,7 @@ import {
 } from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
 import { toast } from 'sonner';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-
-interface Package {
-  id: string;
-  identifier: string;
-  version: string | null;
-  size: string | null;
-  maintainer: string | null;
-  isAvailable: boolean;
-  app: {
-    displayName: string;
-  };
-  source: {
-    name: string;
-    slug: string;
-  };
-}
-
-interface App {
-  id: string;
-  displayName: string;
-}
-
-interface Source {
-  id: string;
-  name: string;
-  slug: string;
-}
+import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 export default function PackagesPage() {
   const { data: packages = [], isLoading: packagesLoading } = useAdminPackages();
@@ -102,12 +75,12 @@ export default function PackagesPage() {
   const handleEdit = (pkg: Package) => {
     setEditingPackage(pkg);
     setFormData({
-      appId: '', // We don't have app.id in the package response
-      sourceId: '', // We don't have source.id in the package response
+      appId: pkg.appId,
+      sourceId: pkg.sourceId,
       identifier: pkg.identifier,
       version: pkg.version || '',
-      size: pkg.size || '',
-      maintainer: pkg.maintainer || '',
+      size: pkg.downloadSize || '',
+      maintainer: '',
       isAvailable: pkg.isAvailable,
     });
     setDialogOpen(true);
@@ -202,7 +175,7 @@ export default function PackagesPage() {
       ),
     },
     { header: 'Version', accessor: (row) => row.version || '-' },
-    { header: 'Size', accessor: (row) => row.size || '-' },
+    { header: 'Size', accessor: (row) => row.downloadSize || '-' },
     {
       header: 'Available',
       accessor: (row) => (

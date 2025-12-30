@@ -5,7 +5,7 @@ import { DataTable, Column } from '@/components/admin/data-table';
 import { Breadcrumb } from '@/components/admin/breadcrumb';
 import { Button } from '@/components/ui/button';
 import { Plus } from 'lucide-react';
-import { useAdminCategories, useDeleteCategory } from '@/hooks/use-admin';
+import { useAdminCategories, useDeleteCategory, type Category } from '@/hooks/use-admin';
 import {
   Dialog,
   DialogContent,
@@ -18,15 +18,6 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { toast } from 'sonner';
-
-interface Category {
-  id: string;
-  name: string;
-  slug: string;
-  icon: string | null;
-  description: string | null;
-  displayOrder: number;
-}
 
 export default function CategoriesPage() {
   const { data: categories = [], isLoading: loading } = useAdminCategories();
@@ -225,7 +216,7 @@ export default function CategoriesPage() {
           <DialogHeader>
             <DialogTitle>Delete Category</DialogTitle>
             <DialogDescription>
-              Are you sure you want to delete "{deletingCategory?.name}"? This action
+              Are you sure you want to delete &quot;{deletingCategory?.name}&quot;? This action
               cannot be undone.
             </DialogDescription>
           </DialogHeader>

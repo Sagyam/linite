@@ -5,7 +5,7 @@ import { DataTable, Column } from '@/components/admin/data-table';
 import { Breadcrumb } from '@/components/admin/breadcrumb';
 import { Button } from '@/components/ui/button';
 import { Plus } from 'lucide-react';
-import { useAdminSources, useDeleteSource } from '@/hooks/use-admin';
+import { useAdminSources, useDeleteSource, type Source } from '@/hooks/use-admin';
 import {
   Dialog,
   DialogContent,
@@ -20,17 +20,6 @@ import { Textarea } from '@/components/ui/textarea';
 import { Switch } from '@/components/ui/switch';
 import { Badge } from '@/components/ui/badge';
 import { toast } from 'sonner';
-
-interface Source {
-  id: string;
-  name: string;
-  slug: string;
-  installCommand: string;
-  requiresSudo: boolean;
-  setupCommand: string | null;
-  priority: number;
-  apiEndpoint: string | null;
-}
 
 export default function SourcesPage() {
   const { data: sources = [], isLoading: loading } = useAdminSources();
@@ -69,9 +58,9 @@ export default function SourcesPage() {
     setFormData({
       name: source.name,
       slug: source.slug,
-      installCommand: source.installCommand,
-      requiresSudo: source.requiresSudo,
-      setupCommand: source.setupCommand || '',
+      installCommand: source.installCmd,
+      requiresSudo: source.requireSudo,
+      setupCommand: source.setupCmd || '',
       priority: source.priority,
       apiEndpoint: source.apiEndpoint || '',
     });
@@ -131,15 +120,15 @@ export default function SourcesPage() {
       header: 'Install Command',
       accessor: (row) => (
         <code className="text-xs bg-muted px-2 py-1 rounded">
-          {row.installCommand}
+          {row.installCmd}
         </code>
       ),
     },
     {
       header: 'Requires Sudo',
       accessor: (row) => (
-        <Badge variant={row.requiresSudo ? 'default' : 'secondary'}>
-          {row.requiresSudo ? 'Yes' : 'No'}
+        <Badge variant={row.requireSudo ? 'default' : 'secondary'}>
+          {row.requireSudo ? 'Yes' : 'No'}
         </Badge>
       ),
     },
@@ -278,7 +267,7 @@ export default function SourcesPage() {
           <DialogHeader>
             <DialogTitle>Delete Source</DialogTitle>
             <DialogDescription>
-              Are you sure you want to delete "{deletingSource?.name}"? This action
+              Are you sure you want to delete &quot;{deletingSource?.name}&quot;? This action
               cannot be undone and may affect existing packages.
             </DialogDescription>
           </DialogHeader>

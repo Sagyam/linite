@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { Package, Trash2 } from 'lucide-react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -66,10 +67,12 @@ export function SelectionSummary() {
               className="flex items-start gap-3 p-3 rounded-lg hover:bg-muted/50 transition-colors"
             >
               {app.iconUrl && (
-                <img
+                <Image
                   src={app.iconUrl}
                   alt={app.displayName}
-                  className="w-10 h-10 rounded flex-shrink-0"
+                  width={40}
+                  height={40}
+                  className="w-10 h-10 rounded flex-shrink-0 object-cover"
                   onError={(e) => {
                     e.currentTarget.style.display = 'none';
                   }}

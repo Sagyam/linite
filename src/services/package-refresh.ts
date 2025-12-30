@@ -5,10 +5,27 @@
 
 import { db } from '@/db';
 import { packages, sources, refreshLogs } from '@/db/schema';
-import { eq, and } from 'drizzle-orm';
+import { eq } from 'drizzle-orm';
 import { getFlathubAppMetadata, checkFlathubAvailability } from './external-apis/flathub';
 import { getSnapcraftPackageMetadata, checkSnapcraftAvailability } from './external-apis/snapcraft';
 import { getAURPackageMetadata, checkAURAvailability } from './external-apis/aur';
+
+interface SourceRecord {
+  id: string;
+  name: string;
+  slug: string;
+}
+
+interface PackageRecord {
+  id: string;
+  identifier: string;
+  version: string | null;
+  size: number | null;
+  maintainer: string | null;
+  isAvailable: boolean | null;
+  lastChecked: Date | null;
+  metadata: unknown;
+}
 
 export interface RefreshResult {
   sourceId: string;
@@ -28,7 +45,6 @@ export interface RefreshOptions {
  * Refresh package metadata from external APIs
  */
 export async function refreshPackages(options: RefreshOptions = {}): Promise<RefreshResult[]> {
-  const startTime = Date.now();
   const results: RefreshResult[] = [];
 
   try {
@@ -69,7 +85,7 @@ export async function refreshPackages(options: RefreshOptions = {}): Promise<Ref
  * Refresh packages for a specific source
  */
 async function refreshSourcePackages(
-  source: any,
+  source: SourceRecord,
   dryRun: boolean
 ): Promise<RefreshResult> {
   const sourceStartTime = Date.now();
@@ -123,8 +139,8 @@ async function refreshSourcePackages(
  * Refresh a single package
  */
 async function refreshSinglePackage(
-  pkg: any,
-  source: any,
+  pkg: PackageRecord,
+  source: SourceRecord,
   dryRun: boolean
 ): Promise<boolean> {
   let metadata = null;

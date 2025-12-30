@@ -197,7 +197,7 @@ export default function RefreshPage() {
             <div>
               <h3 className="font-semibold mb-2">Manual Refresh</h3>
               <p className="text-sm text-gray-600">
-                You can trigger a manual refresh at any time using the "Refresh Now"
+                You can trigger a manual refresh at any time using the &quot;Refresh Now&quot;
                 button above. This is useful after adding new packages or when you need
                 immediate updates.
               </p>

@@ -58,9 +58,9 @@ export async function PUT(
     }
 
     return successResponse(updated);
-  } catch (error: any) {
+  } catch (error) {
     console.error('Error updating category:', error);
-    if (error.message?.includes('UNIQUE')) {
+    if (error instanceof Error && error.message?.includes('UNIQUE')) {
       return errorResponse('Category with this slug already exists', 409);
     }
     return errorResponse('Failed to update category', 500);

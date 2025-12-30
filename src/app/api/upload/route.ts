@@ -5,9 +5,9 @@ import { uploadImage, deleteImage } from '@/lib/blob';
 // POST /api/upload - Upload an image to Vercel Blob (admin only)
 export async function POST(request: NextRequest) {
   // Require authentication
-  const authError = await requireAuth(request);
-  if (authError) {
-    return authError;
+  const authResult = await requireAuth(request);
+  if (authResult.error) {
+    return authResult.error;
   }
 
   try {
@@ -32,9 +32,9 @@ export async function POST(request: NextRequest) {
 // DELETE /api/upload - Delete an image from Vercel Blob (admin only)
 export async function DELETE(request: NextRequest) {
   // Require authentication
-  const authError = await requireAuth(request);
-  if (authError) {
-    return authError;
+  const authResult = await requireAuth(request);
+  if (authResult.error) {
+    return authResult.error;
   }
 
   try {

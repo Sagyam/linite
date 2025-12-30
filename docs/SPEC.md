@@ -260,11 +260,8 @@ This document tracks the implementation status of Linite features.
 
 - ⏳ CLI companion tool
 - ⏳ Shareable selection URLs
-- ⏳ Export/import as YAML
 - ⏳ Curated bundles
 - ⏳ Uninstall command generator
-- ⏳ User accounts
-- ⏳ Community suggestions
 
 ---
 

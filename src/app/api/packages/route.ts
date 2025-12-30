@@ -60,8 +60,11 @@ export async function POST(request: NextRequest) {
     }).returning();
 
     return successResponse(newPackage, 201);
-  } catch (error: any) {
+  } catch (error) {
     console.error('Error creating package:', error);
+    if (error instanceof Error && error.message?.includes('UNIQUE')) {
+      return errorResponse('Package with this identifier already exists for this app and source', 409);
+    }
     return errorResponse('Failed to create package', 500);
   }
 }

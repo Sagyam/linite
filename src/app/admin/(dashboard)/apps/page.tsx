@@ -17,19 +17,7 @@ import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useAdminApps, useDeleteApp } from '@/hooks/use-admin';
-
-interface App {
-  id: string;
-  slug: string;
-  displayName: string;
-  description: string | null;
-  isPopular: boolean;
-  isFoss: boolean;
-  category: {
-    name: string;
-  } | null;
-}
+import { useAdminApps, useDeleteApp, type App } from '@/hooks/use-admin';
 
 export default function AppsPage() {
   const router = useRouter();
@@ -139,7 +127,7 @@ export default function AppsPage() {
           <DialogHeader>
             <DialogTitle>Delete Application</DialogTitle>
             <DialogDescription>
-              Are you sure you want to delete "{deletingApp?.displayName}"? This will
+              Are you sure you want to delete &quot;{deletingApp?.displayName}&quot;? This will
               also delete all associated packages. This action cannot be undone.
             </DialogDescription>
           </DialogHeader>

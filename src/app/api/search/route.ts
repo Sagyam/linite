@@ -22,9 +22,9 @@ interface SearchResponse {
 
 export async function POST(request: NextRequest) {
   // Require admin authentication
-  const authError = await requireAuth(request);
-  if (authError) {
-    return authError;
+  const authResult = await requireAuth(request);
+  if (authResult.error) {
+    return authResult.error;
   }
 
   // Apply rate limiting for admin endpoints

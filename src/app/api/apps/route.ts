@@ -1,7 +1,7 @@
 import { NextRequest } from 'next/server';
 import { db, apps } from '@/db';
 import { requireAuth, errorResponse, successResponse, applyRateLimit } from '@/lib/api-utils';
-import { desc, eq, like, and } from 'drizzle-orm';
+import { desc } from 'drizzle-orm';
 import { publicApiLimiter } from '@/lib/redis';
 
 // GET /api/apps - Get all apps with optional filtering (public)
@@ -86,9 +86,9 @@ export async function POST(request: NextRequest) {
     }).returning();
 
     return successResponse(newApp, 201);
-  } catch (error: any) {
+  } catch (error) {
     console.error('Error creating app:', error);
-    if (error.message?.includes('UNIQUE')) {
+    if (error instanceof Error && error.message?.includes('UNIQUE')) {
       return errorResponse('App with this slug already exists', 409);
     }
     return errorResponse('Failed to create app', 500);

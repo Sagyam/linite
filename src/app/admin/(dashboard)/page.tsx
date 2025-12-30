@@ -85,7 +85,7 @@ export default async function AdminDashboard() {
         <StatsCard
           title="Last Refresh"
           value={stats.recentRefreshLogs.length > 0 ? 'Recent' : 'Never'}
-          description={stats.recentRefreshLogs.length > 0
+          description={stats.recentRefreshLogs.length > 0 && stats.recentRefreshLogs[0].startedAt
             ? new Date(stats.recentRefreshLogs[0].startedAt).toLocaleDateString()
             : 'No refresh logs'}
           icon={RefreshCw}
@@ -134,7 +134,7 @@ export default async function AdminDashboard() {
                         {log.status}
                       </Badge>
                       <span className="text-gray-600">
-                        {new Date(log.startedAt).toLocaleString()}
+                        {log.startedAt ? new Date(log.startedAt).toLocaleString() : 'N/A'}
                       </span>
                     </div>
                     <span className="text-gray-500">{log.packagesUpdated} updated</span>

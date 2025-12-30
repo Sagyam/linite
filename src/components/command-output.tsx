@@ -63,7 +63,7 @@ export function CommandOutput() {
       setCopied(true);
       toast.success('Copied to clipboard!');
       setTimeout(() => setCopied(false), 2000);
-    } catch (err) {
+    } catch {
       toast.error('Failed to copy to clipboard');
     }
   };
@@ -76,7 +76,7 @@ export function CommandOutput() {
       setCopiedSetup(true);
       toast.success('Setup commands copied!');
       setTimeout(() => setCopiedSetup(false), 2000);
-    } catch (err) {
+    } catch {
       toast.error('Failed to copy to clipboard');
     }
   };
@@ -95,7 +95,7 @@ export function CommandOutput() {
           return newState;
         });
       }, 2000);
-    } catch (err) {
+    } catch {
       toast.error('Failed to copy to clipboard');
     }
   };
