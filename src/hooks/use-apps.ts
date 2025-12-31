@@ -21,7 +21,11 @@ export interface App {
     sourceId: string;
     identifier: string;
     version: string | null;
+    size: number | null;
+    maintainer: string | null;
     isAvailable?: boolean;
+    lastChecked: Date | string | null;
+    metadata: Record<string, unknown> | null;
     source: {
       id: string;
       name: string;

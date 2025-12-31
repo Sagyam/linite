@@ -233,3 +233,10 @@ export const accountRelations = relations(account, ({ one }) => ({
     references: [user.id],
   }),
 }));
+
+export const refreshLogsRelations = relations(refreshLogs, ({ one }) => ({
+  source: one(sources, {
+    fields: [refreshLogs.sourceId],
+    references: [sources.id],
+  }),
+}));

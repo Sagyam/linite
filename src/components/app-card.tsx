@@ -12,9 +12,10 @@ import type { App } from '@/hooks/use-apps';
 
 interface AppCardProps {
   app: App;
+  layout?: 'compact' | 'detailed';
 }
 
-export function AppCard({ app }: AppCardProps) {
+export function AppCard({ app, layout = 'detailed' }: AppCardProps) {
   const { selectedApps, toggleApp } = useSelectionStore();
   const isSelected = selectedApps.has(app.id);
 
@@ -26,6 +27,64 @@ export function AppCard({ app }: AppCardProps) {
     toggleApp(app.id);
   };
 
+  if (layout === 'compact') {
+    return (
+      <Card
+        className={`p-3 cursor-pointer transition-all hover:shadow-md ${
+          isSelected ? 'ring-2 ring-primary' : ''
+        }`}
+        onClick={handleCardClick}
+      >
+        <div className="flex items-center gap-2">
+          <Checkbox checked={isSelected} />
+
+          {app.iconUrl && (
+            <Image
+              src={app.iconUrl}
+              alt={app.displayName}
+              width={32}
+              height={32}
+              className="w-8 h-8 rounded flex-shrink-0 object-cover"
+              onError={(e) => {
+                e.currentTarget.style.display = 'none';
+              }}
+            />
+          )}
+
+          <div className="flex-1 min-w-0">
+            <div className="flex items-center justify-between gap-2">
+              <h3 className="font-semibold text-sm truncate">{app.displayName}</h3>
+              <div className="flex gap-1 flex-shrink-0">
+                {app.isFoss && (
+                  <Badge variant="secondary" className="text-xs px-1.5 py-0">
+                    FOSS
+                  </Badge>
+                )}
+                {app.isPopular && (
+                  <Badge variant="default" className="text-xs px-1.5 py-0">
+                    ⭐
+                  </Badge>
+                )}
+              </div>
+            </div>
+            <div className="flex items-center gap-1 mt-1">
+              <span className="text-xs text-muted-foreground">
+                {app.packages.length} source{app.packages.length !== 1 ? 's' : ''}
+              </span>
+            </div>
+          </div>
+
+          <Link href={`/apps/${app.slug}`} onClick={(e) => e.stopPropagation()}>
+            <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
+              <Info className="w-4 h-4" />
+            </Button>
+          </Link>
+        </div>
+      </Card>
+    );
+  }
+
+  // Detailed view
   return (
     <Card
       className={`p-4 cursor-pointer transition-all hover:shadow-md ${
@@ -42,19 +101,18 @@ export function AppCard({ app }: AppCardProps) {
           <Image
             src={app.iconUrl}
             alt={app.displayName}
-            width={48}
-            height={48}
-            className="w-12 h-12 rounded-md flex-shrink-0 object-cover"
+            width={64}
+            height={64}
+            className="w-16 h-16 rounded-lg flex-shrink-0 object-cover"
             onError={(e) => {
-              // Hide broken images
               e.currentTarget.style.display = 'none';
             }}
           />
         )}
 
         <div className="flex-1 min-w-0">
-          <div className="flex items-start justify-between gap-2">
-            <h3 className="font-semibold text-sm truncate">{app.displayName}</h3>
+          <div className="flex items-start justify-between gap-2 mb-2">
+            <h3 className="font-semibold text-base">{app.displayName}</h3>
             <div className="flex gap-1 flex-shrink-0">
               {app.isFoss && (
                 <Badge variant="secondary" className="text-xs">
@@ -70,32 +128,23 @@ export function AppCard({ app }: AppCardProps) {
           </div>
 
           {app.description && (
-            <p className="text-xs text-muted-foreground mt-1 line-clamp-2">
+            <p className="text-sm text-muted-foreground mb-3 line-clamp-3">
               {app.description}
             </p>
           )}
 
-          <div className="flex items-center justify-between gap-2 mt-2">
+          <div className="flex items-center justify-between gap-2">
             <div className="flex flex-wrap gap-1">
-              {app.packages.slice(0, 3).map((pkg) => (
+              {app.packages.map((pkg) => (
                 <Badge key={pkg.id} variant="outline" className="text-xs">
                   {pkg.source.name}
                 </Badge>
               ))}
-              {app.packages.length > 3 && (
-                <Badge variant="outline" className="text-xs">
-                  +{app.packages.length - 3}
-                </Badge>
-              )}
             </div>
 
             <Link href={`/apps/${app.slug}`} onClick={(e) => e.stopPropagation()}>
-              <Button
-                variant="ghost"
-                size="sm"
-                className="h-7 px-2 gap-1 text-xs"
-              >
-                <Info className="w-3 h-3" />
+              <Button variant="outline" size="sm" className="gap-1">
+                <Info className="w-4 h-4" />
                 Details
               </Button>
             </Link>

@@ -1,4 +1,4 @@
-import type { PackageMetadata } from '@/types/entities';
+import type { PackageMetadata } from '../external-apis/types';
 
 // Re-export for convenience
 export type { PackageMetadata };

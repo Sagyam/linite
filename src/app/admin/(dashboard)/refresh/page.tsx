@@ -41,7 +41,7 @@ export default function RefreshPage() {
       const response = await fetch('/api/refresh/logs');
       if (response.ok) {
         const data = await response.json();
-        setLogs(data);
+        setLogs(data.logs || []);
       }
     } catch (error) {
       console.error('Failed to fetch logs:', error);
@@ -62,7 +62,7 @@ export default function RefreshPage() {
 
       if (response.ok) {
         const result = await response.json();
-        toast.success(`Refresh completed: ${result.packagesUpdated} packages updated`);
+        toast.success(`Refresh completed: ${result.totals?.packagesUpdated || 0} packages updated`);
         fetchLogs();
       } else {
         const error = await response.json();

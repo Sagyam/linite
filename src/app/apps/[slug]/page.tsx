@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Image from 'next/image';
-import { ArrowLeft, Package, ExternalLink, CheckCircle, XCircle } from 'lucide-react';
+import { ArrowLeft, Package, ExternalLink, CheckCircle, XCircle, Download, User, FileText, Calendar, Clock } from 'lucide-react';
 import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
 import { Button } from '@/components/ui/button';
@@ -12,8 +12,10 @@ import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { LoadingSpinner } from '@/components/loading-spinner';
 import { ErrorDisplay } from '@/components/error-display';
+import { ScreenshotsGallery } from '@/components/screenshots-gallery';
 import { useSelectionStore } from '@/stores/selection-store';
 import { toast } from 'sonner';
+import { formatBytes, formatRelativeTime, formatDate } from '@/lib/format';
 import type { App } from '@/hooks/use-apps';
 
 export default function AppDetailPage() {
@@ -186,6 +188,19 @@ export default function AppDetailPage() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Main Info */}
           <div className="lg:col-span-2 space-y-6">
+            {/* Screenshots */}
+            {(() => {
+              const screenshots = app.packages
+                .flatMap(pkg => {
+                  const metadata = pkg.metadata as any;
+                  return metadata?.screenshots || [];
+                })
+                .filter((url, index, self) => self.indexOf(url) === index);
+              return screenshots.length > 0 ? (
+                <ScreenshotsGallery screenshots={screenshots} appName={app.displayName} />
+              ) : null;
+            })()}
+
             {/* Links */}
             {app.homepage && (
               <Card className="p-6">
@@ -214,41 +229,96 @@ export default function AppDetailPage() {
                   No packages available for this app
                 </p>
               ) : (
-                <div className="space-y-3">
-                  {app.packages.map((pkg) => (
-                    <div
-                      key={pkg.id}
-                      className="flex items-start justify-between p-4 rounded-lg border bg-card hover:bg-muted/50 transition-colors"
-                    >
-                      <div className="flex-1">
-                        <div className="flex items-center gap-3 mb-2">
-                          <Badge variant="outline" className="font-mono">
-                            {pkg.source.name}
-                          </Badge>
-                          {pkg.version && (
-                            <span className="text-sm text-muted-foreground">
-                              v{pkg.version}
-                            </span>
+                <div className="space-y-4">
+                  {app.packages.map((pkg) => {
+                    const metadata = pkg.metadata as any;
+                    const license = metadata?.license || null;
+                    const releaseDate = metadata?.releaseDate || null;
+
+                    return (
+                      <div
+                        key={pkg.id}
+                        className="p-4 rounded-lg border bg-card"
+                      >
+                        <div className="flex items-start justify-between mb-3">
+                          <div className="flex-1">
+                            <div className="flex items-center gap-3 mb-2">
+                              <Badge variant="outline" className="font-mono">
+                                {pkg.source.name}
+                              </Badge>
+                              {pkg.version && (
+                                <span className="text-sm font-medium">
+                                  v{pkg.version}
+                                </span>
+                              )}
+                              {pkg.isAvailable ? (
+                                <Badge variant="default" className="bg-green-600 gap-1">
+                                  <CheckCircle className="w-3 h-3" />
+                                  Available
+                                </Badge>
+                              ) : (
+                                <Badge variant="destructive" className="gap-1">
+                                  <XCircle className="w-3 h-3" />
+                                  Unavailable
+                                </Badge>
+                              )}
+                            </div>
+
+                            <div className="text-sm space-y-1">
+                              <div>
+                                <span className="text-muted-foreground">Identifier:</span>{' '}
+                                <code className="bg-muted px-2 py-0.5 rounded text-xs">
+                                  {pkg.identifier}
+                                </code>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Package Details Grid */}
+                        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-sm">
+                          {pkg.size && (
+                            <div className="flex items-center gap-2 text-muted-foreground">
+                              <Download className="w-4 h-4" />
+                              <span>{formatBytes(pkg.size)}</span>
+                            </div>
+                          )}
+                          {pkg.maintainer && (
+                            <div className="flex items-center gap-2 text-muted-foreground">
+                              <User className="w-4 h-4" />
+                              <span className="truncate" title={pkg.maintainer}>
+                                {pkg.maintainer}
+                              </span>
+                            </div>
+                          )}
+                          {license && (
+                            <div className="flex items-center gap-2 text-muted-foreground">
+                              <FileText className="w-4 h-4" />
+                              <span className="truncate" title={license}>
+                                {license}
+                              </span>
+                            </div>
+                          )}
+                          {releaseDate && (
+                            <div className="flex items-center gap-2 text-muted-foreground">
+                              <Calendar className="w-4 h-4" />
+                              <span className="truncate" title={formatDate(releaseDate)}>
+                                {formatDate(releaseDate)}
+                              </span>
+                            </div>
+                          )}
+                          {pkg.lastChecked && (
+                            <div className="flex items-center gap-2 text-muted-foreground col-span-2">
+                              <Clock className="w-4 h-4" />
+                              <span>
+                                Verified {formatRelativeTime(pkg.lastChecked)}
+                              </span>
+                            </div>
                           )}
                         </div>
-
-                        <div className="text-sm">
-                          <span className="text-muted-foreground">Identifier:</span>{' '}
-                          <code className="bg-muted px-2 py-0.5 rounded text-xs">
-                            {pkg.identifier}
-                          </code>
-                        </div>
                       </div>
-
-                      <div className="flex items-center">
-                        {pkg.isAvailable ? (
-                          <CheckCircle className="w-5 h-5 text-green-600" />
-                        ) : (
-                          <XCircle className="w-5 h-5 text-red-600" />
-                        )}
-                      </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               )}
             </Card>
@@ -324,6 +394,41 @@ export default function AppDetailPage() {
                     </div>
                   </>
                 )}
+
+                {(() => {
+                  const totalSize = app.packages.reduce((sum, pkg) => sum + (pkg.size || 0), 0);
+                  const avgSize = totalSize / app.packages.filter(p => p.size).length;
+                  return avgSize > 0 ? (
+                    <>
+                      <Separator />
+                      <div>
+                        <span className="text-muted-foreground">Average Size:</span>
+                        <p className="font-medium">{formatBytes(avgSize)}</p>
+                      </div>
+                    </>
+                  ) : null;
+                })()}
+
+                {(() => {
+                  const maintainers = app.packages
+                    .map(p => p.maintainer)
+                    .filter((m, i, arr) => m && arr.indexOf(m) === i);
+                  return maintainers.length > 0 ? (
+                    <>
+                      <Separator />
+                      <div>
+                        <span className="text-muted-foreground">Maintainers:</span>
+                        <div className="space-y-1 mt-1">
+                          {maintainers.map((maintainer, i) => (
+                            <p key={i} className="font-medium text-xs">
+                              {maintainer}
+                            </p>
+                          ))}
+                        </div>
+                      </div>
+                    </>
+                  ) : null;
+                })()}
               </div>
             </Card>
           </div>

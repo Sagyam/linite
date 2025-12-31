@@ -6,7 +6,7 @@
 import { db } from '@/db';
 import { packages, sources, refreshLogs } from '@/db/schema';
 import { eq } from 'drizzle-orm';
-import { getRefreshStrategy } from './refresh-strategies';
+import { getRefreshStrategy, type PackageMetadata } from './refresh-strategies';
 import type { RefreshResult, RefreshOptions } from '@/types/entities';
 
 // Re-export for backward compatibility
@@ -143,22 +143,39 @@ async function refreshSinglePackage(
   const metadata = await strategy.getMetadata(pkg.identifier);
   const isAvailable = metadata !== null;
 
-  // Check if anything changed
-  const hasChanges =
+  console.log(`[Refresh] ${source.slug}:${pkg.identifier} - Available: ${isAvailable}, Has metadata: ${!!metadata}`);
+
+  // Store the full metadata object with all rich information
+  // (license, screenshots, categories, releaseDate, etc.)
+  const fullMetadata = metadata ? {
+    license: metadata.license,
+    screenshots: metadata.screenshots,
+    categories: metadata.categories,
+    releaseDate: metadata.releaseDate,
+    description: metadata.description,
+    summary: metadata.summary,
+    homepage: metadata.homepage,
+    iconUrl: metadata.iconUrl,
+    ...metadata.metadata, // Include any source-specific extras
+  } : pkg.metadata;
+
+  // Check if anything significant changed (version or availability)
+  const hasVersionChange =
     (pkg.isAvailable ?? false) !== (isAvailable ?? false) ||
     (metadata !== null && pkg.version !== metadata.version);
 
-  if (hasChanges && !dryRun) {
-    // Update the package
+  // Always update if we have metadata from the API
+  // This ensures we populate metadata even if version hasn't changed
+  if (metadata && !dryRun) {
     await db
       .update(packages)
       .set({
         isAvailable: isAvailable ?? false,
-        version: metadata?.version || pkg.version,
-        size: metadata?.downloadSize || pkg.size,
-        maintainer: metadata?.maintainer || pkg.maintainer,
+        version: metadata.version || pkg.version,
+        size: metadata.downloadSize || pkg.size,
+        maintainer: metadata.maintainer || pkg.maintainer,
         lastChecked: new Date(),
-        metadata: metadata?.metadata || pkg.metadata,
+        metadata: fullMetadata,
         updatedAt: new Date(),
       })
       .where(eq(packages.id, pkg.id));
@@ -166,7 +183,7 @@ async function refreshSinglePackage(
     return true;
   }
 
-  // Even if nothing changed, update lastChecked
+  // If no metadata from API but not dry run, still update lastChecked
   if (!dryRun) {
     await db
       .update(packages)
@@ -176,7 +193,7 @@ async function refreshSinglePackage(
       .where(eq(packages.id, pkg.id));
   }
 
-  return hasChanges;
+  return hasVersionChange;
 }
 
 /**

@@ -1,74 +1,72 @@
 'use client';
 
+import { useState } from 'react';
 import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
 import { AppGrid } from '@/components/app-grid';
-import { DistroSelector } from '@/components/distro-selector';
-import { SelectionSummary } from '@/components/selection-summary';
-import { CommandOutput } from '@/components/command-output';
+import { FloatingActionBar } from '@/components/floating-action-bar';
+import { SelectionDrawer } from '@/components/selection-drawer';
+import { CommandDialog } from '@/components/command-dialog';
 import { StructuredData } from '@/components/structured-data';
-import { Card } from '@/components/ui/card';
-import { Separator } from '@/components/ui/separator';
+import { useSelectionStore } from '@/stores/selection-store';
 
 export default function HomePage() {
+  const [selectionDrawerOpen, setSelectionDrawerOpen] = useState(false);
+  const [commandDialogOpen, setCommandDialogOpen] = useState(false);
+  const { selectedApps, selectedDistro } = useSelectionStore();
+
+  const handleGenerateCommand = () => {
+    if (selectedApps.size > 0 && selectedDistro) {
+      setCommandDialogOpen(true);
+    } else {
+      // If distro not selected, open selection drawer to prompt user
+      setSelectionDrawerOpen(true);
+    }
+  };
+
   return (
     <>
       <StructuredData />
       <div className="min-h-screen flex flex-col">
         <Header />
 
-      <main className="flex-1 container mx-auto px-4 py-8">
-        {/* Hero Section */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            Bulk Install Apps on Linux
-          </h1>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Select apps from our curated catalog, choose your distribution, and get a single command to install everything at once.
-          </p>
-        </div>
-
-        {/* Configuration Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
-          {/* Left Column: Distro Selection */}
-          <Card className="p-6">
-            <h2 className="text-xl font-semibold mb-4">
-              1. Configure
-            </h2>
-            <DistroSelector />
-          </Card>
-
-          {/* Middle Column: Selection Summary */}
-          <div className="lg:col-span-2">
-            <Card className="p-6">
-              <h2 className="text-xl font-semibold mb-4">
-                2. Review Selection
-              </h2>
-              <SelectionSummary />
-            </Card>
+        <main className="flex-1 container mx-auto px-4 py-8 pb-24">
+          {/* Hero Section - Compact */}
+          <div className="text-center mb-12">
+            <h1 className="text-4xl md:text-5xl font-bold mb-4">
+              Bulk Install Apps on Linux
+            </h1>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Select apps from our curated catalog, choose your distribution,
+              and get a single command to install everything.
+            </p>
           </div>
-        </div>
 
-        {/* Command Output Section */}
-        <div className="mb-12">
-          <h2 className="text-2xl font-semibold mb-4">
-            3. Install Command
-          </h2>
-          <CommandOutput />
-        </div>
+          {/* App Selection Section - Primary Focus */}
+          <div>
+            <AppGrid />
+          </div>
+        </main>
 
-        <Separator className="my-12" />
+        <Footer />
 
-        {/* App Selection Section */}
-        <div>
-          <h2 className="text-2xl font-semibold mb-6">
-            Browse Applications
-          </h2>
-          <AppGrid />
-        </div>
-      </main>
+        {/* Floating Action Bar - Shows when apps are selected */}
+        <FloatingActionBar
+          onViewSelection={() => setSelectionDrawerOpen(true)}
+          onGenerateCommand={handleGenerateCommand}
+        />
 
-      <Footer />
+        {/* Selection Drawer - Bottom drawer for reviewing selection */}
+        <SelectionDrawer
+          open={selectionDrawerOpen}
+          onOpenChange={setSelectionDrawerOpen}
+        />
+
+        {/* Command Dialog - Modal for showing generated command */}
+        <CommandDialog
+          open={commandDialogOpen}
+          onOpenChange={setCommandDialogOpen}
+        />
       </div>
     </>
   );

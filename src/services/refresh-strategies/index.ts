@@ -2,6 +2,7 @@ import { RefreshStrategy } from './types';
 import { FlathubRefreshStrategy } from './flathub-strategy';
 import { SnapcraftRefreshStrategy } from './snapcraft-strategy';
 import { AURRefreshStrategy } from './aur-strategy';
+import { RepologyRefreshStrategy } from './repology-strategy';
 
 /**
  * Registry of refresh strategies by source slug
@@ -11,6 +12,11 @@ export const refreshStrategies: Record<string, RefreshStrategy> = {
   flatpak: new FlathubRefreshStrategy(),
   snap: new SnapcraftRefreshStrategy(),
   aur: new AURRefreshStrategy(),
+  // Native package managers use Repology
+  apt: new RepologyRefreshStrategy('apt'),
+  dnf: new RepologyRefreshStrategy('dnf'),
+  pacman: new RepologyRefreshStrategy('pacman'),
+  zypper: new RepologyRefreshStrategy('zypper'),
 };
 
 /**

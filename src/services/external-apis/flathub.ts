@@ -23,22 +23,31 @@ interface FlathubSearchResponse {
 interface FlathubAppData {
   id: string;
   name: string;
-  summary: string;
+  summary?: string;
   description?: string;
-  projectLicense?: string;
-  homepageUrl?: string;
-  downloadFlatpakRefUrl?: string;
-  iconDesktopUrl?: string;
-  iconMobileUrl?: string;
-  currentReleaseVersion?: string;
-  currentReleaseDate?: string;
-  categories?: Array<{ name: string }>;
+  project_license?: string;
+  license?: string;
+  urls?: {
+    homepage?: string;
+  };
+  icon?: string;
+  developer_name?: string;
+  categories?: string[];
   screenshots?: Array<{
-    imgMobileUrl?: string;
-    imgDesktopUrl?: string;
-    thumbUrl?: string;
+    default?: boolean | null;
+    caption?: string | null;
+    sizes: Array<{
+      width: string;
+      height: string;
+      scale: string;
+      src: string;
+    }>;
   }>;
-  developerName?: string;
+  releases?: Array<{
+    version?: string;
+    timestamp?: number;
+    description?: string;
+  }>;
 }
 
 /**
@@ -112,24 +121,36 @@ export async function getFlathubAppMetadata(appId: string): Promise<PackageMetad
 
     const data: FlathubAppData = await response.json();
 
+    // Extract latest release info
+    const latestRelease = data.releases?.[0];
+
+    // Extract screenshots - get the largest size for each screenshot
+    const screenshots = data.screenshots?.map(screenshot => {
+      const largestSize = screenshot.sizes.reduce((largest, current) => {
+        const currentArea = parseInt(current.width) * parseInt(current.height);
+        const largestArea = parseInt(largest.width) * parseInt(largest.height);
+        return currentArea > largestArea ? current : largest;
+      });
+      return largestSize.src;
+    }).filter(Boolean) || [];
+
     const metadata: PackageMetadata = {
       identifier: data.id,
       name: data.name,
       summary: data.summary,
       description: data.description,
-      version: data.currentReleaseVersion,
-      homepage: data.homepageUrl,
-      iconUrl: data.iconDesktopUrl || data.iconMobileUrl,
-      license: data.projectLicense,
-      maintainer: data.developerName,
-      categories: data.categories?.map((c) => c.name),
-      screenshots: data.screenshots?.map(
-        (s) => s.imgDesktopUrl || s.imgMobileUrl || s.thumbUrl || ''
-      ).filter(Boolean),
-      releaseDate: data.currentReleaseDate,
+      version: latestRelease?.version,
+      homepage: data.urls?.homepage,
+      iconUrl: data.icon,
+      license: data.project_license || data.license,
+      maintainer: data.developer_name,
+      categories: data.categories,
+      screenshots,
+      releaseDate: latestRelease?.timestamp ? new Date(latestRelease.timestamp * 1000).toISOString() : undefined,
       source: 'flatpak' as const,
       metadata: {
-        downloadUrl: data.downloadFlatpakRefUrl,
+        kudos: (data as any).kudos,
+        keywords: (data as any).keywords,
       },
     };
 

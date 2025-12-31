@@ -72,6 +72,7 @@ export async function searchRepology(projectName: string): Promise<PackageSearch
       {
         headers: {
           'Accept': 'application/json',
+          'User-Agent': 'Linite/1.0 (Linux package installer; +https://github.com/yourusername/linite)',
         },
       }
     );
@@ -143,6 +144,7 @@ export async function getRepologyProjectMetadata(
       {
         headers: {
           'Accept': 'application/json',
+          'User-Agent': 'Linite/1.0 (Linux package installer; +https://github.com/yourusername/linite)',
         },
       }
     );
@@ -205,6 +207,7 @@ export async function getRepologyPackagesForDistro(
       {
         headers: {
           'Accept': 'application/json',
+          'User-Agent': 'Linite/1.0 (Linux package installer; +https://github.com/yourusername/linite)',
         },
       }
     );
