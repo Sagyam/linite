@@ -13,7 +13,7 @@ export async function uploadImage(
 ): Promise<string> {
   const token = env.BLOB_READ_WRITE_TOKEN;
 
-  // Validate file type
+  // Validate a file type
   const allowedTypes = ['image/png', 'image/jpeg', 'image/jpg', 'image/webp', 'image/svg+xml'];
   if (!allowedTypes.includes(file.type)) {
     throw new Error('Invalid file type. Only PNG, JPEG, WebP, and SVG are allowed.');
