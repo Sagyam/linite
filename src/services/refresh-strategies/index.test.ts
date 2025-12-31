@@ -3,6 +3,7 @@ import { getRefreshStrategy, refreshStrategies } from './index';
 import { FlathubRefreshStrategy } from './flathub-strategy';
 import { SnapcraftRefreshStrategy } from './snapcraft-strategy';
 import { AURRefreshStrategy } from './aur-strategy';
+import { RepologyRefreshStrategy } from './repology-strategy';
 
 describe('Refresh Strategies Registry', () => {
   describe('refreshStrategies', () => {
@@ -21,12 +22,30 @@ describe('Refresh Strategies Registry', () => {
       expect(refreshStrategies['aur']).toBeInstanceOf(AURRefreshStrategy);
     });
 
-    it('should have exactly 3 strategies registered', () => {
+    it('should contain strategies for native package managers', () => {
+      expect(refreshStrategies['apt']).toBeDefined();
+      expect(refreshStrategies['apt']).toBeInstanceOf(RepologyRefreshStrategy);
+
+      expect(refreshStrategies['dnf']).toBeDefined();
+      expect(refreshStrategies['dnf']).toBeInstanceOf(RepologyRefreshStrategy);
+
+      expect(refreshStrategies['pacman']).toBeDefined();
+      expect(refreshStrategies['pacman']).toBeInstanceOf(RepologyRefreshStrategy);
+
+      expect(refreshStrategies['zypper']).toBeDefined();
+      expect(refreshStrategies['zypper']).toBeInstanceOf(RepologyRefreshStrategy);
+    });
+
+    it('should have exactly 7 strategies registered', () => {
       const keys = Object.keys(refreshStrategies);
-      expect(keys).toHaveLength(3);
+      expect(keys).toHaveLength(7);
       expect(keys).toContain('flatpak');
       expect(keys).toContain('snap');
       expect(keys).toContain('aur');
+      expect(keys).toContain('apt');
+      expect(keys).toContain('dnf');
+      expect(keys).toContain('pacman');
+      expect(keys).toContain('zypper');
     });
   });
 

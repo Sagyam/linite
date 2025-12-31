@@ -125,14 +125,20 @@ export async function getFlathubAppMetadata(appId: string): Promise<PackageMetad
     const latestRelease = data.releases?.[0];
 
     // Extract screenshots - get the largest size for each screenshot
-    const screenshots = data.screenshots?.map(screenshot => {
-      const largestSize = screenshot.sizes.reduce((largest, current) => {
-        const currentArea = parseInt(current.width) * parseInt(current.height);
-        const largestArea = parseInt(largest.width) * parseInt(largest.height);
-        return currentArea > largestArea ? current : largest;
-      });
-      return largestSize.src;
-    }).filter(Boolean) || [];
+    const screenshots = (data.screenshots
+      ?.map(screenshot => {
+        // Skip screenshots without sizes array
+        if (!screenshot.sizes || screenshot.sizes.length === 0) {
+          return null;
+        }
+        const largestSize = screenshot.sizes.reduce((largest, current) => {
+          const currentArea = parseInt(current.width) * parseInt(current.height);
+          const largestArea = parseInt(largest.width) * parseInt(largest.height);
+          return currentArea > largestArea ? current : largest;
+        });
+        return largestSize.src;
+      })
+      .filter((url): url is string => Boolean(url)) || []) as string[];
 
     const metadata: PackageMetadata = {
       identifier: data.id,

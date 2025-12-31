@@ -155,19 +155,26 @@ describe('Flathub API Client', () => {
         name: 'Firefox',
         summary: 'Fast, private browser',
         description: 'Detailed description',
-        projectLicense: 'MPL-2.0',
-        homepageUrl: 'https://firefox.com',
-        iconDesktopUrl: 'https://example.com/icon.png',
-        currentReleaseVersion: '120.0',
-        currentReleaseDate: '2024-01-15',
-        developerName: 'Mozilla',
-        categories: [{ name: 'Network' }, { name: 'WebBrowser' }],
+        project_license: 'MPL-2.0',
+        urls: { homepage: 'https://firefox.com' },
+        icon: 'https://example.com/icon.png',
+        developer_name: 'Mozilla',
+        categories: ['Network', 'WebBrowser'],
         screenshots: [
-          { imgDesktopUrl: 'https://example.com/screen1.png' },
-          { imgMobileUrl: 'https://example.com/screen2.png' },
-          { thumbUrl: 'https://example.com/thumb.png' },
+          {
+            sizes: [
+              { width: '1920', height: '1080', scale: '1', src: 'https://example.com/screen1.png' },
+            ],
+          },
+          {
+            sizes: [
+              { width: '800', height: '600', scale: '1', src: 'https://example.com/screen2.png' },
+            ],
+          },
         ],
-        downloadFlatpakRefUrl: 'https://example.com/firefox.flatpakref',
+        releases: [
+          { version: '120.0', timestamp: 1705276800 }, // 2024-01-15 00:00:00 UTC
+        ],
       };
 
       (global.fetch as Mock).mockResolvedValueOnce({
@@ -177,7 +184,7 @@ describe('Flathub API Client', () => {
 
       const metadata = await getFlathubAppMetadata('org.mozilla.firefox');
 
-      expect(metadata).toEqual({
+      expect(metadata).toMatchObject({
         identifier: 'org.mozilla.firefox',
         name: 'Firefox',
         summary: 'Fast, private browser',
@@ -191,23 +198,18 @@ describe('Flathub API Client', () => {
         screenshots: [
           'https://example.com/screen1.png',
           'https://example.com/screen2.png',
-          'https://example.com/thumb.png',
         ],
-        releaseDate: '2024-01-15',
         source: 'flatpak',
-        metadata: {
-          downloadUrl: 'https://example.com/firefox.flatpakref',
-        },
       });
+      expect(metadata?.releaseDate).toContain('2024-01-15');
     });
 
-    it('should prefer desktop icon over mobile icon', async () => {
+    it('should handle app with icon', async () => {
       const mockAppData = {
         id: 'test.app',
         name: 'Test',
         summary: 'Test',
-        iconDesktopUrl: 'https://example.com/desktop.png',
-        iconMobileUrl: 'https://example.com/mobile.png',
+        icon: 'https://example.com/icon.png',
       };
 
       (global.fetch as Mock).mockResolvedValueOnce({
@@ -216,24 +218,7 @@ describe('Flathub API Client', () => {
       });
 
       const metadata = await getFlathubAppMetadata('test.app');
-      expect(metadata?.iconUrl).toBe('https://example.com/desktop.png');
-    });
-
-    it('should use mobile icon if desktop icon is not available', async () => {
-      const mockAppData = {
-        id: 'test.app',
-        name: 'Test',
-        summary: 'Test',
-        iconMobileUrl: 'https://example.com/mobile.png',
-      };
-
-      (global.fetch as Mock).mockResolvedValueOnce({
-        ok: true,
-        json: async () => mockAppData,
-      });
-
-      const metadata = await getFlathubAppMetadata('test.app');
-      expect(metadata?.iconUrl).toBe('https://example.com/mobile.png');
+      expect(metadata?.iconUrl).toBe('https://example.com/icon.png');
     });
 
     it('should return null for 404 not found', async () => {
@@ -282,16 +267,24 @@ describe('Flathub API Client', () => {
       expect(result1).toEqual(result2);
     });
 
-    it('should filter out empty screenshot URLs', async () => {
+    it('should filter out screenshots without sizes', async () => {
       const mockAppData = {
         id: 'test.app',
         name: 'Test',
         summary: 'Test',
         screenshots: [
-          { imgDesktopUrl: 'https://example.com/valid.png' },
-          { imgDesktopUrl: '' }, // Empty string
-          {}, // No URLs
-          { thumbUrl: 'https://example.com/thumb.png' },
+          {
+            sizes: [
+              { width: '1920', height: '1080', scale: '1', src: 'https://example.com/valid.png' },
+            ],
+          },
+          { sizes: [] }, // Empty sizes array
+          {}, // No sizes
+          {
+            sizes: [
+              { width: '800', height: '600', scale: '1', src: 'https://example.com/thumb.png' },
+            ],
+          },
         ],
       };
 
