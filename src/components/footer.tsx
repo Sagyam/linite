@@ -32,12 +32,14 @@ export function Footer() {
             >
               GitHub
             </a>
-            <a
-              href="/admin/login"
-              className="hover:text-foreground transition-colors"
-            >
-              Admin
-            </a>
+            {process.env.NODE_ENV === 'development' && (
+              <a
+                href="/admin/login"
+                className="hover:text-foreground transition-colors"
+              >
+                Admin
+              </a>
+            )}
           </div>
         </div>
       </div>

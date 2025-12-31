@@ -30,9 +30,11 @@ export function Header() {
             <Link href="/">
               <Button variant="ghost">Home</Button>
             </Link>
-            <Link href="/admin/login">
-              <Button variant="ghost">Admin</Button>
-            </Link>
+            {process.env.NODE_ENV === 'development' && (
+              <Link href="/admin/login">
+                <Button variant="ghost">Admin</Button>
+              </Link>
+            )}
             <ThemeToggle />
           </nav>
         </div>
