@@ -11,7 +11,7 @@
   [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue)](https://www.typescriptlang.org/)
   [![Tests](https://img.shields.io/badge/tests-172%20passing-success)](https://github.com/Sagyam/linite)
 
-  [Try it now](#getting-started) · [Report Bug](https://github.com/Sagyam/linite/issues) · [Request Feature](https://github.com/Sagyam/linite/issues)
+  [Try it now](https://linite.sagyamthapa.com.np) · [Report Bug](https://github.com/Sagyam/linite/issues) · [Request Feature](https://github.com/Sagyam/linite/issues)
 
 </div>
 
@@ -83,7 +83,7 @@ Support for all major package sources:
 
 ### For Users
 
-Just visit **[https://linite.sagyamthapa.com.np](#)** and start selecting apps!
+Just visit **[website](https://linite.sagyamthapa.com.np)** and start selecting apps!
 
 No installation needed - it's a web application.
 
