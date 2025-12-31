@@ -1056,10 +1056,56 @@ async function seed() {
     { appId: appMap.intellij, sourceId: sourceMap.snap, identifier: 'intellij-idea-community', isAvailable: true },
     { appId: appMap.intellij, sourceId: sourceMap.pacman, identifier: 'intellij-idea-community-edition', isAvailable: true },
 
+    // PyCharm
+    { appId: appMap.pycharm, sourceId: sourceMap.flatpak, identifier: 'com.jetbrains.PyCharm-Community', isAvailable: true },
+    { appId: appMap.pycharm, sourceId: sourceMap.snap, identifier: 'pycharm-community', isAvailable: true },
+
+    // WebStorm
+    { appId: appMap.webstorm, sourceId: sourceMap.flatpak, identifier: 'com.jetbrains.WebStorm', isAvailable: true },
+
+    // GoLand
+    { appId: appMap.goland, sourceId: sourceMap.flatpak, identifier: 'com.jetbrains.GoLand', isAvailable: true },
+
+    // Rider
+    { appId: appMap.rider, sourceId: sourceMap.flatpak, identifier: 'com.jetbrains.Rider', isAvailable: true },
+
+    // DataGrip
+    { appId: appMap.datagrip, sourceId: sourceMap.flatpak, identifier: 'com.jetbrains.DataGrip', isAvailable: true },
+
+    // Android Studio
+    { appId: appMap['android-studio'], sourceId: sourceMap.flatpak, identifier: 'com.google.AndroidStudio', isAvailable: true },
+    { appId: appMap['android-studio'], sourceId: sourceMap.snap, identifier: 'android-studio', isAvailable: true },
+    { appId: appMap['android-studio'], sourceId: sourceMap.pacman, identifier: 'android-studio', isAvailable: true },
+
+    // Neovim
+    { appId: appMap.neovim, sourceId: sourceMap.flatpak, identifier: 'io.neovim.nvim', isAvailable: true },
+    { appId: appMap.neovim, sourceId: sourceMap.apt, identifier: 'neovim', isAvailable: true },
+    { appId: appMap.neovim, sourceId: sourceMap.dnf, identifier: 'neovim', isAvailable: true },
+    { appId: appMap.neovim, sourceId: sourceMap.pacman, identifier: 'neovim', isAvailable: true },
+
+    // Emacs
+    { appId: appMap.emacs, sourceId: sourceMap.apt, identifier: 'emacs', isAvailable: true },
+    { appId: appMap.emacs, sourceId: sourceMap.dnf, identifier: 'emacs', isAvailable: true },
+    { appId: appMap.emacs, sourceId: sourceMap.pacman, identifier: 'emacs', isAvailable: true },
+
+    // Eclipse
+    { appId: appMap.eclipse, sourceId: sourceMap.snap, identifier: 'eclipse', isAvailable: true },
+    { appId: appMap.eclipse, sourceId: sourceMap.apt, identifier: 'eclipse', isAvailable: true },
+    { appId: appMap.eclipse, sourceId: sourceMap.dnf, identifier: 'eclipse', isAvailable: true },
+    { appId: appMap.eclipse, sourceId: sourceMap.pacman, identifier: 'eclipse-java', isAvailable: true },
+
+    // NetBeans
+    { appId: appMap.netbeans, sourceId: sourceMap.flatpak, identifier: 'org.apache.netbeans', isAvailable: true },
+    { appId: appMap.netbeans, sourceId: sourceMap.snap, identifier: 'netbeans', isAvailable: true },
+
     // Postman
     { appId: appMap.postman, sourceId: sourceMap.flatpak, identifier: 'com.getpostman.Postman', isAvailable: true },
     { appId: appMap.postman, sourceId: sourceMap.snap, identifier: 'postman', isAvailable: true },
     { appId: appMap.postman, sourceId: sourceMap.pacman, identifier: 'postman-bin', isAvailable: true },
+
+    // Insomnia
+    { appId: appMap.insomnia, sourceId: sourceMap.flatpak, identifier: 'rest.insomnia.Insomnia', isAvailable: true },
+    { appId: appMap.insomnia, sourceId: sourceMap.snap, identifier: 'insomnia', isAvailable: true },
 
     // DBeaver
     { appId: appMap.dbeaver, sourceId: sourceMap.flatpak, identifier: 'io.dbeaver.DBeaverCommunity', isAvailable: true },
@@ -1307,6 +1353,14 @@ async function seed() {
 
     { appId: appMap.vivaldi, sourceId: sourceMap.winget, identifier: 'VivaldiTechnologies.Vivaldi', isAvailable: true },
     { appId: appMap.vivaldi, sourceId: sourceMap.choco, identifier: 'vivaldi', isAvailable: true },
+
+    // Zen Browser (Windows)
+    { appId: appMap['zen-browser'], sourceId: sourceMap.winget, identifier: 'Zen-Team.Zen-Browser', isAvailable: true },
+    { appId: appMap['zen-browser'], sourceId: sourceMap.choco, identifier: 'zen-browser', isAvailable: true },
+
+    // Microsoft Edge (Windows)
+    { appId: appMap['microsoft-edge'], sourceId: sourceMap.winget, identifier: 'Microsoft.Edge', isAvailable: true },
+    { appId: appMap['microsoft-edge'], sourceId: sourceMap.choco, identifier: 'microsoft-edge', isAvailable: true },
 
     // Development
     { appId: appMap.vscode, sourceId: sourceMap.winget, identifier: 'Microsoft.VisualStudioCode', isAvailable: true },

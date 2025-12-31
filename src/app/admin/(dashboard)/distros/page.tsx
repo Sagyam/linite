@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { AdvancedDataTable } from '@/components/admin/advanced-data-table';
 import { Breadcrumb } from '@/components/admin/breadcrumb';
+import { IconUpload } from '@/components/admin/icon-upload';
 import { Button } from '@/components/ui/button';
 import { Plus } from 'lucide-react';
 import { useAdminDistros, useDeleteDistro, type Distro } from '@/hooks/use-admin';
@@ -200,15 +201,12 @@ export default function DistrosPage() {
                 />
               </div>
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="iconUrl">Icon URL</Label>
-              <Input
-                id="iconUrl"
-                value={formData.iconUrl}
-                onChange={(e) => setFormData({ ...formData, iconUrl: e.target.value })}
-                placeholder="https://example.com/icon.png"
-              />
-            </div>
+            <IconUpload
+              iconUrl={formData.iconUrl}
+              onIconChange={(url) => setFormData({ ...formData, iconUrl: url })}
+              label="Distro Icon"
+              pathPrefix="distro-icons"
+            />
             <div className="flex items-center space-x-2">
               <Switch
                 id="isPopular"
