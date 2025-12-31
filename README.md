@@ -39,7 +39,7 @@ Setting up a new Linux system or installing multiple applications usually means:
 
 <!-- DEMO PLACEHOLDER -->
 <div align="center">
-  <video src="./public/demo.webm" alt="Linite Demo" width="800">
+  <video src="https://github.com/Sagyam/linite/blob/main/public/demo.webm" alt="Linite Demo" width="800">
   <p><i>Demo: Installing multiple apps with a single command</i></p>
 </div>
 
