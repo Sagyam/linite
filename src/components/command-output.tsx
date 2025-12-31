@@ -38,18 +38,19 @@ export function CommandOutput() {
     source: null,
   });
 
-  // Auto-generate when selection actually changes
+  // Auto-generate when selection actually changes or on mount
   useEffect(() => {
     const appIds = Array.from(selectedApps).sort().join(',');
     const prev = prevSelectionRef.current;
 
-    // Check if selection actually changed
+    // Check if selection actually changed or if this is initial mount with selections
     const hasChanged =
       prev.appIds !== appIds ||
       prev.distro !== selectedDistro ||
       prev.source !== sourcePreference;
 
-    if (hasChanged && selectedApps.size > 0 && selectedDistro) {
+    // Generate if we have selections and (changed OR we have no result yet)
+    if (selectedApps.size > 0 && selectedDistro && (hasChanged || !result)) {
       prevSelectionRef.current = {
         appIds,
         distro: selectedDistro,
