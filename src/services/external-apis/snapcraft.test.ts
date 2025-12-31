@@ -17,44 +17,68 @@ describe('Snapcraft API Client', () => {
 
   describe('searchSnapcraft', () => {
     it('should search for snaps successfully', async () => {
-      const mockResponse = {
+      // Mock the initial search response (minimal data)
+      const mockSearchResponse = {
         results: [
-          {
-            snap: {
-              name: 'firefox',
-              title: 'Firefox',
-              summary: 'Mozilla Firefox web browser',
-              description: 'Full description of Firefox',
-              publisher: {
-                'display-name': 'Mozilla',
-                username: 'mozilla',
-              },
-              media: [
-                { type: 'icon', url: 'https://example.com/icon.png' },
-                { type: 'screenshot', url: 'https://example.com/screen.png' },
-              ],
-              license: 'MPL-2.0',
-              website: 'https://www.mozilla.org/firefox',
-              'download-size': 75000000,
-            },
-          },
-          {
-            snap: {
-              name: 'chromium',
-              title: 'Chromium',
-              summary: 'Chromium web browser',
-              media: [
-                { type: 'icon', url: 'https://example.com/chromium.png' },
-              ],
-            },
-          },
+          { name: 'firefox', 'snap-id': 'firefox-id' },
+          { name: 'chromium', 'snap-id': 'chromium-id' },
         ],
       };
 
-      (global.fetch as Mock).mockResolvedValueOnce({
-        ok: true,
-        json: async () => mockResponse,
-      });
+      // Mock the detail responses for each snap
+      const mockFirefoxDetails = {
+        'channel-map': [
+          {
+            channel: { name: 'stable', track: 'latest', risk: 'stable' },
+            version: '120.0',
+            'released-at': '2024-01-15T10:00:00Z',
+          },
+        ],
+        snap: {
+          name: 'firefox',
+          title: 'Firefox',
+          summary: 'Mozilla Firefox web browser',
+          description: 'Full description of Firefox',
+          publisher: {
+            'display-name': 'Mozilla',
+            username: 'mozilla',
+          },
+          media: [
+            { type: 'icon', url: 'https://example.com/icon.png' },
+            { type: 'screenshot', url: 'https://example.com/screen.png' },
+          ],
+          license: 'MPL-2.0',
+          website: 'https://www.mozilla.org/firefox',
+          'download-size': 75000000,
+        },
+      };
+
+      const mockChromiumDetails = {
+        'channel-map': [],
+        snap: {
+          name: 'chromium',
+          title: 'Chromium',
+          summary: 'Chromium web browser',
+          description: 'Chromium browser',
+          media: [
+            { type: 'icon', url: 'https://example.com/chromium.png' },
+          ],
+        },
+      };
+
+      (global.fetch as Mock)
+        .mockResolvedValueOnce({
+          ok: true,
+          json: async () => mockSearchResponse,
+        })
+        .mockResolvedValueOnce({
+          ok: true,
+          json: async () => mockFirefoxDetails,
+        })
+        .mockResolvedValueOnce({
+          ok: true,
+          json: async () => mockChromiumDetails,
+        });
 
       const results = await searchSnapcraft('browser');
 
@@ -69,35 +93,43 @@ describe('Snapcraft API Client', () => {
         license: 'MPL-2.0',
         maintainer: 'Mozilla',
         downloadSize: 75000000,
+        version: '120.0',
         source: 'snap',
       });
 
-      // Verify request parameters
-      const fetchUrl = (global.fetch as Mock).mock.calls[0][0];
-      expect(fetchUrl).toContain('q=browser');
-      expect(fetchUrl).toContain('scope=wide');
+      // Verify search request
+      const searchUrl = (global.fetch as Mock).mock.calls[0][0];
+      expect(searchUrl).toContain('q=browser');
+      expect(searchUrl).not.toContain('scope=wide'); // scope removed
 
       const headers = (global.fetch as Mock).mock.calls[0][1].headers;
       expect(headers['Snap-Device-Series']).toBe('16');
     });
 
     it('should handle snaps with fallback title', async () => {
-      const mockResponse = {
-        results: [
-          {
-            snap: {
-              name: 'test-snap',
-              // No title provided
-              summary: 'Test snap',
-            },
-          },
-        ],
+      const mockSearchResponse = {
+        results: [{ name: 'test-snap', 'snap-id': 'test-id' }],
       };
 
-      (global.fetch as Mock).mockResolvedValueOnce({
-        ok: true,
-        json: async () => mockResponse,
-      });
+      const mockDetailsResponse = {
+        'channel-map': [],
+        snap: {
+          name: 'test-snap',
+          // No title provided
+          summary: 'Test snap',
+          description: 'Test description',
+        },
+      };
+
+      (global.fetch as Mock)
+        .mockResolvedValueOnce({
+          ok: true,
+          json: async () => mockSearchResponse,
+        })
+        .mockResolvedValueOnce({
+          ok: true,
+          json: async () => mockDetailsResponse,
+        });
 
       const results = await searchSnapcraft('test');
 
@@ -105,26 +137,33 @@ describe('Snapcraft API Client', () => {
     });
 
     it('should handle snaps with fallback publisher', async () => {
-      const mockResponse = {
-        results: [
-          {
-            snap: {
-              name: 'test-snap',
-              title: 'Test',
-              summary: 'Test snap',
-              publisher: {
-                username: 'testuser',
-                // No display-name
-              },
-            },
-          },
-        ],
+      const mockSearchResponse = {
+        results: [{ name: 'test-snap', 'snap-id': 'test-id' }],
       };
 
-      (global.fetch as Mock).mockResolvedValueOnce({
-        ok: true,
-        json: async () => mockResponse,
-      });
+      const mockDetailsResponse = {
+        'channel-map': [],
+        snap: {
+          name: 'test-snap',
+          title: 'Test',
+          summary: 'Test snap',
+          description: 'Test description',
+          publisher: {
+            username: 'testuser',
+            // No display-name
+          },
+        },
+      };
+
+      (global.fetch as Mock)
+        .mockResolvedValueOnce({
+          ok: true,
+          json: async () => mockSearchResponse,
+        })
+        .mockResolvedValueOnce({
+          ok: true,
+          json: async () => mockDetailsResponse,
+        });
 
       const results = await searchSnapcraft('test');
 
@@ -149,51 +188,66 @@ describe('Snapcraft API Client', () => {
     });
 
     it('should cache search results', async () => {
-      const mockResponse = {
-        results: [
-          {
-            snap: {
-              name: 'test',
-              title: 'Test',
-              summary: 'Test snap',
-            },
-          },
-        ],
+      const mockSearchResponse = {
+        results: [{ name: 'test', 'snap-id': 'test-id' }],
       };
 
-      (global.fetch as Mock).mockResolvedValueOnce({
-        ok: true,
-        json: async () => mockResponse,
-      });
+      const mockDetailsResponse = {
+        'channel-map': [],
+        snap: {
+          name: 'test',
+          title: 'Test',
+          summary: 'Test snap',
+          description: 'Test description',
+        },
+      };
+
+      (global.fetch as Mock)
+        .mockResolvedValueOnce({
+          ok: true,
+          json: async () => mockSearchResponse,
+        })
+        .mockResolvedValueOnce({
+          ok: true,
+          json: async () => mockDetailsResponse,
+        });
 
       await searchSnapcraft('test');
       await searchSnapcraft('test');
 
-      expect(global.fetch).toHaveBeenCalledTimes(1);
+      // Should only call fetch twice (1 search + 1 detail), not 4 times
+      expect(global.fetch).toHaveBeenCalledTimes(2);
     });
 
     it('should extract icon from media array', async () => {
-      const mockResponse = {
-        results: [
-          {
-            snap: {
-              name: 'test',
-              title: 'Test',
-              summary: 'Test',
-              media: [
-                { type: 'screenshot', url: 'https://example.com/screen.png' },
-                { type: 'icon', url: 'https://example.com/icon.png' },
-                { type: 'banner', url: 'https://example.com/banner.png' },
-              ],
-            },
-          },
-        ],
+      const mockSearchResponse = {
+        results: [{ name: 'test', 'snap-id': 'test-id' }],
       };
 
-      (global.fetch as Mock).mockResolvedValueOnce({
-        ok: true,
-        json: async () => mockResponse,
-      });
+      const mockDetailsResponse = {
+        'channel-map': [],
+        snap: {
+          name: 'test',
+          title: 'Test',
+          summary: 'Test',
+          description: 'Test description',
+          media: [
+            { type: 'screenshot', url: 'https://example.com/screen.png' },
+            { type: 'icon', url: 'https://example.com/icon.png' },
+            { type: 'banner', url: 'https://example.com/banner.png' },
+          ],
+        },
+      };
+
+      (global.fetch as Mock)
+        .mockResolvedValueOnce({
+          ok: true,
+          json: async () => mockSearchResponse,
+        })
+        .mockResolvedValueOnce({
+          ok: true,
+          json: async () => mockDetailsResponse,
+        });
 
       const results = await searchSnapcraft('test');
 

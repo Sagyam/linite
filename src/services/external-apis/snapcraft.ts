@@ -107,6 +107,7 @@ export async function searchSnapcraft(query: string): Promise<PackageSearchResul
           name: metadata.name,
           summary: metadata.summary,
           description: metadata.description,
+          version: metadata.version,
           homepage: metadata.homepage,
           iconUrl: metadata.iconUrl,
           license: metadata.license,
