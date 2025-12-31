@@ -57,3 +57,52 @@ export async function listImages(prefix?: string) {
     prefix: prefix || 'app-icons/',
   });
 }
+
+/**
+ * Download an image from a URL and upload it to Vercel Blob storage
+ * @param imageUrl - The URL of the image to download
+ * @param appSlug - The app slug to use in the pathname (e.g., 'firefox')
+ * @returns The URL of the uploaded file in Vercel Blob, or null if failed
+ */
+export async function uploadImageFromUrl(
+  imageUrl: string,
+  appSlug: string
+): Promise<string | null> {
+  try {
+    // Download the image from the URL
+    const response = await fetch(imageUrl);
+
+    if (!response.ok) {
+      console.error(`Failed to download icon from ${imageUrl}: ${response.status}`);
+      return null;
+    }
+
+    // Get the content type and convert to blob
+    const contentType = response.headers.get('content-type') || 'image/png';
+    const arrayBuffer = await response.arrayBuffer();
+    const blob = new Blob([arrayBuffer], { type: contentType });
+
+    // Determine file extension from content type
+    let extension = 'png';
+    if (contentType.includes('svg')) {
+      extension = 'svg';
+    } else if (contentType.includes('jpeg') || contentType.includes('jpg')) {
+      extension = 'jpg';
+    } else if (contentType.includes('webp')) {
+      extension = 'webp';
+    }
+
+    // Create a File object from the blob
+    const filename = `${appSlug}.${extension}`;
+    const file = new File([blob], filename, { type: contentType });
+
+    // Upload to Vercel Blob
+    const pathname = `app-icons/${filename}`;
+    const uploadedUrl = await uploadImage(file, pathname);
+
+    return uploadedUrl;
+  } catch (error) {
+    console.error(`Error uploading icon from URL ${imageUrl}:`, error);
+    return null;
+  }
+}

@@ -9,7 +9,7 @@
   [![CI](https://github.com/Sagyam/linite/actions/workflows/ci.yml/badge.svg)](https://github.com/Sagyam/linite/actions/workflows/ci.yml)
   [![Next.js](https://img.shields.io/badge/Next.js-16-black)](https://nextjs.org/)
   [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue)](https://www.typescriptlang.org/)
-  [![Tests](https://img.shields.io/badge/tests-172%20passing-success)](https://github.com/Sagyam/linite)
+  [![Tests](https://img.shields.io/badge/tests-239%20passing-success)](https://github.com/Sagyam/linite)
 
   [Try it now](https://linite.sagyamthapa.com.np) · [Report Bug](https://github.com/Sagyam/linite/issues) · [Request Feature](https://github.com/Sagyam/linite/issues)
 
@@ -186,7 +186,7 @@ Built with modern, reliable technologies:
 - 📦 **170+ Apps** in catalog
 - 🎯 **10 Categories** organized
 - 🔄 **7 Package Sources** supported
-- 🧪 **172 Tests** passing
+- 🧪 **239 Tests** passing
 - 🐧 **8+ Distributions** covered
 
 ---
@@ -223,7 +223,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 Need help? Have questions?
 
-- 📖 Check the [Documentation](./docs/README.md)
+- 📖 Check the [Documentation](./docs)
 - 🐛 [Report an Issue](https://github.com/Sagyam/linite/issues)
 - 💬 [Start a Discussion](https://github.com/Sagyam/linite/discussions)
 

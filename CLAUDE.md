@@ -4,7 +4,7 @@
 
 Linite is a Ninite-style bulk package installer for Linux distributions. Users select apps, choose their distro, and get a single install command.
 
-**Documentation**: See `/docs/README.md` for complete guide
+**Documentation**: See `README.md` and `/docs` folder for detailed documentation
 
 ## Key Technologies
 
@@ -30,7 +30,7 @@ bun add <package>
 The complete Drizzle schema is defined in `/docs/DATABASE_SCHEMA.md`. Follow it exactly. All tables use:
 - CUID2 for primary keys
 - SQLite dialect
-- Timestamps (createdAt, updatedAt)
+- Timestamps (createdAt, updatedAt) - except `distroSources` which doesn't need them
 
 ### 3. API Route Structure
 - Public routes: `/api/apps`, `/api/distros`, `/api/sources`, `/api/categories`, `/api/generate`
@@ -59,10 +59,9 @@ See `/docs/API_REFERENCE.md` for the `/api/generate` endpoint spec. The algorith
 Integrate with Flathub, Snapcraft, Repology, and AUR. Clients go in `/src/services/external-apis/`. Add error handling and caching.
 
 ### 7. Documentation Standards
-- Track implementation progress in `/docs/SPEC.md`
-- Mark features as ✅ (completed), 🚧 (in progress), or ❌ (not started)
-- Update SPEC.md immediately when completing features
-- Never create markdown files in the root directory
+- Keep all documentation in the `/docs` folder
+- Never create markdown files in the root directory (except README.md)
+- Update docs when making significant changes to architecture or APIs
 
 ## Quick Reference
 
@@ -89,12 +88,12 @@ See `.env.example` for required variables. All env vars are validated using Zod 
 
 ## Documentation
 
-- **Getting Started**: `/docs/README.md`
+- **Getting Started**: `README.md`
 - **Architecture**: `/docs/PROJECT_OVERVIEW.md`
 - **API Docs**: `/docs/API_REFERENCE.md`
 - **Database**: `/docs/DATABASE_SCHEMA.md`
-- **Testing**: `/docs/TESTING.md`
 - **Environment**: `/docs/ENVIRONMENT.md`
+- **Initial Data**: `/docs/INITIAL_DATA.md`
 
 ## Testing
 
@@ -104,4 +103,4 @@ bun test:run              # Run once
 bun test:coverage         # With coverage
 ```
 
-**239 tests, 100% pass rate** - See `/docs/TESTING.md`
+**239 tests passing** - Tests are co-located with source files (`*.test.ts` or `*.test.tsx`)

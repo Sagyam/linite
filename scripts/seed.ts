@@ -270,15 +270,6 @@ async function seed() {
       categoryId: categoryMap.development,
     },
     {
-      slug: 'sublime',
-      displayName: 'Sublime Text',
-      description: 'Sophisticated text editor for code, markup and prose',
-      homepage: 'https://sublimetext.com',
-      isPopular: true,
-      isFoss: false,
-      categoryId: categoryMap.development,
-    },
-    {
       slug: 'intellij',
       displayName: 'IntelliJ IDEA Community',
       description: 'Java IDE by JetBrains',
@@ -458,28 +449,10 @@ async function seed() {
 
     // === UTILITIES ===
     {
-      slug: 'filezilla',
-      displayName: 'FileZilla',
-      description: 'Free FTP solution',
-      homepage: 'https://filezilla-project.org',
-      isPopular: false,
-      isFoss: true,
-      categoryId: categoryMap.utilities,
-    },
-    {
       slug: 'flameshot',
       displayName: 'Flameshot',
       description: 'Powerful yet simple to use screenshot software',
       homepage: 'https://flameshot.org',
-      isPopular: true,
-      isFoss: true,
-      categoryId: categoryMap.utilities,
-    },
-    {
-      slug: 'timeshift',
-      displayName: 'Timeshift',
-      description: 'System restore tool for Linux',
-      homepage: 'https://github.com/teejee2008/timeshift',
       isPopular: true,
       isFoss: true,
       categoryId: categoryMap.utilities,
@@ -546,15 +519,6 @@ async function seed() {
       description: 'Video conferencing and web conferencing service',
       homepage: 'https://zoom.us',
       isPopular: true,
-      isFoss: false,
-      categoryId: categoryMap.communication,
-    },
-    {
-      slug: 'skype',
-      displayName: 'Skype',
-      description: 'Video chat and voice call service',
-      homepage: 'https://skype.com',
-      isPopular: false,
       isFoss: false,
       categoryId: categoryMap.communication,
     },
@@ -637,42 +601,6 @@ async function seed() {
 
     // === SYSTEM ===
     {
-      slug: 'htop',
-      displayName: 'htop',
-      description: 'Interactive process viewer',
-      homepage: 'https://htop.dev',
-      isPopular: true,
-      isFoss: true,
-      categoryId: categoryMap.system,
-    },
-    {
-      slug: 'neofetch',
-      displayName: 'Neofetch',
-      description: 'Command-line system information tool',
-      homepage: 'https://github.com/dylanaraps/neofetch',
-      isPopular: true,
-      isFoss: true,
-      categoryId: categoryMap.system,
-    },
-    {
-      slug: 'gparted',
-      displayName: 'GParted',
-      description: 'Free partition editor for graphically managing disk partitions',
-      homepage: 'https://gparted.org',
-      isPopular: true,
-      isFoss: true,
-      categoryId: categoryMap.system,
-    },
-    {
-      slug: 'stacer',
-      displayName: 'Stacer',
-      description: 'Linux system optimizer and monitoring tool',
-      homepage: 'https://oguzhaninan.github.io/Stacer-Web',
-      isPopular: false,
-      isFoss: true,
-      categoryId: categoryMap.system,
-    },
-    {
       slug: 'btop',
       displayName: 'btop',
       description: 'Resource monitor that shows usage and stats',
@@ -749,12 +677,6 @@ async function seed() {
     { appId: appMap.nodejs, sourceId: sourceMap.apt, identifier: 'nodejs', isAvailable: true },
     { appId: appMap.nodejs, sourceId: sourceMap.dnf, identifier: 'nodejs', isAvailable: true },
     { appId: appMap.nodejs, sourceId: sourceMap.pacman, identifier: 'nodejs', isAvailable: true },
-
-    // Sublime Text
-    { appId: appMap.sublime, sourceId: sourceMap.snap, identifier: 'sublime-text', isAvailable: true },
-    { appId: appMap.sublime, sourceId: sourceMap.apt, identifier: 'sublime-text', isAvailable: true },
-    { appId: appMap.sublime, sourceId: sourceMap.dnf, identifier: 'sublime-text', isAvailable: true },
-    { appId: appMap.sublime, sourceId: sourceMap.pacman, identifier: 'sublime-text-4', isAvailable: true },
 
     // IntelliJ IDEA
     { appId: appMap.intellij, sourceId: sourceMap.flatpak, identifier: 'com.jetbrains.IntelliJ-IDEA-Community', isAvailable: true },
@@ -992,26 +914,6 @@ async function seed() {
     { appId: appMap.clamav, sourceId: sourceMap.pacman, identifier: 'clamav', isAvailable: true },
 
     // === SYSTEM ===
-    // htop
-    { appId: appMap.htop, sourceId: sourceMap.apt, identifier: 'htop', isAvailable: true },
-    { appId: appMap.htop, sourceId: sourceMap.dnf, identifier: 'htop', isAvailable: true },
-    { appId: appMap.htop, sourceId: sourceMap.pacman, identifier: 'htop', isAvailable: true },
-    { appId: appMap.htop, sourceId: sourceMap.zypper, identifier: 'htop', isAvailable: true },
-
-    // Neofetch
-    { appId: appMap.neofetch, sourceId: sourceMap.apt, identifier: 'neofetch', isAvailable: true },
-    { appId: appMap.neofetch, sourceId: sourceMap.dnf, identifier: 'neofetch', isAvailable: true },
-    { appId: appMap.neofetch, sourceId: sourceMap.pacman, identifier: 'neofetch', isAvailable: true },
-
-    // GParted
-    { appId: appMap.gparted, sourceId: sourceMap.flatpak, identifier: 'org.gnome.gparted', isAvailable: true },
-    { appId: appMap.gparted, sourceId: sourceMap.apt, identifier: 'gparted', isAvailable: true },
-    { appId: appMap.gparted, sourceId: sourceMap.dnf, identifier: 'gparted', isAvailable: true },
-    { appId: appMap.gparted, sourceId: sourceMap.pacman, identifier: 'gparted', isAvailable: true },
-
-    // Stacer
-    { appId: appMap.stacer, sourceId: sourceMap.apt, identifier: 'stacer', isAvailable: true },
-    { appId: appMap.stacer, sourceId: sourceMap.pacman, identifier: 'stacer', isAvailable: true },
 
     // btop
     { appId: appMap.btop, sourceId: sourceMap.apt, identifier: 'btop', isAvailable: true },
@@ -1055,10 +957,6 @@ async function seed() {
     { appId: appMap.nodejs, sourceId: sourceMap.winget, identifier: 'OpenJS.NodeJS', isAvailable: true },
     { appId: appMap.nodejs, sourceId: sourceMap.choco, identifier: 'nodejs', isAvailable: true },
     { appId: appMap.nodejs, sourceId: sourceMap.scoop, identifier: 'nodejs', isAvailable: true },
-
-    { appId: appMap.sublime, sourceId: sourceMap.winget, identifier: 'SublimeHQ.SublimeText.4', isAvailable: true },
-    { appId: appMap.sublime, sourceId: sourceMap.choco, identifier: 'sublimetext4', isAvailable: true },
-    { appId: appMap.sublime, sourceId: sourceMap.scoop, identifier: 'sublime-text', isAvailable: true },
 
     { appId: appMap.intellij, sourceId: sourceMap.winget, identifier: 'JetBrains.IntelliJIDEA.Community', isAvailable: true },
     { appId: appMap.intellij, sourceId: sourceMap.choco, identifier: 'intellijidea-community', isAvailable: true },
@@ -1137,10 +1035,6 @@ async function seed() {
     { appId: appMap.notion, sourceId: sourceMap.scoop, identifier: 'notion', isAvailable: true },
 
     // Utilities
-    { appId: appMap.filezilla, sourceId: sourceMap.winget, identifier: 'TimKosse.FileZilla.Client', isAvailable: true },
-    { appId: appMap.filezilla, sourceId: sourceMap.choco, identifier: 'filezilla', isAvailable: true },
-    { appId: appMap.filezilla, sourceId: sourceMap.scoop, identifier: 'filezilla', isAvailable: true },
-
     { appId: appMap.syncthing, sourceId: sourceMap.winget, identifier: 'Syncthing.Syncthing', isAvailable: true },
     { appId: appMap.syncthing, sourceId: sourceMap.choco, identifier: 'syncthing', isAvailable: true },
     { appId: appMap.syncthing, sourceId: sourceMap.scoop, identifier: 'syncthing', isAvailable: true },
@@ -1169,10 +1063,6 @@ async function seed() {
     { appId: appMap.zoom, sourceId: sourceMap.winget, identifier: 'Zoom.Zoom', isAvailable: true },
     { appId: appMap.zoom, sourceId: sourceMap.choco, identifier: 'zoom', isAvailable: true },
     { appId: appMap.zoom, sourceId: sourceMap.scoop, identifier: 'zoom', isAvailable: true },
-
-    { appId: appMap.skype, sourceId: sourceMap.winget, identifier: 'Microsoft.Skype', isAvailable: true },
-    { appId: appMap.skype, sourceId: sourceMap.choco, identifier: 'skype', isAvailable: true },
-    { appId: appMap.skype, sourceId: sourceMap.scoop, identifier: 'skype', isAvailable: true },
 
     // Games
     { appId: appMap.steam, sourceId: sourceMap.winget, identifier: 'Valve.Steam', isAvailable: true },

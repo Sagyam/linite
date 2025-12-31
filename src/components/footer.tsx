@@ -25,7 +25,7 @@ export function Footer() {
 
           <div className="flex items-center gap-6 text-sm text-muted-foreground">
             <a
-              href="https://github.com"
+              href="https://github.com/Sagyam/linite"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-foreground transition-colors"

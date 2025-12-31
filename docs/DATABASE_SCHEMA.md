@@ -36,29 +36,43 @@
 └─────────────┘                             │ updatedAt   │
                                             └─────────────┘
 
-┌─────────────┐       ┌─────────────┐
-│    user     │       │   session   │
-├─────────────┤       ├─────────────┤
-│ id (PK)     │◄──────│ userId (FK) │
-│ email       │       │ id (PK)     │
-│ name        │       │ expiresAt   │
-│ password    │       │ ipAddress   │
-│ role        │       │ userAgent   │
-│ createdAt   │       │ createdAt   │
-│ updatedAt   │       │ updatedAt   │
-└─────────────┘       └─────────────┘
+┌─────────────┐       ┌─────────────┐       ┌─────────────┐
+│    user     │       │   session   │       │   account   │
+├─────────────┤       ├─────────────┤       ├─────────────┤
+│ id (PK)     │◄──────│ userId (FK) │   ┌───│ userId (FK) │
+│ email       │       │ id (PK)     │   │   │ id (PK)     │
+│ name        │       │ expiresAt   │   │   │ accountId   │
+│emailVerified│       │ token       │   │   │ providerId  │
+│ image       │       │ ipAddress   │   │   │ accessToken │
+│ role        │       │ userAgent   │   │   │refreshToken │
+│ createdAt   │       │ createdAt   │   │   │ idToken     │
+│ updatedAt   │       │ updatedAt   │   │   │ scope       │
+└─────────────┘       └─────────────┘   │   │ createdAt   │
+                                        │   │ updatedAt   │
+                                        │   └─────────────┘
+                                        │
+                                        └──►┌─────────────┐
+                                            │verification │
+                                            ├─────────────┤
+                                            │ id (PK)     │
+                                            │ identifier  │
+                                            │ value       │
+                                            │ expiresAt   │
+                                            │ createdAt   │
+                                            │ updatedAt   │
+                                            └─────────────┘
 
-┌─────────────┐
-│ refreshLogs │
-├─────────────┤
-│ id (PK)     │
-│ sourceId    │
-│ status      │
-│ packagesUpd │
-│ errorMsg    │
-│ startedAt   │
-│ completedAt │
-└─────────────┘
+┌─────────────────┐
+│  refreshLogs    │
+├─────────────────┤
+│ id (PK)         │
+│ sourceId        │
+│ status          │
+│ packagesUpdated │
+│ errorMessage    │
+│ startedAt       │
+│ completedAt     │
+└─────────────────┘
 ```
 
 ## Core Tables

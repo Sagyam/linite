@@ -1,54 +1,49 @@
 /**
- * Test script to verify refresh functionality
+ * Test script to manually trigger package refresh
  */
 
-import { db } from '../src/db';
-import { sources, packages } from '../src/db/schema';
+import { refreshPackages } from '../src/services/package-refresh';
 
-async function testRefreshSetup() {
-  console.log('🔍 Checking refresh setup...\n');
+async function main() {
+  console.log('🔄 Starting package refresh...\n');
 
-  // Check sources
-  const allSources = await db.query.sources.findMany();
-  console.log(`📦 Found ${allSources.length} sources:`);
-  for (const source of allSources) {
-    console.log(`  - ${source.name} (${source.slug})`);
-    console.log(`    API Endpoint: ${source.apiEndpoint || '❌ NOT SET'}`);
-  }
+  try {
+    const results = await refreshPackages();
 
-  console.log('\n');
+    console.log('\n=== 📊 Refresh Results ===\n');
+    for (const result of results) {
+      console.log(`📦 Source: ${result.sourceName}`);
+      console.log(`   ✓ Checked: ${result.packagesChecked} packages`);
+      console.log(`   ✓ Updated: ${result.packagesUpdated} packages`);
+      console.log(`   ⏱️  Duration: ${(result.duration / 1000).toFixed(2)}s`);
 
-  // Check packages
-  const allPackages = await db.query.packages.findMany({
-    with: {
-      app: true,
-      source: true,
-    },
-  });
-
-  console.log(`📦 Found ${allPackages.length} packages:\n`);
-
-  // Group by source
-  const bySource = allPackages.reduce((acc, pkg) => {
-    const sourceSlug = pkg.source.slug;
-    if (!acc[sourceSlug]) acc[sourceSlug] = [];
-    acc[sourceSlug].push(pkg);
-    return acc;
-  }, {} as Record<string, typeof allPackages>);
-
-  for (const [sourceSlug, pkgs] of Object.entries(bySource)) {
-    console.log(`  ${sourceSlug}: ${pkgs.length} packages`);
-    pkgs.slice(0, 3).forEach(pkg => {
-      console.log(`    - ${pkg.identifier} (${pkg.app?.displayName})`);
-      console.log(`      Version: ${pkg.version || 'null'}, Size: ${pkg.size || 'null'}, Metadata: ${pkg.metadata ? 'present' : 'null'}`);
-    });
-    if (pkgs.length > 3) {
-      console.log(`    ... and ${pkgs.length - 3} more`);
+      if (result.errors.length > 0) {
+        console.log(`   ⚠️  Errors: ${result.errors.length}`);
+        result.errors.slice(0, 3).forEach(err => {
+          console.log(`      - ${err}`);
+        });
+        if (result.errors.length > 3) {
+          console.log(`      ... and ${result.errors.length - 3} more errors`);
+        }
+      }
+      console.log('');
     }
-    console.log('');
-  }
 
-  process.exit(0);
+    const totalChecked = results.reduce((sum, r) => sum + r.packagesChecked, 0);
+    const totalUpdated = results.reduce((sum, r) => sum + r.packagesUpdated, 0);
+    const totalErrors = results.reduce((sum, r) => sum + r.errors.length, 0);
+
+    console.log('=== 🎯 Summary ===');
+    console.log(`Total packages checked: ${totalChecked}`);
+    console.log(`Total packages updated: ${totalUpdated}`);
+    console.log(`Total errors: ${totalErrors}`);
+    console.log('\n✅ Refresh completed successfully!');
+
+    process.exit(0);
+  } catch (error) {
+    console.error('❌ Refresh failed:', error);
+    process.exit(1);
+  }
 }
 
-testRefreshSetup().catch(console.error);
+main();

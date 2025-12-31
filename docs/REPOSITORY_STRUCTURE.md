@@ -11,15 +11,19 @@ linite/
 ├── scripts/              # Database & utility scripts
 └── src/                  # Source code
     ├── app/              # Next.js App Router
-    │   ├── (public)/     # Public routes
+    │   ├── apps/         # Public app pages
     │   ├── admin/        # Protected admin routes
+    │   │   ├── (auth)/   # Login page
+    │   │   └── (dashboard)/ # Admin dashboard
     │   └── api/          # REST API endpoints
     ├── components/       # React components
     │   ├── ui/           # shadcn/ui primitives
-    │   └── admin/        # Admin-specific components
+    │   ├── admin/        # Admin-specific components
+    │   └── command-output/ # Command display
     ├── db/               # Database schema & client
     ├── hooks/            # Custom React hooks
     ├── lib/              # Utilities & configuration
+    ├── providers/        # React context providers
     ├── services/         # Business logic
     │   ├── external-apis/    # API clients
     │   └── refresh-strategies/ # Package refresh
@@ -32,8 +36,10 @@ linite/
 
 ### `/src/app`
 Next.js App Router structure:
-- `(public)/` - User-facing pages (app selector, details)
+- `apps/` - User-facing pages (app selector, details)
 - `admin/` - Protected admin pages (login, dashboard, CRUD)
+  - `(auth)/` - Authentication routes (login)
+  - `(dashboard)/` - Admin dashboard routes (apps, categories, distros, packages, sources, refresh)
 - `api/` - REST API routes (public + admin endpoints)
 
 ### `/src/services`
@@ -47,7 +53,8 @@ Business logic layer:
 React components:
 - `ui/` - shadcn/ui primitives (button, card, dialog, etc.)
 - `admin/` - Admin UI (forms, tables, sidebar)
-- Root level - Public UI (app grid, command output, etc.)
+- `command-output/` - Command generation and display components
+- Root level - Public UI (app grid, cards, filters, etc.)
 
 ### `/src/lib`
 Utilities and configuration:
@@ -94,14 +101,17 @@ import { cn } from '@/lib/utils';             // src/lib/utils
 
 ## Documentation Files
 
-- `README.md` - Getting started guide
+All documentation is in the `/docs` folder:
+
 - `PROJECT_OVERVIEW.md` - Architecture overview
 - `API_REFERENCE.md` - API endpoint documentation
 - `DATABASE_SCHEMA.md` - Database structure
 - `ENVIRONMENT.md` - Environment variables
 - `INITIAL_DATA.md` - Seed data reference
-- `TESTING.md` - Test documentation
-- `SEO.md` - SEO configuration
+- `REPOSITORY_STRUCTURE.md` - This file
+- `ADVANCED_TABLE_MIGRATION.md` - Database migration guide
+
+The main `README.md` is in the root directory.
 
 ---
 

@@ -67,7 +67,10 @@ Get all apps with optional filtering
 ```
 
 ### GET /api/apps/[id]
-Get single app with full details
+Get single app by ID with full details
+
+### GET /api/apps/by-slug/[slug]
+Get single app by slug with full details
 
 ### GET /api/distros
 Get all distributions

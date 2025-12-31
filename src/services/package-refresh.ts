@@ -4,10 +4,11 @@
  */
 
 import { db } from '@/db';
-import { packages, sources, refreshLogs } from '@/db/schema';
+import { packages, sources, refreshLogs, apps } from '@/db/schema';
 import { eq } from 'drizzle-orm';
 import { getRefreshStrategy, type PackageMetadata } from './refresh-strategies';
 import type { RefreshResult, RefreshOptions } from '@/types/entities';
+import { uploadImageFromUrl } from '@/lib/blob';
 
 // Re-export for backward compatibility
 export type { RefreshResult, RefreshOptions };
@@ -27,6 +28,11 @@ interface PackageRecord {
   isAvailable: boolean | null;
   lastChecked: Date | null;
   metadata: unknown;
+  app: {
+    id: string;
+    slug: string;
+    iconUrl: string | null;
+  };
 }
 
 /**
@@ -180,6 +186,11 @@ async function refreshSinglePackage(
       })
       .where(eq(packages.id, pkg.id));
 
+    // Sync app icon if metadata contains an icon URL
+    if (metadata.iconUrl && pkg.app) {
+      await syncAppIcon(pkg.app.id, pkg.app.slug, metadata.iconUrl);
+    }
+
     return true;
   }
 
@@ -194,6 +205,38 @@ async function refreshSinglePackage(
   }
 
   return hasVersionChange;
+}
+
+/**
+ * Sync app icon by downloading from external URL and uploading to Vercel Blob
+ */
+async function syncAppIcon(
+  appId: string,
+  appSlug: string,
+  iconUrl: string
+): Promise<void> {
+  try {
+    console.log(`[Icon Sync] Syncing icon for app ${appSlug} from ${iconUrl}`);
+
+    // Download icon from URL and upload to Vercel Blob
+    const uploadedUrl = await uploadImageFromUrl(iconUrl, appSlug);
+
+    if (uploadedUrl) {
+      // Update app's iconUrl with the Vercel Blob URL
+      await db
+        .update(apps)
+        .set({
+          iconUrl: uploadedUrl,
+          updatedAt: new Date(),
+        })
+        .where(eq(apps.id, appId));
+
+      console.log(`[Icon Sync] Successfully updated icon for app ${appSlug}: ${uploadedUrl}`);
+    }
+  } catch (error) {
+    // Silent fail - just log and continue
+    console.error(`[Icon Sync] Failed to sync icon for app ${appSlug}:`, error);
+  }
 }
 
 /**
