@@ -4,11 +4,13 @@ import { searchFlathub } from '@/services/external-apis/flathub';
 import { searchSnapcraft } from '@/services/external-apis/snapcraft';
 import { searchRepology } from '@/services/external-apis/repology';
 import { searchAUR } from '@/services/external-apis/aur';
+import { searchHomebrew } from '@/services/external-apis/homebrew';
+import { searchWinget } from '@/services/external-apis/winget';
 import { PackageSearchResult } from '@/services/external-apis/types';
 import { adminLimiter } from '@/lib/redis';
 
 interface SearchRequest {
-  source: 'flatpak' | 'snap' | 'repology' | 'aur' | 'all';
+  source: 'flatpak' | 'snap' | 'repology' | 'aur' | 'homebrew' | 'winget' | 'all';
   query: string;
 }
 
@@ -56,7 +58,7 @@ export async function POST(request: NextRequest) {
       query: body.query.trim(),
     };
 
-    const validSources = ['flatpak', 'snap', 'repology', 'aur', 'all'];
+    const validSources = ['flatpak', 'snap', 'repology', 'aur', 'homebrew', 'winget', 'all'];
     if (!validSources.includes(searchRequest.source)) {
       return NextResponse.json(
         { error: `source must be one of: ${validSources.join(', ')}` },
@@ -72,13 +74,15 @@ export async function POST(request: NextRequest) {
         searchSnapcraft(searchRequest.query),
         searchRepology(searchRequest.query),
         searchAUR(searchRequest.query),
+        searchHomebrew(searchRequest.query),
+        searchWinget(searchRequest.query),
       ]);
 
       const allResults: PackageSearchResult[] = [];
       const errors: string[] = [];
 
       results.forEach((result, index) => {
-        const sourceName = ['Flathub', 'Snapcraft', 'Repology', 'AUR'][index];
+        const sourceName = ['Flathub', 'Snapcraft', 'Repology', 'AUR', 'Homebrew', 'Winget'][index];
 
         if (result.status === 'fulfilled') {
           allResults.push(...result.value);
@@ -112,6 +116,12 @@ export async function POST(request: NextRequest) {
           break;
         case 'aur':
           results = await searchAUR(searchRequest.query);
+          break;
+        case 'homebrew':
+          results = await searchHomebrew(searchRequest.query);
+          break;
+        case 'winget':
+          results = await searchWinget(searchRequest.query);
           break;
       }
 

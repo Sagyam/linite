@@ -67,6 +67,7 @@ interface SnapInfoResponse {
 
 /**
  * Search for snaps on Snapcraft
+ * Note: The v2 API returns minimal data in search, we fetch full details for top results
  */
 export async function searchSnapcraft(query: string): Promise<PackageSearchResult[]> {
   if (!query || query.trim().length === 0) {
@@ -80,11 +81,11 @@ export async function searchSnapcraft(query: string): Promise<PackageSearchResul
   try {
     const url = new URL(`${SNAPCRAFT_API_BASE}/snaps/find`);
     url.searchParams.set('q', query);
-    url.searchParams.set('scope', 'wide');
 
     const response = await fetch(url.toString(), {
       headers: {
         'Snap-Device-Series': '16',
+        'User-Agent': 'Linite/1.0 (Linux package installer)',
       },
     });
 
@@ -92,25 +93,40 @@ export async function searchSnapcraft(query: string): Promise<PackageSearchResul
       throw new Error(`Snapcraft API error: ${response.status} ${response.statusText}`);
     }
 
-    const data: SnapSearchResponse = await response.json();
+    const data: { results: Array<{ name: string; 'snap-id': string }> } = await response.json();
 
-    const results: PackageSearchResult[] = data.results.map((result) => {
-      const snap = result.snap;
-      const icon = snap.media?.find((m) => m.type === 'icon')?.url;
+    // Fetch detailed info for top 10 results (to avoid too many requests)
+    const topResults = data.results.slice(0, 10);
+    const detailsPromises = topResults.map(async (result) => {
+      try {
+        const metadata = await getSnapcraftPackageMetadata(result.name);
+        if (!metadata) return null;
 
-      return {
-        identifier: snap.name,
-        name: snap.title || snap.name,
-        summary: snap.summary,
-        description: snap.description,
-        homepage: snap.website,
-        iconUrl: icon,
-        license: snap.license,
-        maintainer: snap.publisher?.['display-name'] || snap.publisher?.username,
-        downloadSize: snap['download-size'],
-        source: 'snap' as const,
-      };
+        return {
+          identifier: metadata.identifier,
+          name: metadata.name,
+          summary: metadata.summary,
+          description: metadata.description,
+          homepage: metadata.homepage,
+          iconUrl: metadata.iconUrl,
+          license: metadata.license,
+          maintainer: metadata.maintainer,
+          downloadSize: metadata.downloadSize,
+          source: 'snap' as const,
+        } as PackageSearchResult;
+      } catch (error) {
+        console.error(`Failed to fetch details for snap ${result.name}:`, error);
+        // Return basic info if details fetch fails
+        return {
+          identifier: result.name,
+          name: result.name,
+          summary: undefined,
+          source: 'snap' as const,
+        } as PackageSearchResult;
+      }
     });
+
+    const results = (await Promise.all(detailsPromises)).filter((r): r is PackageSearchResult => r !== null);
 
     searchCache.set(cacheKey, results);
     return results;
@@ -138,6 +154,7 @@ export async function getSnapcraftPackageMetadata(snapName: string): Promise<Pac
     const response = await fetch(`${SNAPCRAFT_API_BASE}/snaps/info/${encodeURIComponent(snapName)}`, {
       headers: {
         'Snap-Device-Series': '16',
+        'User-Agent': 'Linite/1.0 (Linux package installer)',
       },
     });
 

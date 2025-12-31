@@ -80,6 +80,24 @@ async function seed() {
       priority: 10,
       apiEndpoint: null,
     },
+    {
+      name: 'AUR',
+      slug: 'aur',
+      installCmd: 'yay -S --noconfirm',
+      requireSudo: false,
+      setupCmd: 'sudo pacman -S --needed git base-devel && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si',
+      priority: 7,
+      apiEndpoint: 'https://aur.archlinux.org/rpc/',
+    },
+    {
+      name: 'Homebrew',
+      slug: 'homebrew',
+      installCmd: 'brew install',
+      requireSudo: false,
+      setupCmd: '/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"',
+      priority: 8,
+      apiEndpoint: 'https://formulae.brew.sh/api/',
+    },
     // Windows package managers
     {
       name: 'Winget',
@@ -89,15 +107,6 @@ async function seed() {
       setupCmd: null,
       priority: 10,
       apiEndpoint: 'https://api.winget.run/',
-    },
-    {
-      name: 'Chocolatey',
-      slug: 'choco',
-      installCmd: 'choco install -y',
-      requireSudo: true,
-      setupCmd: 'Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString(\'https://community.chocolatey.org/install.ps1\'))',
-      priority: 8,
-      apiEndpoint: 'https://community.chocolatey.org/api/v2/',
     },
     {
       name: 'Scoop',
@@ -161,10 +170,12 @@ async function seed() {
 
     // Arch Linux
     { distroId: distroMap.arch, sourceId: sourceMap.pacman, priority: 10, isDefault: true },
+    { distroId: distroMap.arch, sourceId: sourceMap.aur, priority: 7, isDefault: false },
     { distroId: distroMap.arch, sourceId: sourceMap.flatpak, priority: 3, isDefault: false },
 
     // Manjaro
     { distroId: distroMap.manjaro, sourceId: sourceMap.pacman, priority: 10, isDefault: true },
+    { distroId: distroMap.manjaro, sourceId: sourceMap.aur, priority: 7, isDefault: false },
     { distroId: distroMap.manjaro, sourceId: sourceMap.flatpak, priority: 5, isDefault: false },
     { distroId: distroMap.manjaro, sourceId: sourceMap.snap, priority: 3, isDefault: false },
 
@@ -174,7 +185,6 @@ async function seed() {
 
     // Windows
     { distroId: distroMap.windows, sourceId: sourceMap.winget, priority: 10, isDefault: true },
-    { distroId: distroMap.windows, sourceId: sourceMap.choco, priority: 8, isDefault: false },
     { distroId: distroMap.windows, sourceId: sourceMap.scoop, priority: 6, isDefault: false },
   ];
 
@@ -1336,178 +1346,135 @@ async function seed() {
     // ===== WINDOWS PACKAGES =====
     // Browsers
     { appId: appMap.firefox, sourceId: sourceMap.winget, identifier: 'Mozilla.Firefox', isAvailable: true },
-    { appId: appMap.firefox, sourceId: sourceMap.choco, identifier: 'firefox', isAvailable: true },
     { appId: appMap.firefox, sourceId: sourceMap.scoop, identifier: 'firefox', isAvailable: true },
 
     { appId: appMap.chrome, sourceId: sourceMap.winget, identifier: 'Google.Chrome', isAvailable: true },
-    { appId: appMap.chrome, sourceId: sourceMap.choco, identifier: 'googlechrome', isAvailable: true },
     { appId: appMap.chrome, sourceId: sourceMap.scoop, identifier: 'googlechrome', isAvailable: true },
 
     { appId: appMap.brave, sourceId: sourceMap.winget, identifier: 'Brave.Brave', isAvailable: true },
-    { appId: appMap.brave, sourceId: sourceMap.choco, identifier: 'brave', isAvailable: true },
     { appId: appMap.brave, sourceId: sourceMap.scoop, identifier: 'brave', isAvailable: true },
 
     { appId: appMap.chromium, sourceId: sourceMap.winget, identifier: 'Hibbiki.Chromium', isAvailable: true },
-    { appId: appMap.chromium, sourceId: sourceMap.choco, identifier: 'chromium', isAvailable: true },
     { appId: appMap.chromium, sourceId: sourceMap.scoop, identifier: 'chromium', isAvailable: true },
 
     { appId: appMap.vivaldi, sourceId: sourceMap.winget, identifier: 'VivaldiTechnologies.Vivaldi', isAvailable: true },
-    { appId: appMap.vivaldi, sourceId: sourceMap.choco, identifier: 'vivaldi', isAvailable: true },
 
     // Zen Browser (Windows)
     { appId: appMap['zen-browser'], sourceId: sourceMap.winget, identifier: 'Zen-Team.Zen-Browser', isAvailable: true },
-    { appId: appMap['zen-browser'], sourceId: sourceMap.choco, identifier: 'zen-browser', isAvailable: true },
 
     // Microsoft Edge (Windows)
     { appId: appMap['microsoft-edge'], sourceId: sourceMap.winget, identifier: 'Microsoft.Edge', isAvailable: true },
-    { appId: appMap['microsoft-edge'], sourceId: sourceMap.choco, identifier: 'microsoft-edge', isAvailable: true },
 
     // Development
     { appId: appMap.vscode, sourceId: sourceMap.winget, identifier: 'Microsoft.VisualStudioCode', isAvailable: true },
-    { appId: appMap.vscode, sourceId: sourceMap.choco, identifier: 'vscode', isAvailable: true },
     { appId: appMap.vscode, sourceId: sourceMap.scoop, identifier: 'vscode', isAvailable: true },
 
     { appId: appMap.git, sourceId: sourceMap.winget, identifier: 'Git.Git', isAvailable: true },
-    { appId: appMap.git, sourceId: sourceMap.choco, identifier: 'git', isAvailable: true },
     { appId: appMap.git, sourceId: sourceMap.scoop, identifier: 'git', isAvailable: true },
 
     { appId: appMap.docker, sourceId: sourceMap.winget, identifier: 'Docker.DockerDesktop', isAvailable: true },
-    { appId: appMap.docker, sourceId: sourceMap.choco, identifier: 'docker-desktop', isAvailable: true },
     { appId: appMap.docker, sourceId: sourceMap.scoop, identifier: 'docker', isAvailable: true },
 
     { appId: appMap.nodejs, sourceId: sourceMap.winget, identifier: 'OpenJS.NodeJS', isAvailable: true },
-    { appId: appMap.nodejs, sourceId: sourceMap.choco, identifier: 'nodejs', isAvailable: true },
     { appId: appMap.nodejs, sourceId: sourceMap.scoop, identifier: 'nodejs', isAvailable: true },
 
     { appId: appMap.intellij, sourceId: sourceMap.winget, identifier: 'JetBrains.IntelliJIDEA.Community', isAvailable: true },
-    { appId: appMap.intellij, sourceId: sourceMap.choco, identifier: 'intellijidea-community', isAvailable: true },
     { appId: appMap.intellij, sourceId: sourceMap.scoop, identifier: 'idea', isAvailable: true },
 
     { appId: appMap.postman, sourceId: sourceMap.winget, identifier: 'Postman.Postman', isAvailable: true },
-    { appId: appMap.postman, sourceId: sourceMap.choco, identifier: 'postman', isAvailable: true },
     { appId: appMap.postman, sourceId: sourceMap.scoop, identifier: 'postman', isAvailable: true },
 
     { appId: appMap.dbeaver, sourceId: sourceMap.winget, identifier: 'dbeaver.dbeaver', isAvailable: true },
-    { appId: appMap.dbeaver, sourceId: sourceMap.choco, identifier: 'dbeaver', isAvailable: true },
     { appId: appMap.dbeaver, sourceId: sourceMap.scoop, identifier: 'dbeaver', isAvailable: true },
 
     // Media
     { appId: appMap.vlc, sourceId: sourceMap.winget, identifier: 'VideoLAN.VLC', isAvailable: true },
-    { appId: appMap.vlc, sourceId: sourceMap.choco, identifier: 'vlc', isAvailable: true },
     { appId: appMap.vlc, sourceId: sourceMap.scoop, identifier: 'vlc', isAvailable: true },
 
     { appId: appMap.spotify, sourceId: sourceMap.winget, identifier: 'Spotify.Spotify', isAvailable: true },
-    { appId: appMap.spotify, sourceId: sourceMap.choco, identifier: 'spotify', isAvailable: true },
     { appId: appMap.spotify, sourceId: sourceMap.scoop, identifier: 'spotify', isAvailable: true },
 
     { appId: appMap.obs, sourceId: sourceMap.winget, identifier: 'OBSProject.OBSStudio', isAvailable: true },
-    { appId: appMap.obs, sourceId: sourceMap.choco, identifier: 'obs-studio', isAvailable: true },
     { appId: appMap.obs, sourceId: sourceMap.scoop, identifier: 'obs-studio', isAvailable: true },
 
     { appId: appMap.kdenlive, sourceId: sourceMap.winget, identifier: 'KDE.Kdenlive', isAvailable: true },
-    { appId: appMap.kdenlive, sourceId: sourceMap.choco, identifier: 'kdenlive', isAvailable: true },
 
     { appId: appMap.audacity, sourceId: sourceMap.winget, identifier: 'Audacity.Audacity', isAvailable: true },
-    { appId: appMap.audacity, sourceId: sourceMap.choco, identifier: 'audacity', isAvailable: true },
     { appId: appMap.audacity, sourceId: sourceMap.scoop, identifier: 'audacity', isAvailable: true },
 
     { appId: appMap.mpv, sourceId: sourceMap.winget, identifier: 'mpv.mpv', isAvailable: true },
-    { appId: appMap.mpv, sourceId: sourceMap.choco, identifier: 'mpv', isAvailable: true },
     { appId: appMap.mpv, sourceId: sourceMap.scoop, identifier: 'mpv', isAvailable: true },
 
     { appId: appMap.handbrake, sourceId: sourceMap.winget, identifier: 'HandBrake.HandBrake', isAvailable: true },
-    { appId: appMap.handbrake, sourceId: sourceMap.choco, identifier: 'handbrake', isAvailable: true },
     { appId: appMap.handbrake, sourceId: sourceMap.scoop, identifier: 'handbrake', isAvailable: true },
 
     // Graphics
     { appId: appMap.gimp, sourceId: sourceMap.winget, identifier: 'GIMP.GIMP', isAvailable: true },
-    { appId: appMap.gimp, sourceId: sourceMap.choco, identifier: 'gimp', isAvailable: true },
     { appId: appMap.gimp, sourceId: sourceMap.scoop, identifier: 'gimp', isAvailable: true },
 
     { appId: appMap.inkscape, sourceId: sourceMap.winget, identifier: 'Inkscape.Inkscape', isAvailable: true },
-    { appId: appMap.inkscape, sourceId: sourceMap.choco, identifier: 'inkscape', isAvailable: true },
     { appId: appMap.inkscape, sourceId: sourceMap.scoop, identifier: 'inkscape', isAvailable: true },
 
     { appId: appMap.blender, sourceId: sourceMap.winget, identifier: 'BlenderFoundation.Blender', isAvailable: true },
-    { appId: appMap.blender, sourceId: sourceMap.choco, identifier: 'blender', isAvailable: true },
     { appId: appMap.blender, sourceId: sourceMap.scoop, identifier: 'blender', isAvailable: true },
 
     { appId: appMap.krita, sourceId: sourceMap.winget, identifier: 'KDE.Krita', isAvailable: true },
-    { appId: appMap.krita, sourceId: sourceMap.choco, identifier: 'krita', isAvailable: true },
     { appId: appMap.krita, sourceId: sourceMap.scoop, identifier: 'krita', isAvailable: true },
 
     { appId: appMap.darktable, sourceId: sourceMap.winget, identifier: 'darktable.darktable', isAvailable: true },
-    { appId: appMap.darktable, sourceId: sourceMap.choco, identifier: 'darktable', isAvailable: true },
 
     // Office
     { appId: appMap.libreoffice, sourceId: sourceMap.winget, identifier: 'TheDocumentFoundation.LibreOffice', isAvailable: true },
-    { appId: appMap.libreoffice, sourceId: sourceMap.choco, identifier: 'libreoffice-fresh', isAvailable: true },
     { appId: appMap.libreoffice, sourceId: sourceMap.scoop, identifier: 'libreoffice', isAvailable: true },
 
     { appId: appMap.onlyoffice, sourceId: sourceMap.winget, identifier: 'ONLYOFFICE.DesktopEditors', isAvailable: true },
-    { appId: appMap.onlyoffice, sourceId: sourceMap.choco, identifier: 'onlyoffice', isAvailable: true },
 
     { appId: appMap.obsidian, sourceId: sourceMap.winget, identifier: 'Obsidian.Obsidian', isAvailable: true },
-    { appId: appMap.obsidian, sourceId: sourceMap.choco, identifier: 'obsidian', isAvailable: true },
     { appId: appMap.obsidian, sourceId: sourceMap.scoop, identifier: 'obsidian', isAvailable: true },
 
     { appId: appMap.notion, sourceId: sourceMap.winget, identifier: 'Notion.Notion', isAvailable: true },
-    { appId: appMap.notion, sourceId: sourceMap.choco, identifier: 'notion', isAvailable: true },
     { appId: appMap.notion, sourceId: sourceMap.scoop, identifier: 'notion', isAvailable: true },
 
     // Utilities
     { appId: appMap.syncthing, sourceId: sourceMap.winget, identifier: 'Syncthing.Syncthing', isAvailable: true },
-    { appId: appMap.syncthing, sourceId: sourceMap.choco, identifier: 'syncthing', isAvailable: true },
     { appId: appMap.syncthing, sourceId: sourceMap.scoop, identifier: 'syncthing', isAvailable: true },
 
     { appId: appMap['balena-etcher'], sourceId: sourceMap.winget, identifier: 'Balena.Etcher', isAvailable: true },
-    { appId: appMap['balena-etcher'], sourceId: sourceMap.choco, identifier: 'etcher', isAvailable: true },
     { appId: appMap['balena-etcher'], sourceId: sourceMap.scoop, identifier: 'etcher', isAvailable: true },
 
     // Communication
     { appId: appMap.discord, sourceId: sourceMap.winget, identifier: 'Discord.Discord', isAvailable: true },
-    { appId: appMap.discord, sourceId: sourceMap.choco, identifier: 'discord', isAvailable: true },
     { appId: appMap.discord, sourceId: sourceMap.scoop, identifier: 'discord', isAvailable: true },
 
     { appId: appMap.slack, sourceId: sourceMap.winget, identifier: 'SlackTechnologies.Slack', isAvailable: true },
-    { appId: appMap.slack, sourceId: sourceMap.choco, identifier: 'slack', isAvailable: true },
     { appId: appMap.slack, sourceId: sourceMap.scoop, identifier: 'slack', isAvailable: true },
 
     { appId: appMap.thunderbird, sourceId: sourceMap.winget, identifier: 'Mozilla.Thunderbird', isAvailable: true },
-    { appId: appMap.thunderbird, sourceId: sourceMap.choco, identifier: 'thunderbird', isAvailable: true },
     { appId: appMap.thunderbird, sourceId: sourceMap.scoop, identifier: 'thunderbird', isAvailable: true },
 
     { appId: appMap.telegram, sourceId: sourceMap.winget, identifier: 'Telegram.TelegramDesktop', isAvailable: true },
-    { appId: appMap.telegram, sourceId: sourceMap.choco, identifier: 'telegram', isAvailable: true },
     { appId: appMap.telegram, sourceId: sourceMap.scoop, identifier: 'telegram', isAvailable: true },
 
     { appId: appMap.zoom, sourceId: sourceMap.winget, identifier: 'Zoom.Zoom', isAvailable: true },
-    { appId: appMap.zoom, sourceId: sourceMap.choco, identifier: 'zoom', isAvailable: true },
     { appId: appMap.zoom, sourceId: sourceMap.scoop, identifier: 'zoom', isAvailable: true },
 
     // Games
     { appId: appMap.steam, sourceId: sourceMap.winget, identifier: 'Valve.Steam', isAvailable: true },
-    { appId: appMap.steam, sourceId: sourceMap.choco, identifier: 'steam', isAvailable: true },
     { appId: appMap.steam, sourceId: sourceMap.scoop, identifier: 'steam', isAvailable: true },
 
     { appId: appMap.minecraft, sourceId: sourceMap.winget, identifier: 'Mojang.MinecraftLauncher', isAvailable: true },
-    { appId: appMap.minecraft, sourceId: sourceMap.choco, identifier: 'minecraft-launcher', isAvailable: true },
 
     { appId: appMap.heroic, sourceId: sourceMap.winget, identifier: 'HeroicGamesLauncher.HeroicGamesLauncher', isAvailable: true },
-    { appId: appMap.heroic, sourceId: sourceMap.choco, identifier: 'heroic-games-launcher', isAvailable: true },
     { appId: appMap.heroic, sourceId: sourceMap.scoop, identifier: 'heroic', isAvailable: true },
 
     // Security
     { appId: appMap.keepassxc, sourceId: sourceMap.winget, identifier: 'KeePassXCTeam.KeePassXC', isAvailable: true },
-    { appId: appMap.keepassxc, sourceId: sourceMap.choco, identifier: 'keepassxc', isAvailable: true },
     { appId: appMap.keepassxc, sourceId: sourceMap.scoop, identifier: 'keepassxc', isAvailable: true },
 
     { appId: appMap.bitwarden, sourceId: sourceMap.winget, identifier: 'Bitwarden.Bitwarden', isAvailable: true },
-    { appId: appMap.bitwarden, sourceId: sourceMap.choco, identifier: 'bitwarden', isAvailable: true },
     { appId: appMap.bitwarden, sourceId: sourceMap.scoop, identifier: 'bitwarden', isAvailable: true },
 
     { appId: appMap.veracrypt, sourceId: sourceMap.winget, identifier: 'IDRIX.VeraCrypt', isAvailable: true },
-    { appId: appMap.veracrypt, sourceId: sourceMap.choco, identifier: 'veracrypt', isAvailable: true },
     { appId: appMap.veracrypt, sourceId: sourceMap.scoop, identifier: 'veracrypt', isAvailable: true },
   ];
 

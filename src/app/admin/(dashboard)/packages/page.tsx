@@ -28,6 +28,29 @@ import {
 import { Badge } from '@/components/ui/badge';
 import { toast } from 'sonner';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '@/components/ui/command';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { Check, ChevronsUpDown } from 'lucide-react';
+import { cn } from '@/lib/utils';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table';
+
+interface SearchResult {
+  identifier: string;
+  name: string;
+  summary?: string;
+  version?: string;
+  homepage?: string;
+  license?: string;
+  maintainer?: string;
+  source: string;
+}
 
 export default function PackagesPage() {
   const { data: packages = [], isLoading: packagesLoading } = useAdminPackages();
@@ -40,6 +63,9 @@ export default function PackagesPage() {
   const [editingPackage, setEditingPackage] = useState<Package | null>(null);
   const [deletingPackage, setDeletingPackage] = useState<Package | null>(null);
   const [filterSource, setFilterSource] = useState<string>('all');
+  const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
+  const [isSearching, setIsSearching] = useState(false);
+  const [appSelectorOpen, setAppSelectorOpen] = useState(false);
 
   const loading = packagesLoading;
 
@@ -54,7 +80,7 @@ export default function PackagesPage() {
   });
 
   const [searchData, setSearchData] = useState({
-    sourceSlug: '',
+    sourceSlug: 'flatpak',
     query: '',
   });
 
@@ -70,6 +96,39 @@ export default function PackagesPage() {
       maintainer: '',
       isAvailable: true,
     });
+    setDialogOpen(true);
+  };
+
+  const handleAddFromSearch = (result: SearchResult) => {
+    // Map external API source names to database source slugs
+    const sourceMapping: Record<string, string> = {
+      'flatpak': 'flatpak',
+      'snap': 'snap',
+      'aur': 'aur',
+      'homebrew': 'homebrew',
+      'winget': 'winget',
+      'repology': 'flatpak', // Repology aggregates multiple sources, default to flatpak
+    };
+
+    const sourceSlug = sourceMapping[result.source] || result.source;
+    const source = sources.find((s) => s.slug === sourceSlug);
+
+    if (!source) {
+      toast.error(`Source "${result.source}" (${sourceSlug}) not found in database. Please add it to Sources first.`);
+      return;
+    }
+
+    setEditingPackage(null);
+    setFormData({
+      appId: '',
+      sourceId: source.id,
+      identifier: result.identifier,
+      version: result.version || '',
+      size: '',
+      maintainer: result.maintainer || '',
+      isAvailable: true,
+    });
+    setSearchDialogOpen(false);
     setDialogOpen(true);
   };
 
@@ -135,6 +194,12 @@ export default function PackagesPage() {
   };
 
   const handleSearch = async () => {
+    if (!searchData.query.trim()) {
+      toast.error('Please enter a search query');
+      return;
+    }
+
+    setIsSearching(true);
     try {
       const response = await fetch('/api/search', {
         method: 'POST',
@@ -146,9 +211,10 @@ export default function PackagesPage() {
       });
 
       if (response.ok) {
-        const results = await response.json();
-        toast.success(`Found ${results.length} results`);
-        console.log('Search results:', results);
+        const data = await response.json();
+        const count = data.count || data.results?.length || 0;
+        setSearchResults(data.results || []);
+        toast.success(`Found ${count} result${count !== 1 ? 's' : ''}`);
       } else {
         const error = await response.json();
         toast.error(error.error || 'Search failed');
@@ -156,6 +222,8 @@ export default function PackagesPage() {
     } catch (error) {
       console.error('Search failed:', error);
       toast.error('Search failed');
+    } finally {
+      setIsSearching(false);
     }
   };
 
@@ -163,6 +231,8 @@ export default function PackagesPage() {
     if (filterSource === 'all') return packages;
     return packages.filter((pkg) => pkg.source.slug === filterSource);
   }, [packages, filterSource]);
+
+  const selectedApp = apps.find((app) => app.id === formData.appId);
 
   const columns: ColumnDef<Package>[] = [
     {
@@ -255,8 +325,9 @@ export default function PackagesPage() {
         globalFilterPlaceholder="Search packages by app, source, identifier..."
       />
 
+      {/* Add/Edit Package Dialog */}
       <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-        <DialogContent>
+        <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle>
               {editingPackage ? 'Edit Package' : 'Add Package'}
@@ -270,24 +341,48 @@ export default function PackagesPage() {
           <div className="space-y-4 py-4">
             <div className="space-y-2">
               <Label htmlFor="appId">App *</Label>
-              <Select
-                value={formData.appId}
-                onValueChange={(value) =>
-                  setFormData({ ...formData, appId: value })
-                }
-                disabled={!!editingPackage}
-              >
-                <SelectTrigger>
-                  <SelectValue placeholder="Select an app" />
-                </SelectTrigger>
-                <SelectContent>
-                  {apps.map((app) => (
-                    <SelectItem key={app.id} value={app.id}>
-                      {app.displayName}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+              <Popover open={appSelectorOpen} onOpenChange={setAppSelectorOpen}>
+                <PopoverTrigger asChild>
+                  <Button
+                    variant="outline"
+                    role="combobox"
+                    aria-expanded={appSelectorOpen}
+                    className="w-full justify-between"
+                    disabled={!!editingPackage}
+                  >
+                    {selectedApp ? selectedApp.displayName : 'Select an app...'}
+                    <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent className="w-[500px] p-0">
+                  <Command>
+                    <CommandInput placeholder="Search apps..." />
+                    <CommandList>
+                      <CommandEmpty>No app found.</CommandEmpty>
+                      <CommandGroup>
+                        {apps.map((app) => (
+                          <CommandItem
+                            key={app.id}
+                            value={app.displayName}
+                            onSelect={() => {
+                              setFormData({ ...formData, appId: app.id });
+                              setAppSelectorOpen(false);
+                            }}
+                          >
+                            <Check
+                              className={cn(
+                                'mr-2 h-4 w-4',
+                                formData.appId === app.id ? 'opacity-100' : 'opacity-0'
+                              )}
+                            />
+                            {app.displayName}
+                          </CommandItem>
+                        ))}
+                      </CommandGroup>
+                    </CommandList>
+                  </Command>
+                </PopoverContent>
+              </Popover>
             </div>
             <div className="space-y-2">
               <Label htmlFor="sourceId">Source *</Label>
@@ -378,8 +473,9 @@ export default function PackagesPage() {
         </DialogContent>
       </Dialog>
 
+      {/* Search External APIs Dialog */}
       <Dialog open={searchDialogOpen} onOpenChange={setSearchDialogOpen}>
-        <DialogContent>
+        <DialogContent className="max-w-4xl max-h-[90vh] overflow-hidden flex flex-col">
           <DialogHeader>
             <DialogTitle>Search External APIs</DialogTitle>
             <DialogDescription>
@@ -387,45 +483,113 @@ export default function PackagesPage() {
             </DialogDescription>
           </DialogHeader>
           <div className="space-y-4 py-4">
-            <div className="space-y-2">
-              <Label htmlFor="searchSource">Source *</Label>
-              <Select
-                value={searchData.sourceSlug}
-                onValueChange={(value) =>
-                  setSearchData({ ...searchData, sourceSlug: value })
-                }
-              >
-                <SelectTrigger>
-                  <SelectValue placeholder="Select a source" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="flatpak">Flatpak</SelectItem>
-                  <SelectItem value="snap">Snap</SelectItem>
-                  <SelectItem value="aur">AUR</SelectItem>
-                </SelectContent>
-              </Select>
+            <div className="grid grid-cols-3 gap-4">
+              <div className="col-span-1 space-y-2">
+                <Label htmlFor="searchSource">Source *</Label>
+                <Select
+                  value={searchData.sourceSlug}
+                  onValueChange={(value) =>
+                    setSearchData({ ...searchData, sourceSlug: value })
+                  }
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select a source" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="all">All Sources</SelectItem>
+                    <SelectItem value="flatpak">Flatpak</SelectItem>
+                    <SelectItem value="snap">Snap</SelectItem>
+                    <SelectItem value="aur">AUR</SelectItem>
+                    <SelectItem value="homebrew">Homebrew</SelectItem>
+                    <SelectItem value="winget">Winget</SelectItem>
+                    <SelectItem value="repology">Repology</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              <div className="col-span-2 space-y-2">
+                <Label htmlFor="searchQuery">Search Query *</Label>
+                <div className="flex gap-2">
+                  <Input
+                    id="searchQuery"
+                    value={searchData.query}
+                    onChange={(e) =>
+                      setSearchData({ ...searchData, query: e.target.value })
+                    }
+                    placeholder="e.g., firefox"
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        handleSearch();
+                      }
+                    }}
+                  />
+                  <Button onClick={handleSearch} disabled={isSearching}>
+                    {isSearching ? 'Searching...' : 'Search'}
+                  </Button>
+                </div>
+              </div>
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="searchQuery">Search Query *</Label>
-              <Input
-                id="searchQuery"
-                value={searchData.query}
-                onChange={(e) =>
-                  setSearchData({ ...searchData, query: e.target.value })
-                }
-                placeholder="e.g., firefox"
-              />
-            </div>
+
+            {/* Search Results */}
+            {searchResults.length > 0 && (
+              <div className="border rounded-md overflow-hidden">
+                <div className="max-h-96 overflow-y-auto">
+                  <Table>
+                    <TableHeader className="sticky top-0 bg-background">
+                      <TableRow>
+                        <TableHead>Name</TableHead>
+                        <TableHead>Identifier</TableHead>
+                        <TableHead>Version</TableHead>
+                        <TableHead>Source</TableHead>
+                        <TableHead>Action</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      {searchResults.map((result, index) => (
+                        <TableRow key={`${result.source}-${result.identifier}-${index}`}>
+                          <TableCell className="font-medium">
+                            <div>
+                              <div>{result.name}</div>
+                              {result.summary && (
+                                <div className="text-xs text-muted-foreground line-clamp-1">
+                                  {result.summary}
+                                </div>
+                              )}
+                            </div>
+                          </TableCell>
+                          <TableCell>
+                            <code className="text-xs bg-muted px-2 py-1 rounded">
+                              {result.identifier}
+                            </code>
+                          </TableCell>
+                          <TableCell>{result.version || '-'}</TableCell>
+                          <TableCell>
+                            <Badge variant="outline">{result.source}</Badge>
+                          </TableCell>
+                          <TableCell>
+                            <Button
+                              size="sm"
+                              onClick={() => handleAddFromSearch(result)}
+                            >
+                              Add
+                            </Button>
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </div>
+              </div>
+            )}
           </div>
           <DialogFooter>
             <Button variant="outline" onClick={() => setSearchDialogOpen(false)}>
-              Cancel
+              Close
             </Button>
-            <Button onClick={handleSearch}>Search</Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
 
+      {/* Delete Confirmation Dialog */}
       <Dialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>
         <DialogContent>
           <DialogHeader>
