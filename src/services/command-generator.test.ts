@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach, vi } from 'vitest';
+import { describe, it, expect, beforeEach, vi, type Mock } from 'vitest';
 import { generateInstallCommands } from './command-generator';
 import type { GenerateCommandRequest } from '@/types/entities';
 
@@ -31,7 +31,7 @@ describe('Command Generator', () => {
       };
 
       // Mock distro with APT and Flatpak sources
-      (db.query.distros.findFirst as any).mockResolvedValue({
+      (db.query.distros.findFirst as Mock).mockResolvedValue({
         id: 'distro-1',
         name: 'Ubuntu',
         slug: 'ubuntu',
@@ -66,7 +66,7 @@ describe('Command Generator', () => {
       });
 
       // Mock apps with packages
-      (db.query.apps.findMany as any).mockResolvedValue([
+      (db.query.apps.findMany as Mock).mockResolvedValue([
         {
           id: 'app-1',
           displayName: 'Firefox',
@@ -172,7 +172,7 @@ describe('Command Generator', () => {
         sourcePreference: 'flatpak',
       };
 
-      (db.query.distros.findFirst as any).mockResolvedValue({
+      (db.query.distros.findFirst as Mock).mockResolvedValue({
         id: 'distro-1',
         name: 'Ubuntu',
         slug: 'ubuntu',
@@ -204,7 +204,7 @@ describe('Command Generator', () => {
         ],
       });
 
-      (db.query.apps.findMany as any).mockResolvedValue([
+      (db.query.apps.findMany as Mock).mockResolvedValue([
         {
           id: 'app-1',
           displayName: 'Firefox',
@@ -251,7 +251,7 @@ describe('Command Generator', () => {
         appIds: ['app-1', 'app-2'],
       };
 
-      (db.query.distros.findFirst as any).mockResolvedValue({
+      (db.query.distros.findFirst as Mock).mockResolvedValue({
         id: 'distro-1',
         name: 'Ubuntu',
         slug: 'ubuntu',
@@ -270,7 +270,7 @@ describe('Command Generator', () => {
         ],
       });
 
-      (db.query.apps.findMany as any).mockResolvedValue([
+      (db.query.apps.findMany as Mock).mockResolvedValue([
         {
           id: 'app-1',
           displayName: 'Firefox',
@@ -309,7 +309,7 @@ describe('Command Generator', () => {
         appIds: ['app-1'],
       };
 
-      (db.query.distros.findFirst as any).mockResolvedValue(null);
+      (db.query.distros.findFirst as Mock).mockResolvedValue(null);
 
       await expect(generateInstallCommands(request)).rejects.toThrow(
         'Distribution not found. Please select a valid Linux distribution.'
@@ -322,7 +322,7 @@ describe('Command Generator', () => {
         appIds: ['app-1'],
       };
 
-      (db.query.distros.findFirst as any).mockResolvedValue({
+      (db.query.distros.findFirst as Mock).mockResolvedValue({
         id: 'distro-1',
         name: 'Ubuntu',
         slug: 'ubuntu',
@@ -340,7 +340,7 @@ describe('Command Generator', () => {
         appIds: ['non-existent'],
       };
 
-      (db.query.distros.findFirst as any).mockResolvedValue({
+      (db.query.distros.findFirst as Mock).mockResolvedValue({
         id: 'distro-1',
         name: 'Ubuntu',
         slug: 'ubuntu',
@@ -359,7 +359,7 @@ describe('Command Generator', () => {
         ],
       });
 
-      (db.query.apps.findMany as any).mockResolvedValue([]);
+      (db.query.apps.findMany as Mock).mockResolvedValue([]);
 
       await expect(generateInstallCommands(request)).rejects.toThrow(
         'No apps found for the provided IDs'
@@ -372,7 +372,7 @@ describe('Command Generator', () => {
         appIds: ['app-1'],
       };
 
-      (db.query.distros.findFirst as any).mockResolvedValue({
+      (db.query.distros.findFirst as Mock).mockResolvedValue({
         id: 'distro-1',
         name: 'Ubuntu',
         slug: 'ubuntu',
@@ -393,7 +393,7 @@ describe('Command Generator', () => {
 
       // When packages are unavailable, they're filtered out at query time
       // so the app would have an empty packages array
-      (db.query.apps.findMany as any).mockResolvedValue([
+      (db.query.apps.findMany as Mock).mockResolvedValue([
         {
           id: 'app-1',
           displayName: 'Test App',
@@ -414,7 +414,7 @@ describe('Command Generator', () => {
         appIds: ['app-1', 'app-2', 'app-3'],
       };
 
-      (db.query.distros.findFirst as any).mockResolvedValue({
+      (db.query.distros.findFirst as Mock).mockResolvedValue({
         id: 'distro-1',
         name: 'Ubuntu',
         slug: 'ubuntu',
@@ -434,7 +434,7 @@ describe('Command Generator', () => {
         ],
       });
 
-      (db.query.apps.findMany as any).mockResolvedValue([
+      (db.query.apps.findMany as Mock).mockResolvedValue([
         {
           id: 'app-1',
           displayName: 'Git',
@@ -513,7 +513,7 @@ describe('Command Generator', () => {
 
       const flatpakSetupCmd = 'flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo';
 
-      (db.query.distros.findFirst as any).mockResolvedValue({
+      (db.query.distros.findFirst as Mock).mockResolvedValue({
         id: 'distro-1',
         name: 'Ubuntu',
         slug: 'ubuntu',
@@ -533,7 +533,7 @@ describe('Command Generator', () => {
         ],
       });
 
-      (db.query.apps.findMany as any).mockResolvedValue([
+      (db.query.apps.findMany as Mock).mockResolvedValue([
         {
           id: 'app-1',
           displayName: 'Firefox',
@@ -587,7 +587,7 @@ describe('Command Generator', () => {
         appIds: ['app-1'],
       };
 
-      (db.query.distros.findFirst as any).mockResolvedValue({
+      (db.query.distros.findFirst as Mock).mockResolvedValue({
         id: 'distro-1',
         name: 'Ubuntu',
         slug: 'ubuntu',
@@ -607,7 +607,7 @@ describe('Command Generator', () => {
         ],
       });
 
-      (db.query.apps.findMany as any).mockResolvedValue([
+      (db.query.apps.findMany as Mock).mockResolvedValue([
         {
           id: 'app-1',
           displayName: 'Firefox',

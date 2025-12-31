@@ -10,6 +10,11 @@ export interface CrudDialogsState<T> {
   deletingItem: T | null;
 }
 
+interface MutationOptions {
+  onSuccess?: () => void;
+  onError?: (error: Error) => void;
+}
+
 export interface CrudDialogsActions<T> {
   openCreateDialog: () => void;
   openEditDialog: (item: T) => void;
@@ -17,7 +22,7 @@ export interface CrudDialogsActions<T> {
   closeDialog: () => void;
   closeDeleteDialog: () => void;
   handleSubmit: (url: string, method: string, body: unknown, successMessage: string) => Promise<void>;
-  confirmDelete: (deleteMutation: { mutate: (id: string, options?: any) => void }, getId: (item: T) => string) => void;
+  confirmDelete: (deleteMutation: { mutate: (id: string, options?: MutationOptions) => void }, getId: (item: T) => string) => void;
 }
 
 /**
@@ -82,7 +87,7 @@ export function useCrudDialogs<T>(): CrudDialogsState<T> & CrudDialogsActions<T>
   };
 
   const confirmDelete = (
-    deleteMutation: { mutate: (id: string, options?: any) => void },
+    deleteMutation: { mutate: (id: string, options?: MutationOptions) => void },
     getId: (item: T) => string
   ) => {
     if (!deletingItem) return;

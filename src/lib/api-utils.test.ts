@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach, vi, Mock } from 'vitest';
+import { describe, it, expect, beforeEach, vi, type Mock } from 'vitest';
 import { NextRequest, NextResponse } from 'next/server';
 import {
   requireAuth,
@@ -273,7 +273,7 @@ describe('API Utilities', () => {
       };
 
       const request = new NextRequest('http://localhost/api/test');
-      const result = await applyRateLimit(request, mockLimiter as any);
+      const result = await applyRateLimit(request, mockLimiter as Mock);
 
       expect(result).toBeNull();
       expect(mockLimiter.limit).toHaveBeenCalledWith('ip:anonymous');
@@ -291,7 +291,7 @@ describe('API Utilities', () => {
       };
 
       const request = new NextRequest('http://localhost/api/test');
-      const result = await applyRateLimit(request, mockLimiter as any);
+      const result = await applyRateLimit(request, mockLimiter as Mock);
 
       expect(result).not.toBeNull();
       expect(result!.status).toBe(429);
@@ -313,7 +313,7 @@ describe('API Utilities', () => {
       };
 
       const request = new NextRequest('http://localhost/api/test');
-      const result = await applyRateLimit(request, mockLimiter as any);
+      const result = await applyRateLimit(request, mockLimiter as Mock);
 
       expect(result!.headers.get('X-RateLimit-Limit')).toBe('10');
       expect(result!.headers.get('X-RateLimit-Remaining')).toBe('0');
@@ -334,7 +334,7 @@ describe('API Utilities', () => {
         headers: { 'x-forwarded-for': '192.168.1.1' },
       });
 
-      await applyRateLimit(request, mockLimiter as any);
+      await applyRateLimit(request, mockLimiter as Mock);
 
       expect(mockLimiter.limit).toHaveBeenCalledWith('ip:192.168.1.1');
     });
@@ -353,7 +353,7 @@ describe('API Utilities', () => {
         headers: { 'x-real-ip': '10.0.0.1' },
       });
 
-      await applyRateLimit(request, mockLimiter as any);
+      await applyRateLimit(request, mockLimiter as Mock);
 
       expect(mockLimiter.limit).toHaveBeenCalledWith('ip:10.0.0.1');
     });
@@ -370,7 +370,7 @@ describe('API Utilities', () => {
 
       const request = new NextRequest('http://localhost/api/test');
 
-      await applyRateLimit(request, mockLimiter as any);
+      await applyRateLimit(request, mockLimiter as Mock);
 
       expect(mockLimiter.limit).toHaveBeenCalledWith('ip:anonymous');
     });
@@ -381,7 +381,7 @@ describe('API Utilities', () => {
       };
 
       const request = new NextRequest('http://localhost/api/test');
-      const result = await applyRateLimit(request, mockLimiter as any);
+      const result = await applyRateLimit(request, mockLimiter as Mock);
 
       expect(result).toBeNull();
     });
@@ -417,7 +417,7 @@ describe('API Utilities', () => {
         }),
       };
 
-      const wrappedHandler = withRateLimitAndErrorHandling(handler, mockLimiter as any);
+      const wrappedHandler = withRateLimitAndErrorHandling(handler, mockLimiter as Mock);
       const request = new NextRequest('http://localhost/api/test');
 
       await wrappedHandler(request);
@@ -440,7 +440,7 @@ describe('API Utilities', () => {
         }),
       };
 
-      const wrappedHandler = withRateLimitAndErrorHandling(handler, mockLimiter as any);
+      const wrappedHandler = withRateLimitAndErrorHandling(handler, mockLimiter as Mock);
       const request = new NextRequest('http://localhost/api/test');
 
       const response = await wrappedHandler(request);
@@ -463,7 +463,7 @@ describe('API Utilities', () => {
         }),
       };
 
-      const wrappedHandler = withRateLimitAndErrorHandling(handler, mockLimiter as any);
+      const wrappedHandler = withRateLimitAndErrorHandling(handler, mockLimiter as Mock);
       const request = new NextRequest('http://localhost/api/test');
 
       const response = await wrappedHandler(request);

@@ -27,7 +27,7 @@ describe('FlathubRefreshStrategy', () => {
         source: 'flatpak' as const,
       };
 
-      (getFlathubAppMetadata as any).mockResolvedValueOnce(mockMetadata);
+      (getFlathubAppMetadata as Mock).mockResolvedValueOnce(mockMetadata);
 
       const result = await strategy.getMetadata('org.mozilla.firefox');
 
@@ -36,7 +36,7 @@ describe('FlathubRefreshStrategy', () => {
     });
 
     it('should return null when app not found', async () => {
-      (getFlathubAppMetadata as any).mockResolvedValueOnce(null);
+      (getFlathubAppMetadata as Mock).mockResolvedValueOnce(null);
 
       const result = await strategy.getMetadata('non.existent.app');
 
@@ -44,7 +44,7 @@ describe('FlathubRefreshStrategy', () => {
     });
 
     it('should propagate errors from API client', async () => {
-      (getFlathubAppMetadata as any).mockRejectedValueOnce(new Error('API error'));
+      (getFlathubAppMetadata as Mock).mockRejectedValueOnce(new Error('API error'));
 
       await expect(strategy.getMetadata('test.app')).rejects.toThrow('API error');
     });
@@ -52,7 +52,7 @@ describe('FlathubRefreshStrategy', () => {
 
   describe('checkAvailability', () => {
     it('should call checkFlathubAvailability with identifier', async () => {
-      (checkFlathubAvailability as any).mockResolvedValueOnce(true);
+      (checkFlathubAvailability as Mock).mockResolvedValueOnce(true);
 
       const result = await strategy.checkAvailability('org.mozilla.firefox');
 
@@ -61,7 +61,7 @@ describe('FlathubRefreshStrategy', () => {
     });
 
     it('should return false when app not available', async () => {
-      (checkFlathubAvailability as any).mockResolvedValueOnce(false);
+      (checkFlathubAvailability as Mock).mockResolvedValueOnce(false);
 
       const result = await strategy.checkAvailability('non.existent.app');
 
@@ -69,7 +69,7 @@ describe('FlathubRefreshStrategy', () => {
     });
 
     it('should propagate errors from API client', async () => {
-      (checkFlathubAvailability as any).mockRejectedValueOnce(new Error('Network error'));
+      (checkFlathubAvailability as Mock).mockRejectedValueOnce(new Error('Network error'));
 
       await expect(strategy.checkAvailability('test.app')).rejects.toThrow('Network error');
     });

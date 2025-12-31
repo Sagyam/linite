@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
+import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { useSelectionStore } from './selection-store';
 
 // Mock localStorage
@@ -53,7 +53,7 @@ describe('Selection Store', () => {
 
   describe('toggleApp', () => {
     it('should add app when not selected', () => {
-      const { toggleApp, selectedApps } = useSelectionStore.getState();
+      const { toggleApp } = useSelectionStore.getState();
 
       toggleApp('app-1');
 

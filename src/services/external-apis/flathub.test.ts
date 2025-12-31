@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach, vi, afterEach } from 'vitest';
+import { describe, it, expect, beforeEach, vi, afterEach, type Mock } from 'vitest';
 import {
   searchFlathub,
   getFlathubAppMetadata,
@@ -7,7 +7,7 @@ import {
 } from './flathub';
 
 // Mock fetch globally
-global.fetch = vi.fn();
+global.fetch = vi.fn() as Mock;
 
 describe('Flathub API Client', () => {
   beforeEach(() => {
@@ -38,7 +38,7 @@ describe('Flathub API Client', () => {
         query: 'browser',
       };
 
-      (global.fetch as any).mockResolvedValueOnce({
+      (global.fetch as Mock).mockResolvedValueOnce({
         ok: true,
         status: 200,
         json: async () => mockResponse,
@@ -69,7 +69,7 @@ describe('Flathub API Client', () => {
     });
 
     it('should URL encode the search query', async () => {
-      (global.fetch as any).mockResolvedValueOnce({
+      (global.fetch as Mock).mockResolvedValueOnce({
         ok: true,
         json: async () => ({ hits: [], query: 'test query' }),
       });
@@ -88,7 +88,7 @@ describe('Flathub API Client', () => {
     });
 
     it('should throw error on API failure', async () => {
-      (global.fetch as any).mockResolvedValueOnce({
+      (global.fetch as Mock).mockResolvedValueOnce({
         ok: false,
         status: 500,
         statusText: 'Internal Server Error',
@@ -100,7 +100,7 @@ describe('Flathub API Client', () => {
     });
 
     it('should throw error on network failure', async () => {
-      (global.fetch as any).mockRejectedValueOnce(new Error('Network error'));
+      (global.fetch as Mock).mockRejectedValueOnce(new Error('Network error'));
 
       await expect(searchFlathub('firefox')).rejects.toThrow(
         'Failed to search Flathub: Network error'
@@ -113,7 +113,7 @@ describe('Flathub API Client', () => {
         query: 'test',
       };
 
-      (global.fetch as any).mockResolvedValueOnce({
+      (global.fetch as Mock).mockResolvedValueOnce({
         ok: true,
         json: async () => mockResponse,
       });
@@ -134,7 +134,7 @@ describe('Flathub API Client', () => {
         query: 'test',
       };
 
-      (global.fetch as any).mockResolvedValue({
+      (global.fetch as Mock).mockResolvedValue({
         ok: true,
         json: async () => mockResponse,
       });
@@ -170,7 +170,7 @@ describe('Flathub API Client', () => {
         downloadFlatpakRefUrl: 'https://example.com/firefox.flatpakref',
       };
 
-      (global.fetch as any).mockResolvedValueOnce({
+      (global.fetch as Mock).mockResolvedValueOnce({
         ok: true,
         json: async () => mockAppData,
       });
@@ -210,7 +210,7 @@ describe('Flathub API Client', () => {
         iconMobileUrl: 'https://example.com/mobile.png',
       };
 
-      (global.fetch as any).mockResolvedValueOnce({
+      (global.fetch as Mock).mockResolvedValueOnce({
         ok: true,
         json: async () => mockAppData,
       });
@@ -227,7 +227,7 @@ describe('Flathub API Client', () => {
         iconMobileUrl: 'https://example.com/mobile.png',
       };
 
-      (global.fetch as any).mockResolvedValueOnce({
+      (global.fetch as Mock).mockResolvedValueOnce({
         ok: true,
         json: async () => mockAppData,
       });
@@ -237,7 +237,7 @@ describe('Flathub API Client', () => {
     });
 
     it('should return null for 404 not found', async () => {
-      (global.fetch as any).mockResolvedValueOnce({
+      (global.fetch as Mock).mockResolvedValueOnce({
         ok: false,
         status: 404,
       });
@@ -247,7 +247,7 @@ describe('Flathub API Client', () => {
     });
 
     it('should throw error for non-404 API errors', async () => {
-      (global.fetch as any).mockResolvedValueOnce({
+      (global.fetch as Mock).mockResolvedValueOnce({
         ok: false,
         status: 500,
         statusText: 'Internal Server Error',
@@ -270,7 +270,7 @@ describe('Flathub API Client', () => {
         summary: 'Test app',
       };
 
-      (global.fetch as any).mockResolvedValueOnce({
+      (global.fetch as Mock).mockResolvedValueOnce({
         ok: true,
         json: async () => mockAppData,
       });
@@ -295,7 +295,7 @@ describe('Flathub API Client', () => {
         ],
       };
 
-      (global.fetch as any).mockResolvedValueOnce({
+      (global.fetch as Mock).mockResolvedValueOnce({
         ok: true,
         json: async () => mockAppData,
       });
@@ -308,7 +308,7 @@ describe('Flathub API Client', () => {
     });
 
     it('should URL encode the app ID', async () => {
-      (global.fetch as any).mockResolvedValueOnce({
+      (global.fetch as Mock).mockResolvedValueOnce({
         ok: true,
         json: async () => ({ id: 'test', name: 'Test', summary: 'Test' }),
       });
@@ -324,7 +324,7 @@ describe('Flathub API Client', () => {
 
   describe('checkFlathubAvailability', () => {
     it('should return true if app exists', async () => {
-      (global.fetch as any).mockResolvedValueOnce({
+      (global.fetch as Mock).mockResolvedValueOnce({
         ok: true,
         json: async () => ({
           id: 'test.app',
@@ -338,7 +338,7 @@ describe('Flathub API Client', () => {
     });
 
     it('should return false if app does not exist (404)', async () => {
-      (global.fetch as any).mockResolvedValueOnce({
+      (global.fetch as Mock).mockResolvedValueOnce({
         ok: false,
         status: 404,
       });
@@ -348,7 +348,7 @@ describe('Flathub API Client', () => {
     });
 
     it('should return false on API error', async () => {
-      (global.fetch as any).mockResolvedValueOnce({
+      (global.fetch as Mock).mockResolvedValueOnce({
         ok: false,
         status: 500,
       });
@@ -358,7 +358,7 @@ describe('Flathub API Client', () => {
     });
 
     it('should return false on network error', async () => {
-      (global.fetch as any).mockRejectedValueOnce(new Error('Network error'));
+      (global.fetch as Mock).mockRejectedValueOnce(new Error('Network error'));
 
       const isAvailable = await checkFlathubAvailability('test.app');
       expect(isAvailable).toBe(false);
@@ -378,7 +378,7 @@ describe('Flathub API Client', () => {
         summary: 'Test',
       };
 
-      (global.fetch as any)
+      (global.fetch as Mock)
         .mockResolvedValueOnce({ ok: true, json: async () => mockSearchResponse })
         .mockResolvedValueOnce({ ok: true, json: async () => mockMetadata });
 
@@ -392,7 +392,7 @@ describe('Flathub API Client', () => {
       clearFlathubCache();
 
       // Next calls should hit the API again
-      (global.fetch as any)
+      (global.fetch as Mock)
         .mockResolvedValueOnce({ ok: true, json: async () => mockSearchResponse })
         .mockResolvedValueOnce({ ok: true, json: async () => mockMetadata });
 

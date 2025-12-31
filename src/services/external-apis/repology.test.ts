@@ -7,7 +7,7 @@ import {
 } from './repology';
 
 // Mock fetch globally
-global.fetch = vi.fn();
+global.fetch = vi.fn() as Mock;
 
 describe('Repology API Client', () => {
   beforeEach(() => {
@@ -50,7 +50,7 @@ describe('Repology API Client', () => {
         },
       ];
 
-      (global.fetch as any).mockResolvedValueOnce({
+      (global.fetch as Mock).mockResolvedValueOnce({
         ok: true,
         json: async () => mockResponse,
       });
@@ -90,7 +90,7 @@ describe('Repology API Client', () => {
         },
       ];
 
-      (global.fetch as any).mockResolvedValueOnce({
+      (global.fetch as Mock).mockResolvedValueOnce({
         ok: true,
         json: async () => mockResponse,
       });
@@ -120,7 +120,7 @@ describe('Repology API Client', () => {
         },
       ];
 
-      (global.fetch as any).mockResolvedValueOnce({
+      (global.fetch as Mock).mockResolvedValueOnce({
         ok: true,
         json: async () => mockResponse,
       });
@@ -132,7 +132,7 @@ describe('Repology API Client', () => {
     });
 
     it('should return empty array for 404 not found', async () => {
-      (global.fetch as any).mockResolvedValueOnce({
+      (global.fetch as Mock).mockResolvedValueOnce({
         ok: false,
         status: 404,
       });
@@ -147,7 +147,7 @@ describe('Repology API Client', () => {
     });
 
     it('should throw error on API failure', async () => {
-      (global.fetch as any).mockResolvedValueOnce({
+      (global.fetch as Mock).mockResolvedValueOnce({
         ok: false,
         status: 500,
         statusText: 'Internal Server Error',
@@ -169,7 +169,7 @@ describe('Repology API Client', () => {
         },
       ];
 
-      (global.fetch as any).mockResolvedValueOnce({
+      (global.fetch as Mock).mockResolvedValueOnce({
         ok: true,
         json: async () => mockResponse,
       });
@@ -181,14 +181,14 @@ describe('Repology API Client', () => {
     });
 
     it('should URL encode project name', async () => {
-      (global.fetch as any).mockResolvedValueOnce({
+      (global.fetch as Mock).mockResolvedValueOnce({
         ok: true,
         json: async () => [],
       });
 
       await searchRepology('test package');
 
-      const fetchUrl = (global.fetch as any).mock.calls[0][0];
+      const fetchUrl = (global.fetch as Mock).mock.calls[0][0];
       expect(fetchUrl).toContain('test%20package');
     });
 
@@ -204,7 +204,7 @@ describe('Repology API Client', () => {
         },
       ];
 
-      (global.fetch as any).mockResolvedValueOnce({
+      (global.fetch as Mock).mockResolvedValueOnce({
         ok: true,
         json: async () => mockResponse,
       });
@@ -226,7 +226,7 @@ describe('Repology API Client', () => {
         },
       ];
 
-      (global.fetch as any).mockResolvedValueOnce({
+      (global.fetch as Mock).mockResolvedValueOnce({
         ok: true,
         json: async () => mockResponse,
       });
@@ -248,7 +248,7 @@ describe('Repology API Client', () => {
         },
       ];
 
-      (global.fetch as any).mockResolvedValueOnce({
+      (global.fetch as Mock).mockResolvedValueOnce({
         ok: true,
         json: async () => mockResponse,
       });
@@ -289,7 +289,7 @@ describe('Repology API Client', () => {
         },
       ];
 
-      (global.fetch as any).mockResolvedValueOnce({
+      (global.fetch as Mock).mockResolvedValueOnce({
         ok: true,
         json: async () => mockResponse,
       });
@@ -334,7 +334,7 @@ describe('Repology API Client', () => {
         },
       ];
 
-      (global.fetch as any).mockResolvedValueOnce({
+      (global.fetch as Mock).mockResolvedValueOnce({
         ok: true,
         json: async () => mockResponse,
       });
@@ -356,7 +356,7 @@ describe('Repology API Client', () => {
         },
       ];
 
-      (global.fetch as any).mockResolvedValueOnce({
+      (global.fetch as Mock).mockResolvedValueOnce({
         ok: true,
         json: async () => mockResponse,
       });
@@ -368,7 +368,7 @@ describe('Repology API Client', () => {
     });
 
     it('should return null for non-existent project', async () => {
-      (global.fetch as any).mockResolvedValueOnce({
+      (global.fetch as Mock).mockResolvedValueOnce({
         ok: false,
         status: 404,
       });
@@ -378,7 +378,7 @@ describe('Repology API Client', () => {
     });
 
     it('should return null for empty response', async () => {
-      (global.fetch as any).mockResolvedValueOnce({
+      (global.fetch as Mock).mockResolvedValueOnce({
         ok: true,
         json: async () => [],
       });
@@ -401,7 +401,7 @@ describe('Repology API Client', () => {
         },
       ];
 
-      (global.fetch as any).mockResolvedValueOnce({
+      (global.fetch as Mock).mockResolvedValueOnce({
         ok: true,
         json: async () => mockResponse,
       });
@@ -442,7 +442,7 @@ describe('Repology API Client', () => {
         },
       ];
 
-      (global.fetch as any).mockResolvedValueOnce({
+      (global.fetch as Mock).mockResolvedValueOnce({
         ok: true,
         json: async () => mockResponse,
       });
@@ -477,7 +477,7 @@ describe('Repology API Client', () => {
         },
       ];
 
-      (global.fetch as any).mockResolvedValueOnce({
+      (global.fetch as Mock).mockResolvedValueOnce({
         ok: true,
         json: async () => mockResponse,
       });
@@ -516,7 +516,7 @@ describe('Repology API Client', () => {
         },
       ];
 
-      (global.fetch as any).mockResolvedValueOnce({
+      (global.fetch as Mock).mockResolvedValueOnce({
         ok: true,
         json: async () => mockResponse,
       });
@@ -549,7 +549,7 @@ describe('Repology API Client', () => {
         },
       ];
 
-      (global.fetch as any).mockResolvedValueOnce({
+      (global.fetch as Mock).mockResolvedValueOnce({
         ok: true,
         json: async () => mockResponse,
       });
@@ -561,7 +561,7 @@ describe('Repology API Client', () => {
     });
 
     it('should return empty array for non-existent project', async () => {
-      (global.fetch as any).mockResolvedValueOnce({
+      (global.fetch as Mock).mockResolvedValueOnce({
         ok: false,
         status: 404,
       });
@@ -571,7 +571,7 @@ describe('Repology API Client', () => {
     });
 
     it('should return empty array on error', async () => {
-      (global.fetch as any).mockRejectedValueOnce(new Error('Network error'));
+      (global.fetch as Mock).mockRejectedValueOnce(new Error('Network error'));
 
       const packages = await getRepologyPackagesForDistro('test', 'debian');
       expect(packages).toEqual([]);
@@ -587,12 +587,12 @@ describe('Repology API Client', () => {
         },
       ];
 
-      (global.fetch as any).mockResolvedValueOnce({
+      (global.fetch as Mock).mockResolvedValueOnce({
         ok: true,
         json: async () => mockResponse,
       });
 
-      const packages = await getRepologyPackagesForDistro('test', 'unknown' as any);
+      const packages = await getRepologyPackagesForDistro('test', 'unknown');
       expect(packages).toEqual([]);
     });
   });
@@ -608,7 +608,7 @@ describe('Repology API Client', () => {
         },
       ];
 
-      (global.fetch as any)
+      (global.fetch as Mock)
         .mockResolvedValueOnce({ ok: true, json: async () => mockResponse })
         .mockResolvedValueOnce({ ok: true, json: async () => mockResponse });
 
@@ -619,7 +619,7 @@ describe('Repology API Client', () => {
 
       clearRepologyCache();
 
-      (global.fetch as any)
+      (global.fetch as Mock)
         .mockResolvedValueOnce({ ok: true, json: async () => mockResponse })
         .mockResolvedValueOnce({ ok: true, json: async () => mockResponse });
 

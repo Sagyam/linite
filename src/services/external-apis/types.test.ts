@@ -245,7 +245,7 @@ describe('SimpleCache', () => {
 
     it('should handle null-like values correctly', () => {
       const nullableCache = new SimpleCache<string | null>(15);
-      nullableCache.set('key', null as any);
+      nullableCache.set('key', null);
       // Note: We're storing null, not missing the key
       expect(nullableCache.get('key')).toBe(null);
     });

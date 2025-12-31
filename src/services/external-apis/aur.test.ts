@@ -8,7 +8,7 @@ import {
 } from './aur';
 
 // Mock fetch globally
-global.fetch = vi.fn();
+global.fetch = vi.fn() as Mock;
 
 describe('AUR API Client', () => {
   beforeEach(() => {
@@ -58,7 +58,7 @@ describe('AUR API Client', () => {
         ],
       };
 
-      (global.fetch as any).mockResolvedValueOnce({
+      (global.fetch as Mock).mockResolvedValueOnce({
         ok: true,
         json: async () => mockResponse,
       });
@@ -102,7 +102,7 @@ describe('AUR API Client', () => {
     });
 
     it('should throw error on API failure', async () => {
-      (global.fetch as any).mockResolvedValueOnce({
+      (global.fetch as Mock).mockResolvedValueOnce({
         ok: false,
         status: 500,
         statusText: 'Internal Server Error',
@@ -114,7 +114,7 @@ describe('AUR API Client', () => {
     });
 
     it('should handle AUR API error response', async () => {
-      (global.fetch as any).mockResolvedValueOnce({
+      (global.fetch as Mock).mockResolvedValueOnce({
         ok: true,
         json: async () => ({
           version: 5,
@@ -152,7 +152,7 @@ describe('AUR API Client', () => {
         ],
       };
 
-      (global.fetch as any).mockResolvedValueOnce({
+      (global.fetch as Mock).mockResolvedValueOnce({
         ok: true,
         json: async () => mockResponse,
       });
@@ -189,7 +189,7 @@ describe('AUR API Client', () => {
         ],
       };
 
-      (global.fetch as any).mockResolvedValueOnce({
+      (global.fetch as Mock).mockResolvedValueOnce({
         ok: true,
         json: async () => mockResponse,
       });
@@ -230,7 +230,7 @@ describe('AUR API Client', () => {
         ],
       };
 
-      (global.fetch as any).mockResolvedValueOnce({
+      (global.fetch as Mock).mockResolvedValueOnce({
         ok: true,
         json: async () => mockResponse,
       });
@@ -263,7 +263,7 @@ describe('AUR API Client', () => {
     });
 
     it('should return null for non-existent package', async () => {
-      (global.fetch as any).mockResolvedValueOnce({
+      (global.fetch as Mock).mockResolvedValueOnce({
         ok: true,
         json: async () => ({
           version: 5,
@@ -306,7 +306,7 @@ describe('AUR API Client', () => {
         ],
       };
 
-      (global.fetch as any).mockResolvedValueOnce({
+      (global.fetch as Mock).mockResolvedValueOnce({
         ok: true,
         json: async () => mockResponse,
       });
@@ -342,7 +342,7 @@ describe('AUR API Client', () => {
         ],
       };
 
-      (global.fetch as any).mockResolvedValueOnce({
+      (global.fetch as Mock).mockResolvedValueOnce({
         ok: true,
         json: async () => mockResponse,
       });
@@ -356,7 +356,7 @@ describe('AUR API Client', () => {
 
   describe('checkAURAvailability', () => {
     it('should return true if package exists', async () => {
-      (global.fetch as any).mockResolvedValueOnce({
+      (global.fetch as Mock).mockResolvedValueOnce({
         ok: true,
         json: async () => ({
           version: 5,
@@ -387,7 +387,7 @@ describe('AUR API Client', () => {
     });
 
     it('should return false if package does not exist', async () => {
-      (global.fetch as any).mockResolvedValueOnce({
+      (global.fetch as Mock).mockResolvedValueOnce({
         ok: true,
         json: async () => ({
           version: 5,
@@ -402,7 +402,7 @@ describe('AUR API Client', () => {
     });
 
     it('should return false on error', async () => {
-      (global.fetch as any).mockRejectedValueOnce(new Error('Network error'));
+      (global.fetch as Mock).mockRejectedValueOnce(new Error('Network error'));
 
       const isAvailable = await checkAURAvailability('test');
       expect(isAvailable).toBe(false);
@@ -464,7 +464,7 @@ describe('AUR API Client', () => {
         ],
       };
 
-      (global.fetch as any).mockResolvedValueOnce({
+      (global.fetch as Mock).mockResolvedValueOnce({
         ok: true,
         json: async () => mockResponse,
       });
@@ -477,7 +477,7 @@ describe('AUR API Client', () => {
       expect(results.get('pkg3')?.version).toBe('3.0.0');
 
       // Verify it uses multiple arg[] parameters
-      const fetchCall = (global.fetch as any).mock.calls[0][0];
+      const fetchCall = (global.fetch as Mock).mock.calls[0][0];
       expect(fetchCall).toContain('arg%5B%5D=pkg1'); // arg[]=pkg1
       expect(fetchCall).toContain('arg%5B%5D=pkg2'); // arg[]=pkg2
       expect(fetchCall).toContain('arg%5B%5D=pkg3'); // arg[]=pkg3
@@ -490,7 +490,7 @@ describe('AUR API Client', () => {
     });
 
     it('should return empty map on error', async () => {
-      (global.fetch as any).mockRejectedValueOnce(new Error('Network error'));
+      (global.fetch as Mock).mockRejectedValueOnce(new Error('Network error'));
 
       const results = await getAURPackagesMetadata(['pkg1', 'pkg2']);
       expect(results.size).toBe(0);
@@ -536,7 +536,7 @@ describe('AUR API Client', () => {
         ],
       };
 
-      (global.fetch as any).mockResolvedValueOnce({
+      (global.fetch as Mock).mockResolvedValueOnce({
         ok: true,
         json: async () => mockResponse,
       });
@@ -582,7 +582,7 @@ describe('AUR API Client', () => {
         results: [mockSearchResponse.results[0]],
       };
 
-      (global.fetch as any)
+      (global.fetch as Mock)
         .mockResolvedValueOnce({ ok: true, json: async () => mockSearchResponse })
         .mockResolvedValueOnce({ ok: true, json: async () => mockInfoResponse });
 
@@ -593,7 +593,7 @@ describe('AUR API Client', () => {
 
       clearAURCache();
 
-      (global.fetch as any)
+      (global.fetch as Mock)
         .mockResolvedValueOnce({ ok: true, json: async () => mockSearchResponse })
         .mockResolvedValueOnce({ ok: true, json: async () => mockInfoResponse });
 

@@ -7,7 +7,7 @@ import {
 } from './snapcraft';
 
 // Mock fetch globally
-global.fetch = vi.fn();
+global.fetch = vi.fn() as Mock;
 
 describe('Snapcraft API Client', () => {
   beforeEach(() => {
@@ -51,7 +51,7 @@ describe('Snapcraft API Client', () => {
         ],
       };
 
-      (global.fetch as any).mockResolvedValueOnce({
+      (global.fetch as Mock).mockResolvedValueOnce({
         ok: true,
         json: async () => mockResponse,
       });
@@ -73,11 +73,11 @@ describe('Snapcraft API Client', () => {
       });
 
       // Verify request parameters
-      const fetchUrl = (global.fetch as any).mock.calls[0][0];
+      const fetchUrl = (global.fetch as Mock).mock.calls[0][0];
       expect(fetchUrl).toContain('q=browser');
       expect(fetchUrl).toContain('scope=wide');
 
-      const headers = (global.fetch as any).mock.calls[0][1].headers;
+      const headers = (global.fetch as Mock).mock.calls[0][1].headers;
       expect(headers['Snap-Device-Series']).toBe('16');
     });
 
@@ -94,7 +94,7 @@ describe('Snapcraft API Client', () => {
         ],
       };
 
-      (global.fetch as any).mockResolvedValueOnce({
+      (global.fetch as Mock).mockResolvedValueOnce({
         ok: true,
         json: async () => mockResponse,
       });
@@ -121,7 +121,7 @@ describe('Snapcraft API Client', () => {
         ],
       };
 
-      (global.fetch as any).mockResolvedValueOnce({
+      (global.fetch as Mock).mockResolvedValueOnce({
         ok: true,
         json: async () => mockResponse,
       });
@@ -137,7 +137,7 @@ describe('Snapcraft API Client', () => {
     });
 
     it('should throw error on API failure', async () => {
-      (global.fetch as any).mockResolvedValueOnce({
+      (global.fetch as Mock).mockResolvedValueOnce({
         ok: false,
         status: 500,
         statusText: 'Internal Server Error',
@@ -161,7 +161,7 @@ describe('Snapcraft API Client', () => {
         ],
       };
 
-      (global.fetch as any).mockResolvedValueOnce({
+      (global.fetch as Mock).mockResolvedValueOnce({
         ok: true,
         json: async () => mockResponse,
       });
@@ -190,7 +190,7 @@ describe('Snapcraft API Client', () => {
         ],
       };
 
-      (global.fetch as any).mockResolvedValueOnce({
+      (global.fetch as Mock).mockResolvedValueOnce({
         ok: true,
         json: async () => mockResponse,
       });
@@ -236,7 +236,7 @@ describe('Snapcraft API Client', () => {
         },
       };
 
-      (global.fetch as any).mockResolvedValueOnce({
+      (global.fetch as Mock).mockResolvedValueOnce({
         ok: true,
         json: async () => mockResponse,
       });
@@ -284,7 +284,7 @@ describe('Snapcraft API Client', () => {
         },
       };
 
-      (global.fetch as any).mockResolvedValueOnce({
+      (global.fetch as Mock).mockResolvedValueOnce({
         ok: true,
         json: async () => mockResponse,
       });
@@ -296,7 +296,7 @@ describe('Snapcraft API Client', () => {
     });
 
     it('should return null for 404 not found', async () => {
-      (global.fetch as any).mockResolvedValueOnce({
+      (global.fetch as Mock).mockResolvedValueOnce({
         ok: false,
         status: 404,
       });
@@ -306,7 +306,7 @@ describe('Snapcraft API Client', () => {
     });
 
     it('should throw error for non-404 API errors', async () => {
-      (global.fetch as any).mockResolvedValueOnce({
+      (global.fetch as Mock).mockResolvedValueOnce({
         ok: false,
         status: 500,
         statusText: 'Internal Server Error',
@@ -333,7 +333,7 @@ describe('Snapcraft API Client', () => {
         },
       };
 
-      (global.fetch as any).mockResolvedValueOnce({
+      (global.fetch as Mock).mockResolvedValueOnce({
         ok: true,
         json: async () => mockResponse,
       });
@@ -355,14 +355,14 @@ describe('Snapcraft API Client', () => {
         },
       };
 
-      (global.fetch as any).mockResolvedValueOnce({
+      (global.fetch as Mock).mockResolvedValueOnce({
         ok: true,
         json: async () => mockResponse,
       });
 
       await getSnapcraftPackageMetadata('test app');
 
-      const fetchUrl = (global.fetch as any).mock.calls[0][0];
+      const fetchUrl = (global.fetch as Mock).mock.calls[0][0];
       expect(fetchUrl).toContain('test%20app');
     });
 
@@ -383,7 +383,7 @@ describe('Snapcraft API Client', () => {
         },
       };
 
-      (global.fetch as any).mockResolvedValueOnce({
+      (global.fetch as Mock).mockResolvedValueOnce({
         ok: true,
         json: async () => mockResponse,
       });
@@ -399,7 +399,7 @@ describe('Snapcraft API Client', () => {
 
   describe('checkSnapcraftAvailability', () => {
     it('should return true if snap exists', async () => {
-      (global.fetch as any).mockResolvedValueOnce({
+      (global.fetch as Mock).mockResolvedValueOnce({
         ok: true,
         json: async () => ({
           'channel-map': [],
@@ -417,7 +417,7 @@ describe('Snapcraft API Client', () => {
     });
 
     it('should return false if snap does not exist', async () => {
-      (global.fetch as any).mockResolvedValueOnce({
+      (global.fetch as Mock).mockResolvedValueOnce({
         ok: false,
         status: 404,
       });
@@ -427,7 +427,7 @@ describe('Snapcraft API Client', () => {
     });
 
     it('should return false on API error', async () => {
-      (global.fetch as any).mockResolvedValueOnce({
+      (global.fetch as Mock).mockResolvedValueOnce({
         ok: false,
         status: 500,
       });
@@ -437,7 +437,7 @@ describe('Snapcraft API Client', () => {
     });
 
     it('should return false on network error', async () => {
-      (global.fetch as any).mockRejectedValueOnce(new Error('Network error'));
+      (global.fetch as Mock).mockRejectedValueOnce(new Error('Network error'));
 
       const isAvailable = await checkSnapcraftAvailability('test');
       expect(isAvailable).toBe(false);
@@ -468,7 +468,7 @@ describe('Snapcraft API Client', () => {
         },
       };
 
-      (global.fetch as any)
+      (global.fetch as Mock)
         .mockResolvedValueOnce({ ok: true, json: async () => mockSearchResponse })
         .mockResolvedValueOnce({ ok: true, json: async () => mockMetadataResponse });
 
@@ -479,7 +479,7 @@ describe('Snapcraft API Client', () => {
 
       clearSnapcraftCache();
 
-      (global.fetch as any)
+      (global.fetch as Mock)
         .mockResolvedValueOnce({ ok: true, json: async () => mockSearchResponse })
         .mockResolvedValueOnce({ ok: true, json: async () => mockMetadataResponse });
 

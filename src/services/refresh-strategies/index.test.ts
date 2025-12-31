@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach } from 'vitest';
+import { describe, it, expect } from 'vitest';
 import { getRefreshStrategy, refreshStrategies } from './index';
 import { FlathubRefreshStrategy } from './flathub-strategy';
 import { SnapcraftRefreshStrategy } from './snapcraft-strategy';
@@ -80,14 +80,14 @@ describe('Refresh Strategies Registry', () => {
 
   describe('Strategy contract compliance', () => {
     it('all strategies should implement getMetadata method', () => {
-      for (const [sourceSlug, strategy] of Object.entries(refreshStrategies)) {
+      for (const strategy of Object.values(refreshStrategies)) {
         expect(strategy.getMetadata).toBeDefined();
         expect(typeof strategy.getMetadata).toBe('function');
       }
     });
 
     it('all strategies should implement checkAvailability method', () => {
-      for (const [sourceSlug, strategy] of Object.entries(refreshStrategies)) {
+      for (const strategy of Object.values(refreshStrategies)) {
         expect(strategy.checkAvailability).toBeDefined();
         expect(typeof strategy.checkAvailability).toBe('function');
       }
