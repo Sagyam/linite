@@ -37,9 +37,9 @@ Setting up a new Linux system or installing multiple applications usually means:
 2. **Choose Your Distro** - Ubuntu, Fedora, Arch, openSUSE, and more
 3. **Copy & Run** - Get a single install command with everything
 
-<!-- DEMO GIF PLACEHOLDER -->
+<!-- DEMO PLACEHOLDER -->
 <div align="center">
-  <img src="demo.gif" alt="Linite Demo" width="800">
+  <video src="./public/demo.webm" alt="Linite Demo" width="800">
   <p><i>Demo: Installing multiple apps with a single command</i></p>
 </div>
 
