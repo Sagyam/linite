@@ -31,6 +31,7 @@ export async function uploadImage(
   const blob = await put(finalPathname, file, {
     access: 'public',
     token,
+    addRandomSuffix: false,
   });
 
   return blob.url;
@@ -68,6 +69,8 @@ export async function uploadImageFromUrl(
   imageUrl: string,
   appSlug: string
 ): Promise<string | null> {
+  const token = env.BLOB_READ_WRITE_TOKEN;
+
   try {
     // Download the image from the URL
     const response = await fetch(imageUrl);
@@ -96,11 +99,47 @@ export async function uploadImageFromUrl(
     const filename = `${appSlug}.${extension}`;
     const file = new File([blob], filename, { type: contentType });
 
-    // Upload to Vercel Blob
+    // Upload to Vercel Blob with overwrite handling
     const pathname = `app-icons/${filename}`;
-    const uploadedUrl = await uploadImage(file, pathname);
 
-    return uploadedUrl;
+    // Try to upload, if it exists, delete and re-upload
+    try {
+      const uploadedBlob = await put(pathname, file, {
+        access: 'public',
+        token,
+        addRandomSuffix: false,
+      });
+      return uploadedBlob.url;
+    } catch (error) {
+      // If blob exists, we need to handle it differently
+      // Try to get the existing blob URL and delete it first
+      if (error instanceof Error && error.message.includes('already exists')) {
+        try {
+          // List blobs with this pathname to get the URL
+          const { blobs } = await list({
+            token,
+            prefix: pathname,
+          });
+
+          // Delete existing blob if found
+          if (blobs.length > 0) {
+            await del(blobs[0].url, { token });
+          }
+
+          // Now upload again
+          const uploadedBlob = await put(pathname, file, {
+            access: 'public',
+            token,
+            addRandomSuffix: false,
+          });
+          return uploadedBlob.url;
+        } catch (retryError) {
+          console.error(`Failed to overwrite icon for ${appSlug}:`, retryError);
+          return null;
+        }
+      }
+      throw error;
+    }
   } catch (error) {
     console.error(`Error uploading icon from URL ${imageUrl}:`, error);
     return null;

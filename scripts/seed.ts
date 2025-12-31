@@ -8,14 +8,15 @@ async function seed() {
   const categoriesData = [
     { name: 'Browsers', slug: 'browsers', icon: 'Globe', displayOrder: 1 },
     { name: 'Development', slug: 'development', icon: 'Code', displayOrder: 2 },
-    { name: 'Media', slug: 'media', icon: 'Play', displayOrder: 3 },
-    { name: 'Graphics', slug: 'graphics', icon: 'Image', displayOrder: 4 },
-    { name: 'Office', slug: 'office', icon: 'FileText', displayOrder: 5 },
-    { name: 'Utilities', slug: 'utilities', icon: 'Wrench', displayOrder: 6 },
-    { name: 'Communication', slug: 'communication', icon: 'MessageCircle', displayOrder: 7 },
-    { name: 'Games', slug: 'games', icon: 'Gamepad2', displayOrder: 8 },
-    { name: 'Security', slug: 'security', icon: 'Shield', displayOrder: 9 },
-    { name: 'System', slug: 'system', icon: 'Settings', displayOrder: 10 },
+    { name: 'Languages', slug: 'languages', icon: 'Binary', displayOrder: 3 },
+    { name: 'Media', slug: 'media', icon: 'Play', displayOrder: 4 },
+    { name: 'Graphics', slug: 'graphics', icon: 'Image', displayOrder: 5 },
+    { name: 'Office', slug: 'office', icon: 'FileText', displayOrder: 6 },
+    { name: 'Utilities', slug: 'utilities', icon: 'Wrench', displayOrder: 7 },
+    { name: 'Communication', slug: 'communication', icon: 'MessageCircle', displayOrder: 8 },
+    { name: 'Games', slug: 'games', icon: 'Gamepad2', displayOrder: 9 },
+    { name: 'Security', slug: 'security', icon: 'Shield', displayOrder: 10 },
+    { name: 'System', slug: 'system', icon: 'Settings', displayOrder: 11 },
   ];
 
   const createdCategories = await db.insert(categories).values(categoriesData).returning();
@@ -231,6 +232,60 @@ async function seed() {
       isFoss: false,
       categoryId: categoryMap.browsers,
     },
+    {
+      slug: 'zen-browser',
+      displayName: 'Zen Browser',
+      description: 'Privacy-focused browser based on Firefox',
+      homepage: 'https://zen-browser.app',
+      isPopular: false,
+      isFoss: true,
+      categoryId: categoryMap.browsers,
+    },
+    {
+      slug: 'microsoft-edge',
+      displayName: 'Microsoft Edge',
+      description: 'Fast and secure browser from Microsoft',
+      homepage: 'https://microsoft.com/edge',
+      isPopular: true,
+      isFoss: false,
+      categoryId: categoryMap.browsers,
+    },
+    {
+      slug: 'opera',
+      displayName: 'Opera',
+      description: 'Fast, secure browser with built-in ad blocker',
+      homepage: 'https://opera.com',
+      isPopular: true,
+      isFoss: false,
+      categoryId: categoryMap.browsers,
+    },
+    {
+      slug: 'tor-browser',
+      displayName: 'Tor Browser',
+      description: 'Private browser for anonymous web browsing',
+      homepage: 'https://torproject.org',
+      isPopular: false,
+      isFoss: true,
+      categoryId: categoryMap.browsers,
+    },
+    {
+      slug: 'librewolf',
+      displayName: 'LibreWolf',
+      description: 'Privacy and security focused fork of Firefox',
+      homepage: 'https://librewolf.net',
+      isPopular: false,
+      isFoss: true,
+      categoryId: categoryMap.browsers,
+    },
+    {
+      slug: 'waterfox',
+      displayName: 'Waterfox',
+      description: 'Privacy-focused browser based on Firefox',
+      homepage: 'https://waterfox.net',
+      isPopular: false,
+      isFoss: true,
+      categoryId: categoryMap.browsers,
+    },
 
     // === DEVELOPMENT ===
     {
@@ -261,20 +316,101 @@ async function seed() {
       categoryId: categoryMap.development,
     },
     {
-      slug: 'nodejs',
-      displayName: 'Node.js',
-      description: 'JavaScript runtime built on Chrome\'s V8 engine',
-      homepage: 'https://nodejs.org',
-      isPopular: true,
-      isFoss: true,
-      categoryId: categoryMap.development,
-    },
-    {
       slug: 'intellij',
       displayName: 'IntelliJ IDEA Community',
       description: 'Java IDE by JetBrains',
       homepage: 'https://jetbrains.com/idea',
       isPopular: true,
+      isFoss: true,
+      categoryId: categoryMap.development,
+    },
+    {
+      slug: 'pycharm',
+      displayName: 'PyCharm Community',
+      description: 'Python IDE by JetBrains',
+      homepage: 'https://jetbrains.com/pycharm',
+      isPopular: true,
+      isFoss: true,
+      categoryId: categoryMap.development,
+    },
+    {
+      slug: 'webstorm',
+      displayName: 'WebStorm',
+      description: 'JavaScript and TypeScript IDE by JetBrains',
+      homepage: 'https://jetbrains.com/webstorm',
+      isPopular: false,
+      isFoss: false,
+      categoryId: categoryMap.development,
+    },
+    {
+      slug: 'goland',
+      displayName: 'GoLand',
+      description: 'Go IDE by JetBrains',
+      homepage: 'https://jetbrains.com/go',
+      isPopular: false,
+      isFoss: false,
+      categoryId: categoryMap.development,
+    },
+    {
+      slug: 'rider',
+      displayName: 'Rider',
+      description: '.NET IDE by JetBrains',
+      homepage: 'https://jetbrains.com/rider',
+      isPopular: false,
+      isFoss: false,
+      categoryId: categoryMap.development,
+    },
+    {
+      slug: 'datagrip',
+      displayName: 'DataGrip',
+      description: 'Database IDE by JetBrains',
+      homepage: 'https://jetbrains.com/datagrip',
+      isPopular: false,
+      isFoss: false,
+      categoryId: categoryMap.development,
+    },
+    {
+      slug: 'android-studio',
+      displayName: 'Android Studio',
+      description: 'Official IDE for Android development',
+      homepage: 'https://developer.android.com/studio',
+      isPopular: true,
+      isFoss: true,
+      categoryId: categoryMap.development,
+    },
+    {
+      slug: 'neovim',
+      displayName: 'Neovim',
+      description: 'Hyperextensible Vim-based text editor',
+      homepage: 'https://neovim.io',
+      isPopular: false,
+      isFoss: true,
+      categoryId: categoryMap.development,
+    },
+    {
+      slug: 'emacs',
+      displayName: 'Emacs',
+      description: 'Extensible, customizable text editor',
+      homepage: 'https://gnu.org/software/emacs',
+      isPopular: false,
+      isFoss: true,
+      categoryId: categoryMap.development,
+    },
+    {
+      slug: 'eclipse',
+      displayName: 'Eclipse IDE',
+      description: 'IDE for Java and other languages',
+      homepage: 'https://eclipse.org',
+      isPopular: false,
+      isFoss: true,
+      categoryId: categoryMap.development,
+    },
+    {
+      slug: 'netbeans',
+      displayName: 'NetBeans',
+      description: 'IDE for Java SE, Java EE, and more',
+      homepage: 'https://netbeans.apache.org',
+      isPopular: false,
       isFoss: true,
       categoryId: categoryMap.development,
     },
@@ -288,6 +424,15 @@ async function seed() {
       categoryId: categoryMap.development,
     },
     {
+      slug: 'insomnia',
+      displayName: 'Insomnia',
+      description: 'API client for REST and GraphQL',
+      homepage: 'https://insomnia.rest',
+      isPopular: false,
+      isFoss: true,
+      categoryId: categoryMap.development,
+    },
+    {
       slug: 'dbeaver',
       displayName: 'DBeaver',
       description: 'Universal database management tool',
@@ -295,6 +440,116 @@ async function seed() {
       isPopular: false,
       isFoss: true,
       categoryId: categoryMap.development,
+    },
+
+    // === LANGUAGES ===
+    {
+      slug: 'nodejs',
+      displayName: 'Node.js',
+      description: 'JavaScript runtime built on Chrome\'s V8 engine',
+      homepage: 'https://nodejs.org',
+      isPopular: true,
+      isFoss: true,
+      categoryId: categoryMap.languages,
+    },
+    {
+      slug: 'python',
+      displayName: 'Python',
+      description: 'High-level programming language',
+      homepage: 'https://python.org',
+      isPopular: true,
+      isFoss: true,
+      categoryId: categoryMap.languages,
+    },
+    {
+      slug: 'java',
+      displayName: 'Java (OpenJDK)',
+      description: 'Open source implementation of Java',
+      homepage: 'https://openjdk.org',
+      isPopular: true,
+      isFoss: true,
+      categoryId: categoryMap.languages,
+    },
+    {
+      slug: 'golang',
+      displayName: 'Go',
+      description: 'Statically typed, compiled programming language',
+      homepage: 'https://go.dev',
+      isPopular: true,
+      isFoss: true,
+      categoryId: categoryMap.languages,
+    },
+    {
+      slug: 'rust',
+      displayName: 'Rust',
+      description: 'Systems programming language focused on safety',
+      homepage: 'https://rust-lang.org',
+      isPopular: true,
+      isFoss: true,
+      categoryId: categoryMap.languages,
+    },
+    {
+      slug: 'ruby',
+      displayName: 'Ruby',
+      description: 'Dynamic, open source programming language',
+      homepage: 'https://ruby-lang.org',
+      isPopular: false,
+      isFoss: true,
+      categoryId: categoryMap.languages,
+    },
+    {
+      slug: 'php',
+      displayName: 'PHP',
+      description: 'Popular general-purpose scripting language',
+      homepage: 'https://php.net',
+      isPopular: true,
+      isFoss: true,
+      categoryId: categoryMap.languages,
+    },
+    {
+      slug: 'gcc',
+      displayName: 'GCC',
+      description: 'GNU Compiler Collection for C/C++',
+      homepage: 'https://gcc.gnu.org',
+      isPopular: true,
+      isFoss: true,
+      categoryId: categoryMap.languages,
+    },
+    {
+      slug: 'clang',
+      displayName: 'Clang',
+      description: 'C/C++ compiler based on LLVM',
+      homepage: 'https://clang.llvm.org',
+      isPopular: false,
+      isFoss: true,
+      categoryId: categoryMap.languages,
+    },
+    {
+      slug: 'perl',
+      displayName: 'Perl',
+      description: 'High-level, general-purpose programming language',
+      homepage: 'https://perl.org',
+      isPopular: false,
+      isFoss: true,
+      categoryId: categoryMap.languages,
+    },
+    {
+      slug: 'lua',
+      displayName: 'Lua',
+      description: 'Lightweight, embeddable scripting language',
+      homepage: 'https://lua.org',
+      isPopular: false,
+      isFoss: true,
+      categoryId: categoryMap.languages,
+    },
+    {
+      slug: 'r-lang',
+      displayName: 'R',
+      description: 'Language for statistical computing and graphics',
+      homepage: 'https://r-project.org',
+      isPopular: false,
+      isFoss: true,
+      categoryId: categoryMap.languages,
     },
 
     // === MEDIA ===
@@ -475,6 +730,15 @@ async function seed() {
       isFoss: true,
       categoryId: categoryMap.utilities,
     },
+    {
+      slug: 'filezilla',
+      displayName: 'FileZilla',
+      description: 'FTP, FTPS and SFTP client',
+      homepage: 'https://filezilla-project.org',
+      isPopular: true,
+      isFoss: true,
+      categoryId: categoryMap.utilities,
+    },
 
     // === COMMUNICATION ===
     {
@@ -601,6 +865,15 @@ async function seed() {
 
     // === SYSTEM ===
     {
+      slug: 'timeshift',
+      displayName: 'Timeshift',
+      description: 'System restore tool for Linux',
+      homepage: 'https://github.com/linuxmint/timeshift',
+      isPopular: true,
+      isFoss: true,
+      categoryId: categoryMap.system,
+    },
+    {
       slug: 'btop',
       displayName: 'btop',
       description: 'Resource monitor that shows usage and stats',
@@ -617,6 +890,7 @@ async function seed() {
   // 6. Create sample packages
   console.log('Creating sample packages...');
   const appMap = Object.fromEntries(createdApps.map(a => [a.slug, a.id]));
+  console.log('Created appMap with', Object.keys(appMap).length, 'apps');
 
   const packagesData = [
     // === BROWSERS ===
@@ -652,6 +926,37 @@ async function seed() {
     { appId: appMap.vivaldi, sourceId: sourceMap.apt, identifier: 'vivaldi-stable', isAvailable: true },
     { appId: appMap.vivaldi, sourceId: sourceMap.dnf, identifier: 'vivaldi-stable', isAvailable: true },
 
+    // Zen Browser
+    { appId: appMap['zen-browser'], sourceId: sourceMap.flatpak, identifier: 'io.github.zen_browser.zen', isAvailable: true },
+    { appId: appMap['zen-browser'], sourceId: sourceMap.pacman, identifier: 'zen-browser-bin', isAvailable: true },
+
+    // Microsoft Edge
+    { appId: appMap['microsoft-edge'], sourceId: sourceMap.flatpak, identifier: 'com.microsoft.Edge', isAvailable: true },
+    { appId: appMap['microsoft-edge'], sourceId: sourceMap.apt, identifier: 'microsoft-edge-stable', isAvailable: true },
+    { appId: appMap['microsoft-edge'], sourceId: sourceMap.dnf, identifier: 'microsoft-edge-stable', isAvailable: true },
+    { appId: appMap['microsoft-edge'], sourceId: sourceMap.pacman, identifier: 'microsoft-edge-stable-bin', isAvailable: true },
+
+    // Opera
+    { appId: appMap.opera, sourceId: sourceMap.flatpak, identifier: 'com.opera.Opera', isAvailable: true },
+    { appId: appMap.opera, sourceId: sourceMap.snap, identifier: 'opera', isAvailable: true },
+    { appId: appMap.opera, sourceId: sourceMap.apt, identifier: 'opera-stable', isAvailable: true },
+    { appId: appMap.opera, sourceId: sourceMap.dnf, identifier: 'opera-stable', isAvailable: true },
+    { appId: appMap.opera, sourceId: sourceMap.pacman, identifier: 'opera', isAvailable: true },
+
+    // Tor Browser
+    { appId: appMap['tor-browser'], sourceId: sourceMap.flatpak, identifier: 'com.github.micahflee.torbrowser-launcher', isAvailable: true },
+    { appId: appMap['tor-browser'], sourceId: sourceMap.apt, identifier: 'torbrowser-launcher', isAvailable: true },
+    { appId: appMap['tor-browser'], sourceId: sourceMap.pacman, identifier: 'torbrowser-launcher', isAvailable: true },
+
+    // LibreWolf
+    { appId: appMap.librewolf, sourceId: sourceMap.flatpak, identifier: 'io.gitlab.librewolf-community', isAvailable: true },
+    { appId: appMap.librewolf, sourceId: sourceMap.pacman, identifier: 'librewolf-bin', isAvailable: true },
+
+    // Waterfox
+    { appId: appMap.waterfox, sourceId: sourceMap.flatpak, identifier: 'net.waterfox.waterfox', isAvailable: true },
+    { appId: appMap.waterfox, sourceId: sourceMap.snap, identifier: 'waterfox', isAvailable: true },
+    { appId: appMap.waterfox, sourceId: sourceMap.pacman, identifier: 'waterfox-bin', isAvailable: true },
+
     // === DEVELOPMENT ===
     // VS Code
     { appId: appMap.vscode, sourceId: sourceMap.flatpak, identifier: 'com.visualstudio.code', isAvailable: true },
@@ -672,12 +977,80 @@ async function seed() {
     { appId: appMap.docker, sourceId: sourceMap.dnf, identifier: 'docker', isAvailable: true },
     { appId: appMap.docker, sourceId: sourceMap.pacman, identifier: 'docker', isAvailable: true },
 
+    // === LANGUAGES ===
     // Node.js
     { appId: appMap.nodejs, sourceId: sourceMap.snap, identifier: 'node', isAvailable: true },
     { appId: appMap.nodejs, sourceId: sourceMap.apt, identifier: 'nodejs', isAvailable: true },
     { appId: appMap.nodejs, sourceId: sourceMap.dnf, identifier: 'nodejs', isAvailable: true },
     { appId: appMap.nodejs, sourceId: sourceMap.pacman, identifier: 'nodejs', isAvailable: true },
 
+    // Python
+    { appId: appMap.python, sourceId: sourceMap.apt, identifier: 'python3', isAvailable: true },
+    { appId: appMap.python, sourceId: sourceMap.dnf, identifier: 'python3', isAvailable: true },
+    { appId: appMap.python, sourceId: sourceMap.pacman, identifier: 'python', isAvailable: true },
+    { appId: appMap.python, sourceId: sourceMap.zypper, identifier: 'python3', isAvailable: true },
+
+    // Java (OpenJDK)
+    { appId: appMap.java, sourceId: sourceMap.apt, identifier: 'default-jdk', isAvailable: true },
+    { appId: appMap.java, sourceId: sourceMap.dnf, identifier: 'java-latest-openjdk', isAvailable: true },
+    { appId: appMap.java, sourceId: sourceMap.pacman, identifier: 'jdk-openjdk', isAvailable: true },
+    { appId: appMap.java, sourceId: sourceMap.zypper, identifier: 'java-openjdk', isAvailable: true },
+
+    // Go
+    { appId: appMap.golang, sourceId: sourceMap.apt, identifier: 'golang', isAvailable: true },
+    { appId: appMap.golang, sourceId: sourceMap.dnf, identifier: 'golang', isAvailable: true },
+    { appId: appMap.golang, sourceId: sourceMap.pacman, identifier: 'go', isAvailable: true },
+    { appId: appMap.golang, sourceId: sourceMap.zypper, identifier: 'go', isAvailable: true },
+
+    // Rust
+    { appId: appMap.rust, sourceId: sourceMap.apt, identifier: 'cargo', isAvailable: true },
+    { appId: appMap.rust, sourceId: sourceMap.dnf, identifier: 'cargo', isAvailable: true },
+    { appId: appMap.rust, sourceId: sourceMap.pacman, identifier: 'rust', isAvailable: true },
+    { appId: appMap.rust, sourceId: sourceMap.zypper, identifier: 'cargo', isAvailable: true },
+
+    // Ruby
+    { appId: appMap.ruby, sourceId: sourceMap.apt, identifier: 'ruby-full', isAvailable: true },
+    { appId: appMap.ruby, sourceId: sourceMap.dnf, identifier: 'ruby', isAvailable: true },
+    { appId: appMap.ruby, sourceId: sourceMap.pacman, identifier: 'ruby', isAvailable: true },
+    { appId: appMap.ruby, sourceId: sourceMap.zypper, identifier: 'ruby', isAvailable: true },
+
+    // PHP
+    { appId: appMap.php, sourceId: sourceMap.apt, identifier: 'php', isAvailable: true },
+    { appId: appMap.php, sourceId: sourceMap.dnf, identifier: 'php', isAvailable: true },
+    { appId: appMap.php, sourceId: sourceMap.pacman, identifier: 'php', isAvailable: true },
+    { appId: appMap.php, sourceId: sourceMap.zypper, identifier: 'php', isAvailable: true },
+
+    // GCC
+    { appId: appMap.gcc, sourceId: sourceMap.apt, identifier: 'build-essential', isAvailable: true },
+    { appId: appMap.gcc, sourceId: sourceMap.dnf, identifier: 'gcc', isAvailable: true },
+    { appId: appMap.gcc, sourceId: sourceMap.pacman, identifier: 'gcc', isAvailable: true },
+    { appId: appMap.gcc, sourceId: sourceMap.zypper, identifier: 'gcc', isAvailable: true },
+
+    // Clang
+    { appId: appMap.clang, sourceId: sourceMap.apt, identifier: 'clang', isAvailable: true },
+    { appId: appMap.clang, sourceId: sourceMap.dnf, identifier: 'clang', isAvailable: true },
+    { appId: appMap.clang, sourceId: sourceMap.pacman, identifier: 'clang', isAvailable: true },
+    { appId: appMap.clang, sourceId: sourceMap.zypper, identifier: 'llvm-clang', isAvailable: true },
+
+    // Perl
+    { appId: appMap.perl, sourceId: sourceMap.apt, identifier: 'perl', isAvailable: true },
+    { appId: appMap.perl, sourceId: sourceMap.dnf, identifier: 'perl', isAvailable: true },
+    { appId: appMap.perl, sourceId: sourceMap.pacman, identifier: 'perl', isAvailable: true },
+    { appId: appMap.perl, sourceId: sourceMap.zypper, identifier: 'perl', isAvailable: true },
+
+    // Lua
+    { appId: appMap.lua, sourceId: sourceMap.apt, identifier: 'lua5.4', isAvailable: true },
+    { appId: appMap.lua, sourceId: sourceMap.dnf, identifier: 'lua', isAvailable: true },
+    { appId: appMap.lua, sourceId: sourceMap.pacman, identifier: 'lua', isAvailable: true },
+    { appId: appMap.lua, sourceId: sourceMap.zypper, identifier: 'lua', isAvailable: true },
+
+    // R
+    { appId: appMap['r-lang'], sourceId: sourceMap.apt, identifier: 'r-base', isAvailable: true },
+    { appId: appMap['r-lang'], sourceId: sourceMap.dnf, identifier: 'R', isAvailable: true },
+    { appId: appMap['r-lang'], sourceId: sourceMap.pacman, identifier: 'r', isAvailable: true },
+    { appId: appMap['r-lang'], sourceId: sourceMap.zypper, identifier: 'R-base', isAvailable: true },
+
+    // === JETBRAINS IDES ===
     // IntelliJ IDEA
     { appId: appMap.intellij, sourceId: sourceMap.flatpak, identifier: 'com.jetbrains.IntelliJ-IDEA-Community', isAvailable: true },
     { appId: appMap.intellij, sourceId: sourceMap.snap, identifier: 'intellij-idea-community', isAvailable: true },
@@ -861,12 +1234,6 @@ async function seed() {
     { appId: appMap.zoom, sourceId: sourceMap.apt, identifier: 'zoom', isAvailable: true },
     { appId: appMap.zoom, sourceId: sourceMap.dnf, identifier: 'zoom', isAvailable: true },
     { appId: appMap.zoom, sourceId: sourceMap.pacman, identifier: 'zoom', isAvailable: true },
-
-    // Skype
-    { appId: appMap.skype, sourceId: sourceMap.flatpak, identifier: 'com.skype.Client', isAvailable: true },
-    { appId: appMap.skype, sourceId: sourceMap.snap, identifier: 'skype', isAvailable: true },
-    { appId: appMap.skype, sourceId: sourceMap.apt, identifier: 'skypeforlinux', isAvailable: true },
-    { appId: appMap.skype, sourceId: sourceMap.dnf, identifier: 'skypeforlinux', isAvailable: true },
 
     // === GAMES ===
     // Steam
@@ -1089,6 +1456,14 @@ async function seed() {
     { appId: appMap.veracrypt, sourceId: sourceMap.choco, identifier: 'veracrypt', isAvailable: true },
     { appId: appMap.veracrypt, sourceId: sourceMap.scoop, identifier: 'veracrypt', isAvailable: true },
   ];
+
+  // Check for undefined appIds
+  const invalidPackages = packagesData.filter(p => !p.appId);
+  if (invalidPackages.length > 0) {
+    console.error('Found', invalidPackages.length, 'packages with undefined appId');
+    console.error('First few:', invalidPackages.slice(0, 3));
+    throw new Error('Some packages have undefined appId');
+  }
 
   await db.insert(packages).values(packagesData);
   console.log(`✅ Created ${packagesData.length} packages`);
