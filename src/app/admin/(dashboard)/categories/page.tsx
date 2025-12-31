@@ -1,7 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { DataTable, Column } from '@/components/admin/data-table';
+import { AdvancedDataTable } from '@/components/admin/advanced-data-table';
+import { ColumnDef } from '@tanstack/react-table';
 import { Breadcrumb } from '@/components/admin/breadcrumb';
 import { Button } from '@/components/ui/button';
 import { Plus } from 'lucide-react';
@@ -78,22 +79,26 @@ export default function CategoriesPage() {
     await handleSubmit(url, method, formData, message);
   };
 
-  const columns: Column<Category>[] = [
-    { header: 'Name', accessor: 'name' },
-    { header: 'Slug', accessor: 'slug' },
-    { header: 'Icon', accessor: (row) => row.icon || '-' },
-    { header: 'Display Order', accessor: 'displayOrder' },
+  const columns: ColumnDef<Category>[] = [
+    { accessorKey: 'name', header: 'Name', enableSorting: true },
+    { accessorKey: 'slug', header: 'Slug', enableSorting: true },
     {
+      id: 'icon',
+      header: 'Icon',
+      accessorFn: (row) => row.icon || '-',
+      enableSorting: false,
+    },
+    { accessorKey: 'displayOrder', header: 'Display Order', enableSorting: true },
+    {
+      id: 'description',
       header: 'Description',
-      accessor: (row) => (
-        <span className="line-clamp-1">{row.description || '-'}</span>
+      accessorFn: (row) => row.description || '-',
+      cell: ({ row }) => (
+        <span className="line-clamp-1">{row.original.description || '-'}</span>
       ),
+      enableSorting: false,
     },
   ];
-
-  if (loading) {
-    return <div className="flex items-center justify-center h-64">Loading...</div>;
-  }
 
   return (
     <div>
@@ -110,12 +115,15 @@ export default function CategoriesPage() {
         </Button>
       </div>
 
-      <DataTable
+      <AdvancedDataTable
         data={categories}
         columns={columns}
+        isLoading={loading}
         onEdit={handleEdit}
         onDelete={openDeleteDialog}
         getRowId={(row) => row.id}
+        enableGlobalFilter={true}
+        globalFilterPlaceholder="Search categories by name, slug, description..."
       />
 
       <Dialog open={dialogOpen} onOpenChange={closeDialog}>

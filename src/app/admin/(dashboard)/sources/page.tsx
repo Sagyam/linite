@@ -1,7 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { DataTable, Column } from '@/components/admin/data-table';
+import { AdvancedDataTable } from '@/components/admin/advanced-data-table';
+import { ColumnDef } from '@tanstack/react-table';
 import { Breadcrumb } from '@/components/admin/breadcrumb';
 import { Button } from '@/components/ui/button';
 import { Plus } from 'lucide-react';
@@ -90,31 +91,43 @@ export default function SourcesPage() {
     }, message);
   };
 
-  const columns: Column<Source>[] = [
-    { header: 'Name', accessor: 'name' },
-    { header: 'Slug', accessor: 'slug' },
+  const columns: ColumnDef<Source>[] = [
     {
+      accessorKey: 'name',
+      header: 'Name',
+      enableSorting: true,
+    },
+    {
+      accessorKey: 'slug',
+      header: 'Slug',
+      enableSorting: true,
+    },
+    {
+      id: 'installCmd',
       header: 'Install Command',
-      accessor: (row) => (
+      cell: ({ row }) => (
         <code className="text-xs bg-muted px-2 py-1 rounded">
-          {row.installCmd}
+          {row.original.installCmd}
         </code>
       ),
+      enableSorting: false,
     },
     {
+      id: 'requireSudo',
       header: 'Requires Sudo',
-      accessor: (row) => (
-        <Badge variant={row.requireSudo ? 'default' : 'secondary'}>
-          {row.requireSudo ? 'Yes' : 'No'}
+      cell: ({ row }) => (
+        <Badge variant={row.original.requireSudo ? 'default' : 'secondary'}>
+          {row.original.requireSudo ? 'Yes' : 'No'}
         </Badge>
       ),
+      enableSorting: false,
     },
-    { header: 'Priority', accessor: 'priority' },
+    {
+      accessorKey: 'priority',
+      header: 'Priority',
+      enableSorting: true,
+    },
   ];
-
-  if (loading) {
-    return <div className="flex items-center justify-center h-64">Loading...</div>;
-  }
 
   return (
     <div>
@@ -131,12 +144,15 @@ export default function SourcesPage() {
         </Button>
       </div>
 
-      <DataTable
+      <AdvancedDataTable
         data={sources}
         columns={columns}
+        isLoading={loading}
         onEdit={handleEdit}
         onDelete={openDeleteDialog}
         getRowId={(row) => row.id}
+        enableGlobalFilter={true}
+        globalFilterPlaceholder="Search sources by name, slug..."
       />
 
       <Dialog open={dialogOpen} onOpenChange={closeDialog}>

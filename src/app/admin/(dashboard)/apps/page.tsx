@@ -1,10 +1,10 @@
 'use client';
 
-import { useState, useMemo } from 'react';
-import { DataTable, Column } from '@/components/admin/data-table';
+import { useState } from 'react';
+import { AdvancedDataTable } from '@/components/admin/advanced-data-table';
 import { Breadcrumb } from '@/components/admin/breadcrumb';
 import { Button } from '@/components/ui/button';
-import { Plus, Search } from 'lucide-react';
+import { Plus } from 'lucide-react';
 import {
   Dialog,
   DialogContent,
@@ -13,11 +13,11 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
-import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useAdminApps, useDeleteApp, type App } from '@/hooks/use-admin';
+import { ColumnDef } from '@tanstack/react-table';
 
 export default function AppsPage() {
   const router = useRouter();
@@ -25,17 +25,6 @@ export default function AppsPage() {
   const deleteAppMutation = useDeleteApp();
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [deletingApp, setDeletingApp] = useState<App | null>(null);
-  const [searchTerm, setSearchTerm] = useState('');
-
-  const filteredApps = useMemo(() => {
-    if (!searchTerm) return apps;
-
-    return apps.filter(
-      (app) =>
-        app.displayName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        app.description?.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-  }, [searchTerm, apps]);
 
   const handleEdit = (app: App) => {
     router.push(`/admin/apps/${app.id}/edit`);
@@ -57,33 +46,44 @@ export default function AppsPage() {
     });
   };
 
-  const columns: Column<App>[] = [
-    { header: 'Name', accessor: 'displayName' },
-    { header: 'Slug', accessor: 'slug' },
+  const columns: ColumnDef<App>[] = [
     {
-      header: 'Category',
-      accessor: (row) => row.category?.name || '-',
+      accessorKey: 'displayName',
+      header: 'Name',
+      enableSorting: true,
     },
     {
+      accessorKey: 'slug',
+      header: 'Slug',
+      enableSorting: true,
+    },
+    {
+      id: 'category',
+      header: 'Category',
+      accessorFn: (row) => row.category?.name || '-',
+      enableSorting: true,
+    },
+    {
+      id: 'tags',
       header: 'Tags',
-      accessor: (row) => (
+      cell: ({ row }) => (
         <div className="flex gap-1">
-          {row.isPopular && <Badge variant="default">Popular</Badge>}
-          {row.isFoss && <Badge variant="secondary">FOSS</Badge>}
+          {row.original.isPopular && <Badge variant="default">Popular</Badge>}
+          {row.original.isFoss && <Badge variant="secondary">FOSS</Badge>}
         </div>
       ),
+      enableSorting: false,
     },
     {
+      id: 'description',
       header: 'Description',
-      accessor: (row) => (
-        <span className="line-clamp-1">{row.description || '-'}</span>
+      accessorFn: (row) => row.description || '-',
+      cell: ({ row }) => (
+        <span className="line-clamp-1">{row.original.description || '-'}</span>
       ),
+      enableSorting: false,
     },
   ];
-
-  if (loading) {
-    return <div className="flex items-center justify-center h-64">Loading...</div>;
-  }
 
   return (
     <div>
@@ -102,24 +102,15 @@ export default function AppsPage() {
         </Link>
       </div>
 
-      <div className="mb-4">
-        <div className="relative">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-          <Input
-            placeholder="Search apps..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="pl-10"
-          />
-        </div>
-      </div>
-
-      <DataTable
-        data={filteredApps}
+      <AdvancedDataTable
+        data={apps}
         columns={columns}
+        isLoading={loading}
         onEdit={handleEdit}
         onDelete={handleDelete}
         getRowId={(row) => row.id}
+        enableGlobalFilter={true}
+        globalFilterPlaceholder="Search apps by name, slug, category, or description..."
       />
 
       <Dialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>

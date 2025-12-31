@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { DataTable, Column } from '@/components/admin/data-table';
+import { AdvancedDataTable } from '@/components/admin/advanced-data-table';
 import { Breadcrumb } from '@/components/admin/breadcrumb';
 import { Button } from '@/components/ui/button';
 import { Plus } from 'lucide-react';
@@ -20,6 +20,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Switch } from '@/components/ui/switch';
 import { Badge } from '@/components/ui/badge';
+import { ColumnDef } from '@tanstack/react-table';
 
 export default function DistrosPage() {
   const { data: distros = [], isLoading: loading } = useAdminDistros();
@@ -86,24 +87,39 @@ export default function DistrosPage() {
     }, message);
   };
 
-  const columns: Column<Distro>[] = [
-    { header: 'Name', accessor: 'name' },
-    { header: 'Slug', accessor: 'slug' },
-    { header: 'Family', accessor: 'family' },
-    { header: 'Based On', accessor: (row) => row.basedOn || '-' },
+  const columns: ColumnDef<Distro>[] = [
     {
+      accessorKey: 'name',
+      header: 'Name',
+      enableSorting: true,
+    },
+    {
+      accessorKey: 'slug',
+      header: 'Slug',
+      enableSorting: true,
+    },
+    {
+      accessorKey: 'family',
+      header: 'Family',
+      enableSorting: true,
+    },
+    {
+      id: 'basedOn',
+      header: 'Based On',
+      accessorFn: (row) => row.basedOn || '-',
+      enableSorting: true,
+    },
+    {
+      id: 'popular',
       header: 'Popular',
-      accessor: (row) => (
-        <Badge variant={row.isPopular ? 'default' : 'secondary'}>
-          {row.isPopular ? 'Yes' : 'No'}
+      cell: ({ row }) => (
+        <Badge variant={row.original.isPopular ? 'default' : 'secondary'}>
+          {row.original.isPopular ? 'Yes' : 'No'}
         </Badge>
       ),
+      enableSorting: false,
     },
   ];
-
-  if (loading) {
-    return <div className="flex items-center justify-center h-64">Loading...</div>;
-  }
 
   return (
     <div>
@@ -120,12 +136,15 @@ export default function DistrosPage() {
         </Button>
       </div>
 
-      <DataTable
+      <AdvancedDataTable
         data={distros}
         columns={columns}
+        isLoading={loading}
         onEdit={handleEdit}
         onDelete={openDeleteDialog}
         getRowId={(row) => row.id}
+        enableGlobalFilter={true}
+        globalFilterPlaceholder="Search distributions by name, slug, family..."
       />
 
       <Dialog open={dialogOpen} onOpenChange={closeDialog}>

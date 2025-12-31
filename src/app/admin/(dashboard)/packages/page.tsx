@@ -1,7 +1,8 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import { DataTable, Column } from '@/components/admin/data-table';
+import { AdvancedDataTable } from '@/components/admin/advanced-data-table';
+import { ColumnDef } from '@tanstack/react-table';
 import { Breadcrumb } from '@/components/admin/breadcrumb';
 import { Button } from '@/components/ui/button';
 import { Plus, Search as SearchIcon } from 'lucide-react';
@@ -163,32 +164,53 @@ export default function PackagesPage() {
     return packages.filter((pkg) => pkg.source.slug === filterSource);
   }, [packages, filterSource]);
 
-  const columns: Column<Package>[] = [
-    { header: 'App', accessor: (row) => row.app.displayName },
-    { header: 'Source', accessor: (row) => row.source.name },
+  const columns: ColumnDef<Package>[] = [
     {
+      id: 'app',
+      header: 'App',
+      accessorFn: (row) => row.app.displayName,
+      enableSorting: true,
+    },
+    {
+      id: 'source',
+      header: 'Source',
+      accessorFn: (row) => row.source.name,
+      enableSorting: true,
+    },
+    {
+      id: 'identifier',
       header: 'Identifier',
-      accessor: (row) => (
+      accessorFn: (row) => row.identifier,
+      cell: ({ row }) => (
         <code className="text-xs bg-muted px-2 py-1 rounded">
-          {row.identifier}
+          {row.original.identifier}
         </code>
       ),
+      enableSorting: true,
     },
-    { header: 'Version', accessor: (row) => row.version || '-' },
-    { header: 'Size', accessor: (row) => row.downloadSize || '-' },
     {
+      id: 'version',
+      header: 'Version',
+      accessorFn: (row) => row.version || '-',
+      enableSorting: true,
+    },
+    {
+      id: 'size',
+      header: 'Size',
+      accessorFn: (row) => row.downloadSize || '-',
+      enableSorting: false,
+    },
+    {
+      id: 'available',
       header: 'Available',
-      accessor: (row) => (
-        <Badge variant={row.isAvailable ? 'default' : 'destructive'}>
-          {row.isAvailable ? 'Yes' : 'No'}
+      cell: ({ row }) => (
+        <Badge variant={row.original.isAvailable ? 'default' : 'destructive'}>
+          {row.original.isAvailable ? 'Yes' : 'No'}
         </Badge>
       ),
+      enableSorting: false,
     },
   ];
-
-  if (loading) {
-    return <div className="flex items-center justify-center h-64">Loading...</div>;
-  }
 
   return (
     <div>
@@ -222,12 +244,15 @@ export default function PackagesPage() {
         </TabsList>
       </Tabs>
 
-      <DataTable
+      <AdvancedDataTable
         data={filteredPackages}
         columns={columns}
+        isLoading={loading}
         onEdit={handleEdit}
         onDelete={handleDelete}
         getRowId={(row) => row.id}
+        enableGlobalFilter={true}
+        globalFilterPlaceholder="Search packages by app, source, identifier..."
       />
 
       <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
