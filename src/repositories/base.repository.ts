@@ -89,7 +89,7 @@ export class BaseRepository<T> {
   async count(where?: SQL): Promise<number> {
     const { count } = await import('drizzle-orm');
 
-    const result = await db
+    const result: any = await db
       .select({ count: count() })
       .from(this.table)
       .where(where);
@@ -101,7 +101,7 @@ export class BaseRepository<T> {
    * Create a new record
    */
   async create(data: Partial<T>): Promise<T> {
-    const result = await db
+    const result: any = await db
       .insert(this.table)
       .values(data)
       .returning();
@@ -115,7 +115,7 @@ export class BaseRepository<T> {
   async update(id: string, data: Partial<T>): Promise<T | undefined> {
     const { eq } = await import('drizzle-orm');
 
-    const result = await db
+    const result: any = await db
       .update(this.table)
       .set({
         ...data,
@@ -133,7 +133,7 @@ export class BaseRepository<T> {
   async delete(id: string): Promise<boolean> {
     const { eq } = await import('drizzle-orm');
 
-    const result = await db
+    const result: any = await db
       .delete(this.table)
       .where(eq(this.table.id, id))
       .returning();

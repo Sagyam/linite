@@ -45,7 +45,7 @@ export class CategoriesRepository extends BaseRepository<Category> {
    */
   async hasApps(id: string): Promise<boolean> {
     const category = await this.findByIdWithApps(id);
-    return category && 'apps' in category && Array.isArray(category.apps) && category.apps.length > 0;
+    return !!(category && 'apps' in category && Array.isArray(category.apps) && category.apps.length > 0);
   }
 }
 
