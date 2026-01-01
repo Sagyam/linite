@@ -21,7 +21,7 @@ export const GET = createPublicApiHandler(
       },
     });
 
-    return successResponse<GetDistrosResponse>(allDistros as GetDistrosResponse);
+    return successResponse(allDistros as GetDistrosResponse);
   },
   publicApiLimiter
 );
@@ -43,6 +43,6 @@ export const POST = createAuthValidatedApiHandler(
       .returning()
       .then((rows) => rows[0]);
 
-    return successResponse<CreateDistroResponse>(newDistro as CreateDistroResponse, 201);
+    return successResponse(newDistro as CreateDistroResponse, 201);
   }
 );

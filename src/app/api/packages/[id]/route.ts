@@ -61,7 +61,7 @@ export const PUT = createAuthValidatedApiHandler<UpdatePackageInput, RouteContex
       return errorResponse('Package not found', 404);
     }
 
-    return successResponse<UpdatePackageResponse>(updated as UpdatePackageResponse);
+    return successResponse(updated as UpdatePackageResponse);
   }
 );
 

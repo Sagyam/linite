@@ -31,7 +31,7 @@ export const GET = createPublicApiHandler<RouteContext>(
       return errorResponse('App not found', 404);
     }
 
-    return successResponse<GetAppByIdResponse>(app);
+    return successResponse(app);
   }
 );
 
@@ -66,7 +66,7 @@ export const PUT = createAuthValidatedApiHandler<UpdateAppInput, RouteContext>(
       return errorResponse('App not found', 404);
     }
 
-    return successResponse<UpdateAppResponse>(updated);
+    return successResponse(updated);
   }
 );
 

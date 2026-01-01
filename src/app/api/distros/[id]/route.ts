@@ -62,7 +62,7 @@ export const PUT = createAuthValidatedApiHandler<UpdateDistroInput, RouteContext
       return errorResponse('Distro not found', 404);
     }
 
-    return successResponse<UpdateDistroResponse>(updated as UpdateDistroResponse);
+    return successResponse(updated as UpdateDistroResponse);
   }
 );
 

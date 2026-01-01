@@ -60,7 +60,7 @@ export const PUT = createAuthValidatedApiHandler<UpdateSourceInput, RouteContext
       return errorResponse('Source not found', 404);
     }
 
-    return successResponse<UpdateSourceResponse>(updated as UpdateSourceResponse);
+    return successResponse(updated as UpdateSourceResponse);
   }
 );
 

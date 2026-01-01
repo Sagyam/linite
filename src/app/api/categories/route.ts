@@ -13,7 +13,7 @@ export const GET = createPublicApiHandler(
       orderBy: [asc(categories.displayOrder), asc(categories.name)],
     });
 
-    return successResponse<GetCategoriesResponse>(allCategories);
+    return successResponse(allCategories);
   },
   publicApiLimiter
 );
@@ -34,6 +34,6 @@ export const POST = createAuthValidatedApiHandler(
       .returning()
       .then((rows) => rows[0]);
 
-    return successResponse<CreateCategoryResponse>(newCategory, 201);
+    return successResponse(newCategory, 201);
   }
 );

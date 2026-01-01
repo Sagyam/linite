@@ -68,7 +68,8 @@ export interface Package {
   sourceId: string;
   identifier: string;
   version: string | null;
-  downloadSize: string | null;
+  size: number | null;
+  maintainer: string | null;
   isAvailable: boolean;
   lastChecked: Date | null;
   metadata: unknown;

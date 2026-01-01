@@ -13,7 +13,7 @@ export const GET = createPublicApiHandler(
       orderBy: [desc(sources.priority), desc(sources.name)],
     });
 
-    return successResponse<GetSourcesResponse>(allSources as GetSourcesResponse);
+    return successResponse(allSources as GetSourcesResponse);
   },
   publicApiLimiter
 );
@@ -36,6 +36,6 @@ export const POST = createAuthValidatedApiHandler(
       .returning()
       .then((rows) => rows[0]);
 
-    return successResponse<CreateSourceResponse>(newSource as CreateSourceResponse, 201);
+    return successResponse(newSource as CreateSourceResponse, 201);
   }
 );

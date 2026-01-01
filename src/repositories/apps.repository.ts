@@ -119,7 +119,8 @@ export class AppsRepository extends BaseRepository<App> {
       conditions.push(ne(apps.id, excludeId));
     }
 
-    return !(await this.exists(and(...conditions)));
+    const whereClause = conditions.length > 1 ? and(...conditions) : conditions[0];
+    return !(await this.exists(whereClause!));
   }
 }
 

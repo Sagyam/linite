@@ -36,7 +36,7 @@ export class BaseRepository<T> {
   async findMany(options: FindOptions<T> = {}): Promise<T[]> {
     const { where, limit, offset, orderBy, with: withRelations } = options;
 
-    const query = db.query[this.tableName as keyof typeof db.query];
+    const query: any = db.query[this.tableName as keyof typeof db.query];
     if (!query || typeof query.findMany !== 'function') {
       throw new Error(`Query interface not found for table: ${this.tableName}`);
     }
@@ -54,7 +54,7 @@ export class BaseRepository<T> {
    * Find a single record by condition
    */
   async findFirst(options: FindOptions<T>): Promise<T | undefined> {
-    const query = db.query[this.tableName as keyof typeof db.query];
+    const query: any = db.query[this.tableName as keyof typeof db.query];
     if (!query || typeof query.findFirst !== 'function') {
       throw new Error(`Query interface not found for table: ${this.tableName}`);
     }
@@ -69,7 +69,7 @@ export class BaseRepository<T> {
    * Find by ID
    */
   async findById(id: string, withRelations?: any): Promise<T | undefined> {
-    const query = db.query[this.tableName as keyof typeof db.query];
+    const query: any = db.query[this.tableName as keyof typeof db.query];
     if (!query || typeof query.findFirst !== 'function') {
       throw new Error(`Query interface not found for table: ${this.tableName}`);
     }
@@ -101,12 +101,12 @@ export class BaseRepository<T> {
    * Create a new record
    */
   async create(data: Partial<T>): Promise<T> {
-    const [created] = await db
+    const result = await db
       .insert(this.table)
       .values(data)
       .returning();
 
-    return created as T;
+    return result[0] as T;
   }
 
   /**
@@ -115,7 +115,7 @@ export class BaseRepository<T> {
   async update(id: string, data: Partial<T>): Promise<T | undefined> {
     const { eq } = await import('drizzle-orm');
 
-    const [updated] = await db
+    const result = await db
       .update(this.table)
       .set({
         ...data,
@@ -124,7 +124,7 @@ export class BaseRepository<T> {
       .where(eq(this.table.id, id))
       .returning();
 
-    return updated as T | undefined;
+    return result[0] as T | undefined;
   }
 
   /**

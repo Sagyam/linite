@@ -41,7 +41,7 @@ export const GET = createAuthApiHandler(
       offset,
     });
 
-    return successResponse<GetPackagesResponse>(allPackages as GetPackagesResponse);
+    return successResponse(allPackages as GetPackagesResponse);
   }
 );
 
@@ -64,6 +64,6 @@ export const POST = createAuthValidatedApiHandler(
       .returning()
       .then((rows) => rows[0]);
 
-    return successResponse<CreatePackageResponse>(newPackage as CreatePackageResponse, 201);
+    return successResponse(newPackage as CreatePackageResponse, 201);
   }
 );

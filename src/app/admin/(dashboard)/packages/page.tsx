@@ -139,8 +139,8 @@ export default function PackagesPage() {
       sourceId: pkg.sourceId,
       identifier: pkg.identifier,
       version: pkg.version || '',
-      size: pkg.downloadSize || '',
-      maintainer: '',
+      size: pkg.size?.toString() || '',
+      maintainer: pkg.maintainer || '',
       isAvailable: pkg.isAvailable,
     });
     setDialogOpen(true);
@@ -267,7 +267,7 @@ export default function PackagesPage() {
     {
       id: 'size',
       header: 'Size',
-      accessorFn: (row) => row.downloadSize || '-',
+      accessorFn: (row) => row.size || '-',
       enableSorting: false,
     },
     {

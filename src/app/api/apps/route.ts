@@ -61,7 +61,7 @@ export const GET = createPublicApiHandler(
       offset,
     });
 
-    return successResponse<GetAppsResponse>(allApps);
+    return successResponse(allApps);
   },
   publicApiLimiter
 );
@@ -85,6 +85,6 @@ export const POST = createAuthValidatedApiHandler(
       .returning()
       .then((rows) => rows[0]);
 
-    return successResponse<CreateAppResponse>(newApp, 201);
+    return successResponse(newApp, 201);
   }
 );

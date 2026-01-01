@@ -58,7 +58,7 @@ export const PUT = createAuthValidatedApiHandler<UpdateCategoryInput, RouteConte
       return errorResponse('Category not found', 404);
     }
 
-    return successResponse<UpdateCategoryResponse>(updated);
+    return successResponse(updated);
   }
 );
 
