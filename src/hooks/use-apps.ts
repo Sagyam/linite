@@ -1,38 +1,7 @@
 'use client';
 
 import { useQuery } from '@tanstack/react-query';
-
-export interface App {
-  id: string;
-  slug: string;
-  displayName: string;
-  description: string | null;
-  iconUrl: string | null;
-  homepage: string | null;
-  isPopular: boolean;
-  isFoss: boolean;
-  category: {
-    id: string;
-    name: string;
-    slug: string;
-  };
-  packages: Array<{
-    id: string;
-    sourceId: string;
-    identifier: string;
-    version: string | null;
-    size: number | null;
-    maintainer: string | null;
-    isAvailable?: boolean;
-    lastChecked: Date | string | null;
-    metadata: Record<string, unknown> | null;
-    source: {
-      id: string;
-      name: string;
-      slug: string;
-    };
-  }>;
-}
+import type { AppWithRelations } from '@/types';
 
 interface UseAppsOptions {
   category?: string;
@@ -40,7 +9,7 @@ interface UseAppsOptions {
   search?: string;
 }
 
-async function fetchApps(options: UseAppsOptions = {}): Promise<App[]> {
+async function fetchApps(options: UseAppsOptions = {}): Promise<AppWithRelations[]> {
   const params = new URLSearchParams();
   if (options.category) params.set('category', options.category);
   if (options.popular) params.set('popular', 'true');
@@ -67,3 +36,6 @@ export function useApps(options: UseAppsOptions = {}) {
     error: error?.message ?? null,
   };
 }
+
+// Re-export type for convenience
+export type { AppWithRelations as App };

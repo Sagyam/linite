@@ -1,18 +1,20 @@
-import { NextRequest } from 'next/server';
 import { db, packages } from '@/db';
-import { requireAuth, errorResponse, successResponse } from '@/lib/api-utils';
+import { errorResponse, successResponse } from '@/lib/api-utils';
 import { eq } from 'drizzle-orm';
+import { createAuthApiHandler, createAuthValidatedApiHandler } from '@/lib/api-middleware';
+import { updatePackageSchema } from '@/lib/validation';
+import type { UpdatePackageInput } from '@/lib/validation';
+import type { UpdatePackageResponse } from '@/types';
+
+interface RouteContext {
+  params: Promise<{ id: string }>;
+}
 
 // GET /api/packages/[id] - Get single package (admin)
-export async function GET(
-  request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
-) {
-  const authCheck = await requireAuth(request);
-  if (authCheck.error) return authCheck.error;
+export const GET = createAuthApiHandler<RouteContext>(
+  async (_request, context) => {
+    const { id } = await context!.params;
 
-  try {
-    const { id } = await params;
     const pkg = await db.query.packages.findFirst({
       where: eq(packages.id, id),
       with: {
@@ -26,33 +28,30 @@ export async function GET(
     }
 
     return successResponse(pkg);
-  } catch (error) {
-    console.error('Error fetching package:', error);
-    return errorResponse('Failed to fetch package', 500);
   }
-}
+);
 
 // PUT /api/packages/[id] - Update package (admin)
-export async function PUT(
-  request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
-) {
-  const authCheck = await requireAuth(request);
-  if (authCheck.error) return authCheck.error;
+export const PUT = createAuthValidatedApiHandler<UpdatePackageInput, RouteContext>(
+  updatePackageSchema,
+  async (_request, data, context) => {
+    const { id } = await context!.params;
 
-  try {
-    const { id } = await params;
-    const body = await request.json();
-    const { identifier, version, size, maintainer, isAvailable, metadata } = body;
+    if (data.id !== id) {
+      return errorResponse('ID in body must match ID in URL', 400);
+    }
 
-    const [updated] = await db.update(packages)
+    const [updated] = await db
+      .update(packages)
       .set({
-        ...(identifier && { identifier }),
-        ...(version !== undefined && { version }),
-        ...(size !== undefined && { size }),
-        ...(maintainer !== undefined && { maintainer }),
-        ...(isAvailable !== undefined && { isAvailable }),
-        ...(metadata !== undefined && { metadata }),
+        ...(data.appId && { appId: data.appId }),
+        ...(data.sourceId && { sourceId: data.sourceId }),
+        ...(data.identifier && { identifier: data.identifier }),
+        ...(data.version !== undefined && { version: data.version || null }),
+        ...(data.size !== undefined && { size: data.size || null }),
+        ...(data.maintainer !== undefined && { maintainer: data.maintainer || null }),
+        ...(data.isAvailable !== undefined && { isAvailable: data.isAvailable }),
+        ...(data.metadata !== undefined && { metadata: data.metadata || null }),
         updatedAt: new Date(),
       })
       .where(eq(packages.id, id))
@@ -62,29 +61,21 @@ export async function PUT(
       return errorResponse('Package not found', 404);
     }
 
-    return successResponse(updated);
-  } catch (error) {
-    console.error('Error updating package:', error);
-    return errorResponse('Failed to update package', 500);
+    return successResponse<UpdatePackageResponse>(updated as UpdatePackageResponse);
   }
-}
+);
 
 // DELETE /api/packages/[id] - Delete package (admin)
-export async function DELETE(
-  request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
-) {
-  const authCheck = await requireAuth(request);
-  if (authCheck.error) return authCheck.error;
+export const DELETE = createAuthApiHandler<RouteContext>(
+  async (_request, context) => {
+    const { id } = await context!.params;
 
-  try {
-    const { id } = await params;
+    const result = await db.delete(packages).where(eq(packages.id, id)).returning();
 
-    await db.delete(packages).where(eq(packages.id, id));
+    if (result.length === 0) {
+      return errorResponse('Package not found', 404);
+    }
 
     return successResponse({ success: true });
-  } catch (error) {
-    console.error('Error deleting package:', error);
-    return errorResponse('Failed to delete package', 500);
   }
-}
+);

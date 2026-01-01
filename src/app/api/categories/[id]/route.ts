@@ -1,15 +1,20 @@
-import { NextRequest } from 'next/server';
 import { db, categories } from '@/db';
-import { requireAuth, errorResponse, successResponse } from '@/lib/api-utils';
+import { errorResponse, successResponse } from '@/lib/api-utils';
 import { eq } from 'drizzle-orm';
+import { createPublicApiHandler, createAuthValidatedApiHandler, createAuthApiHandler } from '@/lib/api-middleware';
+import { updateCategorySchema } from '@/lib/validation';
+import type { UpdateCategoryInput } from '@/lib/validation';
+import type { Category, UpdateCategoryResponse } from '@/types';
+
+interface RouteContext {
+  params: Promise<{ id: string }>;
+}
 
 // GET /api/categories/[id] - Get single category (public)
-export async function GET(
-  request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
-) {
-  try {
-    const { id } = await params;
+export const GET = createPublicApiHandler<RouteContext>(
+  async (_request, context) => {
+    const { id } = await context!.params;
+
     const category = await db.query.categories.findFirst({
       where: eq(categories.id, id),
       with: {
@@ -22,32 +27,28 @@ export async function GET(
     }
 
     return successResponse(category);
-  } catch (error) {
-    console.error('Error fetching category:', error);
-    return errorResponse('Failed to fetch category', 500);
   }
-}
+);
 
 // PUT /api/categories/[id] - Update category (admin)
-export async function PUT(
-  request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
-) {
-  const authCheck = await requireAuth(request);
-  if (authCheck.error) return authCheck.error;
+export const PUT = createAuthValidatedApiHandler<UpdateCategoryInput, RouteContext>(
+  updateCategorySchema,
+  async (_request, data, context) => {
+    const { id } = await context!.params;
 
-  try {
-    const { id } = await params;
-    const body = await request.json();
-    const { name, slug, icon, description, displayOrder } = body;
+    // Verify ID matches
+    if (data.id !== id) {
+      return errorResponse('ID in body must match ID in URL', 400);
+    }
 
-    const [updated] = await db.update(categories)
+    const [updated] = await db
+      .update(categories)
       .set({
-        ...(name && { name }),
-        ...(slug && { slug }),
-        ...(icon !== undefined && { icon }),
-        ...(description !== undefined && { description }),
-        ...(displayOrder !== undefined && { displayOrder }),
+        ...(data.name && { name: data.name }),
+        ...(data.slug && { slug: data.slug }),
+        ...(data.icon !== undefined && { icon: data.icon || null }),
+        ...(data.description !== undefined && { description: data.description || null }),
+        ...(data.displayOrder !== undefined && { displayOrder: data.displayOrder }),
         updatedAt: new Date(),
       })
       .where(eq(categories.id, id))
@@ -57,26 +58,14 @@ export async function PUT(
       return errorResponse('Category not found', 404);
     }
 
-    return successResponse(updated);
-  } catch (error) {
-    console.error('Error updating category:', error);
-    if (error instanceof Error && error.message?.includes('UNIQUE')) {
-      return errorResponse('Category with this slug already exists', 409);
-    }
-    return errorResponse('Failed to update category', 500);
+    return successResponse<UpdateCategoryResponse>(updated);
   }
-}
+);
 
 // DELETE /api/categories/[id] - Delete category (admin)
-export async function DELETE(
-  request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
-) {
-  const authCheck = await requireAuth(request);
-  if (authCheck.error) return authCheck.error;
-
-  try {
-    const { id } = await params;
+export const DELETE = createAuthApiHandler<RouteContext>(
+  async (_request, context) => {
+    const { id } = await context!.params;
 
     // Check if category has apps
     const category = await db.query.categories.findFirst({
@@ -94,11 +83,12 @@ export async function DELETE(
       return errorResponse('Cannot delete category with apps. Move or delete apps first.', 400);
     }
 
-    await db.delete(categories).where(eq(categories.id, id));
+    const result = await db.delete(categories).where(eq(categories.id, id)).returning();
+
+    if (result.length === 0) {
+      return errorResponse('Category not found', 404);
+    }
 
     return successResponse({ success: true });
-  } catch (error) {
-    console.error('Error deleting category:', error);
-    return errorResponse('Failed to delete category', 500);
   }
-}
+);

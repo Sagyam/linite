@@ -1,70 +1,69 @@
 import { NextRequest } from 'next/server';
 import { db, packages } from '@/db';
-import { requireAuth, errorResponse, successResponse } from '@/lib/api-utils';
+import { successResponse } from '@/lib/api-utils';
+import { eq, and } from 'drizzle-orm';
+import { createAuthApiHandler, createAuthValidatedApiHandler } from '@/lib/api-middleware';
+import { createPackageSchema, getPackagesQuerySchema } from '@/lib/validation';
+import type { GetPackagesResponse, CreatePackageResponse } from '@/types';
 
 // GET /api/packages - Get all packages (admin)
-export async function GET(request: NextRequest) {
-  const authCheck = await requireAuth(request);
-  if (authCheck.error) return authCheck.error;
-
-  try {
+export const GET = createAuthApiHandler(
+  async (request: NextRequest) => {
+    // Validate and parse query parameters
     const searchParams = request.nextUrl.searchParams;
-    const sourceId = searchParams.get('sourceId');
-    const available = searchParams.get('available');
+    const queryObject = Object.fromEntries(searchParams.entries());
+    const validatedQuery = getPackagesQuerySchema.parse(queryObject);
 
-    let allPackages = await db.query.packages.findMany({
+    const { appId, sourceId, available, limit = 100, offset = 0 } = validatedQuery;
+
+    // Build WHERE conditions dynamically
+    const conditions = [];
+
+    if (appId) {
+      conditions.push(eq(packages.appId, appId));
+    }
+
+    if (sourceId) {
+      conditions.push(eq(packages.sourceId, sourceId));
+    }
+
+    if (available !== undefined) {
+      conditions.push(eq(packages.isAvailable, available));
+    }
+
+    const allPackages = await db.query.packages.findMany({
+      where: conditions.length > 0 ? and(...conditions) : undefined,
       with: {
         app: true,
         source: true,
       },
+      limit,
+      offset,
     });
 
-    if (sourceId) {
-      allPackages = allPackages.filter(pkg => pkg.sourceId === sourceId);
-    }
-
-    if (available !== null) {
-      const isAvailable = available === 'true';
-      allPackages = allPackages.filter(pkg => pkg.isAvailable === isAvailable);
-    }
-
-    return successResponse(allPackages);
-  } catch (error) {
-    console.error('Error fetching packages:', error);
-    return errorResponse('Failed to fetch packages', 500);
+    return successResponse<GetPackagesResponse>(allPackages as GetPackagesResponse);
   }
-}
+);
 
 // POST /api/packages - Create new package (admin)
-export async function POST(request: NextRequest) {
-  const authCheck = await requireAuth(request);
-  if (authCheck.error) return authCheck.error;
+export const POST = createAuthValidatedApiHandler(
+  createPackageSchema,
+  async (_request, data) => {
+    const newPackage = await db
+      .insert(packages)
+      .values({
+        appId: data.appId,
+        sourceId: data.sourceId,
+        identifier: data.identifier,
+        version: data.version || null,
+        size: data.size || null,
+        maintainer: data.maintainer || null,
+        isAvailable: data.isAvailable ?? true,
+        metadata: data.metadata || null,
+      })
+      .returning()
+      .then((rows) => rows[0]);
 
-  try {
-    const body = await request.json();
-    const { appId, sourceId, identifier, version, size, maintainer, isAvailable, metadata } = body;
-
-    if (!appId || !sourceId || !identifier) {
-      return errorResponse('App ID, source ID, and identifier are required');
-    }
-
-    const [newPackage] = await db.insert(packages).values({
-      appId,
-      sourceId,
-      identifier,
-      version,
-      size,
-      maintainer,
-      isAvailable: isAvailable !== undefined ? isAvailable : true,
-      metadata,
-    }).returning();
-
-    return successResponse(newPackage, 201);
-  } catch (error) {
-    console.error('Error creating package:', error);
-    if (error instanceof Error && error.message?.includes('UNIQUE')) {
-      return errorResponse('Package with this identifier already exists for this app and source', 409);
-    }
-    return errorResponse('Failed to create package', 500);
+    return successResponse<CreatePackageResponse>(newPackage as CreatePackageResponse, 201);
   }
-}
+);

@@ -1,4 +1,4 @@
-import { sqliteTable, text, integer } from 'drizzle-orm/sqlite-core';
+import { sqliteTable, text, integer, index } from 'drizzle-orm/sqlite-core';
 import { relations } from 'drizzle-orm';
 import { createId } from '@paralleldrive/cuid2';
 
@@ -78,7 +78,9 @@ export const categories = sqliteTable('categories', {
   description: text('description'),
   displayOrder: integer('display_order').default(0),
   ...timestamps,
-});
+}, (table) => ({
+  displayOrderIdx: index('categories_display_order_idx').on(table.displayOrder),
+}));
 
 export const apps = sqliteTable('apps', {
   id: text('id')
@@ -95,7 +97,11 @@ export const apps = sqliteTable('apps', {
     .notNull()
     .references(() => categories.id),
   ...timestamps,
-});
+}, (table) => ({
+  categoryIdIdx: index('apps_category_id_idx').on(table.categoryId),
+  isPopularIdx: index('apps_is_popular_idx').on(table.isPopular),
+  categoryPopularIdx: index('apps_category_popular_idx').on(table.categoryId, table.isPopular),
+}));
 
 export const sources = sqliteTable('sources', {
   id: text('id')
@@ -129,7 +135,12 @@ export const packages = sqliteTable('packages', {
   lastChecked: integer('last_checked', { mode: 'timestamp' }).$defaultFn(() => new Date()),
   metadata: text('metadata', { mode: 'json' }),
   ...timestamps,
-});
+}, (table) => ({
+  appIdIdx: index('packages_app_id_idx').on(table.appId),
+  sourceIdIdx: index('packages_source_id_idx').on(table.sourceId),
+  isAvailableIdx: index('packages_is_available_idx').on(table.isAvailable),
+  appSourceIdx: index('packages_app_source_idx').on(table.appId, table.sourceId),
+}));
 
 export const distros = sqliteTable('distros', {
   id: text('id')
@@ -142,7 +153,10 @@ export const distros = sqliteTable('distros', {
   basedOn: text('based_on'),
   isPopular: integer('is_popular', { mode: 'boolean' }).default(false),
   ...timestamps,
-});
+}, (table) => ({
+  isPopularIdx: index('distros_is_popular_idx').on(table.isPopular),
+  familyIdx: index('distros_family_idx').on(table.family),
+}));
 
 export const distroSources = sqliteTable('distro_sources', {
   id: text('id')
@@ -156,7 +170,11 @@ export const distroSources = sqliteTable('distro_sources', {
     .references(() => sources.id, { onDelete: 'cascade' }),
   priority: integer('priority').default(0),
   isDefault: integer('is_default', { mode: 'boolean' }).default(false),
-});
+}, (table) => ({
+  distroIdIdx: index('distro_sources_distro_id_idx').on(table.distroId),
+  sourceIdIdx: index('distro_sources_source_id_idx').on(table.sourceId),
+  distroSourceIdx: index('distro_sources_distro_source_idx').on(table.distroId, table.sourceId),
+}));
 
 export const refreshLogs = sqliteTable('refresh_logs', {
   id: text('id')
@@ -168,7 +186,10 @@ export const refreshLogs = sqliteTable('refresh_logs', {
   errorMessage: text('error_message'),
   startedAt: integer('started_at', { mode: 'timestamp' }).$defaultFn(() => new Date()),
   completedAt: integer('completed_at', { mode: 'timestamp' }),
-});
+}, (table) => ({
+  sourceIdIdx: index('refresh_logs_source_id_idx').on(table.sourceId),
+  startedAtIdx: index('refresh_logs_started_at_idx').on(table.startedAt),
+}));
 
 // ============ RELATIONS ============
 

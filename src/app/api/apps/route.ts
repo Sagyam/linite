@@ -1,24 +1,53 @@
 import { NextRequest } from 'next/server';
-import { db, apps } from '@/db';
-import { requireAuth, errorResponse, successResponse, applyRateLimit } from '@/lib/api-utils';
-import { desc } from 'drizzle-orm';
+import { db, apps, categories } from '@/db';
+import { successResponse } from '@/lib/api-utils';
+import { desc, eq, and, or, like, sql } from 'drizzle-orm';
 import { publicApiLimiter } from '@/lib/redis';
+import { createPublicApiHandler, createAuthValidatedApiHandler } from '@/lib/api-middleware';
+import { getAppsQuerySchema, createAppSchema } from '@/lib/validation';
+import type { GetAppsResponse, CreateAppResponse } from '@/types';
 
 // GET /api/apps - Get all apps with optional filtering (public)
-export async function GET(request: NextRequest) {
-  // Apply rate limiting for public endpoints
-  const rateLimitResult = await applyRateLimit(request, publicApiLimiter);
-  if (rateLimitResult) {
-    return rateLimitResult;
-  }
-
-  try {
+export const GET = createPublicApiHandler(
+  async (request: NextRequest) => {
+    // Validate and parse query parameters
     const searchParams = request.nextUrl.searchParams;
-    const category = searchParams.get('category');
-    const popular = searchParams.get('popular');
-    const search = searchParams.get('search');
+    const queryObject = Object.fromEntries(searchParams.entries());
+    const validatedQuery = getAppsQuerySchema.parse(queryObject);
 
-    const query = db.query.apps.findMany({
+    const { category, popular, search, limit = 50, offset = 0 } = validatedQuery;
+
+    // Build WHERE conditions dynamically
+    const conditions = [];
+
+    // Category filter - support both slug and ID
+    if (category) {
+      const categoryRecord = await db.query.categories.findFirst({
+        where: or(eq(categories.slug, category), eq(categories.id, category)),
+      });
+      if (categoryRecord) {
+        conditions.push(eq(apps.categoryId, categoryRecord.id));
+      }
+    }
+
+    // Popular filter
+    if (popular) {
+      conditions.push(eq(apps.isPopular, true));
+    }
+
+    // Search filter - search in display name and description
+    if (search) {
+      conditions.push(
+        or(
+          like(apps.displayName, `%${search}%`),
+          like(sql`COALESCE(${apps.description}, '')`, `%${search}%`)
+        )
+      );
+    }
+
+    // Execute query with database-level filtering
+    const allApps = await db.query.apps.findMany({
+      where: conditions.length > 0 ? and(...conditions) : undefined,
       with: {
         category: true,
         packages: {
@@ -28,69 +57,34 @@ export async function GET(request: NextRequest) {
         },
       },
       orderBy: [desc(apps.isPopular), desc(apps.displayName)],
+      limit,
+      offset,
     });
 
-    // Note: Drizzle doesn't support dynamic where clauses in findMany easily,
-    // so we'll fetch all and filter in memory for now
-    let allApps = await query;
-
-    // Apply filters
-    if (category) {
-      // Support filtering by both category slug AND category id
-      allApps = allApps.filter(app =>
-        app.category.slug === category || app.categoryId === category
-      );
-    }
-
-    if (popular === 'true') {
-      allApps = allApps.filter(app => app.isPopular);
-    }
-
-    if (search) {
-      const searchLower = search.toLowerCase();
-      allApps = allApps.filter(app =>
-        app.displayName.toLowerCase().includes(searchLower) ||
-        app.description?.toLowerCase().includes(searchLower)
-      );
-    }
-
-    return successResponse(allApps);
-  } catch (error) {
-    console.error('Error fetching apps:', error);
-    return errorResponse('Failed to fetch apps', 500);
-  }
-}
+    return successResponse<GetAppsResponse>(allApps);
+  },
+  publicApiLimiter
+);
 
 // POST /api/apps - Create new app (admin)
-export async function POST(request: NextRequest) {
-  const authCheck = await requireAuth(request);
-  if (authCheck.error) return authCheck.error;
+export const POST = createAuthValidatedApiHandler(
+  createAppSchema,
+  async (_request, data) => {
+    const newApp = await db
+      .insert(apps)
+      .values({
+        slug: data.slug,
+        displayName: data.displayName,
+        description: data.description || null,
+        iconUrl: data.iconUrl || null,
+        homepage: data.homepage || null,
+        isPopular: data.isPopular,
+        isFoss: data.isFoss,
+        categoryId: data.categoryId,
+      })
+      .returning()
+      .then((rows) => rows[0]);
 
-  try {
-    const body = await request.json();
-    const { slug, displayName, description, iconUrl, homepage, isPopular, isFoss, categoryId } = body;
-
-    if (!slug || !displayName || !categoryId) {
-      return errorResponse('Slug, display name, and category are required');
-    }
-
-    const [newApp] = await db.insert(apps).values({
-      slug,
-      displayName,
-      description,
-      iconUrl,
-      homepage,
-      isPopular: isPopular || false,
-      isFoss: isFoss !== undefined ? isFoss : true,
-      categoryId,
-    }).returning();
-
-    return successResponse(newApp, 201);
-  } catch (error) {
-    console.error('Error creating app:', error);
-    if (error instanceof Error && error.message?.includes('UNIQUE')) {
-      return errorResponse('App with this slug already exists', 409);
-    }
-    return errorResponse('Failed to create app', 500);
+    return successResponse<CreateAppResponse>(newApp, 201);
   }
-}
+);

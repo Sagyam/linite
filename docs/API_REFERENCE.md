@@ -2,6 +2,27 @@
 
 All endpoints follow RESTful conventions. Admin endpoints require authentication.
 
+## API Architecture
+
+**Recent Improvements (2026-01):**
+- Centralized type system in `/src/types/` for type safety across client and server
+- Zod validation schemas in `/src/lib/validation/` for request/response validation
+- Standardized middleware composition in `/src/lib/api-middleware.ts`
+- Database-level filtering (no more in-memory filtering)
+- Pagination support (limit/offset)
+
+**API Handler Pattern:**
+All API routes now use standardized middleware patterns:
+- `createPublicApiHandler` - Public endpoints with rate limiting
+- `createAuthApiHandler` - Authenticated endpoints
+- `createAuthValidatedApiHandler` - Authenticated with request body validation
+
+This ensures consistent:
+- Error handling
+- Rate limiting
+- Request validation
+- Authentication checks
+
 ## Rate Limiting
 
 All public API endpoints are rate-limited to prevent abuse. Rate limit headers are included in responses:
@@ -36,9 +57,11 @@ When rate limit is exceeded, you'll receive a `429 Too Many Requests` response:
 Get all apps with optional filtering
 
 **Query Parameters:**
-- `category` - Filter by category slug
+- `category` - Filter by category slug or ID
 - `popular` - Filter popular apps (true/false)
-- `search` - Search term for app name/description
+- `search` - Search term for app name/description (searches both name and description)
+- `limit` - Number of results to return (1-100, default: 50)
+- `offset` - Number of results to skip (default: 0)
 
 **Response:**
 ```json

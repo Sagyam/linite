@@ -30,6 +30,9 @@ linite/
     ├── stores/           # Zustand state management
     ├── test/             # Test configuration
     └── types/            # TypeScript definitions
+        ├── entities.ts   # Database entity types
+        ├── api.ts        # **NEW:** API request/response types
+        └── index.ts      # **NEW:** Barrel export
 ```
 
 ## Key Directories
@@ -59,8 +62,13 @@ React components:
 ### `/src/lib`
 Utilities and configuration:
 - `auth.ts` - BetterAuth server configuration
-- `api-utils.ts` - Rate limiting, error handling, middleware
+- `api-utils.ts` - Rate limiting, error handling, basic utilities
+- `api-middleware.ts` - **NEW:** Middleware composition for API routes
 - `utils.ts` - General utilities (className merger, etc.)
+- `validation/` - **NEW:** Request validation
+  - `schemas/` - Zod schemas for all entities
+  - `middleware.ts` - Validation middleware utilities
+  - `index.ts` - Barrel export
 
 ## File Naming
 

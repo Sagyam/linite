@@ -1,15 +1,20 @@
-import { NextRequest } from 'next/server';
 import { db, sources } from '@/db';
-import { requireAuth, errorResponse, successResponse } from '@/lib/api-utils';
+import { errorResponse, successResponse } from '@/lib/api-utils';
 import { eq } from 'drizzle-orm';
+import { createPublicApiHandler, createAuthValidatedApiHandler, createAuthApiHandler } from '@/lib/api-middleware';
+import { updateSourceSchema } from '@/lib/validation';
+import type { UpdateSourceInput } from '@/lib/validation';
+import type { UpdateSourceResponse } from '@/types';
+
+interface RouteContext {
+  params: Promise<{ id: string }>;
+}
 
 // GET /api/sources/[id] - Get single source (public)
-export async function GET(
-  request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
-) {
-  try {
-    const { id } = await params;
+export const GET = createPublicApiHandler<RouteContext>(
+  async (_request, context) => {
+    const { id } = await context!.params;
+
     const source = await db.query.sources.findFirst({
       where: eq(sources.id, id),
       with: {
@@ -22,34 +27,30 @@ export async function GET(
     }
 
     return successResponse(source);
-  } catch (error) {
-    console.error('Error fetching source:', error);
-    return errorResponse('Failed to fetch source', 500);
   }
-}
+);
 
 // PUT /api/sources/[id] - Update source (admin)
-export async function PUT(
-  request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
-) {
-  const authCheck = await requireAuth(request);
-  if (authCheck.error) return authCheck.error;
+export const PUT = createAuthValidatedApiHandler<UpdateSourceInput, RouteContext>(
+  updateSourceSchema,
+  async (_request, data, context) => {
+    const { id } = await context!.params;
 
-  try {
-    const { id } = await params;
-    const body = await request.json();
-    const { name, slug, installCmd, requireSudo, setupCmd, priority, apiEndpoint } = body;
+    // Verify ID matches
+    if (data.id !== id) {
+      return errorResponse('ID in body must match ID in URL', 400);
+    }
 
-    const [updated] = await db.update(sources)
+    const [updated] = await db
+      .update(sources)
       .set({
-        ...(name && { name }),
-        ...(slug && { slug }),
-        ...(installCmd && { installCmd }),
-        ...(requireSudo !== undefined && { requireSudo }),
-        ...(setupCmd !== undefined && { setupCmd }),
-        ...(priority !== undefined && { priority }),
-        ...(apiEndpoint !== undefined && { apiEndpoint }),
+        ...(data.name && { name: data.name }),
+        ...(data.slug && { slug: data.slug }),
+        ...(data.installCmd && { installCmd: data.installCmd }),
+        ...(data.requireSudo !== undefined && { requireSudo: data.requireSudo }),
+        ...(data.setupCmd !== undefined && { setupCmd: data.setupCmd || null }),
+        ...(data.priority !== undefined && { priority: data.priority }),
+        ...(data.apiEndpoint !== undefined && { apiEndpoint: data.apiEndpoint || null }),
         updatedAt: new Date(),
       })
       .where(eq(sources.id, id))
@@ -59,26 +60,14 @@ export async function PUT(
       return errorResponse('Source not found', 404);
     }
 
-    return successResponse(updated);
-  } catch (error) {
-    console.error('Error updating source:', error);
-    if (error instanceof Error && error.message?.includes('UNIQUE')) {
-      return errorResponse('Source with this slug already exists', 409);
-    }
-    return errorResponse('Failed to update source', 500);
+    return successResponse<UpdateSourceResponse>(updated as UpdateSourceResponse);
   }
-}
+);
 
 // DELETE /api/sources/[id] - Delete source (admin)
-export async function DELETE(
-  request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
-) {
-  const authCheck = await requireAuth(request);
-  if (authCheck.error) return authCheck.error;
-
-  try {
-    const { id } = await params;
+export const DELETE = createAuthApiHandler<RouteContext>(
+  async (_request, context) => {
+    const { id } = await context!.params;
 
     // Check if source has packages
     const source = await db.query.sources.findFirst({
@@ -96,11 +85,12 @@ export async function DELETE(
       return errorResponse('Cannot delete source with packages. Delete packages first.', 400);
     }
 
-    await db.delete(sources).where(eq(sources.id, id));
+    const result = await db.delete(sources).where(eq(sources.id, id)).returning();
+
+    if (result.length === 0) {
+      return errorResponse('Source not found', 404);
+    }
 
     return successResponse({ success: true });
-  } catch (error) {
-    console.error('Error deleting source:', error);
-    return errorResponse('Failed to delete source', 500);
   }
-}
+);

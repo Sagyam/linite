@@ -32,12 +32,43 @@ The complete Drizzle schema is defined in `/docs/DATABASE_SCHEMA.md`. Follow it 
 - SQLite dialect
 - Timestamps (createdAt, updatedAt) - except `distroSources` which doesn't need them
 
-### 3. API Route Structure
+### 3. API Route Structure & Patterns
+
+**Standardized Middleware (2026-01):**
+All new API routes MUST use the standardized middleware patterns from `/src/lib/api-middleware.ts`:
+
+```typescript
+// Public endpoint with rate limiting
+export const GET = createPublicApiHandler(
+  async (request) => {
+    // Your handler logic
+    return successResponse(data);
+  },
+  publicApiLimiter  // Optional rate limiter
+);
+
+// Admin endpoint (requires auth)
+export const POST = createAuthValidatedApiHandler(
+  createAppSchema,  // Zod validation schema
+  async (request, validatedData) => {
+    // Your handler logic with validated data
+    return successResponse(newRecord, 201);
+  }
+);
+```
+
+**Rules:**
+- Use `createPublicApiHandler` for public endpoints
+- Use `createAuthApiHandler` for admin endpoints without body validation
+- Use `createAuthValidatedApiHandler` for admin endpoints with body validation
+- ALL requests MUST be validated using Zod schemas from `/src/lib/validation`
+- Use centralized types from `/src/types`
+- Database filtering MUST happen at query level, NOT in-memory
+- Rate limiting: All public endpoints use Upstash Redis (see `/docs/API_REFERENCE.md`)
+
+**Routes:**
 - Public routes: `/api/apps`, `/api/distros`, `/api/sources`, `/api/categories`, `/api/generate`
-- Admin routes: All CRUD operations on the above + `/api/packages`, `/api/distro-sources`, `/api/refresh`, `/api/upload`
-- Auth required for all admin routes
-- Image uploads: Use `/api/upload` (POST to upload, DELETE to remove) - handles Vercel Blob storage
-- Rate limiting: All public endpoints are rate-limited using Upstash Redis (see `/docs/API_REFERENCE.md`)
+- Admin routes: All CRUD operations + `/api/packages`, `/api/distro-sources`, `/api/refresh`, `/api/upload`
 
 ### 4. File Organization
 Follow the structure in `/docs/REPOSITORY_STRUCTURE.md`:

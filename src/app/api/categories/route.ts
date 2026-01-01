@@ -1,56 +1,39 @@
-import { NextRequest } from 'next/server';
 import { db, categories } from '@/db';
-import { requireAuth, errorResponse, successResponse, applyRateLimit } from '@/lib/api-utils';
-import { desc } from 'drizzle-orm';
+import { successResponse } from '@/lib/api-utils';
+import { asc } from 'drizzle-orm';
 import { publicApiLimiter } from '@/lib/redis';
+import { createPublicApiHandler, createAuthValidatedApiHandler } from '@/lib/api-middleware';
+import { createCategorySchema } from '@/lib/validation';
+import type { GetCategoriesResponse, CreateCategoryResponse } from '@/types';
 
 // GET /api/categories - Get all categories (public)
-export async function GET(request: NextRequest) {
-  // Apply rate limiting for public endpoints
-  const rateLimitResult = await applyRateLimit(request, publicApiLimiter);
-  if (rateLimitResult) {
-    return rateLimitResult;
-  }
-
-  try {
+export const GET = createPublicApiHandler(
+  async () => {
     const allCategories = await db.query.categories.findMany({
-      orderBy: [desc(categories.displayOrder), desc(categories.name)],
+      orderBy: [asc(categories.displayOrder), asc(categories.name)],
     });
 
-    return successResponse(allCategories);
-  } catch (error) {
-    console.error('Error fetching categories:', error);
-    return errorResponse('Failed to fetch categories', 500);
-  }
-}
+    return successResponse<GetCategoriesResponse>(allCategories);
+  },
+  publicApiLimiter
+);
 
 // POST /api/categories - Create new category (admin)
-export async function POST(request: NextRequest) {
-  const authCheck = await requireAuth(request);
-  if (authCheck.error) return authCheck.error;
+export const POST = createAuthValidatedApiHandler(
+  createCategorySchema,
+  async (_request, data) => {
+    const newCategory = await db
+      .insert(categories)
+      .values({
+        name: data.name,
+        slug: data.slug,
+        icon: data.icon || null,
+        description: data.description || null,
+        displayOrder: data.displayOrder,
+      })
+      .returning()
+      .then((rows) => rows[0]);
 
-  try {
-    const body = await request.json();
-    const { name, slug, icon, description, displayOrder } = body;
-
-    if (!name || !slug) {
-      return errorResponse('Name and slug are required');
-    }
-
-    const [newCategory] = await db.insert(categories).values({
-      name,
-      slug,
-      icon,
-      description,
-      displayOrder: displayOrder || 0,
-    }).returning();
-
-    return successResponse(newCategory, 201);
-  } catch (error) {
-    console.error('Error creating category:', error);
-    if (error instanceof Error && error.message?.includes('UNIQUE')) {
-      return errorResponse('Category with this slug already exists', 409);
-    }
-    return errorResponse('Failed to create category', 500);
+    return successResponse<CreateCategoryResponse>(newCategory, 201);
   }
-}
+);

@@ -1,58 +1,41 @@
-import { NextRequest } from 'next/server';
 import { db, sources } from '@/db';
-import { requireAuth, errorResponse, successResponse, applyRateLimit } from '@/lib/api-utils';
+import { successResponse } from '@/lib/api-utils';
 import { desc } from 'drizzle-orm';
 import { publicApiLimiter } from '@/lib/redis';
+import { createPublicApiHandler, createAuthValidatedApiHandler } from '@/lib/api-middleware';
+import { createSourceSchema } from '@/lib/validation';
+import type { GetSourcesResponse, CreateSourceResponse } from '@/types';
 
 // GET /api/sources - Get all sources (public)
-export async function GET(request: NextRequest) {
-  // Apply rate limiting for public endpoints
-  const rateLimitResult = await applyRateLimit(request, publicApiLimiter);
-  if (rateLimitResult) {
-    return rateLimitResult;
-  }
-
-  try {
+export const GET = createPublicApiHandler(
+  async () => {
     const allSources = await db.query.sources.findMany({
       orderBy: [desc(sources.priority), desc(sources.name)],
     });
 
-    return successResponse(allSources);
-  } catch (error) {
-    console.error('Error fetching sources:', error);
-    return errorResponse('Failed to fetch sources', 500);
-  }
-}
+    return successResponse<GetSourcesResponse>(allSources as GetSourcesResponse);
+  },
+  publicApiLimiter
+);
 
 // POST /api/sources - Create new source (admin)
-export async function POST(request: NextRequest) {
-  const authCheck = await requireAuth(request);
-  if (authCheck.error) return authCheck.error;
+export const POST = createAuthValidatedApiHandler(
+  createSourceSchema,
+  async (_request, data) => {
+    const newSource = await db
+      .insert(sources)
+      .values({
+        name: data.name,
+        slug: data.slug,
+        installCmd: data.installCmd,
+        requireSudo: data.requireSudo ?? false,
+        setupCmd: data.setupCmd || null,
+        priority: data.priority ?? 0,
+        apiEndpoint: data.apiEndpoint || null,
+      })
+      .returning()
+      .then((rows) => rows[0]);
 
-  try {
-    const body = await request.json();
-    const { name, slug, installCmd, requireSudo, setupCmd, priority, apiEndpoint } = body;
-
-    if (!name || !slug || !installCmd) {
-      return errorResponse('Name, slug, and install command are required');
-    }
-
-    const [newSource] = await db.insert(sources).values({
-      name,
-      slug,
-      installCmd,
-      requireSudo: requireSudo || false,
-      setupCmd,
-      priority: priority || 0,
-      apiEndpoint,
-    }).returning();
-
-    return successResponse(newSource, 201);
-  } catch (error) {
-    console.error('Error creating source:', error);
-    if (error instanceof Error && error.message?.includes('UNIQUE')) {
-      return errorResponse('Source with this slug already exists', 409);
-    }
-    return errorResponse('Failed to create source', 500);
+    return successResponse<CreateSourceResponse>(newSource as CreateSourceResponse, 201);
   }
-}
+);

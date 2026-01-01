@@ -31,7 +31,7 @@ export function createCrudHooks<T>(config: CrudConfig): CrudHooks<T> {
         if (!response.ok) {
           throw new Error(`Failed to fetch ${pluralName}`);
         }
-        return response.json() as Promise<T[]>;
+        return await response.json() as Promise<T[]>;
       },
     });
   }

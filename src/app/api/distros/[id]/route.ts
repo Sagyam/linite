@@ -1,15 +1,20 @@
-import { NextRequest } from 'next/server';
 import { db, distros } from '@/db';
-import { requireAuth, errorResponse, successResponse } from '@/lib/api-utils';
+import { errorResponse, successResponse } from '@/lib/api-utils';
 import { eq } from 'drizzle-orm';
+import { createPublicApiHandler, createAuthValidatedApiHandler, createAuthApiHandler } from '@/lib/api-middleware';
+import { updateDistroSchema } from '@/lib/validation';
+import type { UpdateDistroInput } from '@/lib/validation';
+import type { UpdateDistroResponse } from '@/types';
+
+interface RouteContext {
+  params: Promise<{ id: string }>;
+}
 
 // GET /api/distros/[id] - Get single distro (public)
-export async function GET(
-  request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
-) {
-  try {
-    const { id } = await params;
+export const GET = createPublicApiHandler<RouteContext>(
+  async (_request, context) => {
+    const { id } = await context!.params;
+
     const distro = await db.query.distros.findFirst({
       where: eq(distros.id, id),
       with: {
@@ -26,33 +31,28 @@ export async function GET(
     }
 
     return successResponse(distro);
-  } catch (error) {
-    console.error('Error fetching distro:', error);
-    return errorResponse('Failed to fetch distro', 500);
   }
-}
+);
 
 // PUT /api/distros/[id] - Update distro (admin)
-export async function PUT(
-  request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
-) {
-  const authCheck = await requireAuth(request);
-  if (authCheck.error) return authCheck.error;
+export const PUT = createAuthValidatedApiHandler<UpdateDistroInput, RouteContext>(
+  updateDistroSchema,
+  async (_request, data, context) => {
+    const { id } = await context!.params;
 
-  try {
-    const { id } = await params;
-    const body = await request.json();
-    const { name, slug, family, iconUrl, basedOn, isPopular } = body;
+    if (data.id !== id) {
+      return errorResponse('ID in body must match ID in URL', 400);
+    }
 
-    const [updated] = await db.update(distros)
+    const [updated] = await db
+      .update(distros)
       .set({
-        ...(name && { name }),
-        ...(slug && { slug }),
-        ...(family && { family }),
-        ...(iconUrl !== undefined && { iconUrl }),
-        ...(basedOn !== undefined && { basedOn }),
-        ...(isPopular !== undefined && { isPopular }),
+        ...(data.name && { name: data.name }),
+        ...(data.slug && { slug: data.slug }),
+        ...(data.family && { family: data.family }),
+        ...(data.iconUrl !== undefined && { iconUrl: data.iconUrl || null }),
+        ...(data.basedOn !== undefined && { basedOn: data.basedOn || null }),
+        ...(data.isPopular !== undefined && { isPopular: data.isPopular }),
         updatedAt: new Date(),
       })
       .where(eq(distros.id, id))
@@ -62,32 +62,21 @@ export async function PUT(
       return errorResponse('Distro not found', 404);
     }
 
-    return successResponse(updated);
-  } catch (error) {
-    console.error('Error updating distro:', error);
-    if (error instanceof Error && error.message?.includes('UNIQUE')) {
-      return errorResponse('Distro with this slug already exists', 409);
-    }
-    return errorResponse('Failed to update distro', 500);
+    return successResponse<UpdateDistroResponse>(updated as UpdateDistroResponse);
   }
-}
+);
 
 // DELETE /api/distros/[id] - Delete distro (admin)
-export async function DELETE(
-  request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
-) {
-  const authCheck = await requireAuth(request);
-  if (authCheck.error) return authCheck.error;
+export const DELETE = createAuthApiHandler<RouteContext>(
+  async (_request, context) => {
+    const { id } = await context!.params;
 
-  try {
-    const { id } = await params;
+    const result = await db.delete(distros).where(eq(distros.id, id)).returning();
 
-    await db.delete(distros).where(eq(distros.id, id));
+    if (result.length === 0) {
+      return errorResponse('Distro not found', 404);
+    }
 
     return successResponse({ success: true });
-  } catch (error) {
-    console.error('Error deleting distro:', error);
-    return errorResponse('Failed to delete distro', 500);
   }
-}
+);
