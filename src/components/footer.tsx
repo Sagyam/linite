@@ -1,4 +1,6 @@
 import Image from 'next/image';
+import { Button } from '@/components/ui/button';
+import { Github, Star } from 'lucide-react';
 
 export function Footer() {
   return (
@@ -23,19 +25,22 @@ export function Footer() {
             </div>
           </div>
 
-          <div className="flex items-center gap-6 text-sm text-muted-foreground">
+          <div className="flex items-center gap-4">
             <a
               href="https://github.com/Sagyam/linite"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-foreground transition-colors"
             >
-              GitHub
+              <Button variant="outline" size="sm" className="gap-2">
+                <Github className="h-4 w-4" />
+                <Star className="h-4 w-4" />
+                Star on GitHub
+              </Button>
             </a>
             {process.env.NODE_ENV === 'development' && (
               <a
                 href="/admin/login"
-                className="hover:text-foreground transition-colors"
+                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
               >
                 Admin
               </a>

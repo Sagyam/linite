@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { ThemeToggle } from '@/components/theme-toggle';
+import { Github, Star } from 'lucide-react';
 
 export function Header() {
   return (
@@ -35,6 +36,17 @@ export function Header() {
                 <Button variant="ghost">Admin</Button>
               </Link>
             )}
+            <a
+              href="https://github.com/Sagyam/linite"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button variant="outline" size="sm" className="gap-2">
+                <Github className="h-4 w-4" />
+                <Star className="h-4 w-4" />
+                Star
+              </Button>
+            </a>
             <ThemeToggle />
           </nav>
         </div>
