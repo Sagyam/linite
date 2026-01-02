@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
 import { AppGrid } from '@/components/app-grid';
+import { PersistentDistroBar } from '@/components/persistent-distro-bar';
 import { FloatingActionBar } from '@/components/floating-action-bar';
 import { SelectionDrawer } from '@/components/selection-drawer';
 import { CommandDialog } from '@/components/command-dialog';
@@ -30,9 +31,9 @@ export default function HomePage() {
       <div className="min-h-screen flex flex-col">
         <Header />
 
-        <main className="flex-1 container mx-auto px-4 py-8 pb-24">
+        <main className="flex-1 flex flex-col">
           {/* Hero Section - Compact */}
-          <div className="text-center mb-12">
+          <div className="container mx-auto px-4 py-8 text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-4">
               Bulk Install Apps on Linux
             </h1>
@@ -42,8 +43,11 @@ export default function HomePage() {
             </p>
           </div>
 
+          {/* Persistent Distro Bar - Always Visible */}
+          <PersistentDistroBar />
+
           {/* App Selection Section - Primary Focus */}
-          <div>
+          <div className="container mx-auto px-4 py-8 pb-24">
             <AppGrid />
           </div>
         </main>

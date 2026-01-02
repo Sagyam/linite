@@ -12,8 +12,6 @@ import {
 } from '@/components/ui/drawer';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Separator } from '@/components/ui/separator';
-import { DistroSelector } from '@/components/distro-selector';
 import { useSelectionStore } from '@/stores/selection-store';
 import { useApps } from '@/hooks/use-apps';
 
@@ -54,14 +52,6 @@ export function SelectionDrawer({ open, onOpenChange }: SelectionDrawerProps) {
 
           <div className="px-4 pb-8 overflow-y-auto max-h-[60vh]">
             <div className="space-y-6">
-              {/* Distro Selection */}
-              <div className="bg-muted/50 rounded-lg p-4">
-                <h3 className="font-semibold mb-3">Distribution Settings</h3>
-                <DistroSelector />
-              </div>
-
-              <Separator />
-
               {/* Selected Apps List */}
               <div>
                 <div className="flex items-center justify-between mb-3">
