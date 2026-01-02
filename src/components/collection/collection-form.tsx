@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -39,8 +40,8 @@ interface CollectionFormProps {
 export function CollectionForm({ initialData, mode }: CollectionFormProps) {
   const router = useRouter();
   const { toast } = useToast();
+  const queryClient = useQueryClient();
   const [selectedAppIds, setSelectedAppIds] = useState<string[]>(initialData?.appIds || []);
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const {
     register,
@@ -66,31 +67,14 @@ export function CollectionForm({ initialData, mode }: CollectionFormProps) {
     );
   };
 
-  const onSubmit = async (data: CollectionFormData) => {
-    if (selectedAppIds.length === 0) {
-      toast({
-        title: 'Error',
-        description: 'Please select at least one app',
-        variant: 'destructive',
-      });
-      return;
-    }
-
-    setIsSubmitting(true);
-
-    try {
-      const tags = data.tags
-        ? data.tags.split(',').map((t) => t.trim()).filter(Boolean)
-        : [];
-
-      const payload = {
-        name: data.name,
-        description: data.description || undefined,
-        isPublic: data.isPublic,
-        tags,
-        appIds: selectedAppIds,
-      };
-
+  const saveCollectionMutation = useMutation({
+    mutationFn: async (payload: {
+      name: string;
+      description?: string;
+      isPublic: boolean;
+      tags: string[];
+      appIds: string[];
+    }) => {
       const url = mode === 'create'
         ? '/api/user/collections'
         : `/api/user/collections/${initialData?.id}`;
@@ -108,7 +92,13 @@ export function CollectionForm({ initialData, mode }: CollectionFormProps) {
         throw new Error(error.error || 'Failed to save collection');
       }
 
-      const result = await response.json();
+      return response.json();
+    },
+    onSuccess: () => {
+      // Invalidate all collection-related queries
+      queryClient.invalidateQueries({ queryKey: ['user-collections'] });
+      queryClient.invalidateQueries({ queryKey: ['collection'] });
+      queryClient.invalidateQueries({ queryKey: ['public-collections'] });
 
       toast({
         title: 'Success',
@@ -118,16 +108,39 @@ export function CollectionForm({ initialData, mode }: CollectionFormProps) {
       });
 
       router.push('/dashboard');
-      router.refresh();
-    } catch (error) {
+    },
+    onError: (error: Error) => {
       toast({
         title: 'Error',
-        description: error instanceof Error ? error.message : 'Failed to save collection',
+        description: error.message || 'Failed to save collection',
         variant: 'destructive',
       });
-    } finally {
-      setIsSubmitting(false);
+    },
+  });
+
+  const onSubmit = async (data: CollectionFormData) => {
+    if (selectedAppIds.length === 0) {
+      toast({
+        title: 'Error',
+        description: 'Please select at least one app',
+        variant: 'destructive',
+      });
+      return;
     }
+
+    const tags = data.tags
+      ? data.tags.split(',').map((t) => t.trim()).filter(Boolean)
+      : [];
+
+    const payload = {
+      name: data.name,
+      description: data.description || undefined,
+      isPublic: data.isPublic,
+      tags,
+      appIds: selectedAppIds,
+    };
+
+    saveCollectionMutation.mutate(payload);
   };
 
   return (
@@ -229,10 +242,10 @@ export function CollectionForm({ initialData, mode }: CollectionFormProps) {
       <div className="flex items-center gap-4">
         <Button
           type="submit"
-          disabled={isSubmitting}
+          disabled={saveCollectionMutation.isPending}
           size="lg"
         >
-          {isSubmitting ? (
+          {saveCollectionMutation.isPending ? (
             <>
               <Loader2 className="w-4 h-4 mr-2 animate-spin" />
               Saving...
@@ -248,7 +261,7 @@ export function CollectionForm({ initialData, mode }: CollectionFormProps) {
           type="button"
           variant="outline"
           onClick={() => router.back()}
-          disabled={isSubmitting}
+          disabled={saveCollectionMutation.isPending}
         >
           Cancel
         </Button>

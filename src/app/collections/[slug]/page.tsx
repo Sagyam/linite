@@ -116,7 +116,9 @@ export default function CollectionDetailPage({
 
   const cloneMutation = useMutation({
     mutationFn: () => cloneCollection(collection!.id),
-    onSuccess: () => {
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({ queryKey: ['user-collections'] });
+
       toast({
         title: 'Collection cloned!',
         description: 'The collection has been added to your dashboard',
@@ -134,8 +136,14 @@ export default function CollectionDetailPage({
 
   const deleteMutation = useMutation({
     mutationFn: () => deleteCollection(collection!.id),
-    onSuccess: () => {
+    onSuccess: async () => {
       setDeleteDialogOpen(false);
+
+      // Invalidate all collection-related queries
+      await queryClient.invalidateQueries({ queryKey: ['user-collections'] });
+      await queryClient.invalidateQueries({ queryKey: ['collection'] });
+      await queryClient.invalidateQueries({ queryKey: ['public-collections'] });
+
       toast({
         title: 'Collection deleted',
         description: 'Your collection has been permanently deleted',
