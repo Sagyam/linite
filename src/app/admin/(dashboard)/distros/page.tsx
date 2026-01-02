@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, Suspense } from 'react';
 import { AdvancedDataTable } from '@/components/admin/advanced-data-table';
 import { Breadcrumb } from '@/components/admin/breadcrumb';
 import { IconUpload } from '@/components/admin/icon-upload';
@@ -22,9 +22,11 @@ import { Label } from '@/components/ui/label';
 import { Switch } from '@/components/ui/switch';
 import { Badge } from '@/components/ui/badge';
 import { ColumnDef } from '@tanstack/react-table';
+import { QueryErrorBoundary } from '@/components/error-boundary';
+import { DataTableSkeleton } from '@/components/ui/loading-skeletons';
 
-export default function DistrosPage() {
-  const { data: distros = [], isLoading: loading } = useAdminDistros();
+function DistrosTable() {
+  const { data: distros } = useAdminDistros();
   const deleteDistroMutation = useDeleteDistro();
 
   const {
@@ -140,7 +142,6 @@ export default function DistrosPage() {
       <AdvancedDataTable
         data={distros}
         columns={columns}
-        isLoading={loading}
         onEdit={handleEdit}
         onDelete={openDeleteDialog}
         getRowId={(row) => row.id}
@@ -237,5 +238,15 @@ export default function DistrosPage() {
         onConfirm={() => confirmDelete(deleteDistroMutation, (item) => item.id)}
       />
     </div>
+  );
+}
+
+export default function DistrosPage() {
+  return (
+    <QueryErrorBoundary>
+      <Suspense fallback={<DataTableSkeleton />}>
+        <DistrosTable />
+      </Suspense>
+    </QueryErrorBoundary>
   );
 }

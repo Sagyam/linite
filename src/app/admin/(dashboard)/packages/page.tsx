@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, Suspense } from 'react';
 import { AdvancedDataTable } from '@/components/admin/advanced-data-table';
 import { ColumnDef } from '@tanstack/react-table';
 import { Breadcrumb } from '@/components/admin/breadcrumb';
@@ -40,6 +40,8 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
+import { QueryErrorBoundary } from '@/components/error-boundary';
+import { DataTableSkeleton } from '@/components/ui/loading-skeletons';
 
 interface SearchResult {
   identifier: string;
@@ -52,10 +54,10 @@ interface SearchResult {
   source: string;
 }
 
-export default function PackagesPage() {
-  const { data: packages = [], isLoading: packagesLoading } = useAdminPackages();
-  const { data: apps = [] } = useAdminApps();
-  const { data: sources = [] } = useAdminSources();
+function PackagesTable() {
+  const { data: packages } = useAdminPackages();
+  const { data: apps } = useAdminApps();
+  const { data: sources } = useAdminSources();
   const deletePackageMutation = useDeletePackage();
   const [dialogOpen, setDialogOpen] = useState(false);
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
@@ -67,7 +69,6 @@ export default function PackagesPage() {
   const [isSearching, setIsSearching] = useState(false);
   const [appSelectorOpen, setAppSelectorOpen] = useState(false);
 
-  const loading = packagesLoading;
 
   const [formData, setFormData] = useState({
     appId: '',
@@ -317,7 +318,6 @@ export default function PackagesPage() {
       <AdvancedDataTable
         data={filteredPackages}
         columns={columns}
-        isLoading={loading}
         onEdit={handleEdit}
         onDelete={handleDelete}
         getRowId={(row) => row.id}
@@ -610,5 +610,15 @@ export default function PackagesPage() {
         </DialogContent>
       </Dialog>
     </div>
+  );
+}
+
+export default function PackagesPage() {
+  return (
+    <QueryErrorBoundary>
+      <Suspense fallback={<DataTableSkeleton />}>
+        <PackagesTable />
+      </Suspense>
+    </QueryErrorBoundary>
   );
 }

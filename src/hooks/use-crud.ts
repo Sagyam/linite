@@ -1,10 +1,10 @@
 'use client';
 
-import { useQuery, useMutation, useQueryClient, UseQueryResult, UseMutationResult } from '@tanstack/react-query';
+import { useSuspenseQuery, useMutation, useQueryClient, UseSuspenseQueryResult, UseMutationResult } from '@tanstack/react-query';
 import { toast } from 'sonner';
 
 export interface CrudHooks<T> {
-  useList: () => UseQueryResult<T[], Error>;
+  useList: () => UseSuspenseQueryResult<T[], Error>;
   useDelete: () => UseMutationResult<void, Error, string>;
 }
 
@@ -23,8 +23,8 @@ export interface CrudConfig {
 export function createCrudHooks<T>(config: CrudConfig): CrudHooks<T> {
   const { entityName, pluralName, endpoint, queryKey } = config;
 
-  function useList(): UseQueryResult<T[], Error> {
-    return useQuery({
+  function useList(): UseSuspenseQueryResult<T[], Error> {
+    return useSuspenseQuery({
       queryKey: ['admin', queryKey],
       queryFn: async () => {
         const response = await fetch(endpoint);

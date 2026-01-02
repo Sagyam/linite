@@ -1,6 +1,6 @@
 'use client';
 
-import { useQuery } from '@tanstack/react-query';
+import { useSuspenseQuery } from '@tanstack/react-query';
 
 export interface Distro {
   id: string;
@@ -33,14 +33,12 @@ async function fetchDistros(): Promise<Distro[]> {
 }
 
 export function useDistros() {
-  const { data, isLoading, error } = useQuery({
+  const { data } = useSuspenseQuery({
     queryKey: ['distros'],
     queryFn: fetchDistros,
   });
 
   return {
-    distros: data ?? [],
-    loading: isLoading,
-    error: error?.message ?? null,
+    distros: data,
   };
 }

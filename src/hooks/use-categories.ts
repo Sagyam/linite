@@ -1,6 +1,6 @@
 'use client';
 
-import { useQuery } from '@tanstack/react-query';
+import { useSuspenseQuery } from '@tanstack/react-query';
 
 export interface Category {
   id: string;
@@ -22,14 +22,12 @@ async function fetchCategories(): Promise<Category[]> {
 }
 
 export function useCategories() {
-  const { data, isLoading, error } = useQuery({
+  const { data } = useSuspenseQuery({
     queryKey: ['categories'],
     queryFn: fetchCategories,
   });
 
   return {
-    categories: data ?? [],
-    loading: isLoading,
-    error: error?.message ?? null,
+    categories: data,
   };
 }

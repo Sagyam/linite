@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, Suspense } from 'react';
 import { AdvancedDataTable } from '@/components/admin/advanced-data-table';
 import { ColumnDef } from '@tanstack/react-table';
 import { Breadcrumb } from '@/components/admin/breadcrumb';
@@ -22,9 +22,11 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Switch } from '@/components/ui/switch';
 import { Badge } from '@/components/ui/badge';
+import { QueryErrorBoundary } from '@/components/error-boundary';
+import { DataTableSkeleton } from '@/components/ui/loading-skeletons';
 
-export default function SourcesPage() {
-  const { data: sources = [], isLoading: loading } = useAdminSources();
+function SourcesTable() {
+  const { data: sources } = useAdminSources();
   const deleteSourceMutation = useDeleteSource();
 
   const {
@@ -147,7 +149,6 @@ export default function SourcesPage() {
       <AdvancedDataTable
         data={sources}
         columns={columns}
-        isLoading={loading}
         onEdit={handleEdit}
         onDelete={openDeleteDialog}
         getRowId={(row) => row.id}
@@ -268,5 +269,15 @@ export default function SourcesPage() {
         }
       />
     </div>
+  );
+}
+
+export default function SourcesPage() {
+  return (
+    <QueryErrorBoundary>
+      <Suspense fallback={<DataTableSkeleton />}>
+        <SourcesTable />
+      </Suspense>
+    </QueryErrorBoundary>
   );
 }

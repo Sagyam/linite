@@ -10,45 +10,17 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
-import { LoadingSpinner } from '@/components/loading-spinner';
 import { useDistros } from '@/hooks/use-distros';
 import { useSelectionStore } from '@/stores/selection-store';
 
 export function PersistentDistroBar() {
-  const { distros, loading, error } = useDistros();
+  const { distros } = useDistros();
   const { selectedDistro, setDistro, sourcePreference, setSourcePreference } =
     useSelectionStore();
 
   // Get available sources for selected distro
   const selectedDistroObj = distros.find((d) => d.slug === selectedDistro);
   const availableSources = selectedDistroObj?.distroSources || [];
-
-  if (loading) {
-    return (
-      <div className="border-b bg-muted/30 backdrop-blur-sm">
-        <div className="container mx-auto px-4 py-3">
-          <div className="flex items-center gap-2">
-            <LoadingSpinner size="sm" />
-            <span className="text-sm text-muted-foreground">
-              Loading distributions...
-            </span>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className="border-b bg-destructive/10">
-        <div className="container mx-auto px-4 py-3">
-          <div className="text-sm text-destructive">
-            Failed to load distributions
-          </div>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="sticky top-0 z-40 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 shadow-sm">

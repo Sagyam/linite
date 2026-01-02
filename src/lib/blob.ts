@@ -111,7 +111,7 @@ export async function uploadImageFromUrl(
       });
       return uploadedBlob.url;
     } catch (error) {
-      // If blob exists, we need to handle it differently
+      // If a blob exists, we need to handle it differently
       // Try to get the existing blob URL and delete it first
       if (error instanceof Error && error.message.includes('already exists')) {
         try {

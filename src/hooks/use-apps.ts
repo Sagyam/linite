@@ -1,6 +1,6 @@
 'use client';
 
-import { useQuery } from '@tanstack/react-query';
+import { useSuspenseQuery } from '@tanstack/react-query';
 import type { AppWithRelations } from '@/types';
 
 interface UseAppsOptions {
@@ -25,15 +25,13 @@ async function fetchApps(options: UseAppsOptions = {}): Promise<AppWithRelations
 }
 
 export function useApps(options: UseAppsOptions = {}) {
-  const { data, isLoading, error } = useQuery({
+  const { data } = useSuspenseQuery({
     queryKey: ['apps', options],
     queryFn: () => fetchApps(options),
   });
 
   return {
-    apps: data ?? [],
-    loading: isLoading,
-    error: error?.message ?? null,
+    apps: data,
   };
 }
 

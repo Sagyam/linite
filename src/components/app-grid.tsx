@@ -7,8 +7,6 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { LoadingSpinner } from '@/components/loading-spinner';
-import { ErrorDisplay } from '@/components/error-display';
 import { AppCard } from '@/components/app-card';
 import { useApps } from '@/hooks/use-apps';
 import { useCategories } from '@/hooks/use-categories';
@@ -22,8 +20,8 @@ export function AppGrid() {
   const [showPopular, setShowPopular] = useState(false);
   const [layout, setLayout] = useState<LayoutType>('detailed');
 
-  const { categories, loading: categoriesLoading } = useCategories();
-  const { apps, loading: appsLoading, error } = useApps({
+  const { categories } = useCategories();
+  const { apps } = useApps({
     category: selectedCategory === 'all' ? undefined : selectedCategory,
     popular: showPopular || undefined,
     search: searchQuery || undefined,
@@ -36,16 +34,6 @@ export function AppGrid() {
   };
 
   const hasFilters = selectedCategory !== 'all' || searchQuery || showPopular;
-
-  if (error) {
-    return (
-      <ErrorDisplay
-        title="Failed to load apps"
-        message={error}
-        onRetry={() => window.location.reload()}
-      />
-    );
-  }
 
   return (
     <div className="space-y-6">
@@ -101,7 +89,7 @@ export function AppGrid() {
         </div>
 
         {/* Category Tabs */}
-        {!categoriesLoading && categories.length > 0 && (
+        {categories.length > 0 && (
           <Tabs value={selectedCategory} onValueChange={setSelectedCategory}>
             <TabsList className="w-full justify-start overflow-x-auto flex-nowrap">
               <TabsTrigger value="all">
@@ -140,11 +128,7 @@ export function AppGrid() {
 
       {/* Apps Grid */}
       <ScrollArea className="h-[calc(100vh-28rem)]">
-        {appsLoading ? (
-          <div className="flex justify-center items-center py-12">
-            <LoadingSpinner size="lg" />
-          </div>
-        ) : apps.length === 0 ? (
+        {apps.length === 0 ? (
           <div className="text-center py-12">
             <p className="text-muted-foreground">
               No applications found. Try adjusting your filters.

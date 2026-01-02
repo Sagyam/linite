@@ -156,14 +156,6 @@ export function AdvancedDataTable<TData>({
     return () => container.removeEventListener('scroll', handleScroll);
   }, [fetchMoreOnBottomReached]);
 
-  if (isLoading) {
-    return (
-      <div className="flex items-center justify-center h-64">
-        <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
-      </div>
-    );
-  }
-
   return (
     <div className="space-y-4">
       {enableGlobalFilter && (

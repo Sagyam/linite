@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, Suspense } from 'react';
 import { AdvancedDataTable } from '@/components/admin/advanced-data-table';
 import { ColumnDef } from '@tanstack/react-table';
 import { Breadcrumb } from '@/components/admin/breadcrumb';
@@ -20,9 +20,11 @@ import {
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
+import { QueryErrorBoundary } from '@/components/error-boundary';
+import { DataTableSkeleton } from '@/components/ui/loading-skeletons';
 
-export default function CategoriesPage() {
-  const { data: categories = [], isLoading: loading } = useAdminCategories();
+function CategoriesTable() {
+  const { data: categories } = useAdminCategories();
   const deleteCategoryMutation = useDeleteCategory();
 
   const {
@@ -118,7 +120,6 @@ export default function CategoriesPage() {
       <AdvancedDataTable
         data={categories}
         columns={columns}
-        isLoading={loading}
         onEdit={handleEdit}
         onDelete={openDeleteDialog}
         getRowId={(row) => row.id}
@@ -204,5 +205,15 @@ export default function CategoriesPage() {
         onConfirm={() => confirmDelete(deleteCategoryMutation, (item) => item.id)}
       />
     </div>
+  );
+}
+
+export default function CategoriesPage() {
+  return (
+    <QueryErrorBoundary>
+      <Suspense fallback={<DataTableSkeleton />}>
+        <CategoriesTable />
+      </Suspense>
+    </QueryErrorBoundary>
   );
 }

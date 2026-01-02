@@ -11,37 +11,17 @@ import {
 } from '@/components/ui/select';
 import { Label } from '@/components/ui/label';
 import { Badge } from '@/components/ui/badge';
-import { LoadingSpinner } from '@/components/loading-spinner';
 import { useDistros } from '@/hooks/use-distros';
 import { useSelectionStore } from '@/stores/selection-store';
 
 export function DistroSelector() {
-  const { distros, loading, error } = useDistros();
+  const { distros } = useDistros();
   const { selectedDistro, setDistro, sourcePreference, setSourcePreference } =
     useSelectionStore();
 
   // Get available sources for selected distro
   const selectedDistroObj = distros.find((d) => d.slug === selectedDistro);
   const availableSources = selectedDistroObj?.distroSources || [];
-
-  if (loading) {
-    return (
-      <div className="flex items-center gap-2">
-        <LoadingSpinner size="sm" />
-        <span className="text-sm text-muted-foreground">
-          Loading distributions...
-        </span>
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className="text-sm text-destructive">
-        Failed to load distributions
-      </div>
-    );
-  }
 
   return (
     <div className="space-y-4">

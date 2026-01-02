@@ -3,8 +3,8 @@
 import { useEffect, useRef } from 'react';
 import { Terminal } from 'lucide-react';
 import { Card } from '@/components/ui/card';
-import { LoadingSpinner } from '@/components/loading-spinner';
 import { useCommand } from '@/hooks/use-command';
+import { CommandOutputSkeleton } from '@/components/ui/loading-skeletons';
 import { useSelectionStore } from '@/stores/selection-store';
 import { useClipboard, useMultiClipboard } from '@/hooks/use-clipboard';
 import { toast } from 'sonner';
@@ -114,16 +114,7 @@ export function CommandOutput() {
 
   // Loading state
   if (loading) {
-    return (
-      <Card className="p-6">
-        <div className="flex flex-col items-center gap-3">
-          <LoadingSpinner />
-          <p className="text-sm text-muted-foreground">
-            Generating install command...
-          </p>
-        </div>
-      </Card>
-    );
+    return <CommandOutputSkeleton />;
   }
 
   // Error state
