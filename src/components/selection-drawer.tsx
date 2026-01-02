@@ -13,16 +13,16 @@ import {
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { useSelectionStore } from '@/stores/selection-store';
-import { useApps } from '@/hooks/use-apps';
+import type { AppWithRelations } from '@/types';
 
 interface SelectionDrawerProps {
+  apps: AppWithRelations[];
   open: boolean;
   onOpenChange: (open: boolean) => void;
 }
 
-export function SelectionDrawer({ open, onOpenChange }: SelectionDrawerProps) {
+export function SelectionDrawer({ apps, open, onOpenChange }: SelectionDrawerProps) {
   const { selectedApps, clearApps, deselectApp } = useSelectionStore();
-  const { apps } = useApps({});
 
   const selectedAppsList = apps.filter((app) => selectedApps.has(app.id));
 

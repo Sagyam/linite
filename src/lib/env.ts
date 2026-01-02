@@ -53,18 +53,6 @@ const envSchema = z.object({
     .min(1)
     .optional(),
 
-  // Revalidation times (in seconds) for ISR
-  REVALIDATE_PUBLIC: z
-    .string()
-    .default('3600') // 1 hour
-    .transform(Number)
-    .pipe(z.number().positive()),
-  REVALIDATE_ADMIN: z
-    .string()
-    .default('60') // 1 minute
-    .transform(Number)
-    .pipe(z.number().positive()),
-
   // Node environment
   NODE_ENV: z
     .enum(['development', 'production', 'test'])

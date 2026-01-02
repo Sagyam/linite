@@ -10,8 +10,16 @@ import { SelectionDrawer } from '@/components/selection-drawer';
 import { CommandDialog } from '@/components/command-dialog';
 import { StructuredData } from '@/components/structured-data';
 import { useSelectionStore } from '@/stores/selection-store';
+import type { AppWithRelations, Category } from '@/types';
+import type { Distro } from '@/hooks/use-distros';
 
-export function HomePageClient() {
+interface HomePageClientProps {
+  initialApps: AppWithRelations[];
+  categories: Category[];
+  distros: Distro[];
+}
+
+export function HomePageClient({ initialApps, categories, distros }: HomePageClientProps) {
   const [selectionDrawerOpen, setSelectionDrawerOpen] = useState(false);
   const [commandDialogOpen, setCommandDialogOpen] = useState(false);
   const { selectedApps, selectedDistro } = useSelectionStore();
@@ -44,11 +52,11 @@ export function HomePageClient() {
           </div>
 
           {/* Persistent Distro Bar - Always Visible */}
-          <PersistentDistroBar />
+          <PersistentDistroBar distros={distros} />
 
           {/* App Selection Section - Primary Focus */}
           <div className="container mx-auto px-4 py-8 pb-24">
-            <AppGrid />
+            <AppGrid apps={initialApps} categories={categories} />
           </div>
         </main>
 
@@ -56,12 +64,14 @@ export function HomePageClient() {
 
         {/* Floating Action Bar - Shows when apps are selected */}
         <FloatingActionBar
+          distros={distros}
           onViewSelection={() => setSelectionDrawerOpen(true)}
           onGenerateCommand={handleGenerateCommand}
         />
 
         {/* Selection Drawer - Bottom drawer for reviewing selection */}
         <SelectionDrawer
+          apps={initialApps}
           open={selectionDrawerOpen}
           onOpenChange={setSelectionDrawerOpen}
         />

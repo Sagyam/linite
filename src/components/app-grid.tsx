@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { Search, X, LayoutGrid, List, Grid3x3 } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
@@ -8,24 +8,48 @@ import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { AppCard } from '@/components/app-card';
-import { useApps } from '@/hooks/use-apps';
-import { useCategories } from '@/hooks/use-categories';
 import { getCategoryIcon } from '@/lib/category-icons';
+import type { AppWithRelations, Category } from '@/types';
 
 type LayoutType = 'compact' | 'detailed';
 
-export function AppGrid() {
+interface AppGridProps {
+  apps: AppWithRelations[];
+  categories: Category[];
+}
+
+export function AppGrid({ apps: initialApps, categories }: AppGridProps) {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [showPopular, setShowPopular] = useState(false);
   const [layout, setLayout] = useState<LayoutType>('detailed');
 
-  const { categories } = useCategories();
-  const { apps } = useApps({
-    category: selectedCategory === 'all' ? undefined : selectedCategory,
-    popular: showPopular || undefined,
-    search: searchQuery || undefined,
-  });
+  // Client-side filtering - instant, no API calls
+  const apps = useMemo(() => {
+    return initialApps.filter((app) => {
+      // Category filter
+      if (selectedCategory !== 'all' && app.category?.id !== selectedCategory) {
+        return false;
+      }
+
+      // Popular filter
+      if (showPopular && !app.isPopular) {
+        return false;
+      }
+
+      // Search filter (case-insensitive)
+      if (searchQuery) {
+        const query = searchQuery.toLowerCase();
+        const matchesName = app.displayName.toLowerCase().includes(query);
+        const matchesDescription = app.description?.toLowerCase().includes(query);
+        if (!matchesName && !matchesDescription) {
+          return false;
+        }
+      }
+
+      return true;
+    });
+  }, [initialApps, selectedCategory, showPopular, searchQuery]);
 
   const handleClearFilters = () => {
     setSelectedCategory('all');

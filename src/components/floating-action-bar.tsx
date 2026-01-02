@@ -11,19 +11,20 @@ import {
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { useSelectionStore } from '@/stores/selection-store';
-import { useDistros } from '@/hooks/use-distros';
+import type { Distro } from '@/hooks/use-distros';
 
 interface FloatingActionBarProps {
+  distros: Distro[];
   onViewSelection: () => void;
   onGenerateCommand: () => void;
 }
 
 export function FloatingActionBar({
+  distros,
   onViewSelection,
   onGenerateCommand,
 }: FloatingActionBarProps) {
   const { selectedApps, selectedDistro } = useSelectionStore();
-  const { distros } = useDistros();
 
   // Don't show if no apps selected
   if (selectedApps.size === 0) {

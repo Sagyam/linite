@@ -10,11 +10,14 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
-import { useDistros } from '@/hooks/use-distros';
 import { useSelectionStore } from '@/stores/selection-store';
+import type { Distro } from '@/hooks/use-distros';
 
-export function PersistentDistroBar() {
-  const { distros } = useDistros();
+interface PersistentDistroBarProps {
+  distros: Distro[];
+}
+
+export function PersistentDistroBar({ distros }: PersistentDistroBarProps) {
   const { selectedDistro, setDistro, sourcePreference, setSourcePreference } =
     useSelectionStore();
 
