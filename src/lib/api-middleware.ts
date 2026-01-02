@@ -81,15 +81,20 @@ export function createApiHandler<BodySchema = unknown, QuerySchema = unknown, Co
         }
       }
 
-      // 4. Validate request body if schema provided
+      // 4. Validate request body if schema provided and store validated data
+      let validatedBody: BodySchema | undefined;
       if (config.bodySchema) {
         const bodyValidation = await validateBody(request, config.bodySchema);
         if (!bodyValidation.success) {
           return errorResponse(bodyValidation.error || 'Invalid request body', 400);
         }
+        validatedBody = bodyValidation.data;
       }
 
-      // 5. Execute the handler
+      // 5. Execute the handler (attach validated body to request for handlers to access)
+      if (validatedBody !== undefined) {
+        (request as any)._validatedBody = validatedBody;
+      }
       return await handler(request, context);
     } catch (error) {
       // Use custom error handler if provided
@@ -166,9 +171,9 @@ export function createValidatedApiHandler<BodySchema, Context = unknown>(
       bodySchema,
     },
     async (request, context) => {
-      // Body is already validated by middleware, parse it again for handler
-      const body = await request.json();
-      return handler(request, body as BodySchema, context);
+      // Body is already validated and stored by middleware
+      const body = (request as any)._validatedBody as BodySchema;
+      return handler(request, body, context);
     }
   );
 }

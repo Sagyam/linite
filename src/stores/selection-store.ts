@@ -15,6 +15,7 @@ interface SelectionState {
   toggleApp: (appId: string) => void;
   selectApp: (appId: string) => void;
   deselectApp: (appId: string) => void;
+  setApps: (appIds: string[]) => void;
   clearApps: () => void;
   setDistro: (distroSlug: string | null) => void;
   setSourcePreference: (source: string | null) => void;
@@ -58,6 +59,10 @@ export const useSelectionStore = create<SelectionState>()(
           newSelected.delete(appId);
           return { selectedApps: newSelected };
         });
+      },
+
+      setApps: (appIds: string[]) => {
+        set({ selectedApps: new Set(appIds) });
       },
 
       clearApps: () => {

@@ -4,7 +4,8 @@ import { db } from '@/db';
 import * as schema from '@/db/schema';
 import { eq } from 'drizzle-orm';
 
-const ADMIN_EMAIL = 'sagyamthapa32@gmail.com';
+// Get superadmin email from environment variable
+const SUPERADMIN_EMAIL = process.env.SUPERADMIN_EMAIL || 'sagyamthapa32@gmail.com';
 
 export const auth = betterAuth({
   database: drizzleAdapter(db, {
@@ -21,6 +22,11 @@ export const auth = betterAuth({
       clientId: process.env.GITHUB_CLIENT_ID!,
       clientSecret: process.env.GITHUB_CLIENT_SECRET!,
     },
+    google: {
+      clientId: process.env.GOOGLE_CLIENT_ID || '',
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET || '',
+      enabled: !!(process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET),
+    },
   },
   session: {
     expiresIn: 60 * 60 * 24 * 7, // 7 days
@@ -33,16 +39,17 @@ export const auth = betterAuth({
     additionalFields: {
       role: {
         type: 'string',
-        defaultValue: 'admin',
+        defaultValue: 'user',
         input: false,
       },
     },
   },
   async onSignUp({ user }: { user: { id: string; email: string } }) {
-    // Automatically assign superadmin role to specific email
-    if (user.email === ADMIN_EMAIL) {
+    // Automatically assign superadmin role to authorized email
+    if (user.email === SUPERADMIN_EMAIL) {
       await db.update(schema.user).set({ role: 'superadmin' }).where(eq(schema.user.id, user.id));
     }
+    // Regular users already have 'user' role by default
   },
 });
 

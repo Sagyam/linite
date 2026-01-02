@@ -112,6 +112,68 @@ export interface RefreshLog {
   completedAt: Date;
 }
 
+export interface User {
+  id: string;
+  email: string;
+  name: string | null;
+  emailVerified: boolean;
+  image: string | null;
+  role: 'user' | 'admin' | 'superadmin';
+  createdAt?: Date;
+  updatedAt?: Date;
+}
+
+export interface Collection {
+  id: string;
+  userId: string;
+  name: string;
+  description: string | null;
+  slug: string;
+  iconUrl: string | null;
+  isPublic: boolean;
+  isFeatured: boolean;
+  isTemplate: boolean;
+  shareToken: string | null;
+  viewCount: number;
+  installCount: number;
+  tags: string[] | null;
+  createdAt?: Date;
+  updatedAt?: Date;
+}
+
+export interface CollectionWithRelations extends Collection {
+  user: {
+    id: string;
+    name: string | null;
+    image: string | null;
+  };
+  items: CollectionItemWithApp[];
+  likes?: CollectionLike[];
+  _count?: {
+    likes: number;
+  };
+}
+
+export interface CollectionItem {
+  id: string;
+  collectionId: string;
+  appId: string;
+  displayOrder: number;
+  note: string | null;
+  createdAt?: Date;
+}
+
+export interface CollectionItemWithApp extends CollectionItem {
+  app: App;
+}
+
+export interface CollectionLike {
+  id: string;
+  userId: string;
+  collectionId: string;
+  createdAt?: Date;
+}
+
 // ============================================================================
 // API RESPONSE TYPES
 // ============================================================================

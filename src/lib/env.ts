@@ -32,6 +32,12 @@ const envSchema = z.object({
     .url('BETTER_AUTH_URL must be a valid URL')
     .default('http://localhost:3000'),
 
+  // Superadmin email - Optional (defaults to sagyamthapa32@gmail.com)
+  SUPERADMIN_EMAIL: z
+    .string()
+    .email('SUPERADMIN_EMAIL must be a valid email address')
+    .default('sagyamthapa32@gmail.com'),
+
   // Vercel Blob - Required for image uploads
   BLOB_READ_WRITE_TOKEN: z
     .string()

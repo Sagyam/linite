@@ -20,5 +20,8 @@ export * from './package.schema';
 // Distro source schemas
 export * from './distro-source.schema';
 
+// Collection schemas
+export * from './collection.schema';
+
 // Common schemas
 export * from './common.schema';

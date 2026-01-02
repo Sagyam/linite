@@ -20,7 +20,7 @@ export const user = sqliteTable('user', {
   name: text('name'),
   emailVerified: integer('email_verified', { mode: 'boolean' }).default(false),
   image: text('image'),
-  role: text('role', { enum: ['admin', 'superadmin'] }).default('admin'),
+  role: text('role', { enum: ['user', 'admin', 'superadmin'] }).default('user'),
   ...timestamps,
 });
 
@@ -191,6 +191,71 @@ export const refreshLogs = sqliteTable('refresh_logs', {
   startedAtIdx: index('refresh_logs_started_at_idx').on(table.startedAt),
 }));
 
+// ============ COLLECTION TABLES ============
+
+export const collections = sqliteTable('collections', {
+  id: text('id')
+    .primaryKey()
+    .$defaultFn(() => createId()),
+  userId: text('user_id')
+    .notNull()
+    .references(() => user.id, { onDelete: 'cascade' }),
+  name: text('name').notNull(),
+  description: text('description'),
+  slug: text('slug').notNull().unique(),
+  iconUrl: text('icon_url'),
+  isPublic: integer('is_public', { mode: 'boolean' }).default(false),
+  isFeatured: integer('is_featured', { mode: 'boolean' }).default(false),
+  isTemplate: integer('is_template', { mode: 'boolean' }).default(false),
+  shareToken: text('share_token').unique(),
+  viewCount: integer('view_count').default(0),
+  installCount: integer('install_count').default(0),
+  tags: text('tags', { mode: 'json' }).$type<string[]>(),
+  ...timestamps,
+}, (table) => ({
+  userIdIdx: index('collections_user_id_idx').on(table.userId),
+  slugIdx: index('collections_slug_idx').on(table.slug),
+  isPublicIdx: index('collections_is_public_idx').on(table.isPublic),
+  isFeaturedIdx: index('collections_is_featured_idx').on(table.isFeatured),
+  shareTokenIdx: index('collections_share_token_idx').on(table.shareToken),
+}));
+
+export const collectionItems = sqliteTable('collection_items', {
+  id: text('id')
+    .primaryKey()
+    .$defaultFn(() => createId()),
+  collectionId: text('collection_id')
+    .notNull()
+    .references(() => collections.id, { onDelete: 'cascade' }),
+  appId: text('app_id')
+    .notNull()
+    .references(() => apps.id, { onDelete: 'cascade' }),
+  displayOrder: integer('display_order').default(0),
+  note: text('note'),
+  createdAt: integer('created_at', { mode: 'timestamp' }).$defaultFn(() => new Date()),
+}, (table) => ({
+  collectionIdIdx: index('collection_items_collection_id_idx').on(table.collectionId),
+  appIdIdx: index('collection_items_app_id_idx').on(table.appId),
+  collectionAppIdx: index('collection_items_collection_app_idx').on(table.collectionId, table.appId),
+}));
+
+export const collectionLikes = sqliteTable('collection_likes', {
+  id: text('id')
+    .primaryKey()
+    .$defaultFn(() => createId()),
+  userId: text('user_id')
+    .notNull()
+    .references(() => user.id, { onDelete: 'cascade' }),
+  collectionId: text('collection_id')
+    .notNull()
+    .references(() => collections.id, { onDelete: 'cascade' }),
+  createdAt: integer('created_at', { mode: 'timestamp' }).$defaultFn(() => new Date()),
+}, (table) => ({
+  userIdIdx: index('collection_likes_user_id_idx').on(table.userId),
+  collectionIdIdx: index('collection_likes_collection_id_idx').on(table.collectionId),
+  userCollectionIdx: index('collection_likes_user_collection_idx').on(table.userId, table.collectionId),
+}));
+
 // ============ RELATIONS ============
 
 export const categoriesRelations = relations(categories, ({ many }) => ({
@@ -203,6 +268,7 @@ export const appsRelations = relations(apps, ({ one, many }) => ({
     references: [categories.id],
   }),
   packages: many(packages),
+  collectionItems: many(collectionItems),
 }));
 
 export const sourcesRelations = relations(sources, ({ many }) => ({
@@ -239,6 +305,8 @@ export const distroSourcesRelations = relations(distroSources, ({ one }) => ({
 export const userRelations = relations(user, ({ many }) => ({
   sessions: many(session),
   accounts: many(account),
+  collections: many(collections),
+  collectionLikes: many(collectionLikes),
 }));
 
 export const sessionRelations = relations(session, ({ one }) => ({
@@ -259,5 +327,36 @@ export const refreshLogsRelations = relations(refreshLogs, ({ one }) => ({
   source: one(sources, {
     fields: [refreshLogs.sourceId],
     references: [sources.id],
+  }),
+}));
+
+export const collectionsRelations = relations(collections, ({ one, many }) => ({
+  user: one(user, {
+    fields: [collections.userId],
+    references: [user.id],
+  }),
+  items: many(collectionItems),
+  likes: many(collectionLikes),
+}));
+
+export const collectionItemsRelations = relations(collectionItems, ({ one }) => ({
+  collection: one(collections, {
+    fields: [collectionItems.collectionId],
+    references: [collections.id],
+  }),
+  app: one(apps, {
+    fields: [collectionItems.appId],
+    references: [apps.id],
+  }),
+}));
+
+export const collectionLikesRelations = relations(collectionLikes, ({ one }) => ({
+  user: one(user, {
+    fields: [collectionLikes.userId],
+    references: [user.id],
+  }),
+  collection: one(collections, {
+    fields: [collectionLikes.collectionId],
+    references: [collections.id],
   }),
 }));

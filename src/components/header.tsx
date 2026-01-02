@@ -4,9 +4,13 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { ThemeToggle } from '@/components/theme-toggle';
-import { Github, Star } from 'lucide-react';
+import { UserNav } from '@/components/dashboard/user-nav';
+import { useSession } from '@/lib/auth-client';
+import {Github, Star, LogIn, Home, Shield, LibraryBig} from 'lucide-react';
 
 export function Header() {
+  const { data: session, isPending } = useSession();
+
   return (
     <header className="border-b bg-background">
       <div className="container mx-auto px-4 py-4">
@@ -27,13 +31,25 @@ export function Header() {
             </div>
           </Link>
 
-          <nav className="flex items-center gap-4">
+          <nav className="flex items-center gap-2">
             <Link href="/">
-              <Button variant="ghost">Home</Button>
+              <Button variant="ghost" size="sm">
+                <Home className="h-4 w-4" />
+                Home
+              </Button>
+            </Link>
+            <Link href="/collections">
+              <Button variant="ghost" size="sm" className="gap-2">
+                <LibraryBig className="h-4 w-4" />
+                Collections
+              </Button>
             </Link>
             {process.env.NODE_ENV === 'development' && (
-              <Link href="/admin/login">
-                <Button variant="ghost">Admin</Button>
+              <Link href="/admin">
+                <Button variant="ghost" size="sm">
+                  <Shield className="h-4 w-4" />
+                  Admin
+                </Button>
               </Link>
             )}
             <a
@@ -47,6 +63,21 @@ export function Header() {
                 Star
               </Button>
             </a>
+
+            {/* Show user nav if logged in, otherwise show sign in button */}
+            {!isPending && (
+              session ? (
+                <UserNav />
+              ) : (
+                <Link href="/login">
+                  <Button size="sm" className="gap-2">
+                    <LogIn className="h-4 w-4" />
+                    Sign In
+                  </Button>
+                </Link>
+              )
+            )}
+
             <ThemeToggle />
           </nav>
         </div>
