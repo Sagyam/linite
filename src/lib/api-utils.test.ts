@@ -2,6 +2,7 @@ import { describe, it, expect, beforeEach, vi, type Mock } from 'vitest';
 import { NextRequest, NextResponse } from 'next/server';
 import {
   requireAuth,
+  requireCollectionOwnership,
   errorResponse,
   successResponse,
   withErrorHandling,
@@ -18,7 +19,19 @@ vi.mock('@/lib/auth', () => ({
   },
 }));
 
+// Mock the database
+vi.mock('@/db', () => ({
+  db: {
+    query: {
+      collections: {
+        findFirst: vi.fn(),
+      },
+    },
+  },
+}));
+
 import { auth } from '@/lib/auth';
+import { db } from '@/db';
 
 describe('API Utilities', () => {
   beforeEach(() => {
@@ -485,6 +498,96 @@ describe('API Utilities', () => {
       await wrappedHandler(request, context);
 
       expect(handler).toHaveBeenCalledWith(request, context);
+    });
+  });
+
+  describe('requireCollectionOwnership', () => {
+    it('should return collection when user owns it', async () => {
+      const mockCollection = {
+        id: 'coll-123',
+        userId: 'user-1',
+        name: 'My Collection',
+        slug: 'my-collection',
+        isPublic: false,
+        isFeatured: false,
+        isTemplate: false,
+        shareToken: null,
+        viewCount: 0,
+        installCount: 0,
+        tags: null,
+        iconUrl: null,
+        description: null,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      };
+
+      (db.query.collections.findFirst as Mock).mockResolvedValue(mockCollection);
+
+      const result = await requireCollectionOwnership('coll-123', 'user-1');
+
+      expect(result).toEqual(mockCollection);
+      expect(db.query.collections.findFirst).toHaveBeenCalled();
+    });
+
+    it('should throw error when collection not found', async () => {
+      (db.query.collections.findFirst as Mock).mockResolvedValue(null);
+
+      await expect(
+        requireCollectionOwnership('non-existent', 'user-1')
+      ).rejects.toThrow('Collection not found');
+    });
+
+    it('should throw error when user does not own collection', async () => {
+      const mockCollection = {
+        id: 'coll-123',
+        userId: 'user-1',
+        name: 'Collection',
+        slug: 'collection',
+        isPublic: false,
+        isFeatured: false,
+        isTemplate: false,
+        shareToken: null,
+        viewCount: 0,
+        installCount: 0,
+        tags: null,
+        iconUrl: null,
+        description: null,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      };
+
+      (db.query.collections.findFirst as Mock).mockResolvedValue(mockCollection);
+
+      await expect(
+        requireCollectionOwnership('coll-123', 'user-2')
+      ).rejects.toThrow('Forbidden: You do not own this collection');
+    });
+
+    it('should verify collection ownership correctly', async () => {
+      const mockCollection = {
+        id: 'coll-456',
+        userId: 'owner-123',
+        name: 'Owner Collection',
+        slug: 'owner-collection',
+        isPublic: true,
+        isFeatured: false,
+        isTemplate: false,
+        shareToken: 'abc123',
+        viewCount: 10,
+        installCount: 5,
+        tags: ['test'],
+        iconUrl: 'https://example.com/icon.png',
+        description: 'Test description',
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      };
+
+      (db.query.collections.findFirst as Mock).mockResolvedValue(mockCollection);
+
+      const result = await requireCollectionOwnership('coll-456', 'owner-123');
+
+      expect(result.userId).toBe('owner-123');
+      expect(result.id).toBe('coll-456');
     });
   });
 });
