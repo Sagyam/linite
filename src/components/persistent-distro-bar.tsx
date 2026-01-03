@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect } from 'react';
 import Image from 'next/image';
 import { Monitor, HelpCircle } from 'lucide-react';
 import {
@@ -11,6 +12,7 @@ import {
 } from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
 import { useSelectionStore } from '@/stores/selection-store';
+import { NixosMethodSelector } from '@/components/nixos-method-selector';
 import type { Distro } from '@/hooks/use-distros';
 
 interface PersistentDistroBarProps {
@@ -18,12 +20,34 @@ interface PersistentDistroBarProps {
 }
 
 export function PersistentDistroBar({ distros }: PersistentDistroBarProps) {
-  const { selectedDistro, setDistro, sourcePreference, setSourcePreference } =
-    useSelectionStore();
+  const {
+    selectedDistro,
+    setDistro,
+    sourcePreference,
+    setSourcePreference,
+    nixosInstallMethod,
+    setNixosInstallMethod,
+  } = useSelectionStore();
 
   // Get available sources for selected distro
   const selectedDistroObj = distros.find((d) => d.slug === selectedDistro);
   const availableSources = selectedDistroObj?.distroSources || [];
+
+  // Determine if Nix is the selected/default source for NixOS
+  const nixSource = availableSources.find((s) => s.source.slug === 'nix');
+  const isNixSelected =
+    selectedDistro === 'nixos' &&
+    (sourcePreference === 'nix' || (!sourcePreference && nixSource?.isDefault));
+
+  // Set default NixOS installation method when Nix is selected
+  useEffect(() => {
+    if (isNixSelected && !nixosInstallMethod) {
+      setNixosInstallMethod('nix-shell');
+    } else if (!isNixSelected && nixosInstallMethod) {
+      // Clear NixOS method when switching away from Nix
+      setNixosInstallMethod(null);
+    }
+  }, [isNixSelected, nixosInstallMethod, setNixosInstallMethod]);
 
   return (
     <div className="sticky top-0 z-40 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 shadow-sm">
@@ -111,6 +135,13 @@ export function PersistentDistroBar({ distros }: PersistentDistroBarProps) {
                     ))}
                 </SelectContent>
               </Select>
+            </div>
+          )}
+
+          {/* NixOS Installation Method - only show when Nix is selected */}
+          {isNixSelected && (
+            <div className="flex-1 min-w-0 w-full sm:w-auto animate-in fade-in slide-in-from-top-2 duration-200">
+              <NixosMethodSelector />
             </div>
           )}
         </div>

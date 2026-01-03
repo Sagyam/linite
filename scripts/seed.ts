@@ -98,6 +98,16 @@ async function seed() {
       priority: 8,
       apiEndpoint: 'https://formulae.brew.sh/api/',
     },
+    // NixOS package manager
+    {
+      name: 'Nix',
+      slug: 'nix',
+      installCmd: 'nix-shell -p', // Default to temporary, will be modified by nixosInstallMethod
+      requireSudo: false,
+      setupCmd: null, // Will be set based on installation method
+      priority: 10,
+      apiEndpoint: 'https://www.nixhub.io/v2/',
+    },
     // Windows package managers
     {
       name: 'Winget',
@@ -134,6 +144,7 @@ async function seed() {
     { name: 'Arch Linux', slug: 'arch', family: 'arch', basedOn: null, isPopular: true },
     { name: 'Manjaro', slug: 'manjaro', family: 'arch', basedOn: 'arch', isPopular: true },
     { name: 'openSUSE', slug: 'opensuse', family: 'suse', basedOn: null, isPopular: false },
+    { name: 'NixOS', slug: 'nixos', family: 'nixos', basedOn: null, isPopular: true },
     // Windows
     { name: 'Windows', slug: 'windows', family: 'windows', basedOn: null, isPopular: true },
   ];
@@ -182,6 +193,11 @@ async function seed() {
     // openSUSE
     { distroId: distroMap.opensuse, sourceId: sourceMap.zypper, priority: 10, isDefault: true },
     { distroId: distroMap.opensuse, sourceId: sourceMap.flatpak, priority: 5, isDefault: false },
+
+    // NixOS (with fallback to Flatpak and Snap)
+    { distroId: distroMap.nixos, sourceId: sourceMap.nix, priority: 10, isDefault: true },
+    { distroId: distroMap.nixos, sourceId: sourceMap.flatpak, priority: 5, isDefault: false },
+    { distroId: distroMap.nixos, sourceId: sourceMap.snap, priority: 3, isDefault: false },
 
     // Windows
     { distroId: distroMap.windows, sourceId: sourceMap.winget, priority: 10, isDefault: true },
@@ -1342,6 +1358,69 @@ async function seed() {
     { appId: appMap.btop, sourceId: sourceMap.apt, identifier: 'btop', isAvailable: true },
     { appId: appMap.btop, sourceId: sourceMap.dnf, identifier: 'btop', isAvailable: true },
     { appId: appMap.btop, sourceId: sourceMap.pacman, identifier: 'btop', isAvailable: true },
+
+    // ===== NIXOS PACKAGES =====
+    // === BROWSERS ===
+    { appId: appMap.firefox, sourceId: sourceMap.nix, identifier: 'firefox', isAvailable: true },
+    { appId: appMap.chrome, sourceId: sourceMap.nix, identifier: 'google-chrome', isAvailable: true },
+    { appId: appMap.brave, sourceId: sourceMap.nix, identifier: 'brave', isAvailable: true },
+    { appId: appMap.chromium, sourceId: sourceMap.nix, identifier: 'chromium', isAvailable: true },
+    { appId: appMap.vivaldi, sourceId: sourceMap.nix, identifier: 'vivaldi', isAvailable: true },
+
+    // === DEVELOPMENT ===
+    { appId: appMap.vscode, sourceId: sourceMap.nix, identifier: 'vscode', isAvailable: true },
+    { appId: appMap.git, sourceId: sourceMap.nix, identifier: 'git', isAvailable: true },
+    { appId: appMap.docker, sourceId: sourceMap.nix, identifier: 'docker', isAvailable: true },
+    { appId: appMap.neovim, sourceId: sourceMap.nix, identifier: 'neovim', isAvailable: true },
+    { appId: appMap.emacs, sourceId: sourceMap.nix, identifier: 'emacs', isAvailable: true },
+    { appId: appMap.postman, sourceId: sourceMap.nix, identifier: 'postman', isAvailable: true },
+
+    // === LANGUAGES ===
+    { appId: appMap.nodejs, sourceId: sourceMap.nix, identifier: 'nodejs', isAvailable: true },
+    { appId: appMap.python, sourceId: sourceMap.nix, identifier: 'python3', isAvailable: true },
+    { appId: appMap.java, sourceId: sourceMap.nix, identifier: 'jdk', isAvailable: true },
+    { appId: appMap.golang, sourceId: sourceMap.nix, identifier: 'go', isAvailable: true },
+    { appId: appMap.rust, sourceId: sourceMap.nix, identifier: 'rustc', isAvailable: true },
+    { appId: appMap.ruby, sourceId: sourceMap.nix, identifier: 'ruby', isAvailable: true },
+    { appId: appMap.php, sourceId: sourceMap.nix, identifier: 'php', isAvailable: true },
+    { appId: appMap.gcc, sourceId: sourceMap.nix, identifier: 'gcc', isAvailable: true },
+
+    // === MEDIA ===
+    { appId: appMap.vlc, sourceId: sourceMap.nix, identifier: 'vlc', isAvailable: true },
+    { appId: appMap.spotify, sourceId: sourceMap.nix, identifier: 'spotify', isAvailable: true },
+    { appId: appMap.obs, sourceId: sourceMap.nix, identifier: 'obs-studio', isAvailable: true },
+    { appId: appMap.audacity, sourceId: sourceMap.nix, identifier: 'audacity', isAvailable: true },
+    { appId: appMap.mpv, sourceId: sourceMap.nix, identifier: 'mpv', isAvailable: true },
+
+    // === GRAPHICS ===
+    { appId: appMap.gimp, sourceId: sourceMap.nix, identifier: 'gimp', isAvailable: true },
+    { appId: appMap.inkscape, sourceId: sourceMap.nix, identifier: 'inkscape', isAvailable: true },
+    { appId: appMap.blender, sourceId: sourceMap.nix, identifier: 'blender', isAvailable: true },
+    { appId: appMap.krita, sourceId: sourceMap.nix, identifier: 'krita', isAvailable: true },
+
+    // === OFFICE ===
+    { appId: appMap.libreoffice, sourceId: sourceMap.nix, identifier: 'libreoffice', isAvailable: true },
+    { appId: appMap.obsidian, sourceId: sourceMap.nix, identifier: 'obsidian', isAvailable: true },
+
+    // === UTILITIES ===
+    { appId: appMap.filezilla, sourceId: sourceMap.nix, identifier: 'filezilla', isAvailable: true },
+    { appId: appMap.flameshot, sourceId: sourceMap.nix, identifier: 'flameshot', isAvailable: true },
+
+    // === COMMUNICATION ===
+    { appId: appMap.discord, sourceId: sourceMap.nix, identifier: 'discord', isAvailable: true },
+    { appId: appMap.slack, sourceId: sourceMap.nix, identifier: 'slack', isAvailable: true },
+    { appId: appMap.thunderbird, sourceId: sourceMap.nix, identifier: 'thunderbird', isAvailable: true },
+    { appId: appMap.telegram, sourceId: sourceMap.nix, identifier: 'telegram-desktop', isAvailable: true },
+    { appId: appMap.zoom, sourceId: sourceMap.nix, identifier: 'zoom-us', isAvailable: true },
+
+    // === GAMES ===
+    { appId: appMap.steam, sourceId: sourceMap.nix, identifier: 'steam', isAvailable: true },
+
+    // === SECURITY ===
+    { appId: appMap.keepassxc, sourceId: sourceMap.nix, identifier: 'keepassxc', isAvailable: true },
+
+    // === SYSTEM ===
+    { appId: appMap.btop, sourceId: sourceMap.nix, identifier: 'btop', isAvailable: true },
 
     // ===== WINDOWS PACKAGES =====
     // Browsers

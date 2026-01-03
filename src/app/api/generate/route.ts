@@ -36,10 +36,29 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Validate nixosInstallMethod if provided
+    if (body.nixosInstallMethod && typeof body.nixosInstallMethod !== 'string') {
+      return NextResponse.json(
+        { error: 'nixosInstallMethod must be a string' },
+        { status: 400 }
+      );
+    }
+
+    if (
+      body.nixosInstallMethod &&
+      !['nix-shell', 'nix-env', 'nix-flakes'].includes(body.nixosInstallMethod)
+    ) {
+      return NextResponse.json(
+        { error: 'nixosInstallMethod must be one of: nix-shell, nix-env, nix-flakes' },
+        { status: 400 }
+      );
+    }
+
     const requestData: GenerateCommandRequest = {
       distroSlug: body.distroSlug,
       appIds: body.appIds,
       sourcePreference: body.sourcePreference,
+      nixosInstallMethod: body.nixosInstallMethod,
     };
 
     const result = await generateInstallCommands(requestData);

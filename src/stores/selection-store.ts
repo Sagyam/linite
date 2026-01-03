@@ -11,6 +11,9 @@ interface SelectionState {
   // Source preference (flatpak, snap, etc.)
   sourcePreference: string | null;
 
+  // NixOS installation method (only applies when distro is NixOS)
+  nixosInstallMethod: 'nix-shell' | 'nix-env' | 'nix-flakes' | null;
+
   // Actions
   toggleApp: (appId: string) => void;
   selectApp: (appId: string) => void;
@@ -19,6 +22,7 @@ interface SelectionState {
   clearApps: () => void;
   setDistro: (distroSlug: string | null) => void;
   setSourcePreference: (source: string | null) => void;
+  setNixosInstallMethod: (method: 'nix-shell' | 'nix-env' | 'nix-flakes' | null) => void;
   reset: () => void;
 
   // Computed
@@ -32,6 +36,7 @@ export const useSelectionStore = create<SelectionState>()(
       selectedApps: new Set<string>(),
       selectedDistro: null,
       sourcePreference: null,
+      nixosInstallMethod: null,
 
       toggleApp: (appId: string) => {
         set((state) => {
@@ -77,11 +82,16 @@ export const useSelectionStore = create<SelectionState>()(
         set({ sourcePreference: source });
       },
 
+      setNixosInstallMethod: (method: 'nix-shell' | 'nix-env' | 'nix-flakes' | null) => {
+        set({ nixosInstallMethod: method });
+      },
+
       reset: () => {
         set({
           selectedApps: new Set<string>(),
           selectedDistro: null,
           sourcePreference: null,
+          nixosInstallMethod: null,
         });
       },
 

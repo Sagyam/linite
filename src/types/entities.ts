@@ -203,6 +203,7 @@ export interface GenerateCommandRequest {
   distroSlug: string;
   appIds: string[];
   sourcePreference?: string;
+  nixosInstallMethod?: 'nix-shell' | 'nix-env' | 'nix-flakes';
 }
 
 export interface GenerateCommandResponse {

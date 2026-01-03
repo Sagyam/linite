@@ -17,6 +17,7 @@ interface GenerateCommandParams {
   distroSlug: string;
   appIds: string[];
   sourcePreference?: string;
+  nixosInstallMethod?: 'nix-shell' | 'nix-env' | 'nix-flakes';
 }
 
 async function generateCommand(params: GenerateCommandParams): Promise<GenerateCommandResponse> {
@@ -37,7 +38,8 @@ async function generateCommand(params: GenerateCommandParams): Promise<GenerateC
 }
 
 export function useCommand() {
-  const { getSelectedAppIds, selectedDistro, sourcePreference } = useSelectionStore();
+  const { getSelectedAppIds, selectedDistro, sourcePreference, nixosInstallMethod } =
+    useSelectionStore();
 
   const mutation = useMutation({
     mutationFn: generateCommand,
@@ -60,6 +62,7 @@ export function useCommand() {
       distroSlug: selectedDistro,
       appIds,
       sourcePreference: sourcePreference || undefined,
+      nixosInstallMethod: nixosInstallMethod || undefined,
     });
   };
 

@@ -24,10 +24,32 @@ interface SelectedPackage {
 /**
  * Generates install commands for selected apps based on distro and source preferences
  */
+// Helper function to get Nix command templates based on installation method
+function getNixCommandTemplate(method: 'nix-shell' | 'nix-env' | 'nix-flakes' | null) {
+  switch (method) {
+    case 'nix-env':
+      return {
+        installCmd: 'nix-env -iA nixpkgs.',
+        setupCmd: 'nix-channel --update',
+      };
+    case 'nix-flakes':
+      return {
+        installCmd: 'nix profile install nixpkgs#',
+        setupCmd: 'nix-channel --update && echo "experimental-features = nix-command flakes" >> ~/.config/nix/nix.conf',
+      };
+    case 'nix-shell':
+    default:
+      return {
+        installCmd: 'nix-shell -p',
+        setupCmd: null,
+      };
+  }
+}
+
 export async function generateInstallCommands(
   request: GenerateCommandRequest
 ): Promise<GenerateCommandResponse> {
-  const { distroSlug, appIds, sourcePreference } = request;
+  const { distroSlug, appIds, sourcePreference, nixosInstallMethod } = request;
 
   // 1. Get the selected distro with its available sources
   const distro = await db.query.distros.findFirst({
@@ -149,18 +171,27 @@ export async function generateInstallCommands(
     const firstPkg = pkgs[0];
     const packageIdentifiers = pkgs.map((p) => p.packageIdentifier);
 
+    // For Nix source, use the command template based on installation method
+    let installCmd = firstPkg.installCmd;
+    let setupCmd = firstPkg.setupCmd;
+
+    if (sourceSlug === 'nix' && nixosInstallMethod) {
+      const nixTemplate = getNixCommandTemplate(nixosInstallMethod);
+      installCmd = nixTemplate.installCmd;
+      setupCmd = nixTemplate.setupCmd;
+    }
+
     // Add setup command if needed (only once per source)
-    if (firstPkg.setupCmd && !processedSetupCmds.has(sourceSlug)) {
-      setupCommands.push(firstPkg.setupCmd);
+    if (setupCmd && !processedSetupCmds.has(sourceSlug)) {
+      setupCommands.push(setupCmd);
       processedSetupCmds.add(sourceSlug);
     }
 
     // Build the install command
-    const cmd = firstPkg.installCmd;
     const packageList = packageIdentifiers.join(' ');
     const fullCommand = firstPkg.requireSudo
-      ? `sudo ${cmd} ${packageList}`
-      : `${cmd} ${packageList}`;
+      ? `sudo ${installCmd} ${packageList}`
+      : `${installCmd} ${packageList}`;
 
     commands.push(fullCommand);
 

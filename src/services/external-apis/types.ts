@@ -13,7 +13,7 @@ export interface PackageSearchResult {
   license?: string;
   maintainer?: string;
   downloadSize?: number; // Size in bytes
-  source: 'flatpak' | 'snap' | 'repology' | 'aur' | 'homebrew' | 'winget';
+  source: 'flatpak' | 'snap' | 'repology' | 'aur' | 'homebrew' | 'winget' | 'nixhub';
 }
 
 export interface PackageMetadata {
@@ -30,7 +30,7 @@ export interface PackageMetadata {
   categories?: string[];
   screenshots?: string[];
   releaseDate?: string;
-  source: 'flatpak' | 'snap' | 'repology' | 'aur' | 'homebrew' | 'winget';
+  source: 'flatpak' | 'snap' | 'repology' | 'aur' | 'homebrew' | 'winget' | 'nixhub';
   metadata?: Record<string, unknown>; // Source-specific extra data
 }
 
