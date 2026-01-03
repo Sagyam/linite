@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach, vi } from 'vitest';
+import { describe, it, expect, beforeEach, beforeAll, afterAll, vi, type Mock } from 'vitest';
 import {
   searchRepology,
   getRepologyProjectMetadata,
@@ -10,6 +10,16 @@ import {
 global.fetch = vi.fn() as Mock;
 
 describe('Repology API Client', () => {
+  // Suppress console.error for tests that intentionally throw errors
+  const originalConsoleError = console.error;
+  beforeAll(() => {
+    console.error = vi.fn();
+  });
+
+  afterAll(() => {
+    console.error = originalConsoleError;
+  });
+
   beforeEach(() => {
     vi.clearAllMocks();
     clearRepologyCache();

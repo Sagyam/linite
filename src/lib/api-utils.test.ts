@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach, vi, type Mock } from 'vitest';
+import { describe, it, expect, beforeEach, beforeAll, afterAll, vi, type Mock } from 'vitest';
 import { NextRequest, NextResponse } from 'next/server';
 import {
   requireAuth,
@@ -34,6 +34,16 @@ import { auth } from '@/lib/auth';
 import { db } from '@/db';
 
 describe('API Utilities', () => {
+  // Suppress console.error for tests that intentionally throw errors
+  const originalConsoleError = console.error;
+  beforeAll(() => {
+    console.error = vi.fn();
+  });
+
+  afterAll(() => {
+    console.error = originalConsoleError;
+  });
+
   beforeEach(() => {
     vi.clearAllMocks();
   });
