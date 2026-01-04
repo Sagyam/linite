@@ -2374,5 +2374,293 @@
     "source": "scoop",
     "identifier": "veracrypt",
     "isAvailable": true
+  },
+  {
+    "app": "tmux",
+    "source": "apt",
+    "identifier": "tmux",
+    "isAvailable": true
+  },
+  {
+    "app": "tmux",
+    "source": "dnf",
+    "identifier": "tmux",
+    "isAvailable": true
+  },
+  {
+    "app": "tmux",
+    "source": "pacman",
+    "identifier": "tmux",
+    "isAvailable": true
+  },
+  {
+    "app": "tmux",
+    "source": "homebrew",
+    "identifier": "tmux",
+    "isAvailable": true
+  },
+  {
+    "app": "ghostty",
+    "source": "homebrew",
+    "identifier": "ghostty",
+    "isAvailable": true
+  },
+  {
+    "app": "ghostty",
+    "source": "aur",
+    "identifier": "ghostty",
+    "isAvailable": true
+  },
+  {
+    "app": "zsh",
+    "source": "apt",
+    "identifier": "zsh",
+    "isAvailable": true
+  },
+  {
+    "app": "zsh",
+    "source": "dnf",
+    "identifier": "zsh",
+    "isAvailable": true
+  },
+  {
+    "app": "zsh",
+    "source": "pacman",
+    "identifier": "zsh",
+    "isAvailable": true
+  },
+  {
+    "app": "zsh",
+    "source": "homebrew",
+    "identifier": "zsh",
+    "isAvailable": true
+  },
+  {
+    "app": "lazygit",
+    "source": "homebrew",
+    "identifier": "lazygit",
+    "isAvailable": true
+  },
+  {
+    "app": "lazygit",
+    "source": "pacman",
+    "identifier": "lazygit",
+    "isAvailable": true
+  },
+  {
+    "app": "lazygit",
+    "source": "aur",
+    "identifier": "lazygit",
+    "isAvailable": true
+  },
+  {
+    "app": "lazydocker",
+    "source": "homebrew",
+    "identifier": "lazydocker",
+    "isAvailable": true
+  },
+  {
+    "app": "lazydocker",
+    "source": "aur",
+    "identifier": "lazydocker",
+    "isAvailable": true
+  },
+  {
+    "app": "k9s",
+    "source": "homebrew",
+    "identifier": "k9s",
+    "isAvailable": true
+  },
+  {
+    "app": "k9s",
+    "source": "pacman",
+    "identifier": "k9s",
+    "isAvailable": true
+  },
+  {
+    "app": "k9s",
+    "source": "aur",
+    "identifier": "k9s",
+    "isAvailable": true
+  },
+  {
+    "app": "jq",
+    "source": "apt",
+    "identifier": "jq",
+    "isAvailable": true
+  },
+  {
+    "app": "jq",
+    "source": "dnf",
+    "identifier": "jq",
+    "isAvailable": true
+  },
+  {
+    "app": "jq",
+    "source": "pacman",
+    "identifier": "jq",
+    "isAvailable": true
+  },
+  {
+    "app": "jq",
+    "source": "homebrew",
+    "identifier": "jq",
+    "isAvailable": true
+  },
+  {
+    "app": "yq",
+    "source": "homebrew",
+    "identifier": "yq",
+    "isAvailable": true
+  },
+  {
+    "app": "yq",
+    "source": "pacman",
+    "identifier": "yq",
+    "isAvailable": true
+  },
+  {
+    "app": "yq",
+    "source": "aur",
+    "identifier": "yq",
+    "isAvailable": true
+  },
+  {
+    "app": "fzf",
+    "source": "apt",
+    "identifier": "fzf",
+    "isAvailable": true
+  },
+  {
+    "app": "fzf",
+    "source": "dnf",
+    "identifier": "fzf",
+    "isAvailable": true
+  },
+  {
+    "app": "fzf",
+    "source": "pacman",
+    "identifier": "fzf",
+    "isAvailable": true
+  },
+  {
+    "app": "fzf",
+    "source": "homebrew",
+    "identifier": "fzf",
+    "isAvailable": true
+  },
+  {
+    "app": "bat",
+    "source": "apt",
+    "identifier": "bat",
+    "isAvailable": true
+  },
+  {
+    "app": "bat",
+    "source": "dnf",
+    "identifier": "bat",
+    "isAvailable": true
+  },
+  {
+    "app": "bat",
+    "source": "pacman",
+    "identifier": "bat",
+    "isAvailable": true
+  },
+  {
+    "app": "bat",
+    "source": "homebrew",
+    "identifier": "bat",
+    "isAvailable": true
+  },
+  {
+    "app": "eza",
+    "source": "homebrew",
+    "identifier": "eza",
+    "isAvailable": true
+  },
+  {
+    "app": "eza",
+    "source": "pacman",
+    "identifier": "eza",
+    "isAvailable": true
+  },
+  {
+    "app": "eza",
+    "source": "aur",
+    "identifier": "eza",
+    "isAvailable": true
+  },
+  {
+    "app": "tldr",
+    "source": "apt",
+    "identifier": "tldr",
+    "isAvailable": true
+  },
+  {
+    "app": "tldr",
+    "source": "dnf",
+    "identifier": "tldr",
+    "isAvailable": true
+  },
+  {
+    "app": "tldr",
+    "source": "pacman",
+    "identifier": "tldr",
+    "isAvailable": true
+  },
+  {
+    "app": "tldr",
+    "source": "homebrew",
+    "identifier": "tldr",
+    "isAvailable": true
+  },
+  {
+    "app": "ripgrep",
+    "source": "apt",
+    "identifier": "ripgrep",
+    "isAvailable": true
+  },
+  {
+    "app": "ripgrep",
+    "source": "dnf",
+    "identifier": "ripgrep",
+    "isAvailable": true
+  },
+  {
+    "app": "ripgrep",
+    "source": "pacman",
+    "identifier": "ripgrep",
+    "isAvailable": true
+  },
+  {
+    "app": "ripgrep",
+    "source": "homebrew",
+    "identifier": "ripgrep",
+    "isAvailable": true
+  },
+  {
+    "app": "httpie",
+    "source": "apt",
+    "identifier": "httpie",
+    "isAvailable": true
+  },
+  {
+    "app": "httpie",
+    "source": "dnf",
+    "identifier": "httpie",
+    "isAvailable": true
+  },
+  {
+    "app": "httpie",
+    "source": "pacman",
+    "identifier": "httpie",
+    "isAvailable": true
+  },
+  {
+    "app": "httpie",
+    "source": "homebrew",
+    "identifier": "httpie",
+    "isAvailable": true
   }
 ]

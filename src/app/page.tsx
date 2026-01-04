@@ -1,17 +1,14 @@
 import { db, distros } from '@/db';
 import { desc } from 'drizzle-orm';
-import { appsRepository, categoriesRepository } from '@/repositories';
+import { categoriesRepository } from '@/repositories';
 import { HomePageClient } from '@/components/home-page-client';
 
 // Revalidate every hour (data doesn't change frequently)
 export const revalidate = 3600;
 
 export default async function HomePage() {
-  // Fetch all data on the server in parallel
-  const [apps, categories, allDistros] = await Promise.all([
-    // Fetch all apps with relations (no filters on server)
-    appsRepository.findWithFilters({}),
-
+  // Fetch data on the server (only non-app data for faster initial load)
+  const [categories, allDistros] = await Promise.all([
     // Fetch all categories
     categoriesRepository.findAllOrdered(),
 
@@ -52,7 +49,6 @@ export default async function HomePage() {
 
   return (
     <HomePageClient
-      initialApps={apps}
       categories={categories}
       distros={normalizedDistros}
     />

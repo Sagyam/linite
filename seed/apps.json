@@ -673,5 +673,131 @@
     "isPopular": false,
     "isFoss": true,
     "category": "system"
+  },
+  {
+    "slug": "tmux",
+    "displayName": "tmux",
+    "description": "Terminal multiplexer for managing multiple terminal sessions",
+    "homepage": "https://github.com/tmux/tmux",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "system"
+  },
+  {
+    "slug": "ghostty",
+    "displayName": "Ghostty",
+    "description": "Fast, feature-rich, and cross-platform terminal emulator",
+    "homepage": "https://ghostty.org",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "system"
+  },
+  {
+    "slug": "zsh",
+    "displayName": "Zsh",
+    "description": "Powerful shell with advanced features and customization",
+    "homepage": "https://zsh.org",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "system"
+  },
+  {
+    "slug": "lazygit",
+    "displayName": "lazygit",
+    "description": "Simple terminal UI for git commands",
+    "homepage": "https://github.com/jesseduffield/lazygit",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "tui"
+  },
+  {
+    "slug": "lazydocker",
+    "displayName": "lazydocker",
+    "description": "Simple terminal UI for both docker and docker-compose",
+    "homepage": "https://github.com/jesseduffield/lazydocker",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "tui"
+  },
+  {
+    "slug": "k9s",
+    "displayName": "k9s",
+    "description": "Terminal UI to interact with your Kubernetes clusters",
+    "homepage": "https://k9scli.io",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "tui"
+  },
+  {
+    "slug": "jq",
+    "displayName": "jq",
+    "description": "Lightweight and flexible command-line JSON processor",
+    "homepage": "https://jqlang.github.io/jq",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "cli"
+  },
+  {
+    "slug": "yq",
+    "displayName": "yq",
+    "description": "Lightweight and portable command-line YAML processor",
+    "homepage": "https://github.com/mikefarah/yq",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "cli"
+  },
+  {
+    "slug": "fzf",
+    "displayName": "fzf",
+    "description": "Command-line fuzzy finder",
+    "homepage": "https://github.com/junegunn/fzf",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "cli"
+  },
+  {
+    "slug": "bat",
+    "displayName": "bat",
+    "description": "Cat clone with syntax highlighting and Git integration",
+    "homepage": "https://github.com/sharkdp/bat",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "cli"
+  },
+  {
+    "slug": "eza",
+    "displayName": "eza",
+    "description": "Modern replacement for ls with colors and icons",
+    "homepage": "https://github.com/eza-community/eza",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "cli"
+  },
+  {
+    "slug": "tldr",
+    "displayName": "tldr",
+    "description": "Simplified and community-driven man pages",
+    "homepage": "https://tldr.sh",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "cli"
+  },
+  {
+    "slug": "ripgrep",
+    "displayName": "ripgrep",
+    "description": "Line-oriented search tool that recursively searches directories",
+    "homepage": "https://github.com/BurntSushi/ripgrep",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "cli"
+  },
+  {
+    "slug": "httpie",
+    "displayName": "HTTPie",
+    "description": "User-friendly command-line HTTP client",
+    "homepage": "https://httpie.io",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "cli"
   }
 ]

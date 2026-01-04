@@ -1,55 +1,80 @@
 'use client';
 
-import { useState, useMemo } from 'react';
-import { Search, X, LayoutGrid, List, Grid3x3 } from 'lucide-react';
+import { useState, useMemo, useEffect, useRef } from 'react';
+import { Search, X, LayoutGrid, List, Grid3x3, Loader2 } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { ScrollArea } from '@/components/ui/scroll-area';
 import { AppCard } from '@/components/app-card';
 import { getCategoryIcon } from '@/lib/category-icons';
-import type { AppWithRelations, Category } from '@/types';
+import { useApps } from '@/hooks/use-apps';
+import { useDebounce } from '@/hooks/use-debounce';
+import type { Category } from '@/types';
 
 type LayoutType = 'compact' | 'detailed';
 
 interface AppGridProps {
-  apps: AppWithRelations[];
   categories: Category[];
 }
 
-export function AppGrid({ apps: initialApps, categories }: AppGridProps) {
+export function AppGrid({ categories }: AppGridProps) {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [showPopular, setShowPopular] = useState(false);
   const [layout, setLayout] = useState<LayoutType>('detailed');
 
-  // Client-side filtering - instant, no API calls
+  // Debounce search to avoid too many API calls
+  const debouncedSearch = useDebounce(searchQuery, 300);
+
+  // Infinite scroll observer ref
+  const loadMoreRef = useRef<HTMLDivElement>(null);
+
+  // Fetch apps with pagination
+  const {
+    data,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+    isLoading,
+    isError,
+  } = useApps({
+    category: selectedCategory === 'all' ? undefined : selectedCategory,
+    popular: showPopular || undefined,
+    search: debouncedSearch || undefined,
+  });
+
+  // Flatten all pages into single array
   const apps = useMemo(() => {
-    return initialApps.filter((app) => {
-      // Category filter
-      if (selectedCategory !== 'all' && app.category?.id !== selectedCategory) {
-        return false;
-      }
+    return data?.pages.flatMap((page) => page.apps) ?? [];
+  }, [data]);
 
-      // Popular filter
-      if (showPopular && !app.isPopular) {
-        return false;
-      }
+  // Total count from first page
+  const totalCount = data?.pages[0]?.pagination.total ?? 0;
 
-      // Search filter (case-insensitive)
-      if (searchQuery) {
-        const query = searchQuery.toLowerCase();
-        const matchesName = app.displayName.toLowerCase().includes(query);
-        const matchesDescription = app.description?.toLowerCase().includes(query);
-        if (!matchesName && !matchesDescription) {
-          return false;
+  // Intersection observer for infinite scroll
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries;
+        if (entry.isIntersecting && hasNextPage && !isFetchingNextPage) {
+          fetchNextPage();
         }
-      }
+      },
+      { threshold: 0.1 }
+    );
 
-      return true;
-    });
-  }, [initialApps, selectedCategory, showPopular, searchQuery]);
+    const currentRef = loadMoreRef.current;
+    if (currentRef) {
+      observer.observe(currentRef);
+    }
+
+    return () => {
+      if (currentRef) {
+        observer.unobserve(currentRef);
+      }
+    };
+  }, [hasNextPage, isFetchingNextPage, fetchNextPage]);
 
   const handleClearFilters = () => {
     setSelectedCategory('all');
@@ -150,34 +175,74 @@ export function AppGrid({ apps: initialApps, categories }: AppGridProps) {
         </div>
       )}
 
-      {/* Apps Grid */}
-      <ScrollArea className="h-[calc(100vh-28rem)]">
-        {apps.length === 0 ? (
-          <div className="text-center py-12">
-            <p className="text-muted-foreground">
-              No applications found. Try adjusting your filters.
-            </p>
-          </div>
-        ) : (
-          <div className="space-y-4 pr-4">
-            <div
-              className={`grid gap-3 ${
-                layout === 'compact'
-                  ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'
-                  : 'grid-cols-1 lg:grid-cols-2'
-              }`}
-            >
-              {apps.map((app) => (
-                <AppCard key={app.id} app={app} layout={layout} />
-              ))}
-            </div>
+      {/* Loading State */}
+      {isLoading && (
+        <div className="text-center py-12">
+          <Loader2 className="w-8 h-8 animate-spin mx-auto mb-4" />
+          <p className="text-muted-foreground">Loading applications...</p>
+        </div>
+      )}
 
-            <div className="text-center text-sm text-muted-foreground pb-4">
-              Showing {apps.length} {apps.length === 1 ? 'app' : 'apps'}
+      {/* Error State */}
+      {isError && (
+        <div className="text-center py-12">
+          <p className="text-destructive mb-2">Failed to load applications</p>
+          <p className="text-sm text-muted-foreground">
+            Please try again later or contact support
+          </p>
+        </div>
+      )}
+
+      {/* Apps Grid */}
+      {!isLoading && !isError && (
+        <>
+          {apps.length === 0 ? (
+            <div className="text-center py-12">
+              <p className="text-muted-foreground">
+                No applications found. Try adjusting your filters.
+              </p>
             </div>
-          </div>
-        )}
-      </ScrollArea>
+          ) : (
+            <div className="space-y-4">
+              <div
+                className={`grid gap-3 ${
+                  layout === 'compact'
+                    ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'
+                    : 'grid-cols-1 lg:grid-cols-2'
+                }`}
+              >
+                {apps.map((app) => (
+                  <AppCard key={app.id} app={app} layout={layout} />
+                ))}
+              </div>
+
+              {/* Infinite scroll trigger */}
+              <div ref={loadMoreRef} className="py-8 text-center">
+                {isFetchingNextPage ? (
+                  <div className="flex items-center justify-center gap-2">
+                    <Loader2 className="w-5 h-5 animate-spin" />
+                    <span className="text-sm text-muted-foreground">
+                      Loading more apps...
+                    </span>
+                  </div>
+                ) : hasNextPage ? (
+                  <Button
+                    variant="outline"
+                    onClick={() => fetchNextPage()}
+                    className="gap-2"
+                  >
+                    Load More Apps
+                  </Button>
+                ) : (
+                  <p className="text-sm text-muted-foreground">
+                    Showing {apps.length} of {totalCount} apps
+                  </p>
+                )}
+              </div>
+            </div>
+          )}
+        </>
+      )}
     </div>
   );
 }

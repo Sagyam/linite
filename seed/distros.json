@@ -68,5 +68,40 @@
     "family": "windows",
     "basedOn": null,
     "isPopular": true
+  },
+  {
+    "name": "Zorin OS",
+    "slug": "zorin",
+    "family": "debian",
+    "basedOn": "ubuntu",
+    "isPopular": true
+  },
+  {
+    "name": "Elementary OS",
+    "slug": "elementary",
+    "family": "debian",
+    "basedOn": "ubuntu",
+    "isPopular": true
+  },
+  {
+    "name": "Nobara",
+    "slug": "nobara",
+    "family": "rhel",
+    "basedOn": "fedora",
+    "isPopular": true
+  },
+  {
+    "name": "Bazzite",
+    "slug": "bazzite",
+    "family": "rhel",
+    "basedOn": "fedora",
+    "isPopular": true
+  },
+  {
+    "name": "CachyOS",
+    "slug": "cachyos",
+    "family": "arch",
+    "basedOn": "arch",
+    "isPopular": true
   }
 ]

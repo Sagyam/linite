@@ -64,5 +64,17 @@
     "slug": "system",
     "icon": "Settings",
     "displayOrder": 11
+  },
+  {
+    "name": "TUI",
+    "slug": "tui",
+    "icon": "Terminal",
+    "displayOrder": 12
+  },
+  {
+    "name": "CLI",
+    "slug": "cli",
+    "icon": "Command",
+    "displayOrder": 13
   }
 ]

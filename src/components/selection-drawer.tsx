@@ -1,7 +1,8 @@
 'use client';
 
 import Image from 'next/image';
-import { Package2, Trash2, X } from 'lucide-react';
+import { useQuery } from '@tanstack/react-query';
+import { Package2, Trash2, X, Loader2 } from 'lucide-react';
 import {
   Drawer,
   DrawerClose,
@@ -16,15 +17,26 @@ import { useSelectionStore } from '@/stores/selection-store';
 import type { AppWithRelations } from '@/types';
 
 interface SelectionDrawerProps {
-  apps: AppWithRelations[];
   open: boolean;
   onOpenChange: (open: boolean) => void;
 }
 
-export function SelectionDrawer({ apps, open, onOpenChange }: SelectionDrawerProps) {
+export function SelectionDrawer({ open, onOpenChange }: SelectionDrawerProps) {
   const { selectedApps, clearApps, deselectApp } = useSelectionStore();
 
-  const selectedAppsList = apps.filter((app) => selectedApps.has(app.id));
+  // Fetch apps for the selection drawer (only fetch when open and has selections)
+  const { data: appsData, isLoading } = useQuery({
+    queryKey: ['selection-apps'],
+    queryFn: async () => {
+      const response = await fetch('/api/apps?limit=100');
+      if (!response.ok) throw new Error('Failed to fetch apps');
+      const result = await response.json();
+      return result.apps as AppWithRelations[];
+    },
+    enabled: open && selectedApps.size > 0,
+  });
+
+  const selectedAppsList = (appsData || []).filter((app) => selectedApps.has(app.id));
 
   return (
     <Drawer open={open} onOpenChange={onOpenChange}>
@@ -51,24 +63,29 @@ export function SelectionDrawer({ apps, open, onOpenChange }: SelectionDrawerPro
           </DrawerHeader>
 
           <div className="px-4 pb-8 overflow-y-auto max-h-[60vh]">
-            <div className="space-y-6">
-              {/* Selected Apps List */}
-              <div>
-                <div className="flex items-center justify-between mb-3">
-                  <h3 className="font-semibold">Selected Applications</h3>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={clearApps}
-                    className="gap-2"
-                  >
-                    <Trash2 className="w-3 h-3" />
-                    Clear All
-                  </Button>
-                </div>
+            {isLoading ? (
+              <div className="flex items-center justify-center py-12">
+                <Loader2 className="w-6 h-6 animate-spin" />
+              </div>
+            ) : (
+              <div className="space-y-6">
+                {/* Selected Apps List */}
+                <div>
+                  <div className="flex items-center justify-between mb-3">
+                    <h3 className="font-semibold">Selected Applications</h3>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={clearApps}
+                      className="gap-2"
+                    >
+                      <Trash2 className="w-3 h-3" />
+                      Clear All
+                    </Button>
+                  </div>
 
-                <div className="space-y-2">
-                  {selectedAppsList.map((app) => (
+                  <div className="space-y-2">
+                    {selectedAppsList.map((app) => (
                     <div
                       key={app.id}
                       className="flex items-start gap-3 p-3 rounded-lg border bg-card hover:bg-muted/50 transition-colors"
@@ -126,10 +143,11 @@ export function SelectionDrawer({ apps, open, onOpenChange }: SelectionDrawerPro
                         </div>
                       </div>
                     </div>
-                  ))}
+                    ))}
+                  </div>
                 </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
       </DrawerContent>

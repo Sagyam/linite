@@ -14,12 +14,11 @@ import type { AppWithRelations, Category } from '@/types';
 import type { Distro } from '@/hooks/use-distros';
 
 interface HomePageClientProps {
-  initialApps: AppWithRelations[];
   categories: Category[];
   distros: Distro[];
 }
 
-export function HomePageClient({ initialApps, categories, distros }: HomePageClientProps) {
+export function HomePageClient({ categories, distros }: HomePageClientProps) {
   const [selectionDrawerOpen, setSelectionDrawerOpen] = useState(false);
   const [commandDialogOpen, setCommandDialogOpen] = useState(false);
   const { selectedApps, selectedDistro } = useSelectionStore();
@@ -56,7 +55,7 @@ export function HomePageClient({ initialApps, categories, distros }: HomePageCli
 
           {/* App Selection Section - Primary Focus */}
           <div className="container mx-auto px-4 py-8 pb-24">
-            <AppGrid apps={initialApps} categories={categories} />
+            <AppGrid categories={categories} />
           </div>
         </main>
 
@@ -71,7 +70,6 @@ export function HomePageClient({ initialApps, categories, distros }: HomePageCli
 
         {/* Selection Drawer - Bottom drawer for reviewing selection */}
         <SelectionDrawer
-          apps={initialApps}
           open={selectionDrawerOpen}
           onOpenChange={setSelectionDrawerOpen}
         />

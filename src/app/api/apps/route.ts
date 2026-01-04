@@ -15,7 +15,7 @@ export const GET = createPublicApiHandler(
     const queryObject = Object.fromEntries(searchParams.entries());
     const validatedQuery = getAppsQuerySchema.parse(queryObject);
 
-    const { category, popular, search, limit = 50, offset = 0 } = validatedQuery;
+    const { category, popular, search, limit = 20, offset = 0 } = validatedQuery;
 
     // Build WHERE conditions dynamically
     const conditions = [];
@@ -45,9 +45,19 @@ export const GET = createPublicApiHandler(
       );
     }
 
+    const whereClause = conditions.length > 0 ? and(...conditions) : undefined;
+
+    // Get total count for pagination
+    const [totalCountResult] = await db
+      .select({ count: sql<number>`count(*)` })
+      .from(apps)
+      .where(whereClause);
+
+    const total = Number(totalCountResult.count);
+
     // Execute query with database-level filtering
     const allApps = await db.query.apps.findMany({
-      where: conditions.length > 0 ? and(...conditions) : undefined,
+      where: whereClause,
       with: {
         category: true,
         packages: {
@@ -57,11 +67,23 @@ export const GET = createPublicApiHandler(
         },
       },
       orderBy: [desc(apps.isPopular), desc(apps.displayName)],
-      limit,
+      limit: limit + 1, // Fetch one extra to determine if there are more
       offset,
     });
 
-    return successResponse(allApps);
+    // Check if there are more results
+    const hasMore = allApps.length > limit;
+    const apps_data = hasMore ? allApps.slice(0, limit) : allApps;
+
+    return successResponse({
+      apps: apps_data,
+      pagination: {
+        total,
+        limit,
+        offset,
+        hasMore,
+      },
+    });
   },
   publicApiLimiter
 );

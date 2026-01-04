@@ -148,5 +148,77 @@
     "source": "scoop",
     "priority": 6,
     "isDefault": false
+  },
+  {
+    "distro": "zorin",
+    "source": "apt",
+    "priority": 10,
+    "isDefault": true
+  },
+  {
+    "distro": "zorin",
+    "source": "flatpak",
+    "priority": 5,
+    "isDefault": false
+  },
+  {
+    "distro": "zorin",
+    "source": "snap",
+    "priority": 3,
+    "isDefault": false
+  },
+  {
+    "distro": "elementary",
+    "source": "apt",
+    "priority": 10,
+    "isDefault": true
+  },
+  {
+    "distro": "elementary",
+    "source": "flatpak",
+    "priority": 8,
+    "isDefault": false
+  },
+  {
+    "distro": "nobara",
+    "source": "dnf",
+    "priority": 10,
+    "isDefault": true
+  },
+  {
+    "distro": "nobara",
+    "source": "flatpak",
+    "priority": 5,
+    "isDefault": false
+  },
+  {
+    "distro": "bazzite",
+    "source": "flatpak",
+    "priority": 10,
+    "isDefault": true
+  },
+  {
+    "distro": "bazzite",
+    "source": "homebrew",
+    "priority": 5,
+    "isDefault": false
+  },
+  {
+    "distro": "cachyos",
+    "source": "pacman",
+    "priority": 10,
+    "isDefault": true
+  },
+  {
+    "distro": "cachyos",
+    "source": "aur",
+    "priority": 7,
+    "isDefault": false
+  },
+  {
+    "distro": "cachyos",
+    "source": "flatpak",
+    "priority": 3,
+    "isDefault": false
   }
 ]
