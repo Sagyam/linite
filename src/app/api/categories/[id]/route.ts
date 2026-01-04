@@ -4,7 +4,6 @@ import { eq } from 'drizzle-orm';
 import { createPublicApiHandler, createAuthValidatedApiHandler, createAuthApiHandler } from '@/lib/api-middleware';
 import { updateCategorySchema } from '@/lib/validation';
 import type { UpdateCategoryInput } from '@/lib/validation';
-import type { Category, UpdateCategoryResponse } from '@/types';
 
 interface RouteContext {
   params: Promise<{ id: string }>;

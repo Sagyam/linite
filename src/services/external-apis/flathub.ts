@@ -155,8 +155,8 @@ export async function getFlathubAppMetadata(appId: string): Promise<PackageMetad
       releaseDate: latestRelease?.timestamp ? new Date(latestRelease.timestamp * 1000).toISOString() : undefined,
       source: 'flatpak' as const,
       metadata: {
-        kudos: (data as any).kudos,
-        keywords: (data as any).keywords,
+        kudos: (data as { kudos?: unknown }).kudos,
+        keywords: (data as { keywords?: unknown }).keywords,
       },
     };
 

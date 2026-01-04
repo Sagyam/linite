@@ -139,7 +139,6 @@ export async function uploadImageFromUrl(
     // Get the content type and convert to blob
     const contentType = response.headers.get('content-type') || 'image/png';
     const arrayBuffer = await response.arrayBuffer();
-    const blob = new Blob([arrayBuffer], { type: contentType });
 
     // Determine file extension from content type
     let extension = 'png';
@@ -151,11 +150,8 @@ export async function uploadImageFromUrl(
       extension = 'webp';
     }
 
-    // Create a File object from the blob
-    const filename = `${appSlug}.${extension}`;
-    const file = new File([blob], filename, { type: contentType });
-
     // Upload to Azure Blob with overwrite
+    const filename = `${appSlug}.${extension}`;
     const pathname = `app-icons/${filename}`;
 
     try {

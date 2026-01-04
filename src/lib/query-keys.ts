@@ -111,4 +111,4 @@ export type QueryKeys = typeof queryKeys;
 /**
  * Helper to extract the return type of query key functions
  */
-export type QueryKey<T extends (...args: any[]) => readonly unknown[]> = ReturnType<T>;
+export type QueryKey<T extends (...args: unknown[]) => readonly unknown[]> = ReturnType<T>;

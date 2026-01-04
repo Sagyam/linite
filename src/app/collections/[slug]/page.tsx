@@ -14,8 +14,6 @@ import { ShareDialog } from '@/components/collection/share-dialog';
 import {
   Heart,
   Share2,
-  Copy,
-  Download,
   Lock,
   Globe,
   Star,
@@ -29,6 +27,7 @@ import {
   Play,
 } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useToast } from '@/hooks/use-toast';
 import { useSelectionStore } from '@/stores/selection-store';
@@ -218,7 +217,7 @@ export default function CollectionDetailPage({
               <div className="flex items-center gap-3 mb-3">
                 <h1 className="text-4xl font-bold">{collection.name}</h1>
                 {collection.iconUrl && (
-                  <img
+                  <Image
                     src={collection.iconUrl}
                     alt={collection.name}
                     className="w-12 h-12 rounded-lg"
@@ -391,10 +390,10 @@ export default function CollectionDetailPage({
                   <CardContent className="p-4">
                     <div className="flex items-start gap-3">
                       {item.app.iconUrl && (
-                        <img
+                        <Image
                           src={item.app.iconUrl}
                           alt={item.app.displayName}
-                          className="w-10 h-10 rounded flex-shrink-0"
+                          className="w-10 h-10 rounded shrink-0"
                         />
                       )}
                       <div className="flex-1 min-w-0">
@@ -406,7 +405,7 @@ export default function CollectionDetailPage({
                         )}
                         {item.note && (
                           <p className="text-xs text-muted-foreground italic mt-2">
-                            "{item.note}"
+                            &ldquo;{item.note}&rdquo;
                           </p>
                         )}
                       </div>

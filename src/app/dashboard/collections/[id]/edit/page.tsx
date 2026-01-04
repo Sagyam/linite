@@ -2,7 +2,6 @@
 
 import { use } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { useRouter } from 'next/navigation';
 import { CollectionForm } from '@/components/collection/collection-form';
 import { Button } from '@/components/ui/button';
 import { Loader2, ArrowLeft } from 'lucide-react';
@@ -21,7 +20,6 @@ export default function EditCollectionPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = use(params);
-  const router = useRouter();
 
   const { data: collection, isLoading, error } = useQuery({
     queryKey: ['collection', id],
@@ -42,7 +40,7 @@ export default function EditCollectionPage({
         <div className="text-center py-16">
           <h1 className="text-2xl font-bold mb-2">Collection not found</h1>
           <p className="text-muted-foreground mb-6">
-            The collection you're trying to edit doesn't exist or you don't have permission to edit it.
+            The collection you&apos;re trying to edit doesn&apos;t exist or you don&apos;t have permission to edit it.
           </p>
           <Button asChild>
             <Link href="/dashboard">Back to Dashboard</Link>
@@ -64,7 +62,7 @@ export default function EditCollectionPage({
       <div className="mb-8">
         <h1 className="text-3xl font-bold mb-2">Edit Collection</h1>
         <p className="text-muted-foreground">
-          Update your collection's details and manage apps
+          Update your collection&apos;s details and manage apps
         </p>
       </div>
 

@@ -9,30 +9,6 @@ const SNAPCRAFT_API_BASE = 'https://api.snapcraft.io/v2';
 const searchCache = new SimpleCache<PackageSearchResult[]>(15); // 15 minute cache
 const metadataCache = new SimpleCache<PackageMetadata>(15); // 15 minute cache
 
-interface SnapSearchResponse {
-  results: Array<{
-    snap: {
-      name: string;
-      title: string;
-      summary: string;
-      description?: string;
-      publisher?: {
-        'display-name'?: string;
-        username?: string;
-      };
-      media?: Array<{
-        type: string;
-        url: string;
-        width?: number;
-        height?: number;
-      }>;
-      license?: string;
-      website?: string;
-      'download-size'?: number;
-    };
-  }>;
-}
-
 interface SnapInfoResponse {
   'channel-map': Array<{
     channel: {

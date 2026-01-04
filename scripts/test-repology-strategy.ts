@@ -31,7 +31,8 @@ async function testRepologyStrategy() {
         console.log(`   Maintainer: ${metadata.maintainer || 'N/A'}`);
         console.log(`   Summary: ${metadata.summary || 'N/A'}`);
         if (metadata.metadata) {
-          console.log(`   Repo: ${(metadata.metadata as any).repo || 'N/A'}`);
+          const meta = metadata.metadata as Record<string, unknown>;
+          console.log(`   Repo: ${meta.repo || 'N/A'}`);
         }
       } else {
         console.log('❌ No metadata found');

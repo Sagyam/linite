@@ -10,8 +10,8 @@ export interface FindOptions<T> {
   where?: SQL;
   limit?: number;
   offset?: number;
-  orderBy?: any;
-  with?: any;
+  orderBy?: unknown;
+  with?: unknown;
 }
 
 export interface PaginatedResult<T> {
@@ -26,7 +26,7 @@ export interface PaginatedResult<T> {
  */
 export class BaseRepository<T> {
   constructor(
-    protected table: any,
+    protected table: unknown,
     protected tableName: string
   ) {}
 
@@ -36,7 +36,7 @@ export class BaseRepository<T> {
   async findMany(options: FindOptions<T> = {}): Promise<T[]> {
     const { where, limit, offset, orderBy, with: withRelations } = options;
 
-    const query: any = db.query[this.tableName as keyof typeof db.query];
+    const query = db.query[this.tableName as keyof typeof db.query] as { findMany: (opts: unknown) => Promise<T[]> };
     if (!query || typeof query.findMany !== 'function') {
       throw new Error(`Query interface not found for table: ${this.tableName}`);
     }
@@ -54,7 +54,7 @@ export class BaseRepository<T> {
    * Find a single record by condition
    */
   async findFirst(options: FindOptions<T>): Promise<T | undefined> {
-    const query: any = db.query[this.tableName as keyof typeof db.query];
+    const query = db.query[this.tableName as keyof typeof db.query] as { findFirst: (opts: unknown) => Promise<T | undefined> };
     if (!query || typeof query.findFirst !== 'function') {
       throw new Error(`Query interface not found for table: ${this.tableName}`);
     }
@@ -68,8 +68,8 @@ export class BaseRepository<T> {
   /**
    * Find by ID
    */
-  async findById(id: string, withRelations?: any): Promise<T | undefined> {
-    const query: any = db.query[this.tableName as keyof typeof db.query];
+  async findById(id: string, withRelations?: unknown): Promise<T | undefined> {
+    const query = db.query[this.tableName as keyof typeof db.query] as { findFirst: (opts: unknown) => Promise<T | undefined> };
     if (!query || typeof query.findFirst !== 'function') {
       throw new Error(`Query interface not found for table: ${this.tableName}`);
     }
@@ -89,10 +89,10 @@ export class BaseRepository<T> {
   async count(where?: SQL): Promise<number> {
     const { count } = await import('drizzle-orm');
 
-    const result: any = await db
+    const result = await db
       .select({ count: count() })
-      .from(this.table)
-      .where(where);
+      .from(this.table as Parameters<typeof db.select>[0])
+      .where(where) as { count: number }[];
 
     return result[0]?.count ?? 0;
   }
@@ -101,10 +101,10 @@ export class BaseRepository<T> {
    * Create a new record
    */
   async create(data: Partial<T>): Promise<T> {
-    const result: any = await db
-      .insert(this.table)
-      .values(data)
-      .returning();
+    const result = await db
+      .insert(this.table as Parameters<typeof db.insert>[0])
+      .values(data as Parameters<ReturnType<typeof db.insert>['values']>[0])
+      .returning() as T[];
 
     return result[0] as T;
   }
@@ -115,14 +115,14 @@ export class BaseRepository<T> {
   async update(id: string, data: Partial<T>): Promise<T | undefined> {
     const { eq } = await import('drizzle-orm');
 
-    const result: any = await db
-      .update(this.table)
+    const result = await db
+      .update(this.table as Parameters<typeof db.update>[0])
       .set({
         ...data,
         updatedAt: new Date(),
-      })
-      .where(eq(this.table.id, id))
-      .returning();
+      } as Parameters<ReturnType<typeof db.update>['set']>[0])
+      .where(eq((this.table as { id: unknown }).id, id))
+      .returning() as T[];
 
     return result[0] as T | undefined;
   }
@@ -133,10 +133,10 @@ export class BaseRepository<T> {
   async delete(id: string): Promise<boolean> {
     const { eq } = await import('drizzle-orm');
 
-    const result: any = await db
-      .delete(this.table)
-      .where(eq(this.table.id, id))
-      .returning();
+    const result = await db
+      .delete(this.table as Parameters<typeof db.delete>[0])
+      .where(eq((this.table as { id: unknown }).id, id))
+      .returning() as T[];
 
     return result.length > 0;
   }

@@ -87,7 +87,6 @@ vi.mock('@paralleldrive/cuid2', () => ({
 }));
 
 import { db } from '@/db';
-import { createId } from '@paralleldrive/cuid2';
 
 describe('Collection Service', () => {
   beforeEach(() => {

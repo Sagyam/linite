@@ -93,7 +93,7 @@ export function createApiHandler<BodySchema = unknown, QuerySchema = unknown, Co
 
       // 5. Execute the handler (attach validated body to request for handlers to access)
       if (validatedBody !== undefined) {
-        (request as any)._validatedBody = validatedBody;
+        (request as NextRequest & { _validatedBody?: unknown })._validatedBody = validatedBody;
       }
       return await handler(request, context);
     } catch (error) {
@@ -172,7 +172,7 @@ export function createValidatedApiHandler<BodySchema, Context = unknown>(
     },
     async (request, context) => {
       // Body is already validated and stored by middleware
-      const body = (request as any)._validatedBody as BodySchema;
+      const body = (request as NextRequest & { _validatedBody?: BodySchema })._validatedBody as BodySchema;
       return handler(request, body, context);
     }
   );

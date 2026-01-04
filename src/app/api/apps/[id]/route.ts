@@ -1,10 +1,8 @@
-import { NextRequest } from 'next/server';
 import { db, apps } from '@/db';
 import { errorResponse, successResponse } from '@/lib/api-utils';
 import { eq } from 'drizzle-orm';
 import { createPublicApiHandler, createAuthValidatedApiHandler, createAuthApiHandler } from '@/lib/api-middleware';
 import { updateAppSchema } from '@/lib/validation';
-import type { GetAppByIdResponse, UpdateAppResponse } from '@/types';
 
 interface RouteContext {
   params: Promise<{ id: string }>;

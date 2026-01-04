@@ -9,7 +9,6 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
-import { Button } from '@/components/ui/button';
 import { useCommand } from '@/hooks/use-command';
 import { CommandOutputSkeleton } from '@/components/ui/loading-skeletons';
 import { useSelectionStore } from '@/stores/selection-store';

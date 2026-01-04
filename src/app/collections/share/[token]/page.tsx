@@ -8,6 +8,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Lock, Package, Eye, Heart, Loader2, Star } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 import type { CollectionWithRelations } from '@/types/entities';
 
 async function fetchSharedCollection(token: string): Promise<CollectionWithRelations> {
@@ -45,7 +46,7 @@ export default function SharedCollectionPage({
           </div>
           <h1 className="text-2xl font-bold mb-2">Collection Not Found</h1>
           <p className="text-muted-foreground mb-6">
-            This collection doesn't exist or the share link is invalid
+            This collection doesn&apos;t exist or the share link is invalid
           </p>
           <Button asChild>
             <Link href="/collections">Browse Collections</Link>
@@ -66,7 +67,7 @@ export default function SharedCollectionPage({
           <div className="flex items-center gap-2 text-sm">
             <Lock className="w-4 h-4 text-primary" />
             <p className="text-primary">
-              You're viewing a shared collection via private link
+              You&apos;re viewing a shared collection via private link
             </p>
           </div>
         </div>
@@ -78,7 +79,7 @@ export default function SharedCollectionPage({
               <div className="flex items-center gap-3 mb-3">
                 <h1 className="text-4xl font-bold">{collection.name}</h1>
                 {collection.iconUrl && (
-                  <img
+                  <Image
                     src={collection.iconUrl}
                     alt={collection.name}
                     className="w-12 h-12 rounded-lg"
@@ -179,10 +180,10 @@ export default function SharedCollectionPage({
                   <CardContent className="p-4">
                     <div className="flex items-start gap-3">
                       {item.app.iconUrl && (
-                        <img
+                        <Image
                           src={item.app.iconUrl}
                           alt={item.app.displayName}
-                          className="w-10 h-10 rounded flex-shrink-0"
+                          className="w-10 h-10 rounded shrink-0"
                         />
                       )}
                       <div className="flex-1 min-w-0">
@@ -194,7 +195,7 @@ export default function SharedCollectionPage({
                         )}
                         {item.note && (
                           <p className="text-xs text-muted-foreground italic mt-2">
-                            "{item.note}"
+                            &ldquo;{item.note}&rdquo;
                           </p>
                         )}
                       </div>

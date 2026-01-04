@@ -6,7 +6,7 @@
 import { db } from '@/db';
 import { packages, sources, refreshLogs, apps } from '@/db/schema';
 import { eq } from 'drizzle-orm';
-import { getRefreshStrategy, type PackageMetadata } from './refresh-strategies';
+import { getRefreshStrategy } from './refresh-strategies';
 import type { RefreshResult, RefreshOptions } from '@/types/entities';
 import { uploadImageFromUrl } from '@/lib/blob';
 import { TIMEOUTS } from '@/lib/constants';
@@ -206,7 +206,7 @@ async function refreshSinglePackage(
 /**
  * Sync app icon by downloading from external URL and uploading to Azure Blob Storage
  */
-async function syncAppIcon(
+export async function syncAppIcon(
   appId: string,
   appSlug: string,
   iconUrl: string

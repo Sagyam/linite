@@ -1,5 +1,4 @@
 import { RefreshStrategy, PackageMetadata } from './types';
-import { getRepologyProjectMetadata } from '../external-apis/repology';
 
 /**
  * Map source slugs to Repology repo patterns

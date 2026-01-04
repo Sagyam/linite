@@ -5,7 +5,6 @@ import { desc, eq, and, or, like, sql } from 'drizzle-orm';
 import { publicApiLimiter } from '@/lib/redis';
 import { createPublicApiHandler, createAuthValidatedApiHandler } from '@/lib/api-middleware';
 import { getAppsQuerySchema, createAppSchema } from '@/lib/validation';
-import type { GetAppsResponse, CreateAppResponse } from '@/types';
 
 // GET /api/apps - Get all apps with optional filtering (public)
 export const GET = createPublicApiHandler(

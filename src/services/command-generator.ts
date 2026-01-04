@@ -1,7 +1,7 @@
 import { db } from '@/db';
 import { apps, packages, distros } from '@/db/schema';
 import { eq, inArray } from 'drizzle-orm';
-import { parsePackageMetadata, type StoredPackageMetadata } from '@/lib/package-metadata';
+import { parsePackageMetadata } from '@/lib/package-metadata';
 import type {
   GenerateCommandRequest,
   GenerateCommandResponse,

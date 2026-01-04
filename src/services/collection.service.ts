@@ -29,7 +29,7 @@ function createShareToken(): string {
 }
 
 // Helper to normalize database types to our Collection type
-function normalizeCollection(dbCollection: any): Collection {
+function normalizeCollection(dbCollection: Partial<Collection> & { id: string }): Collection {
   return {
     ...dbCollection,
     isPublic: dbCollection.isPublic ?? false,
@@ -333,7 +333,6 @@ export async function listCollections(
     userId,
     featured,
     search,
-    tags,
     isPublic,
     limit = 20,
     offset = 0,

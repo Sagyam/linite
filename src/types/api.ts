@@ -82,15 +82,15 @@ export interface UpdateAppRequest extends Partial<CreateAppRequest> {
 
 export type UpdateAppResponse = App;
 
-export interface GetAppByIdResponse extends AppWithRelations {}
+export type GetAppByIdResponse = AppWithRelations;
 
-export interface GetAppBySlugResponse extends AppWithRelations {}
+export type GetAppBySlugResponse = AppWithRelations;
 
 // ============================================================================
 // CATEGORY API TYPES
 // ============================================================================
 
-export interface GetCategoriesParams extends PaginationParams, SortParams {}
+export type GetCategoriesParams = PaginationParams & SortParams;
 
 export type GetCategoriesResponse = Category[];
 
@@ -114,7 +114,7 @@ export type UpdateCategoryResponse = Category;
 // SOURCE API TYPES
 // ============================================================================
 
-export interface GetSourcesParams extends PaginationParams {}
+export type GetSourcesParams = PaginationParams;
 
 export type GetSourcesResponse = Source[];
 
@@ -149,7 +149,7 @@ export interface DistroWithRelations extends Distro {
   }>;
 }
 
-export interface GetDistrosParams extends PaginationParams {}
+export type GetDistrosParams = PaginationParams;
 
 export type GetDistrosResponse = DistroWithRelations[];
 

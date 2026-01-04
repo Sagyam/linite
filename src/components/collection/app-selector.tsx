@@ -10,8 +10,7 @@ import { AppIcon } from '@/components/ui/app-icon';
 import { PAGINATION } from '@/lib/constants';
 import { queryKeys } from '@/lib/query-keys';
 import { apps as appsApi } from '@/lib/api-client';
-import { Search, X, Plus, Check } from 'lucide-react';
-import type { AppWithRelations } from '@/types/entities';
+import { Search, X, Plus } from 'lucide-react';
 
 interface AppSelectorProps {
   selectedAppIds: string[];

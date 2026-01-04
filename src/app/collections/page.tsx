@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
 import { CollectionCard } from '@/components/collection/collection-card';
 import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';

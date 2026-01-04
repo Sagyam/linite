@@ -3,26 +3,12 @@
  */
 
 import { db } from '../src/db';
-import { packages } from '../src/db/schema';
-import { eq } from 'drizzle-orm';
 import { RepologyRefreshStrategy } from '../src/services/refresh-strategies/repology-strategy';
 
 async function testRepologyRefresh() {
   console.log('🔍 Testing Repology refresh...\n');
 
-  // Get some packages from native package managers
-  const testPackages = await db.query.packages.findMany({
-    where: (pkg, { inArray }) =>
-      inArray(pkg.sourceId, [
-        // We'll need to get the actual source IDs
-      ]),
-    with: {
-      source: true,
-    },
-    limit: 5,
-  });
-
-  // Get packages by source slug instead
+  // Get packages by source slug
   const allPackages = await db.query.packages.findMany({
     with: {
       source: true,
@@ -75,10 +61,10 @@ async function testRepologyRefresh() {
           console.log(`     Summary: ${metadata.summary || 'N/A'}`);
 
           if (metadata.metadata) {
-            const meta = metadata.metadata as any;
+            const meta = metadata.metadata as Record<string, unknown>;
             console.log(`     Repo: ${meta.repo || 'N/A'}`);
             console.log(`     Status: ${meta.status || 'N/A'}`);
-            if (meta.availableRepos) {
+            if (Array.isArray(meta.availableRepos)) {
               console.log(`     Available in ${meta.availableRepos.length} repos`);
             }
           }

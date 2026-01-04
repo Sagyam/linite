@@ -3,7 +3,6 @@
  * Provides type-safe API methods and consistent error handling
  */
 
-import { PAGINATION } from '@/lib/constants';
 import type { AppWithRelations, Category, Distro, Source } from '@/types';
 
 /**

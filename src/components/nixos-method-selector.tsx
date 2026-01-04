@@ -8,7 +8,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { Label } from '@/components/ui/label';
 import { useSelectionStore } from '@/stores/selection-store';
 
 const NIXOS_INSTALL_METHODS = [

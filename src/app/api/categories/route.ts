@@ -4,7 +4,6 @@ import { asc } from 'drizzle-orm';
 import { publicApiLimiter } from '@/lib/redis';
 import { createPublicApiHandler, createAuthValidatedApiHandler } from '@/lib/api-middleware';
 import { createCategorySchema } from '@/lib/validation';
-import type { GetCategoriesResponse, CreateCategoryResponse } from '@/types';
 
 // GET /api/categories - Get all categories (public)
 export const GET = createPublicApiHandler(

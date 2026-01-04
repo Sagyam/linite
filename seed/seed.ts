@@ -48,7 +48,7 @@ async function seed() {
 
   // 4. Map distros to sources
   console.log('Mapping distros to sources...');
-  const distroSourceMappings = distroSourcesData.map((ds: any) => ({
+  const distroSourceMappings = distroSourcesData.map((ds: { distro: string; source: string; priority: number; isDefault: boolean }) => ({
     distroId: distroMap[ds.distro],
     sourceId: sourceMap[ds.source],
     priority: ds.priority,
@@ -59,7 +59,7 @@ async function seed() {
 
   // 5. Create apps (without icons initially)
   console.log('Creating apps...');
-  const appValues = appsData.map((app: any) => ({
+  const appValues = appsData.map((app: { slug: string; displayName: string; description: string; homepage: string; isPopular: boolean; isFoss: boolean; category: string }) => ({
     slug: app.slug,
     displayName: app.displayName,
     description: app.description,
@@ -119,7 +119,7 @@ async function seed() {
 
   // 7. Create packages
   console.log('\nCreating packages...');
-  const packageValues = packagesData.map((pkg: any) => ({
+  const packageValues = packagesData.map((pkg: { app: string; source: string; identifier: string; isAvailable: boolean; metadata?: Record<string, unknown> }) => ({
     appId: appMap[pkg.app],
     sourceId: sourceMap[pkg.source],
     identifier: pkg.identifier,
@@ -128,13 +128,13 @@ async function seed() {
   }));
 
   // Check for undefined appIds or sourceIds
-  const invalidPackages = packageValues.filter((p: any) => !p.appId || !p.sourceId);
+  const invalidPackages = packageValues.filter((p: { appId?: string; sourceId?: string }) => !p.appId || !p.sourceId);
   if (invalidPackages.length > 0) {
     console.error(`⚠️  Found ${invalidPackages.length} packages with invalid app/source references`);
     console.error('First few:', invalidPackages.slice(0, 3));
   }
 
-  const validPackages = packageValues.filter((p: any) => p.appId && p.sourceId);
+  const validPackages = packageValues.filter((p: { appId?: string; sourceId?: string }) => p.appId && p.sourceId);
   await db.insert(packages).values(validPackages);
   console.log(`✅ Created ${validPackages.length} packages`);
 

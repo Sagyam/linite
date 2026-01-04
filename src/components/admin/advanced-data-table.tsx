@@ -41,7 +41,6 @@ interface AdvancedDataTableProps<TData> {
 export function AdvancedDataTable<TData>({
   columns: columnsProp,
   data,
-  isLoading = false,
   isFetchingNextPage = false,
   hasNextPage = false,
   onFetchNextPage,

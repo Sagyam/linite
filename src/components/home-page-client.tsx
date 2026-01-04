@@ -10,7 +10,7 @@ import { SelectionDrawer } from '@/components/selection-drawer';
 import { CommandDialog } from '@/components/command-dialog';
 import { StructuredData } from '@/components/structured-data';
 import { useSelectionStore } from '@/stores/selection-store';
-import type { AppWithRelations, Category } from '@/types';
+import type { Category } from '@/types';
 import type { Distro } from '@/hooks/use-distros';
 
 interface HomePageClientProps {
