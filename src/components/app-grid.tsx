@@ -212,7 +212,7 @@ export function AppGrid({ categories }: AppGridProps) {
                     : 'grid-cols-1 lg:grid-cols-2'
                 }`}
               >
-                {apps.map((app) => (
+                {apps.sort((a,b) => {return a.slug.localeCompare((b.slug))}).map((app) => (
                   <AppCard key={app.id} app={app} layout={layout} />
                 ))}
               </div>
