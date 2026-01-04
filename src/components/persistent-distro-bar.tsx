@@ -39,7 +39,7 @@ export function PersistentDistroBar({ distros }: PersistentDistroBarProps) {
     selectedDistro === 'nixos' &&
     (sourcePreference === 'nix' || (!sourcePreference && nixSource?.isDefault));
 
-  // Set default NixOS installation method when Nix is selected
+  // Set the default NixOS installation method when Nix is selected
   useEffect(() => {
     if (isNixSelected && !nixosInstallMethod) {
       setNixosInstallMethod('nix-shell');
@@ -50,7 +50,7 @@ export function PersistentDistroBar({ distros }: PersistentDistroBarProps) {
   }, [isNixSelected, nixosInstallMethod, setNixosInstallMethod]);
 
   return (
-    <div className="sticky top-0 z-40 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 shadow-sm">
+    <div className="sticky top-0 z-40 border-b bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/80 shadow-sm">
       <div className="container mx-auto px-4 py-3">
         <div className="flex flex-col sm:flex-row gap-3 items-start sm:items-center">
           {/* Distro Selection - More prominent */}
@@ -69,7 +69,8 @@ export function PersistentDistroBar({ distros }: PersistentDistroBarProps) {
                 <SelectValue placeholder="Choose your Linux distribution" />
               </SelectTrigger>
               <SelectContent>
-                {distros.map((distro) => (
+                {distros.sort((a, b) => {return a.name.localeCompare(b.name)})
+                  .map((distro) => (
                   <SelectItem key={distro.id} value={distro.slug}>
                     <div className="flex items-center gap-2">
                       {distro.iconUrl && (

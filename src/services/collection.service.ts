@@ -29,7 +29,8 @@ function createShareToken(): string {
 }
 
 // Helper to normalize database types to our Collection type
-function normalizeCollection(dbCollection: Partial<Collection> & { id: string }): Collection {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function normalizeCollection(dbCollection: any): Collection {
   return {
     ...dbCollection,
     isPublic: dbCollection.isPublic ?? false,
@@ -37,10 +38,9 @@ function normalizeCollection(dbCollection: Partial<Collection> & { id: string })
     isTemplate: dbCollection.isTemplate ?? false,
     viewCount: dbCollection.viewCount ?? 0,
     installCount: dbCollection.installCount ?? 0,
-    displayOrder: dbCollection.displayOrder ?? 0,
     createdAt: dbCollection.createdAt ?? undefined,
     updatedAt: dbCollection.updatedAt ?? undefined,
-  };
+  } as Collection;
 }
 
 export interface CreateCollectionData {

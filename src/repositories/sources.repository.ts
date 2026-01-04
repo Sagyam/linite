@@ -41,7 +41,7 @@ export class SourcesRepository extends BaseRepository<Source> {
   }
 
   /**
-   * Check if source has packages
+   * Check if a source has packages
    */
   async hasPackages(id: string): Promise<boolean> {
     const source = await this.findByIdWithPackages(id);

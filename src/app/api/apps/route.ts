@@ -14,7 +14,13 @@ export const GET = createPublicApiHandler(
     const queryObject = Object.fromEntries(searchParams.entries());
     const validatedQuery = getAppsQuerySchema.parse(queryObject);
 
-    const { category, popular, search, limit = 20, offset = 0 } = validatedQuery;
+    const { category, popular, search, limit, offset } = validatedQuery;
+
+    // Determine if pagination is requested (for public API with infinite scroll)
+    // If no limit/offset specified, return all results as array (for admin)
+    const usePagination = limit !== undefined || offset !== undefined;
+    const actualLimit = limit ?? 20;
+    const actualOffset = offset ?? 0;
 
     // Build WHERE conditions dynamically
     const conditions = [];
@@ -46,6 +52,24 @@ export const GET = createPublicApiHandler(
 
     const whereClause = conditions.length > 0 ? and(...conditions) : undefined;
 
+    // If not using pagination, return all results as a simple array
+    if (!usePagination) {
+      const allApps = await db.query.apps.findMany({
+        where: whereClause,
+        with: {
+          category: true,
+          packages: {
+            with: {
+              source: true,
+            },
+          },
+        },
+        orderBy: [desc(apps.isPopular), desc(apps.displayName)],
+      });
+
+      return successResponse(allApps);
+    }
+
     // Get total count for pagination
     const [totalCountResult] = await db
       .select({ count: sql<number>`count(*)` })
@@ -66,20 +90,20 @@ export const GET = createPublicApiHandler(
         },
       },
       orderBy: [desc(apps.isPopular), desc(apps.displayName)],
-      limit: limit + 1, // Fetch one extra to determine if there are more
-      offset,
+      limit: actualLimit + 1, // Fetch one extra to determine if there are more
+      offset: actualOffset,
     });
 
     // Check if there are more results
-    const hasMore = allApps.length > limit;
-    const appsData = hasMore ? allApps.slice(0, limit) : allApps;
+    const hasMore = allApps.length > actualLimit;
+    const appsData = hasMore ? allApps.slice(0, actualLimit) : allApps;
 
     return successResponse({
       apps: appsData,
       pagination: {
         total,
-        limit,
-        offset,
+        limit: actualLimit,
+        offset: actualOffset,
         hasMore,
       },
     });

@@ -1,5 +1,6 @@
 import { db } from '@/db';
 import type { SQL } from 'drizzle-orm';
+import type { SQLiteTable } from 'drizzle-orm/sqlite-core';
 
 /**
  * Base Repository Pattern
@@ -20,13 +21,16 @@ export interface PaginatedResult<T> {
   hasMore: boolean;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type AnyTable = any;
+
 /**
  * Generic base repository class
  * Can be extended for entity-specific repositories
  */
 export class BaseRepository<T> {
   constructor(
-    protected table: unknown,
+    protected table: AnyTable,
     protected tableName: string
   ) {}
 
@@ -41,13 +45,13 @@ export class BaseRepository<T> {
       throw new Error(`Query interface not found for table: ${this.tableName}`);
     }
 
-    return query.findMany({
+    return await query.findMany({
       where,
       limit,
       offset,
       orderBy,
       with: withRelations,
-    }) as Promise<T[]>;
+    });
   }
 
   /**
@@ -59,10 +63,10 @@ export class BaseRepository<T> {
       throw new Error(`Query interface not found for table: ${this.tableName}`);
     }
 
-    return query.findFirst({
+    return await query.findFirst({
       where: options.where,
       with: options.with,
-    }) as Promise<T | undefined>;
+    });
   }
 
   /**
@@ -77,10 +81,10 @@ export class BaseRepository<T> {
     // Import eq dynamically to avoid circular dependencies
     const { eq } = await import('drizzle-orm');
 
-    return query.findFirst({
+    return await query.findFirst({
       where: eq(this.table.id, id),
       with: withRelations,
-    }) as Promise<T | undefined>;
+    });
   }
 
   /**
@@ -91,10 +95,10 @@ export class BaseRepository<T> {
 
     const result = await db
       .select({ count: count() })
-      .from(this.table as Parameters<typeof db.select>[0])
-      .where(where) as { count: number }[];
+      .from(this.table)
+      .where(where);
 
-    return result[0]?.count ?? 0;
+    return Number(result[0]?.count ?? 0);
   }
 
   /**
@@ -102,11 +106,11 @@ export class BaseRepository<T> {
    */
   async create(data: Partial<T>): Promise<T> {
     const result = await db
-      .insert(this.table as Parameters<typeof db.insert>[0])
-      .values(data as Parameters<ReturnType<typeof db.insert>['values']>[0])
+      .insert(this.table)
+      .values(data)
       .returning() as T[];
 
-    return result[0] as T;
+    return result[0];
   }
 
   /**
@@ -116,15 +120,15 @@ export class BaseRepository<T> {
     const { eq } = await import('drizzle-orm');
 
     const result = await db
-      .update(this.table as Parameters<typeof db.update>[0])
+      .update(this.table)
       .set({
         ...data,
         updatedAt: new Date(),
-      } as Parameters<ReturnType<typeof db.update>['set']>[0])
-      .where(eq((this.table as { id: unknown }).id, id))
+      })
+      .where(eq(this.table.id, id))
       .returning() as T[];
 
-    return result[0] as T | undefined;
+    return result[0];
   }
 
   /**
@@ -134,8 +138,8 @@ export class BaseRepository<T> {
     const { eq } = await import('drizzle-orm');
 
     const result = await db
-      .delete(this.table as Parameters<typeof db.delete>[0])
-      .where(eq((this.table as { id: unknown }).id, id))
+      .delete(this.table)
+      .where(eq(this.table.id, id))
       .returning() as T[];
 
     return result.length > 0;

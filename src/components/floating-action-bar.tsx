@@ -36,7 +36,7 @@ export function FloatingActionBar({
   const distroName = selectedDistroObj?.name || 'Select distribution';
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 border-t bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 shadow-lg">
+    <div className="fixed bottom-0 left-0 right-0 z-50 border-t bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/80 shadow-lg">
       <div className="container mx-auto px-4 py-4">
         <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
           {/* Left: Selection info */}
@@ -78,7 +78,7 @@ export function FloatingActionBar({
             /* Show prominent warning when no distro selected */
             <div className="flex items-center gap-3 flex-1 sm:flex-initial">
               <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-destructive/10 border border-destructive/20 flex-1 sm:flex-initial">
-                <AlertCircle className="w-5 h-5 text-destructive flex-shrink-0" />
+                <AlertCircle className="w-5 h-5 text-destructive shrink-0" />
                 <div className="flex-1">
                   <p className="text-sm font-semibold text-destructive">
                     Select your distribution
