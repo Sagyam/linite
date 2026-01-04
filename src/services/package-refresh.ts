@@ -186,11 +186,6 @@ async function refreshSinglePackage(
       })
       .where(eq(packages.id, pkg.id));
 
-    // Sync app icon if metadata contains an icon URL
-    if (metadata.iconUrl && pkg.app) {
-      await syncAppIcon(pkg.app.id, pkg.app.slug, metadata.iconUrl);
-    }
-
     return true;
   }
 

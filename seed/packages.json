@@ -1,0 +1,2378 @@
+[
+  {
+    "app": "firefox",
+    "source": "flatpak",
+    "identifier": "org.mozilla.firefox",
+    "isAvailable": true
+  },
+  {
+    "app": "firefox",
+    "source": "snap",
+    "identifier": "firefox",
+    "isAvailable": true
+  },
+  {
+    "app": "firefox",
+    "source": "apt",
+    "identifier": "firefox",
+    "isAvailable": true
+  },
+  {
+    "app": "firefox",
+    "source": "dnf",
+    "identifier": "firefox",
+    "isAvailable": true
+  },
+  {
+    "app": "firefox",
+    "source": "pacman",
+    "identifier": "firefox",
+    "isAvailable": true
+  },
+  {
+    "app": "chrome",
+    "source": "flatpak",
+    "identifier": "com.google.Chrome",
+    "isAvailable": true
+  },
+  {
+    "app": "chrome",
+    "source": "apt",
+    "identifier": "google-chrome-stable",
+    "isAvailable": true
+  },
+  {
+    "app": "chrome",
+    "source": "dnf",
+    "identifier": "google-chrome-stable",
+    "isAvailable": true
+  },
+  {
+    "app": "brave",
+    "source": "flatpak",
+    "identifier": "com.brave.Browser",
+    "isAvailable": true
+  },
+  {
+    "app": "brave",
+    "source": "snap",
+    "identifier": "brave",
+    "isAvailable": true
+  },
+  {
+    "app": "brave",
+    "source": "apt",
+    "identifier": "brave-browser",
+    "isAvailable": true
+  },
+  {
+    "app": "brave",
+    "source": "dnf",
+    "identifier": "brave-browser",
+    "isAvailable": true
+  },
+  {
+    "app": "brave",
+    "source": "pacman",
+    "identifier": "brave-bin",
+    "isAvailable": true
+  },
+  {
+    "app": "chromium",
+    "source": "flatpak",
+    "identifier": "org.chromium.Chromium",
+    "isAvailable": true
+  },
+  {
+    "app": "chromium",
+    "source": "snap",
+    "identifier": "chromium",
+    "isAvailable": true
+  },
+  {
+    "app": "chromium",
+    "source": "apt",
+    "identifier": "chromium-browser",
+    "isAvailable": true
+  },
+  {
+    "app": "chromium",
+    "source": "dnf",
+    "identifier": "chromium",
+    "isAvailable": true
+  },
+  {
+    "app": "chromium",
+    "source": "pacman",
+    "identifier": "chromium",
+    "isAvailable": true
+  },
+  {
+    "app": "vivaldi",
+    "source": "flatpak",
+    "identifier": "com.vivaldi.Vivaldi",
+    "isAvailable": true
+  },
+  {
+    "app": "vivaldi",
+    "source": "snap",
+    "identifier": "vivaldi",
+    "isAvailable": true
+  },
+  {
+    "app": "vivaldi",
+    "source": "apt",
+    "identifier": "vivaldi-stable",
+    "isAvailable": true
+  },
+  {
+    "app": "vivaldi",
+    "source": "dnf",
+    "identifier": "vivaldi-stable",
+    "isAvailable": true
+  },
+  {
+    "app": "zen-browser",
+    "source": "flatpak",
+    "identifier": "io.github.zen_browser.zen",
+    "isAvailable": true
+  },
+  {
+    "app": "zen-browser",
+    "source": "pacman",
+    "identifier": "zen-browser-bin",
+    "isAvailable": true
+  },
+  {
+    "app": "microsoft-edge",
+    "source": "flatpak",
+    "identifier": "com.microsoft.Edge",
+    "isAvailable": true
+  },
+  {
+    "app": "microsoft-edge",
+    "source": "apt",
+    "identifier": "microsoft-edge-stable",
+    "isAvailable": true
+  },
+  {
+    "app": "microsoft-edge",
+    "source": "dnf",
+    "identifier": "microsoft-edge-stable",
+    "isAvailable": true
+  },
+  {
+    "app": "microsoft-edge",
+    "source": "pacman",
+    "identifier": "microsoft-edge-stable-bin",
+    "isAvailable": true
+  },
+  {
+    "app": "opera",
+    "source": "flatpak",
+    "identifier": "com.opera.Opera",
+    "isAvailable": true
+  },
+  {
+    "app": "opera",
+    "source": "snap",
+    "identifier": "opera",
+    "isAvailable": true
+  },
+  {
+    "app": "opera",
+    "source": "apt",
+    "identifier": "opera-stable",
+    "isAvailable": true
+  },
+  {
+    "app": "opera",
+    "source": "dnf",
+    "identifier": "opera-stable",
+    "isAvailable": true
+  },
+  {
+    "app": "opera",
+    "source": "pacman",
+    "identifier": "opera",
+    "isAvailable": true
+  },
+  {
+    "app": "tor-browser",
+    "source": "flatpak",
+    "identifier": "com.github.micahflee.torbrowser-launcher",
+    "isAvailable": true
+  },
+  {
+    "app": "tor-browser",
+    "source": "apt",
+    "identifier": "torbrowser-launcher",
+    "isAvailable": true
+  },
+  {
+    "app": "tor-browser",
+    "source": "pacman",
+    "identifier": "torbrowser-launcher",
+    "isAvailable": true
+  },
+  {
+    "app": "librewolf",
+    "source": "flatpak",
+    "identifier": "io.gitlab.librewolf-community",
+    "isAvailable": true
+  },
+  {
+    "app": "librewolf",
+    "source": "pacman",
+    "identifier": "librewolf-bin",
+    "isAvailable": true
+  },
+  {
+    "app": "waterfox",
+    "source": "flatpak",
+    "identifier": "net.waterfox.waterfox",
+    "isAvailable": true
+  },
+  {
+    "app": "waterfox",
+    "source": "snap",
+    "identifier": "waterfox",
+    "isAvailable": true
+  },
+  {
+    "app": "waterfox",
+    "source": "pacman",
+    "identifier": "waterfox-bin",
+    "isAvailable": true
+  },
+  {
+    "app": "vscode",
+    "source": "flatpak",
+    "identifier": "com.visualstudio.code",
+    "isAvailable": true
+  },
+  {
+    "app": "vscode",
+    "source": "snap",
+    "identifier": "code",
+    "isAvailable": true
+  },
+  {
+    "app": "vscode",
+    "source": "apt",
+    "identifier": "code",
+    "isAvailable": true
+  },
+  {
+    "app": "vscode",
+    "source": "dnf",
+    "identifier": "code",
+    "isAvailable": true
+  },
+  {
+    "app": "vscode",
+    "source": "pacman",
+    "identifier": "visual-studio-code-bin",
+    "isAvailable": true
+  },
+  {
+    "app": "git",
+    "source": "apt",
+    "identifier": "git",
+    "isAvailable": true
+  },
+  {
+    "app": "git",
+    "source": "dnf",
+    "identifier": "git",
+    "isAvailable": true
+  },
+  {
+    "app": "git",
+    "source": "pacman",
+    "identifier": "git",
+    "isAvailable": true
+  },
+  {
+    "app": "git",
+    "source": "zypper",
+    "identifier": "git",
+    "isAvailable": true
+  },
+  {
+    "app": "docker",
+    "source": "snap",
+    "identifier": "docker",
+    "isAvailable": true
+  },
+  {
+    "app": "docker",
+    "source": "apt",
+    "identifier": "docker.io",
+    "isAvailable": true
+  },
+  {
+    "app": "docker",
+    "source": "dnf",
+    "identifier": "docker",
+    "isAvailable": true
+  },
+  {
+    "app": "docker",
+    "source": "pacman",
+    "identifier": "docker",
+    "isAvailable": true
+  },
+  {
+    "app": "nodejs",
+    "source": "snap",
+    "identifier": "node",
+    "isAvailable": true
+  },
+  {
+    "app": "nodejs",
+    "source": "apt",
+    "identifier": "nodejs",
+    "isAvailable": true
+  },
+  {
+    "app": "nodejs",
+    "source": "dnf",
+    "identifier": "nodejs",
+    "isAvailable": true
+  },
+  {
+    "app": "nodejs",
+    "source": "pacman",
+    "identifier": "nodejs",
+    "isAvailable": true
+  },
+  {
+    "app": "python",
+    "source": "apt",
+    "identifier": "python3",
+    "isAvailable": true
+  },
+  {
+    "app": "python",
+    "source": "dnf",
+    "identifier": "python3",
+    "isAvailable": true
+  },
+  {
+    "app": "python",
+    "source": "pacman",
+    "identifier": "python",
+    "isAvailable": true
+  },
+  {
+    "app": "python",
+    "source": "zypper",
+    "identifier": "python3",
+    "isAvailable": true
+  },
+  {
+    "app": "java",
+    "source": "apt",
+    "identifier": "default-jdk",
+    "isAvailable": true
+  },
+  {
+    "app": "java",
+    "source": "dnf",
+    "identifier": "java-latest-openjdk",
+    "isAvailable": true
+  },
+  {
+    "app": "java",
+    "source": "pacman",
+    "identifier": "jdk-openjdk",
+    "isAvailable": true
+  },
+  {
+    "app": "java",
+    "source": "zypper",
+    "identifier": "java-openjdk",
+    "isAvailable": true
+  },
+  {
+    "app": "golang",
+    "source": "apt",
+    "identifier": "golang",
+    "isAvailable": true
+  },
+  {
+    "app": "golang",
+    "source": "dnf",
+    "identifier": "golang",
+    "isAvailable": true
+  },
+  {
+    "app": "golang",
+    "source": "pacman",
+    "identifier": "go",
+    "isAvailable": true
+  },
+  {
+    "app": "golang",
+    "source": "zypper",
+    "identifier": "go",
+    "isAvailable": true
+  },
+  {
+    "app": "rust",
+    "source": "apt",
+    "identifier": "cargo",
+    "isAvailable": true
+  },
+  {
+    "app": "rust",
+    "source": "dnf",
+    "identifier": "cargo",
+    "isAvailable": true
+  },
+  {
+    "app": "rust",
+    "source": "pacman",
+    "identifier": "rust",
+    "isAvailable": true
+  },
+  {
+    "app": "rust",
+    "source": "zypper",
+    "identifier": "cargo",
+    "isAvailable": true
+  },
+  {
+    "app": "ruby",
+    "source": "apt",
+    "identifier": "ruby-full",
+    "isAvailable": true
+  },
+  {
+    "app": "ruby",
+    "source": "dnf",
+    "identifier": "ruby",
+    "isAvailable": true
+  },
+  {
+    "app": "ruby",
+    "source": "pacman",
+    "identifier": "ruby",
+    "isAvailable": true
+  },
+  {
+    "app": "ruby",
+    "source": "zypper",
+    "identifier": "ruby",
+    "isAvailable": true
+  },
+  {
+    "app": "php",
+    "source": "apt",
+    "identifier": "php",
+    "isAvailable": true
+  },
+  {
+    "app": "php",
+    "source": "dnf",
+    "identifier": "php",
+    "isAvailable": true
+  },
+  {
+    "app": "php",
+    "source": "pacman",
+    "identifier": "php",
+    "isAvailable": true
+  },
+  {
+    "app": "php",
+    "source": "zypper",
+    "identifier": "php",
+    "isAvailable": true
+  },
+  {
+    "app": "gcc",
+    "source": "apt",
+    "identifier": "build-essential",
+    "isAvailable": true
+  },
+  {
+    "app": "gcc",
+    "source": "dnf",
+    "identifier": "gcc",
+    "isAvailable": true
+  },
+  {
+    "app": "gcc",
+    "source": "pacman",
+    "identifier": "gcc",
+    "isAvailable": true
+  },
+  {
+    "app": "gcc",
+    "source": "zypper",
+    "identifier": "gcc",
+    "isAvailable": true
+  },
+  {
+    "app": "clang",
+    "source": "apt",
+    "identifier": "clang",
+    "isAvailable": true
+  },
+  {
+    "app": "clang",
+    "source": "dnf",
+    "identifier": "clang",
+    "isAvailable": true
+  },
+  {
+    "app": "clang",
+    "source": "pacman",
+    "identifier": "clang",
+    "isAvailable": true
+  },
+  {
+    "app": "clang",
+    "source": "zypper",
+    "identifier": "llvm-clang",
+    "isAvailable": true
+  },
+  {
+    "app": "perl",
+    "source": "apt",
+    "identifier": "perl",
+    "isAvailable": true
+  },
+  {
+    "app": "perl",
+    "source": "dnf",
+    "identifier": "perl",
+    "isAvailable": true
+  },
+  {
+    "app": "perl",
+    "source": "pacman",
+    "identifier": "perl",
+    "isAvailable": true
+  },
+  {
+    "app": "perl",
+    "source": "zypper",
+    "identifier": "perl",
+    "isAvailable": true
+  },
+  {
+    "app": "lua",
+    "source": "apt",
+    "identifier": "lua5.4",
+    "isAvailable": true
+  },
+  {
+    "app": "lua",
+    "source": "dnf",
+    "identifier": "lua",
+    "isAvailable": true
+  },
+  {
+    "app": "lua",
+    "source": "pacman",
+    "identifier": "lua",
+    "isAvailable": true
+  },
+  {
+    "app": "lua",
+    "source": "zypper",
+    "identifier": "lua",
+    "isAvailable": true
+  },
+  {
+    "app": "r-lang",
+    "source": "apt",
+    "identifier": "r-base",
+    "isAvailable": true
+  },
+  {
+    "app": "r-lang",
+    "source": "dnf",
+    "identifier": "R",
+    "isAvailable": true
+  },
+  {
+    "app": "r-lang",
+    "source": "pacman",
+    "identifier": "r",
+    "isAvailable": true
+  },
+  {
+    "app": "r-lang",
+    "source": "zypper",
+    "identifier": "R-base",
+    "isAvailable": true
+  },
+  {
+    "app": "intellij",
+    "source": "flatpak",
+    "identifier": "com.jetbrains.IntelliJ-IDEA-Community",
+    "isAvailable": true
+  },
+  {
+    "app": "intellij",
+    "source": "snap",
+    "identifier": "intellij-idea-community",
+    "isAvailable": true
+  },
+  {
+    "app": "intellij",
+    "source": "pacman",
+    "identifier": "intellij-idea-community-edition",
+    "isAvailable": true
+  },
+  {
+    "app": "pycharm",
+    "source": "flatpak",
+    "identifier": "com.jetbrains.PyCharm-Community",
+    "isAvailable": true
+  },
+  {
+    "app": "pycharm",
+    "source": "snap",
+    "identifier": "pycharm-community",
+    "isAvailable": true
+  },
+  {
+    "app": "webstorm",
+    "source": "flatpak",
+    "identifier": "com.jetbrains.WebStorm",
+    "isAvailable": true
+  },
+  {
+    "app": "goland",
+    "source": "flatpak",
+    "identifier": "com.jetbrains.GoLand",
+    "isAvailable": true
+  },
+  {
+    "app": "rider",
+    "source": "flatpak",
+    "identifier": "com.jetbrains.Rider",
+    "isAvailable": true
+  },
+  {
+    "app": "datagrip",
+    "source": "flatpak",
+    "identifier": "com.jetbrains.DataGrip",
+    "isAvailable": true
+  },
+  {
+    "app": "android-studio",
+    "source": "flatpak",
+    "identifier": "com.google.AndroidStudio",
+    "isAvailable": true
+  },
+  {
+    "app": "android-studio",
+    "source": "snap",
+    "identifier": "android-studio",
+    "isAvailable": true
+  },
+  {
+    "app": "android-studio",
+    "source": "pacman",
+    "identifier": "android-studio",
+    "isAvailable": true
+  },
+  {
+    "app": "neovim",
+    "source": "flatpak",
+    "identifier": "io.neovim.nvim",
+    "isAvailable": true
+  },
+  {
+    "app": "neovim",
+    "source": "apt",
+    "identifier": "neovim",
+    "isAvailable": true
+  },
+  {
+    "app": "neovim",
+    "source": "dnf",
+    "identifier": "neovim",
+    "isAvailable": true
+  },
+  {
+    "app": "neovim",
+    "source": "pacman",
+    "identifier": "neovim",
+    "isAvailable": true
+  },
+  {
+    "app": "emacs",
+    "source": "apt",
+    "identifier": "emacs",
+    "isAvailable": true
+  },
+  {
+    "app": "emacs",
+    "source": "dnf",
+    "identifier": "emacs",
+    "isAvailable": true
+  },
+  {
+    "app": "emacs",
+    "source": "pacman",
+    "identifier": "emacs",
+    "isAvailable": true
+  },
+  {
+    "app": "eclipse",
+    "source": "snap",
+    "identifier": "eclipse",
+    "isAvailable": true
+  },
+  {
+    "app": "eclipse",
+    "source": "apt",
+    "identifier": "eclipse",
+    "isAvailable": true
+  },
+  {
+    "app": "eclipse",
+    "source": "dnf",
+    "identifier": "eclipse",
+    "isAvailable": true
+  },
+  {
+    "app": "eclipse",
+    "source": "pacman",
+    "identifier": "eclipse-java",
+    "isAvailable": true
+  },
+  {
+    "app": "netbeans",
+    "source": "flatpak",
+    "identifier": "org.apache.netbeans",
+    "isAvailable": true
+  },
+  {
+    "app": "netbeans",
+    "source": "snap",
+    "identifier": "netbeans",
+    "isAvailable": true
+  },
+  {
+    "app": "postman",
+    "source": "flatpak",
+    "identifier": "com.getpostman.Postman",
+    "isAvailable": true
+  },
+  {
+    "app": "postman",
+    "source": "snap",
+    "identifier": "postman",
+    "isAvailable": true
+  },
+  {
+    "app": "postman",
+    "source": "pacman",
+    "identifier": "postman-bin",
+    "isAvailable": true
+  },
+  {
+    "app": "insomnia",
+    "source": "flatpak",
+    "identifier": "rest.insomnia.Insomnia",
+    "isAvailable": true
+  },
+  {
+    "app": "insomnia",
+    "source": "snap",
+    "identifier": "insomnia",
+    "isAvailable": true
+  },
+  {
+    "app": "dbeaver",
+    "source": "flatpak",
+    "identifier": "io.dbeaver.DBeaverCommunity",
+    "isAvailable": true
+  },
+  {
+    "app": "dbeaver",
+    "source": "snap",
+    "identifier": "dbeaver-ce",
+    "isAvailable": true
+  },
+  {
+    "app": "dbeaver",
+    "source": "apt",
+    "identifier": "dbeaver-ce",
+    "isAvailable": true
+  },
+  {
+    "app": "dbeaver",
+    "source": "pacman",
+    "identifier": "dbeaver",
+    "isAvailable": true
+  },
+  {
+    "app": "vlc",
+    "source": "flatpak",
+    "identifier": "org.videolan.VLC",
+    "isAvailable": true
+  },
+  {
+    "app": "vlc",
+    "source": "snap",
+    "identifier": "vlc",
+    "isAvailable": true
+  },
+  {
+    "app": "vlc",
+    "source": "apt",
+    "identifier": "vlc",
+    "isAvailable": true
+  },
+  {
+    "app": "vlc",
+    "source": "dnf",
+    "identifier": "vlc",
+    "isAvailable": true
+  },
+  {
+    "app": "vlc",
+    "source": "pacman",
+    "identifier": "vlc",
+    "isAvailable": true
+  },
+  {
+    "app": "spotify",
+    "source": "flatpak",
+    "identifier": "com.spotify.Client",
+    "isAvailable": true
+  },
+  {
+    "app": "spotify",
+    "source": "snap",
+    "identifier": "spotify",
+    "isAvailable": true
+  },
+  {
+    "app": "spotify",
+    "source": "apt",
+    "identifier": "spotify-client",
+    "isAvailable": true
+  },
+  {
+    "app": "spotify",
+    "source": "pacman",
+    "identifier": "spotify-launcher",
+    "isAvailable": true
+  },
+  {
+    "app": "obs",
+    "source": "flatpak",
+    "identifier": "com.obsproject.Studio",
+    "isAvailable": true
+  },
+  {
+    "app": "obs",
+    "source": "snap",
+    "identifier": "obs-studio",
+    "isAvailable": true
+  },
+  {
+    "app": "obs",
+    "source": "apt",
+    "identifier": "obs-studio",
+    "isAvailable": true
+  },
+  {
+    "app": "obs",
+    "source": "dnf",
+    "identifier": "obs-studio",
+    "isAvailable": true
+  },
+  {
+    "app": "obs",
+    "source": "pacman",
+    "identifier": "obs-studio",
+    "isAvailable": true
+  },
+  {
+    "app": "kdenlive",
+    "source": "flatpak",
+    "identifier": "org.kde.kdenlive",
+    "isAvailable": true
+  },
+  {
+    "app": "kdenlive",
+    "source": "snap",
+    "identifier": "kdenlive",
+    "isAvailable": true
+  },
+  {
+    "app": "kdenlive",
+    "source": "apt",
+    "identifier": "kdenlive",
+    "isAvailable": true
+  },
+  {
+    "app": "kdenlive",
+    "source": "dnf",
+    "identifier": "kdenlive",
+    "isAvailable": true
+  },
+  {
+    "app": "kdenlive",
+    "source": "pacman",
+    "identifier": "kdenlive",
+    "isAvailable": true
+  },
+  {
+    "app": "audacity",
+    "source": "flatpak",
+    "identifier": "org.audacityteam.Audacity",
+    "isAvailable": true
+  },
+  {
+    "app": "audacity",
+    "source": "snap",
+    "identifier": "audacity",
+    "isAvailable": true
+  },
+  {
+    "app": "audacity",
+    "source": "apt",
+    "identifier": "audacity",
+    "isAvailable": true
+  },
+  {
+    "app": "audacity",
+    "source": "dnf",
+    "identifier": "audacity",
+    "isAvailable": true
+  },
+  {
+    "app": "audacity",
+    "source": "pacman",
+    "identifier": "audacity",
+    "isAvailable": true
+  },
+  {
+    "app": "mpv",
+    "source": "flatpak",
+    "identifier": "io.mpv.Mpv",
+    "isAvailable": true
+  },
+  {
+    "app": "mpv",
+    "source": "apt",
+    "identifier": "mpv",
+    "isAvailable": true
+  },
+  {
+    "app": "mpv",
+    "source": "dnf",
+    "identifier": "mpv",
+    "isAvailable": true
+  },
+  {
+    "app": "mpv",
+    "source": "pacman",
+    "identifier": "mpv",
+    "isAvailable": true
+  },
+  {
+    "app": "handbrake",
+    "source": "flatpak",
+    "identifier": "fr.handbrake.ghb",
+    "isAvailable": true
+  },
+  {
+    "app": "handbrake",
+    "source": "apt",
+    "identifier": "handbrake",
+    "isAvailable": true
+  },
+  {
+    "app": "handbrake",
+    "source": "dnf",
+    "identifier": "handbrake",
+    "isAvailable": true
+  },
+  {
+    "app": "handbrake",
+    "source": "pacman",
+    "identifier": "handbrake",
+    "isAvailable": true
+  },
+  {
+    "app": "gimp",
+    "source": "flatpak",
+    "identifier": "org.gimp.GIMP",
+    "isAvailable": true
+  },
+  {
+    "app": "gimp",
+    "source": "snap",
+    "identifier": "gimp",
+    "isAvailable": true
+  },
+  {
+    "app": "gimp",
+    "source": "apt",
+    "identifier": "gimp",
+    "isAvailable": true
+  },
+  {
+    "app": "gimp",
+    "source": "dnf",
+    "identifier": "gimp",
+    "isAvailable": true
+  },
+  {
+    "app": "gimp",
+    "source": "pacman",
+    "identifier": "gimp",
+    "isAvailable": true
+  },
+  {
+    "app": "inkscape",
+    "source": "flatpak",
+    "identifier": "org.inkscape.Inkscape",
+    "isAvailable": true
+  },
+  {
+    "app": "inkscape",
+    "source": "snap",
+    "identifier": "inkscape",
+    "isAvailable": true
+  },
+  {
+    "app": "inkscape",
+    "source": "apt",
+    "identifier": "inkscape",
+    "isAvailable": true
+  },
+  {
+    "app": "inkscape",
+    "source": "dnf",
+    "identifier": "inkscape",
+    "isAvailable": true
+  },
+  {
+    "app": "inkscape",
+    "source": "pacman",
+    "identifier": "inkscape",
+    "isAvailable": true
+  },
+  {
+    "app": "blender",
+    "source": "flatpak",
+    "identifier": "org.blender.Blender",
+    "isAvailable": true
+  },
+  {
+    "app": "blender",
+    "source": "snap",
+    "identifier": "blender",
+    "isAvailable": true
+  },
+  {
+    "app": "blender",
+    "source": "apt",
+    "identifier": "blender",
+    "isAvailable": true
+  },
+  {
+    "app": "blender",
+    "source": "dnf",
+    "identifier": "blender",
+    "isAvailable": true
+  },
+  {
+    "app": "blender",
+    "source": "pacman",
+    "identifier": "blender",
+    "isAvailable": true
+  },
+  {
+    "app": "krita",
+    "source": "flatpak",
+    "identifier": "org.kde.krita",
+    "isAvailable": true
+  },
+  {
+    "app": "krita",
+    "source": "snap",
+    "identifier": "krita",
+    "isAvailable": true
+  },
+  {
+    "app": "krita",
+    "source": "apt",
+    "identifier": "krita",
+    "isAvailable": true
+  },
+  {
+    "app": "krita",
+    "source": "dnf",
+    "identifier": "krita",
+    "isAvailable": true
+  },
+  {
+    "app": "krita",
+    "source": "pacman",
+    "identifier": "krita",
+    "isAvailable": true
+  },
+  {
+    "app": "darktable",
+    "source": "flatpak",
+    "identifier": "org.darktable.Darktable",
+    "isAvailable": true
+  },
+  {
+    "app": "darktable",
+    "source": "apt",
+    "identifier": "darktable",
+    "isAvailable": true
+  },
+  {
+    "app": "darktable",
+    "source": "dnf",
+    "identifier": "darktable",
+    "isAvailable": true
+  },
+  {
+    "app": "darktable",
+    "source": "pacman",
+    "identifier": "darktable",
+    "isAvailable": true
+  },
+  {
+    "app": "libreoffice",
+    "source": "flatpak",
+    "identifier": "org.libreoffice.LibreOffice",
+    "isAvailable": true
+  },
+  {
+    "app": "libreoffice",
+    "source": "snap",
+    "identifier": "libreoffice",
+    "isAvailable": true
+  },
+  {
+    "app": "libreoffice",
+    "source": "apt",
+    "identifier": "libreoffice",
+    "isAvailable": true
+  },
+  {
+    "app": "libreoffice",
+    "source": "dnf",
+    "identifier": "libreoffice",
+    "isAvailable": true
+  },
+  {
+    "app": "libreoffice",
+    "source": "pacman",
+    "identifier": "libreoffice-fresh",
+    "isAvailable": true
+  },
+  {
+    "app": "onlyoffice",
+    "source": "flatpak",
+    "identifier": "org.onlyoffice.desktopeditors",
+    "isAvailable": true
+  },
+  {
+    "app": "onlyoffice",
+    "source": "snap",
+    "identifier": "onlyoffice-desktopeditors",
+    "isAvailable": true
+  },
+  {
+    "app": "onlyoffice",
+    "source": "apt",
+    "identifier": "onlyoffice-desktopeditors",
+    "isAvailable": true
+  },
+  {
+    "app": "obsidian",
+    "source": "flatpak",
+    "identifier": "md.obsidian.Obsidian",
+    "isAvailable": true
+  },
+  {
+    "app": "obsidian",
+    "source": "snap",
+    "identifier": "obsidian",
+    "isAvailable": true
+  },
+  {
+    "app": "obsidian",
+    "source": "pacman",
+    "identifier": "obsidian",
+    "isAvailable": true
+  },
+  {
+    "app": "notion",
+    "source": "snap",
+    "identifier": "notion-snap-reborn",
+    "isAvailable": true
+  },
+  {
+    "app": "notion",
+    "source": "pacman",
+    "identifier": "notion-app",
+    "isAvailable": true
+  },
+  {
+    "app": "filezilla",
+    "source": "flatpak",
+    "identifier": "org.filezillaproject.Filezilla",
+    "isAvailable": true
+  },
+  {
+    "app": "filezilla",
+    "source": "snap",
+    "identifier": "filezilla",
+    "isAvailable": true
+  },
+  {
+    "app": "filezilla",
+    "source": "apt",
+    "identifier": "filezilla",
+    "isAvailable": true
+  },
+  {
+    "app": "filezilla",
+    "source": "dnf",
+    "identifier": "filezilla",
+    "isAvailable": true
+  },
+  {
+    "app": "filezilla",
+    "source": "pacman",
+    "identifier": "filezilla",
+    "isAvailable": true
+  },
+  {
+    "app": "flameshot",
+    "source": "flatpak",
+    "identifier": "org.flameshot.Flameshot",
+    "isAvailable": true
+  },
+  {
+    "app": "flameshot",
+    "source": "apt",
+    "identifier": "flameshot",
+    "isAvailable": true
+  },
+  {
+    "app": "flameshot",
+    "source": "dnf",
+    "identifier": "flameshot",
+    "isAvailable": true
+  },
+  {
+    "app": "flameshot",
+    "source": "pacman",
+    "identifier": "flameshot",
+    "isAvailable": true
+  },
+  {
+    "app": "timeshift",
+    "source": "apt",
+    "identifier": "timeshift",
+    "isAvailable": true
+  },
+  {
+    "app": "timeshift",
+    "source": "dnf",
+    "identifier": "timeshift",
+    "isAvailable": true
+  },
+  {
+    "app": "timeshift",
+    "source": "pacman",
+    "identifier": "timeshift",
+    "isAvailable": true
+  },
+  {
+    "app": "syncthing",
+    "source": "flatpak",
+    "identifier": "me.kozec.syncthingtk",
+    "isAvailable": true
+  },
+  {
+    "app": "syncthing",
+    "source": "apt",
+    "identifier": "syncthing",
+    "isAvailable": true
+  },
+  {
+    "app": "syncthing",
+    "source": "dnf",
+    "identifier": "syncthing",
+    "isAvailable": true
+  },
+  {
+    "app": "syncthing",
+    "source": "pacman",
+    "identifier": "syncthing",
+    "isAvailable": true
+  },
+  {
+    "app": "balena-etcher",
+    "source": "flatpak",
+    "identifier": "io.balena.Etcher",
+    "isAvailable": true
+  },
+  {
+    "app": "balena-etcher",
+    "source": "pacman",
+    "identifier": "balena-etcher",
+    "isAvailable": true
+  },
+  {
+    "app": "discord",
+    "source": "flatpak",
+    "identifier": "com.discordapp.Discord",
+    "isAvailable": true
+  },
+  {
+    "app": "discord",
+    "source": "snap",
+    "identifier": "discord",
+    "isAvailable": true
+  },
+  {
+    "app": "discord",
+    "source": "apt",
+    "identifier": "discord",
+    "isAvailable": true
+  },
+  {
+    "app": "discord",
+    "source": "pacman",
+    "identifier": "discord",
+    "isAvailable": true
+  },
+  {
+    "app": "slack",
+    "source": "flatpak",
+    "identifier": "com.slack.Slack",
+    "isAvailable": true
+  },
+  {
+    "app": "slack",
+    "source": "snap",
+    "identifier": "slack",
+    "isAvailable": true
+  },
+  {
+    "app": "slack",
+    "source": "apt",
+    "identifier": "slack-desktop",
+    "isAvailable": true
+  },
+  {
+    "app": "slack",
+    "source": "dnf",
+    "identifier": "slack",
+    "isAvailable": true
+  },
+  {
+    "app": "slack",
+    "source": "pacman",
+    "identifier": "slack-desktop",
+    "isAvailable": true
+  },
+  {
+    "app": "thunderbird",
+    "source": "flatpak",
+    "identifier": "org.mozilla.Thunderbird",
+    "isAvailable": true
+  },
+  {
+    "app": "thunderbird",
+    "source": "snap",
+    "identifier": "thunderbird",
+    "isAvailable": true
+  },
+  {
+    "app": "thunderbird",
+    "source": "apt",
+    "identifier": "thunderbird",
+    "isAvailable": true
+  },
+  {
+    "app": "thunderbird",
+    "source": "dnf",
+    "identifier": "thunderbird",
+    "isAvailable": true
+  },
+  {
+    "app": "thunderbird",
+    "source": "pacman",
+    "identifier": "thunderbird",
+    "isAvailable": true
+  },
+  {
+    "app": "telegram",
+    "source": "flatpak",
+    "identifier": "org.telegram.desktop",
+    "isAvailable": true
+  },
+  {
+    "app": "telegram",
+    "source": "snap",
+    "identifier": "telegram-desktop",
+    "isAvailable": true
+  },
+  {
+    "app": "telegram",
+    "source": "apt",
+    "identifier": "telegram-desktop",
+    "isAvailable": true
+  },
+  {
+    "app": "telegram",
+    "source": "dnf",
+    "identifier": "telegram-desktop",
+    "isAvailable": true
+  },
+  {
+    "app": "telegram",
+    "source": "pacman",
+    "identifier": "telegram-desktop",
+    "isAvailable": true
+  },
+  {
+    "app": "zoom",
+    "source": "flatpak",
+    "identifier": "us.zoom.Zoom",
+    "isAvailable": true
+  },
+  {
+    "app": "zoom",
+    "source": "snap",
+    "identifier": "zoom-client",
+    "isAvailable": true
+  },
+  {
+    "app": "zoom",
+    "source": "apt",
+    "identifier": "zoom",
+    "isAvailable": true
+  },
+  {
+    "app": "zoom",
+    "source": "dnf",
+    "identifier": "zoom",
+    "isAvailable": true
+  },
+  {
+    "app": "zoom",
+    "source": "pacman",
+    "identifier": "zoom",
+    "isAvailable": true
+  },
+  {
+    "app": "steam",
+    "source": "flatpak",
+    "identifier": "com.valvesoftware.Steam",
+    "isAvailable": true
+  },
+  {
+    "app": "steam",
+    "source": "snap",
+    "identifier": "steam",
+    "isAvailable": true
+  },
+  {
+    "app": "steam",
+    "source": "apt",
+    "identifier": "steam",
+    "isAvailable": true
+  },
+  {
+    "app": "steam",
+    "source": "dnf",
+    "identifier": "steam",
+    "isAvailable": true
+  },
+  {
+    "app": "steam",
+    "source": "pacman",
+    "identifier": "steam",
+    "isAvailable": true
+  },
+  {
+    "app": "lutris",
+    "source": "flatpak",
+    "identifier": "net.lutris.Lutris",
+    "isAvailable": true
+  },
+  {
+    "app": "lutris",
+    "source": "apt",
+    "identifier": "lutris",
+    "isAvailable": true
+  },
+  {
+    "app": "lutris",
+    "source": "dnf",
+    "identifier": "lutris",
+    "isAvailable": true
+  },
+  {
+    "app": "lutris",
+    "source": "pacman",
+    "identifier": "lutris",
+    "isAvailable": true
+  },
+  {
+    "app": "minecraft",
+    "source": "flatpak",
+    "identifier": "com.mojang.Minecraft",
+    "isAvailable": true
+  },
+  {
+    "app": "minecraft",
+    "source": "pacman",
+    "identifier": "minecraft-launcher",
+    "isAvailable": true
+  },
+  {
+    "app": "heroic",
+    "source": "flatpak",
+    "identifier": "com.heroicgameslauncher.hgl",
+    "isAvailable": true
+  },
+  {
+    "app": "heroic",
+    "source": "pacman",
+    "identifier": "heroic-games-launcher-bin",
+    "isAvailable": true
+  },
+  {
+    "app": "keepassxc",
+    "source": "flatpak",
+    "identifier": "org.keepassxc.KeePassXC",
+    "isAvailable": true
+  },
+  {
+    "app": "keepassxc",
+    "source": "snap",
+    "identifier": "keepassxc",
+    "isAvailable": true
+  },
+  {
+    "app": "keepassxc",
+    "source": "apt",
+    "identifier": "keepassxc",
+    "isAvailable": true
+  },
+  {
+    "app": "keepassxc",
+    "source": "dnf",
+    "identifier": "keepassxc",
+    "isAvailable": true
+  },
+  {
+    "app": "keepassxc",
+    "source": "pacman",
+    "identifier": "keepassxc",
+    "isAvailable": true
+  },
+  {
+    "app": "bitwarden",
+    "source": "flatpak",
+    "identifier": "com.bitwarden.desktop",
+    "isAvailable": true
+  },
+  {
+    "app": "bitwarden",
+    "source": "snap",
+    "identifier": "bitwarden",
+    "isAvailable": true
+  },
+  {
+    "app": "bitwarden",
+    "source": "pacman",
+    "identifier": "bitwarden",
+    "isAvailable": true
+  },
+  {
+    "app": "veracrypt",
+    "source": "apt",
+    "identifier": "veracrypt",
+    "isAvailable": true
+  },
+  {
+    "app": "veracrypt",
+    "source": "dnf",
+    "identifier": "veracrypt",
+    "isAvailable": true
+  },
+  {
+    "app": "veracrypt",
+    "source": "pacman",
+    "identifier": "veracrypt",
+    "isAvailable": true
+  },
+  {
+    "app": "clamav",
+    "source": "apt",
+    "identifier": "clamav",
+    "isAvailable": true
+  },
+  {
+    "app": "clamav",
+    "source": "dnf",
+    "identifier": "clamav",
+    "isAvailable": true
+  },
+  {
+    "app": "clamav",
+    "source": "pacman",
+    "identifier": "clamav",
+    "isAvailable": true
+  },
+  {
+    "app": "btop",
+    "source": "apt",
+    "identifier": "btop",
+    "isAvailable": true
+  },
+  {
+    "app": "btop",
+    "source": "dnf",
+    "identifier": "btop",
+    "isAvailable": true
+  },
+  {
+    "app": "btop",
+    "source": "pacman",
+    "identifier": "btop",
+    "isAvailable": true
+  },
+  {
+    "app": "firefox",
+    "source": "nix",
+    "identifier": "firefox",
+    "isAvailable": true
+  },
+  {
+    "app": "chrome",
+    "source": "nix",
+    "identifier": "google-chrome",
+    "isAvailable": true
+  },
+  {
+    "app": "brave",
+    "source": "nix",
+    "identifier": "brave",
+    "isAvailable": true
+  },
+  {
+    "app": "chromium",
+    "source": "nix",
+    "identifier": "chromium",
+    "isAvailable": true
+  },
+  {
+    "app": "vivaldi",
+    "source": "nix",
+    "identifier": "vivaldi",
+    "isAvailable": true
+  },
+  {
+    "app": "vscode",
+    "source": "nix",
+    "identifier": "vscode",
+    "isAvailable": true
+  },
+  {
+    "app": "git",
+    "source": "nix",
+    "identifier": "git",
+    "isAvailable": true
+  },
+  {
+    "app": "docker",
+    "source": "nix",
+    "identifier": "docker",
+    "isAvailable": true
+  },
+  {
+    "app": "neovim",
+    "source": "nix",
+    "identifier": "neovim",
+    "isAvailable": true
+  },
+  {
+    "app": "emacs",
+    "source": "nix",
+    "identifier": "emacs",
+    "isAvailable": true
+  },
+  {
+    "app": "postman",
+    "source": "nix",
+    "identifier": "postman",
+    "isAvailable": true
+  },
+  {
+    "app": "nodejs",
+    "source": "nix",
+    "identifier": "nodejs",
+    "isAvailable": true
+  },
+  {
+    "app": "python",
+    "source": "nix",
+    "identifier": "python3",
+    "isAvailable": true
+  },
+  {
+    "app": "java",
+    "source": "nix",
+    "identifier": "jdk",
+    "isAvailable": true
+  },
+  {
+    "app": "golang",
+    "source": "nix",
+    "identifier": "go",
+    "isAvailable": true
+  },
+  {
+    "app": "rust",
+    "source": "nix",
+    "identifier": "rustc",
+    "isAvailable": true
+  },
+  {
+    "app": "ruby",
+    "source": "nix",
+    "identifier": "ruby",
+    "isAvailable": true
+  },
+  {
+    "app": "php",
+    "source": "nix",
+    "identifier": "php",
+    "isAvailable": true
+  },
+  {
+    "app": "gcc",
+    "source": "nix",
+    "identifier": "gcc",
+    "isAvailable": true
+  },
+  {
+    "app": "vlc",
+    "source": "nix",
+    "identifier": "vlc",
+    "isAvailable": true
+  },
+  {
+    "app": "spotify",
+    "source": "nix",
+    "identifier": "spotify",
+    "isAvailable": true
+  },
+  {
+    "app": "obs",
+    "source": "nix",
+    "identifier": "obs-studio",
+    "isAvailable": true
+  },
+  {
+    "app": "audacity",
+    "source": "nix",
+    "identifier": "audacity",
+    "isAvailable": true
+  },
+  {
+    "app": "mpv",
+    "source": "nix",
+    "identifier": "mpv",
+    "isAvailable": true
+  },
+  {
+    "app": "gimp",
+    "source": "nix",
+    "identifier": "gimp",
+    "isAvailable": true
+  },
+  {
+    "app": "inkscape",
+    "source": "nix",
+    "identifier": "inkscape",
+    "isAvailable": true
+  },
+  {
+    "app": "blender",
+    "source": "nix",
+    "identifier": "blender",
+    "isAvailable": true
+  },
+  {
+    "app": "krita",
+    "source": "nix",
+    "identifier": "krita",
+    "isAvailable": true
+  },
+  {
+    "app": "libreoffice",
+    "source": "nix",
+    "identifier": "libreoffice",
+    "isAvailable": true
+  },
+  {
+    "app": "obsidian",
+    "source": "nix",
+    "identifier": "obsidian",
+    "isAvailable": true
+  },
+  {
+    "app": "filezilla",
+    "source": "nix",
+    "identifier": "filezilla",
+    "isAvailable": true
+  },
+  {
+    "app": "flameshot",
+    "source": "nix",
+    "identifier": "flameshot",
+    "isAvailable": true
+  },
+  {
+    "app": "discord",
+    "source": "nix",
+    "identifier": "discord",
+    "isAvailable": true
+  },
+  {
+    "app": "slack",
+    "source": "nix",
+    "identifier": "slack",
+    "isAvailable": true
+  },
+  {
+    "app": "thunderbird",
+    "source": "nix",
+    "identifier": "thunderbird",
+    "isAvailable": true
+  },
+  {
+    "app": "telegram",
+    "source": "nix",
+    "identifier": "telegram-desktop",
+    "isAvailable": true
+  },
+  {
+    "app": "zoom",
+    "source": "nix",
+    "identifier": "zoom-us",
+    "isAvailable": true
+  },
+  {
+    "app": "steam",
+    "source": "nix",
+    "identifier": "steam",
+    "isAvailable": true
+  },
+  {
+    "app": "keepassxc",
+    "source": "nix",
+    "identifier": "keepassxc",
+    "isAvailable": true
+  },
+  {
+    "app": "btop",
+    "source": "nix",
+    "identifier": "btop",
+    "isAvailable": true
+  },
+  {
+    "app": "firefox",
+    "source": "winget",
+    "identifier": "Mozilla.Firefox",
+    "isAvailable": true
+  },
+  {
+    "app": "firefox",
+    "source": "scoop",
+    "identifier": "firefox",
+    "isAvailable": true
+  },
+  {
+    "app": "chrome",
+    "source": "winget",
+    "identifier": "Google.Chrome",
+    "isAvailable": true
+  },
+  {
+    "app": "chrome",
+    "source": "scoop",
+    "identifier": "googlechrome",
+    "isAvailable": true
+  },
+  {
+    "app": "brave",
+    "source": "winget",
+    "identifier": "Brave.Brave",
+    "isAvailable": true
+  },
+  {
+    "app": "brave",
+    "source": "scoop",
+    "identifier": "brave",
+    "isAvailable": true
+  },
+  {
+    "app": "chromium",
+    "source": "winget",
+    "identifier": "Hibbiki.Chromium",
+    "isAvailable": true
+  },
+  {
+    "app": "chromium",
+    "source": "scoop",
+    "identifier": "chromium",
+    "isAvailable": true
+  },
+  {
+    "app": "vivaldi",
+    "source": "winget",
+    "identifier": "VivaldiTechnologies.Vivaldi",
+    "isAvailable": true
+  },
+  {
+    "app": "zen-browser",
+    "source": "winget",
+    "identifier": "Zen-Team.Zen-Browser",
+    "isAvailable": true
+  },
+  {
+    "app": "microsoft-edge",
+    "source": "winget",
+    "identifier": "Microsoft.Edge",
+    "isAvailable": true
+  },
+  {
+    "app": "vscode",
+    "source": "winget",
+    "identifier": "Microsoft.VisualStudioCode",
+    "isAvailable": true
+  },
+  {
+    "app": "vscode",
+    "source": "scoop",
+    "identifier": "vscode",
+    "isAvailable": true
+  },
+  {
+    "app": "git",
+    "source": "winget",
+    "identifier": "Git.Git",
+    "isAvailable": true
+  },
+  {
+    "app": "git",
+    "source": "scoop",
+    "identifier": "git",
+    "isAvailable": true
+  },
+  {
+    "app": "docker",
+    "source": "winget",
+    "identifier": "Docker.DockerDesktop",
+    "isAvailable": true
+  },
+  {
+    "app": "docker",
+    "source": "scoop",
+    "identifier": "docker",
+    "isAvailable": true
+  },
+  {
+    "app": "nodejs",
+    "source": "winget",
+    "identifier": "OpenJS.NodeJS",
+    "isAvailable": true
+  },
+  {
+    "app": "nodejs",
+    "source": "scoop",
+    "identifier": "nodejs",
+    "isAvailable": true
+  },
+  {
+    "app": "intellij",
+    "source": "winget",
+    "identifier": "JetBrains.IntelliJIDEA.Community",
+    "isAvailable": true
+  },
+  {
+    "app": "intellij",
+    "source": "scoop",
+    "identifier": "idea",
+    "isAvailable": true
+  },
+  {
+    "app": "postman",
+    "source": "winget",
+    "identifier": "Postman.Postman",
+    "isAvailable": true
+  },
+  {
+    "app": "postman",
+    "source": "scoop",
+    "identifier": "postman",
+    "isAvailable": true
+  },
+  {
+    "app": "dbeaver",
+    "source": "winget",
+    "identifier": "dbeaver.dbeaver",
+    "isAvailable": true
+  },
+  {
+    "app": "dbeaver",
+    "source": "scoop",
+    "identifier": "dbeaver",
+    "isAvailable": true
+  },
+  {
+    "app": "vlc",
+    "source": "winget",
+    "identifier": "VideoLAN.VLC",
+    "isAvailable": true
+  },
+  {
+    "app": "vlc",
+    "source": "scoop",
+    "identifier": "vlc",
+    "isAvailable": true
+  },
+  {
+    "app": "spotify",
+    "source": "winget",
+    "identifier": "Spotify.Spotify",
+    "isAvailable": true
+  },
+  {
+    "app": "spotify",
+    "source": "scoop",
+    "identifier": "spotify",
+    "isAvailable": true
+  },
+  {
+    "app": "obs",
+    "source": "winget",
+    "identifier": "OBSProject.OBSStudio",
+    "isAvailable": true
+  },
+  {
+    "app": "obs",
+    "source": "scoop",
+    "identifier": "obs-studio",
+    "isAvailable": true
+  },
+  {
+    "app": "kdenlive",
+    "source": "winget",
+    "identifier": "KDE.Kdenlive",
+    "isAvailable": true
+  },
+  {
+    "app": "audacity",
+    "source": "winget",
+    "identifier": "Audacity.Audacity",
+    "isAvailable": true
+  },
+  {
+    "app": "audacity",
+    "source": "scoop",
+    "identifier": "audacity",
+    "isAvailable": true
+  },
+  {
+    "app": "mpv",
+    "source": "winget",
+    "identifier": "mpv.mpv",
+    "isAvailable": true
+  },
+  {
+    "app": "mpv",
+    "source": "scoop",
+    "identifier": "mpv",
+    "isAvailable": true
+  },
+  {
+    "app": "handbrake",
+    "source": "winget",
+    "identifier": "HandBrake.HandBrake",
+    "isAvailable": true
+  },
+  {
+    "app": "handbrake",
+    "source": "scoop",
+    "identifier": "handbrake",
+    "isAvailable": true
+  },
+  {
+    "app": "gimp",
+    "source": "winget",
+    "identifier": "GIMP.GIMP",
+    "isAvailable": true
+  },
+  {
+    "app": "gimp",
+    "source": "scoop",
+    "identifier": "gimp",
+    "isAvailable": true
+  },
+  {
+    "app": "inkscape",
+    "source": "winget",
+    "identifier": "Inkscape.Inkscape",
+    "isAvailable": true
+  },
+  {
+    "app": "inkscape",
+    "source": "scoop",
+    "identifier": "inkscape",
+    "isAvailable": true
+  },
+  {
+    "app": "blender",
+    "source": "winget",
+    "identifier": "BlenderFoundation.Blender",
+    "isAvailable": true
+  },
+  {
+    "app": "blender",
+    "source": "scoop",
+    "identifier": "blender",
+    "isAvailable": true
+  },
+  {
+    "app": "krita",
+    "source": "winget",
+    "identifier": "KDE.Krita",
+    "isAvailable": true
+  },
+  {
+    "app": "krita",
+    "source": "scoop",
+    "identifier": "krita",
+    "isAvailable": true
+  },
+  {
+    "app": "darktable",
+    "source": "winget",
+    "identifier": "darktable.darktable",
+    "isAvailable": true
+  },
+  {
+    "app": "libreoffice",
+    "source": "winget",
+    "identifier": "TheDocumentFoundation.LibreOffice",
+    "isAvailable": true
+  },
+  {
+    "app": "libreoffice",
+    "source": "scoop",
+    "identifier": "libreoffice",
+    "isAvailable": true
+  },
+  {
+    "app": "onlyoffice",
+    "source": "winget",
+    "identifier": "ONLYOFFICE.DesktopEditors",
+    "isAvailable": true
+  },
+  {
+    "app": "obsidian",
+    "source": "winget",
+    "identifier": "Obsidian.Obsidian",
+    "isAvailable": true
+  },
+  {
+    "app": "obsidian",
+    "source": "scoop",
+    "identifier": "obsidian",
+    "isAvailable": true
+  },
+  {
+    "app": "notion",
+    "source": "winget",
+    "identifier": "Notion.Notion",
+    "isAvailable": true
+  },
+  {
+    "app": "notion",
+    "source": "scoop",
+    "identifier": "notion",
+    "isAvailable": true
+  },
+  {
+    "app": "syncthing",
+    "source": "winget",
+    "identifier": "Syncthing.Syncthing",
+    "isAvailable": true
+  },
+  {
+    "app": "syncthing",
+    "source": "scoop",
+    "identifier": "syncthing",
+    "isAvailable": true
+  },
+  {
+    "app": "balena-etcher",
+    "source": "winget",
+    "identifier": "Balena.Etcher",
+    "isAvailable": true
+  },
+  {
+    "app": "balena-etcher",
+    "source": "scoop",
+    "identifier": "etcher",
+    "isAvailable": true
+  },
+  {
+    "app": "discord",
+    "source": "winget",
+    "identifier": "Discord.Discord",
+    "isAvailable": true
+  },
+  {
+    "app": "discord",
+    "source": "scoop",
+    "identifier": "discord",
+    "isAvailable": true
+  },
+  {
+    "app": "slack",
+    "source": "winget",
+    "identifier": "SlackTechnologies.Slack",
+    "isAvailable": true
+  },
+  {
+    "app": "slack",
+    "source": "scoop",
+    "identifier": "slack",
+    "isAvailable": true
+  },
+  {
+    "app": "thunderbird",
+    "source": "winget",
+    "identifier": "Mozilla.Thunderbird",
+    "isAvailable": true
+  },
+  {
+    "app": "thunderbird",
+    "source": "scoop",
+    "identifier": "thunderbird",
+    "isAvailable": true
+  },
+  {
+    "app": "telegram",
+    "source": "winget",
+    "identifier": "Telegram.TelegramDesktop",
+    "isAvailable": true
+  },
+  {
+    "app": "telegram",
+    "source": "scoop",
+    "identifier": "telegram",
+    "isAvailable": true
+  },
+  {
+    "app": "zoom",
+    "source": "winget",
+    "identifier": "Zoom.Zoom",
+    "isAvailable": true
+  },
+  {
+    "app": "zoom",
+    "source": "scoop",
+    "identifier": "zoom",
+    "isAvailable": true
+  },
+  {
+    "app": "steam",
+    "source": "winget",
+    "identifier": "Valve.Steam",
+    "isAvailable": true
+  },
+  {
+    "app": "steam",
+    "source": "scoop",
+    "identifier": "steam",
+    "isAvailable": true
+  },
+  {
+    "app": "minecraft",
+    "source": "winget",
+    "identifier": "Mojang.MinecraftLauncher",
+    "isAvailable": true
+  },
+  {
+    "app": "heroic",
+    "source": "winget",
+    "identifier": "HeroicGamesLauncher.HeroicGamesLauncher",
+    "isAvailable": true
+  },
+  {
+    "app": "heroic",
+    "source": "scoop",
+    "identifier": "heroic",
+    "isAvailable": true
+  },
+  {
+    "app": "keepassxc",
+    "source": "winget",
+    "identifier": "KeePassXCTeam.KeePassXC",
+    "isAvailable": true
+  },
+  {
+    "app": "keepassxc",
+    "source": "scoop",
+    "identifier": "keepassxc",
+    "isAvailable": true
+  },
+  {
+    "app": "bitwarden",
+    "source": "winget",
+    "identifier": "Bitwarden.Bitwarden",
+    "isAvailable": true
+  },
+  {
+    "app": "bitwarden",
+    "source": "scoop",
+    "identifier": "bitwarden",
+    "isAvailable": true
+  },
+  {
+    "app": "veracrypt",
+    "source": "winget",
+    "identifier": "IDRIX.VeraCrypt",
+    "isAvailable": true
+  },
+  {
+    "app": "veracrypt",
+    "source": "scoop",
+    "identifier": "veracrypt",
+    "isAvailable": true
+  }
+]

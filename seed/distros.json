@@ -1,0 +1,72 @@
+[
+  {
+    "name": "Ubuntu",
+    "slug": "ubuntu",
+    "family": "debian",
+    "basedOn": "debian",
+    "isPopular": true
+  },
+  {
+    "name": "Debian",
+    "slug": "debian",
+    "family": "debian",
+    "basedOn": null,
+    "isPopular": true
+  },
+  {
+    "name": "Linux Mint",
+    "slug": "linuxmint",
+    "family": "debian",
+    "basedOn": "ubuntu",
+    "isPopular": true
+  },
+  {
+    "name": "Pop!_OS",
+    "slug": "pop",
+    "family": "debian",
+    "basedOn": "ubuntu",
+    "isPopular": true
+  },
+  {
+    "name": "Fedora",
+    "slug": "fedora",
+    "family": "rhel",
+    "basedOn": null,
+    "isPopular": true
+  },
+  {
+    "name": "Arch Linux",
+    "slug": "arch",
+    "family": "arch",
+    "basedOn": null,
+    "isPopular": true
+  },
+  {
+    "name": "Manjaro",
+    "slug": "manjaro",
+    "family": "arch",
+    "basedOn": "arch",
+    "isPopular": true
+  },
+  {
+    "name": "openSUSE",
+    "slug": "opensuse",
+    "family": "suse",
+    "basedOn": null,
+    "isPopular": false
+  },
+  {
+    "name": "NixOS",
+    "slug": "nixos",
+    "family": "nixos",
+    "basedOn": null,
+    "isPopular": true
+  },
+  {
+    "name": "Windows",
+    "slug": "windows",
+    "family": "windows",
+    "basedOn": null,
+    "isPopular": true
+  }
+]

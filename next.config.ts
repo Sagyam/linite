@@ -8,7 +8,6 @@ const nextConfig: NextConfig = {
                 protocol: 'https',
                 hostname: 'linite.blob.core.windows.net',
             },
-
         ]
     }
 };

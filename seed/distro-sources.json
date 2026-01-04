@@ -1,0 +1,152 @@
+[
+  {
+    "distro": "ubuntu",
+    "source": "apt",
+    "priority": 10,
+    "isDefault": true
+  },
+  {
+    "distro": "ubuntu",
+    "source": "flatpak",
+    "priority": 5,
+    "isDefault": false
+  },
+  {
+    "distro": "ubuntu",
+    "source": "snap",
+    "priority": 3,
+    "isDefault": false
+  },
+  {
+    "distro": "debian",
+    "source": "apt",
+    "priority": 10,
+    "isDefault": true
+  },
+  {
+    "distro": "debian",
+    "source": "flatpak",
+    "priority": 5,
+    "isDefault": false
+  },
+  {
+    "distro": "linuxmint",
+    "source": "apt",
+    "priority": 10,
+    "isDefault": true
+  },
+  {
+    "distro": "linuxmint",
+    "source": "flatpak",
+    "priority": 5,
+    "isDefault": false
+  },
+  {
+    "distro": "pop",
+    "source": "apt",
+    "priority": 10,
+    "isDefault": true
+  },
+  {
+    "distro": "pop",
+    "source": "flatpak",
+    "priority": 5,
+    "isDefault": false
+  },
+  {
+    "distro": "fedora",
+    "source": "dnf",
+    "priority": 10,
+    "isDefault": true
+  },
+  {
+    "distro": "fedora",
+    "source": "flatpak",
+    "priority": 5,
+    "isDefault": false
+  },
+  {
+    "distro": "arch",
+    "source": "pacman",
+    "priority": 10,
+    "isDefault": true
+  },
+  {
+    "distro": "arch",
+    "source": "aur",
+    "priority": 7,
+    "isDefault": false
+  },
+  {
+    "distro": "arch",
+    "source": "flatpak",
+    "priority": 3,
+    "isDefault": false
+  },
+  {
+    "distro": "manjaro",
+    "source": "pacman",
+    "priority": 10,
+    "isDefault": true
+  },
+  {
+    "distro": "manjaro",
+    "source": "aur",
+    "priority": 7,
+    "isDefault": false
+  },
+  {
+    "distro": "manjaro",
+    "source": "flatpak",
+    "priority": 5,
+    "isDefault": false
+  },
+  {
+    "distro": "manjaro",
+    "source": "snap",
+    "priority": 3,
+    "isDefault": false
+  },
+  {
+    "distro": "opensuse",
+    "source": "zypper",
+    "priority": 10,
+    "isDefault": true
+  },
+  {
+    "distro": "opensuse",
+    "source": "flatpak",
+    "priority": 5,
+    "isDefault": false
+  },
+  {
+    "distro": "nixos",
+    "source": "nix",
+    "priority": 10,
+    "isDefault": true
+  },
+  {
+    "distro": "nixos",
+    "source": "flatpak",
+    "priority": 5,
+    "isDefault": false
+  },
+  {
+    "distro": "nixos",
+    "source": "snap",
+    "priority": 3,
+    "isDefault": false
+  },
+  {
+    "distro": "windows",
+    "source": "winget",
+    "priority": 10,
+    "isDefault": true
+  },
+  {
+    "distro": "windows",
+    "source": "scoop",
+    "priority": 6,
+    "isDefault": false
+  }
+]

@@ -1,0 +1,101 @@
+[
+  {
+    "name": "Flatpak",
+    "slug": "flatpak",
+    "installCmd": "flatpak install -y flathub",
+    "requireSudo": false,
+    "setupCmd": "flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo",
+    "priority": 5,
+    "apiEndpoint": "https://flathub.org/api/v2/"
+  },
+  {
+    "name": "Snap",
+    "slug": "snap",
+    "installCmd": "snap install",
+    "requireSudo": true,
+    "setupCmd": null,
+    "priority": 3,
+    "apiEndpoint": "https://api.snapcraft.io/v2/"
+  },
+  {
+    "name": "APT",
+    "slug": "apt",
+    "installCmd": "apt install -y",
+    "requireSudo": true,
+    "setupCmd": null,
+    "priority": 10,
+    "apiEndpoint": null
+  },
+  {
+    "name": "DNF",
+    "slug": "dnf",
+    "installCmd": "dnf install -y",
+    "requireSudo": true,
+    "setupCmd": null,
+    "priority": 10,
+    "apiEndpoint": null
+  },
+  {
+    "name": "Pacman",
+    "slug": "pacman",
+    "installCmd": "pacman -S --noconfirm",
+    "requireSudo": true,
+    "setupCmd": null,
+    "priority": 10,
+    "apiEndpoint": null
+  },
+  {
+    "name": "Zypper",
+    "slug": "zypper",
+    "installCmd": "zypper install -y",
+    "requireSudo": true,
+    "setupCmd": null,
+    "priority": 10,
+    "apiEndpoint": null
+  },
+  {
+    "name": "AUR",
+    "slug": "aur",
+    "installCmd": "yay -S --noconfirm",
+    "requireSudo": false,
+    "setupCmd": "sudo pacman -S --needed git base-devel && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si",
+    "priority": 7,
+    "apiEndpoint": "https://aur.archlinux.org/rpc/"
+  },
+  {
+    "name": "Homebrew",
+    "slug": "homebrew",
+    "installCmd": "brew install",
+    "requireSudo": false,
+    "setupCmd": "/bin/bash -c \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\"",
+    "priority": 8,
+    "apiEndpoint": "https://formulae.brew.sh/api/"
+  },
+  {
+    "name": "Nix",
+    "slug": "nix",
+    "installCmd": "nix-shell -p",
+    "requireSudo": false,
+    "setupCmd": null,
+    "priority": 10,
+    "apiEndpoint": "https://www.nixhub.io/v2/"
+  },
+  {
+    "name": "Winget",
+    "slug": "winget",
+    "installCmd": "winget install --silent --accept-package-agreements --accept-source-agreements",
+    "requireSudo": false,
+    "setupCmd": null,
+    "priority": 10,
+    "apiEndpoint": "https://api.winget.run/"
+  },
+  {
+    "name": "Scoop",
+    "slug": "scoop",
+    "installCmd": "scoop install",
+    "requireSudo": false,
+    "setupCmd": "Set-ExecutionPolicy RemoteSigned -Scope CurrentUser; irm get.scoop.sh | iex",
+    "priority": 6,
+    "apiEndpoint": null
+  }
+]

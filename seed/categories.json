@@ -1,0 +1,68 @@
+[
+  {
+    "name": "Browsers",
+    "slug": "browsers",
+    "icon": "Globe",
+    "displayOrder": 1
+  },
+  {
+    "name": "Development",
+    "slug": "development",
+    "icon": "Code",
+    "displayOrder": 2
+  },
+  {
+    "name": "Languages",
+    "slug": "languages",
+    "icon": "Binary",
+    "displayOrder": 3
+  },
+  {
+    "name": "Media",
+    "slug": "media",
+    "icon": "Play",
+    "displayOrder": 4
+  },
+  {
+    "name": "Graphics",
+    "slug": "graphics",
+    "icon": "Image",
+    "displayOrder": 5
+  },
+  {
+    "name": "Office",
+    "slug": "office",
+    "icon": "FileText",
+    "displayOrder": 6
+  },
+  {
+    "name": "Utilities",
+    "slug": "utilities",
+    "icon": "Wrench",
+    "displayOrder": 7
+  },
+  {
+    "name": "Communication",
+    "slug": "communication",
+    "icon": "MessageCircle",
+    "displayOrder": 8
+  },
+  {
+    "name": "Games",
+    "slug": "games",
+    "icon": "Gamepad2",
+    "displayOrder": 9
+  },
+  {
+    "name": "Security",
+    "slug": "security",
+    "icon": "Shield",
+    "displayOrder": 10
+  },
+  {
+    "name": "System",
+    "slug": "system",
+    "icon": "Settings",
+    "displayOrder": 11
+  }
+]
