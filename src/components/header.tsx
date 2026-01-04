@@ -5,35 +5,38 @@ import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { UserNav } from '@/components/dashboard/user-nav';
+import { MobileNav } from '@/components/mobile-nav';
 import { useSession } from '@/lib/auth-client';
-import {Github, Star, LogIn, Home, Shield, LibraryBig} from 'lucide-react';
+import { Github, Star, LogIn, Home, Shield, LibraryBig } from 'lucide-react';
 
 export function Header() {
   const { data: session, isPending } = useSession();
 
   return (
     <header className="border-b bg-background">
-      <div className="container mx-auto px-4 py-4">
+      <div className="container mx-auto px-4 py-3 md:py-4">
         <div className="flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-3">
+          {/* Logo - Responsive sizing */}
+          <Link href="/" className="flex items-center gap-2 md:gap-3">
             <Image
               src="/logo.svg"
               alt="Linite Logo"
               width={40}
               height={40}
-              className="w-10 h-10"
+              className="w-8 h-8 md:w-10 md:h-10"
             />
             <div className="flex flex-col">
-              <h1 className="text-2xl font-bold">Linite</h1>
-              <span className="text-xs text-muted-foreground">
+              <h1 className="text-xl md:text-2xl font-bold">Linite</h1>
+              <span className="text-xs text-muted-foreground hidden sm:inline">
                 Bulk installer for Linux
               </span>
             </div>
           </Link>
 
-          <nav className="flex items-center gap-2">
+          {/* Desktop Navigation - Hidden on mobile */}
+          <nav className="hidden md:flex items-center gap-2">
             <Link href="/">
-              <Button variant="ghost" size="sm">
+              <Button variant="ghost" size="sm" className="gap-2">
                 <Home className="h-4 w-4" />
                 Home
               </Button>
@@ -46,7 +49,7 @@ export function Header() {
             </Link>
             {process.env.NODE_ENV === 'development' && (
               <Link href="/admin">
-                <Button variant="ghost" size="sm">
+                <Button variant="ghost" size="sm" className="gap-2">
                   <Shield className="h-4 w-4" />
                   Admin
                 </Button>
@@ -65,8 +68,8 @@ export function Header() {
             </a>
 
             {/* Show user nav if logged in, otherwise show sign in button */}
-            {!isPending && (
-              session ? (
+            {!isPending &&
+              (session ? (
                 <UserNav />
               ) : (
                 <Link href="/login">
@@ -75,13 +78,19 @@ export function Header() {
                     Sign In
                   </Button>
                 </Link>
-              )
-            )}
+              ))}
 
             <ThemeToggle />
           </nav>
+
+          {/* Mobile Navigation - Shown on mobile */}
+          <div className="flex md:hidden items-center gap-2">
+            <ThemeToggle />
+            <MobileNav isAuthenticated={!!session} />
+          </div>
         </div>
       </div>
     </header>
   );
 }
+

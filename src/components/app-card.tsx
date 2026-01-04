@@ -87,7 +87,7 @@ export function AppCard({ app, layout = 'detailed' }: AppCardProps) {
       onClick={handleCardClick}
     >
       <div className="flex items-start gap-3">
-        <div className="flex-shrink-0">
+        <div className="shrink-0">
           <Checkbox checked={isSelected} className="mt-1" />
         </div>
 
@@ -102,7 +102,7 @@ export function AppCard({ app, layout = 'detailed' }: AppCardProps) {
         <div className="flex-1 min-w-0">
           <div className="flex items-start justify-between gap-2 mb-2">
             <h3 className="font-semibold text-base">{app.displayName}</h3>
-            <div className="flex gap-1 flex-shrink-0">
+            <div className="flex gap-1 shrink-0">
               {app.isFoss && (
                 <Badge variant="secondary" className="text-xs">
                   FOSS

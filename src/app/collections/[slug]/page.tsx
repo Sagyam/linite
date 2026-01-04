@@ -32,6 +32,7 @@ import { useRouter } from 'next/navigation';
 import { useToast } from '@/hooks/use-toast';
 import { useSelectionStore } from '@/stores/selection-store';
 import type { CollectionWithRelations } from '@/types/entities';
+import {AppIcon} from "@/components/ui/app-icon";
 
 async function fetchCollection(slug: string): Promise<CollectionWithRelations> {
   const response = await fetch(`/api/collections/by-slug/${slug}`);
@@ -389,13 +390,15 @@ export default function CollectionDetailPage({
                 <Card key={item.id} className="hover:border-primary/50 transition-colors">
                   <CardContent className="p-4">
                     <div className="flex items-start gap-3">
-                      {item.app.iconUrl && (
-                        <Image
-                          src={item.app.iconUrl}
-                          alt={item.app.displayName}
-                          className="w-10 h-10 rounded shrink-0"
-                        />
-                      )}
+
+                      <AppIcon
+                        iconUrl={item.app.iconUrl}
+                        displayName={item.app.displayName}
+                        size="lg"
+                        rounded="lg"
+                        className="w-16 h-16"
+                    />
+
                       <div className="flex-1 min-w-0">
                         <h3 className="font-medium text-sm">{item.app.displayName}</h3>
                         {item.app.description && (

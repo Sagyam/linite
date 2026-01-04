@@ -1,13 +1,10 @@
 'use client';
 
 import { useState, useMemo, useEffect, useRef } from 'react';
-import { Search, X, LayoutGrid, List, Grid3x3, Loader2 } from 'lucide-react';
-import { Input } from '@/components/ui/input';
+import { Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { AppCard } from '@/components/app-card';
-import { getCategoryIcon } from '@/lib/category-icons';
+import { AppFilters } from '@/components/app-filters';
 import { useApps } from '@/hooks/use-apps';
 import { useDebounce } from '@/hooks/use-debounce';
 import { TIMEOUTS, INTERSECTION_OBSERVER } from '@/lib/constants';
@@ -83,98 +80,21 @@ export function AppGrid({ categories }: AppGridProps) {
     setShowPopular(false);
   };
 
-  const hasFilters = selectedCategory !== 'all' || searchQuery || showPopular;
-
   return (
     <div className="space-y-6">
-      {/* Search and Filters */}
-      <div className="space-y-4">
-        <div className="flex flex-col sm:flex-row gap-3">
-          <div className="relative flex-1">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-            <Input
-              type="search"
-              placeholder="Search applications..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="pl-9"
-            />
-          </div>
-
-          <Button
-            variant={showPopular ? 'default' : 'outline'}
-            onClick={() => setShowPopular(!showPopular)}
-          >
-            Popular Apps
-          </Button>
-
-          {/* Layout Switcher */}
-          <div className="flex border rounded-md">
-            <Button
-              variant={layout === 'compact' ? 'default' : 'ghost'}
-              size="sm"
-              onClick={() => setLayout('compact')}
-              className="rounded-r-none gap-1"
-            >
-              <List className="w-4 h-4" />
-              Compact
-            </Button>
-            <Button
-              variant={layout === 'detailed' ? 'default' : 'ghost'}
-              size="sm"
-              onClick={() => setLayout('detailed')}
-              className="rounded-l-none gap-1"
-            >
-              <Grid3x3 className="w-4 h-4" />
-              Detailed
-            </Button>
-          </div>
-
-          {hasFilters && (
-            <Button variant="ghost" onClick={handleClearFilters} className="gap-2">
-              <X className="w-4 h-4" />
-              Clear Filters
-            </Button>
-          )}
-        </div>
-
-        {/* Category Tabs */}
-        {categories.length > 0 && (
-          <Tabs value={selectedCategory} onValueChange={setSelectedCategory}>
-            <TabsList className="w-full justify-start overflow-x-auto flex-nowrap">
-              <TabsTrigger value="all">
-                <LayoutGrid className="w-4 h-4" />
-                All Apps
-              </TabsTrigger>
-              {categories.map((category) => {
-                const Icon = getCategoryIcon(category.icon);
-                return (
-                  <TabsTrigger key={category.id} value={category.id}>
-                    <Icon className="w-4 h-4" />
-                    {category.name}
-                  </TabsTrigger>
-                );
-              })}
-            </TabsList>
-          </Tabs>
-        )}
-      </div>
-
-      {/* Active Filters Display */}
-      {hasFilters && (
-        <div className="flex items-center gap-2 text-sm">
-          <span className="text-muted-foreground">Active filters:</span>
-          {selectedCategory !== 'all' && (
-            <Badge variant="secondary">
-              {categories.find((c) => c.id === selectedCategory)?.name}
-            </Badge>
-          )}
-          {showPopular && <Badge variant="secondary">Popular</Badge>}
-          {searchQuery && (
-            <Badge variant="secondary">Search: {searchQuery}</Badge>
-          )}
-        </div>
-      )}
+      {/* Filters Component */}
+      <AppFilters
+        categories={categories}
+        selectedCategory={selectedCategory}
+        onCategoryChange={setSelectedCategory}
+        searchQuery={searchQuery}
+        onSearchChange={setSearchQuery}
+        showPopular={showPopular}
+        onTogglePopular={() => setShowPopular(!showPopular)}
+        layout={layout}
+        onLayoutChange={setLayout}
+        onClearFilters={handleClearFilters}
+      />
 
       {/* Loading State */}
       {isLoading && (

@@ -39,12 +39,12 @@ export function HomePageClient({ categories, distros }: HomePageClientProps) {
         <Header />
 
         <main className="flex-1 flex flex-col">
-          {/* Hero Section - Compact */}
-          <div className="container mx-auto px-4 py-8 text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">
+          {/* Hero Section - Compact and Responsive */}
+          <div className="container mx-auto px-4 py-6 sm:py-8 text-center">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4">
               Bulk Install Apps on Linux
             </h1>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto px-2">
               Select apps from our curated catalog, choose your distribution,
               and get a single command to install everything.
             </p>
@@ -54,7 +54,7 @@ export function HomePageClient({ categories, distros }: HomePageClientProps) {
           <PersistentDistroBar distros={distros} />
 
           {/* App Selection Section - Primary Focus */}
-          <div className="container mx-auto px-4 py-8 pb-24">
+          <div className="container mx-auto px-4 py-6 sm:py-8 pb-24 sm:pb-28">
             <AppGrid categories={categories} />
           </div>
         </main>

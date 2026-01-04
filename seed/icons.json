@@ -81,19 +81,19 @@
     "webstorm": "https://upload.wikimedia.org/wikipedia/commons/c/c0/WebStorm_Icon.svg",
     "zen-browser": "https://upload.wikimedia.org/wikipedia/commons/3/3c/Zen_Browser_logo_(red_circles).svg",
     "zoom": "https://cdn.worldvectorlogo.com/logos/zoom-app.svg",
-    "zsh": "https://upload.wikimedia.org/wikipedia/commons/6/62/Zsh_logo.svg",
+    "zsh": "https://raw.githubusercontent.com/Zsh-art/logo/17617f2f6c70c65943a48745c91d997e7561f19d/svg/color_horizontal_icon.svg",
     "bun": "https://user-images.githubusercontent.com/709451/182802334-d9c42afe-f35d-4a7b-86ea-9985f73f20c3.png",
-    "pnpm": "https://upload.wikimedia.org/wikipedia/commons/4/48/PNPM_Logo.svg",
+    "pnpm": "https://upload.wikimedia.org/wikipedia/commons/c/c1/Pnpm_logo.svg",
     "deno": "https://upload.wikimedia.org/wikipedia/commons/8/84/Deno.svg",
     "rbenv": "https://raw.githubusercontent.com/rbenv/rbenv/master/rbenv.png",
     "sdkman": "https://sdkman.io/assets/img/sdk-man-small-pattern.svg",
-    "0ad": "https://upload.wikimedia.org/wikipedia/commons/4/4d/0ad_logo.png",
+    "0ad": "https://upload.wikimedia.org/wikipedia/commons/9/99/0_A.D._logo.svg",
     "supertuxkart": "https://upload.wikimedia.org/wikipedia/commons/3/34/Supertuxkart_logo.png",
     "warzone2100": "https://wz2100.net/icon.png",
-    "wesnoth": "https://upload.wikimedia.org/wikipedia/commons/f/f6/Wesnoth-icon.png",
-    "retroarch": "https://upload.wikimedia.org/wikipedia/commons/1/1b/RetroArch_Logo.png",
-    "pcsx2": "https://raw.githubusercontent.com/PCSX2/pcsx2/master/bin/resources/icons/AppIconLarge.png",
-    "dolphin-emu": "https://upload.wikimedia.org/wikipedia/en/d/d3/Dolphin_Emulator_Logo.png",
-    "rpcs3": "https://rpcs3.net/img/meta/mobile/icon.png"
+    "wesnoth": "https://forums.wesnoth.org/download/file.php?id=63287&sid=77983823d1f73e7931ff7b6b1238ae59",
+    "retroarch": "https://upload.wikimedia.org/wikipedia/commons/3/3b/Retroarch.svg",
+    "pcsx2": "https://upload.wikimedia.org/wikipedia/commons/e/ee/PCSX2_logo.svg",
+    "dolphin-emu": "https://upload.wikimedia.org/wikipedia/commons/6/60/Dolphin-logo.svg",
+    "rpcs3": "https://upload.wikimedia.org/wikipedia/en/3/38/RPCS3_LOGO.png"
   }
 }

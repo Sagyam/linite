@@ -37,15 +37,15 @@ export function FloatingActionBar({
 
   return (
     <div className="fixed bottom-0 left-0 right-0 z-50 border-t bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/80 shadow-lg">
-      <div className="container mx-auto px-4 py-4">
-        <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+      <div className="container mx-auto px-3 py-3 sm:px-4 sm:py-4">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2 sm:gap-3">
           {/* Left: Selection info */}
           <button
             onClick={onViewSelection}
-            className="flex items-center gap-3 hover:bg-muted/50 px-3 py-2 rounded-lg transition-colors"
+            className="flex items-center gap-2 sm:gap-3 hover:bg-muted/50 px-2 py-2 sm:px-3 rounded-lg transition-colors min-w-0"
           >
-            <div className="relative">
-              <Package2 className="w-6 h-6" />
+            <div className="relative shrink-0">
+              <Package2 className="w-5 h-5 sm:w-6 sm:h-6" />
               <Badge
                 variant="default"
                 className="absolute -top-2 -right-2 h-5 w-5 flex items-center justify-center p-0 text-xs"
@@ -53,20 +53,20 @@ export function FloatingActionBar({
                 {selectedApps.size}
               </Badge>
             </div>
-            <div className="text-left">
-              <p className="text-sm font-semibold">
+            <div className="text-left min-w-0 flex-1">
+              <p className="text-sm font-semibold truncate">
                 {selectedApps.size} {selectedApps.size === 1 ? 'app' : 'apps'}{' '}
                 selected
               </p>
-              <p className="text-xs text-muted-foreground flex items-center gap-1">
+              <p className="text-xs text-muted-foreground flex items-center gap-1 truncate">
                 {selectedDistro ? (
                   <>
-                    <Settings2 className="w-3 h-3" />
-                    {distroName}
+                    <Settings2 className="w-3 h-3 shrink-0" />
+                    <span className="truncate">{distroName}</span>
                   </>
                 ) : (
                   <>
-                    View details <ChevronUp className="w-3 h-3" />
+                    View details <ChevronUp className="w-3 h-3 shrink-0" />
                   </>
                 )}
               </p>
@@ -76,26 +76,26 @@ export function FloatingActionBar({
           {/* Center/Right: Warning or Action */}
           {!selectedDistro ? (
             /* Show prominent warning when no distro selected */
-            <div className="flex items-center gap-3 flex-1 sm:flex-initial">
-              <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-destructive/10 border border-destructive/20 flex-1 sm:flex-initial">
-                <AlertCircle className="w-5 h-5 text-destructive shrink-0" />
-                <div className="flex-1">
-                  <p className="text-sm font-semibold text-destructive">
+            <div className="flex items-center gap-2 sm:gap-3 flex-1 sm:flex-initial min-w-0">
+              <div className="flex items-center gap-2 px-3 py-2 sm:px-4 rounded-lg bg-destructive/10 border border-destructive/20 flex-1 sm:flex-initial min-w-0">
+                <AlertCircle className="w-4 h-4 sm:w-5 sm:h-5 text-destructive shrink-0" />
+                <div className="flex-1 min-w-0">
+                  <p className="text-xs sm:text-sm font-semibold text-destructive truncate">
                     Select your distribution
                   </p>
                   <p className="text-xs text-destructive/80 hidden sm:block">
                     Choose your OS in the bar above to continue
                   </p>
                 </div>
-                <Monitor className="w-5 h-5 text-destructive/60 hidden sm:block animate-pulse" />
+                <Monitor className="w-4 h-4 sm:w-5 sm:h-5 text-destructive/60 hidden sm:block animate-pulse shrink-0" />
               </div>
             </div>
           ) : (
             /* Show Generate button when distro is selected */
-            <div className="flex items-center gap-2">
-              <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-md bg-primary/10 border border-primary/20">
+            <div className="flex items-center gap-2 min-w-0">
+              <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-md bg-primary/10 border border-primary/20 shrink-0">
                 <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-                <span className="text-xs font-medium text-primary">
+                <span className="text-xs font-medium text-primary whitespace-nowrap">
                   Ready to install
                 </span>
               </div>
@@ -103,10 +103,11 @@ export function FloatingActionBar({
                 size="lg"
                 onClick={onGenerateCommand}
                 disabled={!canGenerate}
-                className="gap-2 w-full sm:w-auto"
+                className="gap-2 w-full sm:w-auto text-sm sm:text-base shrink-0"
               >
-                Generate Command
-                <ArrowRight className="w-4 h-4" />
+                <span className="hidden xs:inline">Generate Command</span>
+                <span className="xs:hidden">Generate</span>
+                <ArrowRight className="w-4 h-4 shrink-0" />
               </Button>
             </div>
           )}
