@@ -1,20 +1,27 @@
 'use client';
 
-import Image from 'next/image';
+import { useQuery } from '@tanstack/react-query';
 import { Package, Trash2 } from 'lucide-react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
+import { AppIcon } from '@/components/ui/app-icon';
+import { queryKeys } from '@/lib/query-keys';
+import { apps as appsApi } from '@/lib/api-client';
 import { useSelectionStore } from '@/stores/selection-store';
-import { useApps } from '@/hooks/use-apps';
 
 export function SelectionSummary() {
   const { selectedApps, selectedDistro, clearApps, deselectApp } =
     useSelectionStore();
-  const { apps } = useApps({});
 
-  const selectedAppsList = apps.filter((app) => selectedApps.has(app.id));
+  // Fetch only selected apps by their IDs (efficient batch fetch)
+  const selectedAppIds = Array.from(selectedApps);
+  const { data: selectedAppsList = [] } = useQuery({
+    queryKey: queryKeys.apps.byIds(selectedAppIds),
+    queryFn: () => appsApi.getByIds(selectedAppIds),
+    enabled: selectedApps.size > 0,
+  });
 
   if (selectedApps.size === 0) {
     return (
@@ -66,15 +73,11 @@ export function SelectionSummary() {
               key={app.id}
               className="flex items-start gap-3 p-3 rounded-lg hover:bg-muted/50 transition-colors"
             >
-              <Image
-                src={app.iconUrl || '/fallback-app-icon.svg'}
-                alt={app.displayName}
-                width={40}
-                height={40}
-                className="w-10 h-10 rounded flex-shrink-0 object-cover"
-                onError={(e) => {
-                  e.currentTarget.src = '/fallback-app-icon.svg';
-                }}
+              <AppIcon
+                iconUrl={app.iconUrl}
+                displayName={app.displayName}
+                size={40}
+                className="w-10 h-10"
               />
 
               <div className="flex-1 min-w-0">

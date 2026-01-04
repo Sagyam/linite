@@ -5,11 +5,12 @@
  * Loads data from JSON files and seeds the database
  */
 
-import { db, categories, sources, distros, distroSources, apps, packages } from '../src/db';
+import { db, categories, sources, distros, distroSources, apps, packages } from '@/db';
 import { readFileSync } from 'fs';
 import { join } from 'path';
-import { uploadImageFromUrl } from '../src/lib/blob';
+import { uploadImageFromUrl } from '@/lib/blob';
 import { eq } from 'drizzle-orm';
+import { TIMEOUTS } from '../src/lib/constants';
 
 // Load JSON data
 const seedDir = __dirname;
@@ -104,7 +105,7 @@ async function seed() {
       }
 
       // Small delay to avoid overwhelming the network
-      await new Promise(resolve => setTimeout(resolve, 200));
+      await new Promise(resolve => setTimeout(resolve, TIMEOUTS.ICON_DOWNLOAD_DELAY));
     } catch (error) {
       iconErrors++;
       console.error(`  ❌ ${appSlug}: ${error instanceof Error ? error.message : 'Unknown error'}`);

@@ -73,10 +73,10 @@ export const GET = createPublicApiHandler(
 
     // Check if there are more results
     const hasMore = allApps.length > limit;
-    const apps_data = hasMore ? allApps.slice(0, limit) : allApps;
+    const appsData = hasMore ? allApps.slice(0, limit) : allApps;
 
     return successResponse({
-      apps: apps_data,
+      apps: appsData,
       pagination: {
         total,
         limit,

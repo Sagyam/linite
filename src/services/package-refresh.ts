@@ -9,6 +9,7 @@ import { eq } from 'drizzle-orm';
 import { getRefreshStrategy, type PackageMetadata } from './refresh-strategies';
 import type { RefreshResult, RefreshOptions } from '@/types/entities';
 import { uploadImageFromUrl } from '@/lib/blob';
+import { TIMEOUTS } from '@/lib/constants';
 
 // Re-export for backward compatibility
 export type { RefreshResult, RefreshOptions };
@@ -116,8 +117,8 @@ async function refreshSourcePackages(
         console.error(`Error refreshing package ${pkg.identifier}:`, error);
       }
 
-      // Small delay to avoid rate limiting (100ms between requests)
-      await new Promise((resolve) => setTimeout(resolve, 100));
+      // Small delay to avoid rate limiting
+      await new Promise((resolve) => setTimeout(resolve, TIMEOUTS.RATE_LIMIT_DELAY));
     }
   } catch (error) {
     const errorMsg = error instanceof Error ? error.message : 'Unknown error';

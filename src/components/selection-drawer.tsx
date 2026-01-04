@@ -1,6 +1,5 @@
 'use client';
 
-import Image from 'next/image';
 import { useQuery } from '@tanstack/react-query';
 import { Package2, Trash2, X, Loader2 } from 'lucide-react';
 import {
@@ -13,8 +12,10 @@ import {
 } from '@/components/ui/drawer';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { AppIcon } from '@/components/ui/app-icon';
+import { queryKeys } from '@/lib/query-keys';
+import { apps as appsApi } from '@/lib/api-client';
 import { useSelectionStore } from '@/stores/selection-store';
-import type { AppWithRelations } from '@/types';
 
 interface SelectionDrawerProps {
   open: boolean;
@@ -24,19 +25,13 @@ interface SelectionDrawerProps {
 export function SelectionDrawer({ open, onOpenChange }: SelectionDrawerProps) {
   const { selectedApps, clearApps, deselectApp } = useSelectionStore();
 
-  // Fetch apps for the selection drawer (only fetch when open and has selections)
-  const { data: appsData, isLoading } = useQuery({
-    queryKey: ['selection-apps'],
-    queryFn: async () => {
-      const response = await fetch('/api/apps?limit=100');
-      if (!response.ok) throw new Error('Failed to fetch apps');
-      const result = await response.json();
-      return result.apps as AppWithRelations[];
-    },
+  // Fetch only the selected apps by their IDs (efficient batch fetch)
+  const selectedAppIds = Array.from(selectedApps);
+  const { data: selectedAppsList = [], isLoading } = useQuery({
+    queryKey: queryKeys.apps.byIds(selectedAppIds),
+    queryFn: () => appsApi.getByIds(selectedAppIds),
     enabled: open && selectedApps.size > 0,
   });
-
-  const selectedAppsList = (appsData || []).filter((app) => selectedApps.has(app.id));
 
   return (
     <Drawer open={open} onOpenChange={onOpenChange}>
@@ -90,15 +85,11 @@ export function SelectionDrawer({ open, onOpenChange }: SelectionDrawerProps) {
                       key={app.id}
                       className="flex items-start gap-3 p-3 rounded-lg border bg-card hover:bg-muted/50 transition-colors"
                     >
-                      <Image
-                        src={app.iconUrl || '/fallback-app-icon.svg'}
-                        alt={app.displayName}
-                        width={48}
-                        height={48}
-                        className="w-12 h-12 rounded flex-shrink-0 object-cover"
-                        onError={(e) => {
-                          e.currentTarget.src = '/fallback-app-icon.svg';
-                        }}
+                      <AppIcon
+                        iconUrl={app.iconUrl}
+                        displayName={app.displayName}
+                        size="md"
+                        className="w-12 h-12"
                       />
 
                       <div className="flex-1 min-w-0">

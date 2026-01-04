@@ -10,6 +10,7 @@ import { AppCard } from '@/components/app-card';
 import { getCategoryIcon } from '@/lib/category-icons';
 import { useApps } from '@/hooks/use-apps';
 import { useDebounce } from '@/hooks/use-debounce';
+import { TIMEOUTS, INTERSECTION_OBSERVER } from '@/lib/constants';
 import type { Category } from '@/types';
 
 type LayoutType = 'compact' | 'detailed';
@@ -25,7 +26,7 @@ export function AppGrid({ categories }: AppGridProps) {
   const [layout, setLayout] = useState<LayoutType>('detailed');
 
   // Debounce search to avoid too many API calls
-  const debouncedSearch = useDebounce(searchQuery, 300);
+  const debouncedSearch = useDebounce(searchQuery, TIMEOUTS.DEBOUNCE_SEARCH);
 
   // Infinite scroll observer ref
   const loadMoreRef = useRef<HTMLDivElement>(null);
@@ -61,7 +62,7 @@ export function AppGrid({ categories }: AppGridProps) {
           fetchNextPage();
         }
       },
-      { threshold: 0.1 }
+      { threshold: INTERSECTION_OBSERVER.THRESHOLD }
     );
 
     const currentRef = loadMoreRef.current;

@@ -1,9 +1,11 @@
 'use client';
 
 import { useInfiniteQuery } from '@tanstack/react-query';
+import { PAGINATION } from '@/lib/constants';
+import { queryKeys } from '@/lib/query-keys';
 import type { AppWithRelations } from '@/types';
 
-interface AppsQueryParams {
+export interface AppsQueryParams {
   category?: string;
   popular?: boolean;
   search?: string;
@@ -21,11 +23,11 @@ interface AppsResponse {
 
 export function useApps(params: AppsQueryParams = {}) {
   return useInfiniteQuery({
-    queryKey: ['apps', params],
+    queryKey: queryKeys.apps.list(params),
     queryFn: async ({ pageParam = 0 }) => {
       const searchParams = new URLSearchParams({
         offset: pageParam.toString(),
-        limit: '20',
+        limit: PAGINATION.DEFAULT_LIMIT.toString(),
         ...(params.category && { category: params.category }),
         ...(params.popular && { popular: 'true' }),
         ...(params.search && { search: params.search }),

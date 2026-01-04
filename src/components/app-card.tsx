@@ -1,12 +1,12 @@
 'use client';
 
 import Link from 'next/link';
-import Image from 'next/image';
 import { Info } from 'lucide-react';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Button } from '@/components/ui/button';
+import { AppIcon } from '@/components/ui/app-icon';
 import { useSelectionStore } from '@/stores/selection-store';
 import type { App } from '@/hooks/use-apps';
 
@@ -38,15 +38,11 @@ export function AppCard({ app, layout = 'detailed' }: AppCardProps) {
         <div className="flex items-center gap-2">
           <Checkbox checked={isSelected} />
 
-          <Image
-            src={app.iconUrl || '/fallback-app-icon.svg'}
-            alt={app.displayName}
-            width={32}
-            height={32}
-            className="w-8 h-8 rounded flex-shrink-0 object-cover"
-            onError={(e) => {
-              e.currentTarget.src = '/fallback-app-icon.svg';
-            }}
+          <AppIcon
+            iconUrl={app.iconUrl}
+            displayName={app.displayName}
+            size="sm"
+            className="w-8 h-8"
           />
 
           <div className="flex-1 min-w-0">
@@ -95,15 +91,12 @@ export function AppCard({ app, layout = 'detailed' }: AppCardProps) {
           <Checkbox checked={isSelected} className="mt-1" />
         </div>
 
-        <Image
-          src={app.iconUrl || '/fallback-app-icon.svg'}
-          alt={app.displayName}
-          width={64}
-          height={64}
-          className="w-16 h-16 rounded-lg flex-shrink-0 object-cover"
-          onError={(e) => {
-            e.currentTarget.src = '/fallback-app-icon.svg';
-          }}
+        <AppIcon
+          iconUrl={app.iconUrl}
+          displayName={app.displayName}
+          size="lg"
+          rounded="lg"
+          className="w-16 h-16"
         />
 
         <div className="flex-1 min-w-0">

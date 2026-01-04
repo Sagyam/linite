@@ -6,6 +6,10 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import { AppIcon } from '@/components/ui/app-icon';
+import { PAGINATION } from '@/lib/constants';
+import { queryKeys } from '@/lib/query-keys';
+import { apps as appsApi } from '@/lib/api-client';
 import { Search, X, Plus, Check } from 'lucide-react';
 import type { AppWithRelations } from '@/types/entities';
 
@@ -14,23 +18,19 @@ interface AppSelectorProps {
   onAppToggle: (appId: string) => void;
 }
 
-async function fetchApps(search?: string): Promise<AppWithRelations[]> {
-  const params = new URLSearchParams();
-  if (search) params.set('search', search);
-  params.set('limit', '100');
-
-  const response = await fetch(`/api/apps?${params}`);
-  if (!response.ok) throw new Error('Failed to fetch apps');
-  return response.json();
-}
-
 export function AppSelector({ selectedAppIds, onAppToggle }: AppSelectorProps) {
   const [searchQuery, setSearchQuery] = useState('');
 
-  const { data: apps = [], isLoading } = useQuery({
-    queryKey: ['apps', searchQuery],
-    queryFn: () => fetchApps(searchQuery),
+  const { data: appsResponse, isLoading } = useQuery({
+    queryKey: queryKeys.apps.list({ search: searchQuery || undefined }),
+    queryFn: () =>
+      appsApi.getAll({
+        search: searchQuery || undefined,
+        limit: PAGINATION.SELECTION_LIMIT,
+      }),
   });
+
+  const apps = appsResponse?.apps || [];
 
   const selectedApps = apps.filter((app) => selectedAppIds.includes(app.id));
   const availableApps = apps.filter((app) => !selectedAppIds.includes(app.id));
@@ -50,13 +50,11 @@ export function AppSelector({ selectedAppIds, onAppToggle }: AppSelectorProps) {
                 variant="secondary"
                 className="pl-2 pr-1 py-1.5 gap-1"
               >
-                <img
-                  src={app.iconUrl || '/fallback-app-icon.svg'}
-                  alt=""
-                  className="w-4 h-4 rounded"
-                  onError={(e) => {
-                    e.currentTarget.src = '/fallback-app-icon.svg';
-                  }}
+                <AppIcon
+                  iconUrl={app.iconUrl}
+                  displayName={app.displayName}
+                  size={16}
+                  className="w-4 h-4"
                 />
                 <span>{app.displayName}</span>
                 <Button
@@ -103,13 +101,11 @@ export function AppSelector({ selectedAppIds, onAppToggle }: AppSelectorProps) {
                   onClick={() => onAppToggle(app.id)}
                   className="w-full flex items-center gap-3 p-2 rounded-md hover:bg-muted transition-colors text-left"
                 >
-                  <img
-                    src={app.iconUrl || '/fallback-app-icon.svg'}
-                    alt=""
-                    className="w-8 h-8 rounded flex-shrink-0"
-                    onError={(e) => {
-                      e.currentTarget.src = '/fallback-app-icon.svg';
-                    }}
+                  <AppIcon
+                    iconUrl={app.iconUrl}
+                    displayName={app.displayName}
+                    size="sm"
+                    className="w-8 h-8"
                   />
                   <div className="flex-1 min-w-0">
                     <p className="font-medium text-sm">{app.displayName}</p>

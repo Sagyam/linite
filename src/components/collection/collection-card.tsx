@@ -4,6 +4,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { AppIcon } from '@/components/ui/app-icon';
 import { Heart, Package, Eye, Lock, Globe, Star } from 'lucide-react';
 import Link from 'next/link';
 import type { CollectionWithRelations } from '@/types/entities';
@@ -47,13 +48,12 @@ export function CollectionCard({
                 </CardDescription>
               )}
             </div>
-            <img
-              src={collection.iconUrl || '/fallback-app-icon.svg'}
-              alt={collection.name}
-              className="w-12 h-12 rounded-lg object-cover flex-shrink-0"
-              onError={(e) => {
-                e.currentTarget.src = '/fallback-app-icon.svg';
-              }}
+            <AppIcon
+              iconUrl={collection.iconUrl}
+              displayName={collection.name}
+              size="md"
+              rounded="lg"
+              className="w-12 h-12"
             />
           </div>
 

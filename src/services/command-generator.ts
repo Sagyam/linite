@@ -1,6 +1,7 @@
 import { db } from '@/db';
 import { apps, packages, distros } from '@/db/schema';
 import { eq, inArray } from 'drizzle-orm';
+import { parsePackageMetadata, type StoredPackageMetadata } from '@/lib/package-metadata';
 import type {
   GenerateCommandRequest,
   GenerateCommandResponse,
@@ -19,7 +20,7 @@ interface SelectedPackage {
   requireSudo: boolean;
   setupCmd: string | null;
   priority: number;
-  metadata?: any;
+  metadata?: unknown;
 }
 
 /**
@@ -191,12 +192,10 @@ export async function generateInstallCommands(
     if (sourceSlug === 'script') {
       // For script source, generate individual commands for each package
       for (const pkg of pkgs) {
-        // Parse metadata if it's a string
-        const metadata = typeof pkg.metadata === 'string'
-          ? JSON.parse(pkg.metadata)
-          : pkg.metadata;
+        // Parse metadata safely
+        const metadata = parsePackageMetadata(pkg.metadata);
 
-        const scriptUrl = metadata?.scriptUrl?.[os];
+        const scriptUrl = metadata.scriptUrl?.[os];
         if (scriptUrl) {
           let scriptCommand: string;
           if (isWindows) {
