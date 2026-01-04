@@ -97,5 +97,14 @@
     "setupCmd": "Set-ExecutionPolicy RemoteSigned -Scope CurrentUser; irm get.scoop.sh | iex",
     "priority": 6,
     "apiEndpoint": null
+  },
+  {
+    "name": "Script",
+    "slug": "script",
+    "installCmd": "curl -fsSL {url} | bash",
+    "requireSudo": false,
+    "setupCmd": null,
+    "priority": 1,
+    "apiEndpoint": null
   }
 ]

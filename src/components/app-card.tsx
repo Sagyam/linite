@@ -38,18 +38,16 @@ export function AppCard({ app, layout = 'detailed' }: AppCardProps) {
         <div className="flex items-center gap-2">
           <Checkbox checked={isSelected} />
 
-          {app.iconUrl && (
-            <Image
-              src={app.iconUrl}
-              alt={app.displayName}
-              width={32}
-              height={32}
-              className="w-8 h-8 rounded flex-shrink-0 object-cover"
-              onError={(e) => {
-                e.currentTarget.style.display = 'none';
-              }}
-            />
-          )}
+          <Image
+            src={app.iconUrl || '/fallback-app-icon.svg'}
+            alt={app.displayName}
+            width={32}
+            height={32}
+            className="w-8 h-8 rounded flex-shrink-0 object-cover"
+            onError={(e) => {
+              e.currentTarget.src = '/fallback-app-icon.svg';
+            }}
+          />
 
           <div className="flex-1 min-w-0">
             <div className="flex items-center justify-between gap-2">
@@ -97,18 +95,16 @@ export function AppCard({ app, layout = 'detailed' }: AppCardProps) {
           <Checkbox checked={isSelected} className="mt-1" />
         </div>
 
-        {app.iconUrl && (
-          <Image
-            src={app.iconUrl}
-            alt={app.displayName}
-            width={64}
-            height={64}
-            className="w-16 h-16 rounded-lg flex-shrink-0 object-cover"
-            onError={(e) => {
-              e.currentTarget.style.display = 'none';
-            }}
-          />
-        )}
+        <Image
+          src={app.iconUrl || '/fallback-app-icon.svg'}
+          alt={app.displayName}
+          width={64}
+          height={64}
+          className="w-16 h-16 rounded-lg flex-shrink-0 object-cover"
+          onError={(e) => {
+            e.currentTarget.src = '/fallback-app-icon.svg';
+          }}
+        />
 
         <div className="flex-1 min-w-0">
           <div className="flex items-start justify-between gap-2 mb-2">

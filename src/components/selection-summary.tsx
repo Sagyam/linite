@@ -66,18 +66,16 @@ export function SelectionSummary() {
               key={app.id}
               className="flex items-start gap-3 p-3 rounded-lg hover:bg-muted/50 transition-colors"
             >
-              {app.iconUrl && (
-                <Image
-                  src={app.iconUrl}
-                  alt={app.displayName}
-                  width={40}
-                  height={40}
-                  className="w-10 h-10 rounded flex-shrink-0 object-cover"
-                  onError={(e) => {
-                    e.currentTarget.style.display = 'none';
-                  }}
-                />
-              )}
+              <Image
+                src={app.iconUrl || '/fallback-app-icon.svg'}
+                alt={app.displayName}
+                width={40}
+                height={40}
+                className="w-10 h-10 rounded flex-shrink-0 object-cover"
+                onError={(e) => {
+                  e.currentTarget.src = '/fallback-app-icon.svg';
+                }}
+              />
 
               <div className="flex-1 min-w-0">
                 <div className="flex items-start justify-between gap-2">

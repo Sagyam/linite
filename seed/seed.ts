@@ -123,6 +123,7 @@ async function seed() {
     sourceId: sourceMap[pkg.source],
     identifier: pkg.identifier,
     isAvailable: pkg.isAvailable,
+    metadata: pkg.metadata ? JSON.stringify(pkg.metadata) : null,
   }));
 
   // Check for undefined appIds or sourceIds

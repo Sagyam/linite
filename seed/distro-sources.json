@@ -220,5 +220,95 @@
     "source": "flatpak",
     "priority": 3,
     "isDefault": false
+  },
+  {
+    "distro": "ubuntu",
+    "source": "script",
+    "priority": 1,
+    "isDefault": false
+  },
+  {
+    "distro": "debian",
+    "source": "script",
+    "priority": 1,
+    "isDefault": false
+  },
+  {
+    "distro": "linuxmint",
+    "source": "script",
+    "priority": 1,
+    "isDefault": false
+  },
+  {
+    "distro": "pop",
+    "source": "script",
+    "priority": 1,
+    "isDefault": false
+  },
+  {
+    "distro": "fedora",
+    "source": "script",
+    "priority": 1,
+    "isDefault": false
+  },
+  {
+    "distro": "arch",
+    "source": "script",
+    "priority": 1,
+    "isDefault": false
+  },
+  {
+    "distro": "manjaro",
+    "source": "script",
+    "priority": 1,
+    "isDefault": false
+  },
+  {
+    "distro": "opensuse",
+    "source": "script",
+    "priority": 1,
+    "isDefault": false
+  },
+  {
+    "distro": "nixos",
+    "source": "script",
+    "priority": 1,
+    "isDefault": false
+  },
+  {
+    "distro": "windows",
+    "source": "script",
+    "priority": 1,
+    "isDefault": false
+  },
+  {
+    "distro": "zorin",
+    "source": "script",
+    "priority": 1,
+    "isDefault": false
+  },
+  {
+    "distro": "elementary",
+    "source": "script",
+    "priority": 1,
+    "isDefault": false
+  },
+  {
+    "distro": "nobara",
+    "source": "script",
+    "priority": 1,
+    "isDefault": false
+  },
+  {
+    "distro": "bazzite",
+    "source": "script",
+    "priority": 1,
+    "isDefault": false
+  },
+  {
+    "distro": "cachyos",
+    "source": "script",
+    "priority": 1,
+    "isDefault": false
   }
 ]

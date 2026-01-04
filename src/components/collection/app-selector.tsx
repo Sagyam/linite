@@ -50,13 +50,14 @@ export function AppSelector({ selectedAppIds, onAppToggle }: AppSelectorProps) {
                 variant="secondary"
                 className="pl-2 pr-1 py-1.5 gap-1"
               >
-                {app.iconUrl && (
-                  <img
-                    src={app.iconUrl}
-                    alt=""
-                    className="w-4 h-4 rounded"
-                  />
-                )}
+                <img
+                  src={app.iconUrl || '/fallback-app-icon.svg'}
+                  alt=""
+                  className="w-4 h-4 rounded"
+                  onError={(e) => {
+                    e.currentTarget.src = '/fallback-app-icon.svg';
+                  }}
+                />
                 <span>{app.displayName}</span>
                 <Button
                   variant="ghost"
@@ -102,13 +103,14 @@ export function AppSelector({ selectedAppIds, onAppToggle }: AppSelectorProps) {
                   onClick={() => onAppToggle(app.id)}
                   className="w-full flex items-center gap-3 p-2 rounded-md hover:bg-muted transition-colors text-left"
                 >
-                  {app.iconUrl && (
-                    <img
-                      src={app.iconUrl}
-                      alt=""
-                      className="w-8 h-8 rounded flex-shrink-0"
-                    />
-                  )}
+                  <img
+                    src={app.iconUrl || '/fallback-app-icon.svg'}
+                    alt=""
+                    className="w-8 h-8 rounded flex-shrink-0"
+                    onError={(e) => {
+                      e.currentTarget.src = '/fallback-app-icon.svg';
+                    }}
+                  />
                   <div className="flex-1 min-w-0">
                     <p className="font-medium text-sm">{app.displayName}</p>
                     {app.description && (

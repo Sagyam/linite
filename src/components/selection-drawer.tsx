@@ -90,18 +90,16 @@ export function SelectionDrawer({ open, onOpenChange }: SelectionDrawerProps) {
                       key={app.id}
                       className="flex items-start gap-3 p-3 rounded-lg border bg-card hover:bg-muted/50 transition-colors"
                     >
-                      {app.iconUrl && (
-                        <Image
-                          src={app.iconUrl}
-                          alt={app.displayName}
-                          width={48}
-                          height={48}
-                          className="w-12 h-12 rounded flex-shrink-0 object-cover"
-                          onError={(e) => {
-                            e.currentTarget.style.display = 'none';
-                          }}
-                        />
-                      )}
+                      <Image
+                        src={app.iconUrl || '/fallback-app-icon.svg'}
+                        alt={app.displayName}
+                        width={48}
+                        height={48}
+                        className="w-12 h-12 rounded flex-shrink-0 object-cover"
+                        onError={(e) => {
+                          e.currentTarget.src = '/fallback-app-icon.svg';
+                        }}
+                      />
 
                       <div className="flex-1 min-w-0">
                         <div className="flex items-start justify-between gap-2">

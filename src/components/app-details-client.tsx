@@ -48,18 +48,16 @@ export function AppDetailsClient({ app }: AppDetailsClientProps) {
         {/* App Header */}
         <div className="mb-8">
           <div className="flex items-start gap-6">
-            {app.iconUrl && (
-              <Image
-                src={app.iconUrl}
-                alt={app.displayName}
-                width={96}
-                height={96}
-                className="w-24 h-24 rounded-lg shadow-md object-cover"
-                onError={(e) => {
-                  e.currentTarget.style.display = 'none';
-                }}
-              />
-            )}
+            <Image
+              src={app.iconUrl || '/fallback-app-icon.svg'}
+              alt={app.displayName}
+              width={96}
+              height={96}
+              className="w-24 h-24 rounded-lg shadow-md object-cover"
+              onError={(e) => {
+                e.currentTarget.src = '/fallback-app-icon.svg';
+              }}
+            />
 
             <div className="flex-1">
               <div className="flex items-start justify-between gap-4">

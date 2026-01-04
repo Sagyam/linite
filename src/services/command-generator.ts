@@ -19,6 +19,7 @@ interface SelectedPackage {
   requireSudo: boolean;
   setupCmd: string | null;
   priority: number;
+  metadata?: any;
 }
 
 /**
@@ -149,6 +150,7 @@ export async function generateInstallCommands(
       requireSudo: bestPackage.source.requireSudo ?? false,
       setupCmd: bestPackage.source.setupCmd ?? null,
       priority: bestPackage.calculatedPriority ?? 0,
+      metadata: bestPackage.metadata,
     });
   }
 
@@ -167,6 +169,10 @@ export async function generateInstallCommands(
   const breakdown: PackageBreakdown[] = [];
   const processedSetupCmds = new Set<string>();
 
+  // Determine OS based on distro (simplified logic)
+  const isWindows = distro.slug === 'windows';
+  const os = isWindows ? 'windows' : 'linux';
+
   for (const [sourceSlug, pkgs] of packagesBySource.entries()) {
     const firstPkg = pkgs[0];
     const packageIdentifiers = pkgs.map((p) => p.packageIdentifier);
@@ -179,6 +185,46 @@ export async function generateInstallCommands(
       const nixTemplate = getNixCommandTemplate(nixosInstallMethod);
       installCmd = nixTemplate.installCmd;
       setupCmd = nixTemplate.setupCmd;
+    }
+
+    // Handle script source specially
+    if (sourceSlug === 'script') {
+      // For script source, generate individual commands for each package
+      for (const pkg of pkgs) {
+        // Parse metadata if it's a string
+        const metadata = typeof pkg.metadata === 'string'
+          ? JSON.parse(pkg.metadata)
+          : pkg.metadata;
+
+        const scriptUrl = metadata?.scriptUrl?.[os];
+        if (scriptUrl) {
+          let scriptCommand: string;
+          if (isWindows) {
+            // Windows PowerShell command
+            if (scriptUrl.endsWith('.exe')) {
+              // Direct download and run executable
+              scriptCommand = `irm ${scriptUrl} -OutFile installer.exe; .\\installer.exe`;
+            } else {
+              // Run script directly
+              scriptCommand = `irm ${scriptUrl} | iex`;
+            }
+          } else {
+            // Linux curl command
+            scriptCommand = `curl -fsSL ${scriptUrl} | bash`;
+          }
+          commands.push(scriptCommand);
+        } else {
+          warnings.push(`${pkg.appName}: No install script available for ${os}`);
+        }
+      }
+
+      // Add to breakdown
+      breakdown.push({
+        source: firstPkg.sourceName,
+        packages: packageIdentifiers,
+      });
+
+      continue; // Skip normal command generation for script source
     }
 
     // Add setup command if needed (only once per source)

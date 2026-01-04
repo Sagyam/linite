@@ -2662,5 +2662,55 @@
     "source": "homebrew",
     "identifier": "httpie",
     "isAvailable": true
+  },
+  {
+    "app": "docker",
+    "source": "script",
+    "identifier": "docker",
+    "isAvailable": true,
+    "metadata": {
+      "scriptUrl": {
+        "linux": "https://get.docker.com",
+        "windows": "https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe"
+      }
+    }
+  },
+  {
+    "app": "rust",
+    "source": "script",
+    "identifier": "rustup",
+    "isAvailable": true,
+    "metadata": {
+      "scriptUrl": {
+        "linux": "https://sh.rustup.rs",
+        "windows": "https://win.rustup.rs/x86_64"
+      }
+    }
+  },
+  {
+    "app": "golang",
+    "source": "script",
+    "identifier": "go",
+    "isAvailable": true,
+    "metadata": {
+      "scriptUrl": {
+        "linux": "https://go.dev/dl/",
+        "windows": "https://go.dev/dl/"
+      },
+      "note": "Manual download and install required from official website"
+    }
+  },
+  {
+    "app": "nodejs",
+    "source": "script",
+    "identifier": "nvm",
+    "isAvailable": true,
+    "metadata": {
+      "scriptUrl": {
+        "linux": "https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh",
+        "windows": "https://github.com/coreybutler/nvm-windows/releases/latest/download/nvm-setup.exe"
+      },
+      "note": "Installs NVM (Node Version Manager) which manages Node.js installations"
+    }
   }
 ]

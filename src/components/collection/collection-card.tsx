@@ -47,13 +47,14 @@ export function CollectionCard({
                 </CardDescription>
               )}
             </div>
-            {collection.iconUrl && (
-              <img
-                src={collection.iconUrl}
-                alt={collection.name}
-                className="w-12 h-12 rounded-lg object-cover flex-shrink-0"
-              />
-            )}
+            <img
+              src={collection.iconUrl || '/fallback-app-icon.svg'}
+              alt={collection.name}
+              className="w-12 h-12 rounded-lg object-cover flex-shrink-0"
+              onError={(e) => {
+                e.currentTarget.src = '/fallback-app-icon.svg';
+              }}
+            />
           </div>
 
           <div className="flex flex-wrap gap-2">
