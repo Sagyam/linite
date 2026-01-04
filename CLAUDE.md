@@ -13,7 +13,7 @@ Linite is a Ninite-style bulk package installer for Linux distributions. Users s
 - **Auth**: BetterAuth
 - **UI**: shadcn/ui + Tailwind CSS
 - **State**: Zustand
-- **Storage**: Vercel Blob (for app icon uploads)
+- **Storage**: Azure Blob Storage (for app icon uploads)
 - **Package Manager**: bun
 
 ## Essential Rules

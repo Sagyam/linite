@@ -2,7 +2,7 @@ import { NextRequest } from 'next/server';
 import { requireAuth, errorResponse, successResponse } from '@/lib/api-utils';
 import { uploadImage, deleteImage } from '@/lib/blob';
 
-// POST /api/upload - Upload an image to Vercel Blob (admin only)
+// POST /api/upload - Upload an image to Azure Blob Storage (admin only)
 export async function POST(request: NextRequest) {
   // Require authentication
   const authResult = await requireAuth(request);
@@ -29,7 +29,7 @@ export async function POST(request: NextRequest) {
   }
 }
 
-// DELETE /api/upload - Delete an image from Vercel Blob (admin only)
+// DELETE /api/upload - Delete an image from Azure Blob Storage (admin only)
 export async function DELETE(request: NextRequest) {
   // Require authentication
   const authResult = await requireAuth(request);

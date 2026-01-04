@@ -175,7 +175,7 @@ Built with modern, reliable technologies:
 - **UI Components**: shadcn/ui
 - **Database**: Turso (libSQL) with Drizzle ORM
 - **Authentication**: BetterAuth
-- **Storage**: Vercel Blob
+- **Storage**: Azure Blob Storage
 - **APIs**: Flathub, Snapcraft, AUR, Repology
 - **Deployment**: Vercel
 

@@ -1,8 +1,41 @@
-import { put, del, list } from '@vercel/blob';
+import { BlobServiceClient, ContainerClient } from '@azure/storage-blob';
 import { env } from '@/lib/env';
 
 /**
- * Upload an image to Vercel Blob storage
+ * Parse Azure Blob Storage SAS URL to extract account, container, and token
+ */
+function parseSasUrl(sasUrl: string): { accountName: string; containerName: string; sasToken: string } {
+  const url = new URL(sasUrl);
+
+  // Extract account name from hostname (e.g., "linite.blob.core.windows.net" -> "linite")
+  const accountName = url.hostname.split('.')[0];
+
+  // Extract container name from pathname (e.g., "/linite-icons" -> "linite-icons")
+  const containerName = url.pathname.split('/')[1];
+
+  // Extract SAS token from search params (everything after "?")
+  const sasToken = url.search;
+
+  return { accountName, containerName, sasToken };
+}
+
+/**
+ * Get Azure Blob Container Client
+ */
+function getContainerClient(): ContainerClient {
+  const sasUrl = env.AZURE_STORAGE_SAS_URL;
+  const { accountName, containerName, sasToken } = parseSasUrl(sasUrl);
+
+  // Create BlobServiceClient with SAS token
+  const blobServiceClient = new BlobServiceClient(
+    `https://${accountName}.blob.core.windows.net${sasToken}`
+  );
+
+  return blobServiceClient.getContainerClient(containerName);
+}
+
+/**
+ * Upload an image to Azure Blob storage
  * @param file - The file to upload
  * @param pathname - Optional pathname for the file (e.g., 'app-icons/firefox.png')
  * @returns The URL of the uploaded file
@@ -11,9 +44,7 @@ export async function uploadImage(
   file: File,
   pathname?: string
 ): Promise<string> {
-  const token = env.BLOB_READ_WRITE_TOKEN;
-
-  // Validate a file type
+  // Validate file type
   const allowedTypes = ['image/png', 'image/jpeg', 'image/jpg', 'image/webp', 'image/svg+xml'];
   if (!allowedTypes.includes(file.type)) {
     throw new Error('Invalid file type. Only PNG, JPEG, WebP, and SVG are allowed.');
@@ -28,22 +59,37 @@ export async function uploadImage(
   // Generate pathname if not provided
   const finalPathname = pathname || `app-icons/${Date.now()}-${file.name}`;
 
-  const blob = await put(finalPathname, file, {
-    access: 'public',
-    token,
-    addRandomSuffix: false,
+  const containerClient = getContainerClient();
+  const blockBlobClient = containerClient.getBlockBlobClient(finalPathname);
+
+  // Convert File to ArrayBuffer and upload
+  const arrayBuffer = await file.arrayBuffer();
+  await blockBlobClient.uploadData(arrayBuffer, {
+    blobHTTPHeaders: {
+      blobContentType: file.type,
+    },
   });
 
-  return blob.url;
+  // Return the public URL (without SAS token for security)
+  return blockBlobClient.url.split('?')[0];
 }
 
 /**
- * Delete an image from Vercel Blob storage
+ * Delete an image from Azure Blob storage
  * @param url - The URL of the file to delete
  */
 export async function deleteImage(url: string): Promise<void> {
-  const token = env.BLOB_READ_WRITE_TOKEN;
-  await del(url, { token });
+  const containerClient = getContainerClient();
+
+  // Extract blob name from URL
+  // URL format: https://linite.blob.core.windows.net/linite-icons/app-icons/firefox.png
+  const urlObj = new URL(url);
+  const pathParts = urlObj.pathname.split('/');
+  // Skip first two parts (empty string and container name)
+  const blobName = pathParts.slice(2).join('/');
+
+  const blockBlobClient = containerClient.getBlockBlobClient(blobName);
+  await blockBlobClient.deleteIfExists();
 }
 
 /**
@@ -51,26 +97,36 @@ export async function deleteImage(url: string): Promise<void> {
  * @param prefix - The folder prefix (e.g., 'app-icons/')
  */
 export async function listImages(prefix?: string) {
-  const token = env.BLOB_READ_WRITE_TOKEN;
+  const containerClient = getContainerClient();
+  const blobPrefix = prefix || 'app-icons/';
 
-  return await list({
-    token,
-    prefix: prefix || 'app-icons/',
-  });
+  const blobs: Array<{ url: string; pathname: string; size: number; uploadedAt: Date }> = [];
+
+  for await (const blob of containerClient.listBlobsFlat({ prefix: blobPrefix })) {
+    if (blob.name) {
+      const blockBlobClient = containerClient.getBlockBlobClient(blob.name);
+      blobs.push({
+        url: blockBlobClient.url.split('?')[0],
+        pathname: blob.name,
+        size: blob.properties.contentLength || 0,
+        uploadedAt: blob.properties.createdOn || new Date(),
+      });
+    }
+  }
+
+  return { blobs };
 }
 
 /**
- * Download an image from a URL and upload it to Vercel Blob storage
+ * Download an image from a URL and upload it to Azure Blob storage
  * @param imageUrl - The URL of the image to download
  * @param appSlug - The app slug to use in the pathname (e.g., 'firefox')
- * @returns The URL of the uploaded file in Vercel Blob, or null if failed
+ * @returns The URL of the uploaded file in Azure Blob, or null if failed
  */
 export async function uploadImageFromUrl(
   imageUrl: string,
   appSlug: string
 ): Promise<string | null> {
-  const token = env.BLOB_READ_WRITE_TOKEN;
-
   try {
     // Download the image from the URL
     const response = await fetch(imageUrl);
@@ -99,46 +155,24 @@ export async function uploadImageFromUrl(
     const filename = `${appSlug}.${extension}`;
     const file = new File([blob], filename, { type: contentType });
 
-    // Upload to Vercel Blob with overwrite handling
+    // Upload to Azure Blob with overwrite
     const pathname = `app-icons/${filename}`;
 
-    // Try to upload, if it exists, delete and re-upload
     try {
-      const uploadedBlob = await put(pathname, file, {
-        access: 'public',
-        token,
-        addRandomSuffix: false,
+      const containerClient = getContainerClient();
+      const blockBlobClient = containerClient.getBlockBlobClient(pathname);
+
+      // Upload with overwrite enabled
+      await blockBlobClient.uploadData(arrayBuffer, {
+        blobHTTPHeaders: {
+          blobContentType: contentType,
+        },
       });
-      return uploadedBlob.url;
+
+      return blockBlobClient.url.split('?')[0];
     } catch (error) {
-      // If a blob exists, we need to handle it differently
-      // Try to get the existing blob URL and delete it first
-      if (error instanceof Error && error.message.includes('already exists')) {
-        try {
-          // List blobs with this pathname to get the URL
-          const { blobs } = await list({
-            token,
-            prefix: pathname,
-          });
-
-          // Delete existing blob if found
-          if (blobs.length > 0) {
-            await del(blobs[0].url, { token });
-          }
-
-          // Now upload again
-          const uploadedBlob = await put(pathname, file, {
-            access: 'public',
-            token,
-            addRandomSuffix: false,
-          });
-          return uploadedBlob.url;
-        } catch (retryError) {
-          console.error(`Failed to overwrite icon for ${appSlug}:`, retryError);
-          return null;
-        }
-      }
-      throw error;
+      console.error(`Failed to upload icon for ${appSlug}:`, error);
+      return null;
     }
   } catch (error) {
     console.error(`Error uploading icon from URL ${imageUrl}:`, error);

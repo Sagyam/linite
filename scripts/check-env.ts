@@ -44,10 +44,11 @@ const envSchema = z.object({
     .string()
     .min(1, 'GITHUB_CLIENT_SECRET is required for GitHub OAuth'),
 
-  // Vercel Blob - Required for image uploads
-  BLOB_READ_WRITE_TOKEN: z
+  // Azure Blob Storage - Required for image uploads
+  AZURE_STORAGE_SAS_URL: z
     .string()
-    .min(1, 'BLOB_READ_WRITE_TOKEN is required for image uploads'),
+    .url('AZURE_STORAGE_SAS_URL must be a valid URL')
+    .min(1, 'AZURE_STORAGE_SAS_URL is required for image uploads'),
 
   // Cron secret
   CRON_SECRET: z
@@ -107,7 +108,7 @@ if (!parsed.success) {
   console.log('📋 Configuration summary:');
   console.log(`   Database: ${parsed.data.DATABASE_URL.substring(0, 30)}...`);
   console.log(`   Auth URL: ${parsed.data.BETTER_AUTH_URL}`);
-  console.log(`   Blob Storage: ${parsed.data.BLOB_READ_WRITE_TOKEN ? '✅ Configured' : '❌ Not configured'}`);
+  console.log(`   Azure Blob Storage: ${parsed.data.AZURE_STORAGE_SAS_URL ? '✅ Configured' : '❌ Not configured'}`);
   console.log(`   Rate Limiting: ${parsed.data.KV_REST_API_URL ? '✅ Configured' : '⚠️  Not configured (optional)'}`);
   console.log('');
 

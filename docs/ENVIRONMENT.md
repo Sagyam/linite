@@ -47,16 +47,18 @@ BETTER_AUTH_URL="http://localhost:3000"
 openssl rand -base64 32
 ```
 
-### Vercel Blob Storage
+### Azure Blob Storage
 
 ```env
-BLOB_READ_WRITE_TOKEN="your-token"
+AZURE_STORAGE_SAS_URL="https://{account}.blob.core.windows.net/{container}?{sas-token}"
 ```
 
 **How to get this:**
-1. Go to [vercel.com/dashboard/stores](https://vercel.com/dashboard/stores)
-2. Create a new Blob store or use existing one
-3. Get the read-write token
+1. Go to [Azure Portal](https://portal.azure.com)
+2. Navigate to your Storage Account
+3. Create a container (e.g., "linite-icons")
+4. Generate a SAS token with read, add, create, write, and delete permissions
+5. Construct the full SAS URL including the container name and SAS token
 
 ### App URL
 
@@ -141,7 +143,7 @@ The validator (`src/lib/env.ts`) enforces these rules:
 | `NEXT_PUBLIC_APP_URL` | Required | Valid URL (default: `http://localhost:3000`) |
 | `BETTER_AUTH_SECRET` | Required | Min 32 characters |
 | `BETTER_AUTH_URL` | Required | Valid URL (default: `http://localhost:3000`) |
-| `BLOB_READ_WRITE_TOKEN` | Required | Non-empty string |
+| `AZURE_STORAGE_SAS_URL` | Required | Valid URL with SAS token |
 | `CRON_SECRET` | Optional | Min 16 characters if provided |
 | `KV_REST_API_URL` | Optional | Valid URL if provided |
 | `KV_REST_API_TOKEN` | Optional | Non-empty string if URL is provided |

@@ -38,10 +38,11 @@ const envSchema = z.object({
     .email('SUPERADMIN_EMAIL must be a valid email address')
     .default('sagyamthapa32@gmail.com'),
 
-  // Vercel Blob - Required for image uploads
-  BLOB_READ_WRITE_TOKEN: z
+  // Azure Blob Storage - Required for image uploads
+  AZURE_STORAGE_SAS_URL: z
     .string()
-    .min(1, 'BLOB_READ_WRITE_TOKEN is required for image uploads'),
+    .url('AZURE_STORAGE_SAS_URL must be a valid URL')
+    .min(1, 'AZURE_STORAGE_SAS_URL is required for image uploads'),
 
   // Cron secret
   CRON_SECRET: z

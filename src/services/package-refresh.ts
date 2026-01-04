@@ -208,7 +208,7 @@ async function refreshSinglePackage(
 }
 
 /**
- * Sync app icon by downloading from external URL and uploading to Vercel Blob
+ * Sync app icon by downloading from external URL and uploading to Azure Blob Storage
  */
 async function syncAppIcon(
   appId: string,
@@ -218,11 +218,11 @@ async function syncAppIcon(
   try {
     console.log(`[Icon Sync] Syncing icon for app ${appSlug} from ${iconUrl}`);
 
-    // Download icon from URL and upload to Vercel Blob
+    // Download icon from URL and upload to Azure Blob Storage
     const uploadedUrl = await uploadImageFromUrl(iconUrl, appSlug);
 
     if (uploadedUrl) {
-      // Update app's iconUrl with the Vercel Blob URL
+      // Update app's iconUrl with the Azure Blob Storage URL
       await db
         .update(apps)
         .set({

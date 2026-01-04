@@ -214,7 +214,7 @@ All admin endpoints require authentication via BetterAuth session.
 - `GET /api/refresh/logs` - Get refresh job logs
 
 ### Image Upload
-- `POST /api/upload` - Upload image to Vercel Blob (admin only)
+- `POST /api/upload` - Upload image to Azure Blob Storage (admin only)
 
 **Request:** Multipart form data
 - `file` - Image file (PNG, JPEG, WebP, SVG, max 5MB)
@@ -225,17 +225,17 @@ All admin endpoints require authentication via BetterAuth session.
 {
   "success": true,
   "data": {
-    "url": "https://vercel-blob-url..."
+    "url": "https://linite.blob.core.windows.net/linite-icons/app-icons/firefox.png"
   }
 }
 ```
 
-- `DELETE /api/upload` - Delete image from Vercel Blob (admin only)
+- `DELETE /api/upload` - Delete image from Azure Blob Storage (admin only)
 
 **Request Body:**
 ```json
 {
-  "url": "https://vercel-blob-url..."
+  "url": "https://linite.blob.core.windows.net/linite-icons/app-icons/firefox.png"
 }
 ```
 
