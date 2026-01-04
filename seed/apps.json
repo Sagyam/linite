@@ -1,21 +1,66 @@
 [
   {
-    "slug": "firefox",
-    "displayName": "Firefox",
-    "description": "Fast, private and safe web browser",
-    "homepage": "https://firefox.com",
+    "slug": "0ad",
+    "displayName": "0 A.D.",
+    "description": "Free, open-source, historical real-time strategy game",
+    "homepage": "https://play0ad.com",
     "isPopular": true,
     "isFoss": true,
-    "category": "browsers"
+    "category": "games"
   },
   {
-    "slug": "chrome",
-    "displayName": "Google Chrome",
-    "description": "Fast, secure web browser by Google",
-    "homepage": "https://google.com/chrome",
+    "slug": "android-studio",
+    "displayName": "Android Studio",
+    "description": "Official IDE for Android development",
+    "homepage": "https://developer.android.com/studio",
     "isPopular": true,
-    "isFoss": false,
-    "category": "browsers"
+    "isFoss": true,
+    "category": "development"
+  },
+  {
+    "slug": "audacity",
+    "displayName": "Audacity",
+    "description": "Free, open source, cross-platform audio software",
+    "homepage": "https://audacityteam.org",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "media"
+  },
+  {
+    "slug": "balena-etcher",
+    "displayName": "balenaEtcher",
+    "description": "Flash OS images to SD cards and USB drives",
+    "homepage": "https://balena.io/etcher",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "utilities"
+  },
+  {
+    "slug": "bat",
+    "displayName": "bat",
+    "description": "Cat clone with syntax highlighting and Git integration",
+    "homepage": "https://github.com/sharkdp/bat",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "cli"
+  },
+  {
+    "slug": "bitwarden",
+    "displayName": "Bitwarden",
+    "description": "Open source password manager",
+    "homepage": "https://bitwarden.com",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "security"
+  },
+  {
+    "slug": "blender",
+    "displayName": "Blender",
+    "description": "Free and open source 3D creation suite",
+    "homepage": "https://blender.org",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "graphics"
   },
   {
     "slug": "brave",
@@ -24,6 +69,33 @@
     "homepage": "https://brave.com",
     "isPopular": true,
     "isFoss": true,
+    "category": "browsers"
+  },
+  {
+    "slug": "btop",
+    "displayName": "btop",
+    "description": "Resource monitor that shows usage and stats",
+    "homepage": "https://github.com/aristocratos/btop",
+    "isPopular": false,
+    "isFoss": true,
+    "category": "system"
+  },
+  {
+    "slug": "bun",
+    "displayName": "Bun",
+    "description": "Fast all-in-one JavaScript runtime and package manager",
+    "homepage": "https://bun.sh",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "languages"
+  },
+  {
+    "slug": "chrome",
+    "displayName": "Google Chrome",
+    "description": "Fast, secure web browser by Google",
+    "homepage": "https://google.com/chrome",
+    "isPopular": true,
+    "isFoss": false,
     "category": "browsers"
   },
   {
@@ -36,139 +108,31 @@
     "category": "browsers"
   },
   {
-    "slug": "vivaldi",
-    "displayName": "Vivaldi",
-    "description": "Feature-rich and highly customizable browser",
-    "homepage": "https://vivaldi.com",
-    "isPopular": false,
-    "isFoss": false,
-    "category": "browsers"
-  },
-  {
-    "slug": "zen-browser",
-    "displayName": "Zen Browser",
-    "description": "Privacy-focused browser based on Firefox",
-    "homepage": "https://zen-browser.app",
+    "slug": "clamav",
+    "displayName": "ClamAV",
+    "description": "Open source antivirus engine",
+    "homepage": "https://clamav.net",
     "isPopular": false,
     "isFoss": true,
-    "category": "browsers"
+    "category": "security"
   },
   {
-    "slug": "microsoft-edge",
-    "displayName": "Microsoft Edge",
-    "description": "Fast and secure browser from Microsoft",
-    "homepage": "https://microsoft.com/edge",
-    "isPopular": true,
-    "isFoss": false,
-    "category": "browsers"
-  },
-  {
-    "slug": "opera",
-    "displayName": "Opera",
-    "description": "Fast, secure browser with built-in ad blocker",
-    "homepage": "https://opera.com",
-    "isPopular": true,
-    "isFoss": false,
-    "category": "browsers"
-  },
-  {
-    "slug": "tor-browser",
-    "displayName": "Tor Browser",
-    "description": "Private browser for anonymous web browsing",
-    "homepage": "https://torproject.org",
+    "slug": "clang",
+    "displayName": "Clang",
+    "description": "C/C++ compiler based on LLVM",
+    "homepage": "https://clang.llvm.org",
     "isPopular": false,
     "isFoss": true,
-    "category": "browsers"
+    "category": "languages"
   },
   {
-    "slug": "librewolf",
-    "displayName": "LibreWolf",
-    "description": "Privacy and security focused fork of Firefox",
-    "homepage": "https://librewolf.net",
+    "slug": "darktable",
+    "displayName": "darktable",
+    "description": "Photography workflow application and raw developer",
+    "homepage": "https://darktable.org",
     "isPopular": false,
     "isFoss": true,
-    "category": "browsers"
-  },
-  {
-    "slug": "waterfox",
-    "displayName": "Waterfox",
-    "description": "Privacy-focused browser based on Firefox",
-    "homepage": "https://waterfox.net",
-    "isPopular": false,
-    "isFoss": true,
-    "category": "browsers"
-  },
-  {
-    "slug": "vscode",
-    "displayName": "Visual Studio Code",
-    "description": "Code editor redefined and optimized for building and debugging",
-    "homepage": "https://code.visualstudio.com",
-    "isPopular": true,
-    "isFoss": false,
-    "category": "development"
-  },
-  {
-    "slug": "git",
-    "displayName": "Git",
-    "description": "Distributed version control system",
-    "homepage": "https://git-scm.com",
-    "isPopular": true,
-    "isFoss": true,
-    "category": "development"
-  },
-  {
-    "slug": "docker",
-    "displayName": "Docker",
-    "description": "Platform for developing, shipping, and running applications in containers",
-    "homepage": "https://docker.com",
-    "isPopular": true,
-    "isFoss": true,
-    "category": "development"
-  },
-  {
-    "slug": "intellij",
-    "displayName": "IntelliJ IDEA Community",
-    "description": "Java IDE by JetBrains",
-    "homepage": "https://jetbrains.com/idea",
-    "isPopular": true,
-    "isFoss": true,
-    "category": "development"
-  },
-  {
-    "slug": "pycharm",
-    "displayName": "PyCharm Community",
-    "description": "Python IDE by JetBrains",
-    "homepage": "https://jetbrains.com/pycharm",
-    "isPopular": true,
-    "isFoss": true,
-    "category": "development"
-  },
-  {
-    "slug": "webstorm",
-    "displayName": "WebStorm",
-    "description": "JavaScript and TypeScript IDE by JetBrains",
-    "homepage": "https://jetbrains.com/webstorm",
-    "isPopular": false,
-    "isFoss": false,
-    "category": "development"
-  },
-  {
-    "slug": "goland",
-    "displayName": "GoLand",
-    "description": "Go IDE by JetBrains",
-    "homepage": "https://jetbrains.com/go",
-    "isPopular": false,
-    "isFoss": false,
-    "category": "development"
-  },
-  {
-    "slug": "rider",
-    "displayName": "Rider",
-    "description": ".NET IDE by JetBrains",
-    "homepage": "https://jetbrains.com/rider",
-    "isPopular": false,
-    "isFoss": false,
-    "category": "development"
+    "category": "graphics"
   },
   {
     "slug": "datagrip",
@@ -180,19 +144,55 @@
     "category": "development"
   },
   {
-    "slug": "android-studio",
-    "displayName": "Android Studio",
-    "description": "Official IDE for Android development",
-    "homepage": "https://developer.android.com/studio",
+    "slug": "dbeaver",
+    "displayName": "DBeaver",
+    "description": "Universal database management tool",
+    "homepage": "https://dbeaver.io",
+    "isPopular": false,
+    "isFoss": true,
+    "category": "development"
+  },
+  {
+    "slug": "deno",
+    "displayName": "Deno",
+    "description": "Secure runtime for JavaScript and TypeScript",
+    "homepage": "https://deno.land",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "languages"
+  },
+  {
+    "slug": "discord",
+    "displayName": "Discord",
+    "description": "Voice, video and text chat app",
+    "homepage": "https://discord.com",
+    "isPopular": true,
+    "isFoss": false,
+    "category": "communication"
+  },
+  {
+    "slug": "docker",
+    "displayName": "Docker",
+    "description": "Platform for developing, shipping, and running applications in containers",
+    "homepage": "https://docker.com",
     "isPopular": true,
     "isFoss": true,
     "category": "development"
   },
   {
-    "slug": "neovim",
-    "displayName": "Neovim",
-    "description": "Hyperextensible Vim-based text editor",
-    "homepage": "https://neovim.io",
+    "slug": "dolphin-emu",
+    "displayName": "Dolphin Emulator",
+    "description": "GameCube and Wii emulator",
+    "homepage": "https://dolphin-emu.org",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "games"
+  },
+  {
+    "slug": "eclipse",
+    "displayName": "Eclipse IDE",
+    "description": "IDE for Java and other languages",
+    "homepage": "https://eclipse.org",
     "isPopular": false,
     "isFoss": true,
     "category": "development"
@@ -207,10 +207,298 @@
     "category": "development"
   },
   {
-    "slug": "eclipse",
-    "displayName": "Eclipse IDE",
-    "description": "IDE for Java and other languages",
-    "homepage": "https://eclipse.org",
+    "slug": "eza",
+    "displayName": "eza",
+    "description": "Modern replacement for ls with colors and icons",
+    "homepage": "https://github.com/eza-community/eza",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "cli"
+  },
+  {
+    "slug": "filezilla",
+    "displayName": "FileZilla",
+    "description": "FTP, FTPS and SFTP client",
+    "homepage": "https://filezilla-project.org",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "utilities"
+  },
+  {
+    "slug": "firefox",
+    "displayName": "Firefox",
+    "description": "Fast, private and safe web browser",
+    "homepage": "https://firefox.com",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "browsers"
+  },
+  {
+    "slug": "flameshot",
+    "displayName": "Flameshot",
+    "description": "Powerful yet simple to use screenshot software",
+    "homepage": "https://flameshot.org",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "utilities"
+  },
+  {
+    "slug": "fzf",
+    "displayName": "fzf",
+    "description": "Command-line fuzzy finder",
+    "homepage": "https://github.com/junegunn/fzf",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "cli"
+  },
+  {
+    "slug": "gcc",
+    "displayName": "GCC",
+    "description": "GNU Compiler Collection for C/C++",
+    "homepage": "https://gcc.gnu.org",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "languages"
+  },
+  {
+    "slug": "ghostty",
+    "displayName": "Ghostty",
+    "description": "Fast, feature-rich, and cross-platform terminal emulator",
+    "homepage": "https://ghostty.org",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "system"
+  },
+  {
+    "slug": "gimp",
+    "displayName": "GIMP",
+    "description": "GNU Image Manipulation Program",
+    "homepage": "https://gimp.org",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "graphics"
+  },
+  {
+    "slug": "git",
+    "displayName": "Git",
+    "description": "Distributed version control system",
+    "homepage": "https://git-scm.com",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "development"
+  },
+  {
+    "slug": "goland",
+    "displayName": "GoLand",
+    "description": "Go IDE by JetBrains",
+    "homepage": "https://jetbrains.com/go",
+    "isPopular": false,
+    "isFoss": false,
+    "category": "development"
+  },
+  {
+    "slug": "golang",
+    "displayName": "Go",
+    "description": "Statically typed, compiled programming language",
+    "homepage": "https://go.dev",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "languages"
+  },
+  {
+    "slug": "handbrake",
+    "displayName": "HandBrake",
+    "description": "Open source video transcoder",
+    "homepage": "https://handbrake.fr",
+    "isPopular": false,
+    "isFoss": true,
+    "category": "media"
+  },
+  {
+    "slug": "heroic",
+    "displayName": "Heroic Games Launcher",
+    "description": "Epic Games Launcher alternative for Linux",
+    "homepage": "https://heroicgameslauncher.com",
+    "isPopular": false,
+    "isFoss": true,
+    "category": "games"
+  },
+  {
+    "slug": "httpie",
+    "displayName": "HTTPie",
+    "description": "User-friendly command-line HTTP client",
+    "homepage": "https://httpie.io",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "cli"
+  },
+  {
+    "slug": "inkscape",
+    "displayName": "Inkscape",
+    "description": "Professional vector graphics editor",
+    "homepage": "https://inkscape.org",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "graphics"
+  },
+  {
+    "slug": "insomnia",
+    "displayName": "Insomnia",
+    "description": "API client for REST and GraphQL",
+    "homepage": "https://insomnia.rest",
+    "isPopular": false,
+    "isFoss": true,
+    "category": "development"
+  },
+  {
+    "slug": "intellij",
+    "displayName": "IntelliJ IDEA Community",
+    "description": "Java IDE by JetBrains",
+    "homepage": "https://jetbrains.com/idea",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "development"
+  },
+  {
+    "slug": "java",
+    "displayName": "Java (OpenJDK)",
+    "description": "Open source implementation of Java",
+    "homepage": "https://openjdk.org",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "languages"
+  },
+  {
+    "slug": "jq",
+    "displayName": "jq",
+    "description": "Lightweight and flexible command-line JSON processor",
+    "homepage": "https://jqlang.github.io/jq",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "cli"
+  },
+  {
+    "slug": "k9s",
+    "displayName": "k9s",
+    "description": "Terminal UI to interact with your Kubernetes clusters",
+    "homepage": "https://k9scli.io",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "tui"
+  },
+  {
+    "slug": "kdenlive",
+    "displayName": "Kdenlive",
+    "description": "Free and open source video editor",
+    "homepage": "https://kdenlive.org",
+    "isPopular": false,
+    "isFoss": true,
+    "category": "media"
+  },
+  {
+    "slug": "keepassxc",
+    "displayName": "KeePassXC",
+    "description": "Cross-platform password manager",
+    "homepage": "https://keepassxc.org",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "security"
+  },
+  {
+    "slug": "krita",
+    "displayName": "Krita",
+    "description": "Professional free and open source painting program",
+    "homepage": "https://krita.org",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "graphics"
+  },
+  {
+    "slug": "lazydocker",
+    "displayName": "lazydocker",
+    "description": "Simple terminal UI for both docker and docker-compose",
+    "homepage": "https://github.com/jesseduffield/lazydocker",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "tui"
+  },
+  {
+    "slug": "lazygit",
+    "displayName": "lazygit",
+    "description": "Simple terminal UI for git commands",
+    "homepage": "https://github.com/jesseduffield/lazygit",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "tui"
+  },
+  {
+    "slug": "libreoffice",
+    "displayName": "LibreOffice",
+    "description": "Free and powerful office suite",
+    "homepage": "https://libreoffice.org",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "office"
+  },
+  {
+    "slug": "librewolf",
+    "displayName": "LibreWolf",
+    "description": "Privacy and security focused fork of Firefox",
+    "homepage": "https://librewolf.net",
+    "isPopular": false,
+    "isFoss": true,
+    "category": "browsers"
+  },
+  {
+    "slug": "lua",
+    "displayName": "Lua",
+    "description": "Lightweight, embeddable scripting language",
+    "homepage": "https://lua.org",
+    "isPopular": false,
+    "isFoss": true,
+    "category": "languages"
+  },
+  {
+    "slug": "lutris",
+    "displayName": "Lutris",
+    "description": "Open source gaming platform for Linux",
+    "homepage": "https://lutris.net",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "games"
+  },
+  {
+    "slug": "microsoft-edge",
+    "displayName": "Microsoft Edge",
+    "description": "Fast and secure browser from Microsoft",
+    "homepage": "https://microsoft.com/edge",
+    "isPopular": true,
+    "isFoss": false,
+    "category": "browsers"
+  },
+  {
+    "slug": "minecraft",
+    "displayName": "Minecraft",
+    "description": "Sandbox video game",
+    "homepage": "https://minecraft.net",
+    "isPopular": true,
+    "isFoss": false,
+    "category": "games"
+  },
+  {
+    "slug": "mpv",
+    "displayName": "mpv",
+    "description": "Free, open source, and cross-platform media player",
+    "homepage": "https://mpv.io",
+    "isPopular": false,
+    "isFoss": true,
+    "category": "media"
+  },
+  {
+    "slug": "neovim",
+    "displayName": "Neovim",
+    "description": "Hyperextensible Vim-based text editor",
+    "homepage": "https://neovim.io",
     "isPopular": false,
     "isFoss": true,
     "category": "development"
@@ -225,33 +513,6 @@
     "category": "development"
   },
   {
-    "slug": "postman",
-    "displayName": "Postman",
-    "description": "API development and testing platform",
-    "homepage": "https://postman.com",
-    "isPopular": true,
-    "isFoss": false,
-    "category": "development"
-  },
-  {
-    "slug": "insomnia",
-    "displayName": "Insomnia",
-    "description": "API client for REST and GraphQL",
-    "homepage": "https://insomnia.rest",
-    "isPopular": false,
-    "isFoss": true,
-    "category": "development"
-  },
-  {
-    "slug": "dbeaver",
-    "displayName": "DBeaver",
-    "description": "Universal database management tool",
-    "homepage": "https://dbeaver.io",
-    "isPopular": false,
-    "isFoss": true,
-    "category": "development"
-  },
-  {
     "slug": "nodejs",
     "displayName": "Node.js",
     "description": "JavaScript runtime built on Chrome's V8 engine",
@@ -261,46 +522,64 @@
     "category": "languages"
   },
   {
-    "slug": "python",
-    "displayName": "Python",
-    "description": "High-level programming language",
-    "homepage": "https://python.org",
+    "slug": "notion",
+    "displayName": "Notion",
+    "description": "All-in-one workspace for notes, tasks, and collaboration",
+    "homepage": "https://notion.so",
     "isPopular": true,
-    "isFoss": true,
-    "category": "languages"
+    "isFoss": false,
+    "category": "office"
   },
   {
-    "slug": "java",
-    "displayName": "Java (OpenJDK)",
-    "description": "Open source implementation of Java",
-    "homepage": "https://openjdk.org",
+    "slug": "obs",
+    "displayName": "OBS Studio",
+    "description": "Free and open source software for video recording and live streaming",
+    "homepage": "https://obsproject.com",
     "isPopular": true,
     "isFoss": true,
-    "category": "languages"
+    "category": "media"
   },
   {
-    "slug": "golang",
-    "displayName": "Go",
-    "description": "Statically typed, compiled programming language",
-    "homepage": "https://go.dev",
+    "slug": "obsidian",
+    "displayName": "Obsidian",
+    "description": "Powerful knowledge base on top of local markdown files",
+    "homepage": "https://obsidian.md",
+    "isPopular": true,
+    "isFoss": false,
+    "category": "office"
+  },
+  {
+    "slug": "onlyoffice",
+    "displayName": "ONLYOFFICE",
+    "description": "Free office suite with online collaboration",
+    "homepage": "https://onlyoffice.com",
+    "isPopular": false,
+    "isFoss": true,
+    "category": "office"
+  },
+  {
+    "slug": "opera",
+    "displayName": "Opera",
+    "description": "Fast, secure browser with built-in ad blocker",
+    "homepage": "https://opera.com",
+    "isPopular": true,
+    "isFoss": false,
+    "category": "browsers"
+  },
+  {
+    "slug": "pcsx2",
+    "displayName": "PCSX2",
+    "description": "PlayStation 2 emulator",
+    "homepage": "https://pcsx2.net",
     "isPopular": true,
     "isFoss": true,
-    "category": "languages"
+    "category": "games"
   },
   {
-    "slug": "rust",
-    "displayName": "Rust",
-    "description": "Systems programming language focused on safety",
-    "homepage": "https://rust-lang.org",
-    "isPopular": true,
-    "isFoss": true,
-    "category": "languages"
-  },
-  {
-    "slug": "ruby",
-    "displayName": "Ruby",
-    "description": "Dynamic, open source programming language",
-    "homepage": "https://ruby-lang.org",
+    "slug": "perl",
+    "displayName": "Perl",
+    "description": "High-level, general-purpose programming language",
+    "homepage": "https://perl.org",
     "isPopular": false,
     "isFoss": true,
     "category": "languages"
@@ -315,38 +594,38 @@
     "category": "languages"
   },
   {
-    "slug": "gcc",
-    "displayName": "GCC",
-    "description": "GNU Compiler Collection for C/C++",
-    "homepage": "https://gcc.gnu.org",
+    "slug": "pnpm",
+    "displayName": "pnpm",
+    "description": "Fast, disk space efficient package manager",
+    "homepage": "https://pnpm.io",
     "isPopular": true,
     "isFoss": true,
     "category": "languages"
   },
   {
-    "slug": "clang",
-    "displayName": "Clang",
-    "description": "C/C++ compiler based on LLVM",
-    "homepage": "https://clang.llvm.org",
-    "isPopular": false,
-    "isFoss": true,
-    "category": "languages"
+    "slug": "postman",
+    "displayName": "Postman",
+    "description": "API development and testing platform",
+    "homepage": "https://postman.com",
+    "isPopular": true,
+    "isFoss": false,
+    "category": "development"
   },
   {
-    "slug": "perl",
-    "displayName": "Perl",
-    "description": "High-level, general-purpose programming language",
-    "homepage": "https://perl.org",
-    "isPopular": false,
+    "slug": "pycharm",
+    "displayName": "PyCharm Community",
+    "description": "Python IDE by JetBrains",
+    "homepage": "https://jetbrains.com/pycharm",
+    "isPopular": true,
     "isFoss": true,
-    "category": "languages"
+    "category": "development"
   },
   {
-    "slug": "lua",
-    "displayName": "Lua",
-    "description": "Lightweight, embeddable scripting language",
-    "homepage": "https://lua.org",
-    "isPopular": false,
+    "slug": "python",
+    "displayName": "Python",
+    "description": "High-level programming language",
+    "homepage": "https://python.org",
+    "isPopular": true,
     "isFoss": true,
     "category": "languages"
   },
@@ -360,13 +639,85 @@
     "category": "languages"
   },
   {
-    "slug": "vlc",
-    "displayName": "VLC Media Player",
-    "description": "Free and open source cross-platform multimedia player",
-    "homepage": "https://videolan.org/vlc",
+    "slug": "rbenv",
+    "displayName": "rbenv",
+    "description": "Ruby version management tool",
+    "homepage": "https://github.com/rbenv/rbenv",
     "isPopular": true,
     "isFoss": true,
-    "category": "media"
+    "category": "languages"
+  },
+  {
+    "slug": "retroarch",
+    "displayName": "RetroArch",
+    "description": "Frontend for emulators, game engines and media players",
+    "homepage": "https://retroarch.com",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "games"
+  },
+  {
+    "slug": "rider",
+    "displayName": "Rider",
+    "description": ".NET IDE by JetBrains",
+    "homepage": "https://jetbrains.com/rider",
+    "isPopular": false,
+    "isFoss": false,
+    "category": "development"
+  },
+  {
+    "slug": "ripgrep",
+    "displayName": "ripgrep",
+    "description": "Line-oriented search tool that recursively searches directories",
+    "homepage": "https://github.com/BurntSushi/ripgrep",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "cli"
+  },
+  {
+    "slug": "rpcs3",
+    "displayName": "RPCS3",
+    "description": "PlayStation 3 emulator and debugger",
+    "homepage": "https://rpcs3.net",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "games"
+  },
+  {
+    "slug": "ruby",
+    "displayName": "Ruby",
+    "description": "Dynamic, open source programming language",
+    "homepage": "https://ruby-lang.org",
+    "isPopular": false,
+    "isFoss": true,
+    "category": "languages"
+  },
+  {
+    "slug": "rust",
+    "displayName": "Rust",
+    "description": "Systems programming language focused on safety",
+    "homepage": "https://rust-lang.org",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "languages"
+  },
+  {
+    "slug": "sdkman",
+    "displayName": "SDKMAN",
+    "description": "Software Development Kit Manager for JVM ecosystem",
+    "homepage": "https://sdkman.io",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "languages"
+  },
+  {
+    "slug": "slack",
+    "displayName": "Slack",
+    "description": "Team communication and collaboration platform",
+    "homepage": "https://slack.com",
+    "isPopular": true,
+    "isFoss": false,
+    "category": "communication"
   },
   {
     "slug": "spotify",
@@ -378,139 +729,22 @@
     "category": "media"
   },
   {
-    "slug": "obs",
-    "displayName": "OBS Studio",
-    "description": "Free and open source software for video recording and live streaming",
-    "homepage": "https://obsproject.com",
-    "isPopular": true,
-    "isFoss": true,
-    "category": "media"
-  },
-  {
-    "slug": "kdenlive",
-    "displayName": "Kdenlive",
-    "description": "Free and open source video editor",
-    "homepage": "https://kdenlive.org",
-    "isPopular": false,
-    "isFoss": true,
-    "category": "media"
-  },
-  {
-    "slug": "audacity",
-    "displayName": "Audacity",
-    "description": "Free, open source, cross-platform audio software",
-    "homepage": "https://audacityteam.org",
-    "isPopular": true,
-    "isFoss": true,
-    "category": "media"
-  },
-  {
-    "slug": "mpv",
-    "displayName": "mpv",
-    "description": "Free, open source, and cross-platform media player",
-    "homepage": "https://mpv.io",
-    "isPopular": false,
-    "isFoss": true,
-    "category": "media"
-  },
-  {
-    "slug": "handbrake",
-    "displayName": "HandBrake",
-    "description": "Open source video transcoder",
-    "homepage": "https://handbrake.fr",
-    "isPopular": false,
-    "isFoss": true,
-    "category": "media"
-  },
-  {
-    "slug": "gimp",
-    "displayName": "GIMP",
-    "description": "GNU Image Manipulation Program",
-    "homepage": "https://gimp.org",
-    "isPopular": true,
-    "isFoss": true,
-    "category": "graphics"
-  },
-  {
-    "slug": "inkscape",
-    "displayName": "Inkscape",
-    "description": "Professional vector graphics editor",
-    "homepage": "https://inkscape.org",
-    "isPopular": true,
-    "isFoss": true,
-    "category": "graphics"
-  },
-  {
-    "slug": "blender",
-    "displayName": "Blender",
-    "description": "Free and open source 3D creation suite",
-    "homepage": "https://blender.org",
-    "isPopular": true,
-    "isFoss": true,
-    "category": "graphics"
-  },
-  {
-    "slug": "krita",
-    "displayName": "Krita",
-    "description": "Professional free and open source painting program",
-    "homepage": "https://krita.org",
-    "isPopular": true,
-    "isFoss": true,
-    "category": "graphics"
-  },
-  {
-    "slug": "darktable",
-    "displayName": "darktable",
-    "description": "Photography workflow application and raw developer",
-    "homepage": "https://darktable.org",
-    "isPopular": false,
-    "isFoss": true,
-    "category": "graphics"
-  },
-  {
-    "slug": "libreoffice",
-    "displayName": "LibreOffice",
-    "description": "Free and powerful office suite",
-    "homepage": "https://libreoffice.org",
-    "isPopular": true,
-    "isFoss": true,
-    "category": "office"
-  },
-  {
-    "slug": "onlyoffice",
-    "displayName": "ONLYOFFICE",
-    "description": "Free office suite with online collaboration",
-    "homepage": "https://onlyoffice.com",
-    "isPopular": false,
-    "isFoss": true,
-    "category": "office"
-  },
-  {
-    "slug": "obsidian",
-    "displayName": "Obsidian",
-    "description": "Powerful knowledge base on top of local markdown files",
-    "homepage": "https://obsidian.md",
+    "slug": "steam",
+    "displayName": "Steam",
+    "description": "Digital distribution platform for video games",
+    "homepage": "https://steampowered.com",
     "isPopular": true,
     "isFoss": false,
-    "category": "office"
+    "category": "games"
   },
   {
-    "slug": "notion",
-    "displayName": "Notion",
-    "description": "All-in-one workspace for notes, tasks, and collaboration",
-    "homepage": "https://notion.so",
-    "isPopular": true,
-    "isFoss": false,
-    "category": "office"
-  },
-  {
-    "slug": "flameshot",
-    "displayName": "Flameshot",
-    "description": "Powerful yet simple to use screenshot software",
-    "homepage": "https://flameshot.org",
+    "slug": "supertuxkart",
+    "displayName": "SuperTuxKart",
+    "description": "Free 3D kart racing game with open-source mascots",
+    "homepage": "https://supertuxkart.net",
     "isPopular": true,
     "isFoss": true,
-    "category": "utilities"
+    "category": "games"
   },
   {
     "slug": "syncthing",
@@ -522,39 +756,12 @@
     "category": "utilities"
   },
   {
-    "slug": "balena-etcher",
-    "displayName": "balenaEtcher",
-    "description": "Flash OS images to SD cards and USB drives",
-    "homepage": "https://balena.io/etcher",
+    "slug": "telegram",
+    "displayName": "Telegram Desktop",
+    "description": "Fast and secure messaging app",
+    "homepage": "https://telegram.org",
     "isPopular": true,
     "isFoss": true,
-    "category": "utilities"
-  },
-  {
-    "slug": "filezilla",
-    "displayName": "FileZilla",
-    "description": "FTP, FTPS and SFTP client",
-    "homepage": "https://filezilla-project.org",
-    "isPopular": true,
-    "isFoss": true,
-    "category": "utilities"
-  },
-  {
-    "slug": "discord",
-    "displayName": "Discord",
-    "description": "Voice, video and text chat app",
-    "homepage": "https://discord.com",
-    "isPopular": true,
-    "isFoss": false,
-    "category": "communication"
-  },
-  {
-    "slug": "slack",
-    "displayName": "Slack",
-    "description": "Team communication and collaboration platform",
-    "homepage": "https://slack.com",
-    "isPopular": true,
-    "isFoss": false,
     "category": "communication"
   },
   {
@@ -567,96 +774,6 @@
     "category": "communication"
   },
   {
-    "slug": "telegram",
-    "displayName": "Telegram Desktop",
-    "description": "Fast and secure messaging app",
-    "homepage": "https://telegram.org",
-    "isPopular": true,
-    "isFoss": true,
-    "category": "communication"
-  },
-  {
-    "slug": "zoom",
-    "displayName": "Zoom",
-    "description": "Video conferencing and web conferencing service",
-    "homepage": "https://zoom.us",
-    "isPopular": true,
-    "isFoss": false,
-    "category": "communication"
-  },
-  {
-    "slug": "steam",
-    "displayName": "Steam",
-    "description": "Digital distribution platform for video games",
-    "homepage": "https://steampowered.com",
-    "isPopular": true,
-    "isFoss": false,
-    "category": "games"
-  },
-  {
-    "slug": "lutris",
-    "displayName": "Lutris",
-    "description": "Open source gaming platform for Linux",
-    "homepage": "https://lutris.net",
-    "isPopular": true,
-    "isFoss": true,
-    "category": "games"
-  },
-  {
-    "slug": "minecraft",
-    "displayName": "Minecraft",
-    "description": "Sandbox video game",
-    "homepage": "https://minecraft.net",
-    "isPopular": true,
-    "isFoss": false,
-    "category": "games"
-  },
-  {
-    "slug": "heroic",
-    "displayName": "Heroic Games Launcher",
-    "description": "Epic Games Launcher alternative for Linux",
-    "homepage": "https://heroicgameslauncher.com",
-    "isPopular": false,
-    "isFoss": true,
-    "category": "games"
-  },
-  {
-    "slug": "keepassxc",
-    "displayName": "KeePassXC",
-    "description": "Cross-platform password manager",
-    "homepage": "https://keepassxc.org",
-    "isPopular": true,
-    "isFoss": true,
-    "category": "security"
-  },
-  {
-    "slug": "bitwarden",
-    "displayName": "Bitwarden",
-    "description": "Open source password manager",
-    "homepage": "https://bitwarden.com",
-    "isPopular": true,
-    "isFoss": true,
-    "category": "security"
-  },
-  {
-    "slug": "veracrypt",
-    "displayName": "VeraCrypt",
-    "description": "Free open source disk encryption software",
-    "homepage": "https://veracrypt.fr",
-    "isPopular": false,
-    "isFoss": true,
-    "category": "security"
-  },
-  {
-    "slug": "clamav",
-    "displayName": "ClamAV",
-    "description": "Open source antivirus engine",
-    "homepage": "https://clamav.net",
-    "isPopular": false,
-    "isFoss": true,
-    "category": "security"
-  },
-  {
     "slug": "timeshift",
     "displayName": "Timeshift",
     "description": "System restore tool for Linux",
@@ -664,114 +781,6 @@
     "isPopular": true,
     "isFoss": true,
     "category": "system"
-  },
-  {
-    "slug": "btop",
-    "displayName": "btop",
-    "description": "Resource monitor that shows usage and stats",
-    "homepage": "https://github.com/aristocratos/btop",
-    "isPopular": false,
-    "isFoss": true,
-    "category": "system"
-  },
-  {
-    "slug": "tmux",
-    "displayName": "tmux",
-    "description": "Terminal multiplexer for managing multiple terminal sessions",
-    "homepage": "https://github.com/tmux/tmux",
-    "isPopular": true,
-    "isFoss": true,
-    "category": "system"
-  },
-  {
-    "slug": "ghostty",
-    "displayName": "Ghostty",
-    "description": "Fast, feature-rich, and cross-platform terminal emulator",
-    "homepage": "https://ghostty.org",
-    "isPopular": true,
-    "isFoss": true,
-    "category": "system"
-  },
-  {
-    "slug": "zsh",
-    "displayName": "Zsh",
-    "description": "Powerful shell with advanced features and customization",
-    "homepage": "https://zsh.org",
-    "isPopular": true,
-    "isFoss": true,
-    "category": "system"
-  },
-  {
-    "slug": "lazygit",
-    "displayName": "lazygit",
-    "description": "Simple terminal UI for git commands",
-    "homepage": "https://github.com/jesseduffield/lazygit",
-    "isPopular": true,
-    "isFoss": true,
-    "category": "tui"
-  },
-  {
-    "slug": "lazydocker",
-    "displayName": "lazydocker",
-    "description": "Simple terminal UI for both docker and docker-compose",
-    "homepage": "https://github.com/jesseduffield/lazydocker",
-    "isPopular": true,
-    "isFoss": true,
-    "category": "tui"
-  },
-  {
-    "slug": "k9s",
-    "displayName": "k9s",
-    "description": "Terminal UI to interact with your Kubernetes clusters",
-    "homepage": "https://k9scli.io",
-    "isPopular": true,
-    "isFoss": true,
-    "category": "tui"
-  },
-  {
-    "slug": "jq",
-    "displayName": "jq",
-    "description": "Lightweight and flexible command-line JSON processor",
-    "homepage": "https://jqlang.github.io/jq",
-    "isPopular": true,
-    "isFoss": true,
-    "category": "cli"
-  },
-  {
-    "slug": "yq",
-    "displayName": "yq",
-    "description": "Lightweight and portable command-line YAML processor",
-    "homepage": "https://github.com/mikefarah/yq",
-    "isPopular": true,
-    "isFoss": true,
-    "category": "cli"
-  },
-  {
-    "slug": "fzf",
-    "displayName": "fzf",
-    "description": "Command-line fuzzy finder",
-    "homepage": "https://github.com/junegunn/fzf",
-    "isPopular": true,
-    "isFoss": true,
-    "category": "cli"
-  },
-  {
-    "slug": "bat",
-    "displayName": "bat",
-    "description": "Cat clone with syntax highlighting and Git integration",
-    "homepage": "https://github.com/sharkdp/bat",
-    "isPopular": true,
-    "isFoss": true,
-    "category": "cli"
-  },
-  {
-    "slug": "eza",
-    "displayName": "eza",
-    "description": "Modern replacement for ls with colors and icons",
-    "homepage": "https://github.com/eza-community/eza",
-    "isPopular": true,
-    "isFoss": true,
-    "category": "cli"
   },
   {
     "slug": "tldr",
@@ -783,21 +792,138 @@
     "category": "cli"
   },
   {
-    "slug": "ripgrep",
-    "displayName": "ripgrep",
-    "description": "Line-oriented search tool that recursively searches directories",
-    "homepage": "https://github.com/BurntSushi/ripgrep",
+    "slug": "tmux",
+    "displayName": "tmux",
+    "description": "Terminal multiplexer for managing multiple terminal sessions",
+    "homepage": "https://github.com/tmux/tmux",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "system"
+  },
+  {
+    "slug": "tor-browser",
+    "displayName": "Tor Browser",
+    "description": "Private browser for anonymous web browsing",
+    "homepage": "https://torproject.org",
+    "isPopular": false,
+    "isFoss": true,
+    "category": "browsers"
+  },
+  {
+    "slug": "uv",
+    "displayName": "uv",
+    "description": "Extremely fast Python package installer and resolver, written in Rust",
+    "homepage": "https://github.com/astral-sh/uv",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "languages"
+  },
+  {
+    "slug": "veracrypt",
+    "displayName": "VeraCrypt",
+    "description": "Free open source disk encryption software",
+    "homepage": "https://veracrypt.fr",
+    "isPopular": false,
+    "isFoss": true,
+    "category": "security"
+  },
+  {
+    "slug": "vivaldi",
+    "displayName": "Vivaldi",
+    "description": "Feature-rich and highly customizable browser",
+    "homepage": "https://vivaldi.com",
+    "isPopular": false,
+    "isFoss": false,
+    "category": "browsers"
+  },
+  {
+    "slug": "vlc",
+    "displayName": "VLC Media Player",
+    "description": "Free and open source cross-platform multimedia player",
+    "homepage": "https://videolan.org/vlc",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "media"
+  },
+  {
+    "slug": "vscode",
+    "displayName": "Visual Studio Code",
+    "description": "Code editor redefined and optimized for building and debugging",
+    "homepage": "https://code.visualstudio.com",
+    "isPopular": true,
+    "isFoss": false,
+    "category": "development"
+  },
+  {
+    "slug": "warzone2100",
+    "displayName": "Warzone 2100",
+    "description": "Free and open-source real-time strategy game",
+    "homepage": "https://wz2100.net",
+    "isPopular": false,
+    "isFoss": true,
+    "category": "games"
+  },
+  {
+    "slug": "waterfox",
+    "displayName": "Waterfox",
+    "description": "Privacy-focused browser based on Firefox",
+    "homepage": "https://waterfox.net",
+    "isPopular": false,
+    "isFoss": true,
+    "category": "browsers"
+  },
+  {
+    "slug": "webstorm",
+    "displayName": "WebStorm",
+    "description": "JavaScript and TypeScript IDE by JetBrains",
+    "homepage": "https://jetbrains.com/webstorm",
+    "isPopular": false,
+    "isFoss": false,
+    "category": "development"
+  },
+  {
+    "slug": "wesnoth",
+    "displayName": "Battle for Wesnoth",
+    "description": "Turn-based strategy game in a fantasy setting",
+    "homepage": "https://wesnoth.org",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "games"
+  },
+  {
+    "slug": "yq",
+    "displayName": "yq",
+    "description": "Lightweight and portable command-line YAML processor",
+    "homepage": "https://github.com/mikefarah/yq",
     "isPopular": true,
     "isFoss": true,
     "category": "cli"
   },
   {
-    "slug": "httpie",
-    "displayName": "HTTPie",
-    "description": "User-friendly command-line HTTP client",
-    "homepage": "https://httpie.io",
+    "slug": "zen-browser",
+    "displayName": "Zen Browser",
+    "description": "Privacy-focused browser based on Firefox",
+    "homepage": "https://zen-browser.app",
+    "isPopular": false,
+    "isFoss": true,
+    "category": "browsers"
+  },
+  {
+    "slug": "zoom",
+    "displayName": "Zoom",
+    "description": "Video conferencing and web conferencing service",
+    "homepage": "https://zoom.us",
+    "isPopular": true,
+    "isFoss": false,
+    "category": "communication"
+  },
+  {
+    "slug": "zsh",
+    "displayName": "Zsh",
+    "description": "Powerful shell with advanced features and customization",
+    "homepage": "https://zsh.org",
     "isPopular": true,
     "isFoss": true,
-    "category": "cli"
+    "category": "system"
   }
 ]

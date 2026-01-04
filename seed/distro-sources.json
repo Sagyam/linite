@@ -13,9 +13,9 @@
   },
   {
     "distro": "ubuntu",
-    "source": "snap",
+    "isDefault": false,
     "priority": 3,
-    "isDefault": false
+    "source": "snap"
   },
   {
     "distro": "debian",

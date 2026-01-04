@@ -2712,5 +2712,624 @@
       },
       "note": "Installs NVM (Node Version Manager) which manages Node.js installations"
     }
+  },
+  {
+    "app": "datagrip",
+    "source": "snap",
+    "identifier": "datagrip",
+    "isAvailable": true
+  },
+  {
+    "app": "goland",
+    "source": "snap",
+    "identifier": "goland",
+    "isAvailable": true
+  },
+  {
+    "app": "rider",
+    "source": "snap",
+    "identifier": "rider",
+    "isAvailable": true
+  },
+  {
+    "app": "webstorm",
+    "source": "snap",
+    "identifier": "webstorm",
+    "isAvailable": true
+  },
+  {
+    "app": "insomnia",
+    "source": "apt",
+    "identifier": "insomnia",
+    "isAvailable": true
+  },
+  {
+    "app": "insomnia",
+    "source": "winget",
+    "identifier": "Insomnia.Insomnia",
+    "isAvailable": true
+  },
+  {
+    "app": "librewolf",
+    "source": "apt",
+    "identifier": "librewolf",
+    "isAvailable": true
+  },
+  {
+    "app": "pycharm",
+    "source": "apt",
+    "identifier": "pycharm-community",
+    "isAvailable": true
+  },
+  {
+    "app": "android-studio",
+    "source": "apt",
+    "identifier": "android-studio",
+    "isAvailable": true
+  },
+  {
+    "app": "clamav",
+    "source": "nix",
+    "identifier": "clamav",
+    "isAvailable": true
+  },
+  {
+    "app": "eza",
+    "source": "apt",
+    "identifier": "eza",
+    "isAvailable": true
+  },
+  {
+    "app": "eza",
+    "source": "dnf",
+    "identifier": "eza",
+    "isAvailable": true
+  },
+  {
+    "app": "k9s",
+    "source": "apt",
+    "identifier": "k9s",
+    "isAvailable": true
+  },
+  {
+    "app": "k9s",
+    "source": "dnf",
+    "identifier": "k9s",
+    "isAvailable": true
+  },
+  {
+    "app": "lazygit",
+    "source": "apt",
+    "identifier": "lazygit",
+    "isAvailable": true
+  },
+  {
+    "app": "lazygit",
+    "source": "dnf",
+    "identifier": "lazygit",
+    "isAvailable": true
+  },
+  {
+    "app": "minecraft",
+    "source": "snap",
+    "identifier": "minecraft-launcher",
+    "isAvailable": true
+  },
+  {
+    "app": "timeshift",
+    "source": "nix",
+    "identifier": "timeshift",
+    "isAvailable": true
+  },
+  {
+    "app": "tor-browser",
+    "source": "snap",
+    "identifier": "tor-browser",
+    "isAvailable": true
+  },
+  {
+    "app": "yq",
+    "source": "apt",
+    "identifier": "yq",
+    "isAvailable": true
+  },
+  {
+    "app": "yq",
+    "source": "dnf",
+    "identifier": "yq",
+    "isAvailable": true
+  },
+  {
+    "app": "zen-browser",
+    "source": "apt",
+    "identifier": "zen-browser",
+    "isAvailable": true
+  },
+  {
+    "app": "bat",
+    "source": "nix",
+    "identifier": "bat",
+    "isAvailable": true
+  },
+  {
+    "app": "bat",
+    "source": "scoop",
+    "identifier": "bat",
+    "isAvailable": true
+  },
+  {
+    "app": "btop",
+    "source": "homebrew",
+    "identifier": "btop",
+    "isAvailable": true
+  },
+  {
+    "app": "btop",
+    "source": "scoop",
+    "identifier": "btop",
+    "isAvailable": true
+  },
+  {
+    "app": "fzf",
+    "source": "nix",
+    "identifier": "fzf",
+    "isAvailable": true
+  },
+  {
+    "app": "fzf",
+    "source": "scoop",
+    "identifier": "fzf",
+    "isAvailable": true
+  },
+  {
+    "app": "httpie",
+    "source": "nix",
+    "identifier": "httpie",
+    "isAvailable": true
+  },
+  {
+    "app": "httpie",
+    "source": "scoop",
+    "identifier": "httpie",
+    "isAvailable": true
+  },
+  {
+    "app": "jq",
+    "source": "nix",
+    "identifier": "jq",
+    "isAvailable": true
+  },
+  {
+    "app": "jq",
+    "source": "scoop",
+    "identifier": "jq",
+    "isAvailable": true
+  },
+  {
+    "app": "ripgrep",
+    "source": "nix",
+    "identifier": "ripgrep",
+    "isAvailable": true
+  },
+  {
+    "app": "ripgrep",
+    "source": "scoop",
+    "identifier": "ripgrep",
+    "isAvailable": true
+  },
+  {
+    "app": "tldr",
+    "source": "nix",
+    "identifier": "tldr",
+    "isAvailable": true
+  },
+  {
+    "app": "tldr",
+    "source": "scoop",
+    "identifier": "tldr",
+    "isAvailable": true
+  },
+  {
+    "app": "tmux",
+    "source": "nix",
+    "identifier": "tmux",
+    "isAvailable": true
+  },
+  {
+    "app": "tmux",
+    "source": "scoop",
+    "identifier": "tmux",
+    "isAvailable": true
+  },
+  {
+    "app": "zsh",
+    "source": "nix",
+    "identifier": "zsh",
+    "isAvailable": true
+  },
+  {
+    "app": "zsh",
+    "source": "scoop",
+    "identifier": "zsh",
+    "isAvailable": true
+  },
+  {
+    "app": "bun",
+    "source": "script",
+    "identifier": "bun",
+    "isAvailable": true,
+    "metadata": {
+      "scriptUrl": {
+        "linux": "https://bun.sh/install",
+        "windows": "https://bun.sh/install.ps1"
+      },
+      "note": "Fast all-in-one JavaScript runtime and package manager"
+    }
+  },
+  {
+    "app": "bun",
+    "source": "homebrew",
+    "identifier": "bun",
+    "isAvailable": true
+  },
+  {
+    "app": "bun",
+    "source": "scoop",
+    "identifier": "bun",
+    "isAvailable": true
+  },
+  {
+    "app": "bun",
+    "source": "aur",
+    "identifier": "bun-bin",
+    "isAvailable": true
+  },
+  {
+    "app": "pnpm",
+    "source": "script",
+    "identifier": "pnpm",
+    "isAvailable": true,
+    "metadata": {
+      "scriptUrl": {
+        "linux": "https://get.pnpm.io/install.sh",
+        "windows": "https://get.pnpm.io/install.ps1"
+      },
+      "note": "Fast, disk space efficient package manager"
+    }
+  },
+  {
+    "app": "pnpm",
+    "source": "winget",
+    "identifier": "pnpm.pnpm",
+    "isAvailable": true
+  },
+  {
+    "app": "pnpm",
+    "source": "scoop",
+    "identifier": "pnpm",
+    "isAvailable": true
+  },
+  {
+    "app": "pnpm",
+    "source": "homebrew",
+    "identifier": "pnpm",
+    "isAvailable": true
+  },
+  {
+    "app": "deno",
+    "source": "script",
+    "identifier": "deno",
+    "isAvailable": true,
+    "metadata": {
+      "scriptUrl": {
+        "linux": "https://deno.land/install.sh",
+        "windows": "https://deno.land/install.ps1"
+      },
+      "note": "Modern JavaScript/TypeScript runtime"
+    }
+  },
+  {
+    "app": "deno",
+    "source": "snap",
+    "identifier": "deno",
+    "isAvailable": true
+  },
+  {
+    "app": "deno",
+    "source": "pacman",
+    "identifier": "deno",
+    "isAvailable": true
+  },
+  {
+    "app": "deno",
+    "source": "winget",
+    "identifier": "DenoLand.Deno",
+    "isAvailable": true
+  },
+  {
+    "app": "deno",
+    "source": "scoop",
+    "identifier": "deno",
+    "isAvailable": true
+  },
+  {
+    "app": "deno",
+    "source": "homebrew",
+    "identifier": "deno",
+    "isAvailable": true
+  },
+  {
+    "app": "uv",
+    "source": "script",
+    "identifier": "uv",
+    "isAvailable": true,
+    "metadata": {
+      "scriptUrl": {
+        "linux": "https://astral.sh/uv/install.sh",
+        "windows": "https://astral.sh/uv/install.ps1"
+      },
+      "note": "Extremely fast Python package installer and resolver, written in Rust"
+    }
+  },
+  {
+    "app": "uv",
+    "source": "snap",
+    "identifier": "astral-uv",
+    "isAvailable": true
+  },
+  {
+    "app": "uv",
+    "source": "homebrew",
+    "identifier": "uv",
+    "isAvailable": true
+  },
+  {
+    "app": "uv",
+    "source": "cargo",
+    "identifier": "uv",
+    "isAvailable": true
+  },
+  {
+    "app": "uv",
+    "source": "pacman",
+    "identifier": "uv",
+    "isAvailable": true
+  },
+  {
+    "app": "rbenv",
+    "source": "script",
+    "identifier": "rbenv",
+    "isAvailable": true,
+    "metadata": {
+      "scriptUrl": {
+        "linux": "https://github.com/rbenv/rbenv-installer/raw/main/bin/rbenv-installer"
+      },
+      "note": "Ruby version manager"
+    }
+  },
+  {
+    "app": "rbenv",
+    "source": "homebrew",
+    "identifier": "rbenv",
+    "isAvailable": true
+  },
+  {
+    "app": "rbenv",
+    "source": "apt",
+    "identifier": "rbenv",
+    "isAvailable": true
+  },
+  {
+    "app": "rbenv",
+    "source": "pacman",
+    "identifier": "rbenv",
+    "isAvailable": true
+  },
+  {
+    "app": "sdkman",
+    "source": "script",
+    "identifier": "sdkman",
+    "isAvailable": true,
+    "metadata": {
+      "scriptUrl": {
+        "linux": "https://get.sdkman.io"
+      },
+      "note": "Software Development Kit Manager for JVM languages (Java, Kotlin, Scala, Groovy)"
+    }
+  },
+  {
+    "app": "0ad",
+    "source": "flatpak",
+    "identifier": "com.play0ad.zeroad",
+    "isAvailable": true
+  },
+  {
+    "app": "0ad",
+    "source": "snap",
+    "identifier": "0ad",
+    "isAvailable": true
+  },
+  {
+    "app": "0ad",
+    "source": "apt",
+    "identifier": "0ad",
+    "isAvailable": true
+  },
+  {
+    "app": "0ad",
+    "source": "pacman",
+    "identifier": "0ad",
+    "isAvailable": true
+  },
+  {
+    "app": "0ad",
+    "source": "dnf",
+    "identifier": "0ad",
+    "isAvailable": true
+  },
+  {
+    "app": "supertuxkart",
+    "source": "flatpak",
+    "identifier": "net.supertuxkart.SuperTuxKart",
+    "isAvailable": true
+  },
+  {
+    "app": "supertuxkart",
+    "source": "snap",
+    "identifier": "supertuxkart",
+    "isAvailable": true
+  },
+  {
+    "app": "supertuxkart",
+    "source": "apt",
+    "identifier": "supertuxkart",
+    "isAvailable": true
+  },
+  {
+    "app": "supertuxkart",
+    "source": "pacman",
+    "identifier": "supertuxkart",
+    "isAvailable": true
+  },
+  {
+    "app": "supertuxkart",
+    "source": "dnf",
+    "identifier": "supertuxkart",
+    "isAvailable": true
+  },
+  {
+    "app": "warzone2100",
+    "source": "flatpak",
+    "identifier": "net.wz2100.wz2100",
+    "isAvailable": true
+  },
+  {
+    "app": "warzone2100",
+    "source": "snap",
+    "identifier": "warzone2100",
+    "isAvailable": true
+  },
+  {
+    "app": "warzone2100",
+    "source": "apt",
+    "identifier": "warzone2100",
+    "isAvailable": true
+  },
+  {
+    "app": "warzone2100",
+    "source": "pacman",
+    "identifier": "warzone2100",
+    "isAvailable": true
+  },
+  {
+    "app": "wesnoth",
+    "source": "flatpak",
+    "identifier": "org.wesnoth.Wesnoth",
+    "isAvailable": true
+  },
+  {
+    "app": "wesnoth",
+    "source": "apt",
+    "identifier": "wesnoth",
+    "isAvailable": true
+  },
+  {
+    "app": "wesnoth",
+    "source": "pacman",
+    "identifier": "wesnoth",
+    "isAvailable": true
+  },
+  {
+    "app": "wesnoth",
+    "source": "dnf",
+    "identifier": "wesnoth",
+    "isAvailable": true
+  },
+  {
+    "app": "retroarch",
+    "source": "flatpak",
+    "identifier": "org.libretro.RetroArch",
+    "isAvailable": true
+  },
+  {
+    "app": "retroarch",
+    "source": "snap",
+    "identifier": "retroarch",
+    "isAvailable": true
+  },
+  {
+    "app": "retroarch",
+    "source": "apt",
+    "identifier": "retroarch",
+    "isAvailable": true
+  },
+  {
+    "app": "retroarch",
+    "source": "pacman",
+    "identifier": "retroarch",
+    "isAvailable": true
+  },
+  {
+    "app": "retroarch",
+    "source": "dnf",
+    "identifier": "retroarch",
+    "isAvailable": true
+  },
+  {
+    "app": "pcsx2",
+    "source": "flatpak",
+    "identifier": "net.pcsx2.PCSX2",
+    "isAvailable": true
+  },
+  {
+    "app": "pcsx2",
+    "source": "apt",
+    "identifier": "pcsx2",
+    "isAvailable": true
+  },
+  {
+    "app": "pcsx2",
+    "source": "pacman",
+    "identifier": "pcsx2",
+    "isAvailable": true
+  },
+  {
+    "app": "dolphin-emu",
+    "source": "flatpak",
+    "identifier": "org.DolphinEmu.dolphin-emu",
+    "isAvailable": true
+  },
+  {
+    "app": "dolphin-emu",
+    "source": "snap",
+    "identifier": "dolphin-emulator",
+    "isAvailable": true
+  },
+  {
+    "app": "dolphin-emu",
+    "source": "apt",
+    "identifier": "dolphin-emu",
+    "isAvailable": true
+  },
+  {
+    "app": "dolphin-emu",
+    "source": "pacman",
+    "identifier": "dolphin-emu",
+    "isAvailable": true
+  },
+  {
+    "app": "rpcs3",
+    "source": "flatpak",
+    "identifier": "net.rpcs3.RPCS3",
+    "isAvailable": true
+  },
+  {
+    "app": "rpcs3",
+    "source": "pacman",
+    "identifier": "rpcs3-bin",
+    "isAvailable": true,
+    "metadata": {
+      "note": "Available in AUR"
+    }
   }
 ]
