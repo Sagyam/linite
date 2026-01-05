@@ -6,7 +6,7 @@
  */
 
 import { db, categories, sources, distros, distroSources, apps, packages } from '@/db';
-import { readFileSync } from 'fs';
+import { readFileSync, readdirSync } from 'fs';
 import { join } from 'path';
 import { uploadImageFromUrl } from '@/lib/blob';
 import { eq } from 'drizzle-orm';
@@ -20,11 +20,19 @@ const sourcesData = JSON.parse(readFileSync(join(seedDir, 'sources.json'), 'utf-
 const distrosData = JSON.parse(readFileSync(join(seedDir, 'distros.json'), 'utf-8'));
 const distroSourcesData = JSON.parse(readFileSync(join(seedDir, 'distro-sources.json'), 'utf-8'));
 const appsData = JSON.parse(readFileSync(join(seedDir, 'apps.json'), 'utf-8'));
-const packagesData = JSON.parse(readFileSync(join(seedDir, 'packages.json'), 'utf-8'));
 const iconsData = JSON.parse(readFileSync(join(seedDir, 'icons.json'), 'utf-8'));
+
+// Load packages from individual source files in seed/packages/
+const packagesDir = join(seedDir, 'packages');
+const packageFiles = readdirSync(packagesDir).filter(f => f.endsWith('.json'));
+const packagesData = packageFiles.flatMap(file => {
+  const data = JSON.parse(readFileSync(join(packagesDir, file), 'utf-8'));
+  return data;
+});
 
 async function seed() {
   console.log('🌱 Seeding database from JSON files...\n');
+  console.log(`📦 Loading packages from ${packageFiles.length} source files...\n`);
 
   // 1. Create categories
   console.log('Creating categories...');

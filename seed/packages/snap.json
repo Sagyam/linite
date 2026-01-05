@@ -1,0 +1,314 @@
+[
+  {
+    "app": "firefox",
+    "source": "snap",
+    "identifier": "firefox",
+    "isAvailable": true
+  },
+  {
+    "app": "brave",
+    "source": "snap",
+    "identifier": "brave",
+    "isAvailable": true
+  },
+  {
+    "app": "chromium",
+    "source": "snap",
+    "identifier": "chromium",
+    "isAvailable": true
+  },
+  {
+    "app": "vivaldi",
+    "source": "snap",
+    "identifier": "vivaldi",
+    "isAvailable": true
+  },
+  {
+    "app": "opera",
+    "source": "snap",
+    "identifier": "opera",
+    "isAvailable": true
+  },
+  {
+    "app": "waterfox",
+    "source": "snap",
+    "identifier": "waterfox",
+    "isAvailable": true
+  },
+  {
+    "app": "vscode",
+    "source": "snap",
+    "identifier": "code",
+    "isAvailable": true
+  },
+  {
+    "app": "docker",
+    "source": "snap",
+    "identifier": "docker",
+    "isAvailable": true
+  },
+  {
+    "app": "nodejs",
+    "source": "snap",
+    "identifier": "node",
+    "isAvailable": true
+  },
+  {
+    "app": "intellij",
+    "source": "snap",
+    "identifier": "intellij-idea-community",
+    "isAvailable": true
+  },
+  {
+    "app": "pycharm",
+    "source": "snap",
+    "identifier": "pycharm-community",
+    "isAvailable": true
+  },
+  {
+    "app": "android-studio",
+    "source": "snap",
+    "identifier": "android-studio",
+    "isAvailable": true
+  },
+  {
+    "app": "eclipse",
+    "source": "snap",
+    "identifier": "eclipse",
+    "isAvailable": true
+  },
+  {
+    "app": "netbeans",
+    "source": "snap",
+    "identifier": "netbeans",
+    "isAvailable": true
+  },
+  {
+    "app": "postman",
+    "source": "snap",
+    "identifier": "postman",
+    "isAvailable": true
+  },
+  {
+    "app": "insomnia",
+    "source": "snap",
+    "identifier": "insomnia",
+    "isAvailable": true
+  },
+  {
+    "app": "dbeaver",
+    "source": "snap",
+    "identifier": "dbeaver-ce",
+    "isAvailable": true
+  },
+  {
+    "app": "vlc",
+    "source": "snap",
+    "identifier": "vlc",
+    "isAvailable": true
+  },
+  {
+    "app": "spotify",
+    "source": "snap",
+    "identifier": "spotify",
+    "isAvailable": true
+  },
+  {
+    "app": "obs",
+    "source": "snap",
+    "identifier": "obs-studio",
+    "isAvailable": true
+  },
+  {
+    "app": "kdenlive",
+    "source": "snap",
+    "identifier": "kdenlive",
+    "isAvailable": true
+  },
+  {
+    "app": "audacity",
+    "source": "snap",
+    "identifier": "audacity",
+    "isAvailable": true
+  },
+  {
+    "app": "gimp",
+    "source": "snap",
+    "identifier": "gimp",
+    "isAvailable": true
+  },
+  {
+    "app": "inkscape",
+    "source": "snap",
+    "identifier": "inkscape",
+    "isAvailable": true
+  },
+  {
+    "app": "blender",
+    "source": "snap",
+    "identifier": "blender",
+    "isAvailable": true
+  },
+  {
+    "app": "krita",
+    "source": "snap",
+    "identifier": "krita",
+    "isAvailable": true
+  },
+  {
+    "app": "libreoffice",
+    "source": "snap",
+    "identifier": "libreoffice",
+    "isAvailable": true
+  },
+  {
+    "app": "onlyoffice",
+    "source": "snap",
+    "identifier": "onlyoffice-desktopeditors",
+    "isAvailable": true
+  },
+  {
+    "app": "obsidian",
+    "source": "snap",
+    "identifier": "obsidian",
+    "isAvailable": true
+  },
+  {
+    "app": "notion",
+    "source": "snap",
+    "identifier": "notion-snap-reborn",
+    "isAvailable": true
+  },
+  {
+    "app": "filezilla",
+    "source": "snap",
+    "identifier": "filezilla",
+    "isAvailable": true
+  },
+  {
+    "app": "discord",
+    "source": "snap",
+    "identifier": "discord",
+    "isAvailable": true
+  },
+  {
+    "app": "slack",
+    "source": "snap",
+    "identifier": "slack",
+    "isAvailable": true
+  },
+  {
+    "app": "thunderbird",
+    "source": "snap",
+    "identifier": "thunderbird",
+    "isAvailable": true
+  },
+  {
+    "app": "telegram",
+    "source": "snap",
+    "identifier": "telegram-desktop",
+    "isAvailable": true
+  },
+  {
+    "app": "zoom",
+    "source": "snap",
+    "identifier": "zoom-client",
+    "isAvailable": true
+  },
+  {
+    "app": "steam",
+    "source": "snap",
+    "identifier": "steam",
+    "isAvailable": true
+  },
+  {
+    "app": "keepassxc",
+    "source": "snap",
+    "identifier": "keepassxc",
+    "isAvailable": true
+  },
+  {
+    "app": "bitwarden",
+    "source": "snap",
+    "identifier": "bitwarden",
+    "isAvailable": true
+  },
+  {
+    "app": "datagrip",
+    "source": "snap",
+    "identifier": "datagrip",
+    "isAvailable": true
+  },
+  {
+    "app": "goland",
+    "source": "snap",
+    "identifier": "goland",
+    "isAvailable": true
+  },
+  {
+    "app": "rider",
+    "source": "snap",
+    "identifier": "rider",
+    "isAvailable": true
+  },
+  {
+    "app": "webstorm",
+    "source": "snap",
+    "identifier": "webstorm",
+    "isAvailable": true
+  },
+  {
+    "app": "minecraft",
+    "source": "snap",
+    "identifier": "minecraft-launcher",
+    "isAvailable": true
+  },
+  {
+    "app": "tor-browser",
+    "source": "snap",
+    "identifier": "tor-browser",
+    "isAvailable": true
+  },
+  {
+    "app": "deno",
+    "source": "snap",
+    "identifier": "deno",
+    "isAvailable": true
+  },
+  {
+    "app": "uv",
+    "source": "snap",
+    "identifier": "astral-uv",
+    "isAvailable": true
+  },
+  {
+    "app": "0ad",
+    "source": "snap",
+    "identifier": "0ad",
+    "isAvailable": true
+  },
+  {
+    "app": "supertuxkart",
+    "source": "snap",
+    "identifier": "supertuxkart",
+    "isAvailable": true
+  },
+  {
+    "app": "warzone2100",
+    "source": "snap",
+    "identifier": "warzone2100",
+    "isAvailable": true
+  },
+  {
+    "app": "retroarch",
+    "source": "snap",
+    "identifier": "retroarch",
+    "isAvailable": true
+  },
+  {
+    "app": "dolphin-emu",
+    "source": "snap",
+    "identifier": "dolphin-emulator",
+    "isAvailable": true
+  }
+]

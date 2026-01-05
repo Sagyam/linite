@@ -1,0 +1,122 @@
+[
+  {
+    "app": "tmux",
+    "source": "homebrew",
+    "identifier": "tmux",
+    "isAvailable": true
+  },
+  {
+    "app": "ghostty",
+    "source": "homebrew",
+    "identifier": "ghostty",
+    "isAvailable": true
+  },
+  {
+    "app": "zsh",
+    "source": "homebrew",
+    "identifier": "zsh",
+    "isAvailable": true
+  },
+  {
+    "app": "lazygit",
+    "source": "homebrew",
+    "identifier": "lazygit",
+    "isAvailable": true
+  },
+  {
+    "app": "lazydocker",
+    "source": "homebrew",
+    "identifier": "lazydocker",
+    "isAvailable": true
+  },
+  {
+    "app": "k9s",
+    "source": "homebrew",
+    "identifier": "k9s",
+    "isAvailable": true
+  },
+  {
+    "app": "jq",
+    "source": "homebrew",
+    "identifier": "jq",
+    "isAvailable": true
+  },
+  {
+    "app": "yq",
+    "source": "homebrew",
+    "identifier": "yq",
+    "isAvailable": true
+  },
+  {
+    "app": "fzf",
+    "source": "homebrew",
+    "identifier": "fzf",
+    "isAvailable": true
+  },
+  {
+    "app": "bat",
+    "source": "homebrew",
+    "identifier": "bat",
+    "isAvailable": true
+  },
+  {
+    "app": "eza",
+    "source": "homebrew",
+    "identifier": "eza",
+    "isAvailable": true
+  },
+  {
+    "app": "tldr",
+    "source": "homebrew",
+    "identifier": "tldr",
+    "isAvailable": true
+  },
+  {
+    "app": "ripgrep",
+    "source": "homebrew",
+    "identifier": "ripgrep",
+    "isAvailable": true
+  },
+  {
+    "app": "httpie",
+    "source": "homebrew",
+    "identifier": "httpie",
+    "isAvailable": true
+  },
+  {
+    "app": "btop",
+    "source": "homebrew",
+    "identifier": "btop",
+    "isAvailable": true
+  },
+  {
+    "app": "bun",
+    "source": "homebrew",
+    "identifier": "bun",
+    "isAvailable": true
+  },
+  {
+    "app": "pnpm",
+    "source": "homebrew",
+    "identifier": "pnpm",
+    "isAvailable": true
+  },
+  {
+    "app": "deno",
+    "source": "homebrew",
+    "identifier": "deno",
+    "isAvailable": true
+  },
+  {
+    "app": "uv",
+    "source": "homebrew",
+    "identifier": "uv",
+    "isAvailable": true
+  },
+  {
+    "app": "rbenv",
+    "source": "homebrew",
+    "identifier": "rbenv",
+    "isAvailable": true
+  }
+]

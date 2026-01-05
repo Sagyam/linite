@@ -1,0 +1,44 @@
+[
+  {
+    "app": "ghostty",
+    "source": "aur",
+    "identifier": "ghostty",
+    "isAvailable": true
+  },
+  {
+    "app": "lazygit",
+    "source": "aur",
+    "identifier": "lazygit",
+    "isAvailable": true
+  },
+  {
+    "app": "lazydocker",
+    "source": "aur",
+    "identifier": "lazydocker",
+    "isAvailable": true
+  },
+  {
+    "app": "k9s",
+    "source": "aur",
+    "identifier": "k9s",
+    "isAvailable": true
+  },
+  {
+    "app": "yq",
+    "source": "aur",
+    "identifier": "yq",
+    "isAvailable": true
+  },
+  {
+    "app": "eza",
+    "source": "aur",
+    "identifier": "eza",
+    "isAvailable": true
+  },
+  {
+    "app": "bun",
+    "source": "aur",
+    "identifier": "bun-bin",
+    "isAvailable": true
+  }
+]

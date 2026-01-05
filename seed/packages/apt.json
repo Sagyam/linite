@@ -1,0 +1,488 @@
+[
+  {
+    "app": "firefox",
+    "source": "apt",
+    "identifier": "firefox",
+    "isAvailable": true
+  },
+  {
+    "app": "chrome",
+    "source": "apt",
+    "identifier": "google-chrome-stable",
+    "isAvailable": true
+  },
+  {
+    "app": "brave",
+    "source": "apt",
+    "identifier": "brave-browser",
+    "isAvailable": true
+  },
+  {
+    "app": "chromium",
+    "source": "apt",
+    "identifier": "chromium-browser",
+    "isAvailable": true
+  },
+  {
+    "app": "vivaldi",
+    "source": "apt",
+    "identifier": "vivaldi-stable",
+    "isAvailable": true
+  },
+  {
+    "app": "microsoft-edge",
+    "source": "apt",
+    "identifier": "microsoft-edge-stable",
+    "isAvailable": true
+  },
+  {
+    "app": "opera",
+    "source": "apt",
+    "identifier": "opera-stable",
+    "isAvailable": true
+  },
+  {
+    "app": "tor-browser",
+    "source": "apt",
+    "identifier": "torbrowser-launcher",
+    "isAvailable": true
+  },
+  {
+    "app": "vscode",
+    "source": "apt",
+    "identifier": "code",
+    "isAvailable": true
+  },
+  {
+    "app": "git",
+    "source": "apt",
+    "identifier": "git",
+    "isAvailable": true
+  },
+  {
+    "app": "docker",
+    "source": "apt",
+    "identifier": "docker.io",
+    "isAvailable": true
+  },
+  {
+    "app": "nodejs",
+    "source": "apt",
+    "identifier": "nodejs",
+    "isAvailable": true
+  },
+  {
+    "app": "python",
+    "source": "apt",
+    "identifier": "python3",
+    "isAvailable": true
+  },
+  {
+    "app": "java",
+    "source": "apt",
+    "identifier": "default-jdk",
+    "isAvailable": true
+  },
+  {
+    "app": "golang",
+    "source": "apt",
+    "identifier": "golang",
+    "isAvailable": true
+  },
+  {
+    "app": "rust",
+    "source": "apt",
+    "identifier": "cargo",
+    "isAvailable": true
+  },
+  {
+    "app": "ruby",
+    "source": "apt",
+    "identifier": "ruby-full",
+    "isAvailable": true
+  },
+  {
+    "app": "php",
+    "source": "apt",
+    "identifier": "php",
+    "isAvailable": true
+  },
+  {
+    "app": "gcc",
+    "source": "apt",
+    "identifier": "build-essential",
+    "isAvailable": true
+  },
+  {
+    "app": "clang",
+    "source": "apt",
+    "identifier": "clang",
+    "isAvailable": true
+  },
+  {
+    "app": "perl",
+    "source": "apt",
+    "identifier": "perl",
+    "isAvailable": true
+  },
+  {
+    "app": "lua",
+    "source": "apt",
+    "identifier": "lua5.4",
+    "isAvailable": true
+  },
+  {
+    "app": "r-lang",
+    "source": "apt",
+    "identifier": "r-base",
+    "isAvailable": true
+  },
+  {
+    "app": "neovim",
+    "source": "apt",
+    "identifier": "neovim",
+    "isAvailable": true
+  },
+  {
+    "app": "emacs",
+    "source": "apt",
+    "identifier": "emacs",
+    "isAvailable": true
+  },
+  {
+    "app": "eclipse",
+    "source": "apt",
+    "identifier": "eclipse",
+    "isAvailable": true
+  },
+  {
+    "app": "dbeaver",
+    "source": "apt",
+    "identifier": "dbeaver-ce",
+    "isAvailable": true
+  },
+  {
+    "app": "vlc",
+    "source": "apt",
+    "identifier": "vlc",
+    "isAvailable": true
+  },
+  {
+    "app": "spotify",
+    "source": "apt",
+    "identifier": "spotify-client",
+    "isAvailable": true
+  },
+  {
+    "app": "obs",
+    "source": "apt",
+    "identifier": "obs-studio",
+    "isAvailable": true
+  },
+  {
+    "app": "kdenlive",
+    "source": "apt",
+    "identifier": "kdenlive",
+    "isAvailable": true
+  },
+  {
+    "app": "audacity",
+    "source": "apt",
+    "identifier": "audacity",
+    "isAvailable": true
+  },
+  {
+    "app": "mpv",
+    "source": "apt",
+    "identifier": "mpv",
+    "isAvailable": true
+  },
+  {
+    "app": "handbrake",
+    "source": "apt",
+    "identifier": "handbrake",
+    "isAvailable": true
+  },
+  {
+    "app": "gimp",
+    "source": "apt",
+    "identifier": "gimp",
+    "isAvailable": true
+  },
+  {
+    "app": "inkscape",
+    "source": "apt",
+    "identifier": "inkscape",
+    "isAvailable": true
+  },
+  {
+    "app": "blender",
+    "source": "apt",
+    "identifier": "blender",
+    "isAvailable": true
+  },
+  {
+    "app": "krita",
+    "source": "apt",
+    "identifier": "krita",
+    "isAvailable": true
+  },
+  {
+    "app": "darktable",
+    "source": "apt",
+    "identifier": "darktable",
+    "isAvailable": true
+  },
+  {
+    "app": "libreoffice",
+    "source": "apt",
+    "identifier": "libreoffice",
+    "isAvailable": true
+  },
+  {
+    "app": "onlyoffice",
+    "source": "apt",
+    "identifier": "onlyoffice-desktopeditors",
+    "isAvailable": true
+  },
+  {
+    "app": "filezilla",
+    "source": "apt",
+    "identifier": "filezilla",
+    "isAvailable": true
+  },
+  {
+    "app": "flameshot",
+    "source": "apt",
+    "identifier": "flameshot",
+    "isAvailable": true
+  },
+  {
+    "app": "timeshift",
+    "source": "apt",
+    "identifier": "timeshift",
+    "isAvailable": true
+  },
+  {
+    "app": "syncthing",
+    "source": "apt",
+    "identifier": "syncthing",
+    "isAvailable": true
+  },
+  {
+    "app": "discord",
+    "source": "apt",
+    "identifier": "discord",
+    "isAvailable": true
+  },
+  {
+    "app": "slack",
+    "source": "apt",
+    "identifier": "slack-desktop",
+    "isAvailable": true
+  },
+  {
+    "app": "thunderbird",
+    "source": "apt",
+    "identifier": "thunderbird",
+    "isAvailable": true
+  },
+  {
+    "app": "telegram",
+    "source": "apt",
+    "identifier": "telegram-desktop",
+    "isAvailable": true
+  },
+  {
+    "app": "zoom",
+    "source": "apt",
+    "identifier": "zoom",
+    "isAvailable": true
+  },
+  {
+    "app": "steam",
+    "source": "apt",
+    "identifier": "steam",
+    "isAvailable": true
+  },
+  {
+    "app": "lutris",
+    "source": "apt",
+    "identifier": "lutris",
+    "isAvailable": true
+  },
+  {
+    "app": "keepassxc",
+    "source": "apt",
+    "identifier": "keepassxc",
+    "isAvailable": true
+  },
+  {
+    "app": "veracrypt",
+    "source": "apt",
+    "identifier": "veracrypt",
+    "isAvailable": true
+  },
+  {
+    "app": "clamav",
+    "source": "apt",
+    "identifier": "clamav",
+    "isAvailable": true
+  },
+  {
+    "app": "btop",
+    "source": "apt",
+    "identifier": "btop",
+    "isAvailable": true
+  },
+  {
+    "app": "tmux",
+    "source": "apt",
+    "identifier": "tmux",
+    "isAvailable": true
+  },
+  {
+    "app": "zsh",
+    "source": "apt",
+    "identifier": "zsh",
+    "isAvailable": true
+  },
+  {
+    "app": "jq",
+    "source": "apt",
+    "identifier": "jq",
+    "isAvailable": true
+  },
+  {
+    "app": "fzf",
+    "source": "apt",
+    "identifier": "fzf",
+    "isAvailable": true
+  },
+  {
+    "app": "bat",
+    "source": "apt",
+    "identifier": "bat",
+    "isAvailable": true
+  },
+  {
+    "app": "tldr",
+    "source": "apt",
+    "identifier": "tldr",
+    "isAvailable": true
+  },
+  {
+    "app": "ripgrep",
+    "source": "apt",
+    "identifier": "ripgrep",
+    "isAvailable": true
+  },
+  {
+    "app": "httpie",
+    "source": "apt",
+    "identifier": "httpie",
+    "isAvailable": true
+  },
+  {
+    "app": "insomnia",
+    "source": "apt",
+    "identifier": "insomnia",
+    "isAvailable": true
+  },
+  {
+    "app": "librewolf",
+    "source": "apt",
+    "identifier": "librewolf",
+    "isAvailable": true
+  },
+  {
+    "app": "pycharm",
+    "source": "apt",
+    "identifier": "pycharm-community",
+    "isAvailable": true
+  },
+  {
+    "app": "android-studio",
+    "source": "apt",
+    "identifier": "android-studio",
+    "isAvailable": true
+  },
+  {
+    "app": "eza",
+    "source": "apt",
+    "identifier": "eza",
+    "isAvailable": true
+  },
+  {
+    "app": "k9s",
+    "source": "apt",
+    "identifier": "k9s",
+    "isAvailable": true
+  },
+  {
+    "app": "lazygit",
+    "source": "apt",
+    "identifier": "lazygit",
+    "isAvailable": true
+  },
+  {
+    "app": "yq",
+    "source": "apt",
+    "identifier": "yq",
+    "isAvailable": true
+  },
+  {
+    "app": "zen-browser",
+    "source": "apt",
+    "identifier": "zen-browser",
+    "isAvailable": true
+  },
+  {
+    "app": "rbenv",
+    "source": "apt",
+    "identifier": "rbenv",
+    "isAvailable": true
+  },
+  {
+    "app": "0ad",
+    "source": "apt",
+    "identifier": "0ad",
+    "isAvailable": true
+  },
+  {
+    "app": "supertuxkart",
+    "source": "apt",
+    "identifier": "supertuxkart",
+    "isAvailable": true
+  },
+  {
+    "app": "warzone2100",
+    "source": "apt",
+    "identifier": "warzone2100",
+    "isAvailable": true
+  },
+  {
+    "app": "wesnoth",
+    "source": "apt",
+    "identifier": "wesnoth",
+    "isAvailable": true
+  },
+  {
+    "app": "retroarch",
+    "source": "apt",
+    "identifier": "retroarch",
+    "isAvailable": true
+  },
+  {
+    "app": "pcsx2",
+    "source": "apt",
+    "identifier": "pcsx2",
+    "isAvailable": true
+  },
+  {
+    "app": "dolphin-emu",
+    "source": "apt",
+    "identifier": "dolphin-emu",
+    "isAvailable": true
+  }
+]

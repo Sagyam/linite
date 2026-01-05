@@ -1,0 +1,128 @@
+[
+  {
+    "app": "docker",
+    "source": "script",
+    "identifier": "docker",
+    "isAvailable": true,
+    "metadata": {
+      "scriptUrl": {
+        "linux": "https://get.docker.com",
+        "windows": "https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe"
+      }
+    }
+  },
+  {
+    "app": "rust",
+    "source": "script",
+    "identifier": "rustup",
+    "isAvailable": true,
+    "metadata": {
+      "scriptUrl": {
+        "linux": "https://sh.rustup.rs",
+        "windows": "https://win.rustup.rs/x86_64"
+      }
+    }
+  },
+  {
+    "app": "golang",
+    "source": "script",
+    "identifier": "go",
+    "isAvailable": true,
+    "metadata": {
+      "scriptUrl": {
+        "linux": "https://go.dev/dl/",
+        "windows": "https://go.dev/dl/"
+      },
+      "note": "Manual download and install required from official website"
+    }
+  },
+  {
+    "app": "nodejs",
+    "source": "script",
+    "identifier": "nvm",
+    "isAvailable": true,
+    "metadata": {
+      "scriptUrl": {
+        "linux": "https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh",
+        "windows": "https://github.com/coreybutler/nvm-windows/releases/latest/download/nvm-setup.exe"
+      },
+      "note": "Installs NVM (Node Version Manager) which manages Node.js installations"
+    }
+  },
+  {
+    "app": "bun",
+    "source": "script",
+    "identifier": "bun",
+    "isAvailable": true,
+    "metadata": {
+      "scriptUrl": {
+        "linux": "https://bun.sh/install",
+        "windows": "https://bun.sh/install.ps1"
+      },
+      "note": "Fast all-in-one JavaScript runtime and package manager"
+    }
+  },
+  {
+    "app": "pnpm",
+    "source": "script",
+    "identifier": "pnpm",
+    "isAvailable": true,
+    "metadata": {
+      "scriptUrl": {
+        "linux": "https://get.pnpm.io/install.sh",
+        "windows": "https://get.pnpm.io/install.ps1"
+      },
+      "note": "Fast, disk space efficient package manager"
+    }
+  },
+  {
+    "app": "deno",
+    "source": "script",
+    "identifier": "deno",
+    "isAvailable": true,
+    "metadata": {
+      "scriptUrl": {
+        "linux": "https://deno.land/install.sh",
+        "windows": "https://deno.land/install.ps1"
+      },
+      "note": "Modern JavaScript/TypeScript runtime"
+    }
+  },
+  {
+    "app": "uv",
+    "source": "script",
+    "identifier": "uv",
+    "isAvailable": true,
+    "metadata": {
+      "scriptUrl": {
+        "linux": "https://astral.sh/uv/install.sh",
+        "windows": "https://astral.sh/uv/install.ps1"
+      },
+      "note": "Extremely fast Python package installer and resolver, written in Rust"
+    }
+  },
+  {
+    "app": "rbenv",
+    "source": "script",
+    "identifier": "rbenv",
+    "isAvailable": true,
+    "metadata": {
+      "scriptUrl": {
+        "linux": "https://github.com/rbenv/rbenv-installer/raw/main/bin/rbenv-installer"
+      },
+      "note": "Ruby version manager"
+    }
+  },
+  {
+    "app": "sdkman",
+    "source": "script",
+    "identifier": "sdkman",
+    "isAvailable": true,
+    "metadata": {
+      "scriptUrl": {
+        "linux": "https://get.sdkman.io"
+      },
+      "note": "Software Development Kit Manager for JVM languages (Java, Kotlin, Scala, Groovy)"
+    }
+  }
+]

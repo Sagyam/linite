@@ -1,0 +1,74 @@
+[
+  {
+    "app": "git",
+    "source": "zypper",
+    "identifier": "git",
+    "isAvailable": true
+  },
+  {
+    "app": "python",
+    "source": "zypper",
+    "identifier": "python3",
+    "isAvailable": true
+  },
+  {
+    "app": "java",
+    "source": "zypper",
+    "identifier": "java-openjdk",
+    "isAvailable": true
+  },
+  {
+    "app": "golang",
+    "source": "zypper",
+    "identifier": "go",
+    "isAvailable": true
+  },
+  {
+    "app": "rust",
+    "source": "zypper",
+    "identifier": "cargo",
+    "isAvailable": true
+  },
+  {
+    "app": "ruby",
+    "source": "zypper",
+    "identifier": "ruby",
+    "isAvailable": true
+  },
+  {
+    "app": "php",
+    "source": "zypper",
+    "identifier": "php",
+    "isAvailable": true
+  },
+  {
+    "app": "gcc",
+    "source": "zypper",
+    "identifier": "gcc",
+    "isAvailable": true
+  },
+  {
+    "app": "clang",
+    "source": "zypper",
+    "identifier": "llvm-clang",
+    "isAvailable": true
+  },
+  {
+    "app": "perl",
+    "source": "zypper",
+    "identifier": "perl",
+    "isAvailable": true
+  },
+  {
+    "app": "lua",
+    "source": "zypper",
+    "identifier": "lua",
+    "isAvailable": true
+  },
+  {
+    "app": "r-lang",
+    "source": "zypper",
+    "identifier": "R-base",
+    "isAvailable": true
+  }
+]

@@ -1,0 +1,404 @@
+[
+  {
+    "app": "firefox",
+    "source": "dnf",
+    "identifier": "firefox",
+    "isAvailable": true
+  },
+  {
+    "app": "chrome",
+    "source": "dnf",
+    "identifier": "google-chrome-stable",
+    "isAvailable": true
+  },
+  {
+    "app": "brave",
+    "source": "dnf",
+    "identifier": "brave-browser",
+    "isAvailable": true
+  },
+  {
+    "app": "chromium",
+    "source": "dnf",
+    "identifier": "chromium",
+    "isAvailable": true
+  },
+  {
+    "app": "vivaldi",
+    "source": "dnf",
+    "identifier": "vivaldi-stable",
+    "isAvailable": true
+  },
+  {
+    "app": "microsoft-edge",
+    "source": "dnf",
+    "identifier": "microsoft-edge-stable",
+    "isAvailable": true
+  },
+  {
+    "app": "opera",
+    "source": "dnf",
+    "identifier": "opera-stable",
+    "isAvailable": true
+  },
+  {
+    "app": "vscode",
+    "source": "dnf",
+    "identifier": "code",
+    "isAvailable": true
+  },
+  {
+    "app": "git",
+    "source": "dnf",
+    "identifier": "git",
+    "isAvailable": true
+  },
+  {
+    "app": "docker",
+    "source": "dnf",
+    "identifier": "docker",
+    "isAvailable": true
+  },
+  {
+    "app": "nodejs",
+    "source": "dnf",
+    "identifier": "nodejs",
+    "isAvailable": true
+  },
+  {
+    "app": "python",
+    "source": "dnf",
+    "identifier": "python3",
+    "isAvailable": true
+  },
+  {
+    "app": "java",
+    "source": "dnf",
+    "identifier": "java-latest-openjdk",
+    "isAvailable": true
+  },
+  {
+    "app": "golang",
+    "source": "dnf",
+    "identifier": "golang",
+    "isAvailable": true
+  },
+  {
+    "app": "rust",
+    "source": "dnf",
+    "identifier": "cargo",
+    "isAvailable": true
+  },
+  {
+    "app": "ruby",
+    "source": "dnf",
+    "identifier": "ruby",
+    "isAvailable": true
+  },
+  {
+    "app": "php",
+    "source": "dnf",
+    "identifier": "php",
+    "isAvailable": true
+  },
+  {
+    "app": "gcc",
+    "source": "dnf",
+    "identifier": "gcc",
+    "isAvailable": true
+  },
+  {
+    "app": "clang",
+    "source": "dnf",
+    "identifier": "clang",
+    "isAvailable": true
+  },
+  {
+    "app": "perl",
+    "source": "dnf",
+    "identifier": "perl",
+    "isAvailable": true
+  },
+  {
+    "app": "lua",
+    "source": "dnf",
+    "identifier": "lua",
+    "isAvailable": true
+  },
+  {
+    "app": "r-lang",
+    "source": "dnf",
+    "identifier": "R",
+    "isAvailable": true
+  },
+  {
+    "app": "neovim",
+    "source": "dnf",
+    "identifier": "neovim",
+    "isAvailable": true
+  },
+  {
+    "app": "emacs",
+    "source": "dnf",
+    "identifier": "emacs",
+    "isAvailable": true
+  },
+  {
+    "app": "eclipse",
+    "source": "dnf",
+    "identifier": "eclipse",
+    "isAvailable": true
+  },
+  {
+    "app": "vlc",
+    "source": "dnf",
+    "identifier": "vlc",
+    "isAvailable": true
+  },
+  {
+    "app": "obs",
+    "source": "dnf",
+    "identifier": "obs-studio",
+    "isAvailable": true
+  },
+  {
+    "app": "kdenlive",
+    "source": "dnf",
+    "identifier": "kdenlive",
+    "isAvailable": true
+  },
+  {
+    "app": "audacity",
+    "source": "dnf",
+    "identifier": "audacity",
+    "isAvailable": true
+  },
+  {
+    "app": "mpv",
+    "source": "dnf",
+    "identifier": "mpv",
+    "isAvailable": true
+  },
+  {
+    "app": "handbrake",
+    "source": "dnf",
+    "identifier": "handbrake",
+    "isAvailable": true
+  },
+  {
+    "app": "gimp",
+    "source": "dnf",
+    "identifier": "gimp",
+    "isAvailable": true
+  },
+  {
+    "app": "inkscape",
+    "source": "dnf",
+    "identifier": "inkscape",
+    "isAvailable": true
+  },
+  {
+    "app": "blender",
+    "source": "dnf",
+    "identifier": "blender",
+    "isAvailable": true
+  },
+  {
+    "app": "krita",
+    "source": "dnf",
+    "identifier": "krita",
+    "isAvailable": true
+  },
+  {
+    "app": "darktable",
+    "source": "dnf",
+    "identifier": "darktable",
+    "isAvailable": true
+  },
+  {
+    "app": "libreoffice",
+    "source": "dnf",
+    "identifier": "libreoffice",
+    "isAvailable": true
+  },
+  {
+    "app": "filezilla",
+    "source": "dnf",
+    "identifier": "filezilla",
+    "isAvailable": true
+  },
+  {
+    "app": "flameshot",
+    "source": "dnf",
+    "identifier": "flameshot",
+    "isAvailable": true
+  },
+  {
+    "app": "timeshift",
+    "source": "dnf",
+    "identifier": "timeshift",
+    "isAvailable": true
+  },
+  {
+    "app": "syncthing",
+    "source": "dnf",
+    "identifier": "syncthing",
+    "isAvailable": true
+  },
+  {
+    "app": "slack",
+    "source": "dnf",
+    "identifier": "slack",
+    "isAvailable": true
+  },
+  {
+    "app": "thunderbird",
+    "source": "dnf",
+    "identifier": "thunderbird",
+    "isAvailable": true
+  },
+  {
+    "app": "telegram",
+    "source": "dnf",
+    "identifier": "telegram-desktop",
+    "isAvailable": true
+  },
+  {
+    "app": "zoom",
+    "source": "dnf",
+    "identifier": "zoom",
+    "isAvailable": true
+  },
+  {
+    "app": "steam",
+    "source": "dnf",
+    "identifier": "steam",
+    "isAvailable": true
+  },
+  {
+    "app": "lutris",
+    "source": "dnf",
+    "identifier": "lutris",
+    "isAvailable": true
+  },
+  {
+    "app": "keepassxc",
+    "source": "dnf",
+    "identifier": "keepassxc",
+    "isAvailable": true
+  },
+  {
+    "app": "veracrypt",
+    "source": "dnf",
+    "identifier": "veracrypt",
+    "isAvailable": true
+  },
+  {
+    "app": "clamav",
+    "source": "dnf",
+    "identifier": "clamav",
+    "isAvailable": true
+  },
+  {
+    "app": "btop",
+    "source": "dnf",
+    "identifier": "btop",
+    "isAvailable": true
+  },
+  {
+    "app": "tmux",
+    "source": "dnf",
+    "identifier": "tmux",
+    "isAvailable": true
+  },
+  {
+    "app": "zsh",
+    "source": "dnf",
+    "identifier": "zsh",
+    "isAvailable": true
+  },
+  {
+    "app": "jq",
+    "source": "dnf",
+    "identifier": "jq",
+    "isAvailable": true
+  },
+  {
+    "app": "fzf",
+    "source": "dnf",
+    "identifier": "fzf",
+    "isAvailable": true
+  },
+  {
+    "app": "bat",
+    "source": "dnf",
+    "identifier": "bat",
+    "isAvailable": true
+  },
+  {
+    "app": "tldr",
+    "source": "dnf",
+    "identifier": "tldr",
+    "isAvailable": true
+  },
+  {
+    "app": "ripgrep",
+    "source": "dnf",
+    "identifier": "ripgrep",
+    "isAvailable": true
+  },
+  {
+    "app": "httpie",
+    "source": "dnf",
+    "identifier": "httpie",
+    "isAvailable": true
+  },
+  {
+    "app": "eza",
+    "source": "dnf",
+    "identifier": "eza",
+    "isAvailable": true
+  },
+  {
+    "app": "k9s",
+    "source": "dnf",
+    "identifier": "k9s",
+    "isAvailable": true
+  },
+  {
+    "app": "lazygit",
+    "source": "dnf",
+    "identifier": "lazygit",
+    "isAvailable": true
+  },
+  {
+    "app": "yq",
+    "source": "dnf",
+    "identifier": "yq",
+    "isAvailable": true
+  },
+  {
+    "app": "0ad",
+    "source": "dnf",
+    "identifier": "0ad",
+    "isAvailable": true
+  },
+  {
+    "app": "supertuxkart",
+    "source": "dnf",
+    "identifier": "supertuxkart",
+    "isAvailable": true
+  },
+  {
+    "app": "wesnoth",
+    "source": "dnf",
+    "identifier": "wesnoth",
+    "isAvailable": true
+  },
+  {
+    "app": "retroarch",
+    "source": "dnf",
+    "identifier": "retroarch",
+    "isAvailable": true
+  }
+]

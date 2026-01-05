@@ -1,0 +1,374 @@
+[
+  {
+    "app": "firefox",
+    "source": "flatpak",
+    "identifier": "org.mozilla.firefox",
+    "isAvailable": true
+  },
+  {
+    "app": "chrome",
+    "source": "flatpak",
+    "identifier": "com.google.Chrome",
+    "isAvailable": true
+  },
+  {
+    "app": "brave",
+    "source": "flatpak",
+    "identifier": "com.brave.Browser",
+    "isAvailable": true
+  },
+  {
+    "app": "chromium",
+    "source": "flatpak",
+    "identifier": "org.chromium.Chromium",
+    "isAvailable": true
+  },
+  {
+    "app": "vivaldi",
+    "source": "flatpak",
+    "identifier": "com.vivaldi.Vivaldi",
+    "isAvailable": true
+  },
+  {
+    "app": "zen-browser",
+    "source": "flatpak",
+    "identifier": "io.github.zen_browser.zen",
+    "isAvailable": true
+  },
+  {
+    "app": "microsoft-edge",
+    "source": "flatpak",
+    "identifier": "com.microsoft.Edge",
+    "isAvailable": true
+  },
+  {
+    "app": "opera",
+    "source": "flatpak",
+    "identifier": "com.opera.Opera",
+    "isAvailable": true
+  },
+  {
+    "app": "tor-browser",
+    "source": "flatpak",
+    "identifier": "com.github.micahflee.torbrowser-launcher",
+    "isAvailable": true
+  },
+  {
+    "app": "librewolf",
+    "source": "flatpak",
+    "identifier": "io.gitlab.librewolf-community",
+    "isAvailable": true
+  },
+  {
+    "app": "waterfox",
+    "source": "flatpak",
+    "identifier": "net.waterfox.waterfox",
+    "isAvailable": true
+  },
+  {
+    "app": "vscode",
+    "source": "flatpak",
+    "identifier": "com.visualstudio.code",
+    "isAvailable": true
+  },
+  {
+    "app": "intellij",
+    "source": "flatpak",
+    "identifier": "com.jetbrains.IntelliJ-IDEA-Community",
+    "isAvailable": true
+  },
+  {
+    "app": "pycharm",
+    "source": "flatpak",
+    "identifier": "com.jetbrains.PyCharm-Community",
+    "isAvailable": true
+  },
+  {
+    "app": "webstorm",
+    "source": "flatpak",
+    "identifier": "com.jetbrains.WebStorm",
+    "isAvailable": true
+  },
+  {
+    "app": "goland",
+    "source": "flatpak",
+    "identifier": "com.jetbrains.GoLand",
+    "isAvailable": true
+  },
+  {
+    "app": "rider",
+    "source": "flatpak",
+    "identifier": "com.jetbrains.Rider",
+    "isAvailable": true
+  },
+  {
+    "app": "datagrip",
+    "source": "flatpak",
+    "identifier": "com.jetbrains.DataGrip",
+    "isAvailable": true
+  },
+  {
+    "app": "android-studio",
+    "source": "flatpak",
+    "identifier": "com.google.AndroidStudio",
+    "isAvailable": true
+  },
+  {
+    "app": "neovim",
+    "source": "flatpak",
+    "identifier": "io.neovim.nvim",
+    "isAvailable": true
+  },
+  {
+    "app": "netbeans",
+    "source": "flatpak",
+    "identifier": "org.apache.netbeans",
+    "isAvailable": true
+  },
+  {
+    "app": "postman",
+    "source": "flatpak",
+    "identifier": "com.getpostman.Postman",
+    "isAvailable": true
+  },
+  {
+    "app": "insomnia",
+    "source": "flatpak",
+    "identifier": "rest.insomnia.Insomnia",
+    "isAvailable": true
+  },
+  {
+    "app": "dbeaver",
+    "source": "flatpak",
+    "identifier": "io.dbeaver.DBeaverCommunity",
+    "isAvailable": true
+  },
+  {
+    "app": "vlc",
+    "source": "flatpak",
+    "identifier": "org.videolan.VLC",
+    "isAvailable": true
+  },
+  {
+    "app": "spotify",
+    "source": "flatpak",
+    "identifier": "com.spotify.Client",
+    "isAvailable": true
+  },
+  {
+    "app": "obs",
+    "source": "flatpak",
+    "identifier": "com.obsproject.Studio",
+    "isAvailable": true
+  },
+  {
+    "app": "kdenlive",
+    "source": "flatpak",
+    "identifier": "org.kde.kdenlive",
+    "isAvailable": true
+  },
+  {
+    "app": "audacity",
+    "source": "flatpak",
+    "identifier": "org.audacityteam.Audacity",
+    "isAvailable": true
+  },
+  {
+    "app": "mpv",
+    "source": "flatpak",
+    "identifier": "io.mpv.Mpv",
+    "isAvailable": true
+  },
+  {
+    "app": "handbrake",
+    "source": "flatpak",
+    "identifier": "fr.handbrake.ghb",
+    "isAvailable": true
+  },
+  {
+    "app": "gimp",
+    "source": "flatpak",
+    "identifier": "org.gimp.GIMP",
+    "isAvailable": true
+  },
+  {
+    "app": "inkscape",
+    "source": "flatpak",
+    "identifier": "org.inkscape.Inkscape",
+    "isAvailable": true
+  },
+  {
+    "app": "blender",
+    "source": "flatpak",
+    "identifier": "org.blender.Blender",
+    "isAvailable": true
+  },
+  {
+    "app": "krita",
+    "source": "flatpak",
+    "identifier": "org.kde.krita",
+    "isAvailable": true
+  },
+  {
+    "app": "darktable",
+    "source": "flatpak",
+    "identifier": "org.darktable.Darktable",
+    "isAvailable": true
+  },
+  {
+    "app": "libreoffice",
+    "source": "flatpak",
+    "identifier": "org.libreoffice.LibreOffice",
+    "isAvailable": true
+  },
+  {
+    "app": "onlyoffice",
+    "source": "flatpak",
+    "identifier": "org.onlyoffice.desktopeditors",
+    "isAvailable": true
+  },
+  {
+    "app": "obsidian",
+    "source": "flatpak",
+    "identifier": "md.obsidian.Obsidian",
+    "isAvailable": true
+  },
+  {
+    "app": "filezilla",
+    "source": "flatpak",
+    "identifier": "org.filezillaproject.Filezilla",
+    "isAvailable": true
+  },
+  {
+    "app": "flameshot",
+    "source": "flatpak",
+    "identifier": "org.flameshot.Flameshot",
+    "isAvailable": true
+  },
+  {
+    "app": "syncthing",
+    "source": "flatpak",
+    "identifier": "me.kozec.syncthingtk",
+    "isAvailable": true
+  },
+  {
+    "app": "balena-etcher",
+    "source": "flatpak",
+    "identifier": "io.balena.Etcher",
+    "isAvailable": true
+  },
+  {
+    "app": "discord",
+    "source": "flatpak",
+    "identifier": "com.discordapp.Discord",
+    "isAvailable": true
+  },
+  {
+    "app": "slack",
+    "source": "flatpak",
+    "identifier": "com.slack.Slack",
+    "isAvailable": true
+  },
+  {
+    "app": "thunderbird",
+    "source": "flatpak",
+    "identifier": "org.mozilla.Thunderbird",
+    "isAvailable": true
+  },
+  {
+    "app": "telegram",
+    "source": "flatpak",
+    "identifier": "org.telegram.desktop",
+    "isAvailable": true
+  },
+  {
+    "app": "zoom",
+    "source": "flatpak",
+    "identifier": "us.zoom.Zoom",
+    "isAvailable": true
+  },
+  {
+    "app": "steam",
+    "source": "flatpak",
+    "identifier": "com.valvesoftware.Steam",
+    "isAvailable": true
+  },
+  {
+    "app": "lutris",
+    "source": "flatpak",
+    "identifier": "net.lutris.Lutris",
+    "isAvailable": true
+  },
+  {
+    "app": "minecraft",
+    "source": "flatpak",
+    "identifier": "com.mojang.Minecraft",
+    "isAvailable": true
+  },
+  {
+    "app": "heroic",
+    "source": "flatpak",
+    "identifier": "com.heroicgameslauncher.hgl",
+    "isAvailable": true
+  },
+  {
+    "app": "keepassxc",
+    "source": "flatpak",
+    "identifier": "org.keepassxc.KeePassXC",
+    "isAvailable": true
+  },
+  {
+    "app": "bitwarden",
+    "source": "flatpak",
+    "identifier": "com.bitwarden.desktop",
+    "isAvailable": true
+  },
+  {
+    "app": "0ad",
+    "source": "flatpak",
+    "identifier": "com.play0ad.zeroad",
+    "isAvailable": true
+  },
+  {
+    "app": "supertuxkart",
+    "source": "flatpak",
+    "identifier": "net.supertuxkart.SuperTuxKart",
+    "isAvailable": true
+  },
+  {
+    "app": "warzone2100",
+    "source": "flatpak",
+    "identifier": "net.wz2100.wz2100",
+    "isAvailable": true
+  },
+  {
+    "app": "wesnoth",
+    "source": "flatpak",
+    "identifier": "org.wesnoth.Wesnoth",
+    "isAvailable": true
+  },
+  {
+    "app": "retroarch",
+    "source": "flatpak",
+    "identifier": "org.libretro.RetroArch",
+    "isAvailable": true
+  },
+  {
+    "app": "pcsx2",
+    "source": "flatpak",
+    "identifier": "net.pcsx2.PCSX2",
+    "isAvailable": true
+  },
+  {
+    "app": "dolphin-emu",
+    "source": "flatpak",
+    "identifier": "org.DolphinEmu.dolphin-emu",
+    "isAvailable": true
+  },
+  {
+    "app": "rpcs3",
+    "source": "flatpak",
+    "identifier": "net.rpcs3.RPCS3",
+    "isAvailable": true
+  }
+]

@@ -1,0 +1,8 @@
+[
+  {
+    "app": "uv",
+    "source": "cargo",
+    "identifier": "uv",
+    "isAvailable": true
+  }
+]
