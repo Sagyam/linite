@@ -30,6 +30,18 @@ DATABASE_AUTH_TOKEN="your-turso-auth-token"
 2. Create a new database
 3. Get the URL and auth token from the dashboard
 
+**Note:** `DATABASE_AUTH_TOKEN` is technically optional in the schema but required for Turso databases.
+
+### App URL
+
+```env
+NEXT_PUBLIC_APP_URL="http://localhost:3000"
+```
+
+**Default:** `http://localhost:3000`
+
+Change this to your production domain when deploying.
+
 ### BetterAuth
 
 ```env
@@ -40,12 +52,42 @@ BETTER_AUTH_URL="http://localhost:3000"
 **Requirements:**
 - `BETTER_AUTH_SECRET` must be at least 32 characters long
 - Use a random string in production
-- `BETTER_AUTH_URL` should match your app URL
+- `BETTER_AUTH_URL` should match your app URL (default: `http://localhost:3000`)
 
 **Generate a secure secret:**
 ```bash
 openssl rand -base64 32
 ```
+
+### GitHub OAuth
+
+```env
+GITHUB_CLIENT_ID="your-github-client-id"
+GITHUB_CLIENT_SECRET="your-github-client-secret"
+```
+
+**How to get these:**
+1. Go to GitHub Settings > Developer settings > OAuth Apps
+2. Create a new OAuth application
+3. Set Authorization callback URL to: `{BETTER_AUTH_URL}/api/auth/callback/github`
+4. Copy the Client ID and generate a new Client Secret
+
+**Required for:** Admin and user login via GitHub
+
+### Google OAuth (Optional)
+
+```env
+GOOGLE_CLIENT_ID="your-google-client-id"
+GOOGLE_CLIENT_SECRET="your-google-client-secret"
+```
+
+**How to get these:**
+1. Go to [Google Cloud Console](https://console.cloud.google.com/apis/credentials)
+2. Create a new OAuth 2.0 Client ID
+3. Set Authorized redirect URI to: `{BETTER_AUTH_URL}/api/auth/callback/google`
+4. Copy the Client ID and Client Secret
+
+**Optional:** For user login via Google. Not required for the app to function.
 
 ### Azure Blob Storage
 
@@ -57,18 +99,37 @@ AZURE_STORAGE_SAS_URL="https://{account}.blob.core.windows.net/{container}?{sas-
 1. Go to [Azure Portal](https://portal.azure.com)
 2. Navigate to your Storage Account
 3. Create a container (e.g., "linite-icons")
-4. Generate a SAS token with read, add, create, write, and delete permissions
+4. Generate a SAS token with the following permissions: `sp=racwdli` (read, add, create, write, delete, list, immutable)
 5. Construct the full SAS URL including the container name and SAS token
 
-### App URL
-
-```env
-NEXT_PUBLIC_APP_URL="http://localhost:3000"
+**Example format:**
+```
+https://linite.blob.core.windows.net/linite-icons?sp=racwdli&st=2026-01-04T06:11:50Z&se=2027-01-04T14:26:50Z&spr=https&sv=2024-11-04&sr=c&sig=...
 ```
 
-Change this to your production domain when deploying.
+**Required for:** App icon uploads in the admin dashboard
+
+### Superadmin Email
+
+```env
+SUPERADMIN_EMAIL="sagyamthapa32@gmail.com"
+```
+
+**Default:** `sagyamthapa32@gmail.com`
+
+The email address of the superadmin user who has access to the admin dashboard. This user can create, edit, and delete apps, distros, and sources.
 
 ## Optional Variables
+
+### Cron Secret
+
+```env
+CRON_SECRET="your-cron-secret-change-this"
+```
+
+Used to secure the cron endpoint (`/api/refresh`) that refreshes package data from external sources. Should be at least 16 characters.
+
+**Recommended for:** Production deployments to prevent unauthorized package refreshes
 
 ### Upstash Redis (Rate Limiting)
 
@@ -80,17 +141,9 @@ KV_REST_API_TOKEN="your-upstash-token"
 **How to get these:**
 1. Sign up at [upstash.com](https://upstash.com)
 2. Create a new Redis database
-3. Get the REST API URL and token
+3. Get the REST API URL and token from the dashboard
 
-**Note:** Rate limiting is optional for development but **highly recommended for production** to prevent API abuse.
-
-### Cron Secret
-
-```env
-CRON_SECRET="your-cron-secret-change-this"
-```
-
-Used to secure the cron endpoint that refreshes package data. Should be at least 16 characters.
+**Note:** Rate limiting is optional for development but **highly recommended for production** to prevent API abuse on public endpoints.
 
 ## Environment Validation
 
@@ -134,7 +187,7 @@ bun run check-env
 
 ## Validation Rules
 
-The validator (`src/lib/env.ts`) enforces these rules:
+Both validation scripts (`src/lib/env.ts` for runtime and `scripts/check-env.ts` for manual checks) use the same schema, which enforces these rules:
 
 | Variable | Type | Validation |
 |----------|------|------------|
@@ -143,10 +196,16 @@ The validator (`src/lib/env.ts`) enforces these rules:
 | `NEXT_PUBLIC_APP_URL` | Required | Valid URL (default: `http://localhost:3000`) |
 | `BETTER_AUTH_SECRET` | Required | Min 32 characters |
 | `BETTER_AUTH_URL` | Required | Valid URL (default: `http://localhost:3000`) |
+| `SUPERADMIN_EMAIL` | Optional | Valid email address (default: `sagyamthapa32@gmail.com`) |
+| `GITHUB_CLIENT_ID` | Required | Non-empty string |
+| `GITHUB_CLIENT_SECRET` | Required | Non-empty string |
+| `GOOGLE_CLIENT_ID` | Optional | Non-empty string |
+| `GOOGLE_CLIENT_SECRET` | Optional | Non-empty string |
 | `AZURE_STORAGE_SAS_URL` | Required | Valid URL with SAS token |
 | `CRON_SECRET` | Optional | Min 16 characters if provided |
 | `KV_REST_API_URL` | Optional | Valid URL if provided |
 | `KV_REST_API_TOKEN` | Optional | Non-empty string if URL is provided |
+| `NODE_ENV` | Optional | One of: `development`, `production`, `test` (default: `development`) |
 
 ## Using Environment Variables in Code
 
@@ -188,10 +247,29 @@ const dbUrl = process.env.DATABASE_URL;
 
 When deploying to production (Vercel):
 
-1. Set all environment variables in Vercel dashboard
-2. Generate a new `BETTER_AUTH_SECRET` (don't reuse dev secret)
-3. Set `NEXT_PUBLIC_APP_URL` to your production domain
-4. **Important:** Enable rate limiting by setting Upstash Redis credentials
-5. Set a secure `CRON_SECRET` for the refresh endpoint
+1. Set all required environment variables in Vercel dashboard:
+   - `DATABASE_URL` and `DATABASE_AUTH_TOKEN`
+   - `BETTER_AUTH_SECRET` (generate a new one, don't reuse dev secret)
+   - `BETTER_AUTH_URL` (set to your production domain)
+   - `NEXT_PUBLIC_APP_URL` (set to your production domain)
+   - `GITHUB_CLIENT_ID` and `GITHUB_CLIENT_SECRET`
+   - `AZURE_STORAGE_SAS_URL`
+   - `SUPERADMIN_EMAIL` (email of the admin user)
 
-The validator will run on build and fail the deployment if any required variables are missing or invalid.
+2. Set recommended optional variables:
+   - `KV_REST_API_URL` and `KV_REST_API_TOKEN` (Upstash Redis for rate limiting)
+   - `CRON_SECRET` (secure the refresh endpoint)
+   - `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET` (if enabling Google OAuth)
+
+3. Set `NODE_ENV=production`
+
+The validator (`src/lib/env.ts`) will run on build and fail the deployment if any required variables are missing or invalid.
+
+## Notes
+
+- **Validation architecture:** Environment validation uses a shared schema defined in `src/lib/env.ts`:
+  - `src/lib/env.ts` - Exports the `envSchema` and validates at runtime
+  - `scripts/check-env.ts` - Imports `envSchema` from `src/lib/env.ts` for manual validation
+  - This ensures consistency between manual checks and runtime validation
+- **Single source of truth:** Both scripts use the exact same Zod schema, preventing validation discrepancies
+- **OAuth & Superadmin:** While these variables are validated by the schema, they're accessed directly from `process.env` in the BetterAuth configuration (`src/lib/auth.ts`)

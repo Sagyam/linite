@@ -2,8 +2,9 @@ import { z } from 'zod';
 
 /**
  * Environment variable schema with detailed validation
+ * Exported for reuse in validation scripts
  */
-const envSchema = z.object({
+export const envSchema = z.object({
   // Database - Required
   DATABASE_URL: z
     .string()
@@ -37,6 +38,24 @@ const envSchema = z.object({
     .string()
     .email('SUPERADMIN_EMAIL must be a valid email address')
     .default('sagyamthapa32@gmail.com'),
+
+  // GitHub OAuth - Required for admin login
+  GITHUB_CLIENT_ID: z
+    .string()
+    .min(1, 'GITHUB_CLIENT_ID is required for GitHub OAuth'),
+  GITHUB_CLIENT_SECRET: z
+    .string()
+    .min(1, 'GITHUB_CLIENT_SECRET is required for GitHub OAuth'),
+
+  // Google OAuth - Optional (for user login)
+  GOOGLE_CLIENT_ID: z
+    .string()
+    .min(1)
+    .optional(),
+  GOOGLE_CLIENT_SECRET: z
+    .string()
+    .min(1)
+    .optional(),
 
   // Azure Blob Storage - Required for image uploads
   AZURE_STORAGE_SAS_URL: z
