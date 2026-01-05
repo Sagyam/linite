@@ -258,7 +258,7 @@ export function renderWithProviders(
  */
 export function mockGlobalFetch() {
   const mockFetch = vi.fn();
-  global.fetch = mockFetch as any;
+  global.fetch = mockFetch
   return mockFetch;
 }
 
