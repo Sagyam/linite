@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Github, Star } from 'lucide-react';
 
@@ -25,7 +26,22 @@ export function Footer() {
             </div>
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex flex-col md:flex-row items-center gap-4">
+            <div className="flex items-center gap-3 text-sm">
+              <Link
+                href="/privacy"
+                className="text-muted-foreground hover:text-foreground transition-colors"
+              >
+                Privacy
+              </Link>
+              <span className="text-muted-foreground">•</span>
+              <Link
+                href="/terms"
+                className="text-muted-foreground hover:text-foreground transition-colors"
+              >
+                Terms
+              </Link>
+            </div>
             <a
               href="https://github.com/Sagyam/linite"
               target="_blank"
