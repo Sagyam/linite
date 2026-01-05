@@ -11,8 +11,7 @@ import {
   DrawerTitle,
 } from '@/components/ui/drawer';
 import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { AppIcon } from '@/components/ui/app-icon';
+import { SelectedAppsList } from '@/components/selected-apps-list';
 import { queryKeys } from '@/lib/query-keys';
 import { apps as appsApi } from '@/lib/api-client';
 import { useSelectionStore } from '@/stores/selection-store';
@@ -79,61 +78,11 @@ export function SelectionDrawer({ open, onOpenChange }: SelectionDrawerProps) {
                     </Button>
                   </div>
 
-                  <div className="space-y-2">
-                    {selectedAppsList.map((app) => (
-                    <div
-                      key={app.id}
-                      className="flex items-start gap-3 p-3 rounded-lg border bg-card hover:bg-muted/50 transition-colors"
-                    >
-                      <AppIcon
-                        iconUrl={app.iconUrl}
-                        displayName={app.displayName}
-                        size="md"
-                        className="w-12 h-12"
-                      />
-
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-start justify-between gap-2">
-                          <div>
-                            <h4 className="font-medium">{app.displayName}</h4>
-                            {app.description && (
-                              <p className="text-sm text-muted-foreground line-clamp-2 mt-1">
-                                {app.description}
-                              </p>
-                            )}
-                          </div>
-
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            onClick={() => deselectApp(app.id)}
-                            className="shrink-0"
-                          >
-                            <Trash2 className="w-4 h-4" />
-                          </Button>
-                        </div>
-
-                        <div className="flex flex-wrap gap-1 mt-2">
-                          {app.isFoss && (
-                            <Badge variant="secondary" className="text-xs">
-                              FOSS
-                            </Badge>
-                          )}
-                          {app.packages.slice(0, 3).map((pkg) => (
-                            <Badge key={pkg.id} variant="outline" className="text-xs">
-                              {pkg.source.name}
-                            </Badge>
-                          ))}
-                          {app.packages.length > 3 && (
-                            <Badge variant="outline" className="text-xs">
-                              +{app.packages.length - 3}
-                            </Badge>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-                    ))}
-                  </div>
+                  <SelectedAppsList
+                    apps={selectedAppsList}
+                    onRemove={deselectApp}
+                    variant="default"
+                  />
                 </div>
               </div>
             )}

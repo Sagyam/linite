@@ -4,9 +4,8 @@ import { useQuery } from '@tanstack/react-query';
 import { Package, Trash2 } from 'lucide-react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
-import { AppIcon } from '@/components/ui/app-icon';
+import { SelectedAppsList } from '@/components/selected-apps-list';
 import { queryKeys } from '@/lib/query-keys';
 import { apps as appsApi } from '@/lib/api-client';
 import { useSelectionStore } from '@/stores/selection-store';
@@ -67,60 +66,12 @@ export function SelectionSummary() {
         <Separator />
 
         {/* Selected Apps List */}
-        <div className="space-y-2 max-h-[400px] overflow-y-auto">
-          {selectedAppsList.map((app) => (
-            <div
-              key={app.id}
-              className="flex items-start gap-3 p-3 rounded-lg hover:bg-muted/50 transition-colors"
-            >
-              <AppIcon
-                iconUrl={app.iconUrl}
-                displayName={app.displayName}
-                size={40}
-                className="w-10 h-10"
-              />
-
-              <div className="flex-1 min-w-0">
-                <div className="flex items-start justify-between gap-2">
-                  <div>
-                    <h4 className="font-medium text-sm">{app.displayName}</h4>
-                    {app.description && (
-                      <p className="text-xs text-muted-foreground line-clamp-1 mt-0.5">
-                        {app.description}
-                      </p>
-                    )}
-                  </div>
-
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => deselectApp(app.id)}
-                    className="h-8 w-8 p-0 flex-shrink-0"
-                  >
-                    <Trash2 className="w-3 h-3" />
-                  </Button>
-                </div>
-
-                <div className="flex flex-wrap gap-1 mt-2">
-                  {app.isFoss && (
-                    <Badge variant="secondary" className="text-xs">
-                      FOSS
-                    </Badge>
-                  )}
-                  {app.packages.slice(0, 2).map((pkg) => (
-                    <Badge key={pkg.id} variant="outline" className="text-xs">
-                      {pkg.source.name}
-                    </Badge>
-                  ))}
-                  {app.packages.length > 2 && (
-                    <Badge variant="outline" className="text-xs">
-                      +{app.packages.length - 2}
-                    </Badge>
-                  )}
-                </div>
-              </div>
-            </div>
-          ))}
+        <div className="max-h-[400px] overflow-y-auto">
+          <SelectedAppsList
+            apps={selectedAppsList}
+            onRemove={deselectApp}
+            variant="compact"
+          />
         </div>
 
         {!selectedDistro && (
