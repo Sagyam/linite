@@ -1,7 +1,7 @@
 import { NextRequest } from 'next/server';
 import { db, apps, categories } from '@/db';
 import { successResponse } from '@/lib/api-utils';
-import { desc, eq, and, or, like, sql } from 'drizzle-orm';
+import {asc, eq, and, or, like, sql, desc} from 'drizzle-orm';
 import { publicApiLimiter } from '@/lib/redis';
 import { createPublicApiHandler, createAuthValidatedApiHandler } from '@/lib/api-middleware';
 import { getAppsQuerySchema, createAppSchema } from '@/lib/validation';
@@ -64,7 +64,7 @@ export const GET = createPublicApiHandler(
             },
           },
         },
-        orderBy: [desc(apps.isPopular), desc(apps.displayName)],
+        orderBy: [desc(apps.isPopular), asc(apps.displayName)],
       });
 
       return successResponse(allApps);
@@ -78,7 +78,7 @@ export const GET = createPublicApiHandler(
 
     const total = Number(totalCountResult.count);
 
-    // Execute query with database-level filtering
+    // Execute a query with database-level filtering
     const allApps = await db.query.apps.findMany({
       where: whereClause,
       with: {
@@ -89,7 +89,7 @@ export const GET = createPublicApiHandler(
           },
         },
       },
-      orderBy: [desc(apps.isPopular), desc(apps.displayName)],
+      orderBy: [desc(apps.isPopular), asc(apps.displayName)],
       limit: actualLimit + 1, // Fetch one extra to determine if there are more
       offset: actualOffset,
     });

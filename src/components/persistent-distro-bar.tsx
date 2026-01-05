@@ -77,17 +77,12 @@ export function PersistentDistroBar({ distros }: PersistentDistroBarProps) {
                         <Image
                           src={distro.iconUrl}
                           alt={distro.name}
-                          width={16}
-                          height={16}
+                          width={24}
+                          height={24}
                           className="w-4 h-4 object-cover"
                         />
                       )}
                       <span>{distro.name}</span>
-                      {distro.isPopular && (
-                        <Badge variant="secondary" className="text-xs ml-1">
-                          Popular
-                        </Badge>
-                      )}
                     </div>
                   </SelectItem>
                 ))}

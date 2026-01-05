@@ -107,7 +107,7 @@ export function SelectionDrawer({ open, onOpenChange }: SelectionDrawerProps) {
                             variant="ghost"
                             size="sm"
                             onClick={() => deselectApp(app.id)}
-                            className="flex-shrink-0"
+                            className="shrink-0"
                           >
                             <Trash2 className="w-4 h-4" />
                           </Button>
