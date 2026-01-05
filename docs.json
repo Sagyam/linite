@@ -6,13 +6,12 @@
     "primary": "#030712"
   },
   "navigation": {
-    "groups": [
-      {
-        "group": "Getting Started",
-        "pages": [
-          "getting-started/untitled-page"
-        ]
-      }
+    "pages": [
+      "getting-started",
+      "api-reference",
+      "schema",
+      "strcture",
+      "enviroment"
     ]
   },
   "fonts": {

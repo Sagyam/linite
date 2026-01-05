@@ -1,0 +1,202 @@
+---
+title: 'Environment Variables'
+---
+
+---
+subtitle: 'This document describes all environment variables used in Linite and how to set them up'
+---
+
+
+## Setup
+
+1. Copy `.env.example` to `.env`:
+   ```bash
+   cp .env.example .env
+   ```
+
+2. Fill in the required values (see below)
+
+3. Validate your configuration:
+   ```bash
+   bun run check-env
+   ```
+
+## Required Variables
+
+### Database - Turso (libSQL)
+
+```env
+DATABASE_URL="libsql://your-db.turso.io"
+DATABASE_AUTH_TOKEN="your-turso-auth-token"
+```
+
+**How to get these:**
+1. Sign up at [turso.tech](https://turso.tech)
+2. Create a new database
+3. Get the URL and auth token from the dashboard
+
+### BetterAuth
+
+```env
+BETTER_AUTH_SECRET="your-secret-here-min-32-chars-change-this-to-random-string"
+BETTER_AUTH_URL="http://localhost:3000"
+```
+
+**Requirements:**
+- `BETTER_AUTH_SECRET` must be at least 32 characters long
+- Use a random string in production
+- `BETTER_AUTH_URL` should match your app URL
+
+**Generate a secure secret:**
+```bash
+openssl rand -base64 32
+```
+
+### Azure Blob Storage
+
+```env
+AZURE_STORAGE_SAS_URL="https://{account}.blob.core.windows.net/{container}?{sas-token}"
+```
+
+**How to get this:**
+1. Go to [Azure Portal](https://portal.azure.com)
+2. Navigate to your Storage Account
+3. Create a container (e.g., "linite-icons")
+4. Generate a SAS token with read, add, create, write, and delete permissions
+5. Construct the full SAS URL including the container name and SAS token
+
+### App URL
+
+```env
+NEXT_PUBLIC_APP_URL="http://localhost:3000"
+```
+
+Change this to your production domain when deploying.
+
+## Optional Variables
+
+### Upstash Redis (Rate Limiting)
+
+```env
+KV_REST_API_URL="https://your-redis.upstash.io"
+KV_REST_API_TOKEN="your-upstash-token"
+```
+
+**How to get these:**
+1. Sign up at [upstash.com](https://upstash.com)
+2. Create a new Redis database
+3. Get the REST API URL and token
+
+**Note:** Rate limiting is optional for development but **highly recommended for production** to prevent API abuse.
+
+### Cron Secret
+
+```env
+CRON_SECRET="your-cron-secret-change-this"
+```
+
+Used to secure the cron endpoint that refreshes package data. Should be at least 16 characters.
+
+## Environment Validation
+
+The application uses Zod to validate all environment variables on startup. If any required variable is missing or invalid, you'll see a detailed error message.
+
+### Running the validator manually
+
+```bash
+bun run check-env
+```
+
+**Example output (success):**
+```
+✅ All environment variables are valid!
+
+📋 Configuration summary:
+   Database: libsql://linite-sagyam.aws-ap-...
+   Auth URL: http://localhost:3000
+   Blob Storage: ✅ Configured
+   Rate Limiting: ✅ Configured
+
+🚀 You're ready to go!
+```
+
+**Example output (error):**
+```
+❌ Environment validation failed!
+
+  BETTER_AUTH_SECRET:
+    ❌ BETTER_AUTH_SECRET must be at least 32 characters long
+
+  DATABASE_URL:
+    ❌ DATABASE_URL must start with libsql://, https://, or http:// (Turso URL)
+
+💡 Tips:
+   1. Make sure you have a .env file in the project root
+   2. Copy .env.example to .env if you haven't already
+   3. Fill in all required values
+   4. Make sure there are no typos in variable names
+```
+
+## Validation Rules
+
+The validator (`src/lib/env.ts`) enforces these rules:
+
+| Variable | Type | Validation |
+|----------|------|------------|
+| `DATABASE_URL` | Required | Must start with `libsql://`, `https://`, or `http://` |
+| `DATABASE_AUTH_TOKEN` | Optional | String (required for Turso) |
+| `NEXT_PUBLIC_APP_URL` | Required | Valid URL (default: `http://localhost:3000`) |
+| `BETTER_AUTH_SECRET` | Required | Min 32 characters |
+| `BETTER_AUTH_URL` | Required | Valid URL (default: `http://localhost:3000`) |
+| `AZURE_STORAGE_SAS_URL` | Required | Valid URL with SAS token |
+| `CRON_SECRET` | Optional | Min 16 characters if provided |
+| `KV_REST_API_URL` | Optional | Valid URL if provided |
+| `KV_REST_API_TOKEN` | Optional | Non-empty string if URL is provided |
+
+## Using Environment Variables in Code
+
+Always import validated environment variables from `src/lib/env.ts`:
+
+```typescript
+import { env } from '@/lib/env';
+
+// ✅ Good - Type-safe and validated
+const dbUrl = env.DATABASE_URL;
+
+// ❌ Bad - No validation, no type safety
+const dbUrl = process.env.DATABASE_URL;
+```
+
+## Troubleshooting
+
+### "Invalid environment variables" error on startup
+
+1. Run `bun run check-env` to see exactly what's wrong
+2. Check that your `.env` file exists
+3. Verify all required variables are set
+4. Make sure there are no typos in variable names
+
+### Rate limiting not working
+
+1. Check that `KV_REST_API_URL` and `KV_REST_API_TOKEN` are set
+2. Verify your Upstash Redis database is active
+3. The app will work without rate limiting (it's optional), but it won't be protected from abuse
+
+### Database connection errors
+
+1. Verify your `DATABASE_URL` starts with `libsql://`
+2. Check that your Turso database is active
+3. Make sure `DATABASE_AUTH_TOKEN` is correct
+4. Test connection: `bun run db:push`
+
+## Production Deployment
+
+When deploying to production (Vercel):
+
+1. Set all environment variables in Vercel dashboard
+2. Generate a new `BETTER_AUTH_SECRET` (don't reuse dev secret)
+3. Set `NEXT_PUBLIC_APP_URL` to your production domain
+4. **Important:** Enable rate limiting by setting Upstash Redis credentials
+5. Set a secure `CRON_SECRET` for the refresh endpoint
+
+The validator will run on build and fail the deployment if any required variables are missing or invalid.
