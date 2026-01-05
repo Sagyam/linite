@@ -3,14 +3,28 @@
   "theme": "mint",
   "name": "Documentation",
   "colors": {
-    "primary": "#0D9373"
+    "primary": "#030712"
   },
   "navigation": {
     "groups": [
       {
         "group": "Getting Started",
-        "pages": []
+        "pages": [
+          "getting-started/untitled-page"
+        ]
       }
     ]
-  }
+  },
+  "fonts": {
+    "family": "Space Grotesk",
+    "format": "woff2"
+  },
+  "logo": "/images/favicon.svg",
+  "appearance": {
+    "default": "system"
+  },
+  "background": {
+    "decoration": "gradient"
+  },
+  "description": "Bulk package installer for linux"
 }
