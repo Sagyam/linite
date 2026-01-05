@@ -48,15 +48,10 @@ export function AppCard({ app, layout = 'detailed' }: AppCardProps) {
           <div className="flex-1 min-w-0">
             <div className="flex items-center justify-between gap-2">
               <h3 className="font-semibold text-sm truncate">{app.displayName}</h3>
-              <div className="flex gap-1 flex-shrink-0">
+              <div className="flex gap-1 shrink-0">
                 {app.isFoss && (
                   <Badge variant="secondary" className="text-xs px-1.5 py-0">
                     FOSS
-                  </Badge>
-                )}
-                {app.isPopular && (
-                  <Badge variant="default" className="text-xs px-1.5 py-0">
-                    ⭐
                   </Badge>
                 )}
               </div>

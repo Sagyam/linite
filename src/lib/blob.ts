@@ -120,12 +120,14 @@ export async function listImages(prefix?: string) {
 /**
  * Download an image from a URL and upload it to Azure Blob storage
  * @param imageUrl - The URL of the image to download
- * @param appSlug - The app slug to use in the pathname (e.g., 'firefox')
+ * @param slug - The slug to use in the pathname (e.g., 'firefox', 'ubuntu')
+ * @param prefix - The folder prefix for the blob (e.g., 'app-icons', 'distro-icons'). Defaults to 'app-icons'
  * @returns The URL of the uploaded file in Azure Blob, or null if failed
  */
 export async function uploadImageFromUrl(
   imageUrl: string,
-  appSlug: string
+  slug: string,
+  prefix: string = 'app-icons'
 ): Promise<string | null> {
   try {
     // Download the image from the URL
@@ -151,8 +153,8 @@ export async function uploadImageFromUrl(
     }
 
     // Upload to Azure Blob with overwrite
-    const filename = `${appSlug}.${extension}`;
-    const pathname = `app-icons/${filename}`;
+    const filename = `${slug}.${extension}`;
+    const pathname = `${prefix}/${filename}`;
 
     try {
       const containerClient = getContainerClient();
@@ -167,7 +169,7 @@ export async function uploadImageFromUrl(
 
       return blockBlobClient.url.split('?')[0];
     } catch (error) {
-      console.error(`Failed to upload icon for ${appSlug}:`, error);
+      console.error(`Failed to upload icon for ${slug}:`, error);
       return null;
     }
   } catch (error) {

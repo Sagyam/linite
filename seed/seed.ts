@@ -36,9 +36,17 @@ async function seed() {
   const createdSources = await db.insert(sources).values(sourcesData).returning();
   console.log(`✅ Created ${createdSources.length} sources`);
 
-  // 3. Create distros
+  // 3. Create distros (without icons initially)
   console.log('Creating distros...');
-  const createdDistros = await db.insert(distros).values(distrosData).returning();
+  const distroValues = distrosData.map((distro: { slug: string; name: string; family: string; basedOn: string | null; isPopular: boolean; iconUrl?: string }) => ({
+    slug: distro.slug,
+    name: distro.name,
+    family: distro.family,
+    basedOn: distro.basedOn,
+    isPopular: distro.isPopular,
+    iconUrl: null, // Will be populated after icon upload
+  }));
+  const createdDistros = await db.insert(distros).values(distroValues).returning();
   console.log(`✅ Created ${createdDistros.length} distros`);
 
   // Create lookup maps
@@ -46,8 +54,58 @@ async function seed() {
   const sourceMap = Object.fromEntries(createdSources.map(s => [s.slug, s.id]));
   const distroMap = Object.fromEntries(createdDistros.map(d => [d.slug, d.id]));
 
+  // 3.5. Download and upload distro icons to Azure Blob Storage
+  console.log('\nDownloading and uploading distro icons to Azure Blob Storage...');
+  let distroIconCount = 0;
+  let distroIconErrors = 0;
+
+  for (const distro of distrosData) {
+    const iconUrl = (distro as { iconUrl?: string }).iconUrl;
+
+    // Skip if no iconUrl or if it's a placeholder
+    if (!iconUrl || iconUrl === 'PLACEHOLDER') {
+      console.log(`  ⏭️  ${distro.slug}: Skipping (no icon URL)`);
+      continue;
+    }
+
+    try {
+      console.log(`  ⬇️  ${distro.slug}: Downloading from ${iconUrl.substring(0, 60)}...`);
+
+      // Download icon from URL and upload to Azure Blob Storage
+      const uploadedUrl = await uploadImageFromUrl(iconUrl, distro.slug, 'distro-icons');
+
+      if (uploadedUrl) {
+        // Update distro's iconUrl with the Azure Blob Storage URL
+        const distroId = distroMap[distro.slug];
+        if (distroId) {
+          await db
+            .update(distros)
+            .set({ iconUrl: uploadedUrl })
+            .where(eq(distros.id, distroId));
+
+          distroIconCount++;
+          console.log(`  ✅ ${distro.slug}: Uploaded successfully`);
+        }
+      } else {
+        distroIconErrors++;
+        console.log(`  ❌ ${distro.slug}: Upload failed`);
+      }
+
+      // Small delay to avoid overwhelming the network
+      await new Promise(resolve => setTimeout(resolve, TIMEOUTS.ICON_DOWNLOAD_DELAY));
+    } catch (error) {
+      distroIconErrors++;
+      console.error(`  ❌ ${distro.slug}: ${error instanceof Error ? error.message : 'Unknown error'}`);
+    }
+  }
+
+  console.log(`\n✅ Uploaded ${distroIconCount} distro icons to Azure Blob Storage`);
+  if (distroIconErrors > 0) {
+    console.log(`⚠️  ${distroIconErrors} distro icons failed to upload`);
+  }
+
   // 4. Map distros to sources
-  console.log('Mapping distros to sources...');
+  console.log('\nMapping distros to sources...');
   const distroSourceMappings = distroSourcesData.map((ds: { distro: string; source: string; priority: number; isDefault: boolean }) => ({
     distroId: distroMap[ds.distro],
     sourceId: sourceMap[ds.source],

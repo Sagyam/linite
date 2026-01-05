@@ -4,104 +4,119 @@
     "slug": "ubuntu",
     "family": "debian",
     "basedOn": "debian",
-    "isPopular": true
+    "isPopular": true,
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/9/9e/UbuntuCoF.svg"
   },
   {
     "name": "Debian",
     "slug": "debian",
     "family": "debian",
     "basedOn": null,
-    "isPopular": true
+    "isPopular": true,
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4a/Debian-OpenLogo.svg"
   },
   {
     "name": "Linux Mint",
     "slug": "linuxmint",
     "family": "debian",
     "basedOn": "ubuntu",
-    "isPopular": true
+    "isPopular": true,
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3f/Linux_Mint_logo_without_wordmark.svg"
   },
   {
     "name": "Pop!_OS",
     "slug": "pop",
     "family": "debian",
     "basedOn": "ubuntu",
-    "isPopular": true
+    "isPopular": true,
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/4/46/Pop!_OS_Icon.svg"
   },
   {
     "name": "Fedora",
     "slug": "fedora",
     "family": "rhel",
     "basedOn": null,
-    "isPopular": true
+    "isPopular": true,
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/4/41/Fedora_icon_%282021%29.svg"
   },
   {
     "name": "Arch Linux",
     "slug": "arch",
     "family": "arch",
     "basedOn": null,
-    "isPopular": true
+    "isPopular": true,
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/1/13/Arch_Linux_%22Crystal%22_icon.svg"
   },
   {
     "name": "Manjaro",
     "slug": "manjaro",
     "family": "arch",
     "basedOn": "arch",
-    "isPopular": true
+    "isPopular": true,
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3e/Manjaro-logo.svg"
   },
   {
     "name": "openSUSE",
     "slug": "opensuse",
     "family": "suse",
     "basedOn": null,
-    "isPopular": false
+    "isPopular": false,
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d0/OpenSUSE_Logo.svg"
   },
   {
     "name": "NixOS",
     "slug": "nixos",
     "family": "nixos",
     "basedOn": null,
-    "isPopular": true
+    "isPopular": true,
+    "iconUrl": "https://nixos.wiki/images/thumb/2/20/Home-nixos-logo.png/414px-Home-nixos-logo.png"
   },
   {
     "name": "Windows",
     "slug": "windows",
     "family": "windows",
     "basedOn": null,
-    "isPopular": true
+    "isPopular": true,
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/8/87/Windows_logo_-_2021.svg"
   },
   {
     "name": "Zorin OS",
     "slug": "zorin",
     "family": "debian",
     "basedOn": "ubuntu",
-    "isPopular": true
+    "isPopular": true,
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/1/14/Zorin_Logomark.svg"
   },
   {
     "name": "Elementary OS",
     "slug": "elementary",
     "family": "debian",
     "basedOn": "ubuntu",
-    "isPopular": true
+    "isPopular": true,
+    "iconUrl": "https://raw.githubusercontent.com/elementary/brand/master/logomark.svg"
   },
   {
     "name": "Nobara",
     "slug": "nobara",
     "family": "rhel",
     "basedOn": "fedora",
-    "isPopular": true
+    "isPopular": true,
+    "iconUrl": "https://nobaraproject.org/img/nobara-icon.png"
   },
   {
     "name": "Bazzite",
     "slug": "bazzite",
     "family": "rhel",
     "basedOn": "fedora",
-    "isPopular": true
+    "isPopular": true,
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a7/Bazzite_Logo.svg"
   },
   {
     "name": "CachyOS",
     "slug": "cachyos",
     "family": "arch",
     "basedOn": "arch",
-    "isPopular": true
+    "isPopular": true,
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b8/CachyOS_Logo.svg"
   }
 ]

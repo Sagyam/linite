@@ -31,7 +31,7 @@ export const TIMEOUTS = {
   /** Delay between API rate-limited requests */
   RATE_LIMIT_DELAY: 100,
   /** Delay between icon downloads to avoid overwhelming server */
-  ICON_DOWNLOAD_DELAY: 200,
+  ICON_DOWNLOAD_DELAY: 1000,
 } as const;
 
 /**

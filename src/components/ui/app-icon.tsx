@@ -40,7 +40,7 @@ export function AppIcon({
       alt={displayName}
       width={pixelSize}
       height={pixelSize}
-      className={cn(roundedClass, 'object-cover flex-shrink-0', className)}
+      className={cn(roundedClass, 'object-contain flex-shrink-1', className)}
       onError={(e) => {
         e.currentTarget.src = IMAGES.FALLBACK_ICON;
       }}
