@@ -15,11 +15,6 @@ This document provides comprehensive guidance on testing in the Linite project.
 
 Linite uses a modern testing stack with Vitest and React Testing Library to ensure code quality and enable confident refactoring.
 
-**Current Test Coverage**: 39.6% overall (569 tests)
-- Statement Coverage: 39.6%
-- Branch Coverage: 38.02%
-- Function Coverage: 29.44%
-
 ## Testing Stack
 
 ### Core Libraries
