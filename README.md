@@ -21,6 +21,8 @@ Instead of manually searching for packages across different repositories and run
 
 **[Website](https://linite.sagyamthapa.com.np)** | **[Documentation](./docs)**
 
+<img src="./public/demo.gif" alt="Linite Demo" width="800">
+
 ## Quick Start
 
 Visit [website](https://linite.sagyamthapa.com.np), select your apps and distribution, then copy the generated command.
