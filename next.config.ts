@@ -8,6 +8,10 @@ const nextConfig: NextConfig = {
                 protocol: 'https',
                 hostname: 'linite.blob.core.windows.net',
             },
+            {
+                protocol: 'https',
+                hostname: 'dl.flathub.org',
+            },
         ]
     }
 };
