@@ -1,9 +1,8 @@
+# Linite
+
 <div align="center">
   <img src="public/logo.svg" alt="Linite Logo" width="120" height="120">
-
-  # Linite
-
-  **Bulk install Linux apps with a single command**
+  <p><strong>Bulk install Linux apps with a single command</strong></p>
 
   [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
   [![CI](https://github.com/Sagyam/linite/actions/workflows/ci.yml/badge.svg)](https://github.com/Sagyam/linite/actions/workflows/ci.yml)
@@ -12,227 +11,175 @@
   [![Tests](https://img.shields.io/badge/tests-239%20passing-success)](https://github.com/Sagyam/linite)
 
   [Try it now](https://linite.sagyamthapa.com.np) · [Report Bug](https://github.com/Sagyam/linite/issues) · [Request Feature](https://github.com/Sagyam/linite/issues)
-
 </div>
 
----
+## Overview
 
-## 🎯 What is Linite?
+Linite is a Ninite-style package installer for Linux distributions and Windows. It aggregates applications from multiple package sources (APT, DNF, Pacman, Zypper, Nix, Flatpak, Snap, AUR, Homebrew, Winget, Scoop) and generates optimized installation commands based on your platform and preferences.
 
-Linite is like **Ninite for Linux** - select the apps you want, choose your distribution, and get a single command to install everything at once. No more copying commands from different websites or running multiple package managers.
+Instead of manually searching for packages across different repositories and running multiple package manager commands, Linite provides a web interface to select applications and outputs a single, ready-to-run installation script.
 
-### The Problem
+**[Website](https://linite.sagyamthapa.com.np)** | **[Documentation](./docs)**
 
-Setting up a new Linux system or installing multiple applications usually means:
-- 🔍 Searching for package names across different sources
-- 📝 Running separate commands for APT, Flatpak, Snap, AUR, etc.
-- 🤔 Figuring out which package manager has the app you need
-- ⏰ Wasting time on a repetitive task
+## Quick Start
 
-### The Solution
+Visit [website](https://linite.sagyamthapa.com.np), select your apps and distribution, then copy the generated command.
 
-**Linite simplifies this to 3 steps:**
+**Example output for Ubuntu 24.04:**
 
-1. **Browse & Select** - Pick apps from our curated catalog
-2. **Choose Your Distro** - Ubuntu, Fedora, Arch, openSUSE, and more
-3. **Copy & Run** - Get a single install command with everything
+```bash
+# Setup
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
-<!-- DEMO PLACEHOLDER -->
-<div align="center">
-  <img src="https://github.com/Sagyam/linite/blob/main/public/demo.gif" alt="Linite Demo" width="800">
-  <p><i>Demo: Installing multiple apps with a single command</i></p>
-</div>
+# Install
+sudo apt install -y firefox git
+flatpak install -y flathub org.videolan.VLC com.visualstudio.code
+```
 
----
+## Features
 
-## ✨ Features
+### Multi-Source Package Support
+Linite integrates with native package managers (APT, DNF, Pacman, Zypper, Nix, Winget), universal formats (Flatpak, Snap), community repositories (AUR, Homebrew, Scoop), and script-based installations. The package selection algorithm prioritizes sources based on distribution defaults and user preferences.
 
-### 🎨 **Beautiful, Modern Interface**
-- Clean, intuitive app browsing with categories
-- **Compact & Detailed** view modes
-- Smooth animations and responsive design
-- Works perfectly on mobile and desktop
+### Automatic Package Selection
+For each application, Linite queries available packages across sources and selects the optimal one based on:
+- Distribution-specific source priorities
+- User-configured preferences
+- Package availability and version information
 
-### 📦 **Wide Package Coverage**
-Support for all major package sources:
-- **Native**: APT, DNF, Pacman, Zypper
-- **Universal**: Flatpak, Snap
-- **Community**: AUR (Arch User Repository)
+The command generator groups packages by source and includes necessary setup commands (e.g., adding Flatpak remotes).
 
-### 🔍 **Smart Package Selection**
-- Automatically picks the best source for your distro
-- Respects your package manager preferences
-- Shows package availability across sources
-- Displays version info, licenses, and maintainers
+### Package Metadata Sync
+Package information is synchronized every 24 hours from:
+- [Flathub](https://flathub.org/) - Flatpak packages
+- [Snapcraft](https://snapcraft.io/) - Snap packages
+- [AUR](https://aur.archlinux.org/) - Arch User Repository
+- [Homebrew](https://formulae.brew.sh/) - Homebrew formulae
+- [NixHub](https://www.nixhub.io/) - Nix packages
+- [Winget](https://winget.run/) - Windows Package Manager
+- [Repology](https://repology.org/) - Cross-platform package tracking
 
-### 🚀 **Always Up-to-Date**
-- Package metadata refreshed every 24 hours
-- Integration with Flathub, Snapcraft, AUR, and Repology
-- Latest version information
-- Availability status tracking
+This ensures version numbers, licenses, and availability status stay current across all platforms.
 
-### 📋 **One-Click Commands**
-- Generate complete install commands
-- Includes setup commands when needed
-- Copy to clipboard with one click
-- Smart grouping by package manager
+### Catalog Management
+The application database currently includes 170+ applications organized into 10 categories. Administrators can manage apps, packages, and source mappings through an authenticated admin interface.
 
----
+## Supported Platforms
 
-## 🚀 Getting Started
+### Linux Distributions
 
-### For Users
+**Debian Family**
+- Ubuntu: APT, Flatpak, Snap
+- Debian: APT, Flatpak
+- Linux Mint: APT, Flatpak
+- Pop!_OS: APT, Flatpak
+- Zorin OS: APT, Flatpak, Snap
+- Elementary OS: APT, Flatpak
 
-Just visit **[website](https://linite.sagyamthapa.com.np)** and start selecting apps!
+**RHEL/Fedora Family**
+- Fedora: DNF, Flatpak
+- Nobara: DNF, Flatpak
+- Bazzite: Flatpak, Homebrew
 
-No installation needed - it's a web application.
+**Arch Family**
+- Arch Linux: Pacman, AUR, Flatpak
+- Manjaro: Pacman, AUR, Flatpak, Snap
+- CachyOS: Pacman, AUR, Flatpak
 
-### Example Usage
+**Other**
+- openSUSE: Zypper, Flatpak
+- NixOS: Nix, Flatpak, Snap
 
-1. **Select your apps:**
-   - Firefox (browser)
-   - VS Code (editor)
-   - VLC (media player)
-   - Git (version control)
+### Windows
+- Windows: Winget, Scoop
 
-2. **Choose your distribution:**
-   - Ubuntu 24.04
+All distributions support script-based installations as a fallback. Additional platforms can be added by mapping package manager support in the database.
 
-3. **Get your command:**
-   ```bash
-   # Setup
-   flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+## Architecture
 
-   # Install
-   sudo apt install -y firefox git
-   flatpak install -y flathub org.videolan.VLC com.visualstudio.code
-   ```
+**Frontend:** Next.js 16 (App Router) with TypeScript, React, and Tailwind CSS
+**UI Components:** shadcn/ui
+**Database:** Turso (libSQL) with Drizzle ORM
+**Authentication:** BetterAuth
+**Storage:** Azure Blob Storage (app icons)
+**APIs:** Flathub, Snapcraft, AUR, Repology
+**Deployment:** Vercel
 
-That's it! One command installs everything.
+See [docs/PROJECT_OVERVIEW.md](./docs/PROJECT_OVERVIEW.md) for detailed architecture documentation.
 
----
+## Development
 
-## 🎯 Use Cases
+### Prerequisites
+- Bun package manager
+- Turso database (or local libSQL)
+- Azure Blob Storage account (for icon uploads)
 
-### 🆕 **Fresh Install**
-Setting up a new Linux machine? Select all your essential apps and get them installed in minutes.
+### Setup
 
-### 🔄 **System Migration**
-Switching distros? Linite helps you quickly reinstall your favorite apps on the new system.
+```bash
+# Install dependencies
+bun install
 
-### 👥 **Team Setups**
-Share install commands with your team to ensure everyone has the same development tools.
+# Configure environment variables
+cp .env.example .env
+# Edit .env with your credentials
 
-### 🎓 **Teaching**
-Perfect for computer labs or workshops - get students set up with required software quickly.
+# Validate environment setup
+bun run check-env
 
----
+# Run database migrations
+bun run db:migrate
 
-## 🌟 Supported Distributions
+# Seed initial data
+bun run db:seed
 
-| Distribution | Package Managers | Status |
-|-------------|------------------|--------|
-| **Ubuntu** / Debian | APT, Flatpak, Snap | ✅ Fully Supported |
-| **Fedora** / RHEL | DNF, Flatpak, Snap | ✅ Fully Supported |
-| **Arch Linux** | Pacman, AUR, Flatpak | ✅ Fully Supported |
-| **openSUSE** | Zypper, Flatpak, Snap | ✅ Fully Supported |
-| **Linux Mint** | APT, Flatpak | ✅ Fully Supported |
-| **Manjaro** | Pacman, AUR, Flatpak | ✅ Fully Supported |
-| **Pop!_OS** | APT, Flatpak | ✅ Fully Supported |
+# Start development server
+bun run dev
+```
 
-*More distributions coming soon!*
+### Database Commands
 
----
+```bash
+bun run db:generate   # Generate migrations from schema changes
+bun run db:migrate    # Apply migrations
+bun run db:push       # Push schema directly (development)
+bun run db:studio     # Open Drizzle Studio
+bun run db:wipe       # Clear all data
+bun run db:seed       # Populate initial data
+```
 
-## 🎨 Screenshots
+### Testing
 
-### Browse Apps by Category
-Organized collections of browsers, development tools, media apps, and more.
+```bash
+bun test              # Watch mode
+bun test:run          # Run once
+bun test:coverage     # With coverage report
+```
 
-### Detailed App Information
-View package details including versions, licenses, screenshots, and cross-platform availability.
+239 tests covering API routes, services, and UI components. Tests are co-located with source files (`*.test.ts`, `*.test.tsx`).
 
-### Smart Command Generation
-Automatically optimized install commands based on your distribution and preferences.
+### Documentation
 
----
+- [API Reference](./docs/API_REFERENCE.md) - Endpoint specifications
+- [Database Schema](./docs/DATABASE_SCHEMA.md) - Complete schema definition
+- [Environment Variables](./docs/ENVIRONMENT.md) - Configuration reference
+- [Repository Structure](./docs/REPOSITORY_STRUCTURE.md) - Codebase organization
+- [Initial Data](./docs/INITIAL_DATA.md) - Seed data specifications
 
-## 💡 How It Works
+## Contributing
 
-1. **Curated App Database** - We maintain a database of popular Linux applications
-2. **Package Mapping** - Each app is mapped to available packages across different sources
-3. **Metadata Sync** - Package information is kept fresh through API integrations
-4. **Smart Selection** - Algorithm picks the best package based on your distro and preferences
-5. **Command Generation** - Builds optimized install commands grouped by package manager
+Contributions are welcome. Please open an issue to discuss significant changes before submitting PRs. See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
----
+Common contributions:
+- Adding applications to the catalog
+- Expanding distribution support
+- Improving package selection algorithms
+- Bug fixes and performance improvements
 
-## 🛠️ Tech Stack
+## License
 
-Built with modern, reliable technologies:
+MIT License - see [LICENSE](LICENSE) for details.
 
-- **Frontend**: Next.js 16, React, TypeScript, Tailwind CSS
-- **UI Components**: shadcn/ui
-- **Database**: Turso (libSQL) with Drizzle ORM
-- **Authentication**: BetterAuth
-- **Storage**: Azure Blob Storage
-- **APIs**: Flathub, Snapcraft, AUR, Repology
-- **Deployment**: Vercel
+## Acknowledgments
 
----
-
-## 📊 Project Stats
-
-- 📦 **170+ Apps** in catalog
-- 🎯 **10 Categories** organized
-- 🔄 **7 Package Sources** supported
-- 🧪 **239 Tests** passing
-- 🐧 **8+ Distributions** covered
-
----
-
-## 🤝 Contributing
-
-We welcome contributions! Whether it's:
-
-- 🐛 Reporting bugs
-- 💡 Suggesting new features
-- 📝 Improving documentation
-- ➕ Adding new apps to the catalog
-- 🔧 Fixing issues
-
-Check out our [Contributing Guide](CONTRIBUTING.md) to get started.
-
----
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
-## 🙏 Acknowledgments
-
-- Inspired by [Ninite](https://ninite.com/) for Windows
-- Package data from [Flathub](https://flathub.org/), [Snapcraft](https://snapcraft.io/), [AUR](https://aur.archlinux.org/), and [Repology](https://repology.org/)
-- UI components from [shadcn/ui](https://ui.shadcn.com/)
-
----
-
-## 📞 Support
-
-Need help? Have questions?
-
-- 📖 Check the [Documentation](./docs)
-- 🐛 [Report an Issue](https://github.com/Sagyam/linite/issues)
-- 💬 [Start a Discussion](https://github.com/Sagyam/linite/discussions)
-
----
-
-<div align="center">
-
-  **Made with ❤️ for the Linux community**
-
-  [⭐ Star this repo](https://github.com/Sagyam/linite) if you find it useful!
-
-</div>
+Inspired by [Ninite](https://ninite.com/). Package data provided by [Flathub](https://flathub.org/), [Snapcraft](https://snapcraft.io/), [AUR](https://aur.archlinux.org/), [Homebrew](https://formulae.brew.sh/), [NixHub](https://www.nixhub.io/), [Winget](https://winget.run/), and [Repology](https://repology.org/). UI components from [shadcn/ui](https://ui.shadcn.com/).
