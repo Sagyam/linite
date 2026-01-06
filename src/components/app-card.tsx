@@ -1,5 +1,6 @@
 'use client';
 
+import { memo } from 'react';
 import Link from 'next/link';
 import { Info } from 'lucide-react';
 import { Card } from '@/components/ui/card';
@@ -15,9 +16,10 @@ interface AppCardProps {
   layout?: 'compact' | 'detailed';
 }
 
-export function AppCard({ app, layout = 'detailed' }: AppCardProps) {
-  const { selectedApps, toggleApp } = useSelectionStore();
-  const isSelected = selectedApps.has(app.id);
+export const AppCard = memo(function AppCard({ app, layout = 'detailed' }: AppCardProps) {
+  // Optimize: Only subscribe to this specific app's selection state
+  const isSelected = useSelectionStore((state) => state.selectedApps.has(app.id));
+  const toggleApp = useSelectionStore((state) => state.toggleApp);
 
   const handleCardClick = (e: React.MouseEvent) => {
     // Don't toggle if clicking on the info button
@@ -137,4 +139,4 @@ export function AppCard({ app, layout = 'detailed' }: AppCardProps) {
       </div>
     </Card>
   );
-}
+});

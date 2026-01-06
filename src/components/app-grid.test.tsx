@@ -285,7 +285,11 @@ describe('AppGrid', () => {
       const categorySelect = screen.getByTestId('category-select');
       fireEvent.change(categorySelect, { target: { value: 'cat-1' } });
 
-      // Wait for the debounced value to update (no debounce on category)
+      // Wait for the debounced value to update (150ms debounce on category)
+      act(() => {
+        vi.advanceTimersByTime(150);
+      });
+
       expect(mockUseApps).toHaveBeenLastCalledWith(
         expect.objectContaining({
           category: 'cat-1',
@@ -300,9 +304,19 @@ describe('AppGrid', () => {
       const categorySelect = screen.getByTestId('category-select');
       fireEvent.change(categorySelect, { target: { value: 'cat-1' } });
 
+      // Wait for category debounce
+      act(() => {
+        vi.advanceTimersByTime(150);
+      });
+
       // Clear filters
       const clearButton = screen.getByTestId('clear-filters');
       fireEvent.click(clearButton);
+
+      // Wait for category debounce again
+      act(() => {
+        vi.advanceTimersByTime(150);
+      });
 
       expect(mockUseApps).toHaveBeenLastCalledWith(
         expect.objectContaining({
@@ -684,7 +698,7 @@ describe('AppGrid', () => {
       const searchInput = screen.getByTestId('search-input');
       fireEvent.change(searchInput, { target: { value: 'firefox' } });
 
-      // Wait for debounce
+      // Wait for debounce (search is 300ms, category is 150ms, so 300ms covers both)
       act(() => {
         vi.advanceTimersByTime(TIMEOUTS.DEBOUNCE_SEARCH);
       });

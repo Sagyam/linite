@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useMemo, memo } from 'react';
 import Image from 'next/image';
 import { Monitor, HelpCircle } from 'lucide-react';
 import {
@@ -19,25 +19,43 @@ interface PersistentDistroBarProps {
   distros: Distro[];
 }
 
-export function PersistentDistroBar({ distros }: PersistentDistroBarProps) {
-  const {
-    selectedDistro,
-    setDistro,
-    sourcePreference,
-    setSourcePreference,
-    nixosInstallMethod,
-    setNixosInstallMethod,
-  } = useSelectionStore();
+export const PersistentDistroBar = memo(function PersistentDistroBar({ distros }: PersistentDistroBarProps) {
+  // Optimize: Use selectors to subscribe only to needed state
+  const selectedDistro = useSelectionStore((state) => state.selectedDistro);
+  const setDistro = useSelectionStore((state) => state.setDistro);
+  const sourcePreference = useSelectionStore((state) => state.sourcePreference);
+  const setSourcePreference = useSelectionStore((state) => state.setSourcePreference);
+  const nixosInstallMethod = useSelectionStore((state) => state.nixosInstallMethod);
+  const setNixosInstallMethod = useSelectionStore((state) => state.setNixosInstallMethod);
 
-  // Get available sources for selected distro
-  const selectedDistroObj = distros.find((d) => d.slug === selectedDistro);
-  const availableSources = selectedDistroObj?.distroSources || [];
+  // Memoize: Cache expensive find operation
+  const selectedDistroObj = useMemo(
+    () => distros.find((d) => d.slug === selectedDistro),
+    [distros, selectedDistro]
+  );
 
-  // Determine if Nix is the selected/default source for NixOS
-  const nixSource = availableSources.find((s) => s.source.slug === 'nix');
-  const isNixSelected =
-    selectedDistro === 'nixos' &&
-    (sourcePreference === 'nix' || (!sourcePreference && nixSource?.isDefault));
+  const availableSources = useMemo(
+    () => selectedDistroObj?.distroSources || [],
+    [selectedDistroObj]
+  );
+
+  // Memoize: Cache Nix source lookup
+  const nixSource = useMemo(
+    () => availableSources.find((s) => s.source.slug === 'nix'),
+    [availableSources]
+  );
+
+  const isNixSelected = useMemo(
+    () => selectedDistro === 'nixos' &&
+      (sourcePreference === 'nix' || (!sourcePreference && nixSource?.isDefault)),
+    [selectedDistro, sourcePreference, nixSource]
+  );
+
+  // Memoize: Cache sorted distros
+  const sortedDistros = useMemo(
+    () => [...distros].sort((a, b) => a.name.localeCompare(b.name)),
+    [distros]
+  );
 
   // Set the default NixOS installation method when Nix is selected
   useEffect(() => {
@@ -69,8 +87,7 @@ export function PersistentDistroBar({ distros }: PersistentDistroBarProps) {
                 <SelectValue placeholder="Choose your Linux distribution" />
               </SelectTrigger>
               <SelectContent>
-                {distros.sort((a, b) => {return a.name.localeCompare(b.name)})
-                  .map((distro) => (
+                {sortedDistros.map((distro) => (
                   <SelectItem key={distro.id} value={distro.slug}>
                     <div className="flex items-center gap-2">
                       {distro.iconUrl && (
@@ -144,4 +161,4 @@ export function PersistentDistroBar({ distros }: PersistentDistroBarProps) {
       </div>
     </div>
   );
-}
+});

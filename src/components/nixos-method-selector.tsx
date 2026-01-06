@@ -29,7 +29,9 @@ const NIXOS_INSTALL_METHODS = [
 ] as const;
 
 export function NixosMethodSelector() {
-  const { nixosInstallMethod, setNixosInstallMethod } = useSelectionStore();
+  // Optimize: Use selectors to subscribe only to needed state
+  const nixosInstallMethod = useSelectionStore((state) => state.nixosInstallMethod);
+  const setNixosInstallMethod = useSelectionStore((state) => state.setNixosInstallMethod);
 
   return (
     <div>

@@ -25,7 +25,11 @@ interface CommandDialogProps {
 }
 
 export function CommandDialog({ open, onOpenChange }: CommandDialogProps) {
-  const { selectedApps, selectedDistro, sourcePreference } = useSelectionStore();
+  // Optimize: Use selectors to subscribe only to needed state
+  const selectedApps = useSelectionStore((state) => state.selectedApps);
+  const selectedDistro = useSelectionStore((state) => state.selectedDistro);
+  const sourcePreference = useSelectionStore((state) => state.sourcePreference);
+
   const { generate, loading, error, result } = useCommand();
 
   // Clipboard hooks

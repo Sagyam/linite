@@ -22,7 +22,10 @@ interface SelectionDrawerProps {
 }
 
 export function SelectionDrawer({ open, onOpenChange }: SelectionDrawerProps) {
-  const { selectedApps, clearApps, deselectApp } = useSelectionStore();
+  // Optimize: Use selectors to subscribe only to needed state
+  const selectedApps = useSelectionStore((state) => state.selectedApps);
+  const clearApps = useSelectionStore((state) => state.clearApps);
+  const deselectApp = useSelectionStore((state) => state.deselectApp);
 
   // Fetch only the selected apps by their IDs (efficient batch fetch)
   const selectedAppIds = Array.from(selectedApps);

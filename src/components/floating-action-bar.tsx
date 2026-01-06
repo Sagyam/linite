@@ -1,5 +1,6 @@
 'use client';
 
+import { useMemo, memo } from 'react';
 import {
   Package2,
   ArrowRight,
@@ -19,21 +20,28 @@ interface FloatingActionBarProps {
   onGenerateCommand: () => void;
 }
 
-export function FloatingActionBar({
+export const FloatingActionBar = memo(function FloatingActionBar({
   distros,
   onViewSelection,
   onGenerateCommand,
 }: FloatingActionBarProps) {
-  const { selectedApps, selectedDistro } = useSelectionStore();
+  // Optimize: Use selectors to subscribe only to needed state
+  const selectedAppsSize = useSelectionStore((state) => state.selectedApps.size);
+  const selectedDistro = useSelectionStore((state) => state.selectedDistro);
+
+  // Memoize: Cache expensive find operation (must be before early return)
+  const selectedDistroObj = useMemo(
+    () => distros.find((d) => d.slug === selectedDistro),
+    [distros, selectedDistro]
+  );
 
   // Don't show if no apps selected
-  if (selectedApps.size === 0) {
+  if (selectedAppsSize === 0) {
     return null;
   }
 
-  const canGenerate = selectedApps.size > 0 && selectedDistro;
-  const selectedDistroObj = distros.find((d) => d.slug === selectedDistro);
   const distroName = selectedDistroObj?.name || 'Select distribution';
+  const canGenerate = selectedAppsSize > 0 && selectedDistro;
 
   return (
     <div className="fixed bottom-0 left-0 right-0 z-50 border-t bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/80 shadow-lg">
@@ -50,12 +58,12 @@ export function FloatingActionBar({
                 variant="default"
                 className="absolute -top-2 -right-2 h-5 w-5 flex items-center justify-center p-0 text-xs"
               >
-                {selectedApps.size}
+                {selectedAppsSize}
               </Badge>
             </div>
             <div className="text-left min-w-0 flex-1">
               <p className="text-sm font-semibold truncate">
-                {selectedApps.size} {selectedApps.size === 1 ? 'app' : 'apps'}{' '}
+                {selectedAppsSize} {selectedAppsSize === 1 ? 'app' : 'apps'}{' '}
                 selected
               </p>
               <p className="text-xs text-muted-foreground flex items-center gap-1 truncate">
@@ -115,4 +123,4 @@ export function FloatingActionBar({
       </div>
     </div>
   );
-}
+});

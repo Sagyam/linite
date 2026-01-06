@@ -21,7 +21,12 @@ interface AppsResponse {
   };
 }
 
-export function useApps(params: AppsQueryParams = {}) {
+interface InitialData {
+  pages: AppsResponse[];
+  pageParams: number[];
+}
+
+export function useApps(params: AppsQueryParams = {}, initialData?: InitialData) {
   return useInfiniteQuery({
     queryKey: queryKeys.apps.list(params),
     queryFn: async ({ pageParam = 0 }) => {
@@ -47,6 +52,7 @@ export function useApps(params: AppsQueryParams = {}) {
       return undefined;
     },
     initialPageParam: 0,
+    initialData,
   });
 }
 

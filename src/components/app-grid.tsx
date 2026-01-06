@@ -7,26 +7,50 @@ import { AppCard } from '@/components/app-card';
 import { AppFilters } from '@/components/app-filters';
 import { useApps } from '@/hooks/use-apps';
 import { useDebounce } from '@/hooks/use-debounce';
-import { TIMEOUTS, INTERSECTION_OBSERVER } from '@/lib/constants';
-import type { Category } from '@/types';
+import { TIMEOUTS, INTERSECTION_OBSERVER, PAGINATION } from '@/lib/constants';
+import type { Category, AppWithRelations } from '@/types';
 
 type LayoutType = 'compact' | 'detailed';
 
 interface AppGridProps {
   categories: Category[];
+  initialApps?: AppWithRelations[];
+  totalApps?: number;
 }
 
-export function AppGrid({ categories }: AppGridProps) {
+export function AppGrid({ categories, initialApps, totalApps }: AppGridProps) {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [showPopular, setShowPopular] = useState(false);
   const [layout, setLayout] = useState<LayoutType>('detailed');
 
-  // Debounce search to avoid too many API calls
+  // Debounce search and category to avoid too many API calls
   const debouncedSearch = useDebounce(searchQuery, TIMEOUTS.DEBOUNCE_SEARCH);
+  const debouncedCategory = useDebounce(selectedCategory, 150); // Shorter delay for better UX
 
   // Infinite scroll observer ref
   const loadMoreRef = useRef<HTMLDivElement>(null);
+
+  // Prepare initial data for React Query (only for default filters)
+  const hasFiltersApplied = debouncedCategory !== 'all' || showPopular || debouncedSearch;
+  const initialData = useMemo(() => {
+    if (!initialApps || hasFiltersApplied) return undefined;
+
+    return {
+      pages: [
+        {
+          apps: initialApps,
+          pagination: {
+            total: totalApps ?? initialApps.length,
+            limit: PAGINATION.DEFAULT_LIMIT,
+            offset: 0,
+            hasMore: (totalApps ?? 0) > PAGINATION.DEFAULT_LIMIT,
+          },
+        },
+      ],
+      pageParams: [0],
+    };
+  }, [initialApps, totalApps, hasFiltersApplied]);
 
   // Fetch apps with pagination
   const {
@@ -36,11 +60,14 @@ export function AppGrid({ categories }: AppGridProps) {
     isFetchingNextPage,
     isLoading,
     isError,
-  } = useApps({
-    category: selectedCategory === 'all' ? undefined : selectedCategory,
-    popular: showPopular || undefined,
-    search: debouncedSearch || undefined,
-  });
+  } = useApps(
+    {
+      category: debouncedCategory === 'all' ? undefined : debouncedCategory,
+      popular: showPopular || undefined,
+      search: debouncedSearch || undefined,
+    },
+    initialData
+  );
 
   // Flatten all pages into single array
   const apps = useMemo(() => {

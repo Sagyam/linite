@@ -10,21 +10,26 @@ import { SelectionDrawer } from '@/components/selection-drawer';
 import { CommandDialog } from '@/components/command-dialog';
 import { StructuredData } from '@/components/structured-data';
 import { useSelectionStore } from '@/stores/selection-store';
-import type { Category } from '@/types';
+import type { Category, AppWithRelations } from '@/types';
 import type { Distro } from '@/hooks/use-distros';
 
 interface HomePageClientProps {
   categories: Category[];
   distros: Distro[];
+  initialApps: AppWithRelations[];
+  totalApps: number;
 }
 
-export function HomePageClient({ categories, distros }: HomePageClientProps) {
+export function HomePageClient({ categories, distros, initialApps, totalApps }: HomePageClientProps) {
   const [selectionDrawerOpen, setSelectionDrawerOpen] = useState(false);
   const [commandDialogOpen, setCommandDialogOpen] = useState(false);
-  const { selectedApps, selectedDistro } = useSelectionStore();
+
+  // Optimize: Use selectors to subscribe only to needed state
+  const selectedAppsSize = useSelectionStore((state) => state.selectedApps.size);
+  const selectedDistro = useSelectionStore((state) => state.selectedDistro);
 
   const handleGenerateCommand = () => {
-    if (selectedApps.size > 0 && selectedDistro) {
+    if (selectedAppsSize > 0 && selectedDistro) {
       setCommandDialogOpen(true);
     } else {
       // If distro not selected, open selection drawer to prompt user
@@ -55,7 +60,11 @@ export function HomePageClient({ categories, distros }: HomePageClientProps) {
 
           {/* App Selection Section - Primary Focus */}
           <div className="container mx-auto px-4 py-6 sm:py-8 pb-24 sm:pb-28">
-            <AppGrid categories={categories} />
+            <AppGrid
+              categories={categories}
+              initialApps={initialApps}
+              totalApps={totalApps}
+            />
           </div>
         </main>
 
