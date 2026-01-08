@@ -1,32 +1,50 @@
 [
   {
-    "app": "ghostty",
+    "app": "alacritty",
     "source": "aur",
-    "identifier": "ghostty",
+    "identifier": "alacritty",
     "isAvailable": true
   },
   {
-    "app": "lazygit",
+    "app": "anydesk",
     "source": "aur",
-    "identifier": "lazygit",
+    "identifier": "anydesk-bin",
     "isAvailable": true
   },
   {
-    "app": "lazydocker",
+    "app": "bun",
     "source": "aur",
-    "identifier": "lazydocker",
+    "identifier": "bun-bin",
     "isAvailable": true
   },
   {
-    "app": "k9s",
+    "app": "calibre",
     "source": "aur",
-    "identifier": "k9s",
+    "identifier": "calibre",
     "isAvailable": true
   },
   {
-    "app": "yq",
+    "app": "celluloid",
     "source": "aur",
-    "identifier": "yq",
+    "identifier": "celluloid",
+    "isAvailable": true
+  },
+  {
+    "app": "deluge",
+    "source": "aur",
+    "identifier": "deluge",
+    "isAvailable": true
+  },
+  {
+    "app": "dropbox",
+    "source": "aur",
+    "identifier": "dropbox",
+    "isAvailable": true
+  },
+  {
+    "app": "evolution",
+    "source": "aur",
+    "identifier": "evolution",
     "isAvailable": true
   },
   {
@@ -36,9 +54,189 @@
     "isAvailable": true
   },
   {
-    "app": "bun",
+    "app": "floorp",
     "source": "aur",
-    "identifier": "bun-bin",
+    "identifier": "floorp-bin",
+    "isAvailable": true
+  },
+  {
+    "app": "flowblade",
+    "source": "aur",
+    "identifier": "flowblade",
+    "isAvailable": true
+  },
+  {
+    "app": "foliate",
+    "source": "aur",
+    "identifier": "foliate",
+    "isAvailable": true
+  },
+  {
+    "app": "gamehub",
+    "source": "aur",
+    "identifier": "gamehub",
+    "isAvailable": true
+  },
+  {
+    "app": "geary",
+    "source": "aur",
+    "identifier": "geary",
+    "isAvailable": true
+  },
+  {
+    "app": "ghostty",
+    "source": "aur",
+    "identifier": "ghostty",
+    "isAvailable": true
+  },
+  {
+    "app": "insomnia",
+    "source": "aur",
+    "identifier": "insomnia-bin",
+    "isAvailable": true
+  },
+  {
+    "app": "joplin",
+    "source": "aur",
+    "identifier": "joplin-appimage",
+    "isAvailable": true
+  },
+  {
+    "app": "k9s",
+    "source": "aur",
+    "identifier": "k9s",
+    "isAvailable": true
+  },
+  {
+    "app": "kitty",
+    "source": "aur",
+    "identifier": "kitty",
+    "isAvailable": true
+  },
+  {
+    "app": "lazydocker",
+    "source": "aur",
+    "identifier": "lazydocker",
+    "isAvailable": true
+  },
+  {
+    "app": "lazygit",
+    "source": "aur",
+    "identifier": "lazygit",
+    "isAvailable": true
+  },
+  {
+    "app": "logseq",
+    "source": "aur",
+    "identifier": "logseq-desktop-bin",
+    "isAvailable": true
+  },
+  {
+    "app": "mailspring",
+    "source": "aur",
+    "identifier": "mailspring",
+    "isAvailable": true
+  },
+  {
+    "app": "mega",
+    "source": "aur",
+    "identifier": "megasync-bin",
+    "isAvailable": true
+  },
+  {
+    "app": "nextcloud",
+    "source": "aur",
+    "identifier": "nextcloud-client",
+    "isAvailable": true
+  },
+  {
+    "app": "openshot",
+    "source": "aur",
+    "identifier": "openshot",
+    "isAvailable": true
+  },
+  {
+    "app": "pcloud",
+    "source": "aur",
+    "identifier": "pcloud-drive",
+    "isAvailable": true
+  },
+  {
+    "app": "qbittorrent",
+    "source": "aur",
+    "identifier": "qbittorrent",
+    "isAvailable": true
+  },
+  {
+    "app": "remmina",
+    "source": "aur",
+    "identifier": "remmina",
+    "isAvailable": true
+  },
+  {
+    "app": "rpcs3",
+    "source": "aur",
+    "identifier": "rpcs3-bin",
+    "isAvailable": true
+  },
+  {
+    "app": "rustdesk",
+    "source": "aur",
+    "identifier": "rustdesk-bin",
+    "isAvailable": true
+  },
+  {
+    "app": "standard-notes",
+    "source": "aur",
+    "identifier": "standard-notes-bin",
+    "isAvailable": true
+  },
+  {
+    "app": "sublime-text",
+    "source": "aur",
+    "identifier": "sublime-text-4",
+    "isAvailable": true
+  },
+  {
+    "app": "transmission",
+    "source": "aur",
+    "identifier": "transmission-gtk",
+    "isAvailable": true
+  },
+  {
+    "app": "ungoogled-chromium",
+    "source": "aur",
+    "identifier": "ungoogled-chromium-bin",
+    "isAvailable": true
+  },
+  {
+    "app": "ventoy",
+    "source": "aur",
+    "identifier": "ventoy-bin",
+    "isAvailable": true
+  },
+  {
+    "app": "vscodium",
+    "source": "aur",
+    "identifier": "vscodium-bin",
+    "isAvailable": true
+  },
+  {
+    "app": "wezterm",
+    "source": "aur",
+    "identifier": "wezterm",
+    "isAvailable": true
+  },
+  {
+    "app": "yq",
+    "source": "aur",
+    "identifier": "yq",
+    "isAvailable": true
+  },
+  {
+    "app": "zed",
+    "source": "aur",
+    "identifier": "zed",
     "isAvailable": true
   }
 ]

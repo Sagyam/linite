@@ -1,14 +1,32 @@
 [
   {
-    "app": "firefox",
+    "app": "audacity",
     "source": "scoop",
-    "identifier": "firefox",
+    "identifier": "audacity",
     "isAvailable": true
   },
   {
-    "app": "chrome",
+    "app": "balena-etcher",
     "source": "scoop",
-    "identifier": "googlechrome",
+    "identifier": "etcher",
+    "isAvailable": true
+  },
+  {
+    "app": "bat",
+    "source": "scoop",
+    "identifier": "bat",
+    "isAvailable": true
+  },
+  {
+    "app": "bitwarden",
+    "source": "scoop",
+    "identifier": "bitwarden",
+    "isAvailable": true
+  },
+  {
+    "app": "blender",
+    "source": "scoop",
+    "identifier": "blender",
     "isAvailable": true
   },
   {
@@ -18,45 +36,27 @@
     "isAvailable": true
   },
   {
+    "app": "btop",
+    "source": "scoop",
+    "identifier": "btop",
+    "isAvailable": true
+  },
+  {
+    "app": "bun",
+    "source": "scoop",
+    "identifier": "bun",
+    "isAvailable": true
+  },
+  {
+    "app": "chrome",
+    "source": "scoop",
+    "identifier": "googlechrome",
+    "isAvailable": true
+  },
+  {
     "app": "chromium",
     "source": "scoop",
     "identifier": "chromium",
-    "isAvailable": true
-  },
-  {
-    "app": "vscode",
-    "source": "scoop",
-    "identifier": "vscode",
-    "isAvailable": true
-  },
-  {
-    "app": "git",
-    "source": "scoop",
-    "identifier": "git",
-    "isAvailable": true
-  },
-  {
-    "app": "docker",
-    "source": "scoop",
-    "identifier": "docker",
-    "isAvailable": true
-  },
-  {
-    "app": "nodejs",
-    "source": "scoop",
-    "identifier": "nodejs",
-    "isAvailable": true
-  },
-  {
-    "app": "intellij",
-    "source": "scoop",
-    "identifier": "idea",
-    "isAvailable": true
-  },
-  {
-    "app": "postman",
-    "source": "scoop",
-    "identifier": "postman",
     "isAvailable": true
   },
   {
@@ -66,39 +66,33 @@
     "isAvailable": true
   },
   {
-    "app": "vlc",
+    "app": "deno",
     "source": "scoop",
-    "identifier": "vlc",
+    "identifier": "deno",
     "isAvailable": true
   },
   {
-    "app": "spotify",
+    "app": "discord",
     "source": "scoop",
-    "identifier": "spotify",
+    "identifier": "discord",
     "isAvailable": true
   },
   {
-    "app": "obs",
+    "app": "docker",
     "source": "scoop",
-    "identifier": "obs-studio",
+    "identifier": "docker",
     "isAvailable": true
   },
   {
-    "app": "audacity",
+    "app": "firefox",
     "source": "scoop",
-    "identifier": "audacity",
+    "identifier": "firefox",
     "isAvailable": true
   },
   {
-    "app": "mpv",
+    "app": "fzf",
     "source": "scoop",
-    "identifier": "mpv",
-    "isAvailable": true
-  },
-  {
-    "app": "handbrake",
-    "source": "scoop",
-    "identifier": "handbrake",
+    "identifier": "fzf",
     "isAvailable": true
   },
   {
@@ -108,15 +102,51 @@
     "isAvailable": true
   },
   {
+    "app": "git",
+    "source": "scoop",
+    "identifier": "git",
+    "isAvailable": true
+  },
+  {
+    "app": "handbrake",
+    "source": "scoop",
+    "identifier": "handbrake",
+    "isAvailable": true
+  },
+  {
+    "app": "heroic",
+    "source": "scoop",
+    "identifier": "heroic",
+    "isAvailable": true
+  },
+  {
+    "app": "httpie",
+    "source": "scoop",
+    "identifier": "httpie",
+    "isAvailable": true
+  },
+  {
     "app": "inkscape",
     "source": "scoop",
     "identifier": "inkscape",
     "isAvailable": true
   },
   {
-    "app": "blender",
+    "app": "intellij",
     "source": "scoop",
-    "identifier": "blender",
+    "identifier": "idea",
+    "isAvailable": true
+  },
+  {
+    "app": "jq",
+    "source": "scoop",
+    "identifier": "jq",
+    "isAvailable": true
+  },
+  {
+    "app": "keepassxc",
+    "source": "scoop",
+    "identifier": "keepassxc",
     "isAvailable": true
   },
   {
@@ -132,9 +162,15 @@
     "isAvailable": true
   },
   {
-    "app": "obsidian",
+    "app": "mpv",
     "source": "scoop",
-    "identifier": "obsidian",
+    "identifier": "mpv",
+    "isAvailable": true
+  },
+  {
+    "app": "nodejs",
+    "source": "scoop",
+    "identifier": "nodejs",
     "isAvailable": true
   },
   {
@@ -144,21 +180,33 @@
     "isAvailable": true
   },
   {
-    "app": "syncthing",
+    "app": "obs",
     "source": "scoop",
-    "identifier": "syncthing",
+    "identifier": "obs-studio",
     "isAvailable": true
   },
   {
-    "app": "balena-etcher",
+    "app": "obsidian",
     "source": "scoop",
-    "identifier": "etcher",
+    "identifier": "obsidian",
     "isAvailable": true
   },
   {
-    "app": "discord",
+    "app": "pnpm",
     "source": "scoop",
-    "identifier": "discord",
+    "identifier": "pnpm",
+    "isAvailable": true
+  },
+  {
+    "app": "postman",
+    "source": "scoop",
+    "identifier": "postman",
+    "isAvailable": true
+  },
+  {
+    "app": "ripgrep",
+    "source": "scoop",
+    "identifier": "ripgrep",
     "isAvailable": true
   },
   {
@@ -168,21 +216,9 @@
     "isAvailable": true
   },
   {
-    "app": "thunderbird",
+    "app": "spotify",
     "source": "scoop",
-    "identifier": "thunderbird",
-    "isAvailable": true
-  },
-  {
-    "app": "telegram",
-    "source": "scoop",
-    "identifier": "telegram",
-    "isAvailable": true
-  },
-  {
-    "app": "zoom",
-    "source": "scoop",
-    "identifier": "zoom",
+    "identifier": "spotify",
     "isAvailable": true
   },
   {
@@ -192,63 +228,21 @@
     "isAvailable": true
   },
   {
-    "app": "heroic",
+    "app": "syncthing",
     "source": "scoop",
-    "identifier": "heroic",
+    "identifier": "syncthing",
     "isAvailable": true
   },
   {
-    "app": "keepassxc",
+    "app": "telegram",
     "source": "scoop",
-    "identifier": "keepassxc",
+    "identifier": "telegram",
     "isAvailable": true
   },
   {
-    "app": "bitwarden",
+    "app": "thunderbird",
     "source": "scoop",
-    "identifier": "bitwarden",
-    "isAvailable": true
-  },
-  {
-    "app": "veracrypt",
-    "source": "scoop",
-    "identifier": "veracrypt",
-    "isAvailable": true
-  },
-  {
-    "app": "bat",
-    "source": "scoop",
-    "identifier": "bat",
-    "isAvailable": true
-  },
-  {
-    "app": "btop",
-    "source": "scoop",
-    "identifier": "btop",
-    "isAvailable": true
-  },
-  {
-    "app": "fzf",
-    "source": "scoop",
-    "identifier": "fzf",
-    "isAvailable": true
-  },
-  {
-    "app": "httpie",
-    "source": "scoop",
-    "identifier": "httpie",
-    "isAvailable": true
-  },
-  {
-    "app": "jq",
-    "source": "scoop",
-    "identifier": "jq",
-    "isAvailable": true
-  },
-  {
-    "app": "ripgrep",
-    "source": "scoop",
-    "identifier": "ripgrep",
+    "identifier": "thunderbird",
     "isAvailable": true
   },
   {
@@ -264,27 +258,33 @@
     "isAvailable": true
   },
   {
+    "app": "veracrypt",
+    "source": "scoop",
+    "identifier": "veracrypt",
+    "isAvailable": true
+  },
+  {
+    "app": "vlc",
+    "source": "scoop",
+    "identifier": "vlc",
+    "isAvailable": true
+  },
+  {
+    "app": "vscode",
+    "source": "scoop",
+    "identifier": "vscode",
+    "isAvailable": true
+  },
+  {
+    "app": "zoom",
+    "source": "scoop",
+    "identifier": "zoom",
+    "isAvailable": true
+  },
+  {
     "app": "zsh",
     "source": "scoop",
     "identifier": "zsh",
-    "isAvailable": true
-  },
-  {
-    "app": "bun",
-    "source": "scoop",
-    "identifier": "bun",
-    "isAvailable": true
-  },
-  {
-    "app": "pnpm",
-    "source": "scoop",
-    "identifier": "pnpm",
-    "isAvailable": true
-  },
-  {
-    "app": "deno",
-    "source": "scoop",
-    "identifier": "deno",
     "isAvailable": true
   }
 ]

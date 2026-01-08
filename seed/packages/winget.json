@@ -1,188 +1,8 @@
 [
   {
-    "app": "firefox",
-    "source": "winget",
-    "identifier": "Mozilla.Firefox",
-    "isAvailable": true
-  },
-  {
-    "app": "chrome",
-    "source": "winget",
-    "identifier": "Google.Chrome",
-    "isAvailable": true
-  },
-  {
-    "app": "brave",
-    "source": "winget",
-    "identifier": "Brave.Brave",
-    "isAvailable": true
-  },
-  {
-    "app": "chromium",
-    "source": "winget",
-    "identifier": "Hibbiki.Chromium",
-    "isAvailable": true
-  },
-  {
-    "app": "vivaldi",
-    "source": "winget",
-    "identifier": "VivaldiTechnologies.Vivaldi",
-    "isAvailable": true
-  },
-  {
-    "app": "zen-browser",
-    "source": "winget",
-    "identifier": "Zen-Team.Zen-Browser",
-    "isAvailable": true
-  },
-  {
-    "app": "microsoft-edge",
-    "source": "winget",
-    "identifier": "Microsoft.Edge",
-    "isAvailable": true
-  },
-  {
-    "app": "vscode",
-    "source": "winget",
-    "identifier": "Microsoft.VisualStudioCode",
-    "isAvailable": true
-  },
-  {
-    "app": "git",
-    "source": "winget",
-    "identifier": "Git.Git",
-    "isAvailable": true
-  },
-  {
-    "app": "docker",
-    "source": "winget",
-    "identifier": "Docker.DockerDesktop",
-    "isAvailable": true
-  },
-  {
-    "app": "nodejs",
-    "source": "winget",
-    "identifier": "OpenJS.NodeJS",
-    "isAvailable": true
-  },
-  {
-    "app": "intellij",
-    "source": "winget",
-    "identifier": "JetBrains.IntelliJIDEA.Community",
-    "isAvailable": true
-  },
-  {
-    "app": "postman",
-    "source": "winget",
-    "identifier": "Postman.Postman",
-    "isAvailable": true
-  },
-  {
-    "app": "dbeaver",
-    "source": "winget",
-    "identifier": "dbeaver.dbeaver",
-    "isAvailable": true
-  },
-  {
-    "app": "vlc",
-    "source": "winget",
-    "identifier": "VideoLAN.VLC",
-    "isAvailable": true
-  },
-  {
-    "app": "spotify",
-    "source": "winget",
-    "identifier": "Spotify.Spotify",
-    "isAvailable": true
-  },
-  {
-    "app": "obs",
-    "source": "winget",
-    "identifier": "OBSProject.OBSStudio",
-    "isAvailable": true
-  },
-  {
-    "app": "kdenlive",
-    "source": "winget",
-    "identifier": "KDE.Kdenlive",
-    "isAvailable": true
-  },
-  {
     "app": "audacity",
     "source": "winget",
     "identifier": "Audacity.Audacity",
-    "isAvailable": true
-  },
-  {
-    "app": "mpv",
-    "source": "winget",
-    "identifier": "mpv.mpv",
-    "isAvailable": true
-  },
-  {
-    "app": "handbrake",
-    "source": "winget",
-    "identifier": "HandBrake.HandBrake",
-    "isAvailable": true
-  },
-  {
-    "app": "gimp",
-    "source": "winget",
-    "identifier": "GIMP.GIMP",
-    "isAvailable": true
-  },
-  {
-    "app": "inkscape",
-    "source": "winget",
-    "identifier": "Inkscape.Inkscape",
-    "isAvailable": true
-  },
-  {
-    "app": "blender",
-    "source": "winget",
-    "identifier": "BlenderFoundation.Blender",
-    "isAvailable": true
-  },
-  {
-    "app": "krita",
-    "source": "winget",
-    "identifier": "KDE.Krita",
-    "isAvailable": true
-  },
-  {
-    "app": "darktable",
-    "source": "winget",
-    "identifier": "darktable.darktable",
-    "isAvailable": true
-  },
-  {
-    "app": "libreoffice",
-    "source": "winget",
-    "identifier": "TheDocumentFoundation.LibreOffice",
-    "isAvailable": true
-  },
-  {
-    "app": "onlyoffice",
-    "source": "winget",
-    "identifier": "ONLYOFFICE.DesktopEditors",
-    "isAvailable": true
-  },
-  {
-    "app": "obsidian",
-    "source": "winget",
-    "identifier": "Obsidian.Obsidian",
-    "isAvailable": true
-  },
-  {
-    "app": "notion",
-    "source": "winget",
-    "identifier": "Notion.Notion",
-    "isAvailable": true
-  },
-  {
-    "app": "syncthing",
-    "source": "winget",
-    "identifier": "Syncthing.Syncthing",
     "isAvailable": true
   },
   {
@@ -192,45 +12,87 @@
     "isAvailable": true
   },
   {
+    "app": "bitwarden",
+    "source": "winget",
+    "identifier": "Bitwarden.Bitwarden",
+    "isAvailable": true
+  },
+  {
+    "app": "blender",
+    "source": "winget",
+    "identifier": "BlenderFoundation.Blender",
+    "isAvailable": true
+  },
+  {
+    "app": "brave",
+    "source": "winget",
+    "identifier": "Brave.Brave",
+    "isAvailable": true
+  },
+  {
+    "app": "chrome",
+    "source": "winget",
+    "identifier": "Google.Chrome",
+    "isAvailable": true
+  },
+  {
+    "app": "chromium",
+    "source": "winget",
+    "identifier": "Hibbiki.Chromium",
+    "isAvailable": true
+  },
+  {
+    "app": "darktable",
+    "source": "winget",
+    "identifier": "darktable.darktable",
+    "isAvailable": true
+  },
+  {
+    "app": "dbeaver",
+    "source": "winget",
+    "identifier": "dbeaver.dbeaver",
+    "isAvailable": true
+  },
+  {
+    "app": "deno",
+    "source": "winget",
+    "identifier": "DenoLand.Deno",
+    "isAvailable": true
+  },
+  {
     "app": "discord",
     "source": "winget",
     "identifier": "Discord.Discord",
     "isAvailable": true
   },
   {
-    "app": "slack",
+    "app": "docker",
     "source": "winget",
-    "identifier": "SlackTechnologies.Slack",
+    "identifier": "Docker.DockerDesktop",
     "isAvailable": true
   },
   {
-    "app": "thunderbird",
+    "app": "firefox",
     "source": "winget",
-    "identifier": "Mozilla.Thunderbird",
+    "identifier": "Mozilla.Firefox",
     "isAvailable": true
   },
   {
-    "app": "telegram",
+    "app": "gimp",
     "source": "winget",
-    "identifier": "Telegram.TelegramDesktop",
+    "identifier": "GIMP.GIMP",
     "isAvailable": true
   },
   {
-    "app": "zoom",
+    "app": "git",
     "source": "winget",
-    "identifier": "Zoom.Zoom",
+    "identifier": "Git.Git",
     "isAvailable": true
   },
   {
-    "app": "steam",
+    "app": "handbrake",
     "source": "winget",
-    "identifier": "Valve.Steam",
-    "isAvailable": true
-  },
-  {
-    "app": "minecraft",
-    "source": "winget",
-    "identifier": "Mojang.MinecraftLauncher",
+    "identifier": "HandBrake.HandBrake",
     "isAvailable": true
   },
   {
@@ -240,21 +102,9 @@
     "isAvailable": true
   },
   {
-    "app": "keepassxc",
+    "app": "inkscape",
     "source": "winget",
-    "identifier": "KeePassXCTeam.KeePassXC",
-    "isAvailable": true
-  },
-  {
-    "app": "bitwarden",
-    "source": "winget",
-    "identifier": "Bitwarden.Bitwarden",
-    "isAvailable": true
-  },
-  {
-    "app": "veracrypt",
-    "source": "winget",
-    "identifier": "IDRIX.VeraCrypt",
+    "identifier": "Inkscape.Inkscape",
     "isAvailable": true
   },
   {
@@ -264,15 +114,165 @@
     "isAvailable": true
   },
   {
+    "app": "intellij",
+    "source": "winget",
+    "identifier": "JetBrains.IntelliJIDEA.Community",
+    "isAvailable": true
+  },
+  {
+    "app": "kdenlive",
+    "source": "winget",
+    "identifier": "KDE.Kdenlive",
+    "isAvailable": true
+  },
+  {
+    "app": "keepassxc",
+    "source": "winget",
+    "identifier": "KeePassXCTeam.KeePassXC",
+    "isAvailable": true
+  },
+  {
+    "app": "krita",
+    "source": "winget",
+    "identifier": "KDE.Krita",
+    "isAvailable": true
+  },
+  {
+    "app": "libreoffice",
+    "source": "winget",
+    "identifier": "TheDocumentFoundation.LibreOffice",
+    "isAvailable": true
+  },
+  {
+    "app": "microsoft-edge",
+    "source": "winget",
+    "identifier": "Microsoft.Edge",
+    "isAvailable": true
+  },
+  {
+    "app": "minecraft",
+    "source": "winget",
+    "identifier": "Mojang.MinecraftLauncher",
+    "isAvailable": true
+  },
+  {
+    "app": "mpv",
+    "source": "winget",
+    "identifier": "mpv.mpv",
+    "isAvailable": true
+  },
+  {
+    "app": "nodejs",
+    "source": "winget",
+    "identifier": "OpenJS.NodeJS",
+    "isAvailable": true
+  },
+  {
+    "app": "notion",
+    "source": "winget",
+    "identifier": "Notion.Notion",
+    "isAvailable": true
+  },
+  {
+    "app": "obs",
+    "source": "winget",
+    "identifier": "OBSProject.OBSStudio",
+    "isAvailable": true
+  },
+  {
+    "app": "obsidian",
+    "source": "winget",
+    "identifier": "Obsidian.Obsidian",
+    "isAvailable": true
+  },
+  {
+    "app": "onlyoffice",
+    "source": "winget",
+    "identifier": "ONLYOFFICE.DesktopEditors",
+    "isAvailable": true
+  },
+  {
     "app": "pnpm",
     "source": "winget",
     "identifier": "pnpm.pnpm",
     "isAvailable": true
   },
   {
-    "app": "deno",
+    "app": "postman",
     "source": "winget",
-    "identifier": "DenoLand.Deno",
+    "identifier": "Postman.Postman",
+    "isAvailable": true
+  },
+  {
+    "app": "slack",
+    "source": "winget",
+    "identifier": "SlackTechnologies.Slack",
+    "isAvailable": true
+  },
+  {
+    "app": "spotify",
+    "source": "winget",
+    "identifier": "Spotify.Spotify",
+    "isAvailable": true
+  },
+  {
+    "app": "steam",
+    "source": "winget",
+    "identifier": "Valve.Steam",
+    "isAvailable": true
+  },
+  {
+    "app": "syncthing",
+    "source": "winget",
+    "identifier": "Syncthing.Syncthing",
+    "isAvailable": true
+  },
+  {
+    "app": "telegram",
+    "source": "winget",
+    "identifier": "Telegram.TelegramDesktop",
+    "isAvailable": true
+  },
+  {
+    "app": "thunderbird",
+    "source": "winget",
+    "identifier": "Mozilla.Thunderbird",
+    "isAvailable": true
+  },
+  {
+    "app": "veracrypt",
+    "source": "winget",
+    "identifier": "IDRIX.VeraCrypt",
+    "isAvailable": true
+  },
+  {
+    "app": "vivaldi",
+    "source": "winget",
+    "identifier": "VivaldiTechnologies.Vivaldi",
+    "isAvailable": true
+  },
+  {
+    "app": "vlc",
+    "source": "winget",
+    "identifier": "VideoLAN.VLC",
+    "isAvailable": true
+  },
+  {
+    "app": "vscode",
+    "source": "winget",
+    "identifier": "Microsoft.VisualStudioCode",
+    "isAvailable": true
+  },
+  {
+    "app": "zen-browser",
+    "source": "winget",
+    "identifier": "Zen-Team.Zen-Browser",
+    "isAvailable": true
+  },
+  {
+    "app": "zoom",
+    "source": "winget",
+    "identifier": "Zoom.Zoom",
     "isAvailable": true
   }
 ]

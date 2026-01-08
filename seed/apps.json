@@ -9,6 +9,15 @@
     "category": "games"
   },
   {
+    "slug": "alacritty",
+    "displayName": "Alacritty",
+    "description": "Fast, GPU-accelerated terminal emulator",
+    "homepage": "https://alacritty.org",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "system"
+  },
+  {
     "slug": "android-studio",
     "displayName": "Android Studio",
     "description": "Official IDE for Android development",
@@ -16,6 +25,15 @@
     "isPopular": true,
     "isFoss": true,
     "category": "development"
+  },
+  {
+    "slug": "anydesk",
+    "displayName": "AnyDesk",
+    "description": "Fast remote desktop software",
+    "homepage": "https://anydesk.com",
+    "isPopular": true,
+    "isFoss": false,
+    "category": "utilities"
   },
   {
     "slug": "audacity",
@@ -63,6 +81,15 @@
     "category": "graphics"
   },
   {
+    "slug": "bottles",
+    "displayName": "Bottles",
+    "description": "Run Windows software on Linux with ease",
+    "homepage": "https://usebottles.com",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "games"
+  },
+  {
     "slug": "brave",
     "displayName": "Brave Browser",
     "description": "Secure, fast and private web browser with ad blocking",
@@ -88,6 +115,33 @@
     "isPopular": true,
     "isFoss": true,
     "category": "languages"
+  },
+  {
+    "slug": "calibre",
+    "displayName": "Calibre",
+    "description": "Powerful ebook management and conversion tool",
+    "homepage": "https://calibre-ebook.com",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "office"
+  },
+  {
+    "slug": "cartridges",
+    "displayName": "Cartridges",
+    "description": "Simple game launcher for all your games",
+    "homepage": "https://github.com/kra-mo/cartridges",
+    "isPopular": false,
+    "isFoss": true,
+    "category": "games"
+  },
+  {
+    "slug": "celluloid",
+    "displayName": "Celluloid",
+    "description": "Simple GTK frontend for mpv",
+    "homepage": "https://celluloid-player.github.io",
+    "isPopular": false,
+    "isFoss": true,
+    "category": "media"
   },
   {
     "slug": "chrome",
@@ -153,6 +207,15 @@
     "category": "development"
   },
   {
+    "slug": "deluge",
+    "displayName": "Deluge",
+    "description": "Lightweight BitTorrent client with plugin support",
+    "homepage": "https://deluge-torrent.org",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "utilities"
+  },
+  {
     "slug": "deno",
     "displayName": "Deno",
     "description": "Secure runtime for JavaScript and TypeScript",
@@ -189,6 +252,15 @@
     "category": "games"
   },
   {
+    "slug": "dropbox",
+    "displayName": "Dropbox",
+    "description": "Cloud storage and file synchronization service",
+    "homepage": "https://dropbox.com",
+    "isPopular": true,
+    "isFoss": false,
+    "category": "utilities"
+  },
+  {
     "slug": "eclipse",
     "displayName": "Eclipse IDE",
     "description": "IDE for Java and other languages",
@@ -205,6 +277,15 @@
     "isPopular": false,
     "isFoss": true,
     "category": "development"
+  },
+  {
+    "slug": "evolution",
+    "displayName": "Evolution",
+    "description": "Personal information manager with email, calendar, and contacts",
+    "homepage": "https://wiki.gnome.org/Apps/Evolution",
+    "isPopular": false,
+    "isFoss": true,
+    "category": "communication"
   },
   {
     "slug": "eza",
@@ -243,6 +324,42 @@
     "category": "utilities"
   },
   {
+    "slug": "floorp",
+    "displayName": "Floorp",
+    "description": "Privacy-focused Firefox fork with vertical tabs",
+    "homepage": "https://floorp.app",
+    "isPopular": false,
+    "isFoss": true,
+    "category": "browsers"
+  },
+  {
+    "slug": "flowblade",
+    "displayName": "Flowblade",
+    "description": "Multitrack non-linear video editor for Linux",
+    "homepage": "https://jliljebl.github.io/flowblade",
+    "isPopular": false,
+    "isFoss": true,
+    "category": "media"
+  },
+  {
+    "slug": "foliate",
+    "displayName": "Foliate",
+    "description": "Modern and elegant ebook reader",
+    "homepage": "https://johnfactotum.github.io/foliate",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "office"
+  },
+  {
+    "slug": "fragments",
+    "displayName": "Fragments",
+    "description": "Easy to use BitTorrent client for GNOME",
+    "homepage": "https://apps.gnome.org/Fragments",
+    "isPopular": false,
+    "isFoss": true,
+    "category": "utilities"
+  },
+  {
     "slug": "fzf",
     "displayName": "fzf",
     "description": "Command-line fuzzy finder",
@@ -252,6 +369,15 @@
     "category": "cli"
   },
   {
+    "slug": "gamehub",
+    "displayName": "GameHub",
+    "description": "Unified library for all your games",
+    "homepage": "https://github.com/tkashkin/GameHub",
+    "isPopular": false,
+    "isFoss": true,
+    "category": "games"
+  },
+  {
     "slug": "gcc",
     "displayName": "GCC",
     "description": "GNU Compiler Collection for C/C++",
@@ -259,6 +385,15 @@
     "isPopular": true,
     "isFoss": true,
     "category": "languages"
+  },
+  {
+    "slug": "geary",
+    "displayName": "Geary",
+    "description": "Lightweight email client for GNOME",
+    "homepage": "https://wiki.gnome.org/Apps/Geary",
+    "isPopular": false,
+    "isFoss": true,
+    "category": "communication"
   },
   {
     "slug": "ghostty",
@@ -333,6 +468,15 @@
     "category": "cli"
   },
   {
+    "slug": "impression",
+    "displayName": "Impression",
+    "description": "Straight-forward application to create bootable drives",
+    "homepage": "https://gitlab.com/adhami3310/Impression",
+    "isPopular": false,
+    "isFoss": true,
+    "category": "utilities"
+  },
+  {
     "slug": "inkscape",
     "displayName": "Inkscape",
     "description": "Professional vector graphics editor",
@@ -369,6 +513,15 @@
     "category": "languages"
   },
   {
+    "slug": "joplin",
+    "displayName": "Joplin",
+    "description": "Open source note-taking and to-do app with sync",
+    "homepage": "https://joplinapp.org",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "office"
+  },
+  {
     "slug": "jq",
     "displayName": "jq",
     "description": "Lightweight and flexible command-line JSON processor",
@@ -403,6 +556,15 @@
     "isPopular": true,
     "isFoss": true,
     "category": "security"
+  },
+  {
+    "slug": "kitty",
+    "displayName": "Kitty",
+    "description": "Fast, feature-rich, GPU-accelerated terminal emulator",
+    "homepage": "https://sw.kovidgoyal.net/kitty",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "system"
   },
   {
     "slug": "krita",
@@ -450,6 +612,15 @@
     "category": "browsers"
   },
   {
+    "slug": "logseq",
+    "displayName": "Logseq",
+    "description": "Privacy-first knowledge management and collaboration platform",
+    "homepage": "https://logseq.com",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "office"
+  },
+  {
     "slug": "lua",
     "displayName": "Lua",
     "description": "Lightweight, embeddable scripting language",
@@ -466,6 +637,24 @@
     "isPopular": true,
     "isFoss": true,
     "category": "games"
+  },
+  {
+    "slug": "mailspring",
+    "displayName": "Mailspring",
+    "description": "Beautiful, fast email client with modern features",
+    "homepage": "https://getmailspring.com",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "communication"
+  },
+  {
+    "slug": "mega",
+    "displayName": "MEGA Desktop",
+    "description": "Secure cloud storage with end-to-end encryption",
+    "homepage": "https://mega.io",
+    "isPopular": true,
+    "isFoss": false,
+    "category": "utilities"
   },
   {
     "slug": "microsoft-edge",
@@ -513,6 +702,15 @@
     "category": "development"
   },
   {
+    "slug": "nextcloud",
+    "displayName": "Nextcloud Desktop",
+    "description": "Desktop sync client for Nextcloud file hosting",
+    "homepage": "https://nextcloud.com",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "utilities"
+  },
+  {
     "slug": "nodejs",
     "displayName": "Node.js",
     "description": "JavaScript runtime built on Chrome's V8 engine",
@@ -520,6 +718,15 @@
     "isPopular": true,
     "isFoss": true,
     "category": "languages"
+  },
+  {
+    "slug": "nomachine",
+    "displayName": "NoMachine",
+    "description": "Fast remote desktop with NX protocol",
+    "homepage": "https://nomachine.com",
+    "isPopular": false,
+    "isFoss": false,
+    "category": "utilities"
   },
   {
     "slug": "notion",
@@ -558,6 +765,15 @@
     "category": "office"
   },
   {
+    "slug": "openshot",
+    "displayName": "OpenShot",
+    "description": "Easy to use video editor with simple interface",
+    "homepage": "https://openshot.org",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "media"
+  },
+  {
     "slug": "opera",
     "displayName": "Opera",
     "description": "Fast, secure browser with built-in ad blocker",
@@ -565,6 +781,15 @@
     "isPopular": true,
     "isFoss": false,
     "category": "browsers"
+  },
+  {
+    "slug": "pcloud",
+    "displayName": "pCloud",
+    "description": "Secure cloud storage with client-side encryption",
+    "homepage": "https://pcloud.com",
+    "isPopular": false,
+    "isFoss": false,
+    "category": "utilities"
   },
   {
     "slug": "pcsx2",
@@ -630,6 +855,15 @@
     "category": "languages"
   },
   {
+    "slug": "qbittorrent",
+    "displayName": "qBittorrent",
+    "description": "Free and reliable BitTorrent client",
+    "homepage": "https://qbittorrent.org",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "utilities"
+  },
+  {
     "slug": "r-lang",
     "displayName": "R",
     "description": "Language for statistical computing and graphics",
@@ -646,6 +880,15 @@
     "isPopular": true,
     "isFoss": true,
     "category": "languages"
+  },
+  {
+    "slug": "remmina",
+    "displayName": "Remmina",
+    "description": "Remote desktop client supporting RDP, VNC, SSH, and more",
+    "homepage": "https://remmina.org",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "utilities"
   },
   {
     "slug": "retroarch",
@@ -702,6 +945,15 @@
     "category": "languages"
   },
   {
+    "slug": "rustdesk",
+    "displayName": "RustDesk",
+    "description": "Open source remote desktop software written in Rust",
+    "homepage": "https://rustdesk.com",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "utilities"
+  },
+  {
     "slug": "sdkman",
     "displayName": "SDKMAN",
     "description": "Software Development Kit Manager for JVM ecosystem",
@@ -709,6 +961,15 @@
     "isPopular": true,
     "isFoss": true,
     "category": "languages"
+  },
+  {
+    "slug": "shotcut",
+    "displayName": "Shotcut",
+    "description": "Free, cross-platform video editor",
+    "homepage": "https://shotcut.org",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "media"
   },
   {
     "slug": "slack",
@@ -729,6 +990,15 @@
     "category": "media"
   },
   {
+    "slug": "standard-notes",
+    "displayName": "Standard Notes",
+    "description": "End-to-end encrypted note-taking app",
+    "homepage": "https://standardnotes.com",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "office"
+  },
+  {
     "slug": "steam",
     "displayName": "Steam",
     "description": "Digital distribution platform for video games",
@@ -736,6 +1006,15 @@
     "isPopular": true,
     "isFoss": false,
     "category": "games"
+  },
+  {
+    "slug": "sublime-text",
+    "displayName": "Sublime Text",
+    "description": "Sophisticated text editor for code, markup and prose",
+    "homepage": "https://sublimetext.com",
+    "isPopular": true,
+    "isFoss": false,
+    "category": "development"
   },
   {
     "slug": "supertuxkart",
@@ -810,6 +1089,24 @@
     "category": "browsers"
   },
   {
+    "slug": "transmission",
+    "displayName": "Transmission",
+    "description": "Fast, lightweight BitTorrent client",
+    "homepage": "https://transmissionbt.com",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "utilities"
+  },
+  {
+    "slug": "ungoogled-chromium",
+    "displayName": "Ungoogled Chromium",
+    "description": "Chromium without Google integration",
+    "homepage": "https://ungoogled-software.github.io",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "browsers"
+  },
+  {
     "slug": "uv",
     "displayName": "uv",
     "description": "Extremely fast Python package installer and resolver, written in Rust",
@@ -817,6 +1114,15 @@
     "isPopular": true,
     "isFoss": true,
     "category": "languages"
+  },
+  {
+    "slug": "ventoy",
+    "displayName": "Ventoy",
+    "description": "Bootable USB solution supporting multiple ISO files",
+    "homepage": "https://ventoy.net",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "utilities"
   },
   {
     "slug": "veracrypt",
@@ -852,6 +1158,15 @@
     "homepage": "https://code.visualstudio.com",
     "isPopular": true,
     "isFoss": false,
+    "category": "development"
+  },
+  {
+    "slug": "vscodium",
+    "displayName": "VSCodium",
+    "description": "VS Code without Microsoft telemetry and tracking",
+    "homepage": "https://vscodium.com",
+    "isPopular": true,
+    "isFoss": true,
     "category": "development"
   },
   {
@@ -891,6 +1206,15 @@
     "category": "games"
   },
   {
+    "slug": "wezterm",
+    "displayName": "WezTerm",
+    "description": "GPU-accelerated cross-platform terminal emulator",
+    "homepage": "https://wezfurlong.org/wezterm",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "system"
+  },
+  {
     "slug": "yq",
     "displayName": "yq",
     "description": "Lightweight and portable command-line YAML processor",
@@ -898,6 +1222,15 @@
     "isPopular": true,
     "isFoss": true,
     "category": "cli"
+  },
+  {
+    "slug": "zed",
+    "displayName": "Zed",
+    "description": "High-performance code editor built in Rust",
+    "homepage": "https://zed.dev",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "development"
   },
   {
     "slug": "zen-browser",

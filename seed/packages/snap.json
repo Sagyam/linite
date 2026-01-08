@@ -1,8 +1,38 @@
 [
   {
-    "app": "firefox",
+    "app": "0ad",
     "source": "snap",
-    "identifier": "firefox",
+    "identifier": "0ad",
+    "isAvailable": true
+  },
+  {
+    "app": "alacritty",
+    "source": "snap",
+    "identifier": "alacritty",
+    "isAvailable": true
+  },
+  {
+    "app": "android-studio",
+    "source": "snap",
+    "identifier": "android-studio",
+    "isAvailable": true
+  },
+  {
+    "app": "audacity",
+    "source": "snap",
+    "identifier": "audacity",
+    "isAvailable": true
+  },
+  {
+    "app": "bitwarden",
+    "source": "snap",
+    "identifier": "bitwarden",
+    "isAvailable": true
+  },
+  {
+    "app": "blender",
+    "source": "snap",
+    "identifier": "blender",
     "isAvailable": true
   },
   {
@@ -18,81 +48,15 @@
     "isAvailable": true
   },
   {
-    "app": "vivaldi",
+    "app": "darktable",
     "source": "snap",
-    "identifier": "vivaldi",
+    "identifier": "darktable",
     "isAvailable": true
   },
   {
-    "app": "opera",
+    "app": "datagrip",
     "source": "snap",
-    "identifier": "opera",
-    "isAvailable": true
-  },
-  {
-    "app": "waterfox",
-    "source": "snap",
-    "identifier": "waterfox",
-    "isAvailable": true
-  },
-  {
-    "app": "vscode",
-    "source": "snap",
-    "identifier": "code",
-    "isAvailable": true
-  },
-  {
-    "app": "docker",
-    "source": "snap",
-    "identifier": "docker",
-    "isAvailable": true
-  },
-  {
-    "app": "nodejs",
-    "source": "snap",
-    "identifier": "node",
-    "isAvailable": true
-  },
-  {
-    "app": "intellij",
-    "source": "snap",
-    "identifier": "intellij-idea-community",
-    "isAvailable": true
-  },
-  {
-    "app": "pycharm",
-    "source": "snap",
-    "identifier": "pycharm-community",
-    "isAvailable": true
-  },
-  {
-    "app": "android-studio",
-    "source": "snap",
-    "identifier": "android-studio",
-    "isAvailable": true
-  },
-  {
-    "app": "eclipse",
-    "source": "snap",
-    "identifier": "eclipse",
-    "isAvailable": true
-  },
-  {
-    "app": "netbeans",
-    "source": "snap",
-    "identifier": "netbeans",
-    "isAvailable": true
-  },
-  {
-    "app": "postman",
-    "source": "snap",
-    "identifier": "postman",
-    "isAvailable": true
-  },
-  {
-    "app": "insomnia",
-    "source": "snap",
-    "identifier": "insomnia",
+    "identifier": "datagrip",
     "isAvailable": true
   },
   {
@@ -102,33 +66,51 @@
     "isAvailable": true
   },
   {
-    "app": "vlc",
+    "app": "deno",
     "source": "snap",
-    "identifier": "vlc",
+    "identifier": "deno",
     "isAvailable": true
   },
   {
-    "app": "spotify",
+    "app": "discord",
     "source": "snap",
-    "identifier": "spotify",
+    "identifier": "discord",
     "isAvailable": true
   },
   {
-    "app": "obs",
+    "app": "docker",
     "source": "snap",
-    "identifier": "obs-studio",
+    "identifier": "docker",
     "isAvailable": true
   },
   {
-    "app": "kdenlive",
+    "app": "dolphin-emu",
     "source": "snap",
-    "identifier": "kdenlive",
+    "identifier": "dolphin-emulator",
     "isAvailable": true
   },
   {
-    "app": "audacity",
+    "app": "eclipse",
     "source": "snap",
-    "identifier": "audacity",
+    "identifier": "eclipse",
+    "isAvailable": true
+  },
+  {
+    "app": "filezilla",
+    "source": "snap",
+    "identifier": "filezilla",
+    "isAvailable": true
+  },
+  {
+    "app": "firefox",
+    "source": "snap",
+    "identifier": "firefox",
+    "isAvailable": true
+  },
+  {
+    "app": "foliate",
+    "source": "snap",
+    "identifier": "foliate",
     "isAvailable": true
   },
   {
@@ -138,15 +120,51 @@
     "isAvailable": true
   },
   {
+    "app": "goland",
+    "source": "snap",
+    "identifier": "goland",
+    "isAvailable": true
+  },
+  {
+    "app": "handbrake",
+    "source": "snap",
+    "identifier": "handbrake-jz",
+    "isAvailable": true
+  },
+  {
     "app": "inkscape",
     "source": "snap",
     "identifier": "inkscape",
     "isAvailable": true
   },
   {
-    "app": "blender",
+    "app": "insomnia",
     "source": "snap",
-    "identifier": "blender",
+    "identifier": "insomnia",
+    "isAvailable": true
+  },
+  {
+    "app": "intellij",
+    "source": "snap",
+    "identifier": "intellij-idea-community",
+    "isAvailable": true
+  },
+  {
+    "app": "joplin",
+    "source": "snap",
+    "identifier": "joplin-desktop",
+    "isAvailable": true
+  },
+  {
+    "app": "kdenlive",
+    "source": "snap",
+    "identifier": "kdenlive",
+    "isAvailable": true
+  },
+  {
+    "app": "keepassxc",
+    "source": "snap",
+    "identifier": "keepassxc",
     "isAvailable": true
   },
   {
@@ -162,99 +180,15 @@
     "isAvailable": true
   },
   {
-    "app": "onlyoffice",
+    "app": "logseq",
     "source": "snap",
-    "identifier": "onlyoffice-desktopeditors",
+    "identifier": "logseq",
     "isAvailable": true
   },
   {
-    "app": "obsidian",
+    "app": "mailspring",
     "source": "snap",
-    "identifier": "obsidian",
-    "isAvailable": true
-  },
-  {
-    "app": "notion",
-    "source": "snap",
-    "identifier": "notion-snap-reborn",
-    "isAvailable": true
-  },
-  {
-    "app": "filezilla",
-    "source": "snap",
-    "identifier": "filezilla",
-    "isAvailable": true
-  },
-  {
-    "app": "discord",
-    "source": "snap",
-    "identifier": "discord",
-    "isAvailable": true
-  },
-  {
-    "app": "slack",
-    "source": "snap",
-    "identifier": "slack",
-    "isAvailable": true
-  },
-  {
-    "app": "thunderbird",
-    "source": "snap",
-    "identifier": "thunderbird",
-    "isAvailable": true
-  },
-  {
-    "app": "telegram",
-    "source": "snap",
-    "identifier": "telegram-desktop",
-    "isAvailable": true
-  },
-  {
-    "app": "zoom",
-    "source": "snap",
-    "identifier": "zoom-client",
-    "isAvailable": true
-  },
-  {
-    "app": "steam",
-    "source": "snap",
-    "identifier": "steam",
-    "isAvailable": true
-  },
-  {
-    "app": "keepassxc",
-    "source": "snap",
-    "identifier": "keepassxc",
-    "isAvailable": true
-  },
-  {
-    "app": "bitwarden",
-    "source": "snap",
-    "identifier": "bitwarden",
-    "isAvailable": true
-  },
-  {
-    "app": "datagrip",
-    "source": "snap",
-    "identifier": "datagrip",
-    "isAvailable": true
-  },
-  {
-    "app": "goland",
-    "source": "snap",
-    "identifier": "goland",
-    "isAvailable": true
-  },
-  {
-    "app": "rider",
-    "source": "snap",
-    "identifier": "rider",
-    "isAvailable": true
-  },
-  {
-    "app": "webstorm",
-    "source": "snap",
-    "identifier": "webstorm",
+    "identifier": "mailspring",
     "isAvailable": true
   },
   {
@@ -264,39 +198,75 @@
     "isAvailable": true
   },
   {
-    "app": "tor-browser",
+    "app": "netbeans",
     "source": "snap",
-    "identifier": "tor-browser",
+    "identifier": "netbeans",
     "isAvailable": true
   },
   {
-    "app": "deno",
+    "app": "nodejs",
     "source": "snap",
-    "identifier": "deno",
+    "identifier": "node",
     "isAvailable": true
   },
   {
-    "app": "uv",
+    "app": "notion",
     "source": "snap",
-    "identifier": "astral-uv",
+    "identifier": "notion-snap-reborn",
     "isAvailable": true
   },
   {
-    "app": "0ad",
+    "app": "obs",
     "source": "snap",
-    "identifier": "0ad",
+    "identifier": "obs-studio",
     "isAvailable": true
   },
   {
-    "app": "supertuxkart",
+    "app": "obsidian",
     "source": "snap",
-    "identifier": "supertuxkart",
+    "identifier": "obsidian",
     "isAvailable": true
   },
   {
-    "app": "warzone2100",
+    "app": "onlyoffice",
     "source": "snap",
-    "identifier": "warzone2100",
+    "identifier": "onlyoffice-desktopeditors",
+    "isAvailable": true
+  },
+  {
+    "app": "openshot",
+    "source": "snap",
+    "identifier": "openshot",
+    "isAvailable": true
+  },
+  {
+    "app": "opera",
+    "source": "snap",
+    "identifier": "opera",
+    "isAvailable": true
+  },
+  {
+    "app": "pcsx2",
+    "source": "snap",
+    "identifier": "pcsx2-emulator",
+    "isAvailable": true
+  },
+  {
+    "app": "postman",
+    "source": "snap",
+    "identifier": "postman",
+    "isAvailable": true
+  },
+  {
+    "app": "pycharm",
+    "source": "snap",
+    "identifier": "pycharm-community",
+    "isAvailable": true
+  },
+  {
+    "app": "qbittorrent",
+    "source": "snap",
+    "identifier": "qbittorrent",
     "isAvailable": true
   },
   {
@@ -306,9 +276,123 @@
     "isAvailable": true
   },
   {
-    "app": "dolphin-emu",
+    "app": "rider",
     "source": "snap",
-    "identifier": "dolphin-emulator",
+    "identifier": "rider",
+    "isAvailable": true
+  },
+  {
+    "app": "rustdesk",
+    "source": "snap",
+    "identifier": "rustdesk",
+    "isAvailable": true
+  },
+  {
+    "app": "shotcut",
+    "source": "snap",
+    "identifier": "shotcut",
+    "isAvailable": true
+  },
+  {
+    "app": "slack",
+    "source": "snap",
+    "identifier": "slack",
+    "isAvailable": true
+  },
+  {
+    "app": "spotify",
+    "source": "snap",
+    "identifier": "spotify",
+    "isAvailable": true
+  },
+  {
+    "app": "standard-notes",
+    "source": "snap",
+    "identifier": "standard-notes",
+    "isAvailable": true
+  },
+  {
+    "app": "steam",
+    "source": "snap",
+    "identifier": "steam",
+    "isAvailable": true
+  },
+  {
+    "app": "supertuxkart",
+    "source": "snap",
+    "identifier": "supertuxkart",
+    "isAvailable": true
+  },
+  {
+    "app": "telegram",
+    "source": "snap",
+    "identifier": "telegram-desktop",
+    "isAvailable": true
+  },
+  {
+    "app": "thunderbird",
+    "source": "snap",
+    "identifier": "thunderbird",
+    "isAvailable": true
+  },
+  {
+    "app": "tor-browser",
+    "source": "snap",
+    "identifier": "tor-browser",
+    "isAvailable": true
+  },
+  {
+    "app": "uv",
+    "source": "snap",
+    "identifier": "astral-uv",
+    "isAvailable": true
+  },
+  {
+    "app": "vivaldi",
+    "source": "snap",
+    "identifier": "vivaldi",
+    "isAvailable": true
+  },
+  {
+    "app": "vlc",
+    "source": "snap",
+    "identifier": "vlc",
+    "isAvailable": true
+  },
+  {
+    "app": "vscode",
+    "source": "snap",
+    "identifier": "code",
+    "isAvailable": true
+  },
+  {
+    "app": "vscodium",
+    "source": "snap",
+    "identifier": "codium",
+    "isAvailable": true
+  },
+  {
+    "app": "warzone2100",
+    "source": "snap",
+    "identifier": "warzone2100",
+    "isAvailable": true
+  },
+  {
+    "app": "waterfox",
+    "source": "snap",
+    "identifier": "waterfox",
+    "isAvailable": true
+  },
+  {
+    "app": "webstorm",
+    "source": "snap",
+    "identifier": "webstorm",
+    "isAvailable": true
+  },
+  {
+    "app": "zoom",
+    "source": "snap",
+    "identifier": "zoom-client",
     "isAvailable": true
   }
 ]

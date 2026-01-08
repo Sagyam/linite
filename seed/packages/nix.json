@@ -1,14 +1,20 @@
 [
   {
-    "app": "firefox",
+    "app": "audacity",
     "source": "nix",
-    "identifier": "firefox",
+    "identifier": "audacity",
     "isAvailable": true
   },
   {
-    "app": "chrome",
+    "app": "bat",
     "source": "nix",
-    "identifier": "google-chrome",
+    "identifier": "bat",
+    "isAvailable": true
+  },
+  {
+    "app": "blender",
+    "source": "nix",
+    "identifier": "blender",
     "isAvailable": true
   },
   {
@@ -18,27 +24,33 @@
     "isAvailable": true
   },
   {
+    "app": "btop",
+    "source": "nix",
+    "identifier": "btop",
+    "isAvailable": true
+  },
+  {
+    "app": "chrome",
+    "source": "nix",
+    "identifier": "google-chrome",
+    "isAvailable": true
+  },
+  {
     "app": "chromium",
     "source": "nix",
     "identifier": "chromium",
     "isAvailable": true
   },
   {
-    "app": "vivaldi",
+    "app": "clamav",
     "source": "nix",
-    "identifier": "vivaldi",
+    "identifier": "clamav",
     "isAvailable": true
   },
   {
-    "app": "vscode",
+    "app": "discord",
     "source": "nix",
-    "identifier": "vscode",
-    "isAvailable": true
-  },
-  {
-    "app": "git",
-    "source": "nix",
-    "identifier": "git",
+    "identifier": "discord",
     "isAvailable": true
   },
   {
@@ -48,63 +60,33 @@
     "isAvailable": true
   },
   {
-    "app": "neovim",
-    "source": "nix",
-    "identifier": "neovim",
-    "isAvailable": true
-  },
-  {
     "app": "emacs",
     "source": "nix",
     "identifier": "emacs",
     "isAvailable": true
   },
   {
-    "app": "postman",
+    "app": "filezilla",
     "source": "nix",
-    "identifier": "postman",
+    "identifier": "filezilla",
     "isAvailable": true
   },
   {
-    "app": "nodejs",
+    "app": "firefox",
     "source": "nix",
-    "identifier": "nodejs",
+    "identifier": "firefox",
     "isAvailable": true
   },
   {
-    "app": "python",
+    "app": "flameshot",
     "source": "nix",
-    "identifier": "python3",
+    "identifier": "flameshot",
     "isAvailable": true
   },
   {
-    "app": "java",
+    "app": "fzf",
     "source": "nix",
-    "identifier": "jdk",
-    "isAvailable": true
-  },
-  {
-    "app": "golang",
-    "source": "nix",
-    "identifier": "go",
-    "isAvailable": true
-  },
-  {
-    "app": "rust",
-    "source": "nix",
-    "identifier": "rustc",
-    "isAvailable": true
-  },
-  {
-    "app": "ruby",
-    "source": "nix",
-    "identifier": "ruby",
-    "isAvailable": true
-  },
-  {
-    "app": "php",
-    "source": "nix",
-    "identifier": "php",
+    "identifier": "fzf",
     "isAvailable": true
   },
   {
@@ -114,39 +96,27 @@
     "isAvailable": true
   },
   {
-    "app": "vlc",
-    "source": "nix",
-    "identifier": "vlc",
-    "isAvailable": true
-  },
-  {
-    "app": "spotify",
-    "source": "nix",
-    "identifier": "spotify",
-    "isAvailable": true
-  },
-  {
-    "app": "obs",
-    "source": "nix",
-    "identifier": "obs-studio",
-    "isAvailable": true
-  },
-  {
-    "app": "audacity",
-    "source": "nix",
-    "identifier": "audacity",
-    "isAvailable": true
-  },
-  {
-    "app": "mpv",
-    "source": "nix",
-    "identifier": "mpv",
-    "isAvailable": true
-  },
-  {
     "app": "gimp",
     "source": "nix",
     "identifier": "gimp",
+    "isAvailable": true
+  },
+  {
+    "app": "git",
+    "source": "nix",
+    "identifier": "git",
+    "isAvailable": true
+  },
+  {
+    "app": "golang",
+    "source": "nix",
+    "identifier": "go",
+    "isAvailable": true
+  },
+  {
+    "app": "httpie",
+    "source": "nix",
+    "identifier": "httpie",
     "isAvailable": true
   },
   {
@@ -156,9 +126,21 @@
     "isAvailable": true
   },
   {
-    "app": "blender",
+    "app": "java",
     "source": "nix",
-    "identifier": "blender",
+    "identifier": "jdk",
+    "isAvailable": true
+  },
+  {
+    "app": "jq",
+    "source": "nix",
+    "identifier": "jq",
+    "isAvailable": true
+  },
+  {
+    "app": "keepassxc",
+    "source": "nix",
+    "identifier": "keepassxc",
     "isAvailable": true
   },
   {
@@ -174,27 +156,69 @@
     "isAvailable": true
   },
   {
+    "app": "mpv",
+    "source": "nix",
+    "identifier": "mpv",
+    "isAvailable": true
+  },
+  {
+    "app": "neovim",
+    "source": "nix",
+    "identifier": "neovim",
+    "isAvailable": true
+  },
+  {
+    "app": "nodejs",
+    "source": "nix",
+    "identifier": "nodejs",
+    "isAvailable": true
+  },
+  {
+    "app": "obs",
+    "source": "nix",
+    "identifier": "obs-studio",
+    "isAvailable": true
+  },
+  {
     "app": "obsidian",
     "source": "nix",
     "identifier": "obsidian",
     "isAvailable": true
   },
   {
-    "app": "filezilla",
+    "app": "php",
     "source": "nix",
-    "identifier": "filezilla",
+    "identifier": "php",
     "isAvailable": true
   },
   {
-    "app": "flameshot",
+    "app": "postman",
     "source": "nix",
-    "identifier": "flameshot",
+    "identifier": "postman",
     "isAvailable": true
   },
   {
-    "app": "discord",
+    "app": "python",
     "source": "nix",
-    "identifier": "discord",
+    "identifier": "python3",
+    "isAvailable": true
+  },
+  {
+    "app": "ripgrep",
+    "source": "nix",
+    "identifier": "ripgrep",
+    "isAvailable": true
+  },
+  {
+    "app": "ruby",
+    "source": "nix",
+    "identifier": "ruby",
+    "isAvailable": true
+  },
+  {
+    "app": "rust",
+    "source": "nix",
+    "identifier": "rustc",
     "isAvailable": true
   },
   {
@@ -204,21 +228,9 @@
     "isAvailable": true
   },
   {
-    "app": "thunderbird",
+    "app": "spotify",
     "source": "nix",
-    "identifier": "thunderbird",
-    "isAvailable": true
-  },
-  {
-    "app": "telegram",
-    "source": "nix",
-    "identifier": "telegram-desktop",
-    "isAvailable": true
-  },
-  {
-    "app": "zoom",
-    "source": "nix",
-    "identifier": "zoom-us",
+    "identifier": "spotify",
     "isAvailable": true
   },
   {
@@ -228,57 +240,21 @@
     "isAvailable": true
   },
   {
-    "app": "keepassxc",
+    "app": "telegram",
     "source": "nix",
-    "identifier": "keepassxc",
+    "identifier": "telegram-desktop",
     "isAvailable": true
   },
   {
-    "app": "btop",
+    "app": "thunderbird",
     "source": "nix",
-    "identifier": "btop",
-    "isAvailable": true
-  },
-  {
-    "app": "clamav",
-    "source": "nix",
-    "identifier": "clamav",
+    "identifier": "thunderbird",
     "isAvailable": true
   },
   {
     "app": "timeshift",
     "source": "nix",
     "identifier": "timeshift",
-    "isAvailable": true
-  },
-  {
-    "app": "bat",
-    "source": "nix",
-    "identifier": "bat",
-    "isAvailable": true
-  },
-  {
-    "app": "fzf",
-    "source": "nix",
-    "identifier": "fzf",
-    "isAvailable": true
-  },
-  {
-    "app": "httpie",
-    "source": "nix",
-    "identifier": "httpie",
-    "isAvailable": true
-  },
-  {
-    "app": "jq",
-    "source": "nix",
-    "identifier": "jq",
-    "isAvailable": true
-  },
-  {
-    "app": "ripgrep",
-    "source": "nix",
-    "identifier": "ripgrep",
     "isAvailable": true
   },
   {
@@ -291,6 +267,30 @@
     "app": "tmux",
     "source": "nix",
     "identifier": "tmux",
+    "isAvailable": true
+  },
+  {
+    "app": "vivaldi",
+    "source": "nix",
+    "identifier": "vivaldi",
+    "isAvailable": true
+  },
+  {
+    "app": "vlc",
+    "source": "nix",
+    "identifier": "vlc",
+    "isAvailable": true
+  },
+  {
+    "app": "vscode",
+    "source": "nix",
+    "identifier": "vscode",
+    "isAvailable": true
+  },
+  {
+    "app": "zoom",
+    "source": "nix",
+    "identifier": "zoom-us",
     "isAvailable": true
   },
   {

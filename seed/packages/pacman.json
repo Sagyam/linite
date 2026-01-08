@@ -1,152 +1,14 @@
 [
   {
-    "app": "firefox",
+    "app": "0ad",
     "source": "pacman",
-    "identifier": "firefox",
+    "identifier": "0ad",
     "isAvailable": true
   },
   {
-    "app": "brave",
+    "app": "alacritty",
     "source": "pacman",
-    "identifier": "brave-bin",
-    "isAvailable": true
-  },
-  {
-    "app": "chromium",
-    "source": "pacman",
-    "identifier": "chromium",
-    "isAvailable": true
-  },
-  {
-    "app": "zen-browser",
-    "source": "pacman",
-    "identifier": "zen-browser-bin",
-    "isAvailable": true
-  },
-  {
-    "app": "microsoft-edge",
-    "source": "pacman",
-    "identifier": "microsoft-edge-stable-bin",
-    "isAvailable": true
-  },
-  {
-    "app": "opera",
-    "source": "pacman",
-    "identifier": "opera",
-    "isAvailable": true
-  },
-  {
-    "app": "tor-browser",
-    "source": "pacman",
-    "identifier": "torbrowser-launcher",
-    "isAvailable": true
-  },
-  {
-    "app": "librewolf",
-    "source": "pacman",
-    "identifier": "librewolf-bin",
-    "isAvailable": true
-  },
-  {
-    "app": "waterfox",
-    "source": "pacman",
-    "identifier": "waterfox-bin",
-    "isAvailable": true
-  },
-  {
-    "app": "vscode",
-    "source": "pacman",
-    "identifier": "visual-studio-code-bin",
-    "isAvailable": true
-  },
-  {
-    "app": "git",
-    "source": "pacman",
-    "identifier": "git",
-    "isAvailable": true
-  },
-  {
-    "app": "docker",
-    "source": "pacman",
-    "identifier": "docker",
-    "isAvailable": true
-  },
-  {
-    "app": "nodejs",
-    "source": "pacman",
-    "identifier": "nodejs",
-    "isAvailable": true
-  },
-  {
-    "app": "python",
-    "source": "pacman",
-    "identifier": "python",
-    "isAvailable": true
-  },
-  {
-    "app": "java",
-    "source": "pacman",
-    "identifier": "jdk-openjdk",
-    "isAvailable": true
-  },
-  {
-    "app": "golang",
-    "source": "pacman",
-    "identifier": "go",
-    "isAvailable": true
-  },
-  {
-    "app": "rust",
-    "source": "pacman",
-    "identifier": "rust",
-    "isAvailable": true
-  },
-  {
-    "app": "ruby",
-    "source": "pacman",
-    "identifier": "ruby",
-    "isAvailable": true
-  },
-  {
-    "app": "php",
-    "source": "pacman",
-    "identifier": "php",
-    "isAvailable": true
-  },
-  {
-    "app": "gcc",
-    "source": "pacman",
-    "identifier": "gcc",
-    "isAvailable": true
-  },
-  {
-    "app": "clang",
-    "source": "pacman",
-    "identifier": "clang",
-    "isAvailable": true
-  },
-  {
-    "app": "perl",
-    "source": "pacman",
-    "identifier": "perl",
-    "isAvailable": true
-  },
-  {
-    "app": "lua",
-    "source": "pacman",
-    "identifier": "lua",
-    "isAvailable": true
-  },
-  {
-    "app": "r-lang",
-    "source": "pacman",
-    "identifier": "r",
-    "isAvailable": true
-  },
-  {
-    "app": "intellij",
-    "source": "pacman",
-    "identifier": "intellij-idea-community-edition",
+    "identifier": "alacritty",
     "isAvailable": true
   },
   {
@@ -156,147 +18,9 @@
     "isAvailable": true
   },
   {
-    "app": "neovim",
-    "source": "pacman",
-    "identifier": "neovim",
-    "isAvailable": true
-  },
-  {
-    "app": "emacs",
-    "source": "pacman",
-    "identifier": "emacs",
-    "isAvailable": true
-  },
-  {
-    "app": "eclipse",
-    "source": "pacman",
-    "identifier": "eclipse-java",
-    "isAvailable": true
-  },
-  {
-    "app": "postman",
-    "source": "pacman",
-    "identifier": "postman-bin",
-    "isAvailable": true
-  },
-  {
-    "app": "dbeaver",
-    "source": "pacman",
-    "identifier": "dbeaver",
-    "isAvailable": true
-  },
-  {
-    "app": "vlc",
-    "source": "pacman",
-    "identifier": "vlc",
-    "isAvailable": true
-  },
-  {
-    "app": "spotify",
-    "source": "pacman",
-    "identifier": "spotify-launcher",
-    "isAvailable": true
-  },
-  {
-    "app": "obs",
-    "source": "pacman",
-    "identifier": "obs-studio",
-    "isAvailable": true
-  },
-  {
-    "app": "kdenlive",
-    "source": "pacman",
-    "identifier": "kdenlive",
-    "isAvailable": true
-  },
-  {
     "app": "audacity",
     "source": "pacman",
     "identifier": "audacity",
-    "isAvailable": true
-  },
-  {
-    "app": "mpv",
-    "source": "pacman",
-    "identifier": "mpv",
-    "isAvailable": true
-  },
-  {
-    "app": "handbrake",
-    "source": "pacman",
-    "identifier": "handbrake",
-    "isAvailable": true
-  },
-  {
-    "app": "gimp",
-    "source": "pacman",
-    "identifier": "gimp",
-    "isAvailable": true
-  },
-  {
-    "app": "inkscape",
-    "source": "pacman",
-    "identifier": "inkscape",
-    "isAvailable": true
-  },
-  {
-    "app": "blender",
-    "source": "pacman",
-    "identifier": "blender",
-    "isAvailable": true
-  },
-  {
-    "app": "krita",
-    "source": "pacman",
-    "identifier": "krita",
-    "isAvailable": true
-  },
-  {
-    "app": "darktable",
-    "source": "pacman",
-    "identifier": "darktable",
-    "isAvailable": true
-  },
-  {
-    "app": "libreoffice",
-    "source": "pacman",
-    "identifier": "libreoffice-fresh",
-    "isAvailable": true
-  },
-  {
-    "app": "obsidian",
-    "source": "pacman",
-    "identifier": "obsidian",
-    "isAvailable": true
-  },
-  {
-    "app": "notion",
-    "source": "pacman",
-    "identifier": "notion-app",
-    "isAvailable": true
-  },
-  {
-    "app": "filezilla",
-    "source": "pacman",
-    "identifier": "filezilla",
-    "isAvailable": true
-  },
-  {
-    "app": "flameshot",
-    "source": "pacman",
-    "identifier": "flameshot",
-    "isAvailable": true
-  },
-  {
-    "app": "timeshift",
-    "source": "pacman",
-    "identifier": "timeshift",
-    "isAvailable": true
-  },
-  {
-    "app": "syncthing",
-    "source": "pacman",
-    "identifier": "syncthing",
     "isAvailable": true
   },
   {
@@ -306,63 +30,9 @@
     "isAvailable": true
   },
   {
-    "app": "discord",
+    "app": "bat",
     "source": "pacman",
-    "identifier": "discord",
-    "isAvailable": true
-  },
-  {
-    "app": "slack",
-    "source": "pacman",
-    "identifier": "slack-desktop",
-    "isAvailable": true
-  },
-  {
-    "app": "thunderbird",
-    "source": "pacman",
-    "identifier": "thunderbird",
-    "isAvailable": true
-  },
-  {
-    "app": "telegram",
-    "source": "pacman",
-    "identifier": "telegram-desktop",
-    "isAvailable": true
-  },
-  {
-    "app": "zoom",
-    "source": "pacman",
-    "identifier": "zoom",
-    "isAvailable": true
-  },
-  {
-    "app": "steam",
-    "source": "pacman",
-    "identifier": "steam",
-    "isAvailable": true
-  },
-  {
-    "app": "lutris",
-    "source": "pacman",
-    "identifier": "lutris",
-    "isAvailable": true
-  },
-  {
-    "app": "minecraft",
-    "source": "pacman",
-    "identifier": "minecraft-launcher",
-    "isAvailable": true
-  },
-  {
-    "app": "heroic",
-    "source": "pacman",
-    "identifier": "heroic-games-launcher-bin",
-    "isAvailable": true
-  },
-  {
-    "app": "keepassxc",
-    "source": "pacman",
-    "identifier": "keepassxc",
+    "identifier": "bat",
     "isAvailable": true
   },
   {
@@ -372,15 +42,15 @@
     "isAvailable": true
   },
   {
-    "app": "veracrypt",
+    "app": "blender",
     "source": "pacman",
-    "identifier": "veracrypt",
+    "identifier": "blender",
     "isAvailable": true
   },
   {
-    "app": "clamav",
+    "app": "brave",
     "source": "pacman",
-    "identifier": "clamav",
+    "identifier": "brave-bin",
     "isAvailable": true
   },
   {
@@ -390,75 +60,51 @@
     "isAvailable": true
   },
   {
-    "app": "tmux",
+    "app": "calibre",
     "source": "pacman",
-    "identifier": "tmux",
+    "identifier": "calibre",
     "isAvailable": true
   },
   {
-    "app": "zsh",
+    "app": "celluloid",
     "source": "pacman",
-    "identifier": "zsh",
+    "identifier": "celluloid",
     "isAvailable": true
   },
   {
-    "app": "lazygit",
+    "app": "chromium",
     "source": "pacman",
-    "identifier": "lazygit",
+    "identifier": "chromium",
     "isAvailable": true
   },
   {
-    "app": "k9s",
+    "app": "clamav",
     "source": "pacman",
-    "identifier": "k9s",
+    "identifier": "clamav",
     "isAvailable": true
   },
   {
-    "app": "jq",
+    "app": "clang",
     "source": "pacman",
-    "identifier": "jq",
+    "identifier": "clang",
     "isAvailable": true
   },
   {
-    "app": "yq",
+    "app": "darktable",
     "source": "pacman",
-    "identifier": "yq",
+    "identifier": "darktable",
     "isAvailable": true
   },
   {
-    "app": "fzf",
+    "app": "dbeaver",
     "source": "pacman",
-    "identifier": "fzf",
+    "identifier": "dbeaver",
     "isAvailable": true
   },
   {
-    "app": "bat",
+    "app": "deluge",
     "source": "pacman",
-    "identifier": "bat",
-    "isAvailable": true
-  },
-  {
-    "app": "eza",
-    "source": "pacman",
-    "identifier": "eza",
-    "isAvailable": true
-  },
-  {
-    "app": "tldr",
-    "source": "pacman",
-    "identifier": "tldr",
-    "isAvailable": true
-  },
-  {
-    "app": "ripgrep",
-    "source": "pacman",
-    "identifier": "ripgrep",
-    "isAvailable": true
-  },
-  {
-    "app": "httpie",
-    "source": "pacman",
-    "identifier": "httpie",
+    "identifier": "deluge",
     "isAvailable": true
   },
   {
@@ -468,45 +114,279 @@
     "isAvailable": true
   },
   {
-    "app": "uv",
+    "app": "discord",
     "source": "pacman",
-    "identifier": "uv",
+    "identifier": "discord",
     "isAvailable": true
   },
   {
-    "app": "rbenv",
+    "app": "docker",
     "source": "pacman",
-    "identifier": "rbenv",
+    "identifier": "docker",
     "isAvailable": true
   },
   {
-    "app": "0ad",
+    "app": "dolphin-emu",
     "source": "pacman",
-    "identifier": "0ad",
+    "identifier": "dolphin-emu",
     "isAvailable": true
   },
   {
-    "app": "supertuxkart",
+    "app": "eclipse",
     "source": "pacman",
-    "identifier": "supertuxkart",
+    "identifier": "eclipse-java",
     "isAvailable": true
   },
   {
-    "app": "warzone2100",
+    "app": "emacs",
     "source": "pacman",
-    "identifier": "warzone2100",
+    "identifier": "emacs",
     "isAvailable": true
   },
   {
-    "app": "wesnoth",
+    "app": "evolution",
     "source": "pacman",
-    "identifier": "wesnoth",
+    "identifier": "evolution",
     "isAvailable": true
   },
   {
-    "app": "retroarch",
+    "app": "eza",
     "source": "pacman",
-    "identifier": "retroarch",
+    "identifier": "eza",
+    "isAvailable": true
+  },
+  {
+    "app": "filezilla",
+    "source": "pacman",
+    "identifier": "filezilla",
+    "isAvailable": true
+  },
+  {
+    "app": "firefox",
+    "source": "pacman",
+    "identifier": "firefox",
+    "isAvailable": true
+  },
+  {
+    "app": "flameshot",
+    "source": "pacman",
+    "identifier": "flameshot",
+    "isAvailable": true
+  },
+  {
+    "app": "flowblade",
+    "source": "pacman",
+    "identifier": "flowblade",
+    "isAvailable": true
+  },
+  {
+    "app": "fzf",
+    "source": "pacman",
+    "identifier": "fzf",
+    "isAvailable": true
+  },
+  {
+    "app": "gcc",
+    "source": "pacman",
+    "identifier": "gcc",
+    "isAvailable": true
+  },
+  {
+    "app": "geary",
+    "source": "pacman",
+    "identifier": "geary",
+    "isAvailable": true
+  },
+  {
+    "app": "gimp",
+    "source": "pacman",
+    "identifier": "gimp",
+    "isAvailable": true
+  },
+  {
+    "app": "git",
+    "source": "pacman",
+    "identifier": "git",
+    "isAvailable": true
+  },
+  {
+    "app": "golang",
+    "source": "pacman",
+    "identifier": "go",
+    "isAvailable": true
+  },
+  {
+    "app": "handbrake",
+    "source": "pacman",
+    "identifier": "handbrake",
+    "isAvailable": true
+  },
+  {
+    "app": "heroic",
+    "source": "pacman",
+    "identifier": "heroic-games-launcher-bin",
+    "isAvailable": true
+  },
+  {
+    "app": "httpie",
+    "source": "pacman",
+    "identifier": "httpie",
+    "isAvailable": true
+  },
+  {
+    "app": "inkscape",
+    "source": "pacman",
+    "identifier": "inkscape",
+    "isAvailable": true
+  },
+  {
+    "app": "intellij",
+    "source": "pacman",
+    "identifier": "intellij-idea-community-edition",
+    "isAvailable": true
+  },
+  {
+    "app": "java",
+    "source": "pacman",
+    "identifier": "jdk-openjdk",
+    "isAvailable": true
+  },
+  {
+    "app": "joplin",
+    "source": "pacman",
+    "identifier": "joplin",
+    "isAvailable": true
+  },
+  {
+    "app": "jq",
+    "source": "pacman",
+    "identifier": "jq",
+    "isAvailable": true
+  },
+  {
+    "app": "k9s",
+    "source": "pacman",
+    "identifier": "k9s",
+    "isAvailable": true
+  },
+  {
+    "app": "kdenlive",
+    "source": "pacman",
+    "identifier": "kdenlive",
+    "isAvailable": true
+  },
+  {
+    "app": "keepassxc",
+    "source": "pacman",
+    "identifier": "keepassxc",
+    "isAvailable": true
+  },
+  {
+    "app": "kitty",
+    "source": "pacman",
+    "identifier": "kitty",
+    "isAvailable": true
+  },
+  {
+    "app": "krita",
+    "source": "pacman",
+    "identifier": "krita",
+    "isAvailable": true
+  },
+  {
+    "app": "lazygit",
+    "source": "pacman",
+    "identifier": "lazygit",
+    "isAvailable": true
+  },
+  {
+    "app": "libreoffice",
+    "source": "pacman",
+    "identifier": "libreoffice-fresh",
+    "isAvailable": true
+  },
+  {
+    "app": "librewolf",
+    "source": "pacman",
+    "identifier": "librewolf-bin",
+    "isAvailable": true
+  },
+  {
+    "app": "lua",
+    "source": "pacman",
+    "identifier": "lua",
+    "isAvailable": true
+  },
+  {
+    "app": "lutris",
+    "source": "pacman",
+    "identifier": "lutris",
+    "isAvailable": true
+  },
+  {
+    "app": "microsoft-edge",
+    "source": "pacman",
+    "identifier": "microsoft-edge-stable-bin",
+    "isAvailable": true
+  },
+  {
+    "app": "minecraft",
+    "source": "pacman",
+    "identifier": "minecraft-launcher",
+    "isAvailable": true
+  },
+  {
+    "app": "mpv",
+    "source": "pacman",
+    "identifier": "mpv",
+    "isAvailable": true
+  },
+  {
+    "app": "neovim",
+    "source": "pacman",
+    "identifier": "neovim",
+    "isAvailable": true
+  },
+  {
+    "app": "nextcloud",
+    "source": "pacman",
+    "identifier": "nextcloud-client",
+    "isAvailable": true
+  },
+  {
+    "app": "nodejs",
+    "source": "pacman",
+    "identifier": "nodejs",
+    "isAvailable": true
+  },
+  {
+    "app": "notion",
+    "source": "pacman",
+    "identifier": "notion-app",
+    "isAvailable": true
+  },
+  {
+    "app": "obs",
+    "source": "pacman",
+    "identifier": "obs-studio",
+    "isAvailable": true
+  },
+  {
+    "app": "obsidian",
+    "source": "pacman",
+    "identifier": "obsidian",
+    "isAvailable": true
+  },
+  {
+    "app": "openshot",
+    "source": "pacman",
+    "identifier": "openshot",
+    "isAvailable": true
+  },
+  {
+    "app": "opera",
+    "source": "pacman",
+    "identifier": "opera",
     "isAvailable": true
   },
   {
@@ -516,9 +396,63 @@
     "isAvailable": true
   },
   {
-    "app": "dolphin-emu",
+    "app": "perl",
     "source": "pacman",
-    "identifier": "dolphin-emu",
+    "identifier": "perl",
+    "isAvailable": true
+  },
+  {
+    "app": "php",
+    "source": "pacman",
+    "identifier": "php",
+    "isAvailable": true
+  },
+  {
+    "app": "postman",
+    "source": "pacman",
+    "identifier": "postman-bin",
+    "isAvailable": true
+  },
+  {
+    "app": "python",
+    "source": "pacman",
+    "identifier": "python",
+    "isAvailable": true
+  },
+  {
+    "app": "qbittorrent",
+    "source": "pacman",
+    "identifier": "qbittorrent",
+    "isAvailable": true
+  },
+  {
+    "app": "r-lang",
+    "source": "pacman",
+    "identifier": "r",
+    "isAvailable": true
+  },
+  {
+    "app": "rbenv",
+    "source": "pacman",
+    "identifier": "rbenv",
+    "isAvailable": true
+  },
+  {
+    "app": "remmina",
+    "source": "pacman",
+    "identifier": "remmina",
+    "isAvailable": true
+  },
+  {
+    "app": "retroarch",
+    "source": "pacman",
+    "identifier": "retroarch",
+    "isAvailable": true
+  },
+  {
+    "app": "ripgrep",
+    "source": "pacman",
+    "identifier": "ripgrep",
     "isAvailable": true
   },
   {
@@ -529,5 +463,167 @@
     "metadata": {
       "note": "Available in AUR"
     }
+  },
+  {
+    "app": "ruby",
+    "source": "pacman",
+    "identifier": "ruby",
+    "isAvailable": true
+  },
+  {
+    "app": "rust",
+    "source": "pacman",
+    "identifier": "rust",
+    "isAvailable": true
+  },
+  {
+    "app": "slack",
+    "source": "pacman",
+    "identifier": "slack-desktop",
+    "isAvailable": true
+  },
+  {
+    "app": "spotify",
+    "source": "pacman",
+    "identifier": "spotify-launcher",
+    "isAvailable": true
+  },
+  {
+    "app": "steam",
+    "source": "pacman",
+    "identifier": "steam",
+    "isAvailable": true
+  },
+  {
+    "app": "sublime-text",
+    "source": "pacman",
+    "identifier": "sublime-text-4",
+    "isAvailable": true
+  },
+  {
+    "app": "supertuxkart",
+    "source": "pacman",
+    "identifier": "supertuxkart",
+    "isAvailable": true
+  },
+  {
+    "app": "syncthing",
+    "source": "pacman",
+    "identifier": "syncthing",
+    "isAvailable": true
+  },
+  {
+    "app": "telegram",
+    "source": "pacman",
+    "identifier": "telegram-desktop",
+    "isAvailable": true
+  },
+  {
+    "app": "thunderbird",
+    "source": "pacman",
+    "identifier": "thunderbird",
+    "isAvailable": true
+  },
+  {
+    "app": "timeshift",
+    "source": "pacman",
+    "identifier": "timeshift",
+    "isAvailable": true
+  },
+  {
+    "app": "tldr",
+    "source": "pacman",
+    "identifier": "tldr",
+    "isAvailable": true
+  },
+  {
+    "app": "tmux",
+    "source": "pacman",
+    "identifier": "tmux",
+    "isAvailable": true
+  },
+  {
+    "app": "tor-browser",
+    "source": "pacman",
+    "identifier": "torbrowser-launcher",
+    "isAvailable": true
+  },
+  {
+    "app": "transmission",
+    "source": "pacman",
+    "identifier": "transmission-gtk",
+    "isAvailable": true
+  },
+  {
+    "app": "uv",
+    "source": "pacman",
+    "identifier": "uv",
+    "isAvailable": true
+  },
+  {
+    "app": "veracrypt",
+    "source": "pacman",
+    "identifier": "veracrypt",
+    "isAvailable": true
+  },
+  {
+    "app": "vlc",
+    "source": "pacman",
+    "identifier": "vlc",
+    "isAvailable": true
+  },
+  {
+    "app": "vscode",
+    "source": "pacman",
+    "identifier": "visual-studio-code-bin",
+    "isAvailable": true
+  },
+  {
+    "app": "vscodium",
+    "source": "pacman",
+    "identifier": "vscodium-bin",
+    "isAvailable": true
+  },
+  {
+    "app": "warzone2100",
+    "source": "pacman",
+    "identifier": "warzone2100",
+    "isAvailable": true
+  },
+  {
+    "app": "waterfox",
+    "source": "pacman",
+    "identifier": "waterfox-bin",
+    "isAvailable": true
+  },
+  {
+    "app": "wesnoth",
+    "source": "pacman",
+    "identifier": "wesnoth",
+    "isAvailable": true
+  },
+  {
+    "app": "yq",
+    "source": "pacman",
+    "identifier": "yq",
+    "isAvailable": true
+  },
+  {
+    "app": "zen-browser",
+    "source": "pacman",
+    "identifier": "zen-browser-bin",
+    "isAvailable": true
+  },
+  {
+    "app": "zoom",
+    "source": "pacman",
+    "identifier": "zoom",
+    "isAvailable": true
+  },
+  {
+    "app": "zsh",
+    "source": "pacman",
+    "identifier": "zsh",
+    "isAvailable": true
   }
 ]
