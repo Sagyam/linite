@@ -1,7 +1,6 @@
 import { NextRequest } from 'next/server';
 import { createPublicApiHandler } from '@/lib/api-middleware';
 import { successResponse } from '@/lib/api-utils';
-import { publicApiLimiter } from '@/lib/redis';
 import * as collectionService from '@/services/collection.service';
 
 /**
@@ -35,6 +34,5 @@ export const GET = createPublicApiHandler(
       limit,
       offset,
     });
-  },
-  publicApiLimiter
+  }
 );

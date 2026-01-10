@@ -1,7 +1,6 @@
 import { NextRequest } from 'next/server';
 import { createPublicApiHandler } from '@/lib/api-middleware';
 import { successResponse, errorResponse } from '@/lib/api-utils';
-import { publicApiLimiter } from '@/lib/redis';
 import * as collectionService from '@/services/collection.service';
 
 interface RouteContext {
@@ -25,6 +24,5 @@ export const GET = createPublicApiHandler(
     }
 
     return successResponse(collection);
-  },
-  publicApiLimiter
+  }
 );

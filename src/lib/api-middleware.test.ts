@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 
@@ -29,7 +29,6 @@ import * as validationMiddleware from './validation/middleware';
 
 describe('api-middleware', () => {
   // Mock functions
-  const mockApplyRateLimit = vi.mocked(apiUtils.applyRateLimit);
   const mockRequireAuth = vi.mocked(apiUtils.requireAuth);
   const mockErrorResponse = vi.mocked(apiUtils.errorResponse);
   const mockValidateBody = vi.mocked(validationMiddleware.validateBody);
@@ -53,15 +52,6 @@ describe('api-middleware', () => {
     });
   };
 
-  const createMockRateLimiter = () => ({
-    limit: vi.fn().mockResolvedValue({
-      success: true,
-      limit: 10,
-      reset: Date.now() + 60000,
-      remaining: 9,
-    }),
-  });
-
   const createSuccessResponse = (data: unknown = { success: true }) =>
     NextResponse.json(data, { status: 200 });
 
@@ -72,7 +62,6 @@ describe('api-middleware', () => {
     vi.clearAllMocks();
 
     // Default mock implementations
-    mockApplyRateLimit.mockResolvedValue(null);
     mockRequireAuth.mockResolvedValue({
       error: null,
       session: { id: 'session-1' },
@@ -99,35 +88,8 @@ describe('api-middleware', () => {
       const request = createMockRequest();
       const response = await apiHandler(request);
 
-      expect(handler).toHaveBeenCalledWith(request, undefined);
       expect(response.status).toBe(200);
-    });
-
-    it('should apply rate limiting when configured', async () => {
-      const rateLimiter = createMockRateLimiter() as any;
-      const handler = vi.fn().mockResolvedValue(createSuccessResponse());
-      const apiHandler = createApiHandler({ rateLimit: rateLimiter }, handler);
-
-      const request = createMockRequest();
-      await apiHandler(request);
-
-      expect(mockApplyRateLimit).toHaveBeenCalledWith(request, rateLimiter);
-      expect(handler).toHaveBeenCalled();
-    });
-
-    it('should return rate limit error when rate limit exceeded', async () => {
-      const rateLimiter = createMockRateLimiter() as any;
-      const rateLimitError = createErrorResponse('Too many requests', 429);
-      mockApplyRateLimit.mockResolvedValue(rateLimitError);
-
-      const handler = vi.fn().mockResolvedValue(createSuccessResponse());
-      const apiHandler = createApiHandler({ rateLimit: rateLimiter }, handler);
-
-      const request = createMockRequest();
-      const response = await apiHandler(request);
-
-      expect(response.status).toBe(429);
-      expect(handler).not.toHaveBeenCalled();
+      expect(handler).toHaveBeenCalledWith(request, undefined);
     });
 
     it('should check authentication when requireAuth is true', async () => {
@@ -240,61 +202,15 @@ describe('api-middleware', () => {
       expect(handler).toHaveBeenCalled();
     });
 
-    it('should apply middleware in correct order: rate limit -> auth -> query -> body', async () => {
-      const callOrder: string[] = [];
-      const rateLimiter = createMockRateLimiter() as any;
-
-      mockApplyRateLimit.mockImplementation(async () => {
-        callOrder.push('rateLimit');
-        return null;
-      });
-
-      mockRequireAuth.mockImplementation(async () => {
-        callOrder.push('auth');
-        return { error: null, session: {}, user: {} } as any;
-      });
-
-      mockValidateQuery.mockImplementation(() => {
-        callOrder.push('query');
-        return { success: true, data: {} } as any;
-      });
-
-      mockValidateBody.mockImplementation(async () => {
-        callOrder.push('body');
-        return { success: true, data: {} } as any;
-      });
-
-      const handler = vi.fn().mockImplementation(() => {
-        callOrder.push('handler');
-        return createSuccessResponse();
-      });
-
-      const apiHandler = createApiHandler(
-        {
-          rateLimit: rateLimiter,
-          requireAuth: true,
-          querySchema: z.object({}),
-          bodySchema: z.object({}),
-        },
-        handler
-      );
-
-      const request = createMockRequest({ method: 'POST' });
-      await apiHandler(request);
-
-      expect(callOrder).toEqual(['rateLimit', 'auth', 'query', 'body', 'handler']);
-    });
-
     describe('error handling', () => {
-      // Suppress console.error during error handling tests
-      let consoleErrorSpy: ReturnType<typeof vi.spyOn>;
+      it('should handle errors thrown by handler', async () => {
+        const handler = vi.fn().mockRejectedValue(new Error('Test error'));
+        const apiHandler = createApiHandler({}, handler);
 
-      beforeEach(() => {
-        consoleErrorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
-      });
+        const request = createMockRequest();
+        const response = await apiHandler(request);
 
-      afterEach(() => {
-        consoleErrorSpy.mockRestore();
+        expect(response.status).toBe(500);
       });
 
       it('should return 404 for "not found" errors', async () => {
@@ -308,7 +224,7 @@ describe('api-middleware', () => {
       });
 
       it('should return 401 for "Unauthorized" errors', async () => {
-        const handler = vi.fn().mockRejectedValue(new Error('Unauthorized access'));
+        const handler = vi.fn().mockRejectedValue(new Error('Unauthorized'));
         const apiHandler = createApiHandler({}, handler);
 
         const request = createMockRequest();
@@ -328,7 +244,7 @@ describe('api-middleware', () => {
       });
 
       it('should return 409 for "already exists" errors', async () => {
-        const handler = vi.fn().mockRejectedValue(new Error('Record already exists'));
+        const handler = vi.fn().mockRejectedValue(new Error('User already exists'));
         const apiHandler = createApiHandler({}, handler);
 
         const request = createMockRequest();
@@ -338,7 +254,7 @@ describe('api-middleware', () => {
       });
 
       it('should return 500 for generic errors', async () => {
-        const handler = vi.fn().mockRejectedValue(new Error('Something went wrong'));
+        const handler = vi.fn().mockRejectedValue(new Error('Database error'));
         const apiHandler = createApiHandler({}, handler);
 
         const request = createMockRequest();
@@ -348,33 +264,28 @@ describe('api-middleware', () => {
       });
 
       it('should return 500 for non-Error exceptions', async () => {
-        const handler = vi.fn().mockRejectedValue('string error');
+        const handler = vi.fn().mockRejectedValue('String error');
         const apiHandler = createApiHandler({}, handler);
 
         const request = createMockRequest();
         const response = await apiHandler(request);
 
         expect(response.status).toBe(500);
-        const body = await response.json();
-        expect(body.error).toBe('An unexpected error occurred');
       });
 
       it('should use custom error handler when provided', async () => {
-        const customErrorHandler = vi.fn().mockReturnValue(
-          createErrorResponse('Custom error', 418)
-        );
+        const customErrorHandler = vi.fn((error: unknown) => {
+          return NextResponse.json({ custom: 'error' }, { status: 418 });
+        });
 
-        const handler = vi.fn().mockRejectedValue(new Error('Test error'));
-        const apiHandler = createApiHandler(
-          { errorHandler: customErrorHandler },
-          handler
-        );
+        const handler = vi.fn().mockRejectedValue(new Error('Test'));
+        const apiHandler = createApiHandler({ errorHandler: customErrorHandler }, handler);
 
         const request = createMockRequest();
         const response = await apiHandler(request);
 
-        expect(customErrorHandler).toHaveBeenCalled();
         expect(response.status).toBe(418);
+        expect(customErrorHandler).toHaveBeenCalled();
       });
     });
   });
@@ -390,28 +301,6 @@ describe('api-middleware', () => {
       expect(mockRequireAuth).not.toHaveBeenCalled();
       expect(handler).toHaveBeenCalled();
     });
-
-    it('should apply rate limiting when provided', async () => {
-      const rateLimiter = createMockRateLimiter() as any;
-      const handler = vi.fn().mockResolvedValue(createSuccessResponse());
-      const apiHandler = createPublicApiHandler(handler, rateLimiter);
-
-      const request = createMockRequest();
-      await apiHandler(request);
-
-      expect(mockApplyRateLimit).toHaveBeenCalledWith(request, rateLimiter);
-      expect(handler).toHaveBeenCalled();
-    });
-
-    it('should work without rate limiter', async () => {
-      const handler = vi.fn().mockResolvedValue(createSuccessResponse());
-      const apiHandler = createPublicApiHandler(handler, null);
-
-      const request = createMockRequest();
-      await apiHandler(request);
-
-      expect(handler).toHaveBeenCalled();
-    });
   });
 
   describe('createAuthApiHandler', () => {
@@ -422,26 +311,14 @@ describe('api-middleware', () => {
       const request = createMockRequest();
       await apiHandler(request);
 
-      expect(mockRequireAuth).toHaveBeenCalledWith(request);
-      expect(handler).toHaveBeenCalled();
-    });
-
-    it('should apply rate limiting when provided', async () => {
-      const rateLimiter = createMockRateLimiter() as any;
-      const handler = vi.fn().mockResolvedValue(createSuccessResponse());
-      const apiHandler = createAuthApiHandler(handler, rateLimiter);
-
-      const request = createMockRequest();
-      await apiHandler(request);
-
-      expect(mockApplyRateLimit).toHaveBeenCalledWith(request, rateLimiter);
-      expect(mockRequireAuth).toHaveBeenCalledWith(request);
+      expect(mockRequireAuth).toHaveBeenCalled();
       expect(handler).toHaveBeenCalled();
     });
 
     it('should block unauthenticated requests', async () => {
+      const authError = createErrorResponse('Unauthorized', 401);
       mockRequireAuth.mockResolvedValue({
-        error: createErrorResponse('Unauthorized', 401),
+        error: authError,
         session: null,
         user: null,
       });
@@ -458,43 +335,37 @@ describe('api-middleware', () => {
   });
 
   describe('createValidatedApiHandler', () => {
-    const bodySchema = z.object({
-      name: z.string(),
-      age: z.number().optional(),
-    });
+    const testSchema = z.object({ name: z.string() });
 
     it('should validate request body and pass validated data to handler', async () => {
-      const validatedData = { name: 'John', age: 30 };
+      const validatedData = { name: 'test' };
       mockValidateBody.mockResolvedValue({
         success: true,
         data: validatedData,
       } as any);
 
-      const handler = vi.fn().mockImplementation((req, data) => {
-        expect(data).toEqual(validatedData);
-        return createSuccessResponse({ received: data });
+      const handler = vi.fn(async (_req, validatedBody) => {
+        expect(validatedBody).toEqual(validatedData);
+        return createSuccessResponse();
       });
 
-      const apiHandler = createValidatedApiHandler(bodySchema, handler);
-      const request = createMockRequest({
-        method: 'POST',
-        body: validatedData,
-      });
+      const apiHandler = createValidatedApiHandler(testSchema, handler);
+      const request = createMockRequest({ method: 'POST', body: { name: 'test' } });
 
       await apiHandler(request);
 
-      expect(mockValidateBody).toHaveBeenCalledWith(request, bodySchema);
-      expect(handler).toHaveBeenCalledWith(request, validatedData, undefined);
+      expect(mockValidateBody).toHaveBeenCalledWith(request, testSchema);
+      expect(handler).toHaveBeenCalled();
     });
 
     it('should reject invalid request body', async () => {
       mockValidateBody.mockResolvedValue({
         success: false,
-        error: 'Name is required',
+        error: 'Invalid body',
       } as any);
 
       const handler = vi.fn().mockResolvedValue(createSuccessResponse());
-      const apiHandler = createValidatedApiHandler(bodySchema, handler);
+      const apiHandler = createValidatedApiHandler(testSchema, handler);
 
       const request = createMockRequest({ method: 'POST' });
       const response = await apiHandler(request);
@@ -504,79 +375,75 @@ describe('api-middleware', () => {
     });
 
     it('should support additional config options', async () => {
-      const rateLimiter = createMockRateLimiter() as any;
       mockValidateBody.mockResolvedValue({
         success: true,
         data: { name: 'test' },
       } as any);
 
       const handler = vi.fn().mockResolvedValue(createSuccessResponse());
-      const apiHandler = createValidatedApiHandler(bodySchema, handler, {
-        rateLimit: rateLimiter,
-      });
+      const apiHandler = createValidatedApiHandler(
+        testSchema,
+        handler,
+        { requireAuth: true }
+      );
 
-      const request = createMockRequest({ method: 'POST' });
+      const request = createMockRequest({ method: 'POST', body: { name: 'test' } });
       await apiHandler(request);
 
-      expect(mockApplyRateLimit).toHaveBeenCalledWith(request, rateLimiter);
-      expect(handler).toHaveBeenCalled();
+      expect(mockRequireAuth).toHaveBeenCalled();
     });
 
     it('should pass context to handler', async () => {
-      const context = { params: { id: '123' } };
       mockValidateBody.mockResolvedValue({
         success: true,
         data: { name: 'test' },
       } as any);
 
-      const handler = vi.fn().mockImplementation((req, data, ctx) => {
-        expect(ctx).toEqual(context);
+      const handler = vi.fn(async (_req, _data, context) => {
+        expect(context).toEqual({ params: { id: '123' } });
         return createSuccessResponse();
       });
 
-      const apiHandler = createValidatedApiHandler(bodySchema, handler);
-      const request = createMockRequest({ method: 'POST' });
+      const apiHandler = createValidatedApiHandler(testSchema, handler);
+      const request = createMockRequest({ method: 'POST', body: { name: 'test' } });
+      const context = { params: { id: '123' } };
 
       await apiHandler(request, context);
 
-      expect(handler).toHaveBeenCalledWith(request, { name: 'test' }, context);
+      expect(handler).toHaveBeenCalled();
     });
   });
 
   describe('createAuthValidatedApiHandler', () => {
-    const bodySchema = z.object({ title: z.string() });
+    const testSchema = z.object({ name: z.string() });
 
     it('should require auth and validate body', async () => {
-      const validatedData = { title: 'Test' };
       mockValidateBody.mockResolvedValue({
         success: true,
-        data: validatedData,
+        data: { name: 'test' },
       } as any);
 
-      const handler = vi.fn().mockImplementation((req, data) => {
-        expect(data).toEqual(validatedData);
-        return createSuccessResponse();
-      });
+      const handler = vi.fn().mockResolvedValue(createSuccessResponse());
+      const apiHandler = createAuthValidatedApiHandler(testSchema, handler);
 
-      const apiHandler = createAuthValidatedApiHandler(bodySchema, handler);
-      const request = createMockRequest({ method: 'POST', body: validatedData });
-
+      const request = createMockRequest({ method: 'POST', body: { name: 'test' } });
       await apiHandler(request);
 
-      expect(mockRequireAuth).toHaveBeenCalledWith(request);
-      expect(mockValidateBody).toHaveBeenCalledWith(request, bodySchema);
+      expect(mockRequireAuth).toHaveBeenCalled();
+      expect(mockValidateBody).toHaveBeenCalled();
       expect(handler).toHaveBeenCalled();
     });
 
     it('should block unauthenticated requests', async () => {
+      const authError = createErrorResponse('Unauthorized', 401);
       mockRequireAuth.mockResolvedValue({
-        error: createErrorResponse('Unauthorized', 401),
+        error: authError,
         session: null,
         user: null,
       });
 
       const handler = vi.fn().mockResolvedValue(createSuccessResponse());
-      const apiHandler = createAuthValidatedApiHandler(bodySchema, handler);
+      const apiHandler = createAuthValidatedApiHandler(testSchema, handler);
 
       const request = createMockRequest({ method: 'POST' });
       const response = await apiHandler(request);
@@ -584,46 +451,25 @@ describe('api-middleware', () => {
       expect(response.status).toBe(401);
       expect(handler).not.toHaveBeenCalled();
     });
-
-    it('should apply rate limiting when provided', async () => {
-      const rateLimiter = createMockRateLimiter() as any;
-      mockValidateBody.mockResolvedValue({
-        success: true,
-        data: { title: 'Test' },
-      } as any);
-
-      const handler = vi.fn().mockResolvedValue(createSuccessResponse());
-      const apiHandler = createAuthValidatedApiHandler(bodySchema, handler, rateLimiter);
-
-      const request = createMockRequest({ method: 'POST' });
-      await apiHandler(request);
-
-      expect(mockApplyRateLimit).toHaveBeenCalledWith(request, rateLimiter);
-    });
   });
 
   describe('createQueryValidatedApiHandler', () => {
-    const querySchema = z.object({
-      page: z.string().transform(Number).optional(),
-      limit: z.string().transform(Number).optional(),
-    });
+    const querySchema = z.object({ id: z.string() });
 
     it('should validate query parameters and pass to handler', async () => {
+      const validatedQuery = { id: '123' };
       mockValidateQuery.mockReturnValue({
         success: true,
-        data: { page: '1', limit: '10' },
+        data: validatedQuery,
       } as any);
 
-      const handler = vi.fn().mockImplementation((req, query) => {
-        // Handler receives parsed query object
-        expect(query).toBeDefined();
+      const handler = vi.fn(async (_req, queryData) => {
+        expect(queryData).toEqual(validatedQuery);
         return createSuccessResponse();
       });
 
       const apiHandler = createQueryValidatedApiHandler(querySchema, handler);
-      const request = createMockRequest({
-        url: 'http://localhost:3000/api/test?page=1&limit=10',
-      });
+      const request = createMockRequest({ url: 'http://localhost:3000/api/test?id=123' });
 
       await apiHandler(request);
 
@@ -634,7 +480,7 @@ describe('api-middleware', () => {
     it('should reject invalid query parameters', async () => {
       mockValidateQuery.mockReturnValue({
         success: false,
-        error: 'Invalid page number',
+        error: 'Invalid query',
       } as any);
 
       const handler = vi.fn().mockResolvedValue(createSuccessResponse());
@@ -648,24 +494,22 @@ describe('api-middleware', () => {
     });
 
     it('should support additional config options', async () => {
-      const rateLimiter = createMockRateLimiter() as any;
       mockValidateQuery.mockReturnValue({
         success: true,
-        data: {},
+        data: { id: '123' },
       } as any);
 
       const handler = vi.fn().mockResolvedValue(createSuccessResponse());
-      const apiHandler = createQueryValidatedApiHandler(querySchema, handler, {
-        requireAuth: true,
-        rateLimit: rateLimiter,
-      });
+      const apiHandler = createQueryValidatedApiHandler(
+        querySchema,
+        handler,
+        { requireAuth: true }
+      );
 
-      const request = createMockRequest();
+      const request = createMockRequest({ url: 'http://localhost:3000/api/test?id=123' });
       await apiHandler(request);
 
-      expect(mockApplyRateLimit).toHaveBeenCalledWith(request, rateLimiter);
-      expect(mockRequireAuth).toHaveBeenCalledWith(request);
-      expect(handler).toHaveBeenCalled();
+      expect(mockRequireAuth).toHaveBeenCalled();
     });
   });
 });

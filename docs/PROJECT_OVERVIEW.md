@@ -37,7 +37,6 @@ Linite is a web application that allows users to select multiple applications fr
 - **Hosting**: Vercel
 - **Image Storage**: Azure Blob Storage (for app icons)
 - **Analytics**: Vercel Analytics (optional)
-- **Rate Limiting**: Upstash Redis
 
 ### External APIs
 - **Flathub API**: `https://flathub.org/api/v2/`

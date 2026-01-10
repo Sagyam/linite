@@ -2,7 +2,6 @@ import { NextRequest } from 'next/server';
 import { db, apps, categories } from '@/db';
 import { successResponse } from '@/lib/api-utils';
 import {asc, eq, and, or, like, sql, desc} from 'drizzle-orm';
-import { publicApiLimiter } from '@/lib/redis';
 import { createPublicApiHandler, createAuthValidatedApiHandler } from '@/lib/api-middleware';
 import { getAppsQuerySchema, createAppSchema } from '@/lib/validation';
 
@@ -107,8 +106,7 @@ export const GET = createPublicApiHandler(
         hasMore,
       },
     });
-  },
-  publicApiLimiter
+  }
 );
 
 // POST /api/apps - Create new app (admin)

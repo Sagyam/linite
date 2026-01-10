@@ -1,7 +1,6 @@
 import { db, distros } from '@/db';
 import { successResponse } from '@/lib/api-utils';
 import { desc } from 'drizzle-orm';
-import { publicApiLimiter } from '@/lib/redis';
 import { createPublicApiHandler, createAuthValidatedApiHandler } from '@/lib/api-middleware';
 import { createDistroSchema } from '@/lib/validation';
 import type { GetDistrosResponse, CreateDistroResponse } from '@/types';
@@ -22,8 +21,7 @@ export const GET = createPublicApiHandler(
     });
 
     return successResponse(allDistros as GetDistrosResponse);
-  },
-  publicApiLimiter
+  }
 );
 
 // POST /api/distros - Create new distro (admin)

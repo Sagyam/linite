@@ -1,7 +1,6 @@
 import { db, sources } from '@/db';
 import { successResponse } from '@/lib/api-utils';
 import { desc } from 'drizzle-orm';
-import { publicApiLimiter } from '@/lib/redis';
 import { createPublicApiHandler, createAuthValidatedApiHandler } from '@/lib/api-middleware';
 import { createSourceSchema } from '@/lib/validation';
 import type { GetSourcesResponse, CreateSourceResponse } from '@/types';
@@ -14,8 +13,7 @@ export const GET = createPublicApiHandler(
     });
 
     return successResponse(allSources as GetSourcesResponse);
-  },
-  publicApiLimiter
+  }
 );
 
 // POST /api/sources - Create new source (admin)

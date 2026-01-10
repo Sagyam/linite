@@ -1,7 +1,6 @@
 import { NextRequest } from 'next/server';
 import { createPublicApiHandler } from '@/lib/api-middleware';
 import { successResponse, errorResponse } from '@/lib/api-utils';
-import { publicApiLimiter } from '@/lib/redis';
 import { auth } from '@/lib/auth';
 import { headers } from 'next/headers';
 import * as collectionService from '@/services/collection.service';
@@ -34,6 +33,5 @@ export const GET = createPublicApiHandler(
     await collectionService.incrementViewCount(collection.id);
 
     return successResponse(collection);
-  },
-  publicApiLimiter
+  }
 );

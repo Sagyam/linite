@@ -4,15 +4,5 @@
       "path": "/api/cron/refresh",
       "schedule": "0 0 * * *"
     }
-  ],
-  "rewrites": [
-    {
-      "source": "/docs",
-      "destination": "https://linite.mintlify.dev/docs"
-    },
-    {
-      "source": "/docs/:match*",
-      "destination": "https://linite.mintlify.dev/docs/:match*"
-    }
   ]
 }

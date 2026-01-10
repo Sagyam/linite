@@ -38,13 +38,12 @@ The complete Drizzle schema is defined in `/docs/DATABASE_SCHEMA.md`. Follow it 
 All new API routes MUST use the standardized middleware patterns from `/src/lib/api-middleware.ts`:
 
 ```typescript
-// Public endpoint with rate limiting
+// Public endpoint
 export const GET = createPublicApiHandler(
   async (request) => {
     // Your handler logic
     return successResponse(data);
-  },
-  publicApiLimiter  // Optional rate limiter
+  }
 );
 
 // Admin endpoint (requires auth)
@@ -64,7 +63,6 @@ export const POST = createAuthValidatedApiHandler(
 - ALL requests MUST be validated using Zod schemas from `/src/lib/validation`
 - Use centralized types from `/src/types`
 - Database filtering MUST happen at query level, NOT in-memory
-- Rate limiting: All public endpoints use Upstash Redis (see `/docs/API_REFERENCE.md`)
 
 **Routes:**
 - Public routes: `/api/apps`, `/api/distros`, `/api/sources`, `/api/categories`, `/api/generate`

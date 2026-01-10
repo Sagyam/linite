@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { ZodSchema } from 'zod';
-import { Ratelimit } from '@upstash/ratelimit';
-import { requireAuth, errorResponse, applyRateLimit } from './api-utils';
+import { requireAuth, errorResponse } from './api-utils';
 import { validateBody, validateQuery } from './validation/middleware';
 
 /**
@@ -27,11 +26,6 @@ export interface ApiMiddlewareConfig<BodySchema = unknown, QuerySchema = unknown
   requireAuth?: boolean;
 
   /**
-   * Rate limiter to apply
-   */
-  rateLimit?: Ratelimit | null;
-
-  /**
    * Zod schema for request body validation
    */
   bodySchema?: ZodSchema<BodySchema>;
@@ -49,7 +43,7 @@ export interface ApiMiddlewareConfig<BodySchema = unknown, QuerySchema = unknown
 
 /**
  * Compose middleware with a handler
- * Provides automatic auth, rate limiting, validation, and error handling
+ * Provides automatic auth, validation, and error handling
  */
 export function createApiHandler<BodySchema = unknown, QuerySchema = unknown, Context = unknown>(
   config: ApiMiddlewareConfig<BodySchema, QuerySchema>,
@@ -57,15 +51,7 @@ export function createApiHandler<BodySchema = unknown, QuerySchema = unknown, Co
 ): ApiHandler<Context> {
   return async (request: NextRequest, context?: Context): Promise<NextResponse> => {
     try {
-      // 1. Apply rate limiting first (fail fast)
-      if (config.rateLimit) {
-        const rateLimitResult = await applyRateLimit(request, config.rateLimit);
-        if (rateLimitResult) {
-          return rateLimitResult;
-        }
-      }
-
-      // 2. Check authentication if required
+      // 1. Check authentication if required
       if (config.requireAuth) {
         const authCheck = await requireAuth(request);
         if (authCheck.error) {
@@ -73,7 +59,7 @@ export function createApiHandler<BodySchema = unknown, QuerySchema = unknown, Co
         }
       }
 
-      // 3. Validate query parameters if schema provided
+      // 2. Validate query parameters if schema provided
       if (config.querySchema) {
         const queryValidation = validateQuery(request, config.querySchema);
         if (!queryValidation.success) {
@@ -81,7 +67,7 @@ export function createApiHandler<BodySchema = unknown, QuerySchema = unknown, Co
         }
       }
 
-      // 4. Validate request body if schema provided and store validated data
+      // 3. Validate request body if schema provided and store validated data
       let validatedBody: BodySchema | undefined;
       if (config.bodySchema) {
         const bodyValidation = await validateBody(request, config.bodySchema);
@@ -91,7 +77,7 @@ export function createApiHandler<BodySchema = unknown, QuerySchema = unknown, Co
         validatedBody = bodyValidation.data;
       }
 
-      // 5. Execute the handler (attach validated body to request for handlers to access)
+      // 4. Execute the handler (attach validated body to request for handlers to access)
       if (validatedBody !== undefined) {
         (request as NextRequest & { _validatedBody?: unknown })._validatedBody = validatedBody;
       }
@@ -126,16 +112,14 @@ export function createApiHandler<BodySchema = unknown, QuerySchema = unknown, Co
 }
 
 /**
- * Create a public API handler with rate limiting
+ * Create a public API handler
  */
 export function createPublicApiHandler<Context = unknown>(
-  handler: ApiHandler<Context>,
-  rateLimit?: Ratelimit | null
+  handler: ApiHandler<Context>
 ): ApiHandler<Context> {
   return createApiHandler(
     {
       requireAuth: false,
-      rateLimit,
     },
     handler
   );
@@ -145,13 +129,11 @@ export function createPublicApiHandler<Context = unknown>(
  * Create an authenticated API handler
  */
 export function createAuthApiHandler<Context = unknown>(
-  handler: ApiHandler<Context>,
-  rateLimit?: Ratelimit | null
+  handler: ApiHandler<Context>
 ): ApiHandler<Context> {
   return createApiHandler(
     {
       requireAuth: true,
-      rateLimit,
     },
     handler
   );
@@ -183,12 +165,10 @@ export function createValidatedApiHandler<BodySchema, Context = unknown>(
  */
 export function createAuthValidatedApiHandler<BodySchema, Context = unknown>(
   bodySchema: ZodSchema<BodySchema>,
-  handler: ValidatedApiHandler<BodySchema, Context>,
-  rateLimit?: Ratelimit | null
+  handler: ValidatedApiHandler<BodySchema, Context>
 ): ApiHandler<Context> {
   return createValidatedApiHandler(bodySchema, handler, {
     requireAuth: true,
-    rateLimit,
   });
 }
 

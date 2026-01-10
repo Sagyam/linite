@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { requireAuth, applyRateLimit } from '@/lib/api-utils';
+import { requireAuth } from '@/lib/api-utils';
 import { searchFlathub } from '@/services/external-apis/flathub';
 import { searchSnapcraft } from '@/services/external-apis/snapcraft';
 import { searchRepology } from '@/services/external-apis/repology';
@@ -7,7 +7,6 @@ import { searchAUR } from '@/services/external-apis/aur';
 import { searchHomebrew } from '@/services/external-apis/homebrew';
 import { searchWinget } from '@/services/external-apis/winget';
 import { PackageSearchResult } from '@/services/external-apis/types';
-import { adminLimiter } from '@/lib/redis';
 
 interface SearchRequest {
   source: 'flatpak' | 'snap' | 'repology' | 'aur' | 'homebrew' | 'winget' | 'all';
@@ -27,12 +26,6 @@ export async function POST(request: NextRequest) {
   const authResult = await requireAuth(request);
   if (authResult.error) {
     return authResult.error;
-  }
-
-  // Apply rate limiting for admin endpoints
-  const rateLimitResult = await applyRateLimit(request, adminLimiter);
-  if (rateLimitResult) {
-    return rateLimitResult;
   }
 
   try {

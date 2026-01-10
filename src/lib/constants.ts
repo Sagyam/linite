@@ -28,10 +28,8 @@ export const PAGINATION = {
 export const TIMEOUTS = {
   /** Debounce delay for search inputs */
   DEBOUNCE_SEARCH: 300,
-  /** Delay between API rate-limited requests */
-  RATE_LIMIT_DELAY: 100,
   /** Delay between icon downloads to avoid overwhelming server */
-  ICON_DOWNLOAD_DELAY: 2500,
+  ICON_DOWNLOAD_DELAY: 5000,
 } as const;
 
 /**

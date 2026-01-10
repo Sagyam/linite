@@ -111,5 +111,17 @@
       },
       "note": "Extremely fast Python package installer and resolver, written in Rust"
     }
+  },
+  {
+    "app": "ollama",
+    "source": "script",
+    "identifier": "ollama",
+    "isAvailable": true,
+    "metadata": {
+      "scriptUrl": {
+        "linux": "curl -fsSL https://ollama.com/install.sh | sh"
+      },
+      "note": "Chat & build with open models"
+    }
   }
 ]

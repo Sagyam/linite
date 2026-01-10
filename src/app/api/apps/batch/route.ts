@@ -2,7 +2,6 @@ import { NextRequest } from 'next/server';
 import { db, apps } from '@/db';
 import { successResponse, errorResponse } from '@/lib/api-utils';
 import { inArray } from 'drizzle-orm';
-import { publicApiLimiter } from '@/lib/redis';
 import { createPublicApiHandler } from '@/lib/api-middleware';
 import { z } from 'zod';
 
@@ -56,6 +55,5 @@ export const GET = createPublicApiHandler(
     });
 
     return successResponse(appsData);
-  },
-  publicApiLimiter
+  }
 );

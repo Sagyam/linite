@@ -1,15 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { generateInstallCommands, GenerateCommandRequest } from '@/services/command-generator';
-import { applyRateLimit } from '@/lib/api-utils';
-import { generateLimiter } from '@/lib/redis';
 
 export async function POST(request: NextRequest) {
-  // Apply rate limiting
-  const rateLimitResult = await applyRateLimit(request, generateLimiter);
-  if (rateLimitResult) {
-    return rateLimitResult;
-  }
-
   try {
     const body = await request.json();
 

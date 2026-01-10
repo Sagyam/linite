@@ -117,8 +117,8 @@ async function refreshSourcePackages(
         console.error(`Error refreshing package ${pkg.identifier}:`, error);
       }
 
-      // Small delay to avoid rate limiting
-      await new Promise((resolve) => setTimeout(resolve, TIMEOUTS.RATE_LIMIT_DELAY));
+      // Small delay between packages
+      await new Promise((resolve) => setTimeout(resolve, 100));
     }
   } catch (error) {
     const errorMsg = error instanceof Error ? error.message : 'Unknown error';

@@ -51,8 +51,6 @@
     "@tanstack/react-query-devtools": "^5.91.2",
     "@tanstack/react-table": "^8.21.3",
     "@tanstack/react-virtual": "^3.13.14",
-    "@upstash/ratelimit": "^2.0.7",
-    "@upstash/redis": "^1.36.0",
     "better-auth": "^1.4.9",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",

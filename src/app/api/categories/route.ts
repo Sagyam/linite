@@ -1,7 +1,6 @@
 import { db, categories } from '@/db';
 import { successResponse } from '@/lib/api-utils';
 import { asc } from 'drizzle-orm';
-import { publicApiLimiter } from '@/lib/redis';
 import { createPublicApiHandler, createAuthValidatedApiHandler } from '@/lib/api-middleware';
 import { createCategorySchema } from '@/lib/validation';
 
@@ -13,8 +12,7 @@ export const GET = createPublicApiHandler(
     });
 
     return successResponse(allCategories);
-  },
-  publicApiLimiter
+  }
 );
 
 // POST /api/categories - Create new category (admin)

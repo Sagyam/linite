@@ -131,20 +131,6 @@ Used to secure the cron endpoint (`/api/refresh`) that refreshes package data fr
 
 **Recommended for:** Production deployments to prevent unauthorized package refreshes
 
-### Upstash Redis (Rate Limiting)
-
-```env
-KV_REST_API_URL="https://your-redis.upstash.io"
-KV_REST_API_TOKEN="your-upstash-token"
-```
-
-**How to get these:**
-1. Sign up at [upstash.com](https://upstash.com)
-2. Create a new Redis database
-3. Get the REST API URL and token from the dashboard
-
-**Note:** Rate limiting is optional for development but **highly recommended for production** to prevent API abuse on public endpoints.
-
 ## Environment Validation
 
 The application uses Zod to validate all environment variables on startup. If any required variable is missing or invalid, you'll see a detailed error message.
@@ -163,7 +149,6 @@ bun run check-env
    Database: libsql://linite-sagyam.aws-ap-...
    Auth URL: http://localhost:3000
    Blob Storage: ✅ Configured
-   Rate Limiting: ✅ Configured
 
 🚀 You're ready to go!
 ```
@@ -230,12 +215,6 @@ const dbUrl = process.env.DATABASE_URL;
 3. Verify all required variables are set
 4. Make sure there are no typos in variable names
 
-### Rate limiting not working
-
-1. Check that `KV_REST_API_URL` and `KV_REST_API_TOKEN` are set
-2. Verify your Upstash Redis database is active
-3. The app will work without rate limiting (it's optional), but it won't be protected from abuse
-
 ### Database connection errors
 
 1. Verify your `DATABASE_URL` starts with `libsql://`
@@ -257,7 +236,6 @@ When deploying to production (Vercel):
    - `SUPERADMIN_EMAIL` (email of the admin user)
 
 2. Set recommended optional variables:
-   - `KV_REST_API_URL` and `KV_REST_API_TOKEN` (Upstash Redis for rate limiting)
    - `CRON_SECRET` (secure the refresh endpoint)
    - `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET` (if enabling Google OAuth)
 

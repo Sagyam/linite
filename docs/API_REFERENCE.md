@@ -13,43 +13,14 @@ All endpoints follow RESTful conventions. Admin endpoints require authentication
 
 **API Handler Pattern:**
 All API routes now use standardized middleware patterns:
-- `createPublicApiHandler` - Public endpoints with rate limiting
+- `createPublicApiHandler` - Public endpoints
 - `createAuthApiHandler` - Authenticated endpoints
 - `createAuthValidatedApiHandler` - Authenticated with request body validation
 
 This ensures consistent:
 - Error handling
-- Rate limiting
 - Request validation
 - Authentication checks
-
-## Rate Limiting
-
-All public API endpoints are rate-limited to prevent abuse. Rate limit headers are included in responses:
-
-- `X-RateLimit-Limit` - Maximum requests allowed in the time window
-- `X-RateLimit-Remaining` - Remaining requests in current window
-- `X-RateLimit-Reset` - Time when the rate limit resets (ISO 8601)
-
-**Rate Limits (Production):**
-- Public endpoints (`/api/apps`, `/api/distros`, `/api/sources`, `/api/categories`): 30 requests/minute
-- Generate endpoint (`/api/generate`): 10 requests/minute
-- Search endpoint (`/api/search`): 20 requests/minute (admin only)
-- Admin endpoints: 100 requests/minute
-
-**Rate Limits (Development):**
-- Public endpoints: 100 requests/minute
-- Generate endpoint: 50 requests/minute
-- Search endpoint: 100 requests/minute
-- Admin endpoints: 200 requests/minute
-
-When rate limit is exceeded, you'll receive a `429 Too Many Requests` response:
-```json
-{
-  "error": "Too many requests. Please try again later.",
-  "retryAfter": "2025-12-29T14:30:00.000Z"
-}
-```
 
 ## Public Endpoints
 
