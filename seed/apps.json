@@ -783,6 +783,15 @@
     "category": "browsers"
   },
   {
+    "slug": "ollama",
+    "displayName": "Ollama",
+    "description": "Chat & build with open models ",
+    "homepage": "https://ollama.com/",
+    "isPopular": true,
+    "isFoss": false,
+    "category": "cli"
+  },
+  {
     "slug": "pcloud",
     "displayName": "pCloud",
     "description": "Secure cloud storage with client-side encryption",

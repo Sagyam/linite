@@ -47,14 +47,7 @@ if (!parsed.success) {
   console.log(`   Database: ${parsed.data.DATABASE_URL.substring(0, 30)}...`);
   console.log(`   Auth URL: ${parsed.data.BETTER_AUTH_URL}`);
   console.log(`   Azure Blob Storage: ${parsed.data.AZURE_STORAGE_SAS_URL ? '✅ Configured' : '❌ Not configured'}`);
-  console.log(`   Rate Limiting: ${parsed.data.KV_REST_API_URL ? '✅ Configured' : '⚠️  Not configured (optional)'}`);
   console.log('');
-
-  if (!parsed.data.KV_REST_API_URL) {
-    console.log('⚠️  Note: Rate limiting is not configured. This is optional for development');
-    console.log('   but recommended for production. Add KV_REST_API_URL and KV_REST_API_TOKEN');
-    console.log('   from Upstash Redis to enable rate limiting.\n');
-  }
 
   console.log('🚀 You\'re ready to go!\n');
   process.exit(0);

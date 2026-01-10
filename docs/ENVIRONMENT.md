@@ -188,8 +188,6 @@ Both validation scripts (`src/lib/env.ts` for runtime and `scripts/check-env.ts`
 | `GOOGLE_CLIENT_SECRET` | Optional | Non-empty string |
 | `AZURE_STORAGE_SAS_URL` | Required | Valid URL with SAS token |
 | `CRON_SECRET` | Optional | Min 16 characters if provided |
-| `KV_REST_API_URL` | Optional | Valid URL if provided |
-| `KV_REST_API_TOKEN` | Optional | Non-empty string if URL is provided |
 | `NODE_ENV` | Optional | One of: `development`, `production`, `test` (default: `development`) |
 
 ## Using Environment Variables in Code

@@ -119,7 +119,7 @@
     "isAvailable": true,
     "metadata": {
       "scriptUrl": {
-        "linux": "curl -fsSL https://ollama.com/install.sh | sh"
+        "linux": "https://ollama.com/install.sh"
       },
       "note": "Chat & build with open models"
     }

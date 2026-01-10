@@ -28,8 +28,26 @@ export const PAGINATION = {
 export const TIMEOUTS = {
   /** Debounce delay for search inputs */
   DEBOUNCE_SEARCH: 300,
-  /** Delay between icon downloads to avoid overwhelming server */
-  ICON_DOWNLOAD_DELAY: 5000,
+  /** Minimum delay between icon downloads (will use random delay in range) */
+  ICON_DOWNLOAD_MIN_DELAY: 1000,
+  /** Maximum delay between icon downloads (will use random delay in range) */
+  ICON_DOWNLOAD_MAX_DELAY: 3000,
+} as const;
+
+/**
+ * Retry configuration for icon downloads
+ */
+export const RETRY_CONFIG = {
+  /** Maximum number of retry attempts for failed downloads */
+  MAX_RETRIES: 5,
+  /** Initial delay before first retry (in milliseconds) */
+  INITIAL_RETRY_DELAY: 2000,
+  /** Maximum delay between retries (in milliseconds) */
+  MAX_RETRY_DELAY: 30000,
+  /** Multiplier for exponential backoff */
+  BACKOFF_MULTIPLIER: 2,
+  /** Random jitter factor (0-1) to add randomness to retry delays */
+  JITTER_FACTOR: 0.3,
 } as const;
 
 /**

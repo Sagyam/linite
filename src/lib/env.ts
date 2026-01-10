@@ -69,12 +69,17 @@ export const envSchema = z.object({
     .min(16, 'CRON_SECRET should be at least 16 characters')
     .optional(),
 
-  // Upstash Redis - Optional but recommended for production
-  KV_REST_API_URL: z
+  // Wikipedia API credentials - Optional but recommended for icon downloads to avoid rate limiting
+  // Get these from https://meta.wikimedia.org/wiki/Special:OAuthConsumerRegistration
+  WIKIPEDIA_CLIENT_ID: z
     .string()
-    .url('KV_REST_API_URL must be a valid URL')
+    .min(1)
     .optional(),
-  KV_REST_API_TOKEN: z
+  WIKIPEDIA_CLIENT_SECRET: z
+    .string()
+    .min(1)
+    .optional(),
+  WIKIPEDIA_ACCESS_TOKEN: z
     .string()
     .min(1)
     .optional(),

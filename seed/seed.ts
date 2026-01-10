@@ -30,6 +30,13 @@ const packagesData = packageFiles.flatMap(file => {
   return data;
 });
 
+/**
+ * Generate random delay between min and max
+ */
+function getRandomDelay(min: number, max: number): number {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 async function seed() {
   console.log('🌱 Seeding database from JSON files...\n');
   console.log(`📦 Loading packages from ${packageFiles.length} source files...\n`);
@@ -99,8 +106,9 @@ async function seed() {
         console.log(`  ❌ ${distro.slug}: Upload failed`);
       }
 
-      // Small delay to avoid overwhelming the network
-      await new Promise(resolve => setTimeout(resolve, TIMEOUTS.ICON_DOWNLOAD_DELAY));
+      // Random delay to avoid overwhelming the network and rate limiting
+      const delay = getRandomDelay(TIMEOUTS.ICON_DOWNLOAD_MIN_DELAY, TIMEOUTS.ICON_DOWNLOAD_MAX_DELAY);
+      await new Promise(resolve => setTimeout(resolve, delay));
     } catch (error) {
       distroIconErrors++;
       console.error(`  ❌ ${distro.slug}: ${error instanceof Error ? error.message : 'Unknown error'}`);
@@ -170,8 +178,9 @@ async function seed() {
         console.log(`  ❌ ${appSlug}: Upload failed`);
       }
 
-      // Small delay to avoid overwhelming the network
-      await new Promise(resolve => setTimeout(resolve, TIMEOUTS.ICON_DOWNLOAD_DELAY));
+      // Random delay to avoid overwhelming the network and rate limiting
+      const delay = getRandomDelay(TIMEOUTS.ICON_DOWNLOAD_MIN_DELAY, TIMEOUTS.ICON_DOWNLOAD_MAX_DELAY);
+      await new Promise(resolve => setTimeout(resolve, delay));
     } catch (error) {
       iconErrors++;
       console.error(`  ❌ ${appSlug}: ${error instanceof Error ? error.message : 'Unknown error'}`);
