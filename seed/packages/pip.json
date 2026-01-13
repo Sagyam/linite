@@ -1,0 +1,44 @@
+[
+  {
+    "app": "jupyter",
+    "source": "pip",
+    "identifier": "jupyter",
+    "isAvailable": true
+  },
+  {
+    "app": "black",
+    "source": "pip",
+    "identifier": "black",
+    "isAvailable": true
+  },
+  {
+    "app": "pylint",
+    "source": "pip",
+    "identifier": "pylint",
+    "isAvailable": true
+  },
+  {
+    "app": "poetry",
+    "source": "pip",
+    "identifier": "poetry",
+    "isAvailable": true
+  },
+  {
+    "app": "ansible",
+    "source": "pip",
+    "identifier": "ansible",
+    "isAvailable": true
+  },
+  {
+    "app": "pipenv",
+    "source": "pip",
+    "identifier": "pipenv",
+    "isAvailable": true
+  },
+  {
+    "app": "ranger",
+    "source": "pip",
+    "identifier": "ranger-fm",
+    "isAvailable": true
+  }
+]

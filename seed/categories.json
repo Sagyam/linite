@@ -76,5 +76,11 @@
     "slug": "cli",
     "icon": "Command",
     "displayOrder": 13
+  },
+  {
+    "name": "AI",
+    "slug": "ai",
+    "icon": "BrainCircuit",
+    "displayOrder": 14
   }
 ]

@@ -12,12 +12,6 @@
     "isAvailable": true
   },
   {
-    "app": "java",
-    "source": "zypper",
-    "identifier": "java-openjdk",
-    "isAvailable": true
-  },
-  {
     "app": "golang",
     "source": "zypper",
     "identifier": "go",
@@ -45,12 +39,6 @@
     "app": "gcc",
     "source": "zypper",
     "identifier": "gcc",
-    "isAvailable": true
-  },
-  {
-    "app": "clang",
-    "source": "zypper",
-    "identifier": "llvm-clang",
     "isAvailable": true
   },
   {

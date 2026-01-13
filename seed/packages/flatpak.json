@@ -6,12 +6,6 @@
     "isAvailable": true
   },
   {
-    "app": "alacritty",
-    "source": "flatpak",
-    "identifier": "org.alacritty.Alacritty",
-    "isAvailable": true
-  },
-  {
     "app": "android-studio",
     "source": "flatpak",
     "identifier": "com.google.AndroidStudio",
@@ -21,12 +15,6 @@
     "app": "audacity",
     "source": "flatpak",
     "identifier": "org.audacityteam.Audacity",
-    "isAvailable": true
-  },
-  {
-    "app": "balena-etcher",
-    "source": "flatpak",
-    "identifier": "io.balena.Etcher",
     "isAvailable": true
   },
   {
@@ -62,7 +50,7 @@
   {
     "app": "cartridges",
     "source": "flatpak",
-    "identifier": "hu.kramo.Cartridges",
+    "identifier": "page.kramo.Cartridges",
     "isAvailable": true
   },
   {
@@ -174,12 +162,6 @@
     "isAvailable": true
   },
   {
-    "app": "gamehub",
-    "source": "flatpak",
-    "identifier": "com.github.tkashkin.gamehub",
-    "isAvailable": true
-  },
-  {
     "app": "geary",
     "source": "flatpak",
     "identifier": "org.gnome.Geary",
@@ -252,12 +234,6 @@
     "isAvailable": true
   },
   {
-    "app": "kitty",
-    "source": "flatpak",
-    "identifier": "io.github.kovidgoyal.kitty",
-    "isAvailable": true
-  },
-  {
     "app": "krita",
     "source": "flatpak",
     "identifier": "org.kde.krita",
@@ -285,12 +261,6 @@
     "app": "lutris",
     "source": "flatpak",
     "identifier": "net.lutris.Lutris",
-    "isAvailable": true
-  },
-  {
-    "app": "mega",
-    "source": "flatpak",
-    "identifier": "nz.mega.MEGAsync",
     "isAvailable": true
   },
   {
@@ -476,7 +446,7 @@
   {
     "app": "tor-browser",
     "source": "flatpak",
-    "identifier": "com.github.micahflee.torbrowser-launcher",
+    "identifier": "org.torproject.torbrowser-launcher",
     "isAvailable": true
   },
   {
@@ -488,7 +458,7 @@
   {
     "app": "ungoogled-chromium",
     "source": "flatpak",
-    "identifier": "com.github.Eloston.UngoogledChromium",
+    "identifier": "io.github.ungoogled_software.ungoogled_chromium",
     "isAvailable": true
   },
   {
@@ -548,19 +518,49 @@
   {
     "app": "zed",
     "source": "flatpak",
-    "identifier": "dev.zed.Zed",
-    "isAvailable": true
-  },
-  {
-    "app": "zen-browser",
-    "source": "flatpak",
-    "identifier": "io.github.zen_browser.zen",
+    "identifier": "app.zen_browser.zen",
     "isAvailable": true
   },
   {
     "app": "zoom",
     "source": "flatpak",
     "identifier": "us.zoom.Zoom",
+    "isAvailable": true
+  },
+  {
+    "app": "signal",
+    "source": "flatpak",
+    "identifier": "org.signal.Signal",
+    "isAvailable": true
+  },
+  {
+    "app": "godot",
+    "source": "flatpak",
+    "identifier": "org.godotengine.Godot",
+    "isAvailable": true
+  },
+  {
+    "app": "freecad",
+    "source": "flatpak",
+    "identifier": "org.freecad.FreeCAD",
+    "isAvailable": true
+  },
+  {
+    "app": "stremio",
+    "source": "flatpak",
+    "identifier": "com.stremio.Stremio",
+    "isAvailable": true
+  },
+  {
+    "app": "wireshark",
+    "source": "flatpak",
+    "identifier": "org.wireshark.Wireshark",
+    "isAvailable": true
+  },
+  {
+    "app": "imhex",
+    "source": "flatpak",
+    "identifier": "net.werwolv.ImHex",
     "isAvailable": true
   }
 ]

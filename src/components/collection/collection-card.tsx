@@ -2,36 +2,22 @@
 
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { AppIcon } from '@/components/ui/app-icon';
-import { Heart, Package, Eye, Lock, Globe, Star } from 'lucide-react';
+import { Package, Eye, Lock, Globe, Star } from 'lucide-react';
 import Link from 'next/link';
 import type { CollectionWithRelations } from '@/types/entities';
 
 interface CollectionCardProps {
   collection: CollectionWithRelations;
   showAuthor?: boolean;
-  onLike?: (collectionId: string) => void;
-  isLiked?: boolean;
 }
 
 export function CollectionCard({
   collection,
   showAuthor = true,
-  onLike,
-  isLiked = false,
 }: CollectionCardProps) {
   const appCount = collection.items?.length || 0;
-  const likeCount = collection._count?.likes || 0;
-
-  const handleLikeClick = (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    if (onLike) {
-      onLike(collection.id);
-    }
-  };
 
   return (
     <Link href={`/collections/${collection.slug}`}>
@@ -91,17 +77,6 @@ export function CollectionCard({
               <Eye className="w-4 h-4" />
               <span>{collection.viewCount || 0}</span>
             </div>
-            <Button
-              variant="ghost"
-              size="sm"
-              className={`h-auto p-0 hover:bg-transparent gap-1.5 ${
-                isLiked ? 'text-red-500' : 'text-muted-foreground'
-              }`}
-              onClick={handleLikeClick}
-            >
-              <Heart className={`w-4 h-4 ${isLiked ? 'fill-current' : ''}`} />
-              <span>{likeCount}</span>
-            </Button>
           </div>
 
           {collection.tags && collection.tags.length > 0 && (

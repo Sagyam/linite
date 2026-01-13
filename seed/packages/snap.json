@@ -186,18 +186,6 @@
     "isAvailable": true
   },
   {
-    "app": "mailspring",
-    "source": "snap",
-    "identifier": "mailspring",
-    "isAvailable": true
-  },
-  {
-    "app": "minecraft",
-    "source": "snap",
-    "identifier": "minecraft-launcher",
-    "isAvailable": true
-  },
-  {
     "app": "netbeans",
     "source": "snap",
     "identifier": "netbeans",
@@ -234,12 +222,6 @@
     "isAvailable": true
   },
   {
-    "app": "openshot",
-    "source": "snap",
-    "identifier": "openshot",
-    "isAvailable": true
-  },
-  {
     "app": "opera",
     "source": "snap",
     "identifier": "opera",
@@ -266,7 +248,7 @@
   {
     "app": "qbittorrent",
     "source": "snap",
-    "identifier": "qbittorrent",
+    "identifier": "qbittorrent-tak",
     "isAvailable": true
   },
   {
@@ -279,12 +261,6 @@
     "app": "rider",
     "source": "snap",
     "identifier": "rider",
-    "isAvailable": true
-  },
-  {
-    "app": "rustdesk",
-    "source": "snap",
-    "identifier": "rustdesk",
     "isAvailable": true
   },
   {
@@ -336,12 +312,6 @@
     "isAvailable": true
   },
   {
-    "app": "tor-browser",
-    "source": "snap",
-    "identifier": "tor-browser",
-    "isAvailable": true
-  },
-  {
     "app": "uv",
     "source": "snap",
     "identifier": "astral-uv",
@@ -378,12 +348,6 @@
     "isAvailable": true
   },
   {
-    "app": "waterfox",
-    "source": "snap",
-    "identifier": "waterfox",
-    "isAvailable": true
-  },
-  {
     "app": "webstorm",
     "source": "snap",
     "identifier": "webstorm",
@@ -393,6 +357,72 @@
     "app": "zoom",
     "source": "snap",
     "identifier": "zoom-client",
+    "isAvailable": true
+  },
+  {
+    "app": "signal",
+    "source": "snap",
+    "identifier": "signal-desktop",
+    "isAvailable": true
+  },
+  {
+    "app": "godot",
+    "source": "snap",
+    "identifier": "godot",
+    "isAvailable": true
+  },
+  {
+    "app": "freecad",
+    "source": "snap",
+    "identifier": "freecad",
+    "isAvailable": true
+  },
+  {
+    "app": "ffmpeg",
+    "source": "snap",
+    "identifier": "ffmpeg",
+    "isAvailable": true
+  },
+  {
+    "app": "postgresql",
+    "source": "snap",
+    "identifier": "postgresql",
+    "isAvailable": true
+  },
+  {
+    "app": "redis",
+    "source": "snap",
+    "identifier": "redis",
+    "isAvailable": true
+  },
+  {
+    "app": "mongodb",
+    "source": "snap",
+    "identifier": "charmed-mongodb",
+    "isAvailable": true
+  },
+  {
+    "app": "kubectl",
+    "source": "snap",
+    "identifier": "kubectl",
+    "isAvailable": true
+  },
+  {
+    "app": "terraform",
+    "source": "snap",
+    "identifier": "terraform",
+    "isAvailable": true
+  },
+  {
+    "app": "podman",
+    "source": "snap",
+    "identifier": "podman",
+    "isAvailable": true
+  },
+  {
+    "app": "micro",
+    "source": "snap",
+    "identifier": "micro",
     "isAvailable": true
   }
 ]

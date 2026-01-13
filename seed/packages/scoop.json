@@ -8,7 +8,7 @@
   {
     "app": "balena-etcher",
     "source": "scoop",
-    "identifier": "etcher",
+    "identifier": "balena-cli",
     "isAvailable": true
   },
   {
@@ -114,18 +114,6 @@
     "isAvailable": true
   },
   {
-    "app": "heroic",
-    "source": "scoop",
-    "identifier": "heroic",
-    "isAvailable": true
-  },
-  {
-    "app": "httpie",
-    "source": "scoop",
-    "identifier": "httpie",
-    "isAvailable": true
-  },
-  {
     "app": "inkscape",
     "source": "scoop",
     "identifier": "inkscape",
@@ -222,12 +210,6 @@
     "isAvailable": true
   },
   {
-    "app": "steam",
-    "source": "scoop",
-    "identifier": "steam",
-    "isAvailable": true
-  },
-  {
     "app": "syncthing",
     "source": "scoop",
     "identifier": "syncthing",
@@ -258,12 +240,6 @@
     "isAvailable": true
   },
   {
-    "app": "veracrypt",
-    "source": "scoop",
-    "identifier": "veracrypt",
-    "isAvailable": true
-  },
-  {
     "app": "vlc",
     "source": "scoop",
     "identifier": "vlc",
@@ -285,6 +261,234 @@
     "app": "zsh",
     "source": "scoop",
     "identifier": "zsh",
+    "isAvailable": true
+  },
+  {
+    "app": "signal",
+    "source": "scoop",
+    "identifier": "signal",
+    "isAvailable": true
+  },
+  {
+    "app": "ffmpeg",
+    "source": "scoop",
+    "identifier": "ffmpeg",
+    "isAvailable": true
+  },
+  {
+    "app": "godot",
+    "source": "scoop",
+    "identifier": "godot",
+    "isAvailable": true
+  },
+  {
+    "app": "stremio",
+    "source": "scoop",
+    "identifier": "stremio",
+    "isAvailable": true
+  },
+  {
+    "app": "postgresql",
+    "source": "scoop",
+    "identifier": "postgresql",
+    "isAvailable": true
+  },
+  {
+    "app": "mongodb",
+    "source": "scoop",
+    "identifier": "mongodb",
+    "isAvailable": true
+  },
+  {
+    "app": "redis",
+    "source": "scoop",
+    "identifier": "redis",
+    "isAvailable": true
+  },
+  {
+    "app": "nginx",
+    "source": "scoop",
+    "identifier": "nginx",
+    "isAvailable": true
+  },
+  {
+    "app": "apache",
+    "source": "scoop",
+    "identifier": "apache",
+    "isAvailable": true
+  },
+  {
+    "app": "terraform",
+    "source": "scoop",
+    "identifier": "terraform",
+    "isAvailable": true
+  },
+  {
+    "app": "gh",
+    "source": "scoop",
+    "identifier": "gh",
+    "isAvailable": true
+  },
+  {
+    "app": "kubectl",
+    "source": "scoop",
+    "identifier": "kubectl",
+    "isAvailable": true
+  },
+  {
+    "app": "wireshark",
+    "source": "scoop",
+    "identifier": "wireshark",
+    "isAvailable": true
+  },
+  {
+    "app": "nmap",
+    "source": "scoop",
+    "identifier": "nmap",
+    "isAvailable": true
+  },
+  {
+    "app": "openssh",
+    "source": "scoop",
+    "identifier": "openssh",
+    "isAvailable": true
+  },
+  {
+    "app": "openvpn",
+    "source": "scoop",
+    "identifier": "openvpn",
+    "isAvailable": true
+  },
+  {
+    "app": "tailscale",
+    "source": "scoop",
+    "identifier": "tailscale",
+    "isAvailable": true
+  },
+  {
+    "app": "aria2",
+    "source": "scoop",
+    "identifier": "aria2",
+    "isAvailable": true
+  },
+  {
+    "app": "fd",
+    "source": "scoop",
+    "identifier": "fd",
+    "isAvailable": true
+  },
+  {
+    "app": "zoxide",
+    "source": "scoop",
+    "identifier": "zoxide",
+    "isAvailable": true
+  },
+  {
+    "app": "starship",
+    "source": "scoop",
+    "identifier": "starship",
+    "isAvailable": true
+  },
+  {
+    "app": "micro",
+    "source": "scoop",
+    "identifier": "micro",
+    "isAvailable": true
+  },
+  {
+    "app": "helix",
+    "source": "scoop",
+    "identifier": "helix",
+    "isAvailable": true
+  },
+  {
+    "app": "neovim",
+    "source": "scoop",
+    "identifier": "neovim",
+    "isAvailable": true
+  },
+  {
+    "app": "cursor",
+    "source": "scoop",
+    "identifier": "cursor",
+    "isAvailable": true
+  },
+  {
+    "app": "python",
+    "source": "scoop",
+    "identifier": "python",
+    "isAvailable": true
+  },
+  {
+    "app": "java",
+    "source": "scoop",
+    "identifier": "openjdk",
+    "isAvailable": true
+  },
+  {
+    "app": "golang",
+    "source": "scoop",
+    "identifier": "go",
+    "isAvailable": true
+  },
+  {
+    "app": "rust",
+    "source": "scoop",
+    "identifier": "rust",
+    "isAvailable": true
+  },
+  {
+    "app": "php",
+    "source": "scoop",
+    "identifier": "php",
+    "isAvailable": true
+  },
+  {
+    "app": "ruby",
+    "source": "scoop",
+    "identifier": "ruby",
+    "isAvailable": true
+  },
+  {
+    "app": "wezterm",
+    "source": "scoop",
+    "identifier": "wezterm",
+    "isAvailable": true
+  },
+  {
+    "app": "alacritty",
+    "source": "scoop",
+    "identifier": "alacritty",
+    "isAvailable": true
+  },
+  {
+    "app": "zed",
+    "source": "scoop",
+    "identifier": "zed",
+    "isAvailable": true
+  },
+  {
+    "app": "lazygit",
+    "source": "scoop",
+    "identifier": "lazygit",
+    "isAvailable": true
+  },
+  {
+    "app": "yq",
+    "source": "scoop",
+    "identifier": "yq",
+    "isAvailable": true
+  },
+  {
+    "app": "lazydocker",
+    "source": "scoop",
+    "identifier": "lazydocker",
+    "isAvailable": true
+  },
+  {
+    "app": "vagrant",
+    "source": "scoop",
+    "identifier": "vagrant",
     "isAvailable": true
   }
 ]

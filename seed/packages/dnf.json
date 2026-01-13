@@ -12,21 +12,9 @@
     "isAvailable": true
   },
   {
-    "app": "anydesk",
-    "source": "dnf",
-    "identifier": "anydesk",
-    "isAvailable": true
-  },
-  {
     "app": "audacity",
     "source": "dnf",
     "identifier": "audacity",
-    "isAvailable": true
-  },
-  {
-    "app": "balena-etcher",
-    "source": "dnf",
-    "identifier": "balena-etcher-electron",
     "isAvailable": true
   },
   {
@@ -39,12 +27,6 @@
     "app": "blender",
     "source": "dnf",
     "identifier": "blender",
-    "isAvailable": true
-  },
-  {
-    "app": "brave",
-    "source": "dnf",
-    "identifier": "brave-browser",
     "isAvailable": true
   },
   {
@@ -66,21 +48,9 @@
     "isAvailable": true
   },
   {
-    "app": "chrome",
-    "source": "dnf",
-    "identifier": "google-chrome-stable",
-    "isAvailable": true
-  },
-  {
     "app": "chromium",
     "source": "dnf",
     "identifier": "chromium",
-    "isAvailable": true
-  },
-  {
-    "app": "clamav",
-    "source": "dnf",
-    "identifier": "clamav",
     "isAvailable": true
   },
   {
@@ -108,18 +78,6 @@
     "isAvailable": true
   },
   {
-    "app": "dropbox",
-    "source": "dnf",
-    "identifier": "dropbox",
-    "isAvailable": true
-  },
-  {
-    "app": "eclipse",
-    "source": "dnf",
-    "identifier": "eclipse",
-    "isAvailable": true
-  },
-  {
     "app": "emacs",
     "source": "dnf",
     "identifier": "emacs",
@@ -129,12 +87,6 @@
     "app": "evolution",
     "source": "dnf",
     "identifier": "evolution",
-    "isAvailable": true
-  },
-  {
-    "app": "eza",
-    "source": "dnf",
-    "identifier": "eza",
     "isAvailable": true
   },
   {
@@ -204,12 +156,6 @@
     "isAvailable": true
   },
   {
-    "app": "handbrake",
-    "source": "dnf",
-    "identifier": "handbrake",
-    "isAvailable": true
-  },
-  {
     "app": "httpie",
     "source": "dnf",
     "identifier": "httpie",
@@ -222,27 +168,9 @@
     "isAvailable": true
   },
   {
-    "app": "java",
-    "source": "dnf",
-    "identifier": "java-latest-openjdk",
-    "isAvailable": true
-  },
-  {
-    "app": "joplin",
-    "source": "dnf",
-    "identifier": "joplin",
-    "isAvailable": true
-  },
-  {
     "app": "jq",
     "source": "dnf",
     "identifier": "jq",
-    "isAvailable": true
-  },
-  {
-    "app": "k9s",
-    "source": "dnf",
-    "identifier": "k9s",
     "isAvailable": true
   },
   {
@@ -258,33 +186,15 @@
     "isAvailable": true
   },
   {
-    "app": "kitty",
-    "source": "dnf",
-    "identifier": "kitty",
-    "isAvailable": true
-  },
-  {
     "app": "krita",
     "source": "dnf",
     "identifier": "krita",
     "isAvailable": true
   },
   {
-    "app": "lazygit",
-    "source": "dnf",
-    "identifier": "lazygit",
-    "isAvailable": true
-  },
-  {
     "app": "libreoffice",
     "source": "dnf",
     "identifier": "libreoffice",
-    "isAvailable": true
-  },
-  {
-    "app": "librewolf",
-    "source": "dnf",
-    "identifier": "librewolf",
     "isAvailable": true
   },
   {
@@ -300,24 +210,6 @@
     "isAvailable": true
   },
   {
-    "app": "mailspring",
-    "source": "dnf",
-    "identifier": "mailspring",
-    "isAvailable": true
-  },
-  {
-    "app": "mega",
-    "source": "dnf",
-    "identifier": "megasync",
-    "isAvailable": true
-  },
-  {
-    "app": "microsoft-edge",
-    "source": "dnf",
-    "identifier": "microsoft-edge-stable",
-    "isAvailable": true
-  },
-  {
     "app": "mpv",
     "source": "dnf",
     "identifier": "mpv",
@@ -327,12 +219,6 @@
     "app": "neovim",
     "source": "dnf",
     "identifier": "neovim",
-    "isAvailable": true
-  },
-  {
-    "app": "nextcloud",
-    "source": "dnf",
-    "identifier": "nextcloud-client",
     "isAvailable": true
   },
   {
@@ -348,21 +234,9 @@
     "isAvailable": true
   },
   {
-    "app": "onlyoffice",
-    "source": "dnf",
-    "identifier": "onlyoffice-desktopeditors",
-    "isAvailable": true
-  },
-  {
     "app": "openshot",
     "source": "dnf",
     "identifier": "openshot",
-    "isAvailable": true
-  },
-  {
-    "app": "opera",
-    "source": "dnf",
-    "identifier": "opera-stable",
     "isAvailable": true
   },
   {
@@ -390,21 +264,9 @@
     "isAvailable": true
   },
   {
-    "app": "r-lang",
-    "source": "dnf",
-    "identifier": "R",
-    "isAvailable": true
-  },
-  {
     "app": "remmina",
     "source": "dnf",
     "identifier": "remmina",
-    "isAvailable": true
-  },
-  {
-    "app": "retroarch",
-    "source": "dnf",
-    "identifier": "retroarch",
     "isAvailable": true
   },
   {
@@ -426,57 +288,15 @@
     "isAvailable": true
   },
   {
-    "app": "rustdesk",
-    "source": "dnf",
-    "identifier": "rustdesk",
-    "isAvailable": true
-  },
-  {
-    "app": "slack",
-    "source": "dnf",
-    "identifier": "slack",
-    "isAvailable": true
-  },
-  {
-    "app": "steam",
-    "source": "dnf",
-    "identifier": "steam",
-    "isAvailable": true
-  },
-  {
-    "app": "sublime-text",
-    "source": "dnf",
-    "identifier": "sublime-text",
-    "isAvailable": true
-  },
-  {
     "app": "supertuxkart",
     "source": "dnf",
     "identifier": "supertuxkart",
     "isAvailable": true
   },
   {
-    "app": "syncthing",
-    "source": "dnf",
-    "identifier": "syncthing",
-    "isAvailable": true
-  },
-  {
-    "app": "telegram",
-    "source": "dnf",
-    "identifier": "telegram-desktop",
-    "isAvailable": true
-  },
-  {
     "app": "thunderbird",
     "source": "dnf",
     "identifier": "thunderbird",
-    "isAvailable": true
-  },
-  {
-    "app": "timeshift",
-    "source": "dnf",
-    "identifier": "timeshift",
     "isAvailable": true
   },
   {
@@ -498,51 +318,9 @@
     "isAvailable": true
   },
   {
-    "app": "veracrypt",
-    "source": "dnf",
-    "identifier": "veracrypt",
-    "isAvailable": true
-  },
-  {
-    "app": "vivaldi",
-    "source": "dnf",
-    "identifier": "vivaldi-stable",
-    "isAvailable": true
-  },
-  {
     "app": "vlc",
     "source": "dnf",
     "identifier": "vlc",
-    "isAvailable": true
-  },
-  {
-    "app": "vscode",
-    "source": "dnf",
-    "identifier": "code",
-    "isAvailable": true
-  },
-  {
-    "app": "vscodium",
-    "source": "dnf",
-    "identifier": "codium",
-    "isAvailable": true
-  },
-  {
-    "app": "wesnoth",
-    "source": "dnf",
-    "identifier": "wesnoth",
-    "isAvailable": true
-  },
-  {
-    "app": "yq",
-    "source": "dnf",
-    "identifier": "yq",
-    "isAvailable": true
-  },
-  {
-    "app": "zoom",
-    "source": "dnf",
-    "identifier": "zoom",
     "isAvailable": true
   },
   {

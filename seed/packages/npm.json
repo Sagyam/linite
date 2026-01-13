@@ -1,0 +1,14 @@
+[
+  {
+    "app": "nodemon",
+    "source": "npm",
+    "identifier": "nodemon",
+    "isAvailable": true
+  },
+  {
+    "app": "pnpm",
+    "source": "npm",
+    "identifier": "pnpm",
+    "isAvailable": true
+  }
+]

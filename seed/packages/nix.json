@@ -30,27 +30,9 @@
     "isAvailable": true
   },
   {
-    "app": "chrome",
-    "source": "nix",
-    "identifier": "google-chrome",
-    "isAvailable": true
-  },
-  {
     "app": "chromium",
     "source": "nix",
     "identifier": "chromium",
-    "isAvailable": true
-  },
-  {
-    "app": "clamav",
-    "source": "nix",
-    "identifier": "clamav",
-    "isAvailable": true
-  },
-  {
-    "app": "discord",
-    "source": "nix",
-    "identifier": "discord",
     "isAvailable": true
   },
   {
@@ -63,12 +45,6 @@
     "app": "emacs",
     "source": "nix",
     "identifier": "emacs",
-    "isAvailable": true
-  },
-  {
-    "app": "filezilla",
-    "source": "nix",
-    "identifier": "filezilla",
     "isAvailable": true
   },
   {
@@ -150,12 +126,6 @@
     "isAvailable": true
   },
   {
-    "app": "libreoffice",
-    "source": "nix",
-    "identifier": "libreoffice",
-    "isAvailable": true
-  },
-  {
     "app": "mpv",
     "source": "nix",
     "identifier": "mpv",
@@ -174,27 +144,9 @@
     "isAvailable": true
   },
   {
-    "app": "obs",
-    "source": "nix",
-    "identifier": "obs-studio",
-    "isAvailable": true
-  },
-  {
-    "app": "obsidian",
-    "source": "nix",
-    "identifier": "obsidian",
-    "isAvailable": true
-  },
-  {
     "app": "php",
     "source": "nix",
     "identifier": "php",
-    "isAvailable": true
-  },
-  {
-    "app": "postman",
-    "source": "nix",
-    "identifier": "postman",
     "isAvailable": true
   },
   {
@@ -228,33 +180,15 @@
     "isAvailable": true
   },
   {
-    "app": "spotify",
-    "source": "nix",
-    "identifier": "spotify",
-    "isAvailable": true
-  },
-  {
     "app": "steam",
     "source": "nix",
     "identifier": "steam",
     "isAvailable": true
   },
   {
-    "app": "telegram",
-    "source": "nix",
-    "identifier": "telegram-desktop",
-    "isAvailable": true
-  },
-  {
     "app": "thunderbird",
     "source": "nix",
     "identifier": "thunderbird",
-    "isAvailable": true
-  },
-  {
-    "app": "timeshift",
-    "source": "nix",
-    "identifier": "timeshift",
     "isAvailable": true
   },
   {
@@ -270,27 +204,9 @@
     "isAvailable": true
   },
   {
-    "app": "vivaldi",
-    "source": "nix",
-    "identifier": "vivaldi",
-    "isAvailable": true
-  },
-  {
     "app": "vlc",
     "source": "nix",
     "identifier": "vlc",
-    "isAvailable": true
-  },
-  {
-    "app": "vscode",
-    "source": "nix",
-    "identifier": "vscode",
-    "isAvailable": true
-  },
-  {
-    "app": "zoom",
-    "source": "nix",
-    "identifier": "zoom-us",
     "isAvailable": true
   },
   {

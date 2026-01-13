@@ -203,18 +203,7 @@ export async function getCollectionById(
 
   if (!collection) return null;
 
-  // Get like count
-  const [likeCount] = await db
-    .select({ count: sql<number>`count(*)` })
-    .from(schema.collectionLikes)
-    .where(eq(schema.collectionLikes.collectionId, collectionId));
-
-  return {
-    ...collection,
-    _count: {
-      likes: likeCount?.count || 0,
-    },
-  } as CollectionWithRelations;
+  return collection as CollectionWithRelations;
 }
 
 export async function getCollectionBySlug(
@@ -259,18 +248,7 @@ export async function getCollectionBySlug(
 
   if (!collection) return null;
 
-  // Get like count
-  const [likeCount] = await db
-    .select({ count: sql<number>`count(*)` })
-    .from(schema.collectionLikes)
-    .where(eq(schema.collectionLikes.collectionId, collection.id));
-
-  return {
-    ...collection,
-    _count: {
-      likes: likeCount?.count || 0,
-    },
-  } as CollectionWithRelations;
+  return collection as CollectionWithRelations;
 }
 
 export async function getCollectionByShareToken(
@@ -312,17 +290,9 @@ export async function getCollectionByShareToken(
     .set({ viewCount: sql`${schema.collections.viewCount} + 1` })
     .where(eq(schema.collections.id, collection.id));
 
-  // Get like count
-  const [likeCount] = await db
-    .select({ count: sql<number>`count(*)` })
-    .from(schema.collectionLikes)
-    .where(eq(schema.collectionLikes.collectionId, collection.id));
 
   return {
     ...collection,
-    _count: {
-      likes: likeCount?.count || 0,
-    },
   } as CollectionWithRelations;
 }
 
@@ -392,25 +362,8 @@ export async function listCollections(
     .from(schema.collections)
     .where(whereClause);
 
-  // Add like counts
-  const collectionsWithCounts = await Promise.all(
-    collections.map(async (collection) => {
-      const [likeCount] = await db
-        .select({ count: sql<number>`count(*)` })
-        .from(schema.collectionLikes)
-        .where(eq(schema.collectionLikes.collectionId, collection.id));
-
-      return {
-        ...collection,
-        _count: {
-          likes: likeCount?.count || 0,
-        },
-      };
-    })
-  );
-
   return {
-    collections: collectionsWithCounts as CollectionWithRelations[],
+    collections: collections as CollectionWithRelations[],
     total: count || 0,
   };
 }
@@ -452,55 +405,6 @@ export async function removeItemFromCollection(itemId: string): Promise<void> {
   await db.delete(schema.collectionItems).where(eq(schema.collectionItems.id, itemId));
 }
 
-export async function toggleLike(
-  collectionId: string,
-  userId: string
-): Promise<{ liked: boolean }> {
-  // Check if already liked
-  const existing = await db.query.collectionLikes.findFirst({
-    where: and(
-      eq(schema.collectionLikes.collectionId, collectionId),
-      eq(schema.collectionLikes.userId, userId)
-    ),
-  });
-
-  if (existing) {
-    // Unlike
-    await db.delete(schema.collectionLikes).where(eq(schema.collectionLikes.id, existing.id));
-    return { liked: false };
-  } else {
-    // Like
-    await db.insert(schema.collectionLikes).values({
-      id: createId(),
-      collectionId,
-      userId,
-    });
-    return { liked: true };
-  }
-}
-
-export async function cloneCollection(
-  collectionId: string,
-  newUserId: string
-): Promise<Collection> {
-  const original = await getCollectionById(collectionId);
-  if (!original) {
-    throw new Error('Collection not found');
-  }
-
-  // Create new collection
-  const cloned = await createCollection({
-    userId: newUserId,
-    name: `${original.name} (Copy)`,
-    description: original.description || undefined,
-    isPublic: false, // Clones are private by default
-    tags: original.tags || undefined,
-    iconUrl: original.iconUrl || undefined,
-    appIds: original.items.map((item) => item.appId),
-  });
-
-  return cloned;
-}
 
 export async function incrementViewCount(collectionId: string): Promise<void> {
   await db

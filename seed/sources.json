@@ -99,12 +99,57 @@
     "apiEndpoint": null
   },
   {
+    "name": "Chocolatey",
+    "slug": "chocolatey",
+    "installCmd": "choco install -y",
+    "requireSudo": false,
+    "setupCmd": "Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))",
+    "priority": 7,
+    "apiEndpoint": null
+  },
+  {
     "name": "Script",
     "slug": "script",
     "installCmd": "curl -fsSL {url} | bash",
     "requireSudo": false,
     "setupCmd": null,
     "priority": 1,
+    "apiEndpoint": null
+  },
+  {
+    "name": "Cargo",
+    "slug": "cargo",
+    "installCmd": "cargo install",
+    "requireSudo": false,
+    "setupCmd": "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y && source $HOME/.cargo/env",
+    "priority": 4,
+    "apiEndpoint": null
+  },
+  {
+    "name": "npm",
+    "slug": "npm",
+    "installCmd": "npm install -g",
+    "requireSudo": false,
+    "setupCmd": "curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash - && sudo apt-get install -y nodejs",
+    "priority": 4,
+    "apiEndpoint": null
+  },
+  {
+    "name": "Go",
+    "slug": "go",
+    "installCmd": "go install",
+    "requireSudo": false,
+    "setupCmd": "wget https://go.dev/dl/go1.21.5.linux-amd64.tar.gz && sudo tar -C /usr/local -xzf go1.21.5.linux-amd64.tar.gz && echo 'export PATH=$PATH:/usr/local/go/bin' >> ~/.bashrc && source ~/.bashrc",
+    "priority": 4,
+    "apiEndpoint": null
+  },
+  {
+    "name": "pip",
+    "slug": "pip",
+    "installCmd": "pip install --user",
+    "requireSudo": false,
+    "setupCmd": "sudo apt-get update && sudo apt-get install -y python3-pip || sudo dnf install -y python3-pip || sudo pacman -S --noconfirm python-pip",
+    "priority": 4,
     "apiEndpoint": null
   }
 ]

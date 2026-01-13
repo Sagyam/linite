@@ -81,23 +81,23 @@
        │                                    │ createdAt       │
        │                                    │ updatedAt       │
        │                                    └─────────────────┘
-       │                                           │  │
-       │                                           │  │
-       │      ┌────────────────────────────────────┘  │
-       │      │                                       │
-       │      ▼                                       ▼
-       │  ┌─────────────────┐              ┌─────────────────┐
-       │  │collectionItems  │              │collectionLikes  │
-       │  ├─────────────────┤              ├─────────────────┤
-       │  │ id (PK)         │              │ id (PK)         │
-       │  │ collectionId    │              │ userId (FK)     │─┐
-       │  │ appId (FK)      │              │ collectionId    │ │
-       │  │ displayOrder    │              │ createdAt       │ │
-       │  │ note            │              └─────────────────┘ │
-       │  │ createdAt       │                                  │
-       │  └─────────────────┘                                  │
-       │                                                        │
-       └────────────────────────────────────────────────────────┘
+       │                                           │
+       │                                           │
+       │      ┌────────────────────────────────────┘
+       │      │
+       │      ▼
+       │  ┌─────────────────┐
+       │  │collectionItems  │
+       │  ├─────────────────┤
+       │  │ id (PK)         │
+       │  │ collectionId    │
+       │  │ appId (FK)      │
+       │  │ displayOrder    │
+       │  │ note            │
+       │  │ createdAt       │
+       │  └─────────────────┘
+       │
+       └────────────────────────
 
 ┌─────────────────┐
 │  refreshLogs    │
@@ -263,14 +263,6 @@ Apps within a collection
 - **note**: Optional note about why app is included
 - **createdAt**: Timestamp
 - **Indexes**: collectionId, appId, (collectionId + appId)
-
-#### collectionLikes
-User likes/favorites for collections
-- **id**: CUID2 primary key
-- **userId**: Foreign key to user (cascade delete)
-- **collectionId**: Foreign key to collections (cascade delete)
-- **createdAt**: Timestamp
-- **Indexes**: userId, collectionId, (userId + collectionId)
 
 ### System Tables
 

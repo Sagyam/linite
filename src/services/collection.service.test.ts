@@ -10,8 +10,6 @@ import {
   generateShareToken,
   addItemToCollection,
   removeItemFromCollection,
-  toggleLike,
-  cloneCollection,
   incrementViewCount,
   incrementInstallCount,
   type CreateCollectionData,
@@ -373,7 +371,6 @@ describe('Collection Service', () => {
 
       expect(result).toBeDefined();
       expect(result?.id).toBe('coll-123');
-      expect(result?._count?.likes).toBe(3);
     });
 
     it('should return public collection for unauthenticated user', async () => {
@@ -778,121 +775,6 @@ describe('Collection Service', () => {
       await removeItemFromCollection('item-1');
 
       expect(db.delete).toHaveBeenCalled();
-    });
-  });
-
-  describe('toggleLike', () => {
-    it('should like a collection when not already liked', async () => {
-      (db.query.collectionLikes.findFirst as Mock).mockResolvedValue(null);
-
-      const insertMock = vi.fn().mockResolvedValue(undefined);
-      (db.insert as Mock).mockReturnValue({
-        values: insertMock,
-      });
-
-      const result = await toggleLike('coll-123', 'user-1');
-
-      expect(result.liked).toBe(true);
-      expect(db.insert).toHaveBeenCalled();
-    });
-
-    it('should unlike a collection when already liked', async () => {
-      (db.query.collectionLikes.findFirst as Mock).mockResolvedValue({
-        id: 'like-1',
-        collectionId: 'coll-123',
-        userId: 'user-1',
-        createdAt: new Date(),
-      });
-
-      const deleteMock = vi.fn().mockResolvedValue(undefined);
-      (db.delete as Mock).mockReturnValue({
-        where: deleteMock,
-      });
-
-      const result = await toggleLike('coll-123', 'user-1');
-
-      expect(result.liked).toBe(false);
-      expect(db.delete).toHaveBeenCalled();
-    });
-  });
-
-  describe('cloneCollection', () => {
-    it('should clone a collection', async () => {
-      const mockOriginal = {
-        id: 'coll-original',
-        userId: 'user-1',
-        name: 'Original Collection',
-        description: 'Original description',
-        slug: 'original-collection',
-        isPublic: true,
-        isFeatured: false,
-        isTemplate: false,
-        shareToken: null,
-        viewCount: 10,
-        installCount: 5,
-        tags: ['test'],
-        iconUrl: 'https://example.com/icon.png',
-        createdAt: new Date(),
-        updatedAt: new Date(),
-        user: {
-          id: 'user-1',
-          name: 'User 1',
-          image: null,
-        },
-        items: [
-          { appId: 'app-1', id: 'item-1', collectionId: 'coll-original', displayOrder: 0, note: null, createdAt: new Date() },
-          { appId: 'app-2', id: 'item-2', collectionId: 'coll-original', displayOrder: 1, note: null, createdAt: new Date() },
-        ],
-        _count: { likes: 5 },
-      };
-
-      (db.query.collections.findFirst as Mock).mockResolvedValue(mockOriginal);
-
-      const selectMock = vi.fn().mockResolvedValue([{ count: 5 }]);
-      (db.select as Mock).mockReturnValue({
-        from: vi.fn().mockReturnValue({
-          where: selectMock,
-        }),
-      });
-
-      const mockCloned = {
-        id: 'coll-cloned',
-        userId: 'user-2',
-        name: 'Original Collection (Copy)',
-        description: 'Original description',
-        slug: 'original-collection-copy-user-2',
-        isPublic: false,
-        isFeatured: false,
-        isTemplate: false,
-        shareToken: null,
-        viewCount: 0,
-        installCount: 0,
-        tags: ['test'],
-        iconUrl: 'https://example.com/icon.png',
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      };
-
-      const insertMock = vi.fn().mockResolvedValue([mockCloned]);
-      (db.insert as Mock).mockReturnValue({
-        values: vi.fn().mockReturnValue({
-          returning: insertMock,
-        }),
-      });
-
-      const result = await cloneCollection('coll-original', 'user-2');
-
-      expect(result).toBeDefined();
-      expect(result.name).toContain('(Copy)');
-      expect(result.isPublic).toBe(false); // Clones are private by default
-    });
-
-    it('should throw error if original collection not found', async () => {
-      (db.query.collections.findFirst as Mock).mockResolvedValue(null);
-
-      await expect(cloneCollection('non-existent', 'user-2')).rejects.toThrow(
-        'Collection not found'
-      );
     });
   });
 

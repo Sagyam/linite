@@ -1,36 +1,26 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-import { Heart, Share2, Edit, Files, Trash2, Play } from 'lucide-react';
+import { Share2, Edit, Trash2, Play } from 'lucide-react';
 import Link from 'next/link';
 
 interface CollectionActionsProps {
   collectionId: string;
   isOwner: boolean;
-  isAuthenticated: boolean;
   onApply: () => void;
-  onLike?: () => void;
   onShare?: () => void;
-  onClone?: () => void;
   onDelete?: () => void;
-  isLikePending?: boolean;
   isSharePending?: boolean;
-  isClonePending?: boolean;
   isDeletePending?: boolean;
 }
 
 export function CollectionActions({
   collectionId,
   isOwner,
-  isAuthenticated,
   onApply,
-  onLike,
   onShare,
-  onClone,
   onDelete,
-  isLikePending,
   isSharePending,
-  isClonePending,
   isDeletePending,
 }: CollectionActionsProps) {
   return (
@@ -40,20 +30,6 @@ export function CollectionActions({
         <Play className="w-4 h-4" />
         Apply Collection
       </Button>
-
-      {/* Like button for non-owners */}
-      {isAuthenticated && !isOwner && onLike && (
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={onLike}
-          disabled={isLikePending}
-          className="gap-2"
-        >
-          <Heart className="w-4 h-4" />
-          Like
-        </Button>
-      )}
 
       {/* Owner actions */}
       {isOwner && (
@@ -89,20 +65,6 @@ export function CollectionActions({
             </Button>
           )}
         </>
-      )}
-
-      {/* Clone button for non-owners */}
-      {isAuthenticated && !isOwner && onClone && (
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={onClone}
-          disabled={isClonePending}
-          className="gap-2"
-        >
-          <Files className="w-4 h-4" />
-          Clone
-        </Button>
       )}
     </div>
   );

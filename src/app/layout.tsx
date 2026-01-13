@@ -109,6 +109,14 @@ export default function RootLayout({
       <body
         className={`${workSans.variable} ${geistMono.variable} antialiased`}
       >
+      <head>
+        <script
+            async
+            defer
+            src="https://cloud.umami.is/script.js"
+            data-website-id="bfb4175b-5ce9-4a4d-aa0f-c44314ad6a8b"
+        />
+      </head>
         <QueryProvider>
           <ThemeProvider
             attribute="class"

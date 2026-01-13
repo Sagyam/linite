@@ -2,7 +2,7 @@
   {
     "app": "alacritty",
     "source": "aur",
-    "identifier": "alacritty",
+    "identifier": "alacritty-git",
     "isAvailable": true
   },
   {
@@ -12,27 +12,21 @@
     "isAvailable": true
   },
   {
-    "app": "bun",
+    "app": "android-studio",
     "source": "aur",
-    "identifier": "bun-bin",
+    "identifier": "android-studio",
+    "isAvailable": true
+  },
+  {
+    "app": "brave",
+    "source": "aur",
+    "identifier": "brave-bin",
     "isAvailable": true
   },
   {
     "app": "calibre",
     "source": "aur",
-    "identifier": "calibre",
-    "isAvailable": true
-  },
-  {
-    "app": "celluloid",
-    "source": "aur",
-    "identifier": "celluloid",
-    "isAvailable": true
-  },
-  {
-    "app": "deluge",
-    "source": "aur",
-    "identifier": "deluge",
+    "identifier": "calibre-bin",
     "isAvailable": true
   },
   {
@@ -42,51 +36,15 @@
     "isAvailable": true
   },
   {
-    "app": "evolution",
-    "source": "aur",
-    "identifier": "evolution",
-    "isAvailable": true
-  },
-  {
-    "app": "eza",
-    "source": "aur",
-    "identifier": "eza",
-    "isAvailable": true
-  },
-  {
     "app": "floorp",
     "source": "aur",
     "identifier": "floorp-bin",
     "isAvailable": true
   },
   {
-    "app": "flowblade",
-    "source": "aur",
-    "identifier": "flowblade",
-    "isAvailable": true
-  },
-  {
-    "app": "foliate",
-    "source": "aur",
-    "identifier": "foliate",
-    "isAvailable": true
-  },
-  {
     "app": "gamehub",
     "source": "aur",
     "identifier": "gamehub",
-    "isAvailable": true
-  },
-  {
-    "app": "geary",
-    "source": "aur",
-    "identifier": "geary",
-    "isAvailable": true
-  },
-  {
-    "app": "ghostty",
-    "source": "aur",
-    "identifier": "ghostty",
     "isAvailable": true
   },
   {
@@ -98,31 +56,7 @@
   {
     "app": "joplin",
     "source": "aur",
-    "identifier": "joplin-appimage",
-    "isAvailable": true
-  },
-  {
-    "app": "k9s",
-    "source": "aur",
-    "identifier": "k9s",
-    "isAvailable": true
-  },
-  {
-    "app": "kitty",
-    "source": "aur",
-    "identifier": "kitty",
-    "isAvailable": true
-  },
-  {
-    "app": "lazydocker",
-    "source": "aur",
-    "identifier": "lazydocker",
-    "isAvailable": true
-  },
-  {
-    "app": "lazygit",
-    "source": "aur",
-    "identifier": "lazygit",
+    "identifier": "joplin-desktop",
     "isAvailable": true
   },
   {
@@ -132,9 +66,9 @@
     "isAvailable": true
   },
   {
-    "app": "mailspring",
+    "app": "librewolf",
     "source": "aur",
-    "identifier": "mailspring",
+    "identifier": "librewolf-bin",
     "isAvailable": true
   },
   {
@@ -144,9 +78,15 @@
     "isAvailable": true
   },
   {
-    "app": "nextcloud",
+    "app": "microsoft-edge",
     "source": "aur",
-    "identifier": "nextcloud-client",
+    "identifier": "microsoft-edge-stable-bin",
+    "isAvailable": true
+  },
+  {
+    "app": "minecraft",
+    "source": "aur",
+    "identifier": "minecraft-launcher",
     "isAvailable": true
   },
   {
@@ -156,21 +96,27 @@
     "isAvailable": true
   },
   {
+    "app": "opera",
+    "source": "aur",
+    "identifier": "opera",
+    "isAvailable": true
+  },
+  {
     "app": "pcloud",
     "source": "aur",
     "identifier": "pcloud-drive",
     "isAvailable": true
   },
   {
-    "app": "qbittorrent",
+    "app": "pcsx2",
     "source": "aur",
-    "identifier": "qbittorrent",
+    "identifier": "pcsx2",
     "isAvailable": true
   },
   {
-    "app": "remmina",
+    "app": "postman",
     "source": "aur",
-    "identifier": "remmina",
+    "identifier": "postman-bin",
     "isAvailable": true
   },
   {
@@ -186,21 +132,15 @@
     "isAvailable": true
   },
   {
-    "app": "standard-notes",
-    "source": "aur",
-    "identifier": "standard-notes-bin",
-    "isAvailable": true
-  },
-  {
     "app": "sublime-text",
     "source": "aur",
     "identifier": "sublime-text-4",
     "isAvailable": true
   },
   {
-    "app": "transmission",
+    "app": "slack",
     "source": "aur",
-    "identifier": "transmission-gtk",
+    "identifier": "slack-desktop",
     "isAvailable": true
   },
   {
@@ -218,25 +158,43 @@
   {
     "app": "vscodium",
     "source": "aur",
-    "identifier": "vscodium-bin",
+    "identifier": "visual-studio-code-bin",
     "isAvailable": true
   },
   {
-    "app": "wezterm",
+    "app": "waterfox",
     "source": "aur",
-    "identifier": "wezterm",
+    "identifier": "waterfox-bin",
     "isAvailable": true
   },
   {
-    "app": "yq",
+    "app": "aider",
     "source": "aur",
-    "identifier": "yq",
+    "identifier": "aider-chat",
     "isAvailable": true
   },
   {
-    "app": "zed",
+    "app": "cursor",
     "source": "aur",
-    "identifier": "zed",
+    "identifier": "cursor-bin",
+    "isAvailable": true
+  },
+  {
+    "app": "helix",
+    "source": "aur",
+    "identifier": "helix-git",
+    "isAvailable": true
+  },
+  {
+    "app": "zen-browser",
+    "source": "aur",
+    "identifier": "zen-browser-bin",
+    "isAvailable": true
+  },
+  {
+    "app": "zoom",
+    "source": "aur",
+    "identifier": "zoom",
     "isAvailable": true
   }
 ]

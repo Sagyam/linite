@@ -239,23 +239,6 @@ export const collectionItems = sqliteTable('collection_items', {
   collectionAppIdx: index('collection_items_collection_app_idx').on(table.collectionId, table.appId),
 }));
 
-export const collectionLikes = sqliteTable('collection_likes', {
-  id: text('id')
-    .primaryKey()
-    .$defaultFn(() => createId()),
-  userId: text('user_id')
-    .notNull()
-    .references(() => user.id, { onDelete: 'cascade' }),
-  collectionId: text('collection_id')
-    .notNull()
-    .references(() => collections.id, { onDelete: 'cascade' }),
-  createdAt: integer('created_at', { mode: 'timestamp' }).$defaultFn(() => new Date()),
-}, (table) => ({
-  userIdIdx: index('collection_likes_user_id_idx').on(table.userId),
-  collectionIdIdx: index('collection_likes_collection_id_idx').on(table.collectionId),
-  userCollectionIdx: index('collection_likes_user_collection_idx').on(table.userId, table.collectionId),
-}));
-
 // ============ RELATIONS ============
 
 export const categoriesRelations = relations(categories, ({ many }) => ({
@@ -306,7 +289,6 @@ export const userRelations = relations(user, ({ many }) => ({
   sessions: many(session),
   accounts: many(account),
   collections: many(collections),
-  collectionLikes: many(collectionLikes),
 }));
 
 export const sessionRelations = relations(session, ({ one }) => ({
@@ -336,7 +318,6 @@ export const collectionsRelations = relations(collections, ({ one, many }) => ({
     references: [user.id],
   }),
   items: many(collectionItems),
-  likes: many(collectionLikes),
 }));
 
 export const collectionItemsRelations = relations(collectionItems, ({ one }) => ({
@@ -347,16 +328,5 @@ export const collectionItemsRelations = relations(collectionItems, ({ one }) => 
   app: one(apps, {
     fields: [collectionItems.appId],
     references: [apps.id],
-  }),
-}));
-
-export const collectionLikesRelations = relations(collectionLikes, ({ one }) => ({
-  user: one(user, {
-    fields: [collectionLikes.userId],
-    references: [user.id],
-  }),
-  collection: one(collections, {
-    fields: [collectionLikes.collectionId],
-    references: [collections.id],
   }),
 }));

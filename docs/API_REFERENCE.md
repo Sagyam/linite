@@ -173,10 +173,8 @@ List public and featured collections
         }
       ],
       "_count": {
-        "items": 12,
-        "likes": 89
+        "items": 12
       },
-      "isLiked": false,
       "createdAt": "2025-01-01T00:00:00.000Z",
       "updatedAt": "2025-01-05T00:00:00.000Z"
     }
@@ -367,8 +365,7 @@ List current user's collections
       "tags": ["development"],
       "items": [],
       "_count": {
-        "items": 8,
-        "likes": 0
+        "items": 8
       },
       "createdAt": "2025-01-01T00:00:00.000Z",
       "updatedAt": "2025-01-05T00:00:00.000Z"
@@ -412,8 +409,7 @@ Create a new collection
   "tags": ["development", "personal"],
   "items": [],
   "_count": {
-    "items": 0,
-    "likes": 0
+    "items": 0
   },
   "createdAt": "2025-01-05T00:00:00.000Z",
   "updatedAt": "2025-01-05T00:00:00.000Z"
@@ -483,41 +479,6 @@ Generate or regenerate share token for collection (requires ownership)
   "shareUrl": "https://linite.dev/collections/share/abc123xyz"
 }
 ```
-
-### POST /api/user/collections/[id]/like
-Toggle like on a collection (like/unlike)
-
-**Response:**
-```json
-{
-  "liked": true,
-  "likeCount": 90
-}
-```
-
-### POST /api/user/collections/[id]/clone
-Clone a public collection to current user's account
-
-**Response:** (201 Created)
-```json
-{
-  "id": "new_collection_id",
-  "userId": "current_user_id",
-  "name": "Essential Developer Tools (Copy)",
-  "description": "Must-have tools for developers",
-  "slug": "essential-dev-tools-copy",
-  "isPublic": false,
-  "items": [],
-  "createdAt": "2025-01-05T00:00:00.000Z",
-  "updatedAt": "2025-01-05T00:00:00.000Z"
-}
-```
-
-**Notes:**
-- Cannot clone your own collections
-- Cloned collections are private by default
-- Collection name gets " (Copy)" appended
-- All items are copied with their notes
 
 ## Complete Endpoint Summary
 
@@ -607,8 +568,6 @@ Clone a public collection to current user's account
 
 **Collection Actions:**
 - `POST /api/user/collections/[id]/share` - Generate share token
-- `POST /api/user/collections/[id]/like` - Toggle like
-- `POST /api/user/collections/[id]/clone` - Clone collection
 
 ### Internal Endpoints
 

@@ -274,5 +274,209 @@
     "source": "winget",
     "identifier": "Zoom.Zoom",
     "isAvailable": true
+  },
+  {
+    "app": "signal",
+    "source": "winget",
+    "identifier": "OpenWhisperSystems.Signal",
+    "isAvailable": true
+  },
+  {
+    "app": "ffmpeg",
+    "source": "winget",
+    "identifier": "Gyan.FFmpeg",
+    "isAvailable": true
+  },
+  {
+    "app": "godot",
+    "source": "winget",
+    "identifier": "GodotEngine.Godot",
+    "isAvailable": true
+  },
+  {
+    "app": "freecad",
+    "source": "winget",
+    "identifier": "FreeCAD.FreeCAD",
+    "isAvailable": true
+  },
+  {
+    "app": "stremio",
+    "source": "winget",
+    "identifier": "Stremio.Stremio",
+    "isAvailable": true
+  },
+  {
+    "app": "postgresql",
+    "source": "winget",
+    "identifier": "PostgreSQL.PostgreSQL",
+    "isAvailable": true
+  },
+  {
+    "app": "mongodb",
+    "source": "winget",
+    "identifier": "MongoDB.Server",
+    "isAvailable": true
+  },
+  {
+    "app": "redis",
+    "source": "winget",
+    "identifier": "Redis.Redis",
+    "isAvailable": true
+  },
+  {
+    "app": "nginx",
+    "source": "winget",
+    "identifier": "nginx.nginx",
+    "isAvailable": true
+  },
+  {
+    "app": "terraform",
+    "source": "winget",
+    "identifier": "Hashicorp.Terraform",
+    "isAvailable": true
+  },
+  {
+    "app": "gh",
+    "source": "winget",
+    "identifier": "GitHub.cli",
+    "isAvailable": true
+  },
+  {
+    "app": "kubectl",
+    "source": "winget",
+    "identifier": "Kubernetes.kubectl",
+    "isAvailable": true
+  },
+  {
+    "app": "wireshark",
+    "source": "winget",
+    "identifier": "WiresharkFoundation.Wireshark",
+    "isAvailable": true
+  },
+  {
+    "app": "nmap",
+    "source": "winget",
+    "identifier": "Insecure.Nmap",
+    "isAvailable": true
+  },
+  {
+    "app": "virtualbox",
+    "source": "winget",
+    "identifier": "Oracle.VirtualBox",
+    "isAvailable": true
+  },
+  {
+    "app": "vagrant",
+    "source": "winget",
+    "identifier": "Hashicorp.Vagrant",
+    "isAvailable": true
+  },
+  {
+    "app": "micro",
+    "source": "winget",
+    "identifier": "zyedidia.micro",
+    "isAvailable": true
+  },
+  {
+    "app": "helix",
+    "source": "winget",
+    "identifier": "Helix.Helix",
+    "isAvailable": true
+  },
+  {
+    "app": "cursor",
+    "source": "winget",
+    "identifier": "Cursor.Cursor",
+    "isAvailable": true
+  },
+  {
+    "app": "python",
+    "source": "winget",
+    "identifier": "Python.Python.3.12",
+    "isAvailable": true
+  },
+  {
+    "app": "java",
+    "source": "winget",
+    "identifier": "Oracle.JavaRuntimeEnvironment",
+    "isAvailable": true
+  },
+  {
+    "app": "golang",
+    "source": "winget",
+    "identifier": "GoLang.Go",
+    "isAvailable": true
+  },
+  {
+    "app": "rust",
+    "source": "winget",
+    "identifier": "Rustlang.Rust.MSVC",
+    "isAvailable": true
+  },
+  {
+    "app": "php",
+    "source": "winget",
+    "identifier": "PHP.PHP",
+    "isAvailable": true
+  },
+  {
+    "app": "ruby",
+    "source": "winget",
+    "identifier": "RubyInstallerTeam.Ruby",
+    "isAvailable": true
+  },
+  {
+    "app": "openssh",
+    "source": "winget",
+    "identifier": "Microsoft.OpenSSH.Beta",
+    "isAvailable": true
+  },
+  {
+    "app": "openvpn",
+    "source": "winget",
+    "identifier": "OpenVPNTechnologies.OpenVPN",
+    "isAvailable": true
+  },
+  {
+    "app": "tailscale",
+    "source": "winget",
+    "identifier": "tailscale.tailscale",
+    "isAvailable": true
+  },
+  {
+    "app": "wezterm",
+    "source": "winget",
+    "identifier": "wez.wezterm",
+    "isAvailable": true
+  },
+  {
+    "app": "alacritty",
+    "source": "winget",
+    "identifier": "Alacritty.Alacritty",
+    "isAvailable": true
+  },
+  {
+    "app": "neovim",
+    "source": "winget",
+    "identifier": "Neovim.Neovim",
+    "isAvailable": true
+  },
+  {
+    "app": "zed",
+    "source": "winget",
+    "identifier": "zed.zed",
+    "isAvailable": true
+  },
+  {
+    "app": "podman",
+    "source": "winget",
+    "identifier": "RedHat.Podman",
+    "isAvailable": true
+  },
+  {
+    "app": "qemu",
+    "source": "winget",
+    "identifier": "SoftwareFreedomConservancy.QEMU",
+    "isAvailable": true
   }
 ]

@@ -18,12 +18,6 @@
     "isAvailable": true
   },
   {
-    "app": "bun",
-    "source": "homebrew",
-    "identifier": "bun",
-    "isAvailable": true
-  },
-  {
     "app": "dbeaver",
     "source": "homebrew",
     "identifier": "dbeaver-community",
@@ -51,12 +45,6 @@
     "app": "eza",
     "source": "homebrew",
     "identifier": "eza",
-    "isAvailable": true
-  },
-  {
-    "app": "filezilla",
-    "source": "homebrew",
-    "identifier": "filezilla",
     "isAvailable": true
   },
   {
@@ -183,6 +171,144 @@
     "app": "zsh",
     "source": "homebrew",
     "identifier": "zsh",
+    "isAvailable": true
+  },
+  {
+    "app": "signal",
+    "source": "homebrew",
+    "identifier": "signal",
+    "isAvailable": true
+  },
+  {
+    "app": "ffmpeg",
+    "source": "homebrew",
+    "identifier": "ffmpeg",
+    "isAvailable": true
+  },
+  {
+    "app": "postgresql",
+    "source": "homebrew",
+    "identifier": "postgresql@15",
+    "isAvailable": true
+  },
+  {
+    "app": "redis",
+    "source": "homebrew",
+    "identifier": "redis",
+    "isAvailable": true
+  },
+  {
+    "app": "nginx",
+    "source": "homebrew",
+    "identifier": "nginx",
+    "isAvailable": true
+  },
+  {
+    "app": "apache",
+    "source": "homebrew",
+    "identifier": "httpd",
+    "isAvailable": true
+  },
+  {
+    "app": "terraform",
+    "source": "homebrew",
+    "identifier": "terraform",
+    "isAvailable": true
+  },
+  {
+    "app": "ansible",
+    "source": "homebrew",
+    "identifier": "ansible",
+    "isAvailable": true
+  },
+  {
+    "app": "podman",
+    "source": "homebrew",
+    "identifier": "podman",
+    "isAvailable": true
+  },
+  {
+    "app": "gh",
+    "source": "homebrew",
+    "identifier": "gh",
+    "isAvailable": true
+  },
+  {
+    "app": "kubectl",
+    "source": "homebrew",
+    "identifier": "kubernetes-cli",
+    "isAvailable": true
+  },
+  {
+    "app": "wireshark",
+    "source": "homebrew",
+    "identifier": "wireshark",
+    "isAvailable": true
+  },
+  {
+    "app": "nmap",
+    "source": "homebrew",
+    "identifier": "nmap",
+    "isAvailable": true
+  },
+  {
+    "app": "openvpn",
+    "source": "homebrew",
+    "identifier": "openvpn",
+    "isAvailable": true
+  },
+  {
+    "app": "wireguard-tools",
+    "source": "homebrew",
+    "identifier": "wireguard-tools",
+    "isAvailable": true
+  },
+  {
+    "app": "aria2",
+    "source": "homebrew",
+    "identifier": "aria2",
+    "isAvailable": true
+  },
+  {
+    "app": "fish",
+    "source": "homebrew",
+    "identifier": "fish",
+    "isAvailable": true
+  },
+  {
+    "app": "ranger",
+    "source": "homebrew",
+    "identifier": "ranger",
+    "isAvailable": true
+  },
+  {
+    "app": "fd",
+    "source": "homebrew",
+    "identifier": "fd",
+    "isAvailable": true
+  },
+  {
+    "app": "zoxide",
+    "source": "homebrew",
+    "identifier": "zoxide",
+    "isAvailable": true
+  },
+  {
+    "app": "starship",
+    "source": "homebrew",
+    "identifier": "starship",
+    "isAvailable": true
+  },
+  {
+    "app": "micro",
+    "source": "homebrew",
+    "identifier": "micro",
+    "isAvailable": true
+  },
+  {
+    "app": "helix",
+    "source": "homebrew",
+    "identifier": "helix",
     "isAvailable": true
   }
 ]
