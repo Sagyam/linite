@@ -38,6 +38,17 @@
     }
   },
   {
+    "app": "jellyfin",
+    "source": "script",
+    "identifier": "jellyfin",
+    "isAvailable": true,
+    "metadata": {
+      "scriptUrl": {
+        "linux": "https://repo.jellyfin.org/install-debuntu.sh"
+      }
+    }
+  },
+  {
     "app": "nodejs",
     "source": "script",
     "identifier": "nvm",
@@ -48,6 +59,42 @@
         "windows": "https://github.com/coreybutler/nvm-windows/releases/latest/download/nvm-setup.exe"
       },
       "note": "Installs NVM (Node Version Manager) which manages Node.js installations"
+    }
+  },
+  {
+    "app": "oh-my-zsh",
+    "source": "script",
+    "identifier": "oh-my-zsh",
+    "isAvailable": true,
+    "metadata": {
+      "scriptUrl": {
+        "linux": "https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh"
+      },
+      "note": "Unleash your terminal like never before."
+    }
+  },
+  {
+    "app": "ollama",
+    "source": "script",
+    "identifier": "ollama",
+    "isAvailable": true,
+    "metadata": {
+      "scriptUrl": {
+        "linux": "https://ollama.com/install.sh"
+      },
+      "note": "Chat & build with open models"
+    }
+  },
+  {
+    "app": "opencode",
+    "source": "script",
+    "identifier": "opencode",
+    "isAvailable": true,
+    "metadata": {
+      "scriptUrl": {
+        "linux": "https://opencode.ai/install"
+      },
+      "note": "The open source AI coding agent"
     }
   },
   {
@@ -110,18 +157,6 @@
         "windows": "https://astral.sh/uv/install.ps1"
       },
       "note": "Extremely fast Python package installer and resolver, written in Rust"
-    }
-  },
-  {
-    "app": "ollama",
-    "source": "script",
-    "identifier": "ollama",
-    "isAvailable": true,
-    "metadata": {
-      "scriptUrl": {
-        "linux": "https://ollama.com/install.sh"
-      },
-      "note": "Chat & build with open models"
     }
   }
 ]

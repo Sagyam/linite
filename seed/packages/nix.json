@@ -72,6 +72,12 @@
     "isAvailable": true
   },
   {
+    "app": "gh",
+    "source": "nix",
+    "identifier": "gh",
+    "isAvailable": true
+  },
+  {
     "app": "gimp",
     "source": "nix",
     "identifier": "gimp",

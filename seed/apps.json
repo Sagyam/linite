@@ -27,6 +27,15 @@
     "category": "development"
   },
   {
+    "slug": "ansible",
+    "displayName": "Ansible",
+    "description": "IT automation tool for configuration management",
+    "homepage": "https://www.ansible.com",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "development"
+  },
+  {
     "slug": "anydesk",
     "displayName": "AnyDesk",
     "description": "Fast remote desktop software",
@@ -34,6 +43,42 @@
     "isPopular": true,
     "isFoss": false,
     "category": "utilities"
+  },
+  {
+    "slug": "apache",
+    "displayName": "Apache HTTP Server",
+    "description": "Open-source HTTP server for modern operating systems",
+    "homepage": "https://httpd.apache.org",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "development"
+  },
+  {
+    "slug": "aria2",
+    "displayName": "aria2",
+    "description": "Lightweight multi-protocol & multi-source download utility",
+    "homepage": "https://aria2.github.io",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "system"
+  },
+  {
+    "slug": "aria2c",
+    "displayName": "aria2c",
+    "description": "Lightweight multi-protocol command-line download utility",
+    "homepage": "https://aria2.github.io",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "cli"
+  },
+  {
+    "slug": "astronvim",
+    "displayName": "AstroNvim",
+    "description": "Aesthetic and feature-rich Neovim config",
+    "homepage": "https://astronvim.com",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "cli"
   },
   {
     "slug": "audacity",
@@ -180,6 +225,42 @@
     "category": "languages"
   },
   {
+    "slug": "claude-code",
+    "displayName": "Claude Code",
+    "description": "Anthropic's official CLI for Claude AI coding assistant",
+    "homepage": "https://claude.com/claude-code",
+    "isPopular": true,
+    "isFoss": false,
+    "category": "ai"
+  },
+  {
+    "slug": "conky",
+    "displayName": "Conky",
+    "description": "Light-weight system monitor for X",
+    "homepage": "https://github.com/brndnmtthws/conky",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "system"
+  },
+  {
+    "slug": "cpu-x",
+    "displayName": "CPU-X",
+    "description": "System profiler and hardware information tool",
+    "homepage": "https://thetumultuousunicornofdarkness.github.io/CPU-X",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "system"
+  },
+  {
+    "slug": "cursor",
+    "displayName": "Cursor",
+    "description": "AI-powered code editor built on VSCode",
+    "homepage": "https://cursor.sh",
+    "isPopular": true,
+    "isFoss": false,
+    "category": "ai"
+  },
+  {
     "slug": "darktable",
     "displayName": "darktable",
     "description": "Photography workflow application and raw developer",
@@ -252,6 +333,15 @@
     "category": "games"
   },
   {
+    "slug": "doom-emacs",
+    "displayName": "Doom Emacs",
+    "description": "Emacs framework for power users",
+    "homepage": "https://github.com/doomemacs/doomemacs",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "cli"
+  },
+  {
     "slug": "dropbox",
     "displayName": "Dropbox",
     "description": "Cloud storage and file synchronization service",
@@ -297,6 +387,33 @@
     "category": "cli"
   },
   {
+    "slug": "fastfetch",
+    "displayName": "Fastfetch",
+    "description": "Fast system information tool written in C",
+    "homepage": "https://github.com/fastfetch-cli/fastfetch",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "cli"
+  },
+  {
+    "slug": "fd",
+    "displayName": "fd",
+    "description": "Simple, fast and user-friendly alternative to find",
+    "homepage": "https://github.com/sharkdp/fd",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "cli"
+  },
+  {
+    "slug": "ffmpeg",
+    "displayName": "FFmpeg",
+    "description": "Complete cross-platform solution to record, convert and stream audio and video",
+    "homepage": "https://ffmpeg.org",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "media"
+  },
+  {
     "slug": "filezilla",
     "displayName": "FileZilla",
     "description": "FTP, FTPS and SFTP client",
@@ -313,6 +430,15 @@
     "isPopular": true,
     "isFoss": true,
     "category": "browsers"
+  },
+  {
+    "slug": "fish",
+    "displayName": "Fish",
+    "description": "Smart and user-friendly command line shell",
+    "homepage": "https://fishshell.com",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "cli"
   },
   {
     "slug": "flameshot",
@@ -360,6 +486,15 @@
     "category": "utilities"
   },
   {
+    "slug": "freecad",
+    "displayName": "FreeCAD",
+    "description": "Open-source parametric 3D CAD modeler",
+    "homepage": "https://freecad.org",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "media"
+  },
+  {
     "slug": "fzf",
     "displayName": "fzf",
     "description": "Command-line fuzzy finder",
@@ -367,15 +502,6 @@
     "isPopular": true,
     "isFoss": true,
     "category": "cli"
-  },
-  {
-    "slug": "gamehub",
-    "displayName": "GameHub",
-    "description": "Unified library for all your games",
-    "homepage": "https://github.com/tkashkin/GameHub",
-    "isPopular": false,
-    "isFoss": true,
-    "category": "games"
   },
   {
     "slug": "gcc",
@@ -394,6 +520,15 @@
     "isPopular": false,
     "isFoss": true,
     "category": "communication"
+  },
+  {
+    "slug": "gh",
+    "displayName": "GitHub CLI",
+    "description": "GitHub's official command line tool",
+    "homepage": "https://cli.github.com",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "development"
   },
   {
     "slug": "ghostty",
@@ -423,6 +558,15 @@
     "category": "development"
   },
   {
+    "slug": "godot",
+    "displayName": "Godot Engine",
+    "description": "Free and open-source game engine",
+    "homepage": "https://godotengine.org",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "media"
+  },
+  {
     "slug": "goland",
     "displayName": "GoLand",
     "description": "Go IDE by JetBrains",
@@ -450,6 +594,15 @@
     "category": "media"
   },
   {
+    "slug": "helix",
+    "displayName": "Helix",
+    "description": "Post-modern modal text editor",
+    "homepage": "https://helix-editor.com",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "development"
+  },
+  {
     "slug": "heroic",
     "displayName": "Heroic Games Launcher",
     "description": "Epic Games Launcher alternative for Linux",
@@ -466,6 +619,15 @@
     "isPopular": true,
     "isFoss": true,
     "category": "cli"
+  },
+  {
+    "slug": "imhex",
+    "displayName": "ImHex",
+    "description": "Hex editor for reverse engineers and programmers",
+    "homepage": "https://imhex.werwolv.net",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "development"
   },
   {
     "slug": "impression",
@@ -511,6 +673,15 @@
     "isPopular": true,
     "isFoss": true,
     "category": "languages"
+  },
+  {
+    "slug": "jellyfin",
+    "displayName": "Jellyfin",
+    "description": "Jellyfin is the volunteer-built media solution that puts you in control of your media. Stream to any device from your own server, with no strings attached.",
+    "homepage": "https://jellyfin.org/",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "media"
   },
   {
     "slug": "joplin",
@@ -576,6 +747,15 @@
     "category": "graphics"
   },
   {
+    "slug": "kubectl",
+    "displayName": "kubectl",
+    "description": "Kubernetes command-line tool",
+    "homepage": "https://kubernetes.io/docs/reference/kubectl",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "development"
+  },
+  {
     "slug": "lazydocker",
     "displayName": "lazydocker",
     "description": "Simple terminal UI for both docker and docker-compose",
@@ -639,6 +819,15 @@
     "category": "games"
   },
   {
+    "slug": "mangohud",
+    "displayName": "MangoHUD",
+    "description": "Vulkan and OpenGL overlay for monitoring FPS, temperatures, CPU/GPU load",
+    "homepage": "https://github.com/flightlessmango/MangoHud",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "games"
+  },
+  {
     "slug": "mega",
     "displayName": "MEGA Desktop",
     "description": "Secure cloud storage with end-to-end encryption",
@@ -646,6 +835,15 @@
     "isPopular": true,
     "isFoss": false,
     "category": "utilities"
+  },
+  {
+    "slug": "micro",
+    "displayName": "Micro",
+    "description": "Modern and intuitive terminal-based text editor",
+    "homepage": "https://micro-editor.github.io",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "development"
   },
   {
     "slug": "microsoft-edge",
@@ -664,6 +862,24 @@
     "isPopular": true,
     "isFoss": false,
     "category": "games"
+  },
+  {
+    "slug": "mission-center",
+    "displayName": "Mission Center",
+    "description": "Modern system monitor with GPU support",
+    "homepage": "https://missioncenter.io",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "system"
+  },
+  {
+    "slug": "mongodb",
+    "displayName": "MongoDB",
+    "description": "Document-oriented NoSQL database",
+    "homepage": "https://www.mongodb.com",
+    "isPopular": true,
+    "isFoss": false,
+    "category": "development"
   },
   {
     "slug": "mpv",
@@ -702,6 +918,24 @@
     "category": "utilities"
   },
   {
+    "slug": "nginx",
+    "displayName": "Nginx",
+    "description": "High-performance HTTP server and reverse proxy",
+    "homepage": "https://nginx.org",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "development"
+  },
+  {
+    "slug": "nmap",
+    "displayName": "Nmap",
+    "description": "Network exploration tool and security scanner",
+    "homepage": "https://nmap.org",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "system"
+  },
+  {
     "slug": "nodejs",
     "displayName": "Node.js",
     "description": "JavaScript runtime built on Chrome's V8 engine",
@@ -738,6 +972,24 @@
     "category": "office"
   },
   {
+    "slug": "oh-my-zsh",
+    "displayName": "Oh My Zsh",
+    "description": "Framework for managing Zsh configuration",
+    "homepage": "https://ohmyz.sh",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "cli"
+  },
+  {
+    "slug": "ollama",
+    "displayName": "Ollama",
+    "description": "Chat & build with open models ",
+    "homepage": "https://ollama.com/",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "ai"
+  },
+  {
     "slug": "onlyoffice",
     "displayName": "ONLYOFFICE",
     "description": "Free office suite with online collaboration",
@@ -756,6 +1008,33 @@
     "category": "media"
   },
   {
+    "slug": "openssh",
+    "displayName": "OpenSSH",
+    "description": "OpenBSD Secure Shell connectivity tools",
+    "homepage": "https://www.openssh.com",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "system"
+  },
+  {
+    "slug": "opentofu",
+    "displayName": "OpenTofu",
+    "description": "Open-source infrastructure as code tool, fork of Terraform",
+    "homepage": "https://opentofu.org",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "development"
+  },
+  {
+    "slug": "openvpn",
+    "displayName": "OpenVPN",
+    "description": "Open-source VPN solution",
+    "homepage": "https://openvpn.net",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "system"
+  },
+  {
     "slug": "opera",
     "displayName": "Opera",
     "description": "Fast, secure browser with built-in ad blocker",
@@ -763,15 +1042,6 @@
     "isPopular": true,
     "isFoss": false,
     "category": "browsers"
-  },
-  {
-    "slug": "ollama",
-    "displayName": "Ollama",
-    "description": "Chat & build with open models ",
-    "homepage": "https://ollama.com/",
-    "isPopular": true,
-    "isFoss": true,
-    "category": "ai"
   },
   {
     "slug": "pcloud",
@@ -819,6 +1089,24 @@
     "category": "languages"
   },
   {
+    "slug": "podman",
+    "displayName": "Podman",
+    "description": "Daemonless container engine for OCI containers",
+    "homepage": "https://podman.io",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "development"
+  },
+  {
+    "slug": "postgresql",
+    "displayName": "PostgreSQL",
+    "description": "Powerful, open source object-relational database system",
+    "homepage": "https://www.postgresql.org",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "development"
+  },
+  {
     "slug": "postman",
     "displayName": "Postman",
     "description": "API development and testing platform",
@@ -826,6 +1114,15 @@
     "isPopular": true,
     "isFoss": false,
     "category": "development"
+  },
+  {
+    "slug": "powerlevel10k",
+    "displayName": "Powerlevel10k",
+    "description": "Fast and customizable Zsh theme",
+    "homepage": "https://github.com/romkatv/powerlevel10k",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "cli"
   },
   {
     "slug": "pycharm",
@@ -855,6 +1152,15 @@
     "category": "utilities"
   },
   {
+    "slug": "qemu",
+    "displayName": "QEMU",
+    "description": "Generic machine emulator and virtualizer",
+    "homepage": "https://www.qemu.org",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "development"
+  },
+  {
     "slug": "r-lang",
     "displayName": "R",
     "description": "Language for statistical computing and graphics",
@@ -862,6 +1168,15 @@
     "isPopular": false,
     "isFoss": true,
     "category": "languages"
+  },
+  {
+    "slug": "ranger",
+    "displayName": "Ranger",
+    "description": "Console file manager with VI key bindings",
+    "homepage": "https://ranger.github.io",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "cli"
   },
   {
     "slug": "rbenv",
@@ -873,6 +1188,15 @@
     "category": "languages"
   },
   {
+    "slug": "redis",
+    "displayName": "Redis",
+    "description": "In-memory data structure store, used as database, cache and message broker",
+    "homepage": "https://redis.io",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "development"
+  },
+  {
     "slug": "remmina",
     "displayName": "Remmina",
     "description": "Remote desktop client supporting RDP, VNC, SSH, and more",
@@ -880,6 +1204,15 @@
     "isPopular": true,
     "isFoss": true,
     "category": "utilities"
+  },
+  {
+    "slug": "resources",
+    "displayName": "Resources",
+    "description": "System resource monitor for GNOME",
+    "homepage": "https://github.com/nokyan/resources",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "system"
   },
   {
     "slug": "retroarch",
@@ -963,6 +1296,15 @@
     "category": "media"
   },
   {
+    "slug": "signal",
+    "displayName": "Signal",
+    "description": "Privacy-focused messaging app with end-to-end encryption",
+    "homepage": "https://signal.org",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "communication"
+  },
+  {
     "slug": "slack",
     "displayName": "Slack",
     "description": "Team communication and collaboration platform",
@@ -970,6 +1312,15 @@
     "isPopular": true,
     "isFoss": false,
     "category": "communication"
+  },
+  {
+    "slug": "spaceship",
+    "displayName": "Spaceship Prompt",
+    "description": "Minimalistic, powerful and extremely customizable Zsh prompt",
+    "homepage": "https://spaceship-prompt.sh",
+    "isPopular": false,
+    "isFoss": true,
+    "category": "cli"
   },
   {
     "slug": "spotify",
@@ -990,6 +1341,15 @@
     "category": "office"
   },
   {
+    "slug": "starship",
+    "displayName": "Starship",
+    "description": "Minimal, blazing-fast, and customizable shell prompt",
+    "homepage": "https://starship.rs",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "cli"
+  },
+  {
     "slug": "steam",
     "displayName": "Steam",
     "description": "Digital distribution platform for video games",
@@ -997,6 +1357,15 @@
     "isPopular": true,
     "isFoss": false,
     "category": "games"
+  },
+  {
+    "slug": "stremio",
+    "displayName": "Stremio",
+    "description": "Modern media center for video entertainment",
+    "homepage": "https://www.stremio.com",
+    "isPopular": true,
+    "isFoss": false,
+    "category": "media"
   },
   {
     "slug": "sublime-text",
@@ -1026,6 +1395,15 @@
     "category": "utilities"
   },
   {
+    "slug": "tailscale",
+    "displayName": "Tailscale",
+    "description": "Zero config VPN based on WireGuard",
+    "homepage": "https://tailscale.com",
+    "isPopular": true,
+    "isFoss": false,
+    "category": "system"
+  },
+  {
     "slug": "telegram",
     "displayName": "Telegram Desktop",
     "description": "Fast and secure messaging app",
@@ -1033,6 +1411,15 @@
     "isPopular": true,
     "isFoss": true,
     "category": "communication"
+  },
+  {
+    "slug": "terraform",
+    "displayName": "Terraform",
+    "description": "Infrastructure as Code tool by HashiCorp",
+    "homepage": "https://www.terraform.io",
+    "isPopular": true,
+    "isFoss": false,
+    "category": "development"
   },
   {
     "slug": "thunderbird",
@@ -1107,6 +1494,15 @@
     "category": "languages"
   },
   {
+    "slug": "vagrant",
+    "displayName": "Vagrant",
+    "description": "Tool for building and managing virtual machine environments",
+    "homepage": "https://www.vagrantup.com",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "development"
+  },
+  {
     "slug": "ventoy",
     "displayName": "Ventoy",
     "description": "Bootable USB solution supporting multiple ISO files",
@@ -1123,6 +1519,24 @@
     "isPopular": false,
     "isFoss": true,
     "category": "security"
+  },
+  {
+    "slug": "virt-manager",
+    "displayName": "virt-manager",
+    "description": "Desktop application for managing virtual machines",
+    "homepage": "https://virt-manager.org",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "development"
+  },
+  {
+    "slug": "virtualbox",
+    "displayName": "VirtualBox",
+    "description": "Powerful x86 and AMD64/Intel64 virtualization product",
+    "homepage": "https://www.virtualbox.org",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "development"
   },
   {
     "slug": "vivaldi",
@@ -1206,6 +1620,33 @@
     "category": "system"
   },
   {
+    "slug": "wireguard",
+    "displayName": "WireGuard",
+    "description": "Fast, modern, secure VPN tunnel",
+    "homepage": "https://www.wireguard.com",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "system"
+  },
+  {
+    "slug": "wireshark",
+    "displayName": "Wireshark",
+    "description": "Network protocol analyzer",
+    "homepage": "https://www.wireshark.org",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "development"
+  },
+  {
+    "slug": "yazi",
+    "displayName": "Yazi",
+    "description": "Blazing fast terminal file manager",
+    "homepage": "https://yazi-rs.github.io",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "cli"
+  },
+  {
     "slug": "yq",
     "displayName": "yq",
     "description": "Lightweight and portable command-line YAML processor",
@@ -1242,231 +1683,6 @@
     "category": "communication"
   },
   {
-    "slug": "zsh",
-    "displayName": "Zsh",
-    "description": "Powerful shell with advanced features and customization",
-    "homepage": "https://zsh.org",
-    "isPopular": true,
-    "isFoss": true,
-    "category": "system"
-  },
-  {
-    "slug": "claude-code",
-    "displayName": "Claude Code",
-    "description": "Anthropic's official CLI for Claude AI coding assistant",
-    "homepage": "https://claude.com/claude-code",
-    "isPopular": true,
-    "isFoss": false,
-    "category": "ai"
-  },
-  {
-    "slug": "cursor",
-    "displayName": "Cursor",
-    "description": "AI-powered code editor built on VSCode",
-    "homepage": "https://cursor.sh",
-    "isPopular": true,
-    "isFoss": false,
-    "category": "ai"
-  },
-  {
-    "slug": "github-copilot-cli",
-    "displayName": "GitHub Copilot CLI",
-    "description": "GitHub Copilot for command line",
-    "homepage": "https://githubnext.com/projects/copilot-cli",
-    "isPopular": true,
-    "isFoss": false,
-    "category": "ai"
-  },
-  {
-    "slug": "cody",
-    "displayName": "Cody",
-    "description": "Sourcegraph's AI coding assistant",
-    "homepage": "https://sourcegraph.com/cody",
-    "isPopular": true,
-    "isFoss": false,
-    "category": "ai"
-  },
-  {
-    "slug": "aider",
-    "displayName": "Aider",
-    "description": "AI pair programming in your terminal",
-    "homepage": "https://aider.chat",
-    "isPopular": true,
-    "isFoss": true,
-    "category": "ai"
-  },
-  {
-    "slug": "continue",
-    "displayName": "Continue",
-    "description": "Open-source AI code assistant",
-    "homepage": "https://continue.dev",
-    "isPopular": true,
-    "isFoss": true,
-    "category": "ai"
-  },
-  {
-    "slug": "godot",
-    "displayName": "Godot Engine",
-    "description": "Free and open-source game engine",
-    "homepage": "https://godotengine.org",
-    "isPopular": true,
-    "isFoss": true,
-    "category": "media"
-  },
-  {
-    "slug": "freecad",
-    "displayName": "FreeCAD",
-    "description": "Open-source parametric 3D CAD modeler",
-    "homepage": "https://freecad.org",
-    "isPopular": true,
-    "isFoss": true,
-    "category": "media"
-  },
-  {
-    "slug": "stremio",
-    "displayName": "Stremio",
-    "description": "Modern media center for video entertainment",
-    "homepage": "https://www.stremio.com",
-    "isPopular": true,
-    "isFoss": false,
-    "category": "media"
-  },
-  {
-    "slug": "ffmpeg",
-    "displayName": "FFmpeg",
-    "description": "Complete cross-platform solution to record, convert and stream audio and video",
-    "homepage": "https://ffmpeg.org",
-    "isPopular": true,
-    "isFoss": true,
-    "category": "media"
-  },
-  {
-    "slug": "signal",
-    "displayName": "Signal",
-    "description": "Privacy-focused messaging app with end-to-end encryption",
-    "homepage": "https://signal.org",
-    "isPopular": true,
-    "isFoss": true,
-    "category": "communication"
-  },
-  {
-    "slug": "cpu-x",
-    "displayName": "CPU-X",
-    "description": "System profiler and hardware information tool",
-    "homepage": "https://thetumultuousunicornofdarkness.github.io/CPU-X",
-    "isPopular": true,
-    "isFoss": true,
-    "category": "system"
-  },
-  {
-    "slug": "resources",
-    "displayName": "Resources",
-    "description": "System resource monitor for GNOME",
-    "homepage": "https://github.com/nokyan/resources",
-    "isPopular": true,
-    "isFoss": true,
-    "category": "system"
-  },
-  {
-    "slug": "mission-center",
-    "displayName": "Mission Center",
-    "description": "Modern system monitor with GPU support",
-    "homepage": "https://missioncenter.io",
-    "isPopular": true,
-    "isFoss": true,
-    "category": "system"
-  },
-  {
-    "slug": "conky",
-    "displayName": "Conky",
-    "description": "Light-weight system monitor for X",
-    "homepage": "https://github.com/brndnmtthws/conky",
-    "isPopular": true,
-    "isFoss": true,
-    "category": "system"
-  },
-  {
-    "slug": "aria2",
-    "displayName": "aria2",
-    "description": "Lightweight multi-protocol & multi-source download utility",
-    "homepage": "https://aria2.github.io",
-    "isPopular": true,
-    "isFoss": true,
-    "category": "system"
-  },
-  {
-    "slug": "tailscale",
-    "displayName": "Tailscale",
-    "description": "Zero config VPN based on WireGuard",
-    "homepage": "https://tailscale.com",
-    "isPopular": true,
-    "isFoss": false,
-    "category": "system"
-  },
-  {
-    "slug": "wireguard",
-    "displayName": "WireGuard",
-    "description": "Fast, modern, secure VPN tunnel",
-    "homepage": "https://www.wireguard.com",
-    "isPopular": true,
-    "isFoss": true,
-    "category": "system"
-  },
-  {
-    "slug": "openvpn",
-    "displayName": "OpenVPN",
-    "description": "Open-source VPN solution",
-    "homepage": "https://openvpn.net",
-    "isPopular": true,
-    "isFoss": true,
-    "category": "system"
-  },
-  {
-    "slug": "nmap",
-    "displayName": "Nmap",
-    "description": "Network exploration tool and security scanner",
-    "homepage": "https://nmap.org",
-    "isPopular": true,
-    "isFoss": true,
-    "category": "system"
-  },
-  {
-    "slug": "openssh",
-    "displayName": "OpenSSH",
-    "description": "OpenBSD Secure Shell connectivity tools",
-    "homepage": "https://www.openssh.com",
-    "isPopular": true,
-    "isFoss": true,
-    "category": "system"
-  },
-  {
-    "slug": "fastfetch",
-    "displayName": "Fastfetch",
-    "description": "Fast system information tool written in C",
-    "homepage": "https://github.com/fastfetch-cli/fastfetch",
-    "isPopular": true,
-    "isFoss": true,
-    "category": "cli"
-  },
-  {
-    "slug": "yazi",
-    "displayName": "Yazi",
-    "description": "Blazing fast terminal file manager",
-    "homepage": "https://yazi-rs.github.io",
-    "isPopular": true,
-    "isFoss": true,
-    "category": "cli"
-  },
-  {
-    "slug": "ranger",
-    "displayName": "Ranger",
-    "description": "Console file manager with VI key bindings",
-    "homepage": "https://ranger.github.io",
-    "isPopular": true,
-    "isFoss": true,
-    "category": "cli"
-  },
-  {
     "slug": "zoxide",
     "displayName": "zoxide",
     "description": "Smarter cd command for your terminal",
@@ -1476,318 +1692,12 @@
     "category": "cli"
   },
   {
-    "slug": "fd",
-    "displayName": "fd",
-    "description": "Simple, fast and user-friendly alternative to find",
-    "homepage": "https://github.com/sharkdp/fd",
+    "slug": "zsh",
+    "displayName": "Zsh",
+    "description": "Powerful shell with advanced features and customization",
+    "homepage": "https://zsh.org",
     "isPopular": true,
     "isFoss": true,
-    "category": "cli"
-  },
-  {
-    "slug": "fish",
-    "displayName": "Fish",
-    "description": "Smart and user-friendly command line shell",
-    "homepage": "https://fishshell.com",
-    "isPopular": true,
-    "isFoss": true,
-    "category": "cli"
-  },
-  {
-    "slug": "aria2c",
-    "displayName": "aria2c",
-    "description": "Lightweight multi-protocol command-line download utility",
-    "homepage": "https://aria2.github.io",
-    "isPopular": true,
-    "isFoss": true,
-    "category": "cli"
-  },
-  {
-    "slug": "mangohud",
-    "displayName": "MangoHUD",
-    "description": "Vulkan and OpenGL overlay for monitoring FPS, temperatures, CPU/GPU load",
-    "homepage": "https://github.com/flightlessmango/MangoHud",
-    "isPopular": true,
-    "isFoss": true,
-    "category": "games"
-  },
-  {
-    "slug": "trillium-notes",
-    "displayName": "Trillium Notes",
-    "description": "Hierarchical note-taking application with focus on building knowledge base",
-    "homepage": "https://github.com/zadam/trilium",
-    "isPopular": true,
-    "isFoss": true,
-    "category": "office"
-  },
-  {
-    "slug": "postgresql",
-    "displayName": "PostgreSQL",
-    "description": "Powerful, open source object-relational database system",
-    "homepage": "https://www.postgresql.org",
-    "isPopular": true,
-    "isFoss": true,
-    "category": "development"
-  },
-  {
-    "slug": "mongodb",
-    "displayName": "MongoDB",
-    "description": "Document-oriented NoSQL database",
-    "homepage": "https://www.mongodb.com",
-    "isPopular": true,
-    "isFoss": false,
-    "category": "development"
-  },
-  {
-    "slug": "redis",
-    "displayName": "Redis",
-    "description": "In-memory data structure store, used as database, cache and message broker",
-    "homepage": "https://redis.io",
-    "isPopular": true,
-    "isFoss": true,
-    "category": "development"
-  },
-  {
-    "slug": "nginx",
-    "displayName": "Nginx",
-    "description": "High-performance HTTP server and reverse proxy",
-    "homepage": "https://nginx.org",
-    "isPopular": true,
-    "isFoss": true,
-    "category": "development"
-  },
-  {
-    "slug": "apache",
-    "displayName": "Apache HTTP Server",
-    "description": "Open-source HTTP server for modern operating systems",
-    "homepage": "https://httpd.apache.org",
-    "isPopular": true,
-    "isFoss": true,
-    "category": "development"
-  },
-  {
-    "slug": "terraform",
-    "displayName": "Terraform",
-    "description": "Infrastructure as Code tool by HashiCorp",
-    "homepage": "https://www.terraform.io",
-    "isPopular": true,
-    "isFoss": false,
-    "category": "development"
-  },
-  {
-    "slug": "ansible",
-    "displayName": "Ansible",
-    "description": "IT automation tool for configuration management",
-    "homepage": "https://www.ansible.com",
-    "isPopular": true,
-    "isFoss": true,
-    "category": "development"
-  },
-  {
-    "slug": "opentofu",
-    "displayName": "OpenTofu",
-    "description": "Open-source infrastructure as code tool, fork of Terraform",
-    "homepage": "https://opentofu.org",
-    "isPopular": true,
-    "isFoss": true,
-    "category": "development"
-  },
-  {
-    "slug": "podman",
-    "displayName": "Podman",
-    "description": "Daemonless container engine for OCI containers",
-    "homepage": "https://podman.io",
-    "isPopular": true,
-    "isFoss": true,
-    "category": "development"
-  },
-  {
-    "slug": "gh",
-    "displayName": "GitHub CLI",
-    "description": "GitHub's official command line tool",
-    "homepage": "https://cli.github.com",
-    "isPopular": true,
-    "isFoss": true,
-    "category": "development"
-  },
-  {
-    "slug": "kubectl",
-    "displayName": "kubectl",
-    "description": "Kubernetes command-line tool",
-    "homepage": "https://kubernetes.io/docs/reference/kubectl",
-    "isPopular": true,
-    "isFoss": true,
-    "category": "development"
-  },
-  {
-    "slug": "wireshark",
-    "displayName": "Wireshark",
-    "description": "Network protocol analyzer",
-    "homepage": "https://www.wireshark.org",
-    "isPopular": true,
-    "isFoss": true,
-    "category": "development"
-  },
-  {
-    "slug": "imhex",
-    "displayName": "ImHex",
-    "description": "Hex editor for reverse engineers and programmers",
-    "homepage": "https://imhex.werwolv.net",
-    "isPopular": true,
-    "isFoss": true,
-    "category": "development"
-  },
-  {
-    "slug": "qemu",
-    "displayName": "QEMU",
-    "description": "Generic machine emulator and virtualizer",
-    "homepage": "https://www.qemu.org",
-    "isPopular": true,
-    "isFoss": true,
-    "category": "development"
-  },
-  {
-    "slug": "virtualbox",
-    "displayName": "VirtualBox",
-    "description": "Powerful x86 and AMD64/Intel64 virtualization product",
-    "homepage": "https://www.virtualbox.org",
-    "isPopular": true,
-    "isFoss": true,
-    "category": "development"
-  },
-  {
-    "slug": "vagrant",
-    "displayName": "Vagrant",
-    "description": "Tool for building and managing virtual machine environments",
-    "homepage": "https://www.vagrantup.com",
-    "isPopular": true,
-    "isFoss": true,
-    "category": "development"
-  },
-  {
-    "slug": "virt-manager",
-    "displayName": "virt-manager",
-    "description": "Desktop application for managing virtual machines",
-    "homepage": "https://virt-manager.org",
-    "isPopular": true,
-    "isFoss": true,
-    "category": "development"
-  },
-  {
-    "slug": "micro",
-    "displayName": "Micro",
-    "description": "Modern and intuitive terminal-based text editor",
-    "homepage": "https://micro-editor.github.io",
-    "isPopular": true,
-    "isFoss": true,
-    "category": "development"
-  },
-  {
-    "slug": "helix",
-    "displayName": "Helix",
-    "description": "Post-modern modal text editor",
-    "homepage": "https://helix-editor.com",
-    "isPopular": true,
-    "isFoss": true,
-    "category": "development"
-  },
-  {
-    "slug": "starship",
-    "displayName": "Starship",
-    "description": "Minimal, blazing-fast, and customizable shell prompt",
-    "homepage": "https://starship.rs",
-    "isPopular": true,
-    "isFoss": true,
-    "category": "cli"
-  },
-  {
-    "slug": "powerlevel10k",
-    "displayName": "Powerlevel10k",
-    "description": "Fast and customizable Zsh theme",
-    "homepage": "https://github.com/romkatv/powerlevel10k",
-    "isPopular": true,
-    "isFoss": true,
-    "category": "cli"
-  },
-  {
-    "slug": "oh-my-zsh",
-    "displayName": "Oh My Zsh",
-    "description": "Framework for managing Zsh configuration",
-    "homepage": "https://ohmyz.sh",
-    "isPopular": true,
-    "isFoss": true,
-    "category": "cli"
-  },
-  {
-    "slug": "zsh-autosuggestions",
-    "displayName": "zsh-autosuggestions",
-    "description": "Fish-like autosuggestions for Zsh",
-    "homepage": "https://github.com/zsh-users/zsh-autosuggestions",
-    "isPopular": true,
-    "isFoss": true,
-    "category": "cli"
-  },
-  {
-    "slug": "zsh-syntax-highlighting",
-    "displayName": "zsh-syntax-highlighting",
-    "description": "Fish-like syntax highlighting for Zsh",
-    "homepage": "https://github.com/zsh-users/zsh-syntax-highlighting",
-    "isPopular": true,
-    "isFoss": true,
-    "category": "cli"
-  },
-  {
-    "slug": "lazyvim",
-    "displayName": "LazyVim",
-    "description": "Neovim config with batteries included",
-    "homepage": "https://www.lazyvim.org",
-    "isPopular": true,
-    "isFoss": true,
-    "category": "cli"
-  },
-  {
-    "slug": "astronvim",
-    "displayName": "AstroNvim",
-    "description": "Aesthetic and feature-rich Neovim config",
-    "homepage": "https://astronvim.com",
-    "isPopular": true,
-    "isFoss": true,
-    "category": "cli"
-  },
-  {
-    "slug": "lunarvim",
-    "displayName": "LunarVim",
-    "description": "Opinionated, extensible Neovim config",
-    "homepage": "https://www.lunarvim.org",
-    "isPopular": true,
-    "isFoss": true,
-    "category": "cli"
-  },
-  {
-    "slug": "nvchad",
-    "displayName": "NvChad",
-    "description": "Blazing fast Neovim config with beautiful UI",
-    "homepage": "https://nvchad.com",
-    "isPopular": true,
-    "isFoss": true,
-    "category": "cli"
-  },
-  {
-    "slug": "doom-emacs",
-    "displayName": "Doom Emacs",
-    "description": "Emacs framework for power users",
-    "homepage": "https://github.com/doomemacs/doomemacs",
-    "isPopular": true,
-    "isFoss": true,
-    "category": "cli"
-  },
-  {
-    "slug": "spacemacs",
-    "displayName": "Spacemacs",
-    "description": "Community-driven Emacs distribution",
-    "homepage": "https://www.spacemacs.org",
-    "isPopular": true,
-    "isFoss": true,
-    "category": "cli"
+    "category": "system"
   }
 ]

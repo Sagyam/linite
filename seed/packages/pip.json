@@ -1,8 +1,8 @@
 [
   {
-    "app": "jupyter",
+    "app": "ansible",
     "source": "pip",
-    "identifier": "jupyter",
+    "identifier": "ansible",
     "isAvailable": true
   },
   {
@@ -12,9 +12,15 @@
     "isAvailable": true
   },
   {
-    "app": "pylint",
+    "app": "jupyter",
     "source": "pip",
-    "identifier": "pylint",
+    "identifier": "jupyter",
+    "isAvailable": true
+  },
+  {
+    "app": "pipenv",
+    "source": "pip",
+    "identifier": "pipenv",
     "isAvailable": true
   },
   {
@@ -24,15 +30,9 @@
     "isAvailable": true
   },
   {
-    "app": "ansible",
+    "app": "pylint",
     "source": "pip",
-    "identifier": "ansible",
-    "isAvailable": true
-  },
-  {
-    "app": "pipenv",
-    "source": "pip",
-    "identifier": "pipenv",
+    "identifier": "pylint",
     "isAvailable": true
   },
   {

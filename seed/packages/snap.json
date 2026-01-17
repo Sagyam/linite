@@ -18,6 +18,12 @@
     "isAvailable": true
   },
   {
+    "app": "aria2c",
+    "source": "snap",
+    "identifier": "aria2c",
+    "isAvailable": true
+  },
+  {
     "app": "audacity",
     "source": "snap",
     "identifier": "audacity",
@@ -96,6 +102,12 @@
     "isAvailable": true
   },
   {
+    "app": "ffmpeg",
+    "source": "snap",
+    "identifier": "ffmpeg",
+    "isAvailable": true
+  },
+  {
     "app": "filezilla",
     "source": "snap",
     "identifier": "filezilla",
@@ -114,9 +126,21 @@
     "isAvailable": true
   },
   {
+    "app": "freecad",
+    "source": "snap",
+    "identifier": "freecad",
+    "isAvailable": true
+  },
+  {
     "app": "gimp",
     "source": "snap",
     "identifier": "gimp",
+    "isAvailable": true
+  },
+  {
+    "app": "godot",
+    "source": "snap",
+    "identifier": "godot",
     "isAvailable": true
   },
   {
@@ -174,6 +198,12 @@
     "isAvailable": true
   },
   {
+    "app": "kubectl",
+    "source": "snap",
+    "identifier": "kubectl",
+    "isAvailable": true
+  },
+  {
     "app": "libreoffice",
     "source": "snap",
     "identifier": "libreoffice",
@@ -183,6 +213,18 @@
     "app": "logseq",
     "source": "snap",
     "identifier": "logseq",
+    "isAvailable": true
+  },
+  {
+    "app": "micro",
+    "source": "snap",
+    "identifier": "micro",
+    "isAvailable": true
+  },
+  {
+    "app": "mongodb",
+    "source": "snap",
+    "identifier": "charmed-mongodb",
     "isAvailable": true
   },
   {
@@ -234,6 +276,18 @@
     "isAvailable": true
   },
   {
+    "app": "podman",
+    "source": "snap",
+    "identifier": "podman",
+    "isAvailable": true
+  },
+  {
+    "app": "postgresql",
+    "source": "snap",
+    "identifier": "postgresql",
+    "isAvailable": true
+  },
+  {
     "app": "postman",
     "source": "snap",
     "identifier": "postman",
@@ -252,6 +306,12 @@
     "isAvailable": true
   },
   {
+    "app": "redis",
+    "source": "snap",
+    "identifier": "redis",
+    "isAvailable": true
+  },
+  {
     "app": "retroarch",
     "source": "snap",
     "identifier": "retroarch",
@@ -267,6 +327,12 @@
     "app": "shotcut",
     "source": "snap",
     "identifier": "shotcut",
+    "isAvailable": true
+  },
+  {
+    "app": "signal",
+    "source": "snap",
+    "identifier": "signal-desktop",
     "isAvailable": true
   },
   {
@@ -303,6 +369,12 @@
     "app": "telegram",
     "source": "snap",
     "identifier": "telegram-desktop",
+    "isAvailable": true
+  },
+  {
+    "app": "terraform",
+    "source": "snap",
+    "identifier": "terraform",
     "isAvailable": true
   },
   {
@@ -357,72 +429,6 @@
     "app": "zoom",
     "source": "snap",
     "identifier": "zoom-client",
-    "isAvailable": true
-  },
-  {
-    "app": "signal",
-    "source": "snap",
-    "identifier": "signal-desktop",
-    "isAvailable": true
-  },
-  {
-    "app": "godot",
-    "source": "snap",
-    "identifier": "godot",
-    "isAvailable": true
-  },
-  {
-    "app": "freecad",
-    "source": "snap",
-    "identifier": "freecad",
-    "isAvailable": true
-  },
-  {
-    "app": "ffmpeg",
-    "source": "snap",
-    "identifier": "ffmpeg",
-    "isAvailable": true
-  },
-  {
-    "app": "postgresql",
-    "source": "snap",
-    "identifier": "postgresql",
-    "isAvailable": true
-  },
-  {
-    "app": "redis",
-    "source": "snap",
-    "identifier": "redis",
-    "isAvailable": true
-  },
-  {
-    "app": "mongodb",
-    "source": "snap",
-    "identifier": "charmed-mongodb",
-    "isAvailable": true
-  },
-  {
-    "app": "kubectl",
-    "source": "snap",
-    "identifier": "kubectl",
-    "isAvailable": true
-  },
-  {
-    "app": "terraform",
-    "source": "snap",
-    "identifier": "terraform",
-    "isAvailable": true
-  },
-  {
-    "app": "podman",
-    "source": "snap",
-    "identifier": "podman",
-    "isAvailable": true
-  },
-  {
-    "app": "micro",
-    "source": "snap",
-    "identifier": "micro",
     "isAvailable": true
   }
 ]

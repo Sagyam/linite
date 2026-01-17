@@ -1,38 +1,8 @@
 [
   {
-    "app": "git",
+    "app": "aria2",
     "source": "zypper",
-    "identifier": "git",
-    "isAvailable": true
-  },
-  {
-    "app": "python",
-    "source": "zypper",
-    "identifier": "python3",
-    "isAvailable": true
-  },
-  {
-    "app": "golang",
-    "source": "zypper",
-    "identifier": "go",
-    "isAvailable": true
-  },
-  {
-    "app": "rust",
-    "source": "zypper",
-    "identifier": "cargo",
-    "isAvailable": true
-  },
-  {
-    "app": "ruby",
-    "source": "zypper",
-    "identifier": "ruby",
-    "isAvailable": true
-  },
-  {
-    "app": "php",
-    "source": "zypper",
-    "identifier": "php",
+    "identifier": "aria2",
     "isAvailable": true
   },
   {
@@ -42,9 +12,21 @@
     "isAvailable": true
   },
   {
-    "app": "perl",
+    "app": "gh",
     "source": "zypper",
-    "identifier": "perl",
+    "identifier": "gh",
+    "isAvailable": true
+  },
+  {
+    "app": "git",
+    "source": "zypper",
+    "identifier": "git",
+    "isAvailable": true
+  },
+  {
+    "app": "golang",
+    "source": "zypper",
+    "identifier": "go",
     "isAvailable": true
   },
   {
@@ -54,9 +36,39 @@
     "isAvailable": true
   },
   {
+    "app": "perl",
+    "source": "zypper",
+    "identifier": "perl",
+    "isAvailable": true
+  },
+  {
+    "app": "php",
+    "source": "zypper",
+    "identifier": "php",
+    "isAvailable": true
+  },
+  {
+    "app": "python",
+    "source": "zypper",
+    "identifier": "python3",
+    "isAvailable": true
+  },
+  {
     "app": "r-lang",
     "source": "zypper",
     "identifier": "R-base",
+    "isAvailable": true
+  },
+  {
+    "app": "ruby",
+    "source": "zypper",
+    "identifier": "ruby",
+    "isAvailable": true
+  },
+  {
+    "app": "rust",
+    "source": "zypper",
+    "identifier": "cargo",
     "isAvailable": true
   }
 ]

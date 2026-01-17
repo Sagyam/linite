@@ -168,6 +168,12 @@
     "isAvailable": true
   },
   {
+    "app": "jellyfin",
+    "source": "dnf",
+    "identifier": "jellyfin",
+    "isAvailable": true
+  },
+  {
     "app": "jq",
     "source": "dnf",
     "identifier": "jq",

@@ -6,6 +6,30 @@
     "isAvailable": true
   },
   {
+    "app": "ansible",
+    "source": "homebrew",
+    "identifier": "ansible",
+    "isAvailable": true
+  },
+  {
+    "app": "apache",
+    "source": "homebrew",
+    "identifier": "httpd",
+    "isAvailable": true
+  },
+  {
+    "app": "aria2",
+    "source": "homebrew",
+    "identifier": "aria2",
+    "isAvailable": true
+  },
+  {
+    "app": "aria2",
+    "source": "homebrew",
+    "identifier": "aria2",
+    "isAvailable": true
+  },
+  {
     "app": "bat",
     "source": "homebrew",
     "identifier": "bat",
@@ -48,15 +72,51 @@
     "isAvailable": true
   },
   {
+    "app": "fd",
+    "source": "homebrew",
+    "identifier": "fd",
+    "isAvailable": true
+  },
+  {
+    "app": "ffmpeg",
+    "source": "homebrew",
+    "identifier": "ffmpeg",
+    "isAvailable": true
+  },
+  {
+    "app": "fish",
+    "source": "homebrew",
+    "identifier": "fish",
+    "isAvailable": true
+  },
+  {
     "app": "fzf",
     "source": "homebrew",
     "identifier": "fzf",
     "isAvailable": true
   },
   {
+    "app": "gh",
+    "source": "homebrew",
+    "identifier": "gh",
+    "isAvailable": true
+  },
+  {
+    "app": "gh",
+    "source": "homebrew",
+    "identifier": "gh",
+    "isAvailable": true
+  },
+  {
     "app": "ghostty",
     "source": "homebrew",
     "identifier": "ghostty",
+    "isAvailable": true
+  },
+  {
+    "app": "helix",
+    "source": "homebrew",
+    "identifier": "helix",
     "isAvailable": true
   },
   {
@@ -84,6 +144,12 @@
     "isAvailable": true
   },
   {
+    "app": "kubectl",
+    "source": "homebrew",
+    "identifier": "kubernetes-cli",
+    "isAvailable": true
+  },
+  {
     "app": "lazydocker",
     "source": "homebrew",
     "identifier": "lazydocker",
@@ -102,6 +168,12 @@
     "isAvailable": true
   },
   {
+    "app": "micro",
+    "source": "homebrew",
+    "identifier": "micro",
+    "isAvailable": true
+  },
+  {
     "app": "neovim",
     "source": "homebrew",
     "identifier": "neovim",
@@ -114,9 +186,51 @@
     "isAvailable": true
   },
   {
+    "app": "nginx",
+    "source": "homebrew",
+    "identifier": "nginx",
+    "isAvailable": true
+  },
+  {
+    "app": "nmap",
+    "source": "homebrew",
+    "identifier": "nmap",
+    "isAvailable": true
+  },
+  {
+    "app": "opencode",
+    "source": "homebrew",
+    "identifier": "opencode",
+    "isAvailable": true
+  },
+  {
+    "app": "openvpn",
+    "source": "homebrew",
+    "identifier": "openvpn",
+    "isAvailable": true
+  },
+  {
     "app": "pnpm",
     "source": "homebrew",
     "identifier": "pnpm",
+    "isAvailable": true
+  },
+  {
+    "app": "podman",
+    "source": "homebrew",
+    "identifier": "podman",
+    "isAvailable": true
+  },
+  {
+    "app": "postgresql",
+    "source": "homebrew",
+    "identifier": "postgresql@15",
+    "isAvailable": true
+  },
+  {
+    "app": "ranger",
+    "source": "homebrew",
+    "identifier": "ranger",
     "isAvailable": true
   },
   {
@@ -126,9 +240,39 @@
     "isAvailable": true
   },
   {
+    "app": "redis",
+    "source": "homebrew",
+    "identifier": "redis",
+    "isAvailable": true
+  },
+  {
     "app": "ripgrep",
     "source": "homebrew",
     "identifier": "ripgrep",
+    "isAvailable": true
+  },
+  {
+    "app": "signal",
+    "source": "homebrew",
+    "identifier": "signal",
+    "isAvailable": true
+  },
+  {
+    "app": "spaceship",
+    "source": "homebrew",
+    "identifier": "spaceship",
+    "isAvailable": true
+  },
+  {
+    "app": "starship",
+    "source": "homebrew",
+    "identifier": "starship",
+    "isAvailable": true
+  },
+  {
+    "app": "terraform",
+    "source": "homebrew",
+    "identifier": "terraform",
     "isAvailable": true
   },
   {
@@ -162,81 +306,9 @@
     "isAvailable": true
   },
   {
-    "app": "yq",
+    "app": "wireguard-tools",
     "source": "homebrew",
-    "identifier": "yq",
-    "isAvailable": true
-  },
-  {
-    "app": "zsh",
-    "source": "homebrew",
-    "identifier": "zsh",
-    "isAvailable": true
-  },
-  {
-    "app": "signal",
-    "source": "homebrew",
-    "identifier": "signal",
-    "isAvailable": true
-  },
-  {
-    "app": "ffmpeg",
-    "source": "homebrew",
-    "identifier": "ffmpeg",
-    "isAvailable": true
-  },
-  {
-    "app": "postgresql",
-    "source": "homebrew",
-    "identifier": "postgresql@15",
-    "isAvailable": true
-  },
-  {
-    "app": "redis",
-    "source": "homebrew",
-    "identifier": "redis",
-    "isAvailable": true
-  },
-  {
-    "app": "nginx",
-    "source": "homebrew",
-    "identifier": "nginx",
-    "isAvailable": true
-  },
-  {
-    "app": "apache",
-    "source": "homebrew",
-    "identifier": "httpd",
-    "isAvailable": true
-  },
-  {
-    "app": "terraform",
-    "source": "homebrew",
-    "identifier": "terraform",
-    "isAvailable": true
-  },
-  {
-    "app": "ansible",
-    "source": "homebrew",
-    "identifier": "ansible",
-    "isAvailable": true
-  },
-  {
-    "app": "podman",
-    "source": "homebrew",
-    "identifier": "podman",
-    "isAvailable": true
-  },
-  {
-    "app": "gh",
-    "source": "homebrew",
-    "identifier": "gh",
-    "isAvailable": true
-  },
-  {
-    "app": "kubectl",
-    "source": "homebrew",
-    "identifier": "kubernetes-cli",
+    "identifier": "wireguard-tools",
     "isAvailable": true
   },
   {
@@ -246,45 +318,9 @@
     "isAvailable": true
   },
   {
-    "app": "nmap",
+    "app": "yq",
     "source": "homebrew",
-    "identifier": "nmap",
-    "isAvailable": true
-  },
-  {
-    "app": "openvpn",
-    "source": "homebrew",
-    "identifier": "openvpn",
-    "isAvailable": true
-  },
-  {
-    "app": "wireguard-tools",
-    "source": "homebrew",
-    "identifier": "wireguard-tools",
-    "isAvailable": true
-  },
-  {
-    "app": "aria2",
-    "source": "homebrew",
-    "identifier": "aria2",
-    "isAvailable": true
-  },
-  {
-    "app": "fish",
-    "source": "homebrew",
-    "identifier": "fish",
-    "isAvailable": true
-  },
-  {
-    "app": "ranger",
-    "source": "homebrew",
-    "identifier": "ranger",
-    "isAvailable": true
-  },
-  {
-    "app": "fd",
-    "source": "homebrew",
-    "identifier": "fd",
+    "identifier": "yq",
     "isAvailable": true
   },
   {
@@ -294,21 +330,9 @@
     "isAvailable": true
   },
   {
-    "app": "starship",
+    "app": "zsh",
     "source": "homebrew",
-    "identifier": "starship",
-    "isAvailable": true
-  },
-  {
-    "app": "micro",
-    "source": "homebrew",
-    "identifier": "micro",
-    "isAvailable": true
-  },
-  {
-    "app": "helix",
-    "source": "homebrew",
-    "identifier": "helix",
+    "identifier": "zsh",
     "isAvailable": true
   }
 ]

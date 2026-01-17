@@ -162,6 +162,12 @@
     "isAvailable": true
   },
   {
+    "app": "freecad",
+    "source": "flatpak",
+    "identifier": "org.freecad.FreeCAD",
+    "isAvailable": true
+  },
+  {
     "app": "geary",
     "source": "flatpak",
     "identifier": "org.gnome.Geary",
@@ -171,6 +177,12 @@
     "app": "gimp",
     "source": "flatpak",
     "identifier": "org.gimp.GIMP",
+    "isAvailable": true
+  },
+  {
+    "app": "godot",
+    "source": "flatpak",
+    "identifier": "org.godotengine.Godot",
     "isAvailable": true
   },
   {
@@ -189,6 +201,12 @@
     "app": "heroic",
     "source": "flatpak",
     "identifier": "com.heroicgameslauncher.hgl",
+    "isAvailable": true
+  },
+  {
+    "app": "imhex",
+    "source": "flatpak",
+    "identifier": "net.werwolv.ImHex",
     "isAvailable": true
   },
   {
@@ -390,6 +408,12 @@
     "isAvailable": true
   },
   {
+    "app": "signal",
+    "source": "flatpak",
+    "identifier": "org.signal.Signal",
+    "isAvailable": true
+  },
+  {
     "app": "slack",
     "source": "flatpak",
     "identifier": "com.slack.Slack",
@@ -411,6 +435,12 @@
     "app": "steam",
     "source": "flatpak",
     "identifier": "com.valvesoftware.Steam",
+    "isAvailable": true
+  },
+  {
+    "app": "stremio",
+    "source": "flatpak",
+    "identifier": "com.stremio.Stremio",
     "isAvailable": true
   },
   {
@@ -516,6 +546,12 @@
     "isAvailable": true
   },
   {
+    "app": "wireshark",
+    "source": "flatpak",
+    "identifier": "org.wireshark.Wireshark",
+    "isAvailable": true
+  },
+  {
     "app": "zed",
     "source": "flatpak",
     "identifier": "app.zen_browser.zen",
@@ -525,42 +561,6 @@
     "app": "zoom",
     "source": "flatpak",
     "identifier": "us.zoom.Zoom",
-    "isAvailable": true
-  },
-  {
-    "app": "signal",
-    "source": "flatpak",
-    "identifier": "org.signal.Signal",
-    "isAvailable": true
-  },
-  {
-    "app": "godot",
-    "source": "flatpak",
-    "identifier": "org.godotengine.Godot",
-    "isAvailable": true
-  },
-  {
-    "app": "freecad",
-    "source": "flatpak",
-    "identifier": "org.freecad.FreeCAD",
-    "isAvailable": true
-  },
-  {
-    "app": "stremio",
-    "source": "flatpak",
-    "identifier": "com.stremio.Stremio",
-    "isAvailable": true
-  },
-  {
-    "app": "wireshark",
-    "source": "flatpak",
-    "identifier": "org.wireshark.Wireshark",
-    "isAvailable": true
-  },
-  {
-    "app": "imhex",
-    "source": "flatpak",
-    "identifier": "net.werwolv.ImHex",
     "isAvailable": true
   }
 ]

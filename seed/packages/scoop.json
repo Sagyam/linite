@@ -1,5 +1,23 @@
 [
   {
+    "app": "alacritty",
+    "source": "scoop",
+    "identifier": "alacritty",
+    "isAvailable": true
+  },
+  {
+    "app": "apache",
+    "source": "scoop",
+    "identifier": "apache",
+    "isAvailable": true
+  },
+  {
+    "app": "aria2",
+    "source": "scoop",
+    "identifier": "aria2",
+    "isAvailable": true
+  },
+  {
     "app": "audacity",
     "source": "scoop",
     "identifier": "audacity",
@@ -60,6 +78,12 @@
     "isAvailable": true
   },
   {
+    "app": "cursor",
+    "source": "scoop",
+    "identifier": "cursor",
+    "isAvailable": true
+  },
+  {
     "app": "dbeaver",
     "source": "scoop",
     "identifier": "dbeaver",
@@ -84,6 +108,18 @@
     "isAvailable": true
   },
   {
+    "app": "fd",
+    "source": "scoop",
+    "identifier": "fd",
+    "isAvailable": true
+  },
+  {
+    "app": "ffmpeg",
+    "source": "scoop",
+    "identifier": "ffmpeg",
+    "isAvailable": true
+  },
+  {
     "app": "firefox",
     "source": "scoop",
     "identifier": "firefox",
@@ -93,6 +129,12 @@
     "app": "fzf",
     "source": "scoop",
     "identifier": "fzf",
+    "isAvailable": true
+  },
+  {
+    "app": "gh",
+    "source": "scoop",
+    "identifier": "gh",
     "isAvailable": true
   },
   {
@@ -108,9 +150,27 @@
     "isAvailable": true
   },
   {
+    "app": "godot",
+    "source": "scoop",
+    "identifier": "godot",
+    "isAvailable": true
+  },
+  {
+    "app": "golang",
+    "source": "scoop",
+    "identifier": "go",
+    "isAvailable": true
+  },
+  {
     "app": "handbrake",
     "source": "scoop",
     "identifier": "handbrake",
+    "isAvailable": true
+  },
+  {
+    "app": "helix",
+    "source": "scoop",
+    "identifier": "helix",
     "isAvailable": true
   },
   {
@@ -123,6 +183,12 @@
     "app": "intellij",
     "source": "scoop",
     "identifier": "idea",
+    "isAvailable": true
+  },
+  {
+    "app": "java",
+    "source": "scoop",
+    "identifier": "openjdk",
     "isAvailable": true
   },
   {
@@ -144,15 +210,63 @@
     "isAvailable": true
   },
   {
+    "app": "kubectl",
+    "source": "scoop",
+    "identifier": "kubectl",
+    "isAvailable": true
+  },
+  {
+    "app": "lazydocker",
+    "source": "scoop",
+    "identifier": "lazydocker",
+    "isAvailable": true
+  },
+  {
+    "app": "lazygit",
+    "source": "scoop",
+    "identifier": "lazygit",
+    "isAvailable": true
+  },
+  {
     "app": "libreoffice",
     "source": "scoop",
     "identifier": "libreoffice",
     "isAvailable": true
   },
   {
+    "app": "micro",
+    "source": "scoop",
+    "identifier": "micro",
+    "isAvailable": true
+  },
+  {
+    "app": "mongodb",
+    "source": "scoop",
+    "identifier": "mongodb",
+    "isAvailable": true
+  },
+  {
     "app": "mpv",
     "source": "scoop",
     "identifier": "mpv",
+    "isAvailable": true
+  },
+  {
+    "app": "neovim",
+    "source": "scoop",
+    "identifier": "neovim",
+    "isAvailable": true
+  },
+  {
+    "app": "nginx",
+    "source": "scoop",
+    "identifier": "nginx",
+    "isAvailable": true
+  },
+  {
+    "app": "nmap",
+    "source": "scoop",
+    "identifier": "nmap",
     "isAvailable": true
   },
   {
@@ -180,9 +294,33 @@
     "isAvailable": true
   },
   {
+    "app": "openssh",
+    "source": "scoop",
+    "identifier": "openssh",
+    "isAvailable": true
+  },
+  {
+    "app": "openvpn",
+    "source": "scoop",
+    "identifier": "openvpn",
+    "isAvailable": true
+  },
+  {
+    "app": "php",
+    "source": "scoop",
+    "identifier": "php",
+    "isAvailable": true
+  },
+  {
     "app": "pnpm",
     "source": "scoop",
     "identifier": "pnpm",
+    "isAvailable": true
+  },
+  {
+    "app": "postgresql",
+    "source": "scoop",
+    "identifier": "postgresql",
     "isAvailable": true
   },
   {
@@ -192,9 +330,39 @@
     "isAvailable": true
   },
   {
+    "app": "python",
+    "source": "scoop",
+    "identifier": "python",
+    "isAvailable": true
+  },
+  {
+    "app": "redis",
+    "source": "scoop",
+    "identifier": "redis",
+    "isAvailable": true
+  },
+  {
     "app": "ripgrep",
     "source": "scoop",
     "identifier": "ripgrep",
+    "isAvailable": true
+  },
+  {
+    "app": "ruby",
+    "source": "scoop",
+    "identifier": "ruby",
+    "isAvailable": true
+  },
+  {
+    "app": "rust",
+    "source": "scoop",
+    "identifier": "rust",
+    "isAvailable": true
+  },
+  {
+    "app": "signal",
+    "source": "scoop",
+    "identifier": "signal",
     "isAvailable": true
   },
   {
@@ -210,15 +378,39 @@
     "isAvailable": true
   },
   {
+    "app": "starship",
+    "source": "scoop",
+    "identifier": "starship",
+    "isAvailable": true
+  },
+  {
+    "app": "stremio",
+    "source": "scoop",
+    "identifier": "stremio",
+    "isAvailable": true
+  },
+  {
     "app": "syncthing",
     "source": "scoop",
     "identifier": "syncthing",
     "isAvailable": true
   },
   {
+    "app": "tailscale",
+    "source": "scoop",
+    "identifier": "tailscale",
+    "isAvailable": true
+  },
+  {
     "app": "telegram",
     "source": "scoop",
     "identifier": "telegram",
+    "isAvailable": true
+  },
+  {
+    "app": "terraform",
+    "source": "scoop",
+    "identifier": "terraform",
     "isAvailable": true
   },
   {
@@ -240,6 +432,12 @@
     "isAvailable": true
   },
   {
+    "app": "vagrant",
+    "source": "scoop",
+    "identifier": "vagrant",
+    "isAvailable": true
+  },
+  {
     "app": "vlc",
     "source": "scoop",
     "identifier": "vlc",
@@ -252,87 +450,9 @@
     "isAvailable": true
   },
   {
-    "app": "zoom",
+    "app": "wezterm",
     "source": "scoop",
-    "identifier": "zoom",
-    "isAvailable": true
-  },
-  {
-    "app": "zsh",
-    "source": "scoop",
-    "identifier": "zsh",
-    "isAvailable": true
-  },
-  {
-    "app": "signal",
-    "source": "scoop",
-    "identifier": "signal",
-    "isAvailable": true
-  },
-  {
-    "app": "ffmpeg",
-    "source": "scoop",
-    "identifier": "ffmpeg",
-    "isAvailable": true
-  },
-  {
-    "app": "godot",
-    "source": "scoop",
-    "identifier": "godot",
-    "isAvailable": true
-  },
-  {
-    "app": "stremio",
-    "source": "scoop",
-    "identifier": "stremio",
-    "isAvailable": true
-  },
-  {
-    "app": "postgresql",
-    "source": "scoop",
-    "identifier": "postgresql",
-    "isAvailable": true
-  },
-  {
-    "app": "mongodb",
-    "source": "scoop",
-    "identifier": "mongodb",
-    "isAvailable": true
-  },
-  {
-    "app": "redis",
-    "source": "scoop",
-    "identifier": "redis",
-    "isAvailable": true
-  },
-  {
-    "app": "nginx",
-    "source": "scoop",
-    "identifier": "nginx",
-    "isAvailable": true
-  },
-  {
-    "app": "apache",
-    "source": "scoop",
-    "identifier": "apache",
-    "isAvailable": true
-  },
-  {
-    "app": "terraform",
-    "source": "scoop",
-    "identifier": "terraform",
-    "isAvailable": true
-  },
-  {
-    "app": "gh",
-    "source": "scoop",
-    "identifier": "gh",
-    "isAvailable": true
-  },
-  {
-    "app": "kubectl",
-    "source": "scoop",
-    "identifier": "kubectl",
+    "identifier": "wezterm",
     "isAvailable": true
   },
   {
@@ -342,123 +462,9 @@
     "isAvailable": true
   },
   {
-    "app": "nmap",
+    "app": "yq",
     "source": "scoop",
-    "identifier": "nmap",
-    "isAvailable": true
-  },
-  {
-    "app": "openssh",
-    "source": "scoop",
-    "identifier": "openssh",
-    "isAvailable": true
-  },
-  {
-    "app": "openvpn",
-    "source": "scoop",
-    "identifier": "openvpn",
-    "isAvailable": true
-  },
-  {
-    "app": "tailscale",
-    "source": "scoop",
-    "identifier": "tailscale",
-    "isAvailable": true
-  },
-  {
-    "app": "aria2",
-    "source": "scoop",
-    "identifier": "aria2",
-    "isAvailable": true
-  },
-  {
-    "app": "fd",
-    "source": "scoop",
-    "identifier": "fd",
-    "isAvailable": true
-  },
-  {
-    "app": "zoxide",
-    "source": "scoop",
-    "identifier": "zoxide",
-    "isAvailable": true
-  },
-  {
-    "app": "starship",
-    "source": "scoop",
-    "identifier": "starship",
-    "isAvailable": true
-  },
-  {
-    "app": "micro",
-    "source": "scoop",
-    "identifier": "micro",
-    "isAvailable": true
-  },
-  {
-    "app": "helix",
-    "source": "scoop",
-    "identifier": "helix",
-    "isAvailable": true
-  },
-  {
-    "app": "neovim",
-    "source": "scoop",
-    "identifier": "neovim",
-    "isAvailable": true
-  },
-  {
-    "app": "cursor",
-    "source": "scoop",
-    "identifier": "cursor",
-    "isAvailable": true
-  },
-  {
-    "app": "python",
-    "source": "scoop",
-    "identifier": "python",
-    "isAvailable": true
-  },
-  {
-    "app": "java",
-    "source": "scoop",
-    "identifier": "openjdk",
-    "isAvailable": true
-  },
-  {
-    "app": "golang",
-    "source": "scoop",
-    "identifier": "go",
-    "isAvailable": true
-  },
-  {
-    "app": "rust",
-    "source": "scoop",
-    "identifier": "rust",
-    "isAvailable": true
-  },
-  {
-    "app": "php",
-    "source": "scoop",
-    "identifier": "php",
-    "isAvailable": true
-  },
-  {
-    "app": "ruby",
-    "source": "scoop",
-    "identifier": "ruby",
-    "isAvailable": true
-  },
-  {
-    "app": "wezterm",
-    "source": "scoop",
-    "identifier": "wezterm",
-    "isAvailable": true
-  },
-  {
-    "app": "alacritty",
-    "source": "scoop",
-    "identifier": "alacritty",
+    "identifier": "yq",
     "isAvailable": true
   },
   {
@@ -468,27 +474,21 @@
     "isAvailable": true
   },
   {
-    "app": "lazygit",
+    "app": "zoom",
     "source": "scoop",
-    "identifier": "lazygit",
+    "identifier": "zoom",
     "isAvailable": true
   },
   {
-    "app": "yq",
+    "app": "zoxide",
     "source": "scoop",
-    "identifier": "yq",
+    "identifier": "zoxide",
     "isAvailable": true
   },
   {
-    "app": "lazydocker",
+    "app": "zsh",
     "source": "scoop",
-    "identifier": "lazydocker",
-    "isAvailable": true
-  },
-  {
-    "app": "vagrant",
-    "source": "scoop",
-    "identifier": "vagrant",
+    "identifier": "zsh",
     "isAvailable": true
   }
 ]

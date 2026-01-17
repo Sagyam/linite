@@ -4,11 +4,9 @@
   <img src="public/logo.svg" alt="Linite Logo" width="120" height="120">
   <p><strong>Bulk install Linux apps with a single command</strong></p>
 
-  [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-  [![CI](https://github.com/Sagyam/linite/actions/workflows/ci.yml/badge.svg)](https://github.com/Sagyam/linite/actions/workflows/ci.yml)
-  [![Next.js](https://img.shields.io/badge/Next.js-16-black)](https://nextjs.org/)
-  [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue)](https://www.typescriptlang.org/)
-  [![Tests](https://img.shields.io/badge/tests-239%20passing-success)](https://github.com/Sagyam/linite)
+  [![License: MIT](https://img.shields.io/github/license/sagyam/linite?style=for-the-badge)](LICENSE)
+  [![zread](https://img.shields.io/badge/Ask_Zread-_.svg?style=for-the-badge&color=00b0aa&labelColor=000000&logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTQuOTYxNTYgMS42MDAxSDIuMjQxNTZDMS44ODgxIDEuNjAwMSAxLjYwMTU2IDEuODg2NjQgMS42MDE1NiAyLjI0MDFWNC45NjAxQzEuNjAxNTYgNS4zMTM1NiAxLjg4ODEgNS42MDAxIDIuMjQxNTYgNS42MDAxSDQuOTYxNTZDNS4zMTUwMiA1LjYwMDEgNS42MDE1NiA1LjMxMzU2IDUuNjAxNTYgNC45NjAxVjIuMjQwMUM1LjYwMTU2IDEuODg2NjQgNS4zMTUwMiAxLjYwMDEgNC45NjE1NiAxLjYwMDFaIiBmaWxsPSIjZmZmIi8%2BCjxwYXRoIGQ9Ik00Ljk2MTU2IDEwLjM5OTlIMi4yNDE1NkMxLjg4ODEgMTAuMzk5OSAxLjYwMTU2IDEwLjY4NjQgMS42MDE1NiAxMS4wMzk5VjEzLjc1OTlDMS42MDE1NiAxNC4xMTM0IDEuODg4MSAxNC4zOTk5IDIuMjQxNTYgMTQuMzk5OUg0Ljk2MTU2QzUuMzE1MDIgMTQuMzk5OSA1LjYwMTU2IDE0LjExMzQgNS42MDE1NiAxMy43NTk5VjExLjAzOTlDNS42MDE1NiAxMC42ODY0IDUuMzE1MDIgMTAuMzk5OSA0Ljk2MTU2IDEwLjM5OTlaIiBmaWxsPSIjZmZmIi8%2BCjxwYXRoIGQ9Ik0xMy43NTg0IDEuNjAwMUgxMS4wMzg0QzEwLjY4NSAxLjYwMDEgMTAuMzk4NCAxLjg4NjY0IDEwLjM5ODQgMi4yNDAxVjQuOTYwMUMxMC4zOTg0IDUuMzEzNTYgMTAuNjg1IDUuNjAwMSAxMS4wMzg0IDUuNjAwMUgxMy43NTg0QzE0LjExMTkgNS42MDAxIDE0LjM5ODQgNS4zMTM1NiAxNC4zOTg0IDQuOTYwMVYyLjI0MDFDMTQuMzk4NCAxLjg4NjY0IDE0LjExMTkgMS42MDAxIDEzLjc1ODQgMS42MDAxWiIgZmlsbD0iI2ZmZiIvPgo8cGF0aCBkPSJNNCAxMkwxMiA0TDQgMTJaIiBmaWxsPSIjZmZmIi8%2BCjxwYXRoIGQ9Ik00IDEyTDEyIDQiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgo8L3N2Zz4K&logoColor=ffffff)](https://zread.ai/Sagyam/linite)
+  ![Build](https://img.shields.io/github/actions/workflow/status/sagyam/linite/ci.yml?branch=main&style=for-the-badge)
 
   [Try it now](https://linite.sagyamthapa.com.np) · [Report Bug](https://github.com/Sagyam/linite/issues) · [Request Feature](https://github.com/Sagyam/linite/issues)
 </div>
@@ -19,7 +17,7 @@ Linite is a Ninite-style package installer for Linux distributions and Windows. 
 
 Instead of manually searching for packages across different repositories and running multiple package manager commands, Linite provides a web interface to select applications and outputs a single, ready-to-run installation script.
 
-**[Website](https://linite.sagyamthapa.com.np)** | **[Documentation](./docs)**
+**[Website](https://linite.sagyamthapa.com.np)** | **[Docs](./docs)** | **[ZRead](https://zread.ai/Sagyam/linite)**
 
 <img src="./public/demo.gif" alt="Linite Demo" width="800">
 

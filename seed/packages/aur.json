@@ -42,9 +42,9 @@
     "isAvailable": true
   },
   {
-    "app": "gamehub",
+    "app": "github-cli",
     "source": "aur",
-    "identifier": "gamehub",
+    "identifier": "github-cli",
     "isAvailable": true
   },
   {
@@ -93,6 +93,12 @@
     "app": "openshot",
     "source": "aur",
     "identifier": "openshot",
+    "isAvailable": true
+  },
+  {
+    "app": "opencode",
+    "source": "aur",
+    "identifier": "opencode",
     "isAvailable": true
   },
   {
@@ -165,12 +171,6 @@
     "app": "waterfox",
     "source": "aur",
     "identifier": "waterfox-bin",
-    "isAvailable": true
-  },
-  {
-    "app": "aider",
-    "source": "aur",
-    "identifier": "aider-chat",
     "isAvailable": true
   },
   {

@@ -6,9 +6,21 @@
     "isAvailable": true
   },
   {
+    "app": "opencode",
+    "source": "npm",
+    "identifier": "opencode",
+    "isAvailable": true
+  },
+  {
     "app": "pnpm",
     "source": "npm",
     "identifier": "pnpm",
+    "isAvailable": true
+  },
+  {
+    "app": "spaceship",
+    "source": "npm",
+    "identifier": "spaceship-prompt",
     "isAvailable": true
   }
 ]

@@ -12,6 +12,12 @@
     "isAvailable": true
   },
   {
+    "app": "aria2",
+    "source": "pacman",
+    "identifier": "aria2",
+    "isAvailable": true
+  },
+  {
     "app": "audacity",
     "source": "pacman",
     "identifier": "audacity",
@@ -192,6 +198,12 @@
     "isAvailable": true
   },
   {
+    "app": "ghostty",
+    "source": "pacman",
+    "identifier": "ghostty",
+    "isAvailable": true
+  },
+  {
     "app": "gimp",
     "source": "pacman",
     "identifier": "gimp",
@@ -207,12 +219,6 @@
     "app": "golang",
     "source": "pacman",
     "identifier": "go",
-    "isAvailable": true
-  },
-  {
-    "app": "ghostty",
-    "source": "pacman",
-    "identifier": "ghostty",
     "isAvailable": true
   },
   {
@@ -243,6 +249,12 @@
     "app": "java",
     "source": "pacman",
     "identifier": "jdk-openjdk",
+    "isAvailable": true
+  },
+  {
+    "app": "jellyfin-server",
+    "source": "pacman",
+    "identifier": "jellyfin-server",
     "isAvailable": true
   },
   {
@@ -282,15 +294,15 @@
     "isAvailable": true
   },
   {
-    "app": "lazygit",
-    "source": "pacman",
-    "identifier": "lazygit",
-    "isAvailable": true
-  },
-  {
     "app": "lazydocker",
     "source": "pacman",
     "identifier": "lazydocker",
+    "isAvailable": true
+  },
+  {
+    "app": "lazygit",
+    "source": "pacman",
+    "identifier": "lazygit",
     "isAvailable": true
   },
   {

@@ -371,7 +371,7 @@ async function validateViaRepology(
       `https://repology.org/api/v1/project/${encodeURIComponent(identifier)}`,
       {
         headers: {
-          'User-Agent': 'Linite/1.0 (Linux package installer; +https://github.com/yourusername/linite)',
+          'User-Agent': 'Linite/1.0',
         },
       }
     );

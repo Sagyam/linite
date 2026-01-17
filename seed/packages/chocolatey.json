@@ -1,188 +1,8 @@
 [
   {
-    "app": "signal",
+    "app": "aria2",
     "source": "chocolatey",
-    "identifier": "signal",
-    "isAvailable": true
-  },
-  {
-    "app": "ffmpeg",
-    "source": "chocolatey",
-    "identifier": "ffmpeg",
-    "isAvailable": true
-  },
-  {
-    "app": "godot",
-    "source": "chocolatey",
-    "identifier": "godot",
-    "isAvailable": true
-  },
-  {
-    "app": "stremio",
-    "source": "chocolatey",
-    "identifier": "stremio",
-    "isAvailable": true
-  },
-  {
-    "app": "postgresql",
-    "source": "chocolatey",
-    "identifier": "postgresql",
-    "isAvailable": true
-  },
-  {
-    "app": "mongodb",
-    "source": "chocolatey",
-    "identifier": "mongodb",
-    "isAvailable": true
-  },
-  {
-    "app": "redis",
-    "source": "chocolatey",
-    "identifier": "redis",
-    "isAvailable": true
-  },
-  {
-    "app": "nginx",
-    "source": "chocolatey",
-    "identifier": "nginx",
-    "isAvailable": true
-  },
-  {
-    "app": "terraform",
-    "source": "chocolatey",
-    "identifier": "terraform",
-    "isAvailable": true
-  },
-  {
-    "app": "gh",
-    "source": "chocolatey",
-    "identifier": "gh",
-    "isAvailable": true
-  },
-  {
-    "app": "kubectl",
-    "source": "chocolatey",
-    "identifier": "kubernetes-cli",
-    "isAvailable": true
-  },
-  {
-    "app": "wireshark",
-    "source": "chocolatey",
-    "identifier": "wireshark",
-    "isAvailable": true
-  },
-  {
-    "app": "nmap",
-    "source": "chocolatey",
-    "identifier": "nmap",
-    "isAvailable": true
-  },
-  {
-    "app": "git",
-    "source": "chocolatey",
-    "identifier": "git",
-    "isAvailable": true
-  },
-  {
-    "app": "docker",
-    "source": "chocolatey",
-    "identifier": "docker-desktop",
-    "isAvailable": true
-  },
-  {
-    "app": "nodejs",
-    "source": "chocolatey",
-    "identifier": "nodejs",
-    "isAvailable": true
-  },
-  {
-    "app": "python",
-    "source": "chocolatey",
-    "identifier": "python",
-    "isAvailable": true
-  },
-  {
-    "app": "java",
-    "source": "chocolatey",
-    "identifier": "openjdk",
-    "isAvailable": true
-  },
-  {
-    "app": "golang",
-    "source": "chocolatey",
-    "identifier": "golang",
-    "isAvailable": true
-  },
-  {
-    "app": "rust",
-    "source": "chocolatey",
-    "identifier": "rust",
-    "isAvailable": true
-  },
-  {
-    "app": "vscode",
-    "source": "chocolatey",
-    "identifier": "vscode",
-    "isAvailable": true
-  },
-  {
-    "app": "chrome",
-    "source": "chocolatey",
-    "identifier": "googlechrome",
-    "isAvailable": true
-  },
-  {
-    "app": "firefox",
-    "source": "chocolatey",
-    "identifier": "firefox",
-    "isAvailable": true
-  },
-  {
-    "app": "brave",
-    "source": "chocolatey",
-    "identifier": "brave",
-    "isAvailable": true
-  },
-  {
-    "app": "vlc",
-    "source": "chocolatey",
-    "identifier": "vlc",
-    "isAvailable": true
-  },
-  {
-    "app": "discord",
-    "source": "chocolatey",
-    "identifier": "discord",
-    "isAvailable": true
-  },
-  {
-    "app": "slack",
-    "source": "chocolatey",
-    "identifier": "slack",
-    "isAvailable": true
-  },
-  {
-    "app": "zoom",
-    "source": "chocolatey",
-    "identifier": "zoom",
-    "isAvailable": true
-  },
-  {
-    "app": "telegram",
-    "source": "chocolatey",
-    "identifier": "telegram",
-    "isAvailable": true
-  },
-  {
-    "app": "gimp",
-    "source": "chocolatey",
-    "identifier": "gimp",
-    "isAvailable": true
-  },
-  {
-    "app": "inkscape",
-    "source": "chocolatey",
-    "identifier": "inkscape",
+    "identifier": "aria2",
     "isAvailable": true
   },
   {
@@ -192,33 +12,129 @@
     "isAvailable": true
   },
   {
+    "app": "brave",
+    "source": "chocolatey",
+    "identifier": "brave",
+    "isAvailable": true
+  },
+  {
+    "app": "chrome",
+    "source": "chocolatey",
+    "identifier": "googlechrome",
+    "isAvailable": true
+  },
+  {
+    "app": "curl",
+    "source": "chocolatey",
+    "identifier": "curl",
+    "isAvailable": true
+  },
+  {
+    "app": "discord",
+    "source": "chocolatey",
+    "identifier": "discord",
+    "isAvailable": true
+  },
+  {
+    "app": "docker",
+    "source": "chocolatey",
+    "identifier": "docker-desktop",
+    "isAvailable": true
+  },
+  {
+    "app": "ffmpeg",
+    "source": "chocolatey",
+    "identifier": "ffmpeg",
+    "isAvailable": true
+  },
+  {
+    "app": "firefox",
+    "source": "chocolatey",
+    "identifier": "firefox",
+    "isAvailable": true
+  },
+  {
+    "app": "gh",
+    "source": "chocolatey",
+    "identifier": "gh",
+    "isAvailable": true
+  },
+  {
+    "app": "gimp",
+    "source": "chocolatey",
+    "identifier": "gimp",
+    "isAvailable": true
+  },
+  {
+    "app": "git",
+    "source": "chocolatey",
+    "identifier": "git",
+    "isAvailable": true
+  },
+  {
+    "app": "godot",
+    "source": "chocolatey",
+    "identifier": "godot",
+    "isAvailable": true
+  },
+  {
+    "app": "golang",
+    "source": "chocolatey",
+    "identifier": "golang",
+    "isAvailable": true
+  },
+  {
+    "app": "inkscape",
+    "source": "chocolatey",
+    "identifier": "inkscape",
+    "isAvailable": true
+  },
+  {
+    "app": "java",
+    "source": "chocolatey",
+    "identifier": "openjdk",
+    "isAvailable": true
+  },
+  {
+    "app": "kubectl",
+    "source": "chocolatey",
+    "identifier": "kubernetes-cli",
+    "isAvailable": true
+  },
+  {
+    "app": "mongodb",
+    "source": "chocolatey",
+    "identifier": "mongodb",
+    "isAvailable": true
+  },
+  {
+    "app": "neovim",
+    "source": "chocolatey",
+    "identifier": "neovim",
+    "isAvailable": true
+  },
+  {
+    "app": "nginx",
+    "source": "chocolatey",
+    "identifier": "nginx",
+    "isAvailable": true
+  },
+  {
+    "app": "nmap",
+    "source": "chocolatey",
+    "identifier": "nmap",
+    "isAvailable": true
+  },
+  {
+    "app": "nodejs",
+    "source": "chocolatey",
+    "identifier": "nodejs",
+    "isAvailable": true
+  },
+  {
     "app": "obs",
     "source": "chocolatey",
     "identifier": "obs-studio",
-    "isAvailable": true
-  },
-  {
-    "app": "spotify",
-    "source": "chocolatey",
-    "identifier": "spotify",
-    "isAvailable": true
-  },
-  {
-    "app": "steam",
-    "source": "chocolatey",
-    "identifier": "steam",
-    "isAvailable": true
-  },
-  {
-    "app": "virtualbox",
-    "source": "chocolatey",
-    "identifier": "virtualbox",
-    "isAvailable": true
-  },
-  {
-    "app": "vagrant",
-    "source": "chocolatey",
-    "identifier": "vagrant",
     "isAvailable": true
   },
   {
@@ -234,15 +150,105 @@
     "isAvailable": true
   },
   {
+    "app": "postgresql",
+    "source": "chocolatey",
+    "identifier": "postgresql",
+    "isAvailable": true
+  },
+  {
+    "app": "python",
+    "source": "chocolatey",
+    "identifier": "python",
+    "isAvailable": true
+  },
+  {
+    "app": "redis",
+    "source": "chocolatey",
+    "identifier": "redis",
+    "isAvailable": true
+  },
+  {
+    "app": "rust",
+    "source": "chocolatey",
+    "identifier": "rust",
+    "isAvailable": true
+  },
+  {
+    "app": "signal",
+    "source": "chocolatey",
+    "identifier": "signal",
+    "isAvailable": true
+  },
+  {
+    "app": "slack",
+    "source": "chocolatey",
+    "identifier": "slack",
+    "isAvailable": true
+  },
+  {
+    "app": "spotify",
+    "source": "chocolatey",
+    "identifier": "spotify",
+    "isAvailable": true
+  },
+  {
+    "app": "steam",
+    "source": "chocolatey",
+    "identifier": "steam",
+    "isAvailable": true
+  },
+  {
+    "app": "stremio",
+    "source": "chocolatey",
+    "identifier": "stremio",
+    "isAvailable": true
+  },
+  {
     "app": "tailscale",
     "source": "chocolatey",
     "identifier": "tailscale",
     "isAvailable": true
   },
   {
-    "app": "curl",
+    "app": "telegram",
     "source": "chocolatey",
-    "identifier": "curl",
+    "identifier": "telegram",
+    "isAvailable": true
+  },
+  {
+    "app": "terraform",
+    "source": "chocolatey",
+    "identifier": "terraform",
+    "isAvailable": true
+  },
+  {
+    "app": "vagrant",
+    "source": "chocolatey",
+    "identifier": "vagrant",
+    "isAvailable": true
+  },
+  {
+    "app": "vim",
+    "source": "chocolatey",
+    "identifier": "vim",
+    "isAvailable": true
+  },
+  {
+    "app": "virtualbox",
+    "source": "chocolatey",
+    "identifier": "virtualbox",
+    "isAvailable": true
+  },
+  {
+    "app": "vlc",
+    "source": "chocolatey",
+    "identifier": "vlc",
+    "isAvailable": true
+  },
+  {
+    "app": "vscode",
+    "source": "chocolatey",
+    "identifier": "vscode",
     "isAvailable": true
   },
   {
@@ -252,21 +258,15 @@
     "isAvailable": true
   },
   {
-    "app": "aria2",
+    "app": "wireshark",
     "source": "chocolatey",
-    "identifier": "aria2",
+    "identifier": "wireshark",
     "isAvailable": true
   },
   {
-    "app": "neovim",
+    "app": "zoom",
     "source": "chocolatey",
-    "identifier": "neovim",
-    "isAvailable": true
-  },
-  {
-    "app": "vim",
-    "source": "chocolatey",
-    "identifier": "vim",
+    "identifier": "zoom",
     "isAvailable": true
   }
 ]

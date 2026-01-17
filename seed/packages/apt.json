@@ -12,6 +12,12 @@
     "isAvailable": true
   },
   {
+    "app": "aria2",
+    "source": "apt",
+    "identifier": "aria2",
+    "isAvailable": true
+  },
+  {
     "app": "audacity",
     "source": "apt",
     "identifier": "audacity",
@@ -348,12 +354,6 @@
     "isAvailable": true
   },
   {
-    "app": "telegram",
-    "source": "apt",
-    "identifier": "telegram-desktop",
-    "isAvailable": true
-  },
-  {
     "app": "thunderbird",
     "source": "apt",
     "identifier": "thunderbird",
@@ -368,7 +368,7 @@
   {
     "app": "tldr",
     "source": "apt",
-    "identifier": "tldr",
+    "identifier": "tldr-py",
     "isAvailable": true
   },
   {
