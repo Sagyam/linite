@@ -24,12 +24,6 @@
     "isAvailable": true
   },
   {
-    "app": "aria2",
-    "source": "homebrew",
-    "identifier": "aria2",
-    "isAvailable": true
-  },
-  {
     "app": "bat",
     "source": "homebrew",
     "identifier": "bat",
@@ -102,9 +96,9 @@
     "isAvailable": true
   },
   {
-    "app": "gh",
+    "app": "ghidra",
     "source": "homebrew",
-    "identifier": "gh",
+    "identifier": "ghidra",
     "isAvailable": true
   },
   {
@@ -201,6 +195,12 @@
     "app": "opencode",
     "source": "homebrew",
     "identifier": "opencode",
+    "isAvailable": true
+  },
+  {
+    "app": "opentofu",
+    "source": "homebrew",
+    "identifier": "opentofu",
     "isAvailable": true
   },
   {

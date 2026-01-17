@@ -60,6 +60,12 @@
     "isAvailable": true
   },
   {
+    "app": "cpu-x",
+    "source": "dnf",
+    "identifier": "cpu-x",
+    "isAvailable": true
+  },
+  {
     "app": "darktable",
     "source": "dnf",
     "identifier": "darktable",
@@ -126,6 +132,12 @@
     "isAvailable": true
   },
   {
+    "app": "gh",
+    "source": "dnf",
+    "identifier": "gh",
+    "isAvailable": true
+  },
+  {
     "app": "gcc",
     "source": "dnf",
     "identifier": "gcc",
@@ -165,6 +177,12 @@
     "app": "inkscape",
     "source": "dnf",
     "identifier": "inkscape",
+    "isAvailable": true
+  },
+  {
+    "app": "iotop-c",
+    "source": "dnf",
+    "identifier": "iotop-c",
     "isAvailable": true
   },
   {
@@ -216,6 +234,12 @@
     "isAvailable": true
   },
   {
+    "app": "mangohud",
+    "source": "dnf",
+    "identifier": "mangohud",
+    "isAvailable": true
+  },
+  {
     "app": "mpv",
     "source": "dnf",
     "identifier": "mpv",
@@ -228,6 +252,12 @@
     "isAvailable": true
   },
   {
+    "app": "nvtop",
+    "source": "dnf",
+    "identifier": "nvtop",
+    "isAvailable": true
+  },
+  {
     "app": "nodejs",
     "source": "dnf",
     "identifier": "nodejs",
@@ -237,6 +267,12 @@
     "app": "obs",
     "source": "dnf",
     "identifier": "obs-studio",
+    "isAvailable": true
+  },
+  {
+    "app": "opentofu",
+    "source": "dnf",
+    "identifier": "opentofu",
     "isAvailable": true
   },
   {
@@ -294,6 +330,12 @@
     "isAvailable": true
   },
   {
+    "app": "s-tui",
+    "source": "dnf",
+    "identifier": "s-tui",
+    "isAvailable": true
+  },
+  {
     "app": "supertuxkart",
     "source": "dnf",
     "identifier": "supertuxkart",
@@ -327,6 +369,12 @@
     "app": "vlc",
     "source": "dnf",
     "identifier": "vlc",
+    "isAvailable": true
+  },
+  {
+    "app": "virt-manager",
+    "source": "dnf",
+    "identifier": "virt-manager",
     "isAvailable": true
   },
   {

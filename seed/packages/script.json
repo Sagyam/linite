@@ -13,6 +13,19 @@
     }
   },
   {
+    "app": "claude-code",
+    "source": "script",
+    "identifier": "claude-code",
+    "isAvailable": true,
+    "metadata": {
+      "scriptUrl": {
+        "linux": "https://claude.ai/install.sh",
+        "windows": "https://claude.ai/install.ps1"
+      },
+      "note": "Anthropic's official CLI for Claude AI coding assistant"
+    }
+  },
+  {
     "app": "deno",
     "source": "script",
     "identifier": "deno",

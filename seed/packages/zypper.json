@@ -6,6 +6,12 @@
     "isAvailable": true
   },
   {
+    "app": "fastfetch",
+    "source": "zypper",
+    "identifier": "fastfetch",
+    "isAvailable": true
+  },
+  {
     "app": "gcc",
     "source": "zypper",
     "identifier": "gcc",
@@ -15,6 +21,12 @@
     "app": "gh",
     "source": "zypper",
     "identifier": "gh",
+    "isAvailable": true
+  },
+  {
+    "app": "ghostty",
+    "source": "zypper",
+    "identifier": "ghostty",
     "isAvailable": true
   },
   {
@@ -69,6 +81,12 @@
     "app": "rust",
     "source": "zypper",
     "identifier": "cargo",
+    "isAvailable": true
+  },
+  {
+    "app": "s-tui",
+    "source": "zypper",
+    "identifier": "s-tui",
     "isAvailable": true
   }
 ]

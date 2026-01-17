@@ -72,6 +72,12 @@
     "isAvailable": true
   },
   {
+    "app": "cpu-x",
+    "source": "apt",
+    "identifier": "cpu-x",
+    "isAvailable": true
+  },
+  {
     "app": "darktable",
     "source": "apt",
     "identifier": "darktable",
@@ -192,6 +198,12 @@
     "isAvailable": true
   },
   {
+    "app": "iotop-c",
+    "source": "apt",
+    "identifier": "iotop-c",
+    "isAvailable": true
+  },
+  {
     "app": "java",
     "source": "apt",
     "identifier": "default-jdk",
@@ -246,6 +258,12 @@
     "isAvailable": true
   },
   {
+    "app": "mangohud",
+    "source": "apt",
+    "identifier": "mangohud",
+    "isAvailable": true
+  },
+  {
     "app": "mpv",
     "source": "apt",
     "identifier": "mpv",
@@ -255,6 +273,12 @@
     "app": "neovim",
     "source": "apt",
     "identifier": "neovim",
+    "isAvailable": true
+  },
+  {
+    "app": "nvtop",
+    "source": "apt",
+    "identifier": "nvtop",
     "isAvailable": true
   },
   {
@@ -339,6 +363,12 @@
     "app": "steam",
     "source": "apt",
     "identifier": "steam",
+    "isAvailable": true
+  },
+  {
+    "app": "s-tui",
+    "source": "apt",
+    "identifier": "s-tui",
     "isAvailable": true
   },
   {
@@ -513,6 +543,12 @@
     "app": "fd",
     "source": "apt",
     "identifier": "fd-find",
+    "isAvailable": true
+  },
+  {
+    "app": "fastfetch",
+    "source": "apt",
+    "identifier": "fastfetch",
     "isAvailable": true
   },
   {

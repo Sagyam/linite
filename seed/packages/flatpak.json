@@ -72,6 +72,12 @@
     "isAvailable": true
   },
   {
+    "app": "cpu-x",
+    "source": "flatpak",
+    "identifier": "io.github.thetumultuousunicornofdarkness.cpu-x",
+    "isAvailable": true
+  },
+  {
     "app": "darktable",
     "source": "flatpak",
     "identifier": "org.darktable.Darktable",
@@ -192,6 +198,12 @@
     "isAvailable": true
   },
   {
+    "app": "ghidra",
+    "source": "flatpak",
+    "identifier": "org.ghidra_sre.Ghidra",
+    "isAvailable": true
+  },
+  {
     "app": "handbrake",
     "source": "flatpak",
     "identifier": "fr.handbrake.ghb",
@@ -291,6 +303,12 @@
     "app": "minecraft",
     "source": "flatpak",
     "identifier": "com.mojang.Minecraft",
+    "isAvailable": true
+  },
+  {
+    "app": "mission-center",
+    "source": "flatpak",
+    "identifier": "io.missioncenter.MissionCenter",
     "isAvailable": true
   },
   {

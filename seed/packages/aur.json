@@ -12,6 +12,12 @@
     "isAvailable": true
   },
   {
+    "app": "aria2",
+    "source": "aur",
+    "identifier": "aria2",
+    "isAvailable": true
+  },
+  {
     "app": "android-studio",
     "source": "aur",
     "identifier": "android-studio",
@@ -39,12 +45,6 @@
     "app": "floorp",
     "source": "aur",
     "identifier": "floorp-bin",
-    "isAvailable": true
-  },
-  {
-    "app": "github-cli",
-    "source": "aur",
-    "identifier": "github-cli",
     "isAvailable": true
   },
   {
@@ -147,6 +147,12 @@
     "app": "slack",
     "source": "aur",
     "identifier": "slack-desktop",
+    "isAvailable": true
+  },
+  {
+    "app": "spaceship-prompt",
+    "source": "aur",
+    "identifier": "spaceship-prompt",
     "isAvailable": true
   },
   {

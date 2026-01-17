@@ -6,6 +6,11 @@
  * Validates that package identifiers in seed/packages/*.json actually exist
  * in their respective package repositories.
  *
+ * Usage:
+ * - Validate all package managers: bun run scripts/validate-seed-data.ts
+ * - Validate specific package manager: bun run scripts/validate-seed-data.ts <source>
+ * - Or use npm scripts: bun run validate:seed:nix, bun run validate:seed:npm, etc.
+ *
  * Validation Strategy:
  * - Primary: API-based validation (reliable, no network setup needed)
  * - Fallback: Docker-based validation for system packages (if network available)
@@ -26,7 +31,7 @@
  * - winget: winget.run API
  * - homebrew: Homebrew API (formula + cask)
  * - scoop: GitHub bucket search
- * - nix: NixOS packages API
+ * - nix: Not validated (manual verification required)
  * - script: URL validation (checks if download URLs are accessible)
  *
  * Requirements:
@@ -101,7 +106,7 @@ async function retryFetch(
       return response;
     } catch (error) {
       if (i === maxRetries - 1) {
-        console.error(`  Failed to fetch ${url} after ${maxRetries} attempts`);
+        console.error(`  Failed to fetch ${url} after ${maxRetries} attempts: ${error instanceof Error ? error.message : String(error)}`);
         return null;
       }
       await delay(1000 * (i + 1)); // Exponential backoff
@@ -342,23 +347,17 @@ const apiCheckers: Record<string, (identifier: string) => Promise<boolean>> = {
         await delay(50);
       }
 
-      return false;
-    } catch {
-      return false;
-    }
-  },
-
-  nix: async (identifier: string) => {
-    // Use Repology API to check nixpkgs (more reliable than NixOS search API)
-    return validateViaRepology(identifier, 'nix');
-  },
-};
+       return false;
+     } catch {
+       return false;
+     }
+   },
+ };
 
 // Repo-to-source mapping for Repology
 const REPOLOGY_REPO_PATTERNS: Record<string, RegExp[]> = {
   apt: [/^debian_/, /^ubuntu_/, /^linuxmint_/, /^raspbian_/],
   dnf: [/^fedora_/, /^centos_/, /^rhel_/, /^almalinux_/, /^rocky_/],
-  nix: [/^nix_/],
 };
 
 // Repology validator for unified package checking
@@ -782,7 +781,7 @@ function generateReport(
 }
 
 // Main validation function
-async function validateSeedData() {
+async function validateSeedData(source?: string) {
   const startTime = Date.now();
 
   console.log('🔍 Seed Data Validation\n');
@@ -798,12 +797,24 @@ async function validateSeedData() {
   console.log('');
 
   try {
-    // Load all package files
-    const packageFiles = readdirSync(packagesDir)
+    // Load all package files or filter by source
+    let packageFiles = readdirSync(packagesDir)
       .filter((f) => f.endsWith('.json'))
       .sort();
 
-    console.log(`📦 Found ${packageFiles.length} package files\n`);
+    // If source specified, only validate that package manager
+    if (source) {
+      packageFiles = packageFiles.filter((f) => f === `${source}.json`);
+      if (packageFiles.length === 0) {
+        console.error(`❌ Package manager "${source}" not found`);
+        console.error('\nAvailable package managers:');
+        Object.keys(apiCheckers).forEach((pkg) => console.log(`  - ${pkg}`));
+        process.exit(2);
+      }
+      console.log(`🎯 Validating only: ${source}\n`);
+    }
+
+    console.log(`📦 Found ${packageFiles.length} package file(s)\n`);
 
     // List supported sources
     const supportedSources = Object.keys(apiCheckers);
@@ -822,25 +833,31 @@ async function validateSeedData() {
       const filePath = join(packagesDir, file);
       const packagesRaw = readFileSync(filePath, 'utf-8');
       const packages: Package[] = JSON.parse(packagesRaw);
-      const source = file.replace('.json', '');
+      const currentSource = file.replace('.json', '');
 
       totalPackages += packages.length;
 
-      const progressPrefix = `[${fileIdx + 1}/${packageFiles.length}]`;
+      const progressPrefix = source
+        ? `[${currentSource}]`
+        : `[${fileIdx + 1}/${packageFiles.length}]`;
+
       console.log(`\n${'='.repeat(70)}`);
       console.log(`${progressPrefix} 📄 ${file} (${packages.length} packages)`);
       console.log('='.repeat(70));
 
       // Skip if no validation method available (but script has special handling)
-      if (!apiCheckers[source] && source !== 'script') {
+      if (!apiCheckers[currentSource] && currentSource !== 'script') {
+        const skipReason = currentSource === 'nix'
+          ? 'manual verification required'
+          : 'no validation method available';
         console.log(
-          `${progressPrefix} ⏭️  Skipping ${source} (no validation method available)`
+          `${progressPrefix} ⏭️  Skipping ${currentSource} (${skipReason})`
         );
         skippedPackages += packages.length;
         continue;
       }
 
-      const errors = await validatePackages(packages, source, file, progressPrefix);
+      const errors = await validatePackages(packages, currentSource, file, progressPrefix);
       allErrors.push(...errors);
       checkedPackages += packages.length;
 
@@ -881,5 +898,14 @@ async function validateSeedData() {
   }
 }
 
-// Run validation
-validateSeedData();
+// Export individual validators
+export const validators = apiCheckers;
+export { validatePackages, validateSeedData, categorizeError };
+export type { Package, ValidationError, ValidationReport };
+
+// Run validation if this script is executed directly
+const isMainModule = process.argv[1].endsWith('validate-seed-data.ts');
+if (isMainModule) {
+  const source = process.argv[2];
+  validateSeedData(source);
+}

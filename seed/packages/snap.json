@@ -138,6 +138,18 @@
     "isAvailable": true
   },
   {
+    "app": "ghostty",
+    "source": "snap",
+    "identifier": "ghostty",
+    "isAvailable": true
+  },
+  {
+    "app": "ghidra",
+    "source": "snap",
+    "identifier": "ghidra",
+    "isAvailable": true
+  },
+  {
     "app": "godot",
     "source": "snap",
     "identifier": "godot",
@@ -222,6 +234,12 @@
     "isAvailable": true
   },
   {
+    "app": "mission-center",
+    "source": "snap",
+    "identifier": "io.missioncenter.MissionCenter",
+    "isAvailable": true
+  },
+  {
     "app": "mongodb",
     "source": "snap",
     "identifier": "charmed-mongodb",
@@ -261,6 +279,12 @@
     "app": "onlyoffice",
     "source": "snap",
     "identifier": "onlyoffice-desktopeditors",
+    "isAvailable": true
+  },
+  {
+    "app": "opentofu",
+    "source": "snap",
+    "identifier": "opentofu",
     "isAvailable": true
   },
   {

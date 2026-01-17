@@ -102,6 +102,12 @@
     "isAvailable": true
   },
   {
+    "app": "fastfetch",
+    "source": "winget",
+    "identifier": "fastfetch",
+    "isAvailable": true
+  },
+  {
     "app": "gh",
     "source": "winget",
     "identifier": "GitHub.cli",
@@ -291,6 +297,12 @@
     "app": "openvpn",
     "source": "winget",
     "identifier": "OpenVPNTechnologies.OpenVPN",
+    "isAvailable": true
+  },
+  {
+    "app": "openvpn",
+    "source": "winget",
+    "identifier": "OpenTofu.Tofu",
     "isAvailable": true
   },
   {

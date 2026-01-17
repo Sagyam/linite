@@ -78,6 +78,12 @@
     "isAvailable": true
   },
   {
+    "app": "cpu-x",
+    "source": "pacman",
+    "identifier": "cpu-x",
+    "isAvailable": true
+  },
+  {
     "app": "darktable",
     "source": "pacman",
     "identifier": "darktable",
@@ -204,6 +210,12 @@
     "isAvailable": true
   },
   {
+    "app": "ghidra",
+    "source": "pacman",
+    "identifier": "ghidra",
+    "isAvailable": true
+  },
+  {
     "app": "gimp",
     "source": "pacman",
     "identifier": "gimp",
@@ -213,6 +225,12 @@
     "app": "git",
     "source": "pacman",
     "identifier": "git",
+    "isAvailable": true
+  },
+  {
+    "app": "github-cli",
+    "source": "pacman",
+    "identifier": "github-cli",
     "isAvailable": true
   },
   {
@@ -243,6 +261,12 @@
     "app": "intellij",
     "source": "pacman",
     "identifier": "intellij-idea-community-edition",
+    "isAvailable": true
+  },
+  {
+    "app": "iotop-c",
+    "source": "pacman",
+    "identifier": "iotop-c",
     "isAvailable": true
   },
   {
@@ -342,6 +366,12 @@
     "isAvailable": true
   },
   {
+    "app": "nvtop",
+    "source": "pacman",
+    "identifier": "nvtop",
+    "isAvailable": true
+  },
+  {
     "app": "nextcloud",
     "source": "pacman",
     "identifier": "nextcloud-client",
@@ -369,6 +399,12 @@
     "app": "obsidian",
     "source": "pacman",
     "identifier": "obsidian",
+    "isAvailable": true
+  },
+  {
+    "app": "opentofu",
+    "source": "pacman",
+    "identifier": "opentofu",
     "isAvailable": true
   },
   {

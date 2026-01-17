@@ -48,6 +48,12 @@
     "isAvailable": true
   },
   {
+    "app": "fastfetch",
+    "source": "chocolatey",
+    "identifier": "fastfetch",
+    "isAvailable": true
+  },
+  {
     "app": "firefox",
     "source": "chocolatey",
     "identifier": "firefox",

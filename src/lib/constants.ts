@@ -29,9 +29,9 @@ export const TIMEOUTS = {
   /** Debounce delay for search inputs */
   DEBOUNCE_SEARCH: 300,
   /** Minimum delay between icon downloads (will use random delay in range) */
-  ICON_DOWNLOAD_MIN_DELAY: 1000,
+  ICON_DOWNLOAD_MIN_DELAY: 200,
   /** Maximum delay between icon downloads (will use random delay in range) */
-  ICON_DOWNLOAD_MAX_DELAY: 3000,
+  ICON_DOWNLOAD_MAX_DELAY: 1000,
 } as const;
 
 /**

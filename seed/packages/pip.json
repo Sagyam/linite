@@ -40,5 +40,11 @@
     "source": "pip",
     "identifier": "ranger-fm",
     "isAvailable": true
+  },
+  {
+    "app": "s-tui",
+    "source": "pip",
+    "identifier": "s-tui",
+    "isAvailable": true
   }
 ]

@@ -72,15 +72,6 @@
     "category": "cli"
   },
   {
-    "slug": "astronvim",
-    "displayName": "AstroNvim",
-    "description": "Aesthetic and feature-rich Neovim config",
-    "homepage": "https://astronvim.com",
-    "isPopular": true,
-    "isFoss": true,
-    "category": "cli"
-  },
-  {
     "slug": "audacity",
     "displayName": "Audacity",
     "description": "Free, open source, cross-platform audio software",
@@ -333,15 +324,6 @@
     "category": "games"
   },
   {
-    "slug": "doom-emacs",
-    "displayName": "Doom Emacs",
-    "description": "Emacs framework for power users",
-    "homepage": "https://github.com/doomemacs/doomemacs",
-    "isPopular": true,
-    "isFoss": true,
-    "category": "cli"
-  },
-  {
     "slug": "dropbox",
     "displayName": "Dropbox",
     "description": "Cloud storage and file synchronization service",
@@ -531,6 +513,15 @@
     "category": "development"
   },
   {
+    "slug": "ghidra",
+    "displayName": "Ghidra",
+    "description": "Multi-platform software reverse engineering framework",
+    "homepage": "https://github.com/NationalSecurityAgency/ghidra",
+    "isPopular": false,
+    "isFoss": true,
+    "category": "development"
+  },
+  {
     "slug": "ghostty",
     "displayName": "Ghostty",
     "description": "Fast, feature-rich, and cross-platform terminal emulator",
@@ -646,6 +637,15 @@
     "isPopular": true,
     "isFoss": true,
     "category": "graphics"
+  },
+  {
+    "slug": "iotop",
+    "displayName": "iotop",
+    "description": "A top utility for IO ",
+    "homepage": "https://github.com/Tomas-M/iotop",
+    "isPopular": false,
+    "isFoss": true,
+    "category": "tui"
   },
   {
     "slug": "insomnia",
@@ -900,6 +900,15 @@
     "category": "development"
   },
   {
+    "slug": "nvtop",
+    "displayName": "nvtop",
+    "description": "GPU & Accelerator process monitoring for AMD, Apple, Huawei, Intel, NVIDIA and Qualcomm ",
+    "homepage": "https://github.com/Syllo/nvtop",
+    "isPopular": false,
+    "isFoss": true,
+    "category": "tui"
+  },
+  {
     "slug": "netbeans",
     "displayName": "NetBeans",
     "description": "IDE for Java SE, Java EE, and more",
@@ -1035,6 +1044,15 @@
     "category": "system"
   },
   {
+    "slug": "opencode",
+    "displayName": "opencode",
+    "description": "The open source AI coding agent",
+    "homepage": "https://opencode.ai/",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "development"
+  },
+  {
     "slug": "opera",
     "displayName": "Opera",
     "description": "Fast, secure browser with built-in ad blocker",
@@ -1114,15 +1132,6 @@
     "isPopular": true,
     "isFoss": false,
     "category": "development"
-  },
-  {
-    "slug": "powerlevel10k",
-    "displayName": "Powerlevel10k",
-    "description": "Fast and customizable Zsh theme",
-    "homepage": "https://github.com/romkatv/powerlevel10k",
-    "isPopular": true,
-    "isFoss": true,
-    "category": "cli"
   },
   {
     "slug": "pycharm",
@@ -1276,6 +1285,15 @@
     "isPopular": true,
     "isFoss": true,
     "category": "utilities"
+  },
+  {
+    "slug": "s-tui",
+    "displayName": "s-tui",
+    "description": "Terminal-based CPU stress and monitoring utility",
+    "homepage": "https://amanusk.github.io/s-tui/",
+    "isPopular": true,
+    "isFoss": true,
+    "category": "tui"
   },
   {
     "slug": "sdkman",
