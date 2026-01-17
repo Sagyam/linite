@@ -1,8 +1,5 @@
 import { z } from 'zod';
-
-/**
- * Package Validation Schemas
- */
+import { optionalString, createUpdateSchema, paginationQuerySchema } from '../common';
 
 export const createPackageSchema = z.object({
   appId: z.string().min(1, 'App ID is required'),
@@ -11,28 +8,18 @@ export const createPackageSchema = z.object({
     .string()
     .min(1, 'Package identifier is required')
     .max(200, 'Identifier must be less than 200 characters'),
-  version: z
-    .string()
-    .max(50, 'Version must be less than 50 characters')
-    .optional()
-    .or(z.literal('')),
+  version: optionalString(50, 'Version'),
   size: z
     .number()
     .int()
     .min(0, 'Size must be 0 or greater')
     .optional(),
-  maintainer: z
-    .string()
-    .max(100, 'Maintainer must be less than 100 characters')
-    .optional()
-    .or(z.literal('')),
+  maintainer: optionalString(100, 'Maintainer'),
   isAvailable: z.boolean().default(true),
   metadata: z.record(z.string(), z.unknown()).optional(),
 });
 
-export const updatePackageSchema = createPackageSchema.partial().extend({
-  id: z.string().min(1, 'Package ID is required'),
-});
+export const updatePackageSchema = createUpdateSchema(createPackageSchema);
 
 export const getPackagesQuerySchema = z.object({
   appId: z.string().optional(),
@@ -41,16 +28,7 @@ export const getPackagesQuerySchema = z.object({
     .string()
     .optional()
     .transform((val) => (val ? val === 'true' : undefined)),
-  limit: z
-    .string()
-    .optional()
-    .transform((val) => (val ? parseInt(val, 10) : undefined))
-    .pipe(z.number().min(1).max(100).optional()),
-  offset: z
-    .string()
-    .optional()
-    .transform((val) => (val ? parseInt(val, 10) : undefined))
-    .pipe(z.number().min(0).optional()),
+  ...paginationQuerySchema,
 });
 
 export type CreatePackageInput = z.infer<typeof createPackageSchema>;

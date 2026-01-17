@@ -249,13 +249,13 @@ describe('Flathub API Client', () => {
       });
 
       await expect(getFlathubAppMetadata('test.app')).rejects.toThrow(
-        'Failed to fetch Flathub app metadata: Flathub API error: 500 Internal Server Error'
+        'Failed to fetch Flathub metadata: Flathub API error: 500 Internal Server Error'
       );
     });
 
     it('should throw error for empty app ID', async () => {
-      await expect(getFlathubAppMetadata('')).rejects.toThrow('App ID is required');
-      await expect(getFlathubAppMetadata('   ')).rejects.toThrow('App ID is required');
+      await expect(getFlathubAppMetadata('')).rejects.toThrow('Identifier is required');
+      await expect(getFlathubAppMetadata('   ')).rejects.toThrow('Identifier is required');
     });
 
     it('should cache metadata results', async () => {

@@ -1,36 +1,27 @@
 import { z } from 'zod';
+import { slugSchema, optionalUrl, optionalString } from '../common';
 
 /**
  * Collection Validation Schemas
  * Reusable validation for collection API routes and forms
  */
 
-export const collectionSlugSchema = z
-  .string()
-  .min(1, 'Slug is required')
+export const collectionSlugSchema = slugSchema
   .max(100, 'Slug must be less than 100 characters')
-  .regex(/^[a-z0-9-]+$/, 'Slug must contain only lowercase letters, numbers, and hyphens')
-  .describe('URL-friendly identifier for the collection');
+  .describe('URL-friendly identifier for collection');
 
 export const createCollectionSchema = z.object({
   name: z
     .string()
     .min(1, 'Collection name is required')
     .max(100, 'Collection name must be less than 100 characters'),
-  description: z
-    .string()
-    .max(500, 'Description must be less than 500 characters')
-    .optional(),
+  description: optionalString(500, 'Description'),
   isPublic: z.boolean().default(false),
   tags: z
     .array(z.string())
     .max(10, 'Maximum 10 tags allowed')
     .optional(),
-  iconUrl: z
-    .string()
-    .url('Icon URL must be a valid URL')
-    .optional()
-    .or(z.literal('')),
+  iconUrl: optionalUrl('Icon URL'),
   appIds: z
     .array(z.string())
     .min(1, 'At least one app is required')
@@ -43,16 +34,9 @@ export const updateCollectionSchema = z.object({
     .min(1, 'Collection name is required')
     .max(100, 'Collection name must be less than 100 characters')
     .optional(),
-  description: z
-    .string()
-    .max(500, 'Description must be less than 500 characters')
-    .optional(),
+  description: optionalString(500, 'Description'),
   isPublic: z.boolean().optional(),
-  iconUrl: z
-    .string()
-    .url('Icon URL must be a valid URL')
-    .optional()
-    .or(z.literal('')),
+  iconUrl: optionalUrl('Icon URL'),
   tags: z
     .array(z.string())
     .max(10, 'Maximum 10 tags allowed')
@@ -66,10 +50,7 @@ export const updateCollectionSchema = z.object({
 
 export const addCollectionItemSchema = z.object({
   appId: z.string().min(1, 'App ID is required'),
-  note: z
-    .string()
-    .max(200, 'Note must be less than 200 characters')
-    .optional(),
+  note: optionalString(200, 'Note'),
 });
 
 export const reorderCollectionItemsSchema = z.object({
@@ -90,18 +71,16 @@ export const getCollectionsQuerySchema = z.object({
     .transform((val) => val === 'true'),
   userId: z.string().optional(),
   search: z.string().optional(),
-  tags: z.string().optional(), // comma-separated tags
+  tags: z.string().optional(),
   limit: z
     .string()
     .optional()
-    .default('20')
-    .transform((val) => parseInt(val, 10))
+    .transform((val) => val ? parseInt(val, 10) : 20)
     .pipe(z.number().min(1).max(100)),
   offset: z
     .string()
     .optional()
-    .default('0')
-    .transform((val) => parseInt(val, 10))
+    .transform((val) => val ? parseInt(val, 10) : 0)
     .pipe(z.number().min(0)),
 });
 
@@ -113,7 +92,6 @@ export const templateCollectionSchema = z.object({
   isTemplate: z.boolean(),
 });
 
-// Type exports for TypeScript
 export type CreateCollectionInput = z.infer<typeof createCollectionSchema>;
 export type UpdateCollectionInput = z.infer<typeof updateCollectionSchema>;
 export type AddCollectionItemInput = z.infer<typeof addCollectionItemSchema>;

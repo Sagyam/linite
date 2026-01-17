@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { describe, it, expect, vi, beforeEach, beforeAll, afterAll } from 'vitest';
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 
@@ -28,6 +28,16 @@ import * as apiUtils from './api-utils';
 import * as validationMiddleware from './validation/middleware';
 
 describe('api-middleware', () => {
+  // Suppress console.error for tests that intentionally throw errors
+  const originalConsoleError = console.error;
+  beforeAll(() => {
+    console.error = vi.fn();
+  });
+
+  afterAll(() => {
+    console.error = originalConsoleError;
+  });
+
   // Mock functions
   const mockRequireAuth = vi.mocked(apiUtils.requireAuth);
   const mockErrorResponse = vi.mocked(apiUtils.errorResponse);
@@ -55,7 +65,7 @@ describe('api-middleware', () => {
   const createSuccessResponse = (data: unknown = { success: true }) =>
     NextResponse.json(data, { status: 200 });
 
-  const createErrorResponse = (message: string, status: number) =>
+  const createErrorResponse = (message: string, status: number = 400) =>
     NextResponse.json({ error: message }, { status });
 
   beforeEach(() => {

@@ -1,13 +1,6 @@
-/**
- * AUR (Arch User Repository) RPC client
- * Documentation: https://aur.archlinux.org/rpc/
- */
-
 import { PackageSearchResult, PackageMetadata, SimpleCache } from './types';
 
 const AUR_RPC_BASE = 'https://aur.archlinux.org/rpc';
-const searchCache = new SimpleCache<PackageSearchResult[]>(15); // 15 minute cache
-const metadataCache = new SimpleCache<PackageMetadata>(15); // 15 minute cache
 
 interface AURResponse {
   version: number;
@@ -42,9 +35,9 @@ interface AURPackage {
   Replaces?: string[];
 }
 
-/**
- * Search for packages in AUR
- */
+const searchCache = new SimpleCache<PackageSearchResult[]>(15);
+const metadataCache = new SimpleCache<PackageMetadata>(15);
+
 export async function searchAUR(query: string): Promise<PackageSearchResult[]> {
   if (!query || query.trim().length === 0) {
     throw new Error('Search query is required');
@@ -54,13 +47,13 @@ export async function searchAUR(query: string): Promise<PackageSearchResult[]> {
   const cached = searchCache.get(cacheKey);
   if (cached) return cached;
 
-  try {
-    const url = new URL(AUR_RPC_BASE);
-    url.searchParams.set('v', '5');
-    url.searchParams.set('type', 'search');
-    url.searchParams.set('arg', query);
-    url.searchParams.set('by', 'name-desc');
+  const url = new URL(AUR_RPC_BASE);
+  url.searchParams.set('v', '5');
+  url.searchParams.set('type', 'search');
+  url.searchParams.set('arg', query);
+  url.searchParams.set('by', 'name-desc');
 
+  try {
     const response = await fetch(url.toString(), {
       headers: {
         'Accept': 'application/json',
@@ -98,24 +91,21 @@ export async function searchAUR(query: string): Promise<PackageSearchResult[]> {
   }
 }
 
-/**
- * Get detailed metadata for a specific AUR package
- */
 export async function getAURPackageMetadata(packageName: string): Promise<PackageMetadata | null> {
   if (!packageName || packageName.trim().length === 0) {
     throw new Error('Package name is required');
   }
 
-  const cacheKey = `aur:package:${packageName}`;
+  const cacheKey = `aur:identifier:${packageName}`;
   const cached = metadataCache.get(cacheKey);
   if (cached) return cached;
 
-  try {
-    const url = new URL(AUR_RPC_BASE);
-    url.searchParams.set('v', '5');
-    url.searchParams.set('type', 'info');
-    url.searchParams.set('arg[]', packageName);
+  const url = new URL(AUR_RPC_BASE);
+  url.searchParams.set('v', '5');
+  url.searchParams.set('type', 'info');
+  url.searchParams.set('arg[]', packageName);
 
+  try {
     const response = await fetch(url.toString(), {
       headers: {
         'Accept': 'application/json',
@@ -172,9 +162,6 @@ export async function getAURPackageMetadata(packageName: string): Promise<Packag
   }
 }
 
-/**
- * Check if a package exists in AUR
- */
 export async function checkAURAvailability(packageName: string): Promise<boolean> {
   try {
     const metadata = await getAURPackageMetadata(packageName);
@@ -185,9 +172,6 @@ export async function checkAURAvailability(packageName: string): Promise<boolean
   }
 }
 
-/**
- * Get multiple packages info in a single request (more efficient)
- */
 export async function getAURPackagesMetadata(
   packageNames: string[]
 ): Promise<Map<string, PackageMetadata>> {
@@ -195,16 +179,15 @@ export async function getAURPackagesMetadata(
     return new Map();
   }
 
+  const url = new URL(AUR_RPC_BASE);
+  url.searchParams.set('v', '5');
+  url.searchParams.set('type', 'info');
+
+  packageNames.forEach((name) => {
+    url.searchParams.append('arg[]', name);
+  });
+
   try {
-    const url = new URL(AUR_RPC_BASE);
-    url.searchParams.set('v', '5');
-    url.searchParams.set('type', 'info');
-
-    // AUR supports multiple arg[] parameters
-    packageNames.forEach((name) => {
-      url.searchParams.append('arg[]', name);
-    });
-
     const response = await fetch(url.toString(), {
       headers: {
         'Accept': 'application/json',
@@ -224,7 +207,7 @@ export async function getAURPackagesMetadata(
     const results = new Map<string, PackageMetadata>();
 
     for (const pkg of data.results) {
-      const metadata: PackageMetadata = {
+      results.set(pkg.Name, {
         identifier: pkg.Name,
         name: pkg.Name,
         summary: pkg.Description,
@@ -242,9 +225,7 @@ export async function getAURPackagesMetadata(
           outOfDate: pkg.OutOfDate ? new Date(pkg.OutOfDate * 1000).toISOString() : null,
           urlPath: `https://aur.archlinux.org${pkg.URLPath}`,
         },
-      };
-
-      results.set(pkg.Name, metadata);
+      });
     }
 
     return results;
@@ -254,9 +235,6 @@ export async function getAURPackagesMetadata(
   }
 }
 
-/**
- * Clear the AUR cache
- */
 export function clearAURCache(): void {
   searchCache.clear();
   metadataCache.clear();
