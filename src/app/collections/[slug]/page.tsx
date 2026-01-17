@@ -48,12 +48,9 @@ export default function CollectionDetailPage({
 
   const {
     shareMutation,
-    likeMutation,
-    cloneMutation,
     deleteMutation,
   } = useCollectionMutations({
     collectionId: collection?.id || '',
-    slug,
     onShareSuccess: (url) => {
       setShareUrl(url);
       setShareDialogOpen(true);
@@ -96,7 +93,6 @@ export default function CollectionDetailPage({
   }
 
   const isOwner = session?.user?.id === collection.userId;
-  const isAuthenticated = !!session?.user;
   const appCount = collection.items?.length || 0;
   const likeCount = collection._count?.likes || 0;
 
@@ -137,15 +133,10 @@ export default function CollectionDetailPage({
           <CollectionActions
             collectionId={collection.id}
             isOwner={isOwner}
-            isAuthenticated={isAuthenticated}
             onApply={handleApplyCollection}
-            onLike={() => likeMutation.mutate()}
             onShare={() => shareMutation.mutate()}
-            onClone={() => cloneMutation.mutate()}
             onDelete={() => setDeleteDialogOpen(true)}
-            isLikePending={likeMutation.isPending}
             isSharePending={shareMutation.isPending}
-            isClonePending={cloneMutation.isPending}
             isDeletePending={deleteMutation.isPending}
           />
         </div>
