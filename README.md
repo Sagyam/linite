@@ -17,7 +17,7 @@ Linite is a Ninite-style package installer for Linux distributions and Windows. 
 
 Instead of manually searching for packages across different repositories and running multiple package manager commands, Linite provides a web interface to select applications and outputs a single, ready-to-run installation script.
 
-**[Website](https://linite.sagyamthapa.com.np)** | **[Docs](./docs)** | **[ZRead](https://zread.ai/Sagyam/linite)**
+**[Website](https://linite.sagyamthapa.com.np)** | **[Dev Docs](https://zread.ai/Sagyam/linite)**
 
 <img src="./public/demo.gif" alt="Linite Demo" width="800">
 
@@ -163,8 +163,6 @@ bun test:coverage     # With coverage report
 - [API Reference](./docs/API_REFERENCE.md) - Endpoint specifications
 - [Database Schema](./docs/DATABASE_SCHEMA.md) - Complete schema definition
 - [Environment Variables](./docs/ENVIRONMENT.md) - Configuration reference
-- [Repository Structure](./docs/REPOSITORY_STRUCTURE.md) - Codebase organization
-- [Initial Data](./docs/INITIAL_DATA.md) - Seed data specifications
 
 ## Contributing
 
