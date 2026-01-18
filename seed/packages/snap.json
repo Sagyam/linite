@@ -18,7 +18,7 @@
     "source": "snap"
   },
   {
-    "app": "aria2c",
+    "app": "aria2",
     "identifier": "aria2c",
     "isAvailable": true,
     "source": "snap"

@@ -6,6 +6,12 @@
     "source": "aur"
   },
   {
+    "app": "ansible",
+    "identifier": "ansible",
+    "isAvailable": true,
+    "source": "aur"
+  },
+  {
     "app": "anydesk",
     "identifier": "anydesk-bin",
     "isAvailable": true,

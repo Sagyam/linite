@@ -60,15 +60,6 @@
     "homepage": "https://aria2.github.io",
     "displayName": "aria2",
     "description": "Lightweight multi-protocol & multi-source download utility",
-    "category": "system"
-  },
-  {
-    "slug": "aria2c",
-    "isPopular": true,
-    "isFoss": true,
-    "homepage": "https://aria2.github.io",
-    "displayName": "aria2c",
-    "description": "Lightweight multi-protocol command-line download utility",
     "category": "cli"
   },
   {
