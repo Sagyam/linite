@@ -121,7 +121,14 @@
     "slug": "cargo",
     "installCmd": "cargo install",
     "requireSudo": false,
-    "setupCmd": "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y && source $HOME/.cargo/env",
+    "setupCmd": {
+      "debian": "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y && source $HOME/.cargo/env",
+      "rhel": "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y && source $HOME/.cargo/env",
+      "arch": "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y && source $HOME/.cargo/env",
+      "suse": "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y && source $HOME/.cargo/env",
+      "nixos": "nix-env -iA nixpkgs.cargo nixpkgs.rustc",
+      "windows": "winget install --id Rustlang.Rustup"
+    },
     "priority": 4,
     "apiEndpoint": null
   },
@@ -130,7 +137,14 @@
     "slug": "npm",
     "installCmd": "npm install -g",
     "requireSudo": false,
-    "setupCmd": "curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash - && sudo apt-get install -y nodejs",
+    "setupCmd": {
+      "debian": "curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash - && sudo apt-get install -y nodejs",
+      "rhel": "sudo dnf install -y nodejs npm",
+      "arch": "sudo pacman -S --noconfirm nodejs npm",
+      "suse": "sudo zypper install -y nodejs npm",
+      "nixos": "nix-env -iA nixpkgs.nodejs",
+      "windows": "winget install --id OpenJS.NodeJS"
+    },
     "priority": 4,
     "apiEndpoint": null
   },
@@ -139,7 +153,14 @@
     "slug": "go",
     "installCmd": "go install",
     "requireSudo": false,
-    "setupCmd": "wget https://go.dev/dl/go1.21.5.linux-amd64.tar.gz && sudo tar -C /usr/local -xzf go1.21.5.linux-amd64.tar.gz && echo 'export PATH=$PATH:/usr/local/go/bin' >> ~/.bashrc && source ~/.bashrc",
+    "setupCmd": {
+      "debian": "wget https://go.dev/dl/go1.21.5.linux-amd64.tar.gz && sudo tar -C /usr/local -xzf go1.21.5.linux-amd64.tar.gz && echo 'export PATH=$PATH:/usr/local/go/bin' >> ~/.bashrc && source ~/.bashrc",
+      "rhel": "sudo dnf install -y golang",
+      "arch": "sudo pacman -S --noconfirm go",
+      "suse": "sudo zypper install -y go",
+      "nixos": "nix-env -iA nixpkgs.go",
+      "windows": "winget install --id GoLang.Go"
+    },
     "priority": 4,
     "apiEndpoint": null
   },
@@ -148,7 +169,14 @@
     "slug": "pip",
     "installCmd": "pip install --user",
     "requireSudo": false,
-    "setupCmd": "sudo apt-get update && sudo apt-get install -y python3-pip || sudo dnf install -y python3-pip || sudo pacman -S --noconfirm python-pip",
+    "setupCmd": {
+      "debian": "sudo apt-get update && sudo apt-get install -y python3-pip",
+      "rhel": "sudo dnf install -y python3-pip",
+      "arch": "sudo pacman -S --noconfirm python-pip",
+      "suse": "sudo zypper install -y python3-pip",
+      "nixos": "nix-env -iA nixpkgs.python3 nixpkgs.python3Packages.pip",
+      "windows": "winget install --id Python.Python.3.12"
+    },
     "priority": 4,
     "apiEndpoint": null
   }
