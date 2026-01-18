@@ -310,5 +310,365 @@
     "source": "script",
     "priority": 1,
     "isDefault": false
+  },
+  {
+    "distro": "ubuntu",
+    "source": "npm",
+    "priority": 4,
+    "isDefault": false
+  },
+  {
+    "distro": "ubuntu",
+    "source": "cargo",
+    "priority": 4,
+    "isDefault": false
+  },
+  {
+    "distro": "ubuntu",
+    "source": "pip",
+    "priority": 4,
+    "isDefault": false
+  },
+  {
+    "distro": "ubuntu",
+    "source": "go",
+    "priority": 4,
+    "isDefault": false
+  },
+  {
+    "distro": "debian",
+    "source": "npm",
+    "priority": 4,
+    "isDefault": false
+  },
+  {
+    "distro": "debian",
+    "source": "cargo",
+    "priority": 4,
+    "isDefault": false
+  },
+  {
+    "distro": "debian",
+    "source": "pip",
+    "priority": 4,
+    "isDefault": false
+  },
+  {
+    "distro": "debian",
+    "source": "go",
+    "priority": 4,
+    "isDefault": false
+  },
+  {
+    "distro": "linuxmint",
+    "source": "npm",
+    "priority": 4,
+    "isDefault": false
+  },
+  {
+    "distro": "linuxmint",
+    "source": "cargo",
+    "priority": 4,
+    "isDefault": false
+  },
+  {
+    "distro": "linuxmint",
+    "source": "pip",
+    "priority": 4,
+    "isDefault": false
+  },
+  {
+    "distro": "linuxmint",
+    "source": "go",
+    "priority": 4,
+    "isDefault": false
+  },
+  {
+    "distro": "pop",
+    "source": "npm",
+    "priority": 4,
+    "isDefault": false
+  },
+  {
+    "distro": "pop",
+    "source": "cargo",
+    "priority": 4,
+    "isDefault": false
+  },
+  {
+    "distro": "pop",
+    "source": "pip",
+    "priority": 4,
+    "isDefault": false
+  },
+  {
+    "distro": "pop",
+    "source": "go",
+    "priority": 4,
+    "isDefault": false
+  },
+  {
+    "distro": "fedora",
+    "source": "npm",
+    "priority": 4,
+    "isDefault": false
+  },
+  {
+    "distro": "fedora",
+    "source": "cargo",
+    "priority": 4,
+    "isDefault": false
+  },
+  {
+    "distro": "fedora",
+    "source": "pip",
+    "priority": 4,
+    "isDefault": false
+  },
+  {
+    "distro": "fedora",
+    "source": "go",
+    "priority": 4,
+    "isDefault": false
+  },
+  {
+    "distro": "arch",
+    "source": "npm",
+    "priority": 4,
+    "isDefault": false
+  },
+  {
+    "distro": "arch",
+    "source": "cargo",
+    "priority": 4,
+    "isDefault": false
+  },
+  {
+    "distro": "arch",
+    "source": "pip",
+    "priority": 4,
+    "isDefault": false
+  },
+  {
+    "distro": "arch",
+    "source": "go",
+    "priority": 4,
+    "isDefault": false
+  },
+  {
+    "distro": "manjaro",
+    "source": "npm",
+    "priority": 4,
+    "isDefault": false
+  },
+  {
+    "distro": "manjaro",
+    "source": "cargo",
+    "priority": 4,
+    "isDefault": false
+  },
+  {
+    "distro": "manjaro",
+    "source": "pip",
+    "priority": 4,
+    "isDefault": false
+  },
+  {
+    "distro": "manjaro",
+    "source": "go",
+    "priority": 4,
+    "isDefault": false
+  },
+  {
+    "distro": "opensuse",
+    "source": "npm",
+    "priority": 4,
+    "isDefault": false
+  },
+  {
+    "distro": "opensuse",
+    "source": "cargo",
+    "priority": 4,
+    "isDefault": false
+  },
+  {
+    "distro": "opensuse",
+    "source": "pip",
+    "priority": 4,
+    "isDefault": false
+  },
+  {
+    "distro": "opensuse",
+    "source": "go",
+    "priority": 4,
+    "isDefault": false
+  },
+  {
+    "distro": "nixos",
+    "source": "npm",
+    "priority": 4,
+    "isDefault": false
+  },
+  {
+    "distro": "nixos",
+    "source": "cargo",
+    "priority": 4,
+    "isDefault": false
+  },
+  {
+    "distro": "nixos",
+    "source": "pip",
+    "priority": 4,
+    "isDefault": false
+  },
+  {
+    "distro": "nixos",
+    "source": "go",
+    "priority": 4,
+    "isDefault": false
+  },
+  {
+    "distro": "windows",
+    "source": "npm",
+    "priority": 4,
+    "isDefault": false
+  },
+  {
+    "distro": "windows",
+    "source": "cargo",
+    "priority": 4,
+    "isDefault": false
+  },
+  {
+    "distro": "windows",
+    "source": "pip",
+    "priority": 4,
+    "isDefault": false
+  },
+  {
+    "distro": "windows",
+    "source": "go",
+    "priority": 4,
+    "isDefault": false
+  },
+  {
+    "distro": "zorin",
+    "source": "npm",
+    "priority": 4,
+    "isDefault": false
+  },
+  {
+    "distro": "zorin",
+    "source": "cargo",
+    "priority": 4,
+    "isDefault": false
+  },
+  {
+    "distro": "zorin",
+    "source": "pip",
+    "priority": 4,
+    "isDefault": false
+  },
+  {
+    "distro": "zorin",
+    "source": "go",
+    "priority": 4,
+    "isDefault": false
+  },
+  {
+    "distro": "elementary",
+    "source": "npm",
+    "priority": 4,
+    "isDefault": false
+  },
+  {
+    "distro": "elementary",
+    "source": "cargo",
+    "priority": 4,
+    "isDefault": false
+  },
+  {
+    "distro": "elementary",
+    "source": "pip",
+    "priority": 4,
+    "isDefault": false
+  },
+  {
+    "distro": "elementary",
+    "source": "go",
+    "priority": 4,
+    "isDefault": false
+  },
+  {
+    "distro": "nobara",
+    "source": "npm",
+    "priority": 4,
+    "isDefault": false
+  },
+  {
+    "distro": "nobara",
+    "source": "cargo",
+    "priority": 4,
+    "isDefault": false
+  },
+  {
+    "distro": "nobara",
+    "source": "pip",
+    "priority": 4,
+    "isDefault": false
+  },
+  {
+    "distro": "nobara",
+    "source": "go",
+    "priority": 4,
+    "isDefault": false
+  },
+  {
+    "distro": "bazzite",
+    "source": "npm",
+    "priority": 4,
+    "isDefault": false
+  },
+  {
+    "distro": "bazzite",
+    "source": "cargo",
+    "priority": 4,
+    "isDefault": false
+  },
+  {
+    "distro": "bazzite",
+    "source": "pip",
+    "priority": 4,
+    "isDefault": false
+  },
+  {
+    "distro": "bazzite",
+    "source": "go",
+    "priority": 4,
+    "isDefault": false
+  },
+  {
+    "distro": "cachyos",
+    "source": "npm",
+    "priority": 4,
+    "isDefault": false
+  },
+  {
+    "distro": "cachyos",
+    "source": "cargo",
+    "priority": 4,
+    "isDefault": false
+  },
+  {
+    "distro": "cachyos",
+    "source": "pip",
+    "priority": 4,
+    "isDefault": false
+  },
+  {
+    "distro": "cachyos",
+    "source": "go",
+    "priority": 4,
+    "isDefault": false
   }
 ]
