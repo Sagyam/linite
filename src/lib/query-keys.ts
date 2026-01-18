@@ -82,7 +82,9 @@ export const queryKeys = {
     all: ['collections'] as const,
     lists: () => [...queryKeys.collections.all, 'list'] as const,
     list: (params?: { featured?: boolean; userId?: string }) =>
-      [...queryKeys.collections.lists(), params] as const,
+      params
+        ? [...queryKeys.collections.lists(), params] as const
+        : [...queryKeys.collections.lists()] as const,
     detail: (id: string) => [...queryKeys.collections.all, 'detail', id] as const,
     detailBySlug: (slug: string) =>
       [...queryKeys.collections.all, 'detail', 'slug', slug] as const,
