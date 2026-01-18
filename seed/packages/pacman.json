@@ -492,12 +492,6 @@
     "source": "pacman"
   },
   {
-    "app": "steam",
-    "identifier": "steam",
-    "isAvailable": true,
-    "source": "pacman"
-  },
-  {
     "app": "supertuxkart",
     "identifier": "supertuxkart",
     "isAvailable": true,

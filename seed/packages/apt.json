@@ -240,12 +240,6 @@
     "source": "apt"
   },
   {
-    "app": "lazygit",
-    "identifier": "lazygit",
-    "isAvailable": true,
-    "source": "apt"
-  },
-  {
     "app": "libreoffice",
     "identifier": "libreoffice",
     "isAvailable": true,
@@ -296,12 +290,6 @@
   {
     "app": "obs",
     "identifier": "obs-studio",
-    "isAvailable": true,
-    "source": "apt"
-  },
-  {
-    "app": "pcsx2",
-    "identifier": "pcsx2",
     "isAvailable": true,
     "source": "apt"
   },
@@ -450,12 +438,6 @@
     "source": "apt"
   },
   {
-    "app": "godot",
-    "identifier": "godot",
-    "isAvailable": true,
-    "source": "apt"
-  },
-  {
     "app": "freecad",
     "identifier": "freecad",
     "isAvailable": true,
@@ -548,12 +530,6 @@
   {
     "app": "fd",
     "identifier": "fd-find",
-    "isAvailable": true,
-    "source": "apt"
-  },
-  {
-    "app": "fastfetch",
-    "identifier": "fastfetch",
     "isAvailable": true,
     "source": "apt"
   },

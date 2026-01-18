@@ -6,18 +6,6 @@
     "source": "pip"
   },
   {
-    "app": "black",
-    "identifier": "black",
-    "isAvailable": true,
-    "source": "pip"
-  },
-  {
-    "app": "jupyter",
-    "identifier": "jupyter",
-    "isAvailable": true,
-    "source": "pip"
-  },
-  {
     "app": "pipenv",
     "identifier": "pipenv",
     "isAvailable": true,

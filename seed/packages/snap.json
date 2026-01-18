@@ -235,7 +235,7 @@
   },
   {
     "app": "mission-center",
-    "identifier": "io.missioncenter.MissionCenter",
+    "identifier": "mission-center",
     "isAvailable": true,
     "source": "snap"
   },

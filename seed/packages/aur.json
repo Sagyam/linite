@@ -6,20 +6,8 @@
     "source": "aur"
   },
   {
-    "app": "ansible",
-    "identifier": "ansible",
-    "isAvailable": true,
-    "source": "aur"
-  },
-  {
     "app": "anydesk",
     "identifier": "anydesk-bin",
-    "isAvailable": true,
-    "source": "aur"
-  },
-  {
-    "app": "aria2",
-    "identifier": "aria2",
     "isAvailable": true,
     "source": "aur"
   },

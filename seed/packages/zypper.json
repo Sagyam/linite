@@ -24,12 +24,6 @@
     "source": "zypper"
   },
   {
-    "app": "ghostty",
-    "identifier": "ghostty",
-    "isAvailable": true,
-    "source": "zypper"
-  },
-  {
     "app": "git",
     "identifier": "git",
     "isAvailable": true,
@@ -42,26 +36,8 @@
     "source": "zypper"
   },
   {
-    "app": "lua",
-    "identifier": "lua",
-    "isAvailable": true,
-    "source": "zypper"
-  },
-  {
     "app": "perl",
     "identifier": "perl",
-    "isAvailable": true,
-    "source": "zypper"
-  },
-  {
-    "app": "php",
-    "identifier": "php",
-    "isAvailable": true,
-    "source": "zypper"
-  },
-  {
-    "app": "python",
-    "identifier": "python3",
     "isAvailable": true,
     "source": "zypper"
   },
@@ -86,6 +62,474 @@
   {
     "app": "s-tui",
     "identifier": "s-tui",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "0ad",
+    "identifier": "0ad",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "alacritty",
+    "identifier": "alacritty",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "ansible",
+    "identifier": "ansible",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "apache",
+    "identifier": "apache2",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "audacity",
+    "identifier": "audacity",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "bat",
+    "identifier": "bat",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "bitwarden",
+    "identifier": "bitwarden",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "blender",
+    "identifier": "blender",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "calibre",
+    "identifier": "calibre",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "conky",
+    "identifier": "conky",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "cpu-x",
+    "identifier": "cpu-x",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "deluge",
+    "identifier": "deluge",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "deno",
+    "identifier": "deno",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "discord",
+    "identifier": "discord",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "docker",
+    "identifier": "docker",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "dolphin-emu",
+    "identifier": "dolphin-emu",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "eza",
+    "identifier": "eza",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "filezilla",
+    "identifier": "filezilla",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "fish",
+    "identifier": "fish",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "flameshot",
+    "identifier": "flameshot",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "foliate",
+    "identifier": "foliate",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "freecad",
+    "identifier": "freecad",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "fzf",
+    "identifier": "fzf",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "gimp",
+    "identifier": "gimp",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "godot",
+    "identifier": "godot",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "helix",
+    "identifier": "helix",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "httpie",
+    "identifier": "httpie",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "imhex",
+    "identifier": "imhex",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "inkscape",
+    "identifier": "inkscape",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "jq",
+    "identifier": "jq",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "k9s",
+    "identifier": "k9s",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "keepassxc",
+    "identifier": "keepassxc",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "kitty",
+    "identifier": "kitty",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "krita",
+    "identifier": "krita",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "lazygit",
+    "identifier": "lazygit",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "libreoffice",
+    "identifier": "libreoffice",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "lutris",
+    "identifier": "lutris",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "mangohud",
+    "identifier": "mangohud",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "nmap",
+    "identifier": "nmap",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "ollama",
+    "identifier": "ollama",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "openssh",
+    "identifier": "openssh",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "opentofu",
+    "identifier": "opentofu",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "openvpn",
+    "identifier": "openvpn",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "opera",
+    "identifier": "opera",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "pcsx2",
+    "identifier": "pcsx2",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "pnpm",
+    "identifier": "pnpm",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "podman",
+    "identifier": "podman",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "postgresql",
+    "identifier": "postgresql",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "qbittorrent",
+    "identifier": "qbittorrent",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "qemu",
+    "identifier": "qemu",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "ranger",
+    "identifier": "ranger",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "rbenv",
+    "identifier": "rbenv",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "redis",
+    "identifier": "redis",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "remmina",
+    "identifier": "remmina",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "resources",
+    "identifier": "resources",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "retroarch",
+    "identifier": "retroarch",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "ripgrep",
+    "identifier": "ripgrep",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "rpcs3",
+    "identifier": "rpcs3",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "shotcut",
+    "identifier": "shotcut",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "starship",
+    "identifier": "starship",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "steam",
+    "identifier": "steam",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "supertuxkart",
+    "identifier": "supertuxkart",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "tailscale",
+    "identifier": "tailscale",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "telegram",
+    "identifier": "telegram-desktop",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "timeshift",
+    "identifier": "timeshift",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "tmux",
+    "identifier": "tmux",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "transmission",
+    "identifier": "transmission",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "virt-manager",
+    "identifier": "virt-manager",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "virtualbox",
+    "identifier": "virtualbox",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "vlc",
+    "identifier": "vlc",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "wesnoth",
+    "identifier": "wesnoth",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "wezterm",
+    "identifier": "wezterm",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "wireguard",
+    "identifier": "wireguard-tools",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "wireshark",
+    "identifier": "wireshark",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "yazi",
+    "identifier": "yazi",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "yq",
+    "identifier": "yq",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "zoxide",
+    "identifier": "zoxide",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "zsh",
+    "identifier": "zsh",
     "isAvailable": true,
     "source": "zypper"
   }
