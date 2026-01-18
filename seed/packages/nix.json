@@ -139,7 +139,7 @@
   },
   {
     "app": "java",
-    "identifier": "jdk",
+    "identifier": "jdk25_headless",
     "isAvailable": true,
     "source": "nix"
   },
@@ -254,6 +254,552 @@
   {
     "app": "ungoogled-chromium",
     "identifier": "ungoogled-chromium",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "alacritty",
+    "identifier": "alacritty",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "android-studio",
+    "identifier": "android-studio-full",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "ansible",
+    "identifier": "ansible",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "balena-etcher",
+    "identifier": "balena-cli",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "bitwarden",
+    "identifier": "bitwarden-desktop",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "bottles",
+    "identifier": "bottles",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "bun",
+    "identifier": "bun",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "calibre",
+    "identifier": "calibre",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "cursor",
+    "identifier": "cursor-cli",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "deluge",
+    "identifier": "deluge",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "deno",
+    "identifier": "deno",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "discord",
+    "identifier": "discord",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "dolphin-emu",
+    "identifier": "dolphin-emu",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "dropbox",
+    "identifier": "dropbox",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "eza",
+    "identifier": "eza",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "fd",
+    "identifier": "fd",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "ffmpeg",
+    "identifier": "ffmpeg",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "filezilla",
+    "identifier": "filezilla",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "fish",
+    "identifier": "fish",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "helix",
+    "identifier": "helix",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "heroic",
+    "identifier": "heroic",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "jellyfin",
+    "identifier": "jellyfin",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "joplin",
+    "identifier": "joplin-desktop",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "k9s",
+    "identifier": "k9s",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "kitty",
+    "identifier": "kitty",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "kubectl",
+    "identifier": "kubectl",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "lazydocker",
+    "identifier": "lazydocker",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "lazygit",
+    "identifier": "lazygit",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "libreoffice",
+    "identifier": "libreoffice",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "librewolf",
+    "identifier": "librewolf",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "logseq",
+    "identifier": "logseq",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "lutris",
+    "identifier": "lutris",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "mangohud",
+    "identifier": "mangohud",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "mega",
+    "identifier": "megasync",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "micro",
+    "identifier": "micro",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "mission-center",
+    "identifier": "mission-center",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "mongodb",
+    "identifier": "mongodb",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "nextcloud",
+    "identifier": "nextcloud-client",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "nginx",
+    "identifier": "nginx",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "nmap",
+    "identifier": "nmap",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "notion",
+    "identifier": "notion",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "obs",
+    "identifier": "obs-studio",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "obsidian",
+    "identifier": "obsidian",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "oh-my-zsh",
+    "identifier": "oh-my-zsh",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "ollama",
+    "identifier": "ollama",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "openshot",
+    "identifier": "openshot-qt",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "opentofu",
+    "identifier": "opentofu",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "openvpn",
+    "identifier": "openvpn",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "opencode",
+    "identifier": "opencode",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "pcsx2",
+    "identifier": "pcsx2",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "pnpm",
+    "identifier": "pnpm",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "podman",
+    "identifier": "podman",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "postman",
+    "identifier": "postman",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "qbittorrent",
+    "identifier": "qbittorrent",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "qemu",
+    "identifier": "qemu",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "ranger",
+    "identifier": "ranger",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "rbenv",
+    "identifier": "rbenv",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "redis",
+    "identifier": "redis",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "remmina",
+    "identifier": "remmina",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "resources",
+    "identifier": "resources",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "retroarch",
+    "identifier": "retroarch-full",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "rustdesk",
+    "identifier": "rustdesk",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "shotcut",
+    "identifier": "shotcut",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "signal",
+    "identifier": "signal-desktop",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "spotify",
+    "identifier": "spotify",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "starship",
+    "identifier": "starship",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "sublime-text",
+    "identifier": "sublime4",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "supertuxkart",
+    "identifier": "superTuxKart",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "tailscale",
+    "identifier": "tailscale",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "telegram",
+    "identifier": "telegram-desktop",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "terraform",
+    "identifier": "terraform",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "timeshift",
+    "identifier": "timeshift",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "transmission",
+    "identifier": "transmission",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "uv",
+    "identifier": "uv",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "vagrant",
+    "identifier": "vagrant",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "ventoy",
+    "identifier": "ventoy",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "veracrypt",
+    "identifier": "veracrypt",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "virt-manager",
+    "identifier": "virt-manager",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "virtualbox",
+    "identifier": "virtualbox",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "vivaldi",
+    "identifier": "vivaldi",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "vscode",
+    "identifier": "vscode",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "warzone2100",
+    "identifier": "warzone2100",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "wesnoth",
+    "identifier": "wesnoth",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "wezterm",
+    "identifier": "wezterm",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "wireguard",
+    "identifier": "wireguard-tools",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "wireshark",
+    "identifier": "wireshark",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "yazi",
+    "identifier": "yazi",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "yq",
+    "identifier": "yq",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "zed",
+    "identifier": "zed",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "zoom",
+    "identifier": "zoom-us",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "zoxide",
+    "identifier": "zoxide",
     "isAvailable": true,
     "source": "nix"
   }
