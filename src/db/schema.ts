@@ -111,7 +111,7 @@ export const sources = sqliteTable('sources', {
   slug: text('slug').notNull().unique(),
   installCmd: text('install_cmd').notNull(),
   requireSudo: integer('require_sudo', { mode: 'boolean' }).default(false),
-  setupCmd: text('setup_cmd'),
+  setupCmd: text('setup_cmd', { mode: 'json' }), // Supports both string (for universal commands) and object (for distro-family-specific commands)
   priority: integer('priority').default(0),
   apiEndpoint: text('api_endpoint'),
   ...timestamps,

@@ -18,7 +18,7 @@ interface SelectedPackage {
   sourceSlug: string;
   installCmd: string;
   requireSudo: boolean;
-  setupCmd: string | null;
+  setupCmd: string | Record<string, string | null> | null; // Supports string (universal) or object (distro-family-specific)
   priority: number;
   metadata?: unknown;
 }
@@ -149,7 +149,7 @@ export async function generateInstallCommands(
       sourceSlug: bestPackage.source.slug,
       installCmd: bestPackage.source.installCmd,
       requireSudo: bestPackage.source.requireSudo ?? false,
-      setupCmd: bestPackage.source.setupCmd ?? null,
+      setupCmd: (bestPackage.source.setupCmd as string | Record<string, string | null> | null) ?? null,
       priority: bestPackage.calculatedPriority ?? 0,
       metadata: bestPackage.metadata,
     });
@@ -223,18 +223,35 @@ export async function generateInstallCommands(
         packages: packageIdentifiers,
       });
 
-      continue; // Skip normal command generation for script source
+      continue; // Skip normal command generation for a script source
     }
 
-    // Add setup command if needed (only once per source)
+    // Add a setup command if needed (only once per source)
     if (setupCmd && !processedSetupCmds.has(sourceSlug)) {
-      setupCommands.push(setupCmd);
+      // Handle distro-family-specific setup commands
+      // setupCmd can be either:
+      // - A string (universal command that works on all distros)
+      // - An object with distro family keys (e.g., {"debian": "...", "arch": "...", "nixos": "..."})
+      let finalSetupCmd: string | null = null;
+
+      if (typeof setupCmd === 'string') {
+        // Universal command - use as-is
+        finalSetupCmd = setupCmd;
+      } else if (typeof setupCmd === 'object' && setupCmd !== null) {
+        // Distro-family-specific commands - select based on distro family
+        finalSetupCmd = setupCmd[distro.family as keyof typeof setupCmd] || setupCmd['*'] || null;
+      }
+
+      if (finalSetupCmd) {
+        setupCommands.push(finalSetupCmd);
+      }
       processedSetupCmds.add(sourceSlug);
     }
 
     // Build the install command
     const packageList = packageIdentifiers.join(' ');
-    const fullCommand = firstPkg.requireSudo
+    // Don't use sudo on Windows (Windows doesn't have sudo)
+    const fullCommand = firstPkg.requireSudo && !isWindows
       ? `sudo ${installCmd} ${packageList}`
       : `${installCmd} ${packageList}`;
 
