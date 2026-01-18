@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import {Space_Grotesk, Work_Sans, Geist_Mono} from "next/font/google";
+import Script from "next/script";
 import { Toaster } from '@/components/ui/sonner';
 import { ErrorBoundary } from '@/components/error-boundary';
 import { ThemeProvider } from '@/components/theme-provider';
@@ -109,14 +110,13 @@ export default function RootLayout({
       <body
         className={`${workSans.variable} ${geistMono.variable} antialiased`}
       >
-      <head>
-        <script
-            async
-            defer
-            src="https://cloud.umami.is/script.js"
-            data-website-id="bfb4175b-5ce9-4a4d-aa0f-c44314ad6a8b"
+        <Script
+          src="/api/_libs"
+          data-website-id="bfb4175b-5ce9-4a4d-aa0f-c44314ad6a8b"
+          data-host-url="https://linite.sagyamthapa.com.np"
+          data-endpoint="/api/_collect"
+          strategy="afterInteractive"
         />
-      </head>
         <QueryProvider>
           <ThemeProvider
             attribute="class"
