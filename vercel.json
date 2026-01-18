@@ -4,5 +4,11 @@
       "path": "/api/cron/refresh",
       "schedule": "0 0 * * *"
     }
+  ],
+  "rewrites": [
+    {
+      "source": "/stats/:match*",
+      "destination": "https://cloud.umami.is/:match*"
+    }
   ]
 }
