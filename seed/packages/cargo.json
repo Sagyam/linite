@@ -1,32 +1,32 @@
 [
   {
     "app": "fd",
-    "source": "cargo",
     "identifier": "fd-find",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "cargo"
   },
   {
     "app": "starship",
-    "source": "cargo",
     "identifier": "starship",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "cargo"
   },
   {
     "app": "uv",
-    "source": "cargo",
     "identifier": "uv",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "cargo"
   },
   {
     "app": "yazi",
-    "source": "cargo",
     "identifier": "yazi-fm",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "cargo"
   },
   {
     "app": "zoxide",
-    "source": "cargo",
     "identifier": "zoxide",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "cargo"
   }
 ]

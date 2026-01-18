@@ -1,386 +1,392 @@
 [
   {
     "app": "0ad",
-    "source": "dnf",
     "identifier": "0ad",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "dnf"
+  },
+  {
+    "app": "conky",
+    "identifier": "conky",
+    "isAvailable": true,
+    "source": "dnf"
   },
   {
     "app": "alacritty",
-    "source": "dnf",
     "identifier": "alacritty",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "dnf"
   },
   {
     "app": "audacity",
-    "source": "dnf",
     "identifier": "audacity",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "dnf"
   },
   {
     "app": "bat",
-    "source": "dnf",
     "identifier": "bat",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "dnf"
   },
   {
     "app": "blender",
-    "source": "dnf",
     "identifier": "blender",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "dnf"
   },
   {
     "app": "btop",
-    "source": "dnf",
     "identifier": "btop",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "dnf"
   },
   {
     "app": "calibre",
-    "source": "dnf",
     "identifier": "calibre",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "dnf"
   },
   {
     "app": "celluloid",
-    "source": "dnf",
     "identifier": "celluloid",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "dnf"
   },
   {
     "app": "chromium",
-    "source": "dnf",
     "identifier": "chromium",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "dnf"
   },
   {
     "app": "clang",
-    "source": "dnf",
     "identifier": "clang",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "dnf"
   },
   {
     "app": "cpu-x",
-    "source": "dnf",
     "identifier": "cpu-x",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "dnf"
   },
   {
     "app": "darktable",
-    "source": "dnf",
     "identifier": "darktable",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "dnf"
   },
   {
     "app": "deluge",
-    "source": "dnf",
     "identifier": "deluge",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "dnf"
   },
   {
     "app": "docker",
-    "source": "dnf",
     "identifier": "docker",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "dnf"
   },
   {
     "app": "emacs",
-    "source": "dnf",
     "identifier": "emacs",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "dnf"
   },
   {
     "app": "evolution",
-    "source": "dnf",
     "identifier": "evolution",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "dnf"
   },
   {
     "app": "filezilla",
-    "source": "dnf",
     "identifier": "filezilla",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "dnf"
   },
   {
     "app": "firefox",
-    "source": "dnf",
     "identifier": "firefox",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "dnf"
   },
   {
     "app": "flameshot",
-    "source": "dnf",
     "identifier": "flameshot",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "dnf"
   },
   {
     "app": "flowblade",
-    "source": "dnf",
     "identifier": "flowblade",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "dnf"
   },
   {
     "app": "foliate",
-    "source": "dnf",
     "identifier": "foliate",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "dnf"
   },
   {
     "app": "fzf",
-    "source": "dnf",
     "identifier": "fzf",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "dnf"
   },
   {
     "app": "gh",
-    "source": "dnf",
     "identifier": "gh",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "dnf"
   },
   {
     "app": "gcc",
-    "source": "dnf",
     "identifier": "gcc",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "dnf"
   },
   {
     "app": "geary",
-    "source": "dnf",
     "identifier": "geary",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "dnf"
   },
   {
     "app": "gimp",
-    "source": "dnf",
     "identifier": "gimp",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "dnf"
   },
   {
     "app": "git",
-    "source": "dnf",
     "identifier": "git",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "dnf"
   },
   {
     "app": "golang",
-    "source": "dnf",
     "identifier": "golang",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "dnf"
   },
   {
     "app": "httpie",
-    "source": "dnf",
     "identifier": "httpie",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "dnf"
   },
   {
     "app": "inkscape",
-    "source": "dnf",
     "identifier": "inkscape",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "dnf"
   },
   {
     "app": "iotop-c",
-    "source": "dnf",
     "identifier": "iotop-c",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "dnf"
   },
   {
     "app": "jellyfin",
-    "source": "dnf",
     "identifier": "jellyfin",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "dnf"
   },
   {
     "app": "jq",
-    "source": "dnf",
     "identifier": "jq",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "dnf"
   },
   {
     "app": "kdenlive",
-    "source": "dnf",
     "identifier": "kdenlive",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "dnf"
   },
   {
     "app": "keepassxc",
-    "source": "dnf",
     "identifier": "keepassxc",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "dnf"
   },
   {
     "app": "krita",
-    "source": "dnf",
     "identifier": "krita",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "dnf"
   },
   {
     "app": "libreoffice",
-    "source": "dnf",
     "identifier": "libreoffice",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "dnf"
   },
   {
     "app": "lua",
-    "source": "dnf",
     "identifier": "lua",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "dnf"
   },
   {
     "app": "lutris",
-    "source": "dnf",
     "identifier": "lutris",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "dnf"
   },
   {
     "app": "mangohud",
-    "source": "dnf",
     "identifier": "mangohud",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "dnf"
   },
   {
     "app": "mpv",
-    "source": "dnf",
     "identifier": "mpv",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "dnf"
   },
   {
     "app": "neovim",
-    "source": "dnf",
     "identifier": "neovim",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "dnf"
   },
   {
     "app": "nvtop",
-    "source": "dnf",
     "identifier": "nvtop",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "dnf"
   },
   {
     "app": "nodejs",
-    "source": "dnf",
     "identifier": "nodejs",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "dnf"
   },
   {
     "app": "obs",
-    "source": "dnf",
     "identifier": "obs-studio",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "dnf"
   },
   {
     "app": "opentofu",
-    "source": "dnf",
     "identifier": "opentofu",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "dnf"
   },
   {
     "app": "openshot",
-    "source": "dnf",
     "identifier": "openshot",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "dnf"
   },
   {
     "app": "perl",
-    "source": "dnf",
     "identifier": "perl",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "dnf"
   },
   {
     "app": "php",
-    "source": "dnf",
     "identifier": "php",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "dnf"
   },
   {
     "app": "python",
-    "source": "dnf",
     "identifier": "python3",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "dnf"
   },
   {
     "app": "qbittorrent",
-    "source": "dnf",
     "identifier": "qbittorrent",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "dnf"
   },
   {
     "app": "remmina",
-    "source": "dnf",
     "identifier": "remmina",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "dnf"
   },
   {
     "app": "ripgrep",
-    "source": "dnf",
     "identifier": "ripgrep",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "dnf"
   },
   {
     "app": "ruby",
-    "source": "dnf",
     "identifier": "ruby",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "dnf"
   },
   {
     "app": "rust",
-    "source": "dnf",
     "identifier": "cargo",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "dnf"
   },
   {
     "app": "s-tui",
-    "source": "dnf",
     "identifier": "s-tui",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "dnf"
   },
   {
     "app": "supertuxkart",
-    "source": "dnf",
     "identifier": "supertuxkart",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "dnf"
   },
   {
     "app": "thunderbird",
-    "source": "dnf",
     "identifier": "thunderbird",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "dnf"
   },
   {
     "app": "tldr",
-    "source": "dnf",
     "identifier": "tldr",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "dnf"
   },
   {
     "app": "tmux",
-    "source": "dnf",
     "identifier": "tmux",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "dnf"
   },
   {
     "app": "transmission",
-    "source": "dnf",
     "identifier": "transmission",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "dnf"
   },
   {
     "app": "vlc",
-    "source": "dnf",
     "identifier": "vlc",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "dnf"
   },
   {
     "app": "virt-manager",
-    "source": "dnf",
     "identifier": "virt-manager",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "dnf"
   },
   {
     "app": "zsh",
-    "source": "dnf",
     "identifier": "zsh",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "dnf"
   }
 ]

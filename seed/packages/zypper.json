@@ -1,92 +1,92 @@
 [
   {
     "app": "aria2",
-    "source": "zypper",
     "identifier": "aria2",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "zypper"
   },
   {
     "app": "fastfetch",
-    "source": "zypper",
     "identifier": "fastfetch",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "zypper"
   },
   {
     "app": "gcc",
-    "source": "zypper",
     "identifier": "gcc",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "zypper"
   },
   {
     "app": "gh",
-    "source": "zypper",
     "identifier": "gh",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "zypper"
   },
   {
     "app": "ghostty",
-    "source": "zypper",
     "identifier": "ghostty",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "zypper"
   },
   {
     "app": "git",
-    "source": "zypper",
     "identifier": "git",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "zypper"
   },
   {
     "app": "golang",
-    "source": "zypper",
     "identifier": "go",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "zypper"
   },
   {
     "app": "lua",
-    "source": "zypper",
     "identifier": "lua",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "zypper"
   },
   {
     "app": "perl",
-    "source": "zypper",
     "identifier": "perl",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "zypper"
   },
   {
     "app": "php",
-    "source": "zypper",
     "identifier": "php",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "zypper"
   },
   {
     "app": "python",
-    "source": "zypper",
     "identifier": "python3",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "zypper"
   },
   {
     "app": "r-lang",
-    "source": "zypper",
     "identifier": "R-base",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "zypper"
   },
   {
     "app": "ruby",
-    "source": "zypper",
     "identifier": "ruby",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "zypper"
   },
   {
     "app": "rust",
-    "source": "zypper",
     "identifier": "cargo",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "zypper"
   },
   {
     "app": "s-tui",
-    "source": "zypper",
     "identifier": "s-tui",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "zypper"
   }
 ]

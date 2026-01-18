@@ -1,560 +1,566 @@
 [
   {
     "app": "0ad",
-    "source": "apt",
     "identifier": "0ad",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
+  },
+  {
+    "app": "conky",
+    "identifier": "conky",
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "alacritty",
-    "source": "apt",
     "identifier": "alacritty",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "aria2",
-    "source": "apt",
     "identifier": "aria2",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "audacity",
-    "source": "apt",
     "identifier": "audacity",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "bat",
-    "source": "apt",
     "identifier": "bat",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "blender",
-    "source": "apt",
     "identifier": "blender",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "btop",
-    "source": "apt",
     "identifier": "btop",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "calibre",
-    "source": "apt",
     "identifier": "calibre",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "celluloid",
-    "source": "apt",
     "identifier": "celluloid",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "chromium",
-    "source": "apt",
     "identifier": "chromium-browser",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "clamav",
-    "source": "apt",
     "identifier": "clamav",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "clang",
-    "source": "apt",
     "identifier": "clang",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "cpu-x",
-    "source": "apt",
     "identifier": "cpu-x",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "darktable",
-    "source": "apt",
     "identifier": "darktable",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "deluge",
-    "source": "apt",
     "identifier": "deluge",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "docker",
-    "source": "apt",
     "identifier": "docker.io",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "dolphin-emu",
-    "source": "apt",
     "identifier": "dolphin-emu",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "emacs",
-    "source": "apt",
     "identifier": "emacs",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "evolution",
-    "source": "apt",
     "identifier": "evolution",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "eza",
-    "source": "apt",
     "identifier": "eza",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "filezilla",
-    "source": "apt",
     "identifier": "filezilla",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "firefox",
-    "source": "apt",
     "identifier": "firefox",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "flameshot",
-    "source": "apt",
     "identifier": "flameshot",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "flowblade",
-    "source": "apt",
     "identifier": "flowblade",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "foliate",
-    "source": "apt",
     "identifier": "foliate",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "fzf",
-    "source": "apt",
     "identifier": "fzf",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "gcc",
-    "source": "apt",
     "identifier": "build-essential",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "geary",
-    "source": "apt",
     "identifier": "geary",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "gimp",
-    "source": "apt",
     "identifier": "gimp",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "git",
-    "source": "apt",
     "identifier": "git",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "golang",
-    "source": "apt",
     "identifier": "golang",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "handbrake",
-    "source": "apt",
     "identifier": "handbrake",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "inkscape",
-    "source": "apt",
     "identifier": "inkscape",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "iotop-c",
-    "source": "apt",
     "identifier": "iotop-c",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "java",
-    "source": "apt",
     "identifier": "default-jdk",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "jq",
-    "source": "apt",
     "identifier": "jq",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "kdenlive",
-    "source": "apt",
     "identifier": "kdenlive",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "keepassxc",
-    "source": "apt",
     "identifier": "keepassxc",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "krita",
-    "source": "apt",
     "identifier": "krita",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "lazygit",
-    "source": "apt",
     "identifier": "lazygit",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "libreoffice",
-    "source": "apt",
     "identifier": "libreoffice",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "lua",
-    "source": "apt",
     "identifier": "lua5.4",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "lutris",
-    "source": "apt",
     "identifier": "lutris",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "mangohud",
-    "source": "apt",
     "identifier": "mangohud",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "mpv",
-    "source": "apt",
     "identifier": "mpv",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "neovim",
-    "source": "apt",
     "identifier": "neovim",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "nvtop",
-    "source": "apt",
     "identifier": "nvtop",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "nodejs",
-    "source": "apt",
     "identifier": "nodejs",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "obs",
-    "source": "apt",
     "identifier": "obs-studio",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "pcsx2",
-    "source": "apt",
     "identifier": "pcsx2",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "perl",
-    "source": "apt",
     "identifier": "perl",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "php",
-    "source": "apt",
     "identifier": "php",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "python",
-    "source": "apt",
     "identifier": "python3",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "qbittorrent",
-    "source": "apt",
     "identifier": "qbittorrent",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "r-lang",
-    "source": "apt",
     "identifier": "r-base",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "remmina",
-    "source": "apt",
     "identifier": "remmina",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "retroarch",
-    "source": "apt",
     "identifier": "retroarch",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "ripgrep",
-    "source": "apt",
     "identifier": "ripgrep",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "ruby",
-    "source": "apt",
     "identifier": "ruby-full",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "rust",
-    "source": "apt",
     "identifier": "cargo",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "steam",
-    "source": "apt",
     "identifier": "steam",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "s-tui",
-    "source": "apt",
     "identifier": "s-tui",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "supertuxkart",
-    "source": "apt",
     "identifier": "supertuxkart",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "syncthing",
-    "source": "apt",
     "identifier": "syncthing",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "thunderbird",
-    "source": "apt",
     "identifier": "thunderbird",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "timeshift",
-    "source": "apt",
     "identifier": "timeshift",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "tldr",
-    "source": "apt",
     "identifier": "tldr-py",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "tmux",
-    "source": "apt",
     "identifier": "tmux",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "tor-browser",
-    "source": "apt",
     "identifier": "torbrowser-launcher",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "transmission",
-    "source": "apt",
     "identifier": "transmission",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "vlc",
-    "source": "apt",
     "identifier": "vlc",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "warzone2100",
-    "source": "apt",
     "identifier": "warzone2100",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "wesnoth",
-    "source": "apt",
     "identifier": "wesnoth",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "zsh",
-    "source": "apt",
     "identifier": "zsh",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "godot",
-    "source": "apt",
     "identifier": "godot",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "freecad",
-    "source": "apt",
     "identifier": "freecad",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "postgresql",
-    "source": "apt",
     "identifier": "postgresql",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "redis",
-    "source": "apt",
     "identifier": "redis-server",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "nginx",
-    "source": "apt",
     "identifier": "nginx",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "apache",
-    "source": "apt",
     "identifier": "apache2",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "qemu",
-    "source": "apt",
     "identifier": "qemu-system",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "virtualbox",
-    "source": "apt",
     "identifier": "virtualbox",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "vagrant",
-    "source": "apt",
     "identifier": "vagrant",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "virt-manager",
-    "source": "apt",
     "identifier": "virt-manager",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "nmap",
-    "source": "apt",
     "identifier": "nmap",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "openssh",
-    "source": "apt",
     "identifier": "openssh-server",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "openvpn",
-    "source": "apt",
     "identifier": "openvpn",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "wireguard",
-    "source": "apt",
     "identifier": "wireguard",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "aria2",
-    "source": "apt",
     "identifier": "aria2",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "ranger",
-    "source": "apt",
     "identifier": "ranger",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "fd",
-    "source": "apt",
     "identifier": "fd-find",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "fastfetch",
-    "source": "apt",
     "identifier": "fastfetch",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   },
   {
     "app": "micro",
-    "source": "apt",
     "identifier": "micro",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "apt"
   }
 ]

@@ -1,584 +1,584 @@
 [
   {
     "app": "0ad",
-    "source": "flatpak",
     "identifier": "com.play0ad.zeroad",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "android-studio",
-    "source": "flatpak",
     "identifier": "com.google.AndroidStudio",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "audacity",
-    "source": "flatpak",
     "identifier": "org.audacityteam.Audacity",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "bitwarden",
-    "source": "flatpak",
     "identifier": "com.bitwarden.desktop",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "blender",
-    "source": "flatpak",
     "identifier": "org.blender.Blender",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "bottles",
-    "source": "flatpak",
     "identifier": "com.usebottles.bottles",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "brave",
-    "source": "flatpak",
     "identifier": "com.brave.Browser",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "calibre",
-    "source": "flatpak",
     "identifier": "com.calibre_ebook.calibre",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "cartridges",
-    "source": "flatpak",
     "identifier": "page.kramo.Cartridges",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "celluloid",
-    "source": "flatpak",
     "identifier": "io.github.celluloid_player.Celluloid",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "chrome",
-    "source": "flatpak",
     "identifier": "com.google.Chrome",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "chromium",
-    "source": "flatpak",
     "identifier": "org.chromium.Chromium",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "cpu-x",
-    "source": "flatpak",
     "identifier": "io.github.thetumultuousunicornofdarkness.cpu-x",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "darktable",
-    "source": "flatpak",
     "identifier": "org.darktable.Darktable",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "datagrip",
-    "source": "flatpak",
     "identifier": "com.jetbrains.DataGrip",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "dbeaver",
-    "source": "flatpak",
     "identifier": "io.dbeaver.DBeaverCommunity",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "deluge",
-    "source": "flatpak",
     "identifier": "org.deluge_torrent.deluge",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "discord",
-    "source": "flatpak",
     "identifier": "com.discordapp.Discord",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "dolphin-emu",
-    "source": "flatpak",
     "identifier": "org.DolphinEmu.dolphin-emu",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "eclipse",
-    "source": "flatpak",
     "identifier": "org.eclipse.Java",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "evolution",
-    "source": "flatpak",
     "identifier": "org.gnome.Evolution",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "filezilla",
-    "source": "flatpak",
     "identifier": "org.filezillaproject.Filezilla",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "firefox",
-    "source": "flatpak",
     "identifier": "org.mozilla.firefox",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "flameshot",
-    "source": "flatpak",
     "identifier": "org.flameshot.Flameshot",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "floorp",
-    "source": "flatpak",
     "identifier": "one.ablaze.floorp",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "flowblade",
-    "source": "flatpak",
     "identifier": "io.github.jliljebl.Flowblade",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "foliate",
-    "source": "flatpak",
     "identifier": "com.github.johnfactotum.Foliate",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "fragments",
-    "source": "flatpak",
     "identifier": "de.haeckerfelix.Fragments",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "freecad",
-    "source": "flatpak",
     "identifier": "org.freecad.FreeCAD",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "geary",
-    "source": "flatpak",
     "identifier": "org.gnome.Geary",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "gimp",
-    "source": "flatpak",
     "identifier": "org.gimp.GIMP",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "godot",
-    "source": "flatpak",
     "identifier": "org.godotengine.Godot",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "goland",
-    "source": "flatpak",
     "identifier": "com.jetbrains.GoLand",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "ghidra",
-    "source": "flatpak",
     "identifier": "org.ghidra_sre.Ghidra",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "handbrake",
-    "source": "flatpak",
     "identifier": "fr.handbrake.ghb",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "heroic",
-    "source": "flatpak",
     "identifier": "com.heroicgameslauncher.hgl",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "imhex",
-    "source": "flatpak",
     "identifier": "net.werwolv.ImHex",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "impression",
-    "source": "flatpak",
     "identifier": "io.gitlab.adhami3310.Impression",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "inkscape",
-    "source": "flatpak",
     "identifier": "org.inkscape.Inkscape",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "insomnia",
-    "source": "flatpak",
     "identifier": "rest.insomnia.Insomnia",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "intellij",
-    "source": "flatpak",
     "identifier": "com.jetbrains.IntelliJ-IDEA-Community",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "joplin",
-    "source": "flatpak",
     "identifier": "net.cozic.joplin_desktop",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "kdenlive",
-    "source": "flatpak",
     "identifier": "org.kde.kdenlive",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "keepassxc",
-    "source": "flatpak",
     "identifier": "org.keepassxc.KeePassXC",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "krita",
-    "source": "flatpak",
     "identifier": "org.kde.krita",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "libreoffice",
-    "source": "flatpak",
     "identifier": "org.libreoffice.LibreOffice",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "librewolf",
-    "source": "flatpak",
     "identifier": "io.gitlab.librewolf-community",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "logseq",
-    "source": "flatpak",
     "identifier": "com.logseq.Logseq",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "lutris",
-    "source": "flatpak",
     "identifier": "net.lutris.Lutris",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "microsoft-edge",
-    "source": "flatpak",
     "identifier": "com.microsoft.Edge",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "minecraft",
-    "source": "flatpak",
     "identifier": "com.mojang.Minecraft",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "mission-center",
-    "source": "flatpak",
     "identifier": "io.missioncenter.MissionCenter",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "mpv",
-    "source": "flatpak",
     "identifier": "io.mpv.Mpv",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "neovim",
-    "source": "flatpak",
     "identifier": "io.neovim.nvim",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "netbeans",
-    "source": "flatpak",
     "identifier": "org.apache.netbeans",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "nextcloud",
-    "source": "flatpak",
     "identifier": "com.nextcloud.desktopclient.nextcloud",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "obs",
-    "source": "flatpak",
     "identifier": "com.obsproject.Studio",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "obsidian",
-    "source": "flatpak",
     "identifier": "md.obsidian.Obsidian",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "onlyoffice",
-    "source": "flatpak",
     "identifier": "org.onlyoffice.desktopeditors",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "openshot",
-    "source": "flatpak",
     "identifier": "org.openshot.OpenShot",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "opera",
-    "source": "flatpak",
     "identifier": "com.opera.Opera",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "pcsx2",
-    "source": "flatpak",
     "identifier": "net.pcsx2.PCSX2",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "postman",
-    "source": "flatpak",
     "identifier": "com.getpostman.Postman",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "pycharm",
-    "source": "flatpak",
     "identifier": "com.jetbrains.PyCharm-Community",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "qbittorrent",
-    "source": "flatpak",
     "identifier": "org.qbittorrent.qBittorrent",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "remmina",
-    "source": "flatpak",
     "identifier": "org.remmina.Remmina",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "retroarch",
-    "source": "flatpak",
     "identifier": "org.libretro.RetroArch",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "rider",
-    "source": "flatpak",
     "identifier": "com.jetbrains.Rider",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "rpcs3",
-    "source": "flatpak",
     "identifier": "net.rpcs3.RPCS3",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "rustdesk",
-    "source": "flatpak",
     "identifier": "com.rustdesk.RustDesk",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "shotcut",
-    "source": "flatpak",
     "identifier": "org.shotcut.Shotcut",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "signal",
-    "source": "flatpak",
     "identifier": "org.signal.Signal",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "slack",
-    "source": "flatpak",
     "identifier": "com.slack.Slack",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "spotify",
-    "source": "flatpak",
     "identifier": "com.spotify.Client",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "standard-notes",
-    "source": "flatpak",
     "identifier": "org.standardnotes.standardnotes",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "steam",
-    "source": "flatpak",
     "identifier": "com.valvesoftware.Steam",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "stremio",
-    "source": "flatpak",
     "identifier": "com.stremio.Stremio",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "sublime-text",
-    "source": "flatpak",
     "identifier": "com.sublimetext.three",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "supertuxkart",
-    "source": "flatpak",
     "identifier": "net.supertuxkart.SuperTuxKart",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "syncthing",
-    "source": "flatpak",
     "identifier": "me.kozec.syncthingtk",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "telegram",
-    "source": "flatpak",
     "identifier": "org.telegram.desktop",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "thunderbird",
-    "source": "flatpak",
     "identifier": "org.mozilla.Thunderbird",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "tor-browser",
-    "source": "flatpak",
     "identifier": "org.torproject.torbrowser-launcher",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "transmission",
-    "source": "flatpak",
     "identifier": "com.transmissionbt.Transmission",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "ungoogled-chromium",
-    "source": "flatpak",
     "identifier": "io.github.ungoogled_software.ungoogled_chromium",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "vivaldi",
-    "source": "flatpak",
     "identifier": "com.vivaldi.Vivaldi",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "vlc",
-    "source": "flatpak",
     "identifier": "org.videolan.VLC",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "vscode",
-    "source": "flatpak",
     "identifier": "com.visualstudio.code",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "vscodium",
-    "source": "flatpak",
     "identifier": "com.vscodium.codium",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "warzone2100",
-    "source": "flatpak",
     "identifier": "net.wz2100.wz2100",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "waterfox",
-    "source": "flatpak",
     "identifier": "net.waterfox.waterfox",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "webstorm",
-    "source": "flatpak",
     "identifier": "com.jetbrains.WebStorm",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "wesnoth",
-    "source": "flatpak",
     "identifier": "org.wesnoth.Wesnoth",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "wezterm",
-    "source": "flatpak",
     "identifier": "org.wezfurlong.wezterm",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "wireshark",
-    "source": "flatpak",
     "identifier": "org.wireshark.Wireshark",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "zed",
-    "source": "flatpak",
     "identifier": "app.zen_browser.zen",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   },
   {
     "app": "zoom",
-    "source": "flatpak",
     "identifier": "us.zoom.Zoom",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "flatpak"
   }
 ]

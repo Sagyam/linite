@@ -1,206 +1,206 @@
 [
   {
     "app": "alacritty",
-    "source": "aur",
     "identifier": "alacritty-git",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "aur"
   },
   {
     "app": "anydesk",
-    "source": "aur",
     "identifier": "anydesk-bin",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "aur"
   },
   {
     "app": "aria2",
-    "source": "aur",
     "identifier": "aria2",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "aur"
   },
   {
     "app": "android-studio",
-    "source": "aur",
     "identifier": "android-studio",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "aur"
   },
   {
     "app": "brave",
-    "source": "aur",
     "identifier": "brave-bin",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "aur"
   },
   {
     "app": "calibre",
-    "source": "aur",
     "identifier": "calibre-bin",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "aur"
   },
   {
     "app": "dropbox",
-    "source": "aur",
     "identifier": "dropbox",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "aur"
   },
   {
     "app": "floorp",
-    "source": "aur",
     "identifier": "floorp-bin",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "aur"
   },
   {
     "app": "insomnia",
-    "source": "aur",
     "identifier": "insomnia-bin",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "aur"
   },
   {
     "app": "joplin",
-    "source": "aur",
     "identifier": "joplin-desktop",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "aur"
   },
   {
     "app": "logseq",
-    "source": "aur",
     "identifier": "logseq-desktop-bin",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "aur"
   },
   {
     "app": "librewolf",
-    "source": "aur",
     "identifier": "librewolf-bin",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "aur"
   },
   {
     "app": "mega",
-    "source": "aur",
     "identifier": "megasync-bin",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "aur"
   },
   {
     "app": "microsoft-edge",
-    "source": "aur",
     "identifier": "microsoft-edge-stable-bin",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "aur"
   },
   {
     "app": "minecraft",
-    "source": "aur",
     "identifier": "minecraft-launcher",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "aur"
   },
   {
     "app": "openshot",
-    "source": "aur",
     "identifier": "openshot",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "aur"
   },
   {
     "app": "opencode",
-    "source": "aur",
     "identifier": "opencode",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "aur"
   },
   {
     "app": "opera",
-    "source": "aur",
     "identifier": "opera",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "aur"
   },
   {
     "app": "pcloud",
-    "source": "aur",
     "identifier": "pcloud-drive",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "aur"
   },
   {
     "app": "pcsx2",
-    "source": "aur",
     "identifier": "pcsx2",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "aur"
   },
   {
     "app": "postman",
-    "source": "aur",
     "identifier": "postman-bin",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "aur"
   },
   {
     "app": "rpcs3",
-    "source": "aur",
     "identifier": "rpcs3-bin",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "aur"
   },
   {
     "app": "rustdesk",
-    "source": "aur",
     "identifier": "rustdesk-bin",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "aur"
   },
   {
     "app": "sublime-text",
-    "source": "aur",
     "identifier": "sublime-text-4",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "aur"
   },
   {
     "app": "slack",
-    "source": "aur",
     "identifier": "slack-desktop",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "aur"
   },
   {
     "app": "spaceship-prompt",
-    "source": "aur",
     "identifier": "spaceship-prompt",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "aur"
   },
   {
     "app": "ungoogled-chromium",
-    "source": "aur",
     "identifier": "ungoogled-chromium-bin",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "aur"
   },
   {
     "app": "ventoy",
-    "source": "aur",
     "identifier": "ventoy-bin",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "aur"
   },
   {
     "app": "vscodium",
-    "source": "aur",
     "identifier": "visual-studio-code-bin",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "aur"
   },
   {
     "app": "waterfox",
-    "source": "aur",
     "identifier": "waterfox-bin",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "aur"
   },
   {
     "app": "cursor",
-    "source": "aur",
     "identifier": "cursor-bin",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "aur"
   },
   {
     "app": "helix",
-    "source": "aur",
     "identifier": "helix-git",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "aur"
   },
   {
     "app": "zen-browser",
-    "source": "aur",
     "identifier": "zen-browser-bin",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "aur"
   },
   {
     "app": "zoom",
-    "source": "aur",
     "identifier": "zoom",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "aur"
   }
 ]

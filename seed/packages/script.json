@@ -1,46 +1,45 @@
 [
   {
     "app": "bun",
-    "source": "script",
     "identifier": "bun",
     "isAvailable": true,
     "metadata": {
+      "note": "Fast all-in-one JavaScript runtime and package manager",
       "scriptUrl": {
         "linux": "https://bun.sh/install",
         "windows": "https://bun.sh/install.ps1"
-      },
-      "note": "Fast all-in-one JavaScript runtime and package manager"
-    }
+      }
+    },
+    "source": "script"
   },
   {
     "app": "claude-code",
-    "source": "script",
     "identifier": "claude-code",
     "isAvailable": true,
     "metadata": {
+      "note": "Anthropic's official CLI for Claude AI coding assistant",
       "scriptUrl": {
         "linux": "https://claude.ai/install.sh",
         "windows": "https://claude.ai/install.ps1"
-      },
-      "note": "Anthropic's official CLI for Claude AI coding assistant"
-    }
+      }
+    },
+    "source": "script"
   },
   {
     "app": "deno",
-    "source": "script",
     "identifier": "deno",
     "isAvailable": true,
     "metadata": {
+      "note": "Modern JavaScript/TypeScript runtime",
       "scriptUrl": {
         "linux": "https://deno.land/install.sh",
         "windows": "https://deno.land/install.ps1"
-      },
-      "note": "Modern JavaScript/TypeScript runtime"
-    }
+      }
+    },
+    "source": "script"
   },
   {
     "app": "docker",
-    "source": "script",
     "identifier": "docker",
     "isAvailable": true,
     "metadata": {
@@ -48,96 +47,96 @@
         "linux": "https://get.docker.com",
         "windows": "https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe"
       }
-    }
+    },
+    "source": "script"
   },
   {
     "app": "jellyfin",
-    "source": "script",
     "identifier": "jellyfin",
     "isAvailable": true,
     "metadata": {
       "scriptUrl": {
         "linux": "https://repo.jellyfin.org/install-debuntu.sh"
       }
-    }
+    },
+    "source": "script"
   },
   {
     "app": "nodejs",
-    "source": "script",
     "identifier": "nvm",
     "isAvailable": true,
     "metadata": {
+      "note": "Installs NVM (Node Version Manager) which manages Node.js installations",
       "scriptUrl": {
         "linux": "https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh",
         "windows": "https://github.com/coreybutler/nvm-windows/releases/latest/download/nvm-setup.exe"
-      },
-      "note": "Installs NVM (Node Version Manager) which manages Node.js installations"
-    }
+      }
+    },
+    "source": "script"
   },
   {
     "app": "oh-my-zsh",
-    "source": "script",
     "identifier": "oh-my-zsh",
     "isAvailable": true,
     "metadata": {
+      "note": "Unleash your terminal like never before.",
       "scriptUrl": {
         "linux": "https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh"
-      },
-      "note": "Unleash your terminal like never before."
-    }
+      }
+    },
+    "source": "script"
   },
   {
     "app": "ollama",
-    "source": "script",
     "identifier": "ollama",
     "isAvailable": true,
     "metadata": {
+      "note": "Chat & build with open models",
       "scriptUrl": {
         "linux": "https://ollama.com/install.sh"
-      },
-      "note": "Chat & build with open models"
-    }
+      }
+    },
+    "source": "script"
   },
   {
     "app": "opencode",
-    "source": "script",
     "identifier": "opencode",
     "isAvailable": true,
     "metadata": {
+      "note": "The open source AI coding agent",
       "scriptUrl": {
         "linux": "https://opencode.ai/install"
-      },
-      "note": "The open source AI coding agent"
-    }
+      }
+    },
+    "source": "script"
   },
   {
     "app": "pnpm",
-    "source": "script",
     "identifier": "pnpm",
     "isAvailable": true,
     "metadata": {
+      "note": "Fast, disk space efficient package manager",
       "scriptUrl": {
         "linux": "https://get.pnpm.io/install.sh",
         "windows": "https://get.pnpm.io/install.ps1"
-      },
-      "note": "Fast, disk space efficient package manager"
-    }
+      }
+    },
+    "source": "script"
   },
   {
     "app": "rbenv",
-    "source": "script",
     "identifier": "rbenv",
     "isAvailable": true,
     "metadata": {
+      "note": "Ruby version manager",
       "scriptUrl": {
         "linux": "https://github.com/rbenv/rbenv-installer/raw/main/bin/rbenv-installer"
-      },
-      "note": "Ruby version manager"
-    }
+      }
+    },
+    "source": "script"
   },
   {
     "app": "rust",
-    "source": "script",
     "identifier": "rustup",
     "isAvailable": true,
     "metadata": {
@@ -145,31 +144,32 @@
         "linux": "https://sh.rustup.rs",
         "windows": "https://win.rustup.rs/x86_64"
       }
-    }
+    },
+    "source": "script"
   },
   {
     "app": "sdkman",
-    "source": "script",
     "identifier": "sdkman",
     "isAvailable": true,
     "metadata": {
+      "note": "Software Development Kit Manager for JVM languages (Java, Kotlin, Scala, Groovy)",
       "scriptUrl": {
         "linux": "https://get.sdkman.io"
-      },
-      "note": "Software Development Kit Manager for JVM languages (Java, Kotlin, Scala, Groovy)"
-    }
+      }
+    },
+    "source": "script"
   },
   {
     "app": "uv",
-    "source": "script",
     "identifier": "uv",
     "isAvailable": true,
     "metadata": {
+      "note": "Extremely fast Python package installer and resolver, written in Rust",
       "scriptUrl": {
         "linux": "https://astral.sh/uv/install.sh",
         "windows": "https://astral.sh/uv/install.ps1"
-      },
-      "note": "Extremely fast Python package installer and resolver, written in Rust"
-    }
+      }
+    },
+    "source": "script"
   }
 ]

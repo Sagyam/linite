@@ -1,254 +1,260 @@
 [
   {
     "app": "audacity",
-    "source": "nix",
     "identifier": "audacity",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "conky",
+    "identifier": "conky",
+    "isAvailable": true,
+    "source": "nix"
   },
   {
     "app": "aria2",
-    "source": "nix",
     "identifier": "aria2",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "nix"
   },
   {
     "app": "bat",
-    "source": "nix",
     "identifier": "bat",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "nix"
   },
   {
     "app": "blender",
-    "source": "nix",
     "identifier": "blender",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "nix"
   },
   {
     "app": "brave",
-    "source": "nix",
     "identifier": "brave",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "nix"
   },
   {
     "app": "btop",
-    "source": "nix",
     "identifier": "btop",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "nix"
   },
   {
     "app": "chromium",
-    "source": "nix",
     "identifier": "chromium",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "nix"
   },
   {
     "app": "cpu-x",
-    "source": "nix",
     "identifier": "cpu-x",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "nix"
   },
   {
     "app": "docker",
-    "source": "nix",
     "identifier": "docker",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "nix"
   },
   {
     "app": "emacs",
-    "source": "nix",
     "identifier": "emacs",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "nix"
   },
   {
     "app": "firefox",
-    "source": "nix",
     "identifier": "firefox",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "nix"
   },
   {
     "app": "flameshot",
-    "source": "nix",
     "identifier": "flameshot",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "nix"
   },
   {
     "app": "fzf",
-    "source": "nix",
     "identifier": "fzf",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "nix"
   },
   {
     "app": "fastfetch",
-    "source": "nix",
     "identifier": "fastfetch",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "nix"
   },
   {
     "app": "gcc",
-    "source": "nix",
     "identifier": "gcc",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "nix"
   },
   {
     "app": "gh",
-    "source": "nix",
     "identifier": "gh",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "nix"
   },
   {
     "app": "ghostty",
-    "source": "nix",
     "identifier": "ghostty",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "nix"
   },
   {
     "app": "gimp",
-    "source": "nix",
     "identifier": "gimp",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "nix"
   },
   {
     "app": "git",
-    "source": "nix",
     "identifier": "git",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "nix"
   },
   {
     "app": "golang",
-    "source": "nix",
     "identifier": "go",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "nix"
   },
   {
     "app": "httpie",
-    "source": "nix",
     "identifier": "httpie",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "nix"
   },
   {
     "app": "inkscape",
-    "source": "nix",
     "identifier": "inkscape",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "nix"
   },
   {
     "app": "java",
-    "source": "nix",
     "identifier": "jdk",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "nix"
   },
   {
     "app": "jq",
-    "source": "nix",
     "identifier": "jq",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "nix"
   },
   {
     "app": "keepassxc",
-    "source": "nix",
     "identifier": "keepassxc",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "nix"
   },
   {
     "app": "krita",
-    "source": "nix",
     "identifier": "krita",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "nix"
   },
   {
     "app": "mpv",
-    "source": "nix",
     "identifier": "mpv",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "nix"
   },
   {
     "app": "neovim",
-    "source": "nix",
     "identifier": "neovim",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "nix"
   },
   {
     "app": "nodejs",
-    "source": "nix",
     "identifier": "nodejs",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "nix"
   },
   {
     "app": "php",
-    "source": "nix",
     "identifier": "php",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "nix"
   },
   {
     "app": "python",
-    "source": "nix",
     "identifier": "python3",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "nix"
   },
   {
     "app": "ripgrep",
-    "source": "nix",
     "identifier": "ripgrep",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "nix"
   },
   {
     "app": "ruby",
-    "source": "nix",
     "identifier": "ruby",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "nix"
   },
   {
     "app": "rust",
-    "source": "nix",
     "identifier": "rustc",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "nix"
   },
   {
     "app": "slack",
-    "source": "nix",
     "identifier": "slack",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "nix"
   },
   {
     "app": "steam",
-    "source": "nix",
     "identifier": "steam",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "nix"
   },
   {
     "app": "thunderbird",
-    "source": "nix",
     "identifier": "thunderbird",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "nix"
   },
   {
     "app": "tldr",
-    "source": "nix",
     "identifier": "tldr",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "nix"
   },
   {
     "app": "tmux",
-    "source": "nix",
     "identifier": "tmux",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "nix"
   },
   {
     "app": "vlc",
-    "source": "nix",
     "identifier": "vlc",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "nix"
   },
   {
     "app": "zsh",
-    "source": "nix",
     "identifier": "zsh",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "nix"
   },
   {
     "app": "ungoogled-chromium",
-    "source": "nix",
     "identifier": "ungoogled-chromium",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "nix"
   }
 ]

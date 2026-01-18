@@ -1,20 +1,20 @@
 [
   {
     "app": "nodemon",
-    "source": "npm",
     "identifier": "nodemon",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "npm"
   },
   {
     "app": "pnpm",
-    "source": "npm",
     "identifier": "pnpm",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "npm"
   },
   {
     "app": "spaceship",
-    "source": "npm",
     "identifier": "spaceship-prompt",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "npm"
   }
 ]

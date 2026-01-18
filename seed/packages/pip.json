@@ -1,50 +1,50 @@
 [
   {
     "app": "ansible",
-    "source": "pip",
     "identifier": "ansible",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "pip"
   },
   {
     "app": "black",
-    "source": "pip",
     "identifier": "black",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "pip"
   },
   {
     "app": "jupyter",
-    "source": "pip",
     "identifier": "jupyter",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "pip"
   },
   {
     "app": "pipenv",
-    "source": "pip",
     "identifier": "pipenv",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "pip"
   },
   {
     "app": "poetry",
-    "source": "pip",
     "identifier": "poetry",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "pip"
   },
   {
     "app": "pylint",
-    "source": "pip",
     "identifier": "pylint",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "pip"
   },
   {
     "app": "ranger",
-    "source": "pip",
     "identifier": "ranger-fm",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "pip"
   },
   {
     "app": "s-tui",
-    "source": "pip",
     "identifier": "s-tui",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "pip"
   }
 ]

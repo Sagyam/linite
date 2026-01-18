@@ -1,494 +1,494 @@
 [
   {
     "app": "alacritty",
-    "source": "winget",
     "identifier": "Alacritty.Alacritty",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "winget"
   },
   {
     "app": "audacity",
-    "source": "winget",
     "identifier": "Audacity.Audacity",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "winget"
   },
   {
     "app": "balena-etcher",
-    "source": "winget",
     "identifier": "Balena.Etcher",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "winget"
   },
   {
     "app": "bitwarden",
-    "source": "winget",
     "identifier": "Bitwarden.Bitwarden",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "winget"
   },
   {
     "app": "blender",
-    "source": "winget",
     "identifier": "BlenderFoundation.Blender",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "winget"
   },
   {
     "app": "brave",
-    "source": "winget",
     "identifier": "Brave.Brave",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "winget"
   },
   {
     "app": "chrome",
-    "source": "winget",
     "identifier": "Google.Chrome",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "winget"
   },
   {
     "app": "chromium",
-    "source": "winget",
     "identifier": "Hibbiki.Chromium",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "winget"
   },
   {
     "app": "cursor",
-    "source": "winget",
     "identifier": "Cursor.Cursor",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "winget"
   },
   {
     "app": "darktable",
-    "source": "winget",
     "identifier": "darktable.darktable",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "winget"
   },
   {
     "app": "dbeaver",
-    "source": "winget",
     "identifier": "dbeaver.dbeaver",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "winget"
   },
   {
     "app": "deno",
-    "source": "winget",
     "identifier": "DenoLand.Deno",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "winget"
   },
   {
     "app": "discord",
-    "source": "winget",
     "identifier": "Discord.Discord",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "winget"
   },
   {
     "app": "docker",
-    "source": "winget",
     "identifier": "Docker.DockerDesktop",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "winget"
   },
   {
     "app": "ffmpeg",
-    "source": "winget",
     "identifier": "Gyan.FFmpeg",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "winget"
   },
   {
     "app": "firefox",
-    "source": "winget",
     "identifier": "Mozilla.Firefox",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "winget"
   },
   {
     "app": "freecad",
-    "source": "winget",
     "identifier": "FreeCAD.FreeCAD",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "winget"
   },
   {
     "app": "fastfetch",
-    "source": "winget",
     "identifier": "fastfetch",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "winget"
   },
   {
     "app": "gh",
-    "source": "winget",
     "identifier": "GitHub.cli",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "winget"
   },
   {
     "app": "gimp",
-    "source": "winget",
     "identifier": "GIMP.GIMP",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "winget"
   },
   {
     "app": "git",
-    "source": "winget",
     "identifier": "Git.Git",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "winget"
   },
   {
     "app": "godot",
-    "source": "winget",
     "identifier": "GodotEngine.Godot",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "winget"
   },
   {
     "app": "golang",
-    "source": "winget",
     "identifier": "GoLang.Go",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "winget"
   },
   {
     "app": "handbrake",
-    "source": "winget",
     "identifier": "HandBrake.HandBrake",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "winget"
   },
   {
     "app": "helix",
-    "source": "winget",
     "identifier": "Helix.Helix",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "winget"
   },
   {
     "app": "heroic",
-    "source": "winget",
     "identifier": "HeroicGamesLauncher.HeroicGamesLauncher",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "winget"
   },
   {
     "app": "inkscape",
-    "source": "winget",
     "identifier": "Inkscape.Inkscape",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "winget"
   },
   {
     "app": "insomnia",
-    "source": "winget",
     "identifier": "Insomnia.Insomnia",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "winget"
   },
   {
     "app": "intellij",
-    "source": "winget",
     "identifier": "JetBrains.IntelliJIDEA.Community",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "winget"
   },
   {
     "app": "java",
-    "source": "winget",
     "identifier": "Oracle.JavaRuntimeEnvironment",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "winget"
   },
   {
     "app": "kdenlive",
-    "source": "winget",
     "identifier": "KDE.Kdenlive",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "winget"
   },
   {
     "app": "keepassxc",
-    "source": "winget",
     "identifier": "KeePassXCTeam.KeePassXC",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "winget"
   },
   {
     "app": "krita",
-    "source": "winget",
     "identifier": "KDE.Krita",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "winget"
   },
   {
     "app": "kubectl",
-    "source": "winget",
     "identifier": "Kubernetes.kubectl",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "winget"
   },
   {
     "app": "libreoffice",
-    "source": "winget",
     "identifier": "TheDocumentFoundation.LibreOffice",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "winget"
   },
   {
     "app": "micro",
-    "source": "winget",
     "identifier": "zyedidia.micro",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "winget"
   },
   {
     "app": "microsoft-edge",
-    "source": "winget",
     "identifier": "Microsoft.Edge",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "winget"
   },
   {
     "app": "minecraft",
-    "source": "winget",
     "identifier": "Mojang.MinecraftLauncher",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "winget"
   },
   {
     "app": "mongodb",
-    "source": "winget",
     "identifier": "MongoDB.Server",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "winget"
   },
   {
     "app": "mpv",
-    "source": "winget",
     "identifier": "mpv.mpv",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "winget"
   },
   {
     "app": "neovim",
-    "source": "winget",
     "identifier": "Neovim.Neovim",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "winget"
   },
   {
     "app": "nginx",
-    "source": "winget",
     "identifier": "nginx.nginx",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "winget"
   },
   {
     "app": "nmap",
-    "source": "winget",
     "identifier": "Insecure.Nmap",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "winget"
   },
   {
     "app": "nodejs",
-    "source": "winget",
     "identifier": "OpenJS.NodeJS",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "winget"
   },
   {
     "app": "notion",
-    "source": "winget",
     "identifier": "Notion.Notion",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "winget"
   },
   {
     "app": "obs",
-    "source": "winget",
     "identifier": "OBSProject.OBSStudio",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "winget"
   },
   {
     "app": "obsidian",
-    "source": "winget",
     "identifier": "Obsidian.Obsidian",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "winget"
   },
   {
     "app": "onlyoffice",
-    "source": "winget",
     "identifier": "ONLYOFFICE.DesktopEditors",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "winget"
   },
   {
     "app": "openssh",
-    "source": "winget",
     "identifier": "Microsoft.OpenSSH.Beta",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "winget"
   },
   {
     "app": "openvpn",
-    "source": "winget",
     "identifier": "OpenVPNTechnologies.OpenVPN",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "winget"
   },
   {
     "app": "openvpn",
-    "source": "winget",
     "identifier": "OpenTofu.Tofu",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "winget"
   },
   {
     "app": "php",
-    "source": "winget",
     "identifier": "PHP.PHP",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "winget"
   },
   {
     "app": "pnpm",
-    "source": "winget",
     "identifier": "pnpm.pnpm",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "winget"
   },
   {
     "app": "podman",
-    "source": "winget",
     "identifier": "RedHat.Podman",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "winget"
   },
   {
     "app": "postgresql",
-    "source": "winget",
     "identifier": "PostgreSQL.PostgreSQL",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "winget"
   },
   {
     "app": "postman",
-    "source": "winget",
     "identifier": "Postman.Postman",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "winget"
   },
   {
     "app": "python",
-    "source": "winget",
     "identifier": "Python.Python.3.12",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "winget"
   },
   {
     "app": "qemu",
-    "source": "winget",
     "identifier": "SoftwareFreedomConservancy.QEMU",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "winget"
   },
   {
     "app": "redis",
-    "source": "winget",
     "identifier": "Redis.Redis",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "winget"
   },
   {
     "app": "ruby",
-    "source": "winget",
     "identifier": "RubyInstallerTeam.Ruby",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "winget"
   },
   {
     "app": "rust",
-    "source": "winget",
     "identifier": "Rustlang.Rust.MSVC",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "winget"
   },
   {
     "app": "signal",
-    "source": "winget",
     "identifier": "OpenWhisperSystems.Signal",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "winget"
   },
   {
     "app": "slack",
-    "source": "winget",
     "identifier": "SlackTechnologies.Slack",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "winget"
   },
   {
     "app": "spotify",
-    "source": "winget",
     "identifier": "Spotify.Spotify",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "winget"
   },
   {
     "app": "steam",
-    "source": "winget",
     "identifier": "Valve.Steam",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "winget"
   },
   {
     "app": "stremio",
-    "source": "winget",
     "identifier": "Stremio.Stremio",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "winget"
   },
   {
     "app": "syncthing",
-    "source": "winget",
     "identifier": "Syncthing.Syncthing",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "winget"
   },
   {
     "app": "tailscale",
-    "source": "winget",
     "identifier": "tailscale.tailscale",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "winget"
   },
   {
     "app": "telegram",
-    "source": "winget",
     "identifier": "Telegram.TelegramDesktop",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "winget"
   },
   {
     "app": "terraform",
-    "source": "winget",
     "identifier": "Hashicorp.Terraform",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "winget"
   },
   {
     "app": "thunderbird",
-    "source": "winget",
     "identifier": "Mozilla.Thunderbird",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "winget"
   },
   {
     "app": "vagrant",
-    "source": "winget",
     "identifier": "Hashicorp.Vagrant",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "winget"
   },
   {
     "app": "veracrypt",
-    "source": "winget",
     "identifier": "IDRIX.VeraCrypt",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "winget"
   },
   {
     "app": "virtualbox",
-    "source": "winget",
     "identifier": "Oracle.VirtualBox",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "winget"
   },
   {
     "app": "vivaldi",
-    "source": "winget",
     "identifier": "VivaldiTechnologies.Vivaldi",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "winget"
   },
   {
     "app": "vlc",
-    "source": "winget",
     "identifier": "VideoLAN.VLC",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "winget"
   },
   {
     "app": "vscode",
-    "source": "winget",
     "identifier": "Microsoft.VisualStudioCode",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "winget"
   },
   {
     "app": "wezterm",
-    "source": "winget",
     "identifier": "wez.wezterm",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "winget"
   },
   {
     "app": "wireshark",
-    "source": "winget",
     "identifier": "WiresharkFoundation.Wireshark",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "winget"
   },
   {
     "app": "zed",
-    "source": "winget",
     "identifier": "zed.zed",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "winget"
   },
   {
     "app": "zen-browser",
-    "source": "winget",
     "identifier": "Zen-Team.Zen-Browser",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "winget"
   },
   {
     "app": "zoom",
-    "source": "winget",
     "identifier": "Zoom.Zoom",
-    "isAvailable": true
+    "isAvailable": true,
+    "source": "winget"
   }
 ]
