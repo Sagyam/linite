@@ -111,10 +111,10 @@ export default function RootLayout({
         className={`${workSans.variable} ${geistMono.variable} antialiased`}
       >
         <Script
-          src="/api/_libs"
+          src="/api/umami-script"
           data-website-id="bfb4175b-5ce9-4a4d-aa0f-c44314ad6a8b"
           data-host-url="https://linite.sagyamthapa.com.np"
-          data-endpoint="/api/_collect"
+          data-endpoint="/api/umami-collect"
           strategy="afterInteractive"
         />
         <QueryProvider>
