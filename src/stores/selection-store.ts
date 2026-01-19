@@ -1,6 +1,8 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
+export type ViewMode = 'minimal' | 'compact' | 'detailed';
+
 interface SelectionState {
   // Selected app IDs
   selectedApps: Set<string>;
@@ -14,6 +16,15 @@ interface SelectionState {
   // NixOS installation method (only applies when distro is NixOS)
   nixosInstallMethod: 'nix-shell' | 'nix-env' | 'nix-flakes' | null;
 
+  // View mode (minimal, compact, detailed)
+  viewMode: ViewMode;
+
+  // Keyboard navigation focused app index
+  focusedAppIndex: number;
+
+  // Category navigation open state (for mobile)
+  isCategoryNavOpen: boolean;
+
   // Actions
   toggleApp: (appId: string) => void;
   selectApp: (appId: string) => void;
@@ -23,6 +34,10 @@ interface SelectionState {
   setDistro: (distroSlug: string | null) => void;
   setSourcePreference: (source: string | null) => void;
   setNixosInstallMethod: (method: 'nix-shell' | 'nix-env' | 'nix-flakes' | null) => void;
+  setViewMode: (mode: ViewMode) => void;
+  cycleViewMode: () => void;
+  setFocusedAppIndex: (index: number) => void;
+  toggleCategoryNav: () => void;
   reset: () => void;
 
   // Computed
@@ -37,6 +52,9 @@ export const useSelectionStore = create<SelectionState>()(
       selectedDistro: null,
       sourcePreference: null,
       nixosInstallMethod: null,
+      viewMode: 'minimal' as ViewMode,
+      focusedAppIndex: -1,
+      isCategoryNavOpen: false,
 
       toggleApp: (appId: string) => {
         set((state) => {
@@ -86,12 +104,34 @@ export const useSelectionStore = create<SelectionState>()(
         set({ nixosInstallMethod: method });
       },
 
+      setViewMode: (mode: ViewMode) => {
+        set({ viewMode: mode });
+      },
+
+      cycleViewMode: () => {
+        const modes: ViewMode[] = ['minimal', 'compact', 'detailed'];
+        const currentIndex = modes.indexOf(get().viewMode);
+        const nextIndex = (currentIndex + 1) % modes.length;
+        set({ viewMode: modes[nextIndex] });
+      },
+
+      setFocusedAppIndex: (index: number) => {
+        set({ focusedAppIndex: index });
+      },
+
+      toggleCategoryNav: () => {
+        set((state) => ({ isCategoryNavOpen: !state.isCategoryNavOpen }));
+      },
+
       reset: () => {
         set({
           selectedApps: new Set<string>(),
           selectedDistro: null,
           sourcePreference: null,
           nixosInstallMethod: null,
+          viewMode: 'minimal' as ViewMode,
+          focusedAppIndex: -1,
+          isCategoryNavOpen: false,
         });
       },
 

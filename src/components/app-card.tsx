@@ -1,6 +1,6 @@
 'use client';
 
-import { memo } from 'react';
+import { memo, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { Info } from 'lucide-react';
 import { Card } from '@/components/ui/card';
@@ -9,17 +9,37 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Button } from '@/components/ui/button';
 import { AppIcon } from '@/components/ui/app-icon';
 import { useSelectionStore } from '@/stores/selection-store';
+import type { ViewMode } from '@/stores/selection-store';
 import type { App } from '@/hooks/use-apps';
 
 interface AppCardProps {
   app: App;
-  layout?: 'compact' | 'detailed';
+  layout?: ViewMode;
+  index?: number;
+  isFocused?: boolean;
 }
 
-export const AppCard = memo(function AppCard({ app, layout = 'detailed' }: AppCardProps) {
+export const AppCard = memo(function AppCard({
+  app,
+  layout = 'detailed',
+  index,
+  isFocused = false
+}: AppCardProps) {
   // Optimize: Only subscribe to this specific app's selection state
   const isSelected = useSelectionStore((state) => state.selectedApps.has(app.id));
   const toggleApp = useSelectionStore((state) => state.toggleApp);
+
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  // Auto-scroll focused card into view
+  useEffect(() => {
+    if (isFocused && cardRef.current) {
+      cardRef.current.scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest',
+      });
+    }
+  }, [isFocused]);
 
   const handleCardClick = (e: React.MouseEvent) => {
     // Don't toggle if clicking on the info button
@@ -29,13 +49,48 @@ export const AppCard = memo(function AppCard({ app, layout = 'detailed' }: AppCa
     toggleApp(app.id);
   };
 
+  // Minimal view
+  if (layout === 'minimal') {
+    return (
+      <Card
+        ref={cardRef}
+        className={`p-2 cursor-pointer transition-all hover:shadow-md ${
+          isSelected ? 'ring-2 ring-primary' : ''
+        } ${isFocused ? 'ring-2 ring-ring' : ''}`}
+        onClick={handleCardClick}
+        data-app-index={index}
+        tabIndex={isFocused ? 0 : -1}
+      >
+        <div className="flex flex-col items-center gap-1.5 relative">
+          <Checkbox
+            checked={isSelected}
+            className="absolute top-0 right-0 h-4 w-4"
+            aria-label={`Select ${app.displayName}`}
+          />
+          <AppIcon
+            iconUrl={app.iconUrl}
+            displayName={app.displayName}
+            size="lg"
+            className="w-12 h-12"
+          />
+          <h3 className="text-xs font-medium text-center line-clamp-2 w-full px-1">
+            {app.displayName}
+          </h3>
+        </div>
+      </Card>
+    );
+  }
+
   if (layout === 'compact') {
     return (
       <Card
+        ref={cardRef}
         className={`p-3 cursor-pointer transition-all hover:shadow-md ${
           isSelected ? 'ring-2 ring-primary' : ''
-        }`}
+        } ${isFocused ? 'ring-2 ring-ring' : ''}`}
         onClick={handleCardClick}
+        data-app-index={index}
+        tabIndex={isFocused ? 0 : -1}
       >
         <div className="flex items-center gap-2">
           <Checkbox checked={isSelected} />
@@ -78,10 +133,13 @@ export const AppCard = memo(function AppCard({ app, layout = 'detailed' }: AppCa
   // Detailed view
   return (
     <Card
+      ref={cardRef}
       className={`p-4 cursor-pointer transition-all hover:shadow-md ${
         isSelected ? 'ring-2 ring-primary' : ''
-      }`}
+      } ${isFocused ? 'ring-2 ring-ring' : ''}`}
       onClick={handleCardClick}
+      data-app-index={index}
+      tabIndex={isFocused ? 0 : -1}
     >
       <div className="flex items-start gap-3">
         <div className="shrink-0">

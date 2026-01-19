@@ -18,64 +18,22 @@ vi.mock('@/hooks/use-apps', () => ({
 
 // Mock AppCard component to simplify testing
 vi.mock('./app-card', () => ({
-  AppCard: ({ app, layout }: any) => (
-    <div data-testid={`app-card-${app.id}`} data-layout={layout}>
+  AppCard: ({ app, layout, index, isFocused }: any) => (
+    <div
+      data-testid={`app-card-${app.id}`}
+      data-layout={layout}
+      data-index={index}
+      data-focused={isFocused}
+    >
       {app.displayName}
     </div>
   ),
 }));
 
-// Mock AppFilters component
-vi.mock('./app-filters', () => ({
-  AppFilters: ({
-    categories,
-    selectedCategory,
-    onCategoryChange,
-    searchQuery,
-    onSearchChange,
-    showPopular,
-    onTogglePopular,
-    layout,
-    onLayoutChange,
-    onClearFilters,
-  }: any) => (
-    <div data-testid="app-filters">
-      <select
-        data-testid="category-select"
-        value={selectedCategory}
-        onChange={(e) => onCategoryChange(e.target.value)}
-      >
-        <option value="all">All</option>
-        {categories.map((cat: any) => (
-          <option key={cat.id} value={cat.id}>
-            {cat.name}
-          </option>
-        ))}
-      </select>
-      <input
-        data-testid="search-input"
-        value={searchQuery}
-        onChange={(e) => onSearchChange(e.target.value)}
-        placeholder="Search"
-      />
-      <button
-        data-testid="popular-toggle"
-        onClick={onTogglePopular}
-        aria-pressed={showPopular}
-      >
-        Popular: {showPopular ? 'On' : 'Off'}
-      </button>
-      <button
-        data-testid="layout-toggle"
-        onClick={() => onLayoutChange(layout === 'compact' ? 'detailed' : 'compact')}
-      >
-        Layout: {layout}
-      </button>
-      <button data-testid="clear-filters" onClick={onClearFilters}>
-        Clear Filters
-      </button>
-    </div>
-  ),
+// Mock Zustand store
+const mockUseSelectionStore = vi.fn();
+vi.mock('@/stores/selection-store', () => ({
+  useSelectionStore: (selector: any) => mockUseSelectionStore(selector),
 }));
 
 // Mock IntersectionObserver
@@ -121,9 +79,25 @@ describe('AppGrid', () => {
     }),
   ];
 
+  const defaultProps = {
+    categories: mockCategories,
+    selectedCategory: 'all',
+    searchQuery: '',
+    showPopular: false,
+  };
+
   beforeEach(() => {
     vi.clearAllMocks();
     vi.useFakeTimers();
+
+    // Mock Zustand store selectors
+    mockUseSelectionStore.mockImplementation((selector: any) => {
+      const state = {
+        viewMode: 'minimal' as const,
+        focusedAppIndex: -1,
+      };
+      return selector(state);
+    });
 
     // Default mock implementation
     mockUseApps.mockReturnValue({
@@ -153,31 +127,34 @@ describe('AppGrid', () => {
   });
 
   describe('rendering', () => {
-    it('should render AppFilters component', () => {
-      renderWithProviders(<AppGrid categories={mockCategories} />);
-
-      expect(screen.getByTestId('app-filters')).toBeInTheDocument();
-    });
-
     it('should render all apps from the first page', () => {
-      renderWithProviders(<AppGrid categories={mockCategories} />);
+      renderWithProviders(<AppGrid {...defaultProps} />);
 
       expect(screen.getByText('Firefox')).toBeInTheDocument();
       expect(screen.getByText('Chrome')).toBeInTheDocument();
       expect(screen.getByText('VSCode')).toBeInTheDocument();
     });
 
-    it('should render apps in detailed layout by default', () => {
-      renderWithProviders(<AppGrid categories={mockCategories} />);
+    it('should render apps in minimal layout by default', () => {
+      renderWithProviders(<AppGrid {...defaultProps} />);
 
       const appCards = screen.getAllByTestId(/app-card-/);
       appCards.forEach((card) => {
-        expect(card).toHaveAttribute('data-layout', 'detailed');
+        expect(card).toHaveAttribute('data-layout', 'minimal');
+      });
+    });
+
+    it('should pass index to each app card', () => {
+      renderWithProviders(<AppGrid {...defaultProps} />);
+
+      const cards = screen.getAllByTestId(/app-card-/);
+      cards.forEach((card, index) => {
+        expect(card).toHaveAttribute('data-index', index.toString());
       });
     });
 
     it('should display total count when no more pages', () => {
-      renderWithProviders(<AppGrid categories={mockCategories} />);
+      renderWithProviders(<AppGrid {...defaultProps} />);
 
       expect(screen.getByText(/Showing 3 of 3 apps/i)).toBeInTheDocument();
     });
@@ -194,7 +171,7 @@ describe('AppGrid', () => {
         isError: false,
       });
 
-      renderWithProviders(<AppGrid categories={mockCategories} />);
+      renderWithProviders(<AppGrid {...defaultProps} />);
 
       expect(screen.getByText(/Loading applications.../i)).toBeInTheDocument();
       expect(screen.queryByText('Firefox')).not.toBeInTheDocument();
@@ -217,7 +194,7 @@ describe('AppGrid', () => {
         isError: false,
       });
 
-      renderWithProviders(<AppGrid categories={mockCategories} />);
+      renderWithProviders(<AppGrid {...defaultProps} />);
 
       expect(screen.getByText(/Loading more apps.../i)).toBeInTheDocument();
     });
@@ -234,7 +211,7 @@ describe('AppGrid', () => {
         isError: true,
       });
 
-      renderWithProviders(<AppGrid categories={mockCategories} />);
+      renderWithProviders(<AppGrid {...defaultProps} />);
 
       expect(screen.getByText(/Failed to load applications/i)).toBeInTheDocument();
       expect(screen.getByText(/Please try again later or contact support/i)).toBeInTheDocument();
@@ -260,7 +237,7 @@ describe('AppGrid', () => {
         isError: false,
       });
 
-      renderWithProviders(<AppGrid categories={mockCategories} />);
+      renderWithProviders(<AppGrid {...defaultProps} />);
 
       expect(
         screen.getByText(/No applications found. Try adjusting your filters./i)
@@ -268,9 +245,11 @@ describe('AppGrid', () => {
     });
   });
 
+  // Note: Category filtering is now handled by CategorySidebar component
+  // AppGrid receives debouncedCategory as a prop and uses it directly
   describe('category filtering', () => {
     it('should call useApps with undefined category when "all" is selected', () => {
-      renderWithProviders(<AppGrid categories={mockCategories} />);
+      renderWithProviders(<AppGrid {...defaultProps} />);
 
       expect(mockUseApps).toHaveBeenCalledWith(
         expect.objectContaining({
@@ -279,56 +258,22 @@ describe('AppGrid', () => {
       );
     });
 
-    it('should call useApps with category ID when category is selected', () => {
-      renderWithProviders(<AppGrid categories={mockCategories} />);
+    it('should call useApps with category ID when category prop is provided', () => {
+      renderWithProviders(<AppGrid {...defaultProps} selectedCategory="cat-1" />);
 
-      const categorySelect = screen.getByTestId('category-select');
-      fireEvent.change(categorySelect, { target: { value: 'cat-1' } });
-
-      // Wait for the debounced value to update (150ms debounce on category)
-      act(() => {
-        vi.advanceTimersByTime(150);
-      });
-
-      expect(mockUseApps).toHaveBeenLastCalledWith(
+      expect(mockUseApps).toHaveBeenCalledWith(
         expect.objectContaining({
           category: 'cat-1',
         })
       );
     });
-
-    it('should reset to all categories when clear filters is clicked', () => {
-      renderWithProviders(<AppGrid categories={mockCategories} />);
-
-      // Select a category
-      const categorySelect = screen.getByTestId('category-select');
-      fireEvent.change(categorySelect, { target: { value: 'cat-1' } });
-
-      // Wait for category debounce
-      act(() => {
-        vi.advanceTimersByTime(150);
-      });
-
-      // Clear filters
-      const clearButton = screen.getByTestId('clear-filters');
-      fireEvent.click(clearButton);
-
-      // Wait for category debounce again
-      act(() => {
-        vi.advanceTimersByTime(150);
-      });
-
-      expect(mockUseApps).toHaveBeenLastCalledWith(
-        expect.objectContaining({
-          category: undefined,
-        })
-      );
-    });
   });
 
+  // Note: Search functionality is now handled by AppFilters component
+  // AppGrid receives debouncedSearch as a prop and uses it directly
   describe('search functionality', () => {
     it('should not pass search param when search is empty', () => {
-      renderWithProviders(<AppGrid categories={mockCategories} />);
+      renderWithProviders(<AppGrid {...defaultProps} />);
 
       expect(mockUseApps).toHaveBeenCalledWith(
         expect.objectContaining({
@@ -337,85 +282,27 @@ describe('AppGrid', () => {
       );
     });
 
-    it('should debounce search input', () => {
-      renderWithProviders(<AppGrid categories={mockCategories} />);
-
-      const searchInput = screen.getByTestId('search-input');
-
-      // Type in search
-      fireEvent.change(searchInput, { target: { value: 'fire' } });
-
-      // Should not call immediately
-      expect(mockUseApps).not.toHaveBeenCalledWith(
-        expect.objectContaining({
-          search: 'fire',
-        })
-      );
-
-      // Fast forward time by debounce delay
-      act(() => {
-        vi.advanceTimersByTime(TIMEOUTS.DEBOUNCE_SEARCH);
-      });
+    it('should pass search param when search query is provided', () => {
+      renderWithProviders(<AppGrid {...defaultProps} searchQuery="firefox" />);
 
       // After debounce, the hook should be called with search
-      expect(mockUseApps).toHaveBeenCalledWith(
-        expect.objectContaining({
-          search: 'fire',
-        })
-      );
-    });
-
-    it('should cancel previous debounce when typing again', () => {
-      renderWithProviders(<AppGrid categories={mockCategories} />);
-
-      const searchInput = screen.getByTestId('search-input');
-
-      // Type "fi"
-      fireEvent.change(searchInput, { target: { value: 'fi' } });
-
-      // Wait half the debounce time
-      act(() => {
-        vi.advanceTimersByTime(TIMEOUTS.DEBOUNCE_SEARCH / 2);
-      });
-
-      // Type "fir" (should reset debounce)
-      fireEvent.change(searchInput, { target: { value: 'fir' } });
-
-      // Wait the full debounce time from now
       act(() => {
         vi.advanceTimersByTime(TIMEOUTS.DEBOUNCE_SEARCH);
       });
 
-      // Should only search for "fir", not "fi"
       expect(mockUseApps).toHaveBeenCalledWith(
         expect.objectContaining({
-          search: 'fir',
+          search: 'firefox',
         })
       );
-
-      expect(mockUseApps).not.toHaveBeenCalledWith(
-        expect.objectContaining({
-          search: 'fi',
-        })
-      );
-    });
-
-    it('should clear search when clear filters is clicked', () => {
-      renderWithProviders(<AppGrid categories={mockCategories} />);
-
-      const searchInput = screen.getByTestId('search-input');
-      fireEvent.change(searchInput, { target: { value: 'firefox' } });
-
-      const clearButton = screen.getByTestId('clear-filters');
-      fireEvent.click(clearButton);
-
-      expect(searchInput).toHaveValue('');
     });
   });
 
+  // Note: Popular filter is now handled by AppFilters component
+  // AppGrid receives showPopular as a prop and uses it directly
   describe('popular filter', () => {
     it('should not pass popular param by default', () => {
-      renderWithProviders(<AppGrid categories={mockCategories} />);
+      renderWithProviders(<AppGrid {...defaultProps} />);
 
       expect(mockUseApps).toHaveBeenCalledWith(
         expect.objectContaining({
@@ -424,101 +311,57 @@ describe('AppGrid', () => {
       );
     });
 
-    it('should pass popular param when toggled on', () => {
-      renderWithProviders(<AppGrid categories={mockCategories} />);
+    it('should pass popular param when showPopular is true', () => {
+      renderWithProviders(<AppGrid {...defaultProps} showPopular={true} />);
 
-      const popularToggle = screen.getByTestId('popular-toggle');
-      fireEvent.click(popularToggle);
-
-      expect(mockUseApps).toHaveBeenLastCalledWith(
+      expect(mockUseApps).toHaveBeenCalledWith(
         expect.objectContaining({
           popular: true,
         })
       );
-    });
-
-    it('should toggle popular filter off', () => {
-      renderWithProviders(<AppGrid categories={mockCategories} />);
-
-      const popularToggle = screen.getByTestId('popular-toggle');
-
-      // Toggle on
-      fireEvent.click(popularToggle);
-      expect(mockUseApps).toHaveBeenLastCalledWith(
-        expect.objectContaining({
-          popular: true,
-        })
-      );
-
-      // Toggle off
-      fireEvent.click(popularToggle);
-      expect(mockUseApps).toHaveBeenLastCalledWith(
-        expect.objectContaining({
-          popular: undefined,
-        })
-      );
-    });
-
-    it('should reset popular filter when clear filters is clicked', () => {
-      renderWithProviders(<AppGrid categories={mockCategories} />);
-
-      // Toggle popular on
-      const popularToggle = screen.getByTestId('popular-toggle');
-      fireEvent.click(popularToggle);
-
-      // Clear filters
-      const clearButton = screen.getByTestId('clear-filters');
-      fireEvent.click(clearButton);
-
-      expect(popularToggle).toHaveAttribute('aria-pressed', 'false');
     });
   });
 
+  // Note: Layout switching is now handled by ViewToggle component via Zustand store
+  // AppGrid reads viewMode from the store
   describe('layout switching', () => {
-    it('should switch to compact layout', () => {
-      renderWithProviders(<AppGrid categories={mockCategories} />);
+    it('should apply correct grid classes for minimal layout', () => {
+      renderWithProviders(<AppGrid {...defaultProps} />);
 
-      const layoutToggle = screen.getByTestId('layout-toggle');
-      fireEvent.click(layoutToggle);
-
-      const appCards = screen.getAllByTestId(/app-card-/);
-      appCards.forEach((card) => {
-        expect(card).toHaveAttribute('data-layout', 'compact');
-      });
+      const grid = screen.getByTestId('app-card-app-1').parentElement;
+      expect(grid).toHaveClass('grid-cols-3', 'sm:grid-cols-4', 'md:grid-cols-6', 'lg:grid-cols-8');
     });
 
-    it('should switch back to detailed layout', () => {
-      renderWithProviders(<AppGrid categories={mockCategories} />);
-
-      const layoutToggle = screen.getByTestId('layout-toggle');
-
-      // Switch to compact
-      fireEvent.click(layoutToggle);
-
-      // Switch back to detailed
-      fireEvent.click(layoutToggle);
-
-      const appCards = screen.getAllByTestId(/app-card-/);
-      appCards.forEach((card) => {
-        expect(card).toHaveAttribute('data-layout', 'detailed');
+    it('should apply correct grid classes for compact layout when viewMode changes', () => {
+      // Mock store to return compact view
+      mockUseSelectionStore.mockImplementation((selector: any) => {
+        const state = {
+          viewMode: 'compact' as const,
+          focusedAppIndex: -1,
+        };
+        return selector(state);
       });
+
+      renderWithProviders(<AppGrid {...defaultProps} />);
+
+      const grid = screen.getByTestId('app-card-app-1').parentElement;
+      expect(grid).toHaveClass('grid-cols-1', 'md:grid-cols-2', 'lg:grid-cols-3', 'xl:grid-cols-4');
     });
 
-    it('should apply correct grid classes for detailed layout', () => {
-      renderWithProviders(<AppGrid categories={mockCategories} />);
+    it('should apply correct grid classes for detailed layout when viewMode changes', () => {
+      // Mock store to return detailed view
+      mockUseSelectionStore.mockImplementation((selector: any) => {
+        const state = {
+          viewMode: 'detailed' as const,
+          focusedAppIndex: -1,
+        };
+        return selector(state);
+      });
+
+      renderWithProviders(<AppGrid {...defaultProps} />);
 
       const grid = screen.getByTestId('app-card-app-1').parentElement;
       expect(grid).toHaveClass('grid-cols-1', 'lg:grid-cols-2');
-    });
-
-    it('should apply correct grid classes for compact layout', () => {
-      renderWithProviders(<AppGrid categories={mockCategories} />);
-
-      const layoutToggle = screen.getByTestId('layout-toggle');
-      fireEvent.click(layoutToggle);
-
-      const grid = screen.getByTestId('app-card-app-1').parentElement;
-      expect(grid).toHaveClass('md:grid-cols-2', 'lg:grid-cols-3', 'xl:grid-cols-4');
     });
   });
 
@@ -540,7 +383,7 @@ describe('AppGrid', () => {
         isError: false,
       });
 
-      renderWithProviders(<AppGrid categories={mockCategories} />);
+      renderWithProviders(<AppGrid {...defaultProps} />);
 
       expect(screen.getByRole('button', { name: /Load More Apps/i })).toBeInTheDocument();
     });
@@ -562,7 +405,7 @@ describe('AppGrid', () => {
         isError: false,
       });
 
-      renderWithProviders(<AppGrid categories={mockCategories} />);
+      renderWithProviders(<AppGrid {...defaultProps} />);
 
       const loadMoreButton = screen.getByRole('button', { name: /Load More Apps/i });
       fireEvent.click(loadMoreButton);
@@ -571,11 +414,12 @@ describe('AppGrid', () => {
     });
 
     it('should setup IntersectionObserver for infinite scroll', () => {
-      renderWithProviders(<AppGrid categories={mockCategories} />);
+      renderWithProviders(<AppGrid {...defaultProps} />);
 
       // IntersectionObserver should be set up (constructor would be called)
       // We can't easily test this without spying on the constructor
-      expect(screen.getByTestId('app-filters')).toBeInTheDocument();
+      // Just verify the component renders
+      expect(screen.getByText('Firefox')).toBeInTheDocument();
     });
 
     it('should trigger fetchNextPage when scrolling into view', () => {
@@ -595,7 +439,7 @@ describe('AppGrid', () => {
         isError: false,
       });
 
-      renderWithProviders(<AppGrid categories={mockCategories} />);
+      renderWithProviders(<AppGrid {...defaultProps} />);
 
       // Find the intersection observer trigger element
       const loadMoreSection = screen.getByRole('button', { name: /Load More Apps/i }).parentElement;
@@ -629,7 +473,7 @@ describe('AppGrid', () => {
         isError: false,
       });
 
-      renderWithProviders(<AppGrid categories={mockCategories} />);
+      renderWithProviders(<AppGrid {...defaultProps} />);
 
       const loadMoreSection = screen.getByText(/Loading more apps.../i).parentElement;
 
@@ -669,7 +513,7 @@ describe('AppGrid', () => {
         isError: false,
       });
 
-      renderWithProviders(<AppGrid categories={mockCategories} />);
+      renderWithProviders(<AppGrid {...defaultProps} />);
 
       // Should show all apps from both pages
       expect(screen.getByText('Firefox')).toBeInTheDocument();
@@ -682,62 +526,13 @@ describe('AppGrid', () => {
     });
   });
 
-  describe('combined filters', () => {
-    it('should apply multiple filters simultaneously', () => {
-      renderWithProviders(<AppGrid categories={mockCategories} />);
-
-      // Set category
-      const categorySelect = screen.getByTestId('category-select');
-      fireEvent.change(categorySelect, { target: { value: 'cat-1' } });
-
-      // Toggle popular
-      const popularToggle = screen.getByTestId('popular-toggle');
-      fireEvent.click(popularToggle);
-
-      // Set search
-      const searchInput = screen.getByTestId('search-input');
-      fireEvent.change(searchInput, { target: { value: 'firefox' } });
-
-      // Wait for debounce (search is 300ms, category is 150ms, so 300ms covers both)
-      act(() => {
-        vi.advanceTimersByTime(TIMEOUTS.DEBOUNCE_SEARCH);
-      });
-
-      expect(mockUseApps).toHaveBeenCalledWith(
-        expect.objectContaining({
-          category: 'cat-1',
-          popular: true,
-          search: 'firefox',
-        })
-      );
-    });
-
-    it('should clear all filters at once', () => {
-      renderWithProviders(<AppGrid categories={mockCategories} />);
-
-      // Set multiple filters
-      fireEvent.change(screen.getByTestId('category-select'), {
-        target: { value: 'cat-1' },
-      });
-      fireEvent.click(screen.getByTestId('popular-toggle'));
-      fireEvent.change(screen.getByTestId('search-input'), {
-        target: { value: 'test' },
-      });
-
-      // Clear all
-      fireEvent.click(screen.getByTestId('clear-filters'));
-
-      expect(screen.getByTestId('category-select')).toHaveValue('all');
-      expect(screen.getByTestId('popular-toggle')).toHaveAttribute('aria-pressed', 'false');
-      expect(screen.getByTestId('search-input')).toHaveValue('');
-    });
-  });
-
+  // Note: Combined filters are now handled by parent component (HomePageClient)
+  // AppGrid receives the filtered values as props
   describe('edge cases', () => {
     it('should handle empty categories array', () => {
       renderWithProviders(<AppGrid categories={[]} />);
 
-      expect(screen.getByTestId('app-filters')).toBeInTheDocument();
+      expect(screen.getByText('Firefox')).toBeInTheDocument();
     });
 
     it('should handle page with no apps but hasMore true', () => {
@@ -757,7 +552,7 @@ describe('AppGrid', () => {
         isError: false,
       });
 
-      renderWithProviders(<AppGrid categories={mockCategories} />);
+      renderWithProviders(<AppGrid {...defaultProps} />);
 
       expect(
         screen.getByText(/No applications found. Try adjusting your filters./i)
@@ -774,7 +569,7 @@ describe('AppGrid', () => {
         isError: false,
       });
 
-      renderWithProviders(<AppGrid categories={mockCategories} />);
+      renderWithProviders(<AppGrid {...defaultProps} />);
 
       expect(
         screen.getByText(/No applications found. Try adjusting your filters./i)

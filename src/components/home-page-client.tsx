@@ -1,15 +1,24 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
 import { AppGrid } from '@/components/app-grid';
+import { AppFilters } from '@/components/app-filters';
+import { CategorySidebar } from '@/components/category-sidebar';
+import { ViewToggle } from '@/components/view-toggle';
+import { KeyboardIndicator } from '@/components/keyboard-indicator';
+import { KeyboardShortcutsDialog } from '@/components/keyboard-shortcuts-dialog';
 import { PersistentDistroBar } from '@/components/persistent-distro-bar';
 import { FloatingActionBar } from '@/components/floating-action-bar';
 import { SelectionDrawer } from '@/components/selection-drawer';
 import { CommandDialog } from '@/components/command-dialog';
 import { StructuredData } from '@/components/structured-data';
 import { useSelectionStore } from '@/stores/selection-store';
+import { useKeyboardNavigation } from '@/hooks/use-keyboard-navigation';
+import { useDebounce } from '@/hooks/use-debounce';
+import { useApps } from '@/hooks/use-apps';
+import { TIMEOUTS } from '@/lib/constants';
 import type { Category, AppWithRelations } from '@/types';
 import type { Distro } from '@/hooks/use-distros';
 
@@ -21,12 +30,46 @@ interface HomePageClientProps {
 }
 
 export function HomePageClient({ categories, distros, initialApps, totalApps }: HomePageClientProps) {
+  // Dialog/drawer state
   const [selectionDrawerOpen, setSelectionDrawerOpen] = useState(false);
   const [commandDialogOpen, setCommandDialogOpen] = useState(false);
 
-  // Optimize: Use selectors to subscribe only to needed state
+  // Filter state
+  const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  const [searchQuery, setSearchQuery] = useState('');
+  const [showPopular, setShowPopular] = useState(false);
+
+  // Refs
+  const searchInputRef = useRef<HTMLInputElement>(null);
+
+  // Debounced search for better UX
+  const debouncedSearch = useDebounce(searchQuery, TIMEOUTS.DEBOUNCE_SEARCH);
+
+  // Get state from Zustand store
   const selectedAppsSize = useSelectionStore((state) => state.selectedApps.size);
   const selectedDistro = useSelectionStore((state) => state.selectedDistro);
+  const viewMode = useSelectionStore((state) => state.viewMode);
+  const setViewMode = useSelectionStore((state) => state.setViewMode);
+  const isCategoryNavOpen = useSelectionStore((state) => state.isCategoryNavOpen);
+  const toggleCategoryNav = useSelectionStore((state) => state.toggleCategoryNav);
+
+  // Get apps for keyboard navigation
+  const { data } = useApps({
+    category: selectedCategory === 'all' ? undefined : selectedCategory,
+    popular: showPopular || undefined,
+    search: debouncedSearch || undefined,
+  });
+
+  const apps = data?.pages.flatMap((page) => page.apps) ?? [];
+
+  // Keyboard navigation
+  const { showShortcuts, setShowShortcuts } = useKeyboardNavigation({
+    apps,
+    categories,
+    selectedCategory,
+    onCategoryChange: setSelectedCategory,
+    searchInputRef,
+  });
 
   const handleGenerateCommand = () => {
     if (selectedAppsSize > 0 && selectedDistro) {
@@ -35,6 +78,12 @@ export function HomePageClient({ categories, distros, initialApps, totalApps }: 
       // If distro not selected, open selection drawer to prompt user
       setSelectionDrawerOpen(true);
     }
+  };
+
+  const handleClearFilters = () => {
+    setSelectedCategory('all');
+    setSearchQuery('');
+    setShowPopular(false);
   };
 
   return (
@@ -58,35 +107,76 @@ export function HomePageClient({ categories, distros, initialApps, totalApps }: 
           {/* Persistent Distro Bar - Always Visible */}
           <PersistentDistroBar distros={distros} />
 
-          {/* App Selection Section - Primary Focus */}
+          {/* Main Content Area - Two-column layout */}
           <div className="container mx-auto px-4 py-6 sm:py-8 pb-24 sm:pb-28">
-            <AppGrid
-              categories={categories}
-              initialApps={initialApps}
-              totalApps={totalApps}
-            />
+            <div className="flex gap-6">
+              {/* Category Sidebar */}
+              <CategorySidebar
+                categories={categories}
+                selectedCategory={selectedCategory}
+                onCategoryChange={setSelectedCategory}
+                isOpen={isCategoryNavOpen}
+                onToggle={toggleCategoryNav}
+              />
+
+              {/* Main Content */}
+              <div className="flex-1 min-w-0 space-y-4">
+                {/* Filters + View Toggle Row */}
+                <div className="flex gap-3 items-start">
+                  <div className="flex-1">
+                    <AppFilters
+                      searchQuery={searchQuery}
+                      onSearchChange={setSearchQuery}
+                      showPopular={showPopular}
+                      onTogglePopular={() => setShowPopular(!showPopular)}
+                      onClearFilters={handleClearFilters}
+                      searchInputRef={searchInputRef}
+                    />
+                  </div>
+                  <ViewToggle
+                    currentView={viewMode}
+                    onViewChange={setViewMode}
+                  />
+                </div>
+
+                {/* App Grid */}
+                <AppGrid
+                  categories={categories}
+                  initialApps={initialApps}
+                  totalApps={totalApps}
+                  selectedCategory={selectedCategory}
+                  searchQuery={debouncedSearch}
+                  showPopular={showPopular}
+                />
+              </div>
+            </div>
           </div>
         </main>
 
         <Footer />
 
-        {/* Floating Action Bar - Shows when apps are selected */}
+        {/* Floating Components */}
         <FloatingActionBar
           distros={distros}
           onViewSelection={() => setSelectionDrawerOpen(true)}
           onGenerateCommand={handleGenerateCommand}
         />
 
-        {/* Selection Drawer - Bottom drawer for reviewing selection */}
         <SelectionDrawer
           open={selectionDrawerOpen}
           onOpenChange={setSelectionDrawerOpen}
         />
 
-        {/* Command Dialog - Modal for showing generated command */}
         <CommandDialog
           open={commandDialogOpen}
           onOpenChange={setCommandDialogOpen}
+        />
+
+        <KeyboardIndicator onClick={() => setShowShortcuts(true)} />
+
+        <KeyboardShortcutsDialog
+          open={showShortcuts}
+          onOpenChange={setShowShortcuts}
         />
       </div>
     </>

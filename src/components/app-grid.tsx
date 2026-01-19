@@ -1,28 +1,36 @@
 'use client';
 
-import { useState, useMemo, useEffect, useRef } from 'react';
+import { useMemo, useEffect, useRef } from 'react';
 import { Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { AppCard } from '@/components/app-card';
-import { AppFilters } from '@/components/app-filters';
 import { useApps } from '@/hooks/use-apps';
 import { useDebounce } from '@/hooks/use-debounce';
+import { useSelectionStore } from '@/stores/selection-store';
 import { TIMEOUTS, INTERSECTION_OBSERVER, PAGINATION } from '@/lib/constants';
+import { cn } from '@/lib/utils';
 import type { Category, AppWithRelations } from '@/types';
-
-type LayoutType = 'compact' | 'detailed';
 
 interface AppGridProps {
   categories: Category[];
   initialApps?: AppWithRelations[];
   totalApps?: number;
+  selectedCategory: string;
+  searchQuery: string;
+  showPopular: boolean;
 }
 
-export function AppGrid({ categories, initialApps, totalApps }: AppGridProps) {
-  const [selectedCategory, setSelectedCategory] = useState<string>('all');
-  const [searchQuery, setSearchQuery] = useState('');
-  const [showPopular, setShowPopular] = useState(false);
-  const [layout, setLayout] = useState<LayoutType>('detailed');
+export function AppGrid({
+  categories,
+  initialApps,
+  totalApps,
+  selectedCategory,
+  searchQuery,
+  showPopular,
+}: AppGridProps) {
+  // Get viewMode and focusedIndex from Zustand store
+  const viewMode = useSelectionStore((state) => state.viewMode);
+  const focusedAppIndex = useSelectionStore((state) => state.focusedAppIndex);
 
   // Debounce search and category to avoid too many API calls
   const debouncedSearch = useDebounce(searchQuery, TIMEOUTS.DEBOUNCE_SEARCH);
@@ -101,28 +109,8 @@ export function AppGrid({ categories, initialApps, totalApps }: AppGridProps) {
     };
   }, [hasNextPage, isFetchingNextPage, fetchNextPage]);
 
-  const handleClearFilters = () => {
-    setSelectedCategory('all');
-    setSearchQuery('');
-    setShowPopular(false);
-  };
-
   return (
     <div className="space-y-6">
-      {/* Filters Component */}
-      <AppFilters
-        categories={categories}
-        selectedCategory={selectedCategory}
-        onCategoryChange={setSelectedCategory}
-        searchQuery={searchQuery}
-        onSearchChange={setSearchQuery}
-        showPopular={showPopular}
-        onTogglePopular={() => setShowPopular(!showPopular)}
-        layout={layout}
-        onLayoutChange={setLayout}
-        onClearFilters={handleClearFilters}
-      />
-
       {/* Loading State */}
       {isLoading && (
         <div className="text-center py-12">
@@ -153,14 +141,21 @@ export function AppGrid({ categories, initialApps, totalApps }: AppGridProps) {
           ) : (
             <div className="space-y-4">
               <div
-                className={`grid gap-3 ${
-                  layout === 'compact'
-                    ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'
-                    : 'grid-cols-1 lg:grid-cols-2'
-                }`}
+                className={cn(
+                  'grid gap-3',
+                  viewMode === 'minimal' && 'grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8',
+                  viewMode === 'compact' && 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4',
+                  viewMode === 'detailed' && 'grid-cols-1 lg:grid-cols-2'
+                )}
               >
-                {apps.map((app) => (
-                  <AppCard key={app.id} app={app} layout={layout} />
+                {apps.map((app, index) => (
+                  <AppCard
+                    key={app.id}
+                    app={app}
+                    layout={viewMode}
+                    index={index}
+                    isFocused={focusedAppIndex === index}
+                  />
                 ))}
               </div>
 

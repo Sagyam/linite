@@ -38,7 +38,7 @@ export class RepologyRefreshStrategy implements RefreshStrategy {
         {
           headers: {
             'Accept': 'application/json',
-            'User-Agent': 'Linite/1.0 (Linux package installer; +https://github.com/yourusername/linite)',
+            'User-Agent': 'Linite/1.0 (Linux package installer; +https://github.com/sagyam/linite)',
           },
         }
       );
