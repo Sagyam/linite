@@ -7,13 +7,13 @@
  * This is the single source of truth for package validation.
  *
  * Usage:
- *   bun run scripts/validate-seed-docker.ts          # All sources (console output)
- *   bun run scripts/validate-seed-docker.ts apt      # Single source (console output)
- *   bun run scripts/validate-seed-docker.ts --json   # All sources (JSON output)
- *   bun run scripts/validate-seed-docker.ts --json apt # Single source (JSON output)
+ *   bun run scripts/validate-seed-docker.ts          # All sources (console output only)
+ *   bun run scripts/validate-seed-docker.ts apt      # Single source (console output only)
+ *   bun run scripts/validate-seed-docker.ts --json   # All sources (console + JSON file)
  *
  * Options:
- *   --json    Output results as JSON instead of console format (used by GitHub Actions)
+ *   --json    Also write results to validation-results.json file (used by GitHub Actions)
+ *             Console output is always shown for visibility
  *
  * Supported sources:
  *   - Linux distros: apt, dnf, zypper, pacman, aur, nix
@@ -202,20 +202,16 @@ function dockerExec(containerName: string, command: string, timeout = 30000): bo
 }
 
 // Start a Docker container
-function startContainer(config: ContainerConfig, jsonMode: boolean): boolean {
+function startContainer(config: ContainerConfig): boolean {
   // Pull image
-  if (!jsonMode) {
-    console.log(`  Pulling ${config.image}...`);
-  }
+  console.log(`  Pulling ${config.image}...`);
   const pullResult = spawnSync('docker', ['pull', '-q', config.image], {
-    stdio: jsonMode ? 'pipe' : 'inherit',
+    stdio: 'inherit',
     timeout: 300000, // 5-minute timeout for pulls
   });
 
   if (pullResult.status !== 0) {
-    if (!jsonMode) {
-      console.error(`  ✗ Failed to pull image`);
-    }
+    console.error(`  ✗ Failed to pull image`);
     return false;
   }
 
@@ -230,20 +226,14 @@ function startContainer(config: ContainerConfig, jsonMode: boolean): boolean {
   ], { stdio: 'pipe' });
 
   if (result.status !== 0) {
-    if (!jsonMode) {
-      console.error(`  ✗ Failed to start container`);
-    }
+    console.error(`  ✗ Failed to start container`);
     return false;
   }
 
   // Update package databases / setup (with a longer timeout for setup commands)
-  if (!jsonMode) {
-    console.log(`  Setting up environment...`);
-  }
+  console.log(`  Setting up environment...`);
   if (!dockerExec(config.name, config.setupCommand, 120000)) {
-    if (!jsonMode) {
-      console.error(`  ✗ Failed to setup environment`);
-    }
+    console.error(`  ✗ Failed to setup environment`);
     return false;
   }
 
@@ -256,11 +246,9 @@ function stopContainer(name: string): void {
 }
 
 // Setup cleanup on exit
-function setupCleanup(jsonMode: boolean) {
+function setupCleanup() {
   const cleanup = () => {
-    if (!jsonMode) {
-      console.log('\nCleaning up containers...');
-    }
+    console.log('\nCleaning up containers...');
     Object.values(CONTAINERS).forEach(config => stopContainer(config.name));
   };
 
@@ -382,20 +370,15 @@ async function validatePackage(
 // Validate all packages for a source
 async function validateSource(
   source: string,
-  packages: Package[],
-  jsonMode: boolean
+  packages: Package[]
 ): Promise<ValidationResult> {
-  if (!jsonMode) {
-    console.log(`\n${'='.repeat(60)}`);
-    console.log(`Validating ${source} (${packages.length} packages)`);
-    console.log('='.repeat(60));
-  }
+  console.log(`\n${'='.repeat(60)}`);
+  console.log(`Validating ${source} (${packages.length} packages)`);
+  console.log('='.repeat(60));
 
   // Skip Windows-only sources
   if (SKIP_SOURCES.has(source)) {
-    if (!jsonMode) {
-      console.log(`  ⏭️  Skipped (Windows-only, cannot validate in Linux Docker)`);
-    }
+    console.log(`  ⏭️  Skipped (Windows-only, cannot validate in Linux Docker)`);
     return {
       source,
       valid: 0,
@@ -415,7 +398,7 @@ async function validateSource(
 
   // Start container (except for API-based sources)
   if (!apiSources.has(source)) {
-    if (!startContainer(config, jsonMode)) {
+    if (!startContainer(config)) {
       return {
         source,
         valid: 0,
@@ -432,14 +415,10 @@ async function validateSource(
     const isValid = await validatePackage(source, pkg.identifier, pkg, config?.name || '');
 
     if (isValid) {
-      if (!jsonMode) {
-        console.log(`  ✓ ${pkg.identifier}`);
-      }
+      console.log(`  ✓ ${pkg.identifier}`);
       valid++;
     } else {
-      if (!jsonMode) {
-        console.log(`  ✗ ${pkg.identifier}`);
-      }
+      console.log(`  ✗ ${pkg.identifier}`);
       failedPackages.push({ app: pkg.app, identifier: pkg.identifier });
     }
   }
@@ -449,9 +428,7 @@ async function validateSource(
     stopContainer(config.name);
   }
 
-  if (!jsonMode) {
-    console.log(`\nSummary: ${valid}/${packages.length} validated\n`);
-  }
+  console.log(`\nSummary: ${valid}/${packages.length} validated\n`);
 
   return {
     source,
@@ -504,23 +481,38 @@ function printJsonOutput(results: Record<string, ValidationResult>): void {
   console.log(JSON.stringify(output, null, 2));
 }
 
+// Write JSON output to file
+function writeJsonOutput(results: Record<string, ValidationResult>, outputPath: string): void {
+  const validatedResults = Object.values(results).filter(r => !r.skipped);
+  const output: JsonOutput = {
+    timestamp: new Date().toISOString(),
+    totalSources: Object.keys(results).length,
+    totalPackages: validatedResults.reduce((sum, r) => sum + r.total, 0),
+    validPackages: validatedResults.reduce((sum, r) => sum + r.valid, 0),
+    failedPackages: validatedResults.reduce((sum, r) => sum + r.failed, 0),
+    skippedSources: Object.values(results).filter(r => r.skipped).length,
+    results: Object.values(results),
+  };
+
+  const fs = require('fs');
+  fs.writeFileSync(outputPath, JSON.stringify(output, null, 2));
+}
+
 // Main function
 async function main() {
   // Parse arguments
   const args = process.argv.slice(2);
   const singleSource = args.find(arg => !arg.startsWith('--'));
-  const jsonMode = args.includes('--json');
+  const writeJson = args.includes('--json');
 
-  if (!jsonMode) {
-    console.log('🐳 Docker-based Package Validation\n');
-  }
+  console.log('🐳 Docker-based Package Validation\n');
 
   // Preflight checks
   if (!checkDockerAvailable()) {
     process.exit(2);
   }
 
-  setupCleanup(jsonMode);
+  setupCleanup();
 
   const results: Record<string, ValidationResult> = {};
   const packagesDir = join(process.cwd(), 'seed/packages');
@@ -536,10 +528,8 @@ async function main() {
 
   // Validate single source exists
   if (singleSource && !allFiles.includes(singleSource)) {
-    if (!jsonMode) {
-      console.error(`❌ Unknown source: ${singleSource}`);
-      console.error(`   Available sources: ${allFiles.join(', ')}`);
-    }
+    console.error(`❌ Unknown source: ${singleSource}`);
+    console.error(`   Available sources: ${allFiles.join(', ')}`);
     process.exit(2);
   }
 
@@ -549,13 +539,11 @@ async function main() {
 
     try {
       const packages: Package[] = JSON.parse(readFileSync(filePath, 'utf-8'));
-      results[source] = await validateSource(source, packages, jsonMode);
+      results[source] = await validateSource(source, packages);
     } catch (error) {
-      if (!jsonMode) {
-        console.error(`\n❌ Failed to validate ${source}:`);
-        if (error instanceof Error) {
-          console.error(`   ${error.message}`);
-        }
+      console.error(`\n❌ Failed to validate ${source}:`);
+      if (error instanceof Error) {
+        console.error(`   ${error.message}`);
       }
       results[source] = {
         source,
@@ -568,11 +556,15 @@ async function main() {
     }
   }
 
-  // Output results based on mode
-  if (jsonMode) {
-    printJsonOutput(results);
-  } else if (!singleSource) {
+  // Print summary for console
+  if (!singleSource) {
     printOverallSummary(results);
+  }
+
+  // Write JSON output if requested or in CI
+  if (writeJson) {
+    writeJsonOutput(results, 'validation-results.json');
+    console.log('\n📄 JSON results written to validation-results.json');
   }
 
   // Exit code based on validation results
