@@ -64,7 +64,7 @@ export function useKeyboardNavigation({
 
       for (let i = start; i <= end; i++) {
         if (apps[i]) {
-          selectApp(apps[i].id);
+          selectApp(apps[i].id, apps[i].categoryId);
         }
       }
 
@@ -138,7 +138,7 @@ export function useKeyboardNavigation({
         case 'Enter':
           e.preventDefault();
           if (focusedAppIndex >= 0 && apps[focusedAppIndex]) {
-            toggleApp(apps[focusedAppIndex].id);
+            toggleApp(apps[focusedAppIndex].id, apps[focusedAppIndex].categoryId);
           }
           break;
 

@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo } from 'react';
+import { useState, useEffect } from 'react';
 import { LayoutGrid, Menu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -14,7 +14,21 @@ import {
 } from '@/components/ui/sheet';
 import { getCategoryIcon } from '@/lib/category-icons';
 import { useSelectionStore } from '@/stores/selection-store';
-import type { Category, AppWithRelations } from '@/types';
+import type { Category } from '@/types';
+
+/**
+ * Hook to ensure we only render after client-side hydration
+ * Prevents hydration errors when using persisted state
+ */
+function useClientOnly() {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  return isClient;
+}
 
 interface CategorySidebarProps {
   categories: Category[];
@@ -22,7 +36,6 @@ interface CategorySidebarProps {
   onCategoryChange: (category: string) => void;
   isOpen?: boolean;
   onToggle?: () => void;
-  apps?: AppWithRelations[];
 }
 
 interface CategoryListProps {
@@ -121,27 +134,18 @@ export function CategorySidebar({
   onCategoryChange,
   isOpen = false,
   onToggle,
-  apps = [],
 }: CategorySidebarProps) {
-  const selectedApps = useSelectionStore((state) => state.selectedApps);
+  const isClient = useClientOnly();
+
+  const getCategoryCounts = useSelectionStore((state) => state.getCategoryCounts);
+  const totalSelectedCount = useSelectionStore((state) => state.selectedApps.size);
+
+  const categoryCountsMap = isClient ? getCategoryCounts() : new Map();
 
   const selectedCategoryName =
     selectedCategory === 'all'
       ? 'All Apps'
       : categories.find((c) => c.id === selectedCategory)?.name || 'All Apps';
-
-  // Calculate counts per category
-  const categoryCountsMap = useMemo(() => {
-    const counts = new Map<string, number>();
-    apps.forEach((app) => {
-      if (selectedApps.has(app.id)) {
-        counts.set(app.categoryId, (counts.get(app.categoryId) || 0) + 1);
-      }
-    });
-    return counts;
-  }, [selectedApps, apps]);
-
-  const totalSelectedCount = selectedApps.size;
 
   return (
     <>
@@ -163,15 +167,17 @@ export function CategorySidebar({
               <SheetTitle>Categories</SheetTitle>
             </SheetHeader>
             <ScrollArea className="h-full mt-4">
-              <CategoryList
-                categories={categories}
-                selectedCategory={selectedCategory}
-                onCategoryChange={onCategoryChange}
-                categoryCountsMap={categoryCountsMap}
-                totalSelectedCount={totalSelectedCount}
-                onToggle={onToggle}
-                isOpen={isOpen}
-              />
+              {isClient ? (
+                <CategoryList
+                  categories={categories}
+                  selectedCategory={selectedCategory}
+                  onCategoryChange={onCategoryChange}
+                  categoryCountsMap={categoryCountsMap}
+                  totalSelectedCount={totalSelectedCount}
+                  onToggle={onToggle}
+                  isOpen={isOpen}
+                />
+              ) : null}
             </ScrollArea>
           </SheetContent>
         </Sheet>
@@ -192,13 +198,15 @@ export function CategorySidebar({
           </div>
         </div>
         <ScrollArea className="h-[calc(100vh-18rem)]">
-          <CategoryList
-            categories={categories}
-            selectedCategory={selectedCategory}
-            onCategoryChange={onCategoryChange}
-            categoryCountsMap={categoryCountsMap}
-            totalSelectedCount={totalSelectedCount}
-          />
+          {isClient ? (
+            <CategoryList
+              categories={categories}
+              selectedCategory={selectedCategory}
+              onCategoryChange={onCategoryChange}
+              categoryCountsMap={categoryCountsMap}
+              totalSelectedCount={totalSelectedCount}
+            />
+          ) : null}
         </ScrollArea>
       </aside>
     </>

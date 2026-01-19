@@ -128,7 +128,6 @@ export function HomePageClient({ categories, distros, initialApps, totalApps }: 
                   onCategoryChange={setSelectedCategory}
                   isOpen={isCategoryNavOpen}
                   onToggle={toggleCategoryNav}
-                  apps={displayedApps}
                 />
               </div>
 
@@ -145,7 +144,6 @@ export function HomePageClient({ categories, distros, initialApps, totalApps }: 
                       onCategoryChange={setSelectedCategory}
                       isOpen={isCategoryNavOpen}
                       onToggle={toggleCategoryNav}
-                      apps={displayedApps}
                     />
 
                     <div className="flex gap-2 items-start">

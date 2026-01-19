@@ -26,7 +26,7 @@ export function AppDetailsClient({ app }: AppDetailsClientProps) {
   const metadata = useAppMetadata(app);
 
   const handleToggleSelection = () => {
-    toggleApp(app.id);
+    toggleApp(app.id, app.categoryId);
     if (isSelected) {
       toast.info(`${app.displayName} removed from selection`);
     } else {

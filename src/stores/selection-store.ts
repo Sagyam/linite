@@ -7,6 +7,9 @@ interface SelectionState {
   // Selected app IDs
   selectedApps: Set<string>;
 
+  // Selected app categories (appId -> categoryId)
+  selectedAppCategories: Map<string, string>;
+
   // Selected distro slug
   selectedDistro: string | null;
 
@@ -26,10 +29,10 @@ interface SelectionState {
   isCategoryNavOpen: boolean;
 
   // Actions
-  toggleApp: (appId: string) => void;
-  selectApp: (appId: string) => void;
+  toggleApp: (appId: string, categoryId: string) => void;
+  selectApp: (appId: string, categoryId: string) => void;
   deselectApp: (appId: string) => void;
-  setApps: (appIds: string[]) => void;
+  setApps: (appIds: string[], categories: Map<string, string>) => void;
   clearApps: () => void;
   setDistro: (distroSlug: string | null) => void;
   setSourcePreference: (source: string | null) => void;
@@ -43,12 +46,14 @@ interface SelectionState {
   // Computed
   hasSelection: () => boolean;
   getSelectedAppIds: () => string[];
+  getCategoryCounts: () => Map<string, number>;
 }
 
 export const useSelectionStore = create<SelectionState>()(
   persist(
     (set, get) => ({
       selectedApps: new Set<string>(),
+      selectedAppCategories: new Map<string, string>(),
       selectedDistro: null,
       sourcePreference: null,
       nixosInstallMethod: null,
@@ -56,40 +61,48 @@ export const useSelectionStore = create<SelectionState>()(
       focusedAppIndex: -1,
       isCategoryNavOpen: false,
 
-      toggleApp: (appId: string) => {
+      toggleApp: (appId: string, categoryId: string) => {
         set((state) => {
           const newSelected = new Set(state.selectedApps);
+          const newCategories = new Map(state.selectedAppCategories);
+
           if (newSelected.has(appId)) {
             newSelected.delete(appId);
+            newCategories.delete(appId);
           } else {
             newSelected.add(appId);
+            newCategories.set(appId, categoryId);
           }
-          return { selectedApps: newSelected };
+          return { selectedApps: newSelected, selectedAppCategories: newCategories };
         });
       },
 
-      selectApp: (appId: string) => {
+      selectApp: (appId: string, categoryId: string) => {
         set((state) => {
           const newSelected = new Set(state.selectedApps);
+          const newCategories = new Map(state.selectedAppCategories);
           newSelected.add(appId);
-          return { selectedApps: newSelected };
+          newCategories.set(appId, categoryId);
+          return { selectedApps: newSelected, selectedAppCategories: newCategories };
         });
       },
 
       deselectApp: (appId: string) => {
         set((state) => {
           const newSelected = new Set(state.selectedApps);
+          const newCategories = new Map(state.selectedAppCategories);
           newSelected.delete(appId);
-          return { selectedApps: newSelected };
+          newCategories.delete(appId);
+          return { selectedApps: newSelected, selectedAppCategories: newCategories };
         });
       },
 
-      setApps: (appIds: string[]) => {
-        set({ selectedApps: new Set(appIds) });
+      setApps: (appIds: string[], categories: Map<string, string>) => {
+        set({ selectedApps: new Set(appIds), selectedAppCategories: new Map(categories) });
       },
 
       clearApps: () => {
-        set({ selectedApps: new Set<string>() });
+        set({ selectedApps: new Set<string>(), selectedAppCategories: new Map<string, string>() });
       },
 
       setDistro: (distroSlug: string | null) => {
@@ -126,6 +139,7 @@ export const useSelectionStore = create<SelectionState>()(
       reset: () => {
         set({
           selectedApps: new Set<string>(),
+          selectedAppCategories: new Map<string, string>(),
           selectedDistro: null,
           sourcePreference: null,
           nixosInstallMethod: null,
@@ -142,10 +156,18 @@ export const useSelectionStore = create<SelectionState>()(
       getSelectedAppIds: () => {
         return Array.from(get().selectedApps);
       },
+
+      getCategoryCounts: () => {
+        const counts = new Map<string, number>();
+        get().selectedAppCategories.forEach((categoryId) => {
+          counts.set(categoryId, (counts.get(categoryId) || 0) + 1);
+        });
+        return counts;
+      },
     }),
     {
       name: 'linite-selection',
-      // Custom storage to handle Set serialization
+      // Custom storage to handle Set and Map serialization
       storage: {
         getItem: (name) => {
           const str = localStorage.getItem(name);
@@ -155,6 +177,7 @@ export const useSelectionStore = create<SelectionState>()(
             state: {
               ...data.state,
               selectedApps: new Set(data.state.selectedApps || []),
+              selectedAppCategories: new Map(data.state.selectedAppCategories || []),
             },
           };
         },
@@ -163,6 +186,7 @@ export const useSelectionStore = create<SelectionState>()(
             state: {
               ...value.state,
               selectedApps: Array.from(value.state.selectedApps),
+              selectedAppCategories: Array.from(value.state.selectedAppCategories),
             },
           };
           localStorage.setItem(name, JSON.stringify(data));

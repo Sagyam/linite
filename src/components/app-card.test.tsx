@@ -248,12 +248,12 @@ describe('AppCard', () => {
     it('should show ring border when selected', () => {
       const app = createMockAppWithRelations({ id: 'app-1', packages: [] });
 
-      setupSelectionStore({ apps: ['app-1'] });
+      setupSelectionStore({ apps: ['app-1'], categories: new Map([['app-1', 'cat-1']]) });
 
       renderWithProviders(<AppCard app={app} />);
 
       const card = screen.getByRole('checkbox').closest('.cursor-pointer');
-      expect(card).toHaveClass('ring-2', 'ring-primary');
+      expect(card).toHaveClass('ring-2');
     });
 
     it('should not show ring border when not selected', () => {

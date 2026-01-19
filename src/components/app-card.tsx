@@ -48,7 +48,7 @@ export const AppCard = memo(function AppCard({
     if ((e.target as HTMLElement).closest('a')) {
       return;
     }
-    toggleApp(app.id);
+    toggleApp(app.id, app.categoryId);
   };
 
   const cardStyle = isSelected && categoryColor

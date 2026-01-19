@@ -63,7 +63,8 @@ export default function CollectionDetailPage({
   const handleApplyCollection = () => {
     if (!collection) return;
     const appIds = collection.items.map((item) => item.appId);
-    setApps(appIds);
+    const categories = new Map(collection.items.map((item) => [item.appId, item.app.categoryId]));
+    setApps(appIds, categories);
     toast({
       title: 'Collection applied!',
       description: `${appIds.length} apps selected. Choose your distro to generate install command.`,

@@ -48,6 +48,8 @@ export function createMockCategory(overrides?: Partial<Category>): Category {
     icon: '📦',
     description: 'A test category',
     displayOrder: 0,
+    colorLight: '#ff0000',
+    colorDark: '#ff0000',
     createdAt: new Date(),
     updatedAt: new Date(),
     ...overrides,
@@ -66,6 +68,8 @@ export function createMockDistro(overrides?: Partial<Distro>): Distro {
     iconUrl: 'https://example.com/distro-icon.png',
     basedOn: 'debian',
     isPopular: false,
+    themeColorLight: null,
+    themeColorDark: null,
     createdAt: new Date(),
     updatedAt: new Date(),
     ...overrides,
@@ -374,10 +378,11 @@ export function resetStores() {
 }
 
 /**
- * Set up the selection store with test data
+ * Set up selection store with test data
  */
 export function setupSelectionStore(options: {
   apps?: string[];
+  categories?: Map<string, string>;
   distro?: string;
   sourcePreference?: string;
   nixosMethod?: 'nix-shell' | 'nix-env' | 'nix-flakes';
@@ -386,7 +391,7 @@ export function setupSelectionStore(options: {
   const store = useSelectionStore.getState();
 
   if (options.apps) {
-    store.setApps(options.apps);
+    store.setApps(options.apps, options.categories || new Map());
   }
   if (options.distro) {
     store.setDistro(options.distro);
