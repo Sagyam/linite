@@ -1,0 +1,102 @@
+[
+  {
+    "name": "Web Developer Essentials",
+    "slug": "web-developer-essentials-tmpl",
+    "description": "Complete toolkit for modern web development, from code editing to version control and API testing",
+    "isPublic": true,
+    "isFeatured": true,
+    "isTemplate": true,
+    "tags": ["development", "web", "productivity"],
+    "apps": ["vscode", "git", "nodejs", "docker", "postman", "firefox", "gh", "mongodb"]
+  },
+  {
+    "name": "Content Creator Suite",
+    "slug": "content-creator-suite-tmpl",
+    "description": "Professional tools for video editing, audio production, 3D modeling, and graphic design",
+    "isPublic": true,
+    "isFeatured": true,
+    "isTemplate": true,
+    "tags": ["media", "creative", "video", "audio", "graphics"],
+    "apps": ["obs", "gimp", "kdenlive", "audacity", "blender", "inkscape", "shotcut", "krita"]
+  },
+  {
+    "name": "Gaming Setup",
+    "slug": "gaming-setup-tmpl",
+    "description": "Everything you need for gaming on Linux, from game launchers to performance monitoring",
+    "isPublic": true,
+    "isFeatured": true,
+    "isTemplate": true,
+    "tags": ["games", "entertainment"],
+    "apps": ["steam", "discord", "lutris", "mangohud", "heroic", "bottles", "cartridges"]
+  },
+  {
+    "name": "Privacy & Security First",
+    "slug": "privacy-security-first-tmpl",
+    "description": "Privacy-focused browser, password managers, VPN tools, and encryption software for security-conscious users",
+    "isPublic": true,
+    "isFeatured": true,
+    "isTemplate": true,
+    "tags": ["security", "privacy", "encryption"],
+    "apps": ["librewolf", "bitwarden", "keepassxc", "wireguard", "veracrypt", "tor-browser", "signal"]
+  },
+  {
+    "name": "Office & Productivity",
+    "slug": "office-productivity-tmpl",
+    "description": "Essential productivity tools for office work, email, note-taking, and document management",
+    "isPublic": true,
+    "isFeatured": false,
+    "isTemplate": true,
+    "tags": ["office", "productivity", "education"],
+    "apps": ["libreoffice", "thunderbird", "joplin", "calibre", "foliate", "firefox"]
+  },
+  {
+    "name": "System Administrator Toolkit",
+    "slug": "sysadmin-toolkit-tmpl",
+    "description": "DevOps and sysadmin tools including containerization, orchestration, automation, and network analysis",
+    "isPublic": true,
+    "isFeatured": true,
+    "isTemplate": true,
+    "tags": ["development", "system", "devops", "cli"],
+    "apps": ["neovim", "tmux", "docker", "kubectl", "ansible", "terraform", "openssh", "nmap", "wireshark"]
+  },
+  {
+    "name": "Terminal Power User",
+    "slug": "terminal-power-user-tmpl",
+    "description": "Modern CLI tools and utilities for developers who live in the terminal",
+    "isPublic": true,
+    "isFeatured": true,
+    "isTemplate": true,
+    "tags": ["cli", "productivity", "terminal"],
+    "apps": ["zsh", "starship", "bat", "eza", "fd", "ripgrep", "fzf", "lazygit", "tmux", "yazi"]
+  },
+  {
+    "name": "Python Developer",
+    "slug": "python-developer-tmpl",
+    "description": "Complete Python development environment with IDE, version control, containers, and databases",
+    "isPublic": true,
+    "isFeatured": false,
+    "isTemplate": true,
+    "tags": ["development", "python", "languages"],
+    "apps": ["python", "pycharm", "vscode", "git", "docker", "postgresql", "redis"]
+  },
+  {
+    "name": "AI & Machine Learning",
+    "slug": "ai-machine-learning-tmpl",
+    "description": "Tools for AI development and experimentation, including local LLM runtime and AI-powered code editors",
+    "isPublic": true,
+    "isFeatured": true,
+    "isTemplate": true,
+    "tags": ["ai", "development", "ml"],
+    "apps": ["ollama", "claude-code", "cursor", "python", "vscode", "docker"]
+  },
+  {
+    "name": "Minimal Desktop Essentials",
+    "slug": "minimal-desktop-essentials-tmpl",
+    "description": "Essential applications for a minimal Linux desktop setup, perfect for new users",
+    "isPublic": true,
+    "isFeatured": false,
+    "isTemplate": true,
+    "tags": ["essential", "minimal", "beginner"],
+    "apps": ["firefox", "thunderbird", "libreoffice", "vlc", "transmission", "flameshot", "keepassxc"]
+  }
+]

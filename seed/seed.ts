@@ -5,12 +5,13 @@
  * Loads data from JSON files and seeds the database
  */
 
-import { db, categories, sources, distros, distroSources, apps, packages } from '@/db';
+import { db, categories, sources, distros, distroSources, apps, packages, user, collections, collectionItems } from '@/db';
 import { readFileSync, readdirSync } from 'fs';
 import { join } from 'path';
 import { uploadImageFromUrl } from '@/lib/blob';
 import { eq } from 'drizzle-orm';
 import { TIMEOUTS } from '../src/lib/constants';
+import { createId } from '@paralleldrive/cuid2';
 
 // Load JSON data
 const seedDir = __dirname;
@@ -21,6 +22,7 @@ const distrosData = JSON.parse(readFileSync(join(seedDir, 'distros.json'), 'utf-
 const distroSourcesData = JSON.parse(readFileSync(join(seedDir, 'distro-sources.json'), 'utf-8'));
 const appsData = JSON.parse(readFileSync(join(seedDir, 'apps.json'), 'utf-8'));
 const iconsData = JSON.parse(readFileSync(join(seedDir, 'icons.json'), 'utf-8'));
+const collectionsData = JSON.parse(readFileSync(join(seedDir, 'collections.json'), 'utf-8'));
 
 // Load packages from individual source files in seed/packages/
 const packagesDir = join(seedDir, 'packages');
@@ -212,6 +214,68 @@ async function seed() {
   const validPackages = packageValues.filter((p: { appId?: string; sourceId?: string }) => p.appId && p.sourceId);
   await db.insert(packages).values(validPackages);
   console.log(`✅ Created ${validPackages.length} packages`);
+
+  // 8. Create system user and seed collections
+  console.log('\nCreating system user...');
+  const [systemUser] = await db.insert(user).values({
+    id: createId(),
+    email: 'system@linite.local',
+    name: 'Linite System',
+    role: 'user',
+    emailVerified: true,
+    image: null,
+  }).returning();
+  console.log(`✅ Created system user: ${systemUser.email}`);
+
+  // Create collections
+  console.log('Creating template collections...');
+  let collectionCount = 0;
+
+  for (const collectionData of collectionsData) {
+    const [collection] = await db.insert(collections).values({
+      id: createId(),
+      userId: systemUser.id,
+      name: collectionData.name,
+      description: collectionData.description || null,
+      slug: collectionData.slug,
+      iconUrl: null,
+      isPublic: collectionData.isPublic ?? true,
+      isFeatured: collectionData.isFeatured ?? false,
+      isTemplate: collectionData.isTemplate ?? false,
+      shareToken: null,
+      viewCount: 0,
+      installCount: 0,
+      tags: collectionData.tags || null,
+    }).returning();
+
+    // Create collection items
+    if (collectionData.apps?.length > 0) {
+      const items = collectionData.apps
+        .map((appSlug: string, index: number) => {
+          const appId = appMap[appSlug];
+          if (!appId) {
+            console.warn(`  ⚠️  App not found: ${appSlug} (skipping)`);
+            return null;
+          }
+          return {
+            id: createId(),
+            collectionId: collection.id,
+            appId,
+            displayOrder: index,
+            note: null,
+          };
+        })
+        .filter(Boolean);
+
+      if (items.length > 0) {
+        await db.insert(collectionItems).values(items);
+        console.log(`  ✅ ${collectionData.name} (${items.length} apps)`);
+      }
+    }
+    collectionCount++;
+  }
+
+  console.log(`✅ Created ${collectionCount} template collections`);
 
   console.log('\n✅ Database seeded successfully!');
   console.log('\n🚀 You can now start the dev server with: bun run dev');
