@@ -21,7 +21,6 @@ const sourcesData = JSON.parse(readFileSync(join(seedDir, 'sources.json'), 'utf-
 const distrosData = JSON.parse(readFileSync(join(seedDir, 'distros.json'), 'utf-8'));
 const distroSourcesData = JSON.parse(readFileSync(join(seedDir, 'distro-sources.json'), 'utf-8'));
 const appsData = JSON.parse(readFileSync(join(seedDir, 'apps.json'), 'utf-8'));
-const iconsData = JSON.parse(readFileSync(join(seedDir, 'icons.json'), 'utf-8'));
 const collectionsData = JSON.parse(readFileSync(join(seedDir, 'collections.json'), 'utf-8'));
 
 // Load packages from individual source files in seed/packages/
@@ -133,9 +132,9 @@ async function seed() {
   await db.insert(distroSources).values(distroSourceMappings);
   console.log(`✅ Created ${distroSourceMappings.length} distro-source mappings`);
 
-  // 5. Create apps (without icons initially)
+  // 5. Create apps (with icons from apps.json)
   console.log('Creating apps...');
-  const appValues = appsData.map((app: { slug: string; displayName: string; description: string; homepage: string; isPopular: boolean; isFoss: boolean; category: string }) => ({
+  const appValues = appsData.map((app: { slug: string; displayName: string; description: string; homepage: string; isPopular: boolean; isFoss: boolean; category: string; iconUrl?: string | null }) => ({
     slug: app.slug,
     displayName: app.displayName,
     description: app.description,
@@ -150,22 +149,29 @@ async function seed() {
 
   const appMap = Object.fromEntries(createdApps.map(a => [a.slug, a.id]));
 
-  // 6. Download and upload icons to Azure Blob Storage
-  console.log('\nDownloading and uploading icons to Azure Blob Storage...');
-  const icons = iconsData.icons as Record<string, string>;
+  // 6. Download and upload app icons to Azure Blob Storage
+  console.log('\nDownloading and uploading app icons to Azure Blob Storage...');
   let iconCount = 0;
   let iconErrors = 0;
 
-  for (const [appSlug, iconUrl] of Object.entries(icons)) {
+  for (const app of appsData) {
+    const iconUrl = (app as { iconUrl?: string | null }).iconUrl;
+
+    // Skip if no iconUrl
+    if (!iconUrl) {
+      console.log(`  ⏭️  ${app.slug}: Skipping (no icon URL)`);
+      continue;
+    }
+
     try {
-      console.log(`  ⬇️  ${appSlug}: Downloading from ${iconUrl.substring(0, 50)}...`);
+      console.log(`  ⬇️  ${app.slug}: Downloading from ${iconUrl.substring(0, 50)}...`);
 
       // Download icon from URL and upload to Azure Blob Storage
-      const uploadedUrl = await uploadImageFromUrl(iconUrl, appSlug);
+      const uploadedUrl = await uploadImageFromUrl(iconUrl, app.slug);
 
       if (uploadedUrl) {
         // Update app's iconUrl with the Azure Blob Storage URL
-        const appId = appMap[appSlug];
+        const appId = appMap[app.slug];
         if (appId) {
           await db
             .update(apps)
@@ -173,11 +179,11 @@ async function seed() {
             .where(eq(apps.id, appId));
 
           iconCount++;
-          console.log(`  ✅ ${appSlug}: Uploaded successfully`);
+          console.log(`  ✅ ${app.slug}: Uploaded successfully`);
         }
       } else {
         iconErrors++;
-        console.log(`  ❌ ${appSlug}: Upload failed`);
+        console.log(`  ❌ ${app.slug}: Upload failed`);
       }
 
       // Random delay to avoid overwhelming the network and rate limiting
@@ -185,13 +191,13 @@ async function seed() {
       await new Promise(resolve => setTimeout(resolve, delay));
     } catch (error) {
       iconErrors++;
-      console.error(`  ❌ ${appSlug}: ${error instanceof Error ? error.message : 'Unknown error'}`);
+      console.error(`  ❌ ${app.slug}: ${error instanceof Error ? error.message : 'Unknown error'}`);
     }
   }
 
-  console.log(`\n✅ Uploaded ${iconCount} icons to Azure Blob Storage`);
+  console.log(`\n✅ Uploaded ${iconCount} app icons to Azure Blob Storage`);
   if (iconErrors > 0) {
-    console.log(`⚠️  ${iconErrors} icons failed to upload`);
+    console.log(`⚠️  ${iconErrors} app icons failed to upload`);
   }
 
   // 7. Create packages

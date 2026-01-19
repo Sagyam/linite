@@ -6,7 +6,8 @@
     "homepage": "https://play0ad.com",
     "displayName": "0 A.D.",
     "description": "Free, open-source, historical real-time strategy game",
-    "category": "games"
+    "category": "games",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/9/99/0_A.D._logo.svg"
   },
   {
     "slug": "alacritty",
@@ -15,7 +16,8 @@
     "homepage": "https://alacritty.org",
     "displayName": "Alacritty",
     "description": "Fast, GPU-accelerated terminal emulator",
-    "category": "system"
+    "category": "system",
+    "iconUrl": "https://raw.githubusercontent.com/alacritty/alacritty/master/extra/logo/compat/alacritty-term.svg"
   },
   {
     "slug": "android-studio",
@@ -24,7 +26,8 @@
     "homepage": "https://developer.android.com/studio",
     "displayName": "Android Studio",
     "description": "Official IDE for Android development",
-    "category": "development"
+    "category": "development",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c1/Android_Studio_icon_(2023).svg"
   },
   {
     "slug": "ansible",
@@ -33,7 +36,8 @@
     "homepage": "https://www.ansible.com",
     "displayName": "Ansible",
     "description": "IT automation tool for configuration management",
-    "category": "development"
+    "category": "development",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/2/24/Ansible_logo.svg"
   },
   {
     "slug": "anydesk",
@@ -42,7 +46,8 @@
     "homepage": "https://anydesk.com",
     "displayName": "AnyDesk",
     "description": "Fast remote desktop software",
-    "category": "utilities"
+    "category": "utilities",
+    "iconUrl": "https://img.utdstc.com/icon/b8c/73e/b8c73ee3a5a26bd6cdb4f55d34bef3dbf7b14c8de2c853ae1b0e597788469d98:200"
   },
   {
     "slug": "apache",
@@ -51,7 +56,8 @@
     "homepage": "https://httpd.apache.org",
     "displayName": "Apache HTTP Server",
     "description": "Open-source HTTP server for modern operating systems",
-    "category": "development"
+    "category": "development",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a8/Apache_HTTP_Server_Logo_(2016).svg"
   },
   {
     "slug": "aria2",
@@ -60,7 +66,8 @@
     "homepage": "https://aria2.github.io",
     "displayName": "aria2",
     "description": "Lightweight multi-protocol & multi-source download utility",
-    "category": "cli"
+    "category": "cli",
+    "iconUrl": null
   },
   {
     "slug": "audacity",
@@ -69,7 +76,8 @@
     "homepage": "https://audacityteam.org",
     "displayName": "Audacity",
     "description": "Free, open source, cross-platform audio software",
-    "category": "media"
+    "category": "media",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f6/Audacity_Logo.svg"
   },
   {
     "slug": "balena-etcher",
@@ -78,7 +86,8 @@
     "homepage": "https://balena.io/etcher",
     "displayName": "balenaEtcher",
     "description": "Flash OS images to SD cards and USB drives",
-    "category": "utilities"
+    "category": "utilities",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/2/2d/Etcher-icon.png"
   },
   {
     "slug": "bat",
@@ -87,7 +96,8 @@
     "homepage": "https://github.com/sharkdp/bat",
     "displayName": "bat",
     "description": "Cat clone with syntax highlighting and Git integration",
-    "category": "cli"
+    "category": "cli",
+    "iconUrl": null
   },
   {
     "slug": "bitwarden",
@@ -96,7 +106,8 @@
     "homepage": "https://bitwarden.com",
     "displayName": "Bitwarden",
     "description": "Open source password manager",
-    "category": "security"
+    "category": "security",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/c/cc/Bitwarden_logo.svg"
   },
   {
     "slug": "blender",
@@ -105,7 +116,8 @@
     "homepage": "https://blender.org",
     "displayName": "Blender",
     "description": "Free and open source 3D creation suite",
-    "category": "graphics"
+    "category": "graphics",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/0/0c/Blender_logo_no_text.svg"
   },
   {
     "slug": "bottles",
@@ -114,7 +126,8 @@
     "homepage": "https://usebottles.com",
     "displayName": "Bottles",
     "description": "Run Windows software on Linux with ease",
-    "category": "games"
+    "category": "games",
+    "iconUrl": "https://raw.githubusercontent.com/bottlesdevs/Bottles/main/data/icons/hicolor/scalable/apps/com.usebottles.bottles.svg"
   },
   {
     "slug": "brave",
@@ -123,7 +136,8 @@
     "homepage": "https://brave.com",
     "displayName": "Brave Browser",
     "description": "Secure, fast and private web browser with ad blocking",
-    "category": "browsers"
+    "category": "browsers",
+    "iconUrl": "https://brave.com/static-assets/images/brave-logo-sans-text.svg"
   },
   {
     "slug": "btop",
@@ -132,7 +146,8 @@
     "homepage": "https://github.com/aristocratos/btop",
     "displayName": "btop",
     "description": "Resource monitor that shows usage and stats",
-    "category": "system"
+    "category": "system",
+    "iconUrl": "https://res.cloudinary.com/canonical/image/fetch/f_auto,q_auto,fl_sanitize,w_240/https%3A%2F%2Fdashboard.snapcraft.io%2Fsite_media%2Fappmedia%2F2022%2F08%2Fbtop_snap_QtZnnCC.png"
   },
   {
     "slug": "bun",
@@ -141,7 +156,8 @@
     "homepage": "https://bun.sh",
     "displayName": "Bun",
     "description": "Fast all-in-one JavaScript runtime and package manager",
-    "category": "languages"
+    "category": "languages",
+    "iconUrl": "https://user-images.githubusercontent.com/709451/182802334-d9c42afe-f35d-4a7b-86ea-9985f73f20c3.png"
   },
   {
     "slug": "calibre",
@@ -150,7 +166,8 @@
     "homepage": "https://calibre-ebook.com",
     "displayName": "Calibre",
     "description": "Powerful ebook management and conversion tool",
-    "category": "office"
+    "category": "office",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/a/aa/Calibre_logo_SVG_version.svg"
   },
   {
     "slug": "cartridges",
@@ -159,7 +176,8 @@
     "homepage": "https://github.com/kra-mo/cartridges",
     "displayName": "Cartridges",
     "description": "Simple game launcher for all your games",
-    "category": "games"
+    "category": "games",
+    "iconUrl": "https://dl.flathub.org/media/page/kramo/Cartridges/bff3660065d4a70bd040fbecf3b8880a/icons/128x128/page.kramo.Cartridges.png"
   },
   {
     "slug": "celluloid",
@@ -168,7 +186,8 @@
     "homepage": "https://celluloid-player.github.io",
     "displayName": "Celluloid",
     "description": "Simple GTK frontend for mpv",
-    "category": "media"
+    "category": "media",
+    "iconUrl": "https://celluloid-player.github.io/images/celluloid.svg"
   },
   {
     "slug": "chrome",
@@ -177,7 +196,8 @@
     "homepage": "https://google.com/chrome",
     "displayName": "Google Chrome",
     "description": "Fast, secure web browser by Google",
-    "category": "browsers"
+    "category": "browsers",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e1/Google_Chrome_icon_(February_2022).svg"
   },
   {
     "slug": "chromium",
@@ -186,7 +206,8 @@
     "homepage": "https://chromium.org",
     "displayName": "Chromium",
     "description": "Open-source web browser project",
-    "category": "browsers"
+    "category": "browsers",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fe/Chromium_Material_Icon.svg"
   },
   {
     "slug": "clamav",
@@ -195,7 +216,8 @@
     "homepage": "https://clamav.net",
     "displayName": "ClamAV",
     "description": "Open source antivirus engine",
-    "category": "security"
+    "category": "security",
+    "iconUrl": "https://www.clamav.net/assets/clamav-trademark.png"
   },
   {
     "slug": "clang",
@@ -204,7 +226,8 @@
     "homepage": "https://clang.llvm.org",
     "displayName": "Clang",
     "description": "C/C++ compiler based on LLVM",
-    "category": "languages"
+    "category": "languages",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/en/d/dd/LLVM_logo.png"
   },
   {
     "slug": "claude-code",
@@ -213,7 +236,8 @@
     "homepage": "https://claude.com/claude-code",
     "displayName": "Claude Code",
     "description": "Anthropic's official CLI for Claude AI coding assistant",
-    "category": "ai"
+    "category": "ai",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b0/Claude_AI_symbol.svg"
   },
   {
     "slug": "conky",
@@ -222,7 +246,8 @@
     "homepage": "https://github.com/brndnmtthws/conky",
     "displayName": "Conky",
     "description": "Light-weight system monitor for X",
-    "category": "system"
+    "category": "system",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a6/Conky-logotype-horizontal-violet.png"
   },
   {
     "slug": "cpu-x",
@@ -231,7 +256,8 @@
     "homepage": "https://thetumultuousunicornofdarkness.github.io/CPU-X",
     "displayName": "CPU-X",
     "description": "System profiler and hardware information tool",
-    "category": "system"
+    "category": "system",
+    "iconUrl": "https://raw.githubusercontent.com/TheTumultuousUnicornOfDarkness/CPU-X/8d19c4bda49b906a2a8ccdcbeeaa7b8d2dfd67f9/data/icons/header.svg"
   },
   {
     "slug": "cursor",
@@ -240,7 +266,8 @@
     "homepage": "https://cursor.sh",
     "displayName": "Cursor",
     "description": "AI-powered code editor built on VSCode",
-    "category": "ai"
+    "category": "ai",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e1/Cursor_logo.png"
   },
   {
     "slug": "darktable",
@@ -249,7 +276,8 @@
     "homepage": "https://darktable.org",
     "displayName": "darktable",
     "description": "Photography workflow application and raw developer",
-    "category": "graphics"
+    "category": "graphics",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/7/7b/Darktable_icon.svg"
   },
   {
     "slug": "datagrip",
@@ -258,7 +286,8 @@
     "homepage": "https://jetbrains.com/datagrip",
     "displayName": "DataGrip",
     "description": "Database IDE by JetBrains",
-    "category": "development"
+    "category": "development",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c9/DataGrip.svg"
   },
   {
     "slug": "dbeaver",
@@ -267,7 +296,8 @@
     "homepage": "https://dbeaver.io",
     "displayName": "DBeaver",
     "description": "Universal database management tool",
-    "category": "development"
+    "category": "development",
+    "iconUrl": "https://dbeaver.io/wp-content/uploads/2015/09/beaver-head.png"
   },
   {
     "slug": "deluge",
@@ -276,7 +306,8 @@
     "homepage": "https://deluge-torrent.org",
     "displayName": "Deluge",
     "description": "Lightweight BitTorrent client with plugin support",
-    "category": "utilities"
+    "category": "utilities",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/8/85/Deluge-Logo.svg"
   },
   {
     "slug": "deno",
@@ -285,7 +316,8 @@
     "homepage": "https://deno.land",
     "displayName": "Deno",
     "description": "Secure runtime for JavaScript and TypeScript",
-    "category": "languages"
+    "category": "languages",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/8/84/Deno.svg"
   },
   {
     "slug": "discord",
@@ -294,7 +326,8 @@
     "homepage": "https://discord.com",
     "displayName": "Discord",
     "description": "Voice, video and text chat app",
-    "category": "communication"
+    "category": "communication",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/fr/4/4f/Discord_Logo_sans_texte.svg"
   },
   {
     "slug": "docker",
@@ -303,7 +336,8 @@
     "homepage": "https://docker.com",
     "displayName": "Docker",
     "description": "Platform for developing, shipping, and running applications in containers",
-    "category": "development"
+    "category": "development",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a7/Docker-svgrepo-com.svg"
   },
   {
     "slug": "dolphin-emu",
@@ -312,7 +346,8 @@
     "homepage": "https://dolphin-emu.org",
     "displayName": "Dolphin Emulator",
     "description": "GameCube and Wii emulator",
-    "category": "games"
+    "category": "games",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/6/60/Dolphin-logo.svg"
   },
   {
     "slug": "dropbox",
@@ -321,7 +356,8 @@
     "homepage": "https://dropbox.com",
     "displayName": "Dropbox",
     "description": "Cloud storage and file synchronization service",
-    "category": "utilities"
+    "category": "utilities",
+    "iconUrl": "https://www.vectorlogo.zone/logos/dropbox/dropbox-tile.svg"
   },
   {
     "slug": "eclipse",
@@ -330,7 +366,8 @@
     "homepage": "https://eclipse.org",
     "displayName": "Eclipse IDE",
     "description": "IDE for Java and other languages",
-    "category": "development"
+    "category": "development",
+    "iconUrl": "https://logowik.com/content/uploads/images/eclipse-ide-icon1888.logowik.com.webp"
   },
   {
     "slug": "emacs",
@@ -339,7 +376,8 @@
     "homepage": "https://gnu.org/software/emacs",
     "displayName": "Emacs",
     "description": "Extensible, customizable text editor",
-    "category": "development"
+    "category": "development",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/0/08/EmacsIcon.svg"
   },
   {
     "slug": "evolution",
@@ -348,7 +386,8 @@
     "homepage": "https://wiki.gnome.org/Apps/Evolution",
     "displayName": "Evolution",
     "description": "Personal information manager with email, calendar, and contacts",
-    "category": "communication"
+    "category": "communication",
+    "iconUrl": "https://raw.githubusercontent.com/gnome-design-team/gnome-icons/master/apps/hicolor/256x256/apps/evolution.png"
   },
   {
     "slug": "eza",
@@ -357,7 +396,8 @@
     "homepage": "https://github.com/eza-community/eza",
     "displayName": "eza",
     "description": "Modern replacement for ls with colors and icons",
-    "category": "cli"
+    "category": "cli",
+    "iconUrl": null
   },
   {
     "slug": "fastfetch",
@@ -366,7 +406,8 @@
     "homepage": "https://github.com/fastfetch-cli/fastfetch",
     "displayName": "Fastfetch",
     "description": "Fast system information tool written in C",
-    "category": "cli"
+    "category": "cli",
+    "iconUrl": null
   },
   {
     "slug": "fd",
@@ -375,7 +416,8 @@
     "homepage": "https://github.com/sharkdp/fd",
     "displayName": "fd",
     "description": "Simple, fast and user-friendly alternative to find",
-    "category": "cli"
+    "category": "cli",
+    "iconUrl": null
   },
   {
     "slug": "ffmpeg",
@@ -384,7 +426,8 @@
     "homepage": "https://ffmpeg.org",
     "displayName": "FFmpeg",
     "description": "Complete cross-platform solution to record, convert and stream audio and video",
-    "category": "media"
+    "category": "media",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/7/76/FFmpeg_icon.svg"
   },
   {
     "slug": "filezilla",
@@ -393,7 +436,8 @@
     "homepage": "https://filezilla-project.org",
     "displayName": "FileZilla",
     "description": "FTP, FTPS and SFTP client",
-    "category": "utilities"
+    "category": "utilities",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/0/01/FileZilla_logo.svg"
   },
   {
     "slug": "firefox",
@@ -402,7 +446,8 @@
     "homepage": "https://firefox.com",
     "displayName": "Firefox",
     "description": "Fast, private and safe web browser",
-    "category": "browsers"
+    "category": "browsers",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a0/Firefox_logo%2C_2019.svg"
   },
   {
     "slug": "fish",
@@ -411,7 +456,8 @@
     "homepage": "https://fishshell.com",
     "displayName": "Fish",
     "description": "Smart and user-friendly command line shell",
-    "category": "cli"
+    "category": "cli",
+    "iconUrl": "https://fishshell.com/assets/img/Terminal_Logo_CRT_4.svg"
   },
   {
     "slug": "flameshot",
@@ -420,7 +466,8 @@
     "homepage": "https://flameshot.org",
     "displayName": "Flameshot",
     "description": "Powerful yet simple to use screenshot software",
-    "category": "utilities"
+    "category": "utilities",
+    "iconUrl": "https://flameshot.org/flameshot-icon.svg"
   },
   {
     "slug": "floorp",
@@ -429,7 +476,8 @@
     "homepage": "https://floorp.app",
     "displayName": "Floorp",
     "description": "Privacy-focused Firefox fork with vertical tabs",
-    "category": "browsers"
+    "category": "browsers",
+    "iconUrl": "https://floorp.app/favicon.svg"
   },
   {
     "slug": "flowblade",
@@ -438,7 +486,8 @@
     "homepage": "https://jliljebl.github.io/flowblade",
     "displayName": "Flowblade",
     "description": "Multitrack non-linear video editor for Linux",
-    "category": "media"
+    "category": "media",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/3/38/Flowblade-logo.png"
   },
   {
     "slug": "foliate",
@@ -447,7 +496,8 @@
     "homepage": "https://johnfactotum.github.io/foliate",
     "displayName": "Foliate",
     "description": "Modern and elegant ebook reader",
-    "category": "office"
+    "category": "office",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/d/df/Foliate_icon_2020.svg"
   },
   {
     "slug": "fragments",
@@ -456,7 +506,8 @@
     "homepage": "https://apps.gnome.org/Fragments",
     "displayName": "Fragments",
     "description": "Easy to use BitTorrent client for GNOME",
-    "category": "utilities"
+    "category": "utilities",
+    "iconUrl": "https://static.gnome.org/catalog/app-icon/scalable/de.haeckerfelix.Fragments.svg"
   },
   {
     "slug": "freecad",
@@ -465,7 +516,8 @@
     "homepage": "https://freecad.org",
     "displayName": "FreeCAD",
     "description": "Open-source parametric 3D CAD modeler",
-    "category": "media"
+    "category": "media",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f7/FreeCAD-logo.svg"
   },
   {
     "slug": "fzf",
@@ -474,7 +526,8 @@
     "homepage": "https://github.com/junegunn/fzf",
     "displayName": "fzf",
     "description": "Command-line fuzzy finder",
-    "category": "cli"
+    "category": "cli",
+    "iconUrl": null
   },
   {
     "slug": "gcc",
@@ -483,7 +536,8 @@
     "homepage": "https://gcc.gnu.org",
     "displayName": "GCC",
     "description": "GNU Compiler Collection for C/C++",
-    "category": "languages"
+    "category": "languages",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/a/af/GNU_Compiler_Collection_logo.svg"
   },
   {
     "slug": "geary",
@@ -492,7 +546,8 @@
     "homepage": "https://wiki.gnome.org/Apps/Geary",
     "displayName": "Geary",
     "description": "Lightweight email client for GNOME",
-    "category": "communication"
+    "category": "communication",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/2/26/Geary_icon.svg"
   },
   {
     "slug": "gh",
@@ -501,7 +556,8 @@
     "homepage": "https://cli.github.com",
     "displayName": "GitHub CLI",
     "description": "GitHub's official command line tool",
-    "category": "development"
+    "category": "development",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg"
   },
   {
     "slug": "ghidra",
@@ -510,7 +566,8 @@
     "homepage": "https://github.com/NationalSecurityAgency/ghidra",
     "displayName": "Ghidra",
     "description": "Multi-platform software reverse engineering framework",
-    "category": "development"
+    "category": "development",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f6/Ghidra_logo.svg"
   },
   {
     "slug": "ghostty",
@@ -519,7 +576,8 @@
     "homepage": "https://ghostty.org",
     "displayName": "Ghostty",
     "description": "Fast, feature-rich, and cross-platform terminal emulator",
-    "category": "system"
+    "category": "system",
+    "iconUrl": "https://ghostty.org/_next/static/media/ghostty-wordmark.6a43fa21.svg"
   },
   {
     "slug": "gimp",
@@ -528,7 +586,8 @@
     "homepage": "https://gimp.org",
     "displayName": "GIMP",
     "description": "GNU Image Manipulation Program",
-    "category": "graphics"
+    "category": "graphics",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/6/67/The_GIMP_icon_-_v3.0.svg"
   },
   {
     "slug": "git",
@@ -537,7 +596,8 @@
     "homepage": "https://git-scm.com",
     "displayName": "Git",
     "description": "Distributed version control system",
-    "category": "development"
+    "category": "development",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3f/Git_icon.svg"
   },
   {
     "slug": "godot",
@@ -546,7 +606,8 @@
     "homepage": "https://godotengine.org",
     "displayName": "Godot Engine",
     "description": "Free and open-source game engine",
-    "category": "media"
+    "category": "media",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/6/6a/Godot_icon.svg"
   },
   {
     "slug": "goland",
@@ -555,7 +616,8 @@
     "homepage": "https://jetbrains.com/go",
     "displayName": "GoLand",
     "description": "Go IDE by JetBrains",
-    "category": "development"
+    "category": "development",
+    "iconUrl": "https://dl.flathub.org/media/com/jetbrains/GoLand/d5c1aafe665ca3fa17b95a93095ccb8d/icons/128x128/com.jetbrains.GoLand.png"
   },
   {
     "slug": "golang",
@@ -564,7 +626,8 @@
     "homepage": "https://go.dev",
     "displayName": "Go",
     "description": "Statically typed, compiled programming language",
-    "category": "languages"
+    "category": "languages",
+    "iconUrl": "https://go.dev/blog/go-brand/Go-Logo/PNG/Go-Logo_Blue.png"
   },
   {
     "slug": "handbrake",
@@ -573,7 +636,8 @@
     "homepage": "https://handbrake.fr",
     "displayName": "HandBrake",
     "description": "Open source video transcoder",
-    "category": "media"
+    "category": "media",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d9/HandBrake_Icon.png"
   },
   {
     "slug": "helix",
@@ -582,7 +646,8 @@
     "homepage": "https://helix-editor.com",
     "displayName": "Helix",
     "description": "Post-modern modal text editor",
-    "category": "development"
+    "category": "development",
+    "iconUrl": "https://helix-editor.com/logo.svg"
   },
   {
     "slug": "heroic",
@@ -591,7 +656,8 @@
     "homepage": "https://heroicgameslauncher.com",
     "displayName": "Heroic Games Launcher",
     "description": "Epic Games Launcher alternative for Linux",
-    "category": "games"
+    "category": "games",
+    "iconUrl": "https://avatars.githubusercontent.com/u/77549103?s=200&v=4"
   },
   {
     "slug": "httpie",
@@ -600,7 +666,8 @@
     "homepage": "https://httpie.io",
     "displayName": "HTTPie",
     "description": "User-friendly command-line HTTP client",
-    "category": "cli"
+    "category": "cli",
+    "iconUrl": "https://avatars.githubusercontent.com/u/24454777?s=200&v=4"
   },
   {
     "slug": "imhex",
@@ -609,7 +676,8 @@
     "homepage": "https://imhex.werwolv.net",
     "displayName": "ImHex",
     "description": "Hex editor for reverse engineers and programmers",
-    "category": "development"
+    "category": "development",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3c/ImHex_screenshot.png"
   },
   {
     "slug": "impression",
@@ -618,7 +686,8 @@
     "homepage": "https://gitlab.com/adhami3310/Impression",
     "displayName": "Impression",
     "description": "Straight-forward application to create bootable drives",
-    "category": "utilities"
+    "category": "utilities",
+    "iconUrl": "https://dl.flathub.org/media/io/gitlab/adhami3310.Impression/eed47b849ab032d556f929864cc71bb1/icons/128x128/io.gitlab.adhami3310.Impression.png"
   },
   {
     "slug": "inkscape",
@@ -627,7 +696,8 @@
     "homepage": "https://inkscape.org",
     "displayName": "Inkscape",
     "description": "Professional vector graphics editor",
-    "category": "graphics"
+    "category": "graphics",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/0/0d/Inkscape_Logo.svg"
   },
   {
     "slug": "iotop",
@@ -636,7 +706,8 @@
     "homepage": "https://github.com/Tomas-M/iotop",
     "displayName": "iotop",
     "description": "A top utility for IO ",
-    "category": "tui"
+    "category": "tui",
+    "iconUrl": null
   },
   {
     "slug": "insomnia",
@@ -645,7 +716,8 @@
     "homepage": "https://insomnia.rest",
     "displayName": "Insomnia",
     "description": "API client for REST and GraphQL",
-    "category": "development"
+    "category": "development",
+    "iconUrl": "https://raw.githubusercontent.com/Kong/insomnia/develop/packages/insomnia/src/ui/images/insomnia-logo.svg"
   },
   {
     "slug": "intellij",
@@ -654,7 +726,8 @@
     "homepage": "https://jetbrains.com/idea",
     "displayName": "IntelliJ IDEA Community",
     "description": "Java IDE by JetBrains",
-    "category": "development"
+    "category": "development",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/9/9c/IntelliJ_IDEA_Icon.svg"
   },
   {
     "slug": "java",
@@ -663,7 +736,8 @@
     "homepage": "https://openjdk.org",
     "displayName": "Java (OpenJDK)",
     "description": "Open source implementation of Java",
-    "category": "languages"
+    "category": "languages",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/en/3/30/Java_programming_language_logo.svg"
   },
   {
     "slug": "jellyfin",
@@ -672,7 +746,8 @@
     "homepage": "https://jellyfin.org/",
     "displayName": "Jellyfin",
     "description": "Jellyfin is the volunteer-built media solution that puts you in control of your media. Stream to any device from your own server, with no strings attached.",
-    "category": "media"
+    "category": "media",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/4/41/Jellyfin_-_icon-transparent.svg"
   },
   {
     "slug": "joplin",
@@ -681,7 +756,8 @@
     "homepage": "https://joplinapp.org",
     "displayName": "Joplin",
     "description": "Open source note-taking and to-do app with sync",
-    "category": "office"
+    "category": "office",
+    "iconUrl": "https://raw.githubusercontent.com/laurent22/joplin/dev/Assets/LinuxIcons/256x256.png"
   },
   {
     "slug": "jq",
@@ -690,7 +766,8 @@
     "homepage": "https://jqlang.github.io/jq",
     "displayName": "jq",
     "description": "Lightweight and flexible command-line JSON processor",
-    "category": "cli"
+    "category": "cli",
+    "iconUrl": null
   },
   {
     "slug": "k9s",
@@ -699,7 +776,8 @@
     "homepage": "https://k9scli.io",
     "displayName": "k9s",
     "description": "Terminal UI to interact with your Kubernetes clusters",
-    "category": "tui"
+    "category": "tui",
+    "iconUrl": "https://raw.githubusercontent.com/derailed/k9s/master/assets/k9s.png"
   },
   {
     "slug": "kdenlive",
@@ -708,7 +786,8 @@
     "homepage": "https://kdenlive.org",
     "displayName": "Kdenlive",
     "description": "Free and open source video editor",
-    "category": "media"
+    "category": "media",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/4/43/Kdenlive_Logo.svg"
   },
   {
     "slug": "keepassxc",
@@ -717,7 +796,8 @@
     "homepage": "https://keepassxc.org",
     "displayName": "KeePassXC",
     "description": "Cross-platform password manager",
-    "category": "security"
+    "category": "security",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c1/KeePassXC.svg"
   },
   {
     "slug": "kitty",
@@ -726,7 +806,8 @@
     "homepage": "https://sw.kovidgoyal.net/kitty",
     "displayName": "Kitty",
     "description": "Fast, feature-rich, GPU-accelerated terminal emulator",
-    "category": "system"
+    "category": "system",
+    "iconUrl": "https://raw.githubusercontent.com/kovidgoyal/kitty/master/logo/kitty.svg"
   },
   {
     "slug": "krita",
@@ -735,7 +816,8 @@
     "homepage": "https://krita.org",
     "displayName": "Krita",
     "description": "Professional free and open source painting program",
-    "category": "graphics"
+    "category": "graphics",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/9/98/Breezeicons-apps-48-calligrakrita.svg"
   },
   {
     "slug": "kubectl",
@@ -744,7 +826,8 @@
     "homepage": "https://kubernetes.io/docs/reference/kubectl",
     "displayName": "kubectl",
     "description": "Kubernetes command-line tool",
-    "category": "development"
+    "category": "development",
+    "iconUrl": null
   },
   {
     "slug": "lazydocker",
@@ -753,7 +836,8 @@
     "homepage": "https://github.com/jesseduffield/lazydocker",
     "displayName": "lazydocker",
     "description": "Simple terminal UI for both docker and docker-compose",
-    "category": "tui"
+    "category": "tui",
+    "iconUrl": null
   },
   {
     "slug": "lazygit",
@@ -762,7 +846,8 @@
     "homepage": "https://github.com/jesseduffield/lazygit",
     "displayName": "lazygit",
     "description": "Simple terminal UI for git commands",
-    "category": "tui"
+    "category": "tui",
+    "iconUrl": null
   },
   {
     "slug": "libreoffice",
@@ -771,7 +856,8 @@
     "homepage": "https://libreoffice.org",
     "displayName": "LibreOffice",
     "description": "Free and powerful office suite",
-    "category": "office"
+    "category": "office",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c0/LibreOffice_logo.svg"
   },
   {
     "slug": "librewolf",
@@ -780,7 +866,8 @@
     "homepage": "https://librewolf.net",
     "displayName": "LibreWolf",
     "description": "Privacy and security focused fork of Firefox",
-    "category": "browsers"
+    "category": "browsers",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d0/LibreWolf_icon.svg"
   },
   {
     "slug": "logseq",
@@ -789,7 +876,8 @@
     "homepage": "https://logseq.com",
     "displayName": "Logseq",
     "description": "Privacy-first knowledge management and collaboration platform",
-    "category": "office"
+    "category": "office",
+    "iconUrl": "https://avatars.githubusercontent.com/u/63385289?s=200&v=4"
   },
   {
     "slug": "lua",
@@ -798,7 +886,8 @@
     "homepage": "https://lua.org",
     "displayName": "Lua",
     "description": "Lightweight, embeddable scripting language",
-    "category": "languages"
+    "category": "languages",
+    "iconUrl": "https://www.lua.org/images/logo.gif"
   },
   {
     "slug": "lutris",
@@ -807,7 +896,8 @@
     "homepage": "https://lutris.net",
     "displayName": "Lutris",
     "description": "Open source gaming platform for Linux",
-    "category": "games"
+    "category": "games",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/9/99/Lutris_Game_Platform_(Logo).svg"
   },
   {
     "slug": "mangohud",
@@ -816,7 +906,8 @@
     "homepage": "https://github.com/flightlessmango/MangoHud",
     "displayName": "MangoHUD",
     "description": "Vulkan and OpenGL overlay for monitoring FPS, temperatures, CPU/GPU load",
-    "category": "games"
+    "category": "games",
+    "iconUrl": "https://avatars.githubusercontent.com/u/42713625?v=4"
   },
   {
     "slug": "mega",
@@ -825,7 +916,8 @@
     "homepage": "https://mega.io",
     "displayName": "MEGA Desktop",
     "description": "Secure cloud storage with end-to-end encryption",
-    "category": "utilities"
+    "category": "utilities",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/5/57/01_mega_logo.svg"
   },
   {
     "slug": "micro",
@@ -834,7 +926,8 @@
     "homepage": "https://micro-editor.github.io",
     "displayName": "Micro",
     "description": "Modern and intuitive terminal-based text editor",
-    "category": "development"
+    "category": "development",
+    "iconUrl": "https://raw.githubusercontent.com/zyedidia/micro/a544015a350b1ce7fe7c109bb30294ed86d460c7/assets/micro-logo-drop.svg"
   },
   {
     "slug": "microsoft-edge",
@@ -843,7 +936,8 @@
     "homepage": "https://microsoft.com/edge",
     "displayName": "Microsoft Edge",
     "description": "Fast and secure browser from Microsoft",
-    "category": "browsers"
+    "category": "browsers",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/9/98/Microsoft_Edge_logo_%282019%29.svg"
   },
   {
     "slug": "minecraft",
@@ -852,7 +946,8 @@
     "homepage": "https://minecraft.net",
     "displayName": "Minecraft",
     "description": "Sandbox video game",
-    "category": "games"
+    "category": "games",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/en/c/cb/Minecraft_Logo-en.svg"
   },
   {
     "slug": "mission-center",
@@ -861,7 +956,8 @@
     "homepage": "https://missioncenter.io",
     "displayName": "Mission Center",
     "description": "Modern system monitor with GPU support",
-    "category": "system"
+    "category": "system",
+    "iconUrl": null
   },
   {
     "slug": "mongodb",
@@ -870,7 +966,8 @@
     "homepage": "https://www.mongodb.com",
     "displayName": "MongoDB",
     "description": "Document-oriented NoSQL database",
-    "category": "development"
+    "category": "development",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/9/93/MongoDB_Logo.svg"
   },
   {
     "slug": "mpv",
@@ -879,7 +976,8 @@
     "homepage": "https://mpv.io",
     "displayName": "mpv",
     "description": "Free, open source, and cross-platform media player",
-    "category": "media"
+    "category": "media",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/7/73/Mpv_logo_%28official%29.png"
   },
   {
     "slug": "neovim",
@@ -888,7 +986,8 @@
     "homepage": "https://neovim.io",
     "displayName": "Neovim",
     "description": "Hyperextensible Vim-based text editor",
-    "category": "development"
+    "category": "development",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3a/Neovim-mark.svg"
   },
   {
     "slug": "nvtop",
@@ -897,7 +996,8 @@
     "homepage": "https://github.com/Syllo/nvtop",
     "displayName": "nvtop",
     "description": "GPU & Accelerator process monitoring for AMD, Apple, Huawei, Intel, NVIDIA and Qualcomm ",
-    "category": "tui"
+    "category": "tui",
+    "iconUrl": null
   },
   {
     "slug": "netbeans",
@@ -906,7 +1006,8 @@
     "homepage": "https://netbeans.apache.org",
     "displayName": "NetBeans",
     "description": "IDE for Java SE, Java EE, and more",
-    "category": "development"
+    "category": "development",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/9/98/Apache_NetBeans_Logo.svg"
   },
   {
     "slug": "nextcloud",
@@ -915,7 +1016,8 @@
     "homepage": "https://nextcloud.com",
     "displayName": "Nextcloud Desktop",
     "description": "Desktop sync client for Nextcloud file hosting",
-    "category": "utilities"
+    "category": "utilities",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/6/60/Nextcloud_Logo.svg"
   },
   {
     "slug": "nginx",
@@ -924,7 +1026,8 @@
     "homepage": "https://nginx.org",
     "displayName": "Nginx",
     "description": "High-performance HTTP server and reverse proxy",
-    "category": "development"
+    "category": "development",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c5/Nginx_logo.svg"
   },
   {
     "slug": "nmap",
@@ -933,7 +1036,8 @@
     "homepage": "https://nmap.org",
     "displayName": "Nmap",
     "description": "Network exploration tool and security scanner",
-    "category": "system"
+    "category": "system",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/7/73/Logo_nmap.png"
   },
   {
     "slug": "nodejs",
@@ -942,7 +1046,8 @@
     "homepage": "https://nodejs.org",
     "displayName": "Node.js",
     "description": "JavaScript runtime built on Chrome's V8 engine",
-    "category": "languages"
+    "category": "languages",
+    "iconUrl": "https://www.vectorlogo.zone/logos/nodejs/nodejs-icon.svg"
   },
   {
     "slug": "notion",
@@ -951,7 +1056,8 @@
     "homepage": "https://notion.so",
     "displayName": "Notion",
     "description": "All-in-one workspace for notes, tasks, and collaboration",
-    "category": "office"
+    "category": "office",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png"
   },
   {
     "slug": "obs",
@@ -960,7 +1066,8 @@
     "homepage": "https://obsproject.com",
     "displayName": "OBS Studio",
     "description": "Free and open source software for video recording and live streaming",
-    "category": "media"
+    "category": "media",
+    "iconUrl": "https://obsproject.com/assets/images/new_icon_small-r.png"
   },
   {
     "slug": "obsidian",
@@ -969,7 +1076,8 @@
     "homepage": "https://obsidian.md",
     "displayName": "Obsidian",
     "description": "Powerful knowledge base on top of local markdown files",
-    "category": "office"
+    "category": "office",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/1/10/2023_Obsidian_logo.svg"
   },
   {
     "slug": "oh-my-zsh",
@@ -978,7 +1086,8 @@
     "homepage": "https://ohmyz.sh",
     "displayName": "Oh My Zsh",
     "description": "Framework for managing Zsh configuration",
-    "category": "cli"
+    "category": "cli",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1e/Oh_My_Zsh_logo.png"
   },
   {
     "slug": "ollama",
@@ -987,7 +1096,8 @@
     "homepage": "https://ollama.com/",
     "displayName": "Ollama",
     "description": "Chat & build with open models ",
-    "category": "ai"
+    "category": "ai",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/3/31/Ollama-logo.svg"
   },
   {
     "slug": "onlyoffice",
@@ -996,7 +1106,8 @@
     "homepage": "https://onlyoffice.com",
     "displayName": "ONLYOFFICE",
     "description": "Free office suite with online collaboration",
-    "category": "office"
+    "category": "office",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c3/ONLYOFFICE_logo_(centered).svg"
   },
   {
     "slug": "openshot",
@@ -1005,7 +1116,8 @@
     "homepage": "https://openshot.org",
     "displayName": "OpenShot",
     "description": "Easy to use video editor with simple interface",
-    "category": "media"
+    "category": "media",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/1/17/OpenShot_logo_(2016).svg"
   },
   {
     "slug": "openssh",
@@ -1014,7 +1126,8 @@
     "homepage": "https://www.openssh.com",
     "displayName": "OpenSSH",
     "description": "OpenBSD Secure Shell connectivity tools",
-    "category": "system"
+    "category": "system",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/en/6/65/OpenSSH_logo.png"
   },
   {
     "slug": "opentofu",
@@ -1023,7 +1136,8 @@
     "homepage": "https://opentofu.org",
     "displayName": "OpenTofu",
     "description": "Open-source infrastructure as code tool, fork of Terraform",
-    "category": "development"
+    "category": "development",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/3/36/Logo_of_OpenTofu.svg"
   },
   {
     "slug": "openvpn",
@@ -1032,7 +1146,8 @@
     "homepage": "https://openvpn.net",
     "displayName": "OpenVPN",
     "description": "Open-source VPN solution",
-    "category": "system"
+    "category": "system",
+    "iconUrl": "https://openvpn.net/_assets/logo_dark_98a890727a.svg"
   },
   {
     "slug": "opencode",
@@ -1041,7 +1156,8 @@
     "homepage": "https://opencode.ai/",
     "displayName": "opencode",
     "description": "The open source AI coding agent",
-    "category": "development"
+    "category": "development",
+    "iconUrl": "https://opencode.ai/social-share.png"
   },
   {
     "slug": "opera",
@@ -1050,7 +1166,8 @@
     "homepage": "https://opera.com",
     "displayName": "Opera",
     "description": "Fast, secure browser with built-in ad blocker",
-    "category": "browsers"
+    "category": "browsers",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/4/49/Opera_2015_icon.svg"
   },
   {
     "slug": "pcloud",
@@ -1059,7 +1176,8 @@
     "homepage": "https://pcloud.com",
     "displayName": "pCloud",
     "description": "Secure cloud storage with client-side encryption",
-    "category": "utilities"
+    "category": "utilities",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/6/62/Pcloud-logo.svg"
   },
   {
     "slug": "pcsx2",
@@ -1068,7 +1186,8 @@
     "homepage": "https://pcsx2.net",
     "displayName": "PCSX2",
     "description": "PlayStation 2 emulator",
-    "category": "games"
+    "category": "games",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/e/ee/PCSX2_logo.svg"
   },
   {
     "slug": "perl",
@@ -1077,7 +1196,8 @@
     "homepage": "https://perl.org",
     "displayName": "Perl",
     "description": "High-level, general-purpose programming language",
-    "category": "languages"
+    "category": "languages",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/3/34/Perl-logo.svg"
   },
   {
     "slug": "php",
@@ -1086,7 +1206,8 @@
     "homepage": "https://php.net",
     "displayName": "PHP",
     "description": "Popular general-purpose scripting language",
-    "category": "languages"
+    "category": "languages",
+    "iconUrl": "https://www.php.net/images/logos/new-php-logo.svg"
   },
   {
     "slug": "pnpm",
@@ -1095,7 +1216,8 @@
     "homepage": "https://pnpm.io",
     "displayName": "pnpm",
     "description": "Fast, disk space efficient package manager",
-    "category": "languages"
+    "category": "languages",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c1/Pnpm_logo.svg"
   },
   {
     "slug": "podman",
@@ -1104,7 +1226,8 @@
     "homepage": "https://podman.io",
     "displayName": "Podman",
     "description": "Daemonless container engine for OCI containers",
-    "category": "development"
+    "category": "development",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/9/9a/Podman-logo-orig.png"
   },
   {
     "slug": "postgresql",
@@ -1113,7 +1236,8 @@
     "homepage": "https://www.postgresql.org",
     "displayName": "PostgreSQL",
     "description": "Powerful, open source object-relational database system",
-    "category": "development"
+    "category": "development",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/2/29/Postgresql_elephant.svg"
   },
   {
     "slug": "postman",
@@ -1122,7 +1246,8 @@
     "homepage": "https://postman.com",
     "displayName": "Postman",
     "description": "API development and testing platform",
-    "category": "development"
+    "category": "development",
+    "iconUrl": "https://www.vectorlogo.zone/logos/getpostman/getpostman-icon.svg"
   },
   {
     "slug": "pycharm",
@@ -1131,7 +1256,8 @@
     "homepage": "https://jetbrains.com/pycharm",
     "displayName": "PyCharm Community",
     "description": "Python IDE by JetBrains",
-    "category": "development"
+    "category": "development",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1d/PyCharm_Icon.svg"
   },
   {
     "slug": "python",
@@ -1140,7 +1266,8 @@
     "homepage": "https://python.org",
     "displayName": "Python",
     "description": "High-level programming language",
-    "category": "languages"
+    "category": "languages",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg"
   },
   {
     "slug": "qbittorrent",
@@ -1149,7 +1276,8 @@
     "homepage": "https://qbittorrent.org",
     "displayName": "qBittorrent",
     "description": "Free and reliable BitTorrent client",
-    "category": "utilities"
+    "category": "utilities",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/6/66/New_qBittorrent_Logo.svg"
   },
   {
     "slug": "qemu",
@@ -1158,7 +1286,8 @@
     "homepage": "https://www.qemu.org",
     "displayName": "QEMU",
     "description": "Generic machine emulator and virtualizer",
-    "category": "development"
+    "category": "development",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/4/45/Qemu_logo.svg"
   },
   {
     "slug": "r-lang",
@@ -1167,7 +1296,8 @@
     "homepage": "https://r-project.org",
     "displayName": "R",
     "description": "Language for statistical computing and graphics",
-    "category": "languages"
+    "category": "languages",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1b/R_logo.svg"
   },
   {
     "slug": "ranger",
@@ -1176,7 +1306,8 @@
     "homepage": "https://ranger.github.io",
     "displayName": "Ranger",
     "description": "Console file manager with VI key bindings",
-    "category": "cli"
+    "category": "cli",
+    "iconUrl": null
   },
   {
     "slug": "rbenv",
@@ -1185,7 +1316,8 @@
     "homepage": "https://github.com/rbenv/rbenv",
     "displayName": "rbenv",
     "description": "Ruby version management tool",
-    "category": "languages"
+    "category": "languages",
+    "iconUrl": null
   },
   {
     "slug": "redis",
@@ -1194,7 +1326,8 @@
     "homepage": "https://redis.io",
     "displayName": "Redis",
     "description": "In-memory data structure store, used as database, cache and message broker",
-    "category": "development"
+    "category": "development",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/6/64/Logo-redis.svg"
   },
   {
     "slug": "remmina",
@@ -1203,7 +1336,8 @@
     "homepage": "https://remmina.org",
     "displayName": "Remmina",
     "description": "Remote desktop client supporting RDP, VNC, SSH, and more",
-    "category": "utilities"
+    "category": "utilities",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/9/96/Org.remmina.Remmina.svg"
   },
   {
     "slug": "resources",
@@ -1212,7 +1346,8 @@
     "homepage": "https://github.com/nokyan/resources",
     "displayName": "Resources",
     "description": "System resource monitor for GNOME",
-    "category": "system"
+    "category": "system",
+    "iconUrl": null
   },
   {
     "slug": "retroarch",
@@ -1221,7 +1356,8 @@
     "homepage": "https://retroarch.com",
     "displayName": "RetroArch",
     "description": "Frontend for emulators, game engines and media players",
-    "category": "games"
+    "category": "games",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3b/Retroarch.svg"
   },
   {
     "slug": "rider",
@@ -1230,7 +1366,8 @@
     "homepage": "https://jetbrains.com/rider",
     "displayName": "Rider",
     "description": ".NET IDE by JetBrains",
-    "category": "development"
+    "category": "development",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/6/6e/JetBrains_Rider_Icon.svg"
   },
   {
     "slug": "ripgrep",
@@ -1239,7 +1376,8 @@
     "homepage": "https://github.com/BurntSushi/ripgrep",
     "displayName": "ripgrep",
     "description": "Line-oriented search tool that recursively searches directories",
-    "category": "cli"
+    "category": "cli",
+    "iconUrl": null
   },
   {
     "slug": "rpcs3",
@@ -1248,7 +1386,8 @@
     "homepage": "https://rpcs3.net",
     "displayName": "RPCS3",
     "description": "PlayStation 3 emulator and debugger",
-    "category": "games"
+    "category": "games",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/en/3/38/RPCS3_LOGO.png"
   },
   {
     "slug": "ruby",
@@ -1257,7 +1396,8 @@
     "homepage": "https://ruby-lang.org",
     "displayName": "Ruby",
     "description": "Dynamic, open source programming language",
-    "category": "languages"
+    "category": "languages",
+    "iconUrl": "https://www.ruby-lang.org/images/header-ruby-logo.png"
   },
   {
     "slug": "rust",
@@ -1266,7 +1406,8 @@
     "homepage": "https://rust-lang.org",
     "displayName": "Rust",
     "description": "Systems programming language focused on safety",
-    "category": "languages"
+    "category": "languages",
+    "iconUrl": "https://www.rust-lang.org/static/images/rust-logo-blk.svg"
   },
   {
     "slug": "rustdesk",
@@ -1275,7 +1416,8 @@
     "homepage": "https://rustdesk.com",
     "displayName": "RustDesk",
     "description": "Open source remote desktop software written in Rust",
-    "category": "utilities"
+    "category": "utilities",
+    "iconUrl": "https://rustdesk.com/_astro/logo.BKb61-he.svg"
   },
   {
     "slug": "s-tui",
@@ -1284,7 +1426,8 @@
     "homepage": "https://amanusk.github.io/s-tui/",
     "displayName": "s-tui",
     "description": "Terminal-based CPU stress and monitoring utility",
-    "category": "tui"
+    "category": "tui",
+    "iconUrl": null
   },
   {
     "slug": "sdkman",
@@ -1293,7 +1436,8 @@
     "homepage": "https://sdkman.io",
     "displayName": "SDKMAN",
     "description": "Software Development Kit Manager for JVM ecosystem",
-    "category": "languages"
+    "category": "languages",
+    "iconUrl": "https://sdkman.io/assets/img/sdk-man-small-pattern.svg"
   },
   {
     "slug": "shotcut",
@@ -1302,7 +1446,8 @@
     "homepage": "https://shotcut.org",
     "displayName": "Shotcut",
     "description": "Free, cross-platform video editor",
-    "category": "media"
+    "category": "media",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/8/81/Shotcut_logo.svg"
   },
   {
     "slug": "signal",
@@ -1311,7 +1456,8 @@
     "homepage": "https://signal.org",
     "displayName": "Signal",
     "description": "Privacy-focused messaging app with end-to-end encryption",
-    "category": "communication"
+    "category": "communication",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/8/8d/Signal-Logo.svg"
   },
   {
     "slug": "slack",
@@ -1320,7 +1466,8 @@
     "homepage": "https://slack.com",
     "displayName": "Slack",
     "description": "Team communication and collaboration platform",
-    "category": "communication"
+    "category": "communication",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d5/Slack_icon_2019.svg"
   },
   {
     "slug": "spaceship",
@@ -1329,7 +1476,8 @@
     "homepage": "https://spaceship-prompt.sh",
     "displayName": "Spaceship Prompt",
     "description": "Minimalistic, powerful and extremely customizable Zsh prompt",
-    "category": "cli"
+    "category": "cli",
+    "iconUrl": null
   },
   {
     "slug": "spotify",
@@ -1338,7 +1486,8 @@
     "homepage": "https://spotify.com",
     "displayName": "Spotify",
     "description": "Digital music streaming service",
-    "category": "media"
+    "category": "media",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/8/84/Spotify_icon.svg"
   },
   {
     "slug": "standard-notes",
@@ -1347,7 +1496,8 @@
     "homepage": "https://standardnotes.com",
     "displayName": "Standard Notes",
     "description": "End-to-end encrypted note-taking app",
-    "category": "office"
+    "category": "office",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/5/53/Standard_Notes_-_Logo.png"
   },
   {
     "slug": "starship",
@@ -1356,7 +1506,8 @@
     "homepage": "https://starship.rs",
     "displayName": "Starship",
     "description": "Minimal, blazing-fast, and customizable shell prompt",
-    "category": "cli"
+    "category": "cli",
+    "iconUrl": null
   },
   {
     "slug": "steam",
@@ -1365,7 +1516,8 @@
     "homepage": "https://steampowered.com",
     "displayName": "Steam",
     "description": "Digital distribution platform for video games",
-    "category": "games"
+    "category": "games",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/8/83/Steam_icon_logo.svg"
   },
   {
     "slug": "stremio",
@@ -1374,7 +1526,8 @@
     "homepage": "https://www.stremio.com",
     "displayName": "Stremio",
     "description": "Modern media center for video entertainment",
-    "category": "media"
+    "category": "media",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/7/72/Stremio_logo.png"
   },
   {
     "slug": "sublime-text",
@@ -1383,7 +1536,8 @@
     "homepage": "https://sublimetext.com",
     "displayName": "Sublime Text",
     "description": "Sophisticated text editor for code, markup and prose",
-    "category": "development"
+    "category": "development",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/en/d/d2/Sublime_Text_3_logo.png"
   },
   {
     "slug": "supertuxkart",
@@ -1392,7 +1546,8 @@
     "homepage": "https://supertuxkart.net",
     "displayName": "SuperTuxKart",
     "description": "Free 3D kart racing game with open-source mascots",
-    "category": "games"
+    "category": "games",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/3/37/Logo_de_SuperTuxKart.png"
   },
   {
     "slug": "syncthing",
@@ -1401,7 +1556,8 @@
     "homepage": "https://syncthing.net",
     "displayName": "Syncthing",
     "description": "Continuous file synchronization program",
-    "category": "utilities"
+    "category": "utilities",
+    "iconUrl": "https://syncthing.net/img/logo-horizontal.svg"
   },
   {
     "slug": "tailscale",
@@ -1410,7 +1566,8 @@
     "homepage": "https://tailscale.com",
     "displayName": "Tailscale",
     "description": "Zero config VPN based on WireGuard",
-    "category": "system"
+    "category": "system",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4d/Tailscale-Logo-Black.svg"
   },
   {
     "slug": "telegram",
@@ -1419,7 +1576,8 @@
     "homepage": "https://telegram.org",
     "displayName": "Telegram Desktop",
     "description": "Fast and secure messaging app",
-    "category": "communication"
+    "category": "communication",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg"
   },
   {
     "slug": "terraform",
@@ -1428,7 +1586,8 @@
     "homepage": "https://www.terraform.io",
     "displayName": "Terraform",
     "description": "Infrastructure as Code tool by HashiCorp",
-    "category": "development"
+    "category": "development",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/0/04/Terraform_Logo.svg"
   },
   {
     "slug": "thunderbird",
@@ -1437,7 +1596,8 @@
     "homepage": "https://thunderbird.net",
     "displayName": "Thunderbird",
     "description": "Free email application that's easy to set up and customize",
-    "category": "communication"
+    "category": "communication",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/5/53/Thunderbird_2023_icon.png"
   },
   {
     "slug": "timeshift",
@@ -1446,7 +1606,8 @@
     "homepage": "https://github.com/linuxmint/timeshift",
     "displayName": "Timeshift",
     "description": "System restore tool for Linux",
-    "category": "system"
+    "category": "system",
+    "iconUrl": "https://raw.githubusercontent.com/linuxmint/timeshift/master/src/share/pixmaps/timeshift.png"
   },
   {
     "slug": "tldr",
@@ -1455,7 +1616,8 @@
     "homepage": "https://tldr.sh",
     "displayName": "tldr",
     "description": "Simplified and community-driven man pages",
-    "category": "cli"
+    "category": "cli",
+    "iconUrl": null
   },
   {
     "slug": "tmux",
@@ -1464,7 +1626,8 @@
     "homepage": "https://github.com/tmux/tmux",
     "displayName": "tmux",
     "description": "Terminal multiplexer for managing multiple terminal sessions",
-    "category": "system"
+    "category": "system",
+    "iconUrl": "https://raw.githubusercontent.com/tmux/tmux/master/logo/tmux-logo.svg"
   },
   {
     "slug": "tor-browser",
@@ -1473,7 +1636,8 @@
     "homepage": "https://torproject.org",
     "displayName": "Tor Browser",
     "description": "Private browser for anonymous web browsing",
-    "category": "browsers"
+    "category": "browsers",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/1/15/Tor-logo-2011-flat.svg"
   },
   {
     "slug": "transmission",
@@ -1482,7 +1646,8 @@
     "homepage": "https://transmissionbt.com",
     "displayName": "Transmission",
     "description": "Fast, lightweight BitTorrent client",
-    "category": "utilities"
+    "category": "utilities",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/6/6d/Transmission_icon.png"
   },
   {
     "slug": "ungoogled-chromium",
@@ -1491,7 +1656,8 @@
     "homepage": "https://ungoogled-software.github.io",
     "displayName": "Ungoogled Chromium",
     "description": "Chromium without Google integration",
-    "category": "browsers"
+    "category": "browsers",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/d/dd/Ungoogled-chromium_logo.webp"
   },
   {
     "slug": "uv",
@@ -1500,7 +1666,8 @@
     "homepage": "https://github.com/astral-sh/uv",
     "displayName": "uv",
     "description": "Extremely fast Python package installer and resolver, written in Rust",
-    "category": "languages"
+    "category": "languages",
+    "iconUrl": "https://raw.githubusercontent.com/astral-sh/uv/main/docs/assets/logo-letter.svg"
   },
   {
     "slug": "vagrant",
@@ -1509,7 +1676,8 @@
     "homepage": "https://www.vagrantup.com",
     "displayName": "Vagrant",
     "description": "Tool for building and managing virtual machine environments",
-    "category": "development"
+    "category": "development",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/8/87/Vagrant.png"
   },
   {
     "slug": "ventoy",
@@ -1518,7 +1686,8 @@
     "homepage": "https://ventoy.net",
     "displayName": "Ventoy",
     "description": "Bootable USB solution supporting multiple ISO files",
-    "category": "utilities"
+    "category": "utilities",
+    "iconUrl": "https://www.ventoy.net/static/img/ventoy.png"
   },
   {
     "slug": "veracrypt",
@@ -1527,7 +1696,8 @@
     "homepage": "https://veracrypt.fr",
     "displayName": "VeraCrypt",
     "description": "Free open source disk encryption software",
-    "category": "security"
+    "category": "security",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/6/6a/VeraCrypt_Logo.svg"
   },
   {
     "slug": "virt-manager",
@@ -1536,7 +1706,8 @@
     "homepage": "https://virt-manager.org",
     "displayName": "virt-manager",
     "description": "Desktop application for managing virtual machines",
-    "category": "development"
+    "category": "development",
+    "iconUrl": null
   },
   {
     "slug": "virtualbox",
@@ -1545,7 +1716,8 @@
     "homepage": "https://www.virtualbox.org",
     "displayName": "VirtualBox",
     "description": "Powerful x86 and AMD64/Intel64 virtualization product",
-    "category": "development"
+    "category": "development",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/f/ff/VirtualBox_2024_Logo.svg"
   },
   {
     "slug": "vivaldi",
@@ -1554,7 +1726,8 @@
     "homepage": "https://vivaldi.com",
     "displayName": "Vivaldi",
     "description": "Feature-rich and highly customizable browser",
-    "category": "browsers"
+    "category": "browsers",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e4/Vivaldi_web_browser_logo.svg"
   },
   {
     "slug": "vlc",
@@ -1563,7 +1736,8 @@
     "homepage": "https://videolan.org/vlc",
     "displayName": "VLC Media Player",
     "description": "Free and open source cross-platform multimedia player",
-    "category": "media"
+    "category": "media",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e6/VLC_Icon.svg"
   },
   {
     "slug": "vscode",
@@ -1572,7 +1746,8 @@
     "homepage": "https://code.visualstudio.com",
     "displayName": "Visual Studio Code",
     "description": "Code editor redefined and optimized for building and debugging",
-    "category": "development"
+    "category": "development",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/9/9a/Visual_Studio_Code_1.35_icon.svg"
   },
   {
     "slug": "vscodium",
@@ -1581,7 +1756,8 @@
     "homepage": "https://vscodium.com",
     "displayName": "VSCodium",
     "description": "VS Code without Microsoft telemetry and tracking",
-    "category": "development"
+    "category": "development",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/5/56/VSCodium_Logo.png"
   },
   {
     "slug": "warzone2100",
@@ -1590,7 +1766,8 @@
     "homepage": "https://wz2100.net",
     "displayName": "Warzone 2100",
     "description": "Free and open-source real-time strategy game",
-    "category": "games"
+    "category": "games",
+    "iconUrl": "https://wz2100.net/img/warzone2100.large.webp"
   },
   {
     "slug": "waterfox",
@@ -1599,7 +1776,8 @@
     "homepage": "https://waterfox.net",
     "displayName": "Waterfox",
     "description": "Privacy-focused browser based on Firefox",
-    "category": "browsers"
+    "category": "browsers",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/2/24/Waterfox_logo_2020_(vectorized).svg"
   },
   {
     "slug": "webstorm",
@@ -1608,7 +1786,8 @@
     "homepage": "https://jetbrains.com/webstorm",
     "displayName": "WebStorm",
     "description": "JavaScript and TypeScript IDE by JetBrains",
-    "category": "development"
+    "category": "development",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c0/WebStorm_Icon.svg"
   },
   {
     "slug": "wesnoth",
@@ -1617,7 +1796,8 @@
     "homepage": "https://wesnoth.org",
     "displayName": "Battle for Wesnoth",
     "description": "Turn-based strategy game in a fantasy setting",
-    "category": "games"
+    "category": "games",
+    "iconUrl": "https://forums.wesnoth.org/download/file.php?id=63287&sid=77983823d1f73e7931ff7b6b1238ae59"
   },
   {
     "slug": "wezterm",
@@ -1626,7 +1806,8 @@
     "homepage": "https://wezfurlong.org/wezterm",
     "displayName": "WezTerm",
     "description": "GPU-accelerated cross-platform terminal emulator",
-    "category": "system"
+    "category": "system",
+    "iconUrl": "https://raw.githubusercontent.com/wez/wezterm/main/assets/icon/terminal.png"
   },
   {
     "slug": "wireguard",
@@ -1635,7 +1816,8 @@
     "homepage": "https://www.wireguard.com",
     "displayName": "WireGuard",
     "description": "Fast, modern, secure VPN tunnel",
-    "category": "system"
+    "category": "system",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/9/98/Logo_of_WireGuard.svg"
   },
   {
     "slug": "wireshark",
@@ -1644,7 +1826,8 @@
     "homepage": "https://www.wireshark.org",
     "displayName": "Wireshark",
     "description": "Network protocol analyzer",
-    "category": "development"
+    "category": "development",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c6/Wireshark_icon_new.png"
   },
   {
     "slug": "yazi",
@@ -1653,7 +1836,8 @@
     "homepage": "https://yazi-rs.github.io",
     "displayName": "Yazi",
     "description": "Blazing fast terminal file manager",
-    "category": "cli"
+    "category": "cli",
+    "iconUrl": "https://yazi-rs.github.io/webp/logo.webp"
   },
   {
     "slug": "yq",
@@ -1662,7 +1846,8 @@
     "homepage": "https://github.com/mikefarah/yq",
     "displayName": "yq",
     "description": "Lightweight and portable command-line YAML processor",
-    "category": "cli"
+    "category": "cli",
+    "iconUrl": null
   },
   {
     "slug": "zed",
@@ -1671,7 +1856,8 @@
     "homepage": "https://zed.dev",
     "displayName": "Zed",
     "description": "High-performance code editor built in Rust",
-    "category": "development"
+    "category": "development",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/1/16/Zed_Editor_Logo.png"
   },
   {
     "slug": "zen-browser",
@@ -1680,7 +1866,8 @@
     "homepage": "https://zen-browser.app",
     "displayName": "Zen Browser",
     "description": "Privacy-focused browser based on Firefox",
-    "category": "browsers"
+    "category": "browsers",
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3c/Zen_Browser_logo_(red_circles).svg"
   },
   {
     "slug": "zoom",
@@ -1689,7 +1876,8 @@
     "homepage": "https://zoom.us",
     "displayName": "Zoom",
     "description": "Video conferencing and web conferencing service",
-    "category": "communication"
+    "category": "communication",
+    "iconUrl": "https://cdn.worldvectorlogo.com/logos/zoom-app.svg"
   },
   {
     "slug": "zoxide",
@@ -1698,7 +1886,8 @@
     "homepage": "https://github.com/ajeetdsouza/zoxide",
     "displayName": "zoxide",
     "description": "Smarter cd command for your terminal",
-    "category": "cli"
+    "category": "cli",
+    "iconUrl": null
   },
   {
     "slug": "zsh",
@@ -1707,6 +1896,7 @@
     "homepage": "https://zsh.org",
     "displayName": "Zsh",
     "description": "Powerful shell with advanced features and customization",
-    "category": "system"
+    "category": "system",
+    "iconUrl": "https://raw.githubusercontent.com/Zsh-art/logo/17617f2f6c70c65943a48745c91d997e7561f19d/svg/color_horizontal_icon.svg"
   }
 ]
