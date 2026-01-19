@@ -61,16 +61,19 @@ describe('AppCard', () => {
       expect(screen.getByText('Snap')).toBeInTheDocument();
     });
 
-    it('should show details button with link to app page', () => {
+    it('should show website button with external link when homepage is provided', () => {
       const app = createMockAppWithRelations({
         slug: 'test-app',
+        homepage: 'https://example.com',
         packages: [],
       });
 
       renderWithProviders(<AppCard app={app} />);
 
-      const detailsLink = screen.getByRole('link', { name: /details/i });
-      expect(detailsLink).toHaveAttribute('href', '/apps/test-app');
+      const websiteLink = screen.getByRole('link', { name: /website/i });
+      expect(websiteLink).toHaveAttribute('href', 'https://example.com');
+      expect(websiteLink).toHaveAttribute('target', '_blank');
+      expect(websiteLink).toHaveAttribute('rel', 'noopener noreferrer');
     });
 
     it('should only show FOSS badge when app is FOSS', () => {
@@ -138,6 +141,18 @@ describe('AppCard', () => {
       expect(screen.getByText('Snap')).toBeInTheDocument();
       expect(screen.getByText('APT')).toBeInTheDocument();
     });
+
+    it('should not show website button when homepage is not provided', () => {
+      const app = createMockAppWithRelations({
+        displayName: 'Test App',
+        homepage: null,
+        packages: [],
+      });
+
+      renderWithProviders(<AppCard app={app} />);
+
+      expect(screen.queryByRole('link')).not.toBeInTheDocument();
+    });
   });
 
   describe('compact layout', () => {
@@ -182,16 +197,19 @@ describe('AppCard', () => {
       expect(screen.getByText('3 sources')).toBeInTheDocument();
     });
 
-    it('should have info button linking to app details', () => {
+    it('should have external link button when homepage is provided', () => {
       const app = createMockAppWithRelations({
         slug: 'compact-app',
+        homepage: 'https://example.com/compact',
         packages: [],
       });
 
       renderWithProviders(<AppCard app={app} layout="compact" />);
 
-      const infoLink = screen.getByRole('link');
-      expect(infoLink).toHaveAttribute('href', '/apps/compact-app');
+      const externalLink = screen.getByRole('link');
+      expect(externalLink).toHaveAttribute('href', 'https://example.com/compact');
+      expect(externalLink).toHaveAttribute('target', '_blank');
+      expect(externalLink).toHaveAttribute('rel', 'noopener noreferrer');
     });
 
     it('should not show Popular badge in compact mode', () => {
@@ -204,6 +222,18 @@ describe('AppCard', () => {
       renderWithProviders(<AppCard app={app} layout="compact" />);
 
       expect(screen.queryByText('Popular')).not.toBeInTheDocument();
+    });
+
+    it('should not show external link when homepage is not provided in compact mode', () => {
+      const app = createMockAppWithRelations({
+        displayName: 'No Homepage App',
+        homepage: null,
+        packages: [],
+      });
+
+      renderWithProviders(<AppCard app={app} layout="compact" />);
+
+      expect(screen.queryByRole('link')).not.toBeInTheDocument();
     });
   });
 
@@ -267,42 +297,53 @@ describe('AppCard', () => {
   });
 
   describe('interaction behavior', () => {
-    it('should not toggle selection when clicking the details link', () => {
-      const app = createMockAppWithRelations({ id: 'app-1', packages: [] });
+    it('should not toggle selection when clicking the website link', () => {
+      const app = createMockAppWithRelations({
+        id: 'app-1',
+        homepage: 'https://example.com',
+        packages: []
+      });
 
       renderWithProviders(<AppCard app={app} />);
 
-      const detailsLink = screen.getByRole('link', { name: /details/i });
-      fireEvent.click(detailsLink);
+      const websiteLink = screen.getByRole('link', { name: /website/i });
+      fireEvent.click(websiteLink);
 
       expect(useSelectionStore.getState().selectedApps.has('app-1')).toBe(false);
     });
 
-    it('should not toggle selection when clicking info button in compact mode', () => {
-      const app = createMockAppWithRelations({ id: 'app-1', packages: [] });
+    it('should not toggle selection when clicking external link in compact mode', () => {
+      const app = createMockAppWithRelations({
+        id: 'app-1',
+        homepage: 'https://example.com',
+        packages: []
+      });
 
       renderWithProviders(<AppCard app={app} layout="compact" />);
 
-      const infoButton = screen.getByRole('link');
-      fireEvent.click(infoButton);
+      const externalLink = screen.getByRole('link');
+      fireEvent.click(externalLink);
 
       expect(useSelectionStore.getState().selectedApps.has('app-1')).toBe(false);
     });
 
     it('should prevent event propagation when clicking links', () => {
-      const app = createMockAppWithRelations({ packages: [] });
+      const app = createMockAppWithRelations({
+        homepage: 'https://example.com',
+        packages: []
+      });
 
       renderWithProviders(<AppCard app={app} />);
 
-      const detailsLink = screen.getByRole('link', { name: /details/i });
+      const websiteLink = screen.getByRole('link', { name: /website/i });
       const stopPropagation = vi.fn();
 
-      detailsLink.addEventListener('click', (e) => {
+      websiteLink.addEventListener('click', (e) => {
         stopPropagation();
         e.stopPropagation();
       });
 
-      fireEvent.click(detailsLink);
+      fireEvent.click(websiteLink);
 
       expect(stopPropagation).toHaveBeenCalled();
     });
@@ -318,13 +359,19 @@ describe('AppCard', () => {
       expect(checkbox).toBeInTheDocument();
     });
 
-    it('should have proper link with href', () => {
-      const app = createMockAppWithRelations({ slug: 'firefox', packages: [] });
+    it('should have proper external link with href when homepage provided', () => {
+      const app = createMockAppWithRelations({
+        slug: 'firefox',
+        homepage: 'https://firefox.com',
+        packages: []
+      });
 
       renderWithProviders(<AppCard app={app} />);
 
-      const link = screen.getByRole('link', { name: /details/i });
-      expect(link).toHaveAttribute('href', '/apps/firefox');
+      const link = screen.getByRole('link', { name: /website/i });
+      expect(link).toHaveAttribute('href', 'https://firefox.com');
+      expect(link).toHaveAttribute('target', '_blank');
+      expect(link).toHaveAttribute('rel', 'noopener noreferrer');
     });
 
     it('should render image with alt text from app name', () => {
