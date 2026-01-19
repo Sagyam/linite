@@ -1,4 +1,4 @@
-import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { KeyboardShortcutsDialog } from './keyboard-shortcuts-dialog';
 
@@ -73,6 +73,12 @@ describe('KeyboardShortcutsDialog', () => {
 
       expect(screen.getByText('View Controls')).toBeInTheDocument();
     });
+
+    it('should render Actions section', () => {
+      render(<KeyboardShortcutsDialog {...defaultProps} />);
+
+      expect(screen.getByText('Actions')).toBeInTheDocument();
+    });
   });
 
   describe('keyboard shortcuts content', () => {
@@ -112,6 +118,13 @@ describe('KeyboardShortcutsDialog', () => {
       expect(screen.getByText(/switch to compact view/i)).toBeInTheDocument();
       expect(screen.getByText(/switch to detailed view/i)).toBeInTheDocument();
       expect(screen.getByText(/toggle between minimal and detailed/i)).toBeInTheDocument();
+    });
+
+    it('should display action shortcuts', () => {
+      render(<KeyboardShortcutsDialog {...defaultProps} />);
+
+      expect(screen.getByText(/generate install command/i)).toBeInTheDocument();
+      expect(screen.getByText(/view selected apps.*bottom drawer/i)).toBeInTheDocument();
     });
   });
 

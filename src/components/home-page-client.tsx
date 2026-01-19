@@ -66,6 +66,29 @@ export function HomePageClient({ categories, distros, initialApps, totalApps }: 
 
   const displayedApps = data?.pages.flatMap((page) => page.apps) ?? [];
 
+  const handleGenerateCommand = () => {
+    if (selectedAppsSize > 0 && selectedDistro) {
+      setCommandDialogOpen(true);
+    } else {
+      // If distro not selected, open selection drawer to prompt user
+      setSelectionDrawerOpen(true);
+    }
+  };
+
+  const handleToggleGenerateCommand = () => {
+    // If dialog is already open, close it (toggle behavior)
+    if (commandDialogOpen) {
+      setCommandDialogOpen(false);
+    } else {
+      handleGenerateCommand();
+    }
+  };
+
+  const handleToggleSelectionDrawer = () => {
+    // Toggle the selection drawer
+    setSelectionDrawerOpen(!selectionDrawerOpen);
+  };
+
   // Keyboard navigation
   const { showShortcuts, setShowShortcuts } = useKeyboardNavigation({
     apps: displayedApps,
@@ -75,16 +98,9 @@ export function HomePageClient({ categories, distros, initialApps, totalApps }: 
     searchInputRef,
     distroTriggerRef,
     sourceTriggerRef,
+    onGenerateCommand: handleToggleGenerateCommand,
+    onViewSelection: handleToggleSelectionDrawer,
   });
-
-  const handleGenerateCommand = () => {
-    if (selectedAppsSize > 0 && selectedDistro) {
-      setCommandDialogOpen(true);
-    } else {
-      // If distro not selected, open selection drawer to prompt user
-      setSelectionDrawerOpen(true);
-    }
-  };
 
   const handleClearFilters = () => {
     setSelectedCategory('all');

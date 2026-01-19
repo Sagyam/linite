@@ -570,8 +570,14 @@
     "source": "flatpak"
   },
   {
-    "app": "zed",
+    "app": "zen",
     "identifier": "app.zen_browser.zen",
+    "isAvailable": true,
+    "source": "flatpak"
+  },
+  {
+    "app": "zed",
+    "identifier": "dev.zed.Zed",
     "isAvailable": true,
     "source": "flatpak"
   },

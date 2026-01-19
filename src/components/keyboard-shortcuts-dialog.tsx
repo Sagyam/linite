@@ -61,6 +61,13 @@ const shortcuts: ShortcutSection[] = [
     ],
   },
   {
+    category: 'Actions',
+    items: [
+      { keys: ['c'], description: 'Generate install command' },
+      { keys: ['b'], description: 'View selected apps (bottom drawer)' },
+    ],
+  },
+  {
     category: 'View Controls',
     items: [
       { keys: ['Tab'], description: 'Cycle through view modes' },

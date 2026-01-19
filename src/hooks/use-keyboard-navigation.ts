@@ -14,6 +14,8 @@ interface UseKeyboardNavigationProps {
   searchInputRef: React.RefObject<HTMLInputElement | null>;
   distroTriggerRef?: React.RefObject<HTMLButtonElement | null>;
   sourceTriggerRef?: React.RefObject<HTMLButtonElement | null>;
+  onGenerateCommand?: () => void;
+  onViewSelection?: () => void;
 }
 
 export function useKeyboardNavigation({
@@ -24,6 +26,8 @@ export function useKeyboardNavigation({
   searchInputRef,
   distroTriggerRef,
   sourceTriggerRef,
+  onGenerateCommand,
+  onViewSelection,
 }: UseKeyboardNavigationProps) {
   const [showShortcuts, setShowShortcuts] = useState(false);
   const [visualModeStart, setVisualModeStart] = useState<number | null>(null);
@@ -176,6 +180,18 @@ export function useKeyboardNavigation({
         case 's':
           e.preventDefault();
           sourceTriggerRef?.current?.click();
+          break;
+
+        // Actions: Generate command
+        case 'c':
+          e.preventDefault();
+          onGenerateCommand?.();
+          break;
+
+        // Actions: View selection drawer
+        case 'b':
+          e.preventDefault();
+          onViewSelection?.();
           break;
 
         // Help: Show shortcuts

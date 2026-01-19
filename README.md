@@ -13,7 +13,7 @@
 
 ## Overview
 
-Linite is a Ninite-style package installer for Linux distributions and Windows. It aggregates applications from multiple package sources (APT, DNF, Pacman, Zypper, Nix, Flatpak, Snap, AUR, Homebrew, Winget, Scoop) and generates optimized installation commands based on your platform and preferences.
+Linite is a Ninite-style package installer for Linux distributions and Windows. It aggregates applications from multiple package sources (APT, DNF, Pacman, Zypper, Nix, Flatpak, Snap, AUR, Homebrew, Winget, Scoop) and generates a installation commands based on your platform and preferences.
 
 Instead of manually searching for packages across different repositories and running multiple package manager commands, Linite provides a web interface to select applications and outputs a single, ready-to-run installation script.
 

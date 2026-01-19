@@ -62,9 +62,12 @@ export const FloatingActionBar = memo(function FloatingActionBar({
               </Badge>
             </div>
             <div className="text-left min-w-0 flex-1">
-              <p className="text-sm font-semibold truncate">
+              <p className="text-sm font-semibold truncate flex items-center gap-1.5">
                 {selectedAppsSize} {selectedAppsSize === 1 ? 'app' : 'apps'}{' '}
                 selected
+                <kbd className="hidden sm:inline-flex px-1.5 py-0.5 text-[10px] font-semibold bg-muted border border-border rounded">
+                  b
+                </kbd>
               </p>
               <p className="text-xs text-muted-foreground flex items-center gap-1 truncate">
                 {selectedDistro ? (
@@ -113,6 +116,9 @@ export const FloatingActionBar = memo(function FloatingActionBar({
                 disabled={!canGenerate}
                 className="gap-2 w-full sm:w-auto text-sm sm:text-base shrink-0"
               >
+                <kbd className="hidden sm:inline-flex px-1.5 py-0.5 text-[10px] font-semibold bg-primary-foreground text-primary border border-primary/20 rounded">
+                  c
+                </kbd>
                 <span className="hidden xs:inline">Generate Command</span>
                 <span className="xs:hidden">Generate</span>
                 <ArrowRight className="w-4 h-4 shrink-0" />
