@@ -7,8 +7,13 @@
  * This is the single source of truth for package validation.
  *
  * Usage:
- *   bun run scripts/validate-seed-docker.ts # All sources
- *   bun run scripts/validate-seed-docker.ts apt # Single source
+ *   bun run scripts/validate-seed-docker.ts          # All sources (console output)
+ *   bun run scripts/validate-seed-docker.ts apt      # Single source (console output)
+ *   bun run scripts/validate-seed-docker.ts --json   # All sources (JSON output)
+ *   bun run scripts/validate-seed-docker.ts --json apt # Single source (JSON output)
+ *
+ * Options:
+ *   --json    Output results as JSON instead of console format (used by GitHub Actions)
  *
  * Supported sources:
  *   - Linux distros: apt, dnf, zypper, pacman, aur, nix
@@ -51,6 +56,30 @@ interface ContainerConfig {
   image: string;
   setupCommand: string;
   validationCommand: (identifier: string) => string;
+}
+
+interface FailedPackage {
+  app: string;
+  identifier: string;
+}
+
+interface ValidationResult {
+  source: string;
+  total: number;
+  valid: number;
+  failed: number;
+  skipped: boolean;
+  failedPackages: FailedPackage[];
+}
+
+interface JsonOutput {
+  timestamp: string;
+  totalSources: number;
+  totalPackages: number;
+  validPackages: number;
+  failedPackages: number;
+  skippedSources: number;
+  results: ValidationResult[];
 }
 
 // Docker container configurations for each source
@@ -173,16 +202,20 @@ function dockerExec(containerName: string, command: string, timeout = 30000): bo
 }
 
 // Start a Docker container
-function startContainer(config: ContainerConfig): boolean {
+function startContainer(config: ContainerConfig, jsonMode: boolean): boolean {
   // Pull image
-  console.log(`  Pulling ${config.image}...`);
+  if (!jsonMode) {
+    console.log(`  Pulling ${config.image}...`);
+  }
   const pullResult = spawnSync('docker', ['pull', '-q', config.image], {
-    stdio: 'inherit',
+    stdio: jsonMode ? 'pipe' : 'inherit',
     timeout: 300000, // 5-minute timeout for pulls
   });
 
   if (pullResult.status !== 0) {
-    console.error(`  ✗ Failed to pull image`);
+    if (!jsonMode) {
+      console.error(`  ✗ Failed to pull image`);
+    }
     return false;
   }
 
@@ -197,14 +230,20 @@ function startContainer(config: ContainerConfig): boolean {
   ], { stdio: 'pipe' });
 
   if (result.status !== 0) {
-    console.error(`  ✗ Failed to start container`);
+    if (!jsonMode) {
+      console.error(`  ✗ Failed to start container`);
+    }
     return false;
   }
 
   // Update package databases / setup (with a longer timeout for setup commands)
-  console.log(`  Setting up environment...`);
+  if (!jsonMode) {
+    console.log(`  Setting up environment...`);
+  }
   if (!dockerExec(config.name, config.setupCommand, 120000)) {
-    console.error(`  ✗ Failed to setup environment`);
+    if (!jsonMode) {
+      console.error(`  ✗ Failed to setup environment`);
+    }
     return false;
   }
 
@@ -217,9 +256,11 @@ function stopContainer(name: string): void {
 }
 
 // Setup cleanup on exit
-function setupCleanup() {
+function setupCleanup(jsonMode: boolean) {
   const cleanup = () => {
-    console.log('\nCleaning up containers...');
+    if (!jsonMode) {
+      console.log('\nCleaning up containers...');
+    }
     Object.values(CONTAINERS).forEach(config => stopContainer(config.name));
   };
 
@@ -341,28 +382,48 @@ async function validatePackage(
 // Validate all packages for a source
 async function validateSource(
   source: string,
-  packages: Package[]
-): Promise<{ valid: number; total: number; skipped: boolean }> {
-  console.log(`\n${'='.repeat(60)}`);
-  console.log(`Validating ${source} (${packages.length} packages)`);
-  console.log('='.repeat(60));
+  packages: Package[],
+  jsonMode: boolean
+): Promise<ValidationResult> {
+  if (!jsonMode) {
+    console.log(`\n${'='.repeat(60)}`);
+    console.log(`Validating ${source} (${packages.length} packages)`);
+    console.log('='.repeat(60));
+  }
 
   // Skip Windows-only sources
   if (SKIP_SOURCES.has(source)) {
-    console.log(`  ⏭️  Skipped (Windows-only, cannot validate in Linux Docker)`);
-    return { valid: 0, total: packages.length, skipped: true };
+    if (!jsonMode) {
+      console.log(`  ⏭️  Skipped (Windows-only, cannot validate in Linux Docker)`);
+    }
+    return {
+      source,
+      valid: 0,
+      total: packages.length,
+      failed: 0,
+      skipped: true,
+      failedPackages: [],
+    };
   }
 
   const config = CONTAINERS[source];
   let valid = 0;
+  const failedPackages: FailedPackage[] = [];
 
   // API-based sources that don't need Docker
   const apiSources = new Set(['script', 'aur', 'flatpak', 'snap', 'homebrew']);
 
   // Start container (except for API-based sources)
   if (!apiSources.has(source)) {
-    if (!startContainer(config)) {
-      return { valid: 0, total: packages.length, skipped: false };
+    if (!startContainer(config, jsonMode)) {
+      return {
+        source,
+        valid: 0,
+        total: packages.length,
+        failed: packages.length,
+        skipped: false,
+        failedPackages: packages.map(pkg => ({ app: pkg.app, identifier: pkg.identifier })),
+      };
     }
   }
 
@@ -371,10 +432,15 @@ async function validateSource(
     const isValid = await validatePackage(source, pkg.identifier, pkg, config?.name || '');
 
     if (isValid) {
-      console.log(`  ✓ ${pkg.identifier}`);
+      if (!jsonMode) {
+        console.log(`  ✓ ${pkg.identifier}`);
+      }
       valid++;
     } else {
-      console.log(`  ✗ ${pkg.identifier}`);
+      if (!jsonMode) {
+        console.log(`  ✗ ${pkg.identifier}`);
+      }
+      failedPackages.push({ app: pkg.app, identifier: pkg.identifier });
     }
   }
 
@@ -383,19 +449,27 @@ async function validateSource(
     stopContainer(config.name);
   }
 
-  console.log(`\nSummary: ${valid}/${packages.length} validated\n`);
-  return { valid, total: packages.length, skipped: false };
+  if (!jsonMode) {
+    console.log(`\nSummary: ${valid}/${packages.length} validated\n`);
+  }
+
+  return {
+    source,
+    valid,
+    total: packages.length,
+    failed: packages.length - valid,
+    skipped: false,
+    failedPackages,
+  };
 }
 
 // Print overall summary
-function printOverallSummary(
-  results: Record<string, { valid: number; total: number; skipped: boolean }>
-) {
+function printOverallSummary(results: Record<string, ValidationResult>) {
   console.log('\n' + '='.repeat(60));
   console.log('📊 OVERALL SUMMARY');
   console.log('='.repeat(60));
 
-  Object.entries(results).forEach(([source, { valid, total, skipped }]) => {
+  Object.values(results).forEach(({ source, valid, total, skipped }) => {
     if (skipped) {
       console.log(`⏭️  ${source.padEnd(12)} ${total} packages (skipped - Windows-only)`);
     } else {
@@ -406,31 +480,49 @@ function printOverallSummary(
   });
 
   // Calculate totals (excluding skipped)
-  const validatedResults = Object.entries(results).filter(([_, r]) => !r.skipped);
-  const totalValid = validatedResults.reduce((sum, [_, r]) => sum + r.valid, 0);
-  const totalPackages = validatedResults.reduce((sum, [_, r]) => sum + r.total, 0);
+  const validatedResults = Object.values(results).filter(r => !r.skipped);
+  const totalValid = validatedResults.reduce((sum, r) => sum + r.valid, 0);
+  const totalPackages = validatedResults.reduce((sum, r) => sum + r.total, 0);
   const overallPercent = totalPackages > 0 ? ((totalValid / totalPackages) * 100).toFixed(1) : '0.0';
 
   console.log('='.repeat(60));
   console.log(`Total: ${totalValid}/${totalPackages} (${overallPercent}%)\n`);
 }
 
+// Print JSON output
+function printJsonOutput(results: Record<string, ValidationResult>): void {
+  const validatedResults = Object.values(results).filter(r => !r.skipped);
+  const output: JsonOutput = {
+    timestamp: new Date().toISOString(),
+    totalSources: Object.keys(results).length,
+    totalPackages: validatedResults.reduce((sum, r) => sum + r.total, 0),
+    validPackages: validatedResults.reduce((sum, r) => sum + r.valid, 0),
+    failedPackages: validatedResults.reduce((sum, r) => sum + r.failed, 0),
+    skippedSources: Object.values(results).filter(r => r.skipped).length,
+    results: Object.values(results),
+  };
+  console.log(JSON.stringify(output, null, 2));
+}
+
 // Main function
 async function main() {
-  console.log('🐳 Docker-based Package Validation\n');
-
   // Parse arguments
   const args = process.argv.slice(2);
   const singleSource = args.find(arg => !arg.startsWith('--'));
+  const jsonMode = args.includes('--json');
+
+  if (!jsonMode) {
+    console.log('🐳 Docker-based Package Validation\n');
+  }
 
   // Preflight checks
   if (!checkDockerAvailable()) {
     process.exit(2);
   }
 
-  setupCleanup();
+  setupCleanup(jsonMode);
 
-  const results: Record<string, { valid: number; total: number; skipped: boolean }> = {};
+  const results: Record<string, ValidationResult> = {};
   const packagesDir = join(process.cwd(), 'seed/packages');
 
   // Get all package files
@@ -444,8 +536,10 @@ async function main() {
 
   // Validate single source exists
   if (singleSource && !allFiles.includes(singleSource)) {
-    console.error(`❌ Unknown source: ${singleSource}`);
-    console.error(`   Available sources: ${allFiles.join(', ')}`);
+    if (!jsonMode) {
+      console.error(`❌ Unknown source: ${singleSource}`);
+      console.error(`   Available sources: ${allFiles.join(', ')}`);
+    }
     process.exit(2);
   }
 
@@ -455,18 +549,29 @@ async function main() {
 
     try {
       const packages: Package[] = JSON.parse(readFileSync(filePath, 'utf-8'));
-      results[source] = await validateSource(source, packages);
+      results[source] = await validateSource(source, packages, jsonMode);
     } catch (error) {
-      console.error(`\n❌ Failed to validate ${source}:`);
-      if (error instanceof Error) {
-        console.error(`   ${error.message}`);
+      if (!jsonMode) {
+        console.error(`\n❌ Failed to validate ${source}:`);
+        if (error instanceof Error) {
+          console.error(`   ${error.message}`);
+        }
       }
-      results[source] = { valid: 0, total: 0, skipped: false };
+      results[source] = {
+        source,
+        valid: 0,
+        total: 0,
+        failed: 0,
+        skipped: false,
+        failedPackages: [],
+      };
     }
   }
 
-  // Print an overall summary (only if validating multiple sources)
-  if (!singleSource) {
+  // Output results based on mode
+  if (jsonMode) {
+    printJsonOutput(results);
+  } else if (!singleSource) {
     printOverallSummary(results);
   }
 
