@@ -38,6 +38,8 @@ import { join } from 'path';
 import { spawnSync } from 'child_process';
 
 // Types
+import fs from "fs";
+
 interface Package {
   app: string;
   identifier: string;
@@ -109,14 +111,14 @@ const CONTAINERS: Record<string, ContainerConfig> = {
     setupCommand: 'sed -i "s/^SigLevel.*/SigLevel = Never/g" /etc/pacman.conf && pacman -Sy --noconfirm 2>&1',
     validationCommand: (id) => `pacman -Si "${id}" >/dev/null 2>&1`,
   },
-  // AUR uses API, no Docker needed (handled specially in validatePackage)
-  nix: {
-    name: 'linite-validator-nix',
-    image: 'nixos/nix:latest',
-    setupCommand: 'nix-channel --add https://nixos.org/channels/nixpkgs-unstable nixpkgs && nix-channel --update 2>&1',
-    validationCommand: (id) =>
-      `nix-env -qaP ".*${id}.*" 2>/dev/null | head -1 | grep -qi "${id}"`,
-  },
+  // NixOS takes really long time (1 min per package) to check it's better to run this script manually
+  // nix: {
+  //   name: 'linite-validator-nix',
+  //   image: 'nixos/nix:latest',
+  //   setupCommand: 'nix-channel --add https://nixos.org/channels/nixpkgs-unstable nixpkgs && nix-channel --update 2>&1',
+  //   validationCommand: (id) =>
+  //     `nix-env -qaP ".*${id}.*" 2>/dev/null | head -1 | grep -qi "${id}"`,
+  // },
 
   // Universal package formats (use APIs, handled specially in validatePackage)
   flatpak: {
@@ -493,8 +495,6 @@ function writeJsonOutput(results: Record<string, ValidationResult>, outputPath: 
     skippedSources: Object.values(results).filter(r => r.skipped).length,
     results: Object.values(results),
   };
-
-  const fs = require('fs');
   fs.writeFileSync(outputPath, JSON.stringify(output, null, 2));
 }
 
