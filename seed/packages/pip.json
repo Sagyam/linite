@@ -6,20 +6,8 @@
     "source": "pip"
   },
   {
-    "app": "pipenv",
-    "identifier": "pipenv",
-    "isAvailable": true,
-    "source": "pip"
-  },
-  {
     "app": "poetry",
     "identifier": "poetry",
-    "isAvailable": true,
-    "source": "pip"
-  },
-  {
-    "app": "pylint",
-    "identifier": "pylint",
     "isAvailable": true,
     "source": "pip"
   },

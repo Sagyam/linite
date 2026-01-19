@@ -306,7 +306,7 @@
     "source": "homebrew"
   },
   {
-    "app": "wireguard-tools",
+    "app": "wireguard",
     "identifier": "wireguard-tools",
     "isAvailable": true,
     "source": "homebrew"

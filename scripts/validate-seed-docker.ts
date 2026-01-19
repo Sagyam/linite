@@ -172,13 +172,13 @@ function dockerExec(containerName: string, command: string, timeout = 30000): bo
   return result.status === 0;
 }
 
-// Start Docker container
+// Start a Docker container
 function startContainer(config: ContainerConfig): boolean {
   // Pull image
   console.log(`  Pulling ${config.image}...`);
   const pullResult = spawnSync('docker', ['pull', '-q', config.image], {
     stdio: 'inherit',
-    timeout: 300000, // 5 minute timeout for pulls
+    timeout: 300000, // 5-minute timeout for pulls
   });
 
   if (pullResult.status !== 0) {
@@ -186,7 +186,7 @@ function startContainer(config: ContainerConfig): boolean {
     return false;
   }
 
-  // Remove existing container if present
+  // Remove the existing container if present
   spawnSync('docker', ['rm', '-f', config.name], { stdio: 'ignore' });
 
   // Start container (keep alive with sleep infinity)
@@ -465,7 +465,7 @@ async function main() {
     }
   }
 
-  // Print overall summary (only if validating multiple sources)
+  // Print an overall summary (only if validating multiple sources)
   if (!singleSource) {
     printOverallSummary(results);
   }
