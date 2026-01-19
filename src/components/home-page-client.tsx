@@ -14,6 +14,7 @@ import { FloatingActionBar } from '@/components/floating-action-bar';
 import { SelectionDrawer } from '@/components/selection-drawer';
 import { CommandDialog } from '@/components/command-dialog';
 import { StructuredData } from '@/components/structured-data';
+import { ScrollArea } from '@/components/ui/scroll-area';
 import { useSelectionStore } from '@/stores/selection-store';
 import { useKeyboardNavigation } from '@/hooks/use-keyboard-navigation';
 import { useDebounce } from '@/hooks/use-debounce';
@@ -120,34 +121,72 @@ export function HomePageClient({ categories, distros, initialApps, totalApps }: 
               />
 
               {/* Main Content */}
-              <div className="flex-1 min-w-0 space-y-4">
-                {/* Filters + View Toggle Row */}
-                <div className="flex gap-3 items-start">
-                  <div className="flex-1">
-                    <AppFilters
-                      searchQuery={searchQuery}
-                      onSearchChange={setSearchQuery}
-                      showPopular={showPopular}
-                      onTogglePopular={() => setShowPopular(!showPopular)}
-                      onClearFilters={handleClearFilters}
-                      searchInputRef={searchInputRef}
-                    />
-                  </div>
-                  <ViewToggle
-                    currentView={viewMode}
-                    onViewChange={setViewMode}
-                  />
+              <div className="flex-1 min-w-0">
+                {/* Mobile/Tablet: ScrollArea wrapper */}
+                <div className="lg:hidden">
+                  <ScrollArea className="h-[calc(100vh-14rem)]">
+                    <div className="space-y-4 pr-4 pb-4">
+                      {/* Filters + View Toggle Row */}
+                      <div className="flex gap-3 items-start">
+                        <div className="flex-1">
+                          <AppFilters
+                            searchQuery={searchQuery}
+                            onSearchChange={setSearchQuery}
+                            showPopular={showPopular}
+                            onTogglePopular={() => setShowPopular(!showPopular)}
+                            onClearFilters={handleClearFilters}
+                            searchInputRef={searchInputRef}
+                          />
+                        </div>
+                        <ViewToggle
+                          currentView={viewMode}
+                          onViewChange={setViewMode}
+                        />
+                      </div>
+
+                      {/* App Grid */}
+                      <AppGrid
+                        categories={categories}
+                        initialApps={initialApps}
+                        totalApps={totalApps}
+                        selectedCategory={selectedCategory}
+                        searchQuery={debouncedSearch}
+                        showPopular={showPopular}
+                      />
+                    </div>
+                  </ScrollArea>
                 </div>
 
-                {/* App Grid */}
-                <AppGrid
-                  categories={categories}
-                  initialApps={initialApps}
-                  totalApps={totalApps}
-                  selectedCategory={selectedCategory}
-                  searchQuery={debouncedSearch}
-                  showPopular={showPopular}
-                />
+                {/* Desktop: No ScrollArea, normal flow */}
+                <div className="hidden lg:block space-y-4">
+                  {/* Filters + View Toggle Row */}
+                  <div className="flex gap-3 items-start">
+                    <div className="flex-1">
+                      <AppFilters
+                        searchQuery={searchQuery}
+                        onSearchChange={setSearchQuery}
+                        showPopular={showPopular}
+                        onTogglePopular={() => setShowPopular(!showPopular)}
+                        onClearFilters={handleClearFilters}
+                        searchInputRef={searchInputRef}
+                      />
+                    </div>
+                    <ViewToggle
+                      currentView={viewMode}
+                      onViewChange={setViewMode}
+                    />
+                  </div>
+
+                  {/* App Grid */}
+                  <AppGrid
+                    categories={categories}
+                    initialApps={initialApps}
+                    totalApps={totalApps}
+                    selectedCategory={selectedCategory}
+                    searchQuery={debouncedSearch}
+                    showPopular={showPopular}
+                  />
+                </div>
               </div>
             </div>
           </div>

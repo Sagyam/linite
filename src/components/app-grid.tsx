@@ -87,6 +87,15 @@ export function AppGrid({
 
   // Intersection observer for infinite scroll
   useEffect(() => {
+    // Helper to find ScrollArea viewport on mobile/tablet
+    const getScrollRoot = () => {
+      // On mobile/tablet, find ScrollArea viewport; on desktop, use default (null)
+      if (window.innerWidth < 1024) { // lg breakpoint
+        return document.querySelector('[data-radix-scroll-area-viewport]');
+      }
+      return null;
+    };
+
     const observer = new IntersectionObserver(
       (entries) => {
         const [entry] = entries;
@@ -94,7 +103,11 @@ export function AppGrid({
           fetchNextPage();
         }
       },
-      { threshold: INTERSECTION_OBSERVER.THRESHOLD }
+      {
+        threshold: INTERSECTION_OBSERVER.THRESHOLD,
+        root: getScrollRoot(), // Use ScrollArea viewport on mobile
+        rootMargin: '100px', // Load before reaching bottom
+      }
     );
 
     const currentRef = loadMoreRef.current;

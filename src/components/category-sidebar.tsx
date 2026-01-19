@@ -76,9 +76,13 @@ export function CategorySidebar({
       <div className="lg:hidden mb-4">
         <Sheet open={isOpen} onOpenChange={onToggle}>
           <SheetTrigger asChild>
-            <Button variant="outline" className="w-full justify-start">
-              <Menu className="w-4 h-4 mr-2" />
-              {selectedCategoryName}
+            <Button
+              variant="outline"
+              className="w-full justify-start"
+              aria-label={selectedCategoryName}
+            >
+              <Menu className="w-4 h-4 lg:mr-2" />
+              <span className="hidden lg:inline">{selectedCategoryName}</span>
             </Button>
           </SheetTrigger>
           <SheetContent side="left" className="w-72">
