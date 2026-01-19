@@ -18,6 +18,7 @@ interface AppGridProps {
   selectedCategory: string;
   searchQuery: string;
   showPopular: boolean;
+  scrollAreaViewportRef?: React.RefObject<HTMLDivElement | null>;
 }
 
 export function AppGrid({
@@ -27,6 +28,7 @@ export function AppGrid({
   selectedCategory,
   searchQuery,
   showPopular,
+  scrollAreaViewportRef,
 }: AppGridProps) {
   // Get viewMode and focusedIndex from Zustand store
   const viewMode = useSelectionStore((state) => state.viewMode);
@@ -87,15 +89,6 @@ export function AppGrid({
 
   // Intersection observer for infinite scroll
   useEffect(() => {
-    // Helper to find ScrollArea viewport on mobile/tablet
-    const getScrollRoot = () => {
-      // On mobile/tablet, find ScrollArea viewport; on desktop, use default (null)
-      if (window.innerWidth < 1024) { // lg breakpoint
-        return document.querySelector('[data-radix-scroll-area-viewport]');
-      }
-      return null;
-    };
-
     const observer = new IntersectionObserver(
       (entries) => {
         const [entry] = entries;
@@ -105,8 +98,8 @@ export function AppGrid({
       },
       {
         threshold: INTERSECTION_OBSERVER.THRESHOLD,
-        root: getScrollRoot(), // Use ScrollArea viewport on mobile
-        rootMargin: '100px', // Load before reaching bottom
+        root: scrollAreaViewportRef?.current ?? null,
+        rootMargin: '100px',
       }
     );
 
@@ -120,7 +113,7 @@ export function AppGrid({
         observer.unobserve(currentRef);
       }
     };
-  }, [hasNextPage, isFetchingNextPage, fetchNextPage]);
+  }, [hasNextPage, isFetchingNextPage, fetchNextPage, scrollAreaViewportRef]);
 
   return (
     <div className="space-y-6">

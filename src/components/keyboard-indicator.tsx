@@ -13,7 +13,7 @@ export function KeyboardIndicator({ onClick }: KeyboardIndicatorProps) {
       variant="outline"
       size="sm"
       onClick={onClick}
-      className="fixed bottom-24 right-4 z-40 shadow-lg"
+      className="fixed bottom-24 right-4 z-40 shadow-lg hidden sm:flex"
       title="Show keyboard shortcuts (Press ?)"
       aria-label="Show keyboard shortcuts"
     >

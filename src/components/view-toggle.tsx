@@ -16,37 +16,34 @@ export function ViewToggle({ currentView, onViewChange }: ViewToggleProps) {
         variant={currentView === 'minimal' ? 'default' : 'ghost'}
         size="sm"
         onClick={() => onViewChange('minimal')}
-        className="rounded-none rounded-l-md"
+        className="rounded-none rounded-l-md h-11 sm:h-9 px-3"
         title="Minimal view (Press 1)"
         aria-label="Minimal view"
         aria-pressed={currentView === 'minimal'}
       >
         <Grid3x3 className="w-4 h-4" />
-        <span className="hidden md:inline ml-1">Minimal</span>
       </Button>
       <Button
         variant={currentView === 'compact' ? 'default' : 'ghost'}
         size="sm"
         onClick={() => onViewChange('compact')}
-        className="rounded-none"
+        className="rounded-none h-11 sm:h-9 px-3"
         title="Compact view (Press 2)"
         aria-label="Compact view"
         aria-pressed={currentView === 'compact'}
       >
         <List className="w-4 h-4" />
-        <span className="hidden md:inline ml-1">Compact</span>
       </Button>
       <Button
         variant={currentView === 'detailed' ? 'default' : 'ghost'}
         size="sm"
         onClick={() => onViewChange('detailed')}
-        className="rounded-none rounded-r-md"
+        className="rounded-none rounded-r-md h-11 sm:h-9 px-3"
         title="Detailed view (Press 3)"
         aria-label="Detailed view"
         aria-pressed={currentView === 'detailed'}
       >
         <LayoutList className="w-4 h-4" />
-        <span className="hidden md:inline ml-1">Detailed</span>
       </Button>
     </div>
   );

@@ -73,16 +73,16 @@ export function CategorySidebar({
   return (
     <>
       {/* Mobile: Collapsible dropdown */}
-      <div className="lg:hidden mb-4">
+      <div className="lg:hidden">
         <Sheet open={isOpen} onOpenChange={onToggle}>
           <SheetTrigger asChild>
             <Button
               variant="outline"
-              className="w-full justify-start"
+              className="w-full justify-start h-11 sm:h-10"
               aria-label={selectedCategoryName}
             >
-              <Menu className="w-4 h-4 lg:mr-2" />
-              <span className="hidden lg:inline">{selectedCategoryName}</span>
+              <Menu className="w-4 h-4 mr-2" />
+              <span className="truncate">{selectedCategoryName}</span>
             </Button>
           </SheetTrigger>
           <SheetContent side="left" className="w-72">

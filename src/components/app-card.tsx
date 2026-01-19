@@ -54,24 +54,24 @@ export const AppCard = memo(function AppCard({
     return (
       <Card
         ref={cardRef}
-        className={`p-2 cursor-pointer transition-all hover:shadow-md ${
+        className={`p-2 sm:p-3 cursor-pointer transition-all hover:shadow-md ${
           isSelected ? 'ring-2 ring-primary' : ''
         } ${isFocused ? 'ring-2 ring-ring' : ''}`}
         onClick={handleCardClick}
         data-app-index={index}
         tabIndex={isFocused ? 0 : -1}
       >
-        <div className="flex flex-col items-center gap-1.5 relative">
+        <div className="flex flex-col items-center gap-1.5 sm:gap-2 relative">
           <Checkbox
             checked={isSelected}
-            className="absolute top-0 right-0 h-4 w-4"
+            className="absolute top-0 right-0 h-4 w-4 sm:h-5 sm:w-5"
             aria-label={`Select ${app.displayName}`}
           />
           <AppIcon
             iconUrl={app.iconUrl}
             displayName={app.displayName}
             size="lg"
-            className="w-12 h-12"
+            className="w-12 h-12 sm:w-14 sm:h-14 mt-1"
           />
           <h3 className="text-xs font-medium text-center line-clamp-2 w-full px-1">
             {app.displayName}
@@ -85,7 +85,7 @@ export const AppCard = memo(function AppCard({
     return (
       <Card
         ref={cardRef}
-        className={`p-3 cursor-pointer transition-all hover:shadow-md ${
+        className={`p-2 sm:p-3 cursor-pointer transition-all hover:shadow-md ${
           isSelected ? 'ring-2 ring-primary' : ''
         } ${isFocused ? 'ring-2 ring-ring' : ''}`}
         onClick={handleCardClick}
@@ -93,27 +93,27 @@ export const AppCard = memo(function AppCard({
         tabIndex={isFocused ? 0 : -1}
       >
         <div className="flex items-center gap-2">
-          <Checkbox checked={isSelected} />
+          <Checkbox checked={isSelected} className="shrink-0" />
 
           <AppIcon
             iconUrl={app.iconUrl}
             displayName={app.displayName}
             size="sm"
-            className="w-8 h-8"
+            className="w-8 h-8 sm:w-10 sm:h-10 shrink-0"
           />
 
           <div className="flex-1 min-w-0">
             <div className="flex items-center justify-between gap-2">
-              <h3 className="font-semibold text-sm truncate">{app.displayName}</h3>
+              <h3 className="font-semibold text-xs sm:text-sm truncate">{app.displayName}</h3>
               <div className="flex gap-1 shrink-0">
                 {app.isFoss && (
-                  <Badge variant="secondary" className="text-xs px-1.5 py-0">
+                  <Badge variant="secondary" className="text-xs px-1.5 py-0 hidden sm:inline-flex">
                     FOSS
                   </Badge>
                 )}
               </div>
             </div>
-            <div className="flex items-center gap-1 mt-1">
+            <div className="flex items-center gap-1 mt-0.5 sm:mt-1">
               <span className="text-xs text-muted-foreground">
                 {app.packages.length} source{app.packages.length !== 1 ? 's' : ''}
               </span>
@@ -121,8 +121,8 @@ export const AppCard = memo(function AppCard({
           </div>
 
           <Link href={`/apps/${app.slug}`} onClick={(e) => e.stopPropagation()}>
-            <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
-              <Info className="w-4 h-4" />
+            <Button variant="ghost" size="sm" className="h-8 w-8 p-0 shrink-0">
+              <Info className="w-3 h-3 sm:w-4 sm:h-4" />
             </Button>
           </Link>
         </div>
@@ -134,29 +134,28 @@ export const AppCard = memo(function AppCard({
   return (
     <Card
       ref={cardRef}
-      className={`p-4 cursor-pointer transition-all hover:shadow-md ${
+      className={`p-3 sm:p-4 cursor-pointer transition-all hover:shadow-md ${
         isSelected ? 'ring-2 ring-primary' : ''
       } ${isFocused ? 'ring-2 ring-ring' : ''}`}
       onClick={handleCardClick}
       data-app-index={index}
       tabIndex={isFocused ? 0 : -1}
     >
-      <div className="flex items-start gap-3">
-        <div className="shrink-0">
+      <div className="flex items-start gap-2 sm:gap-3">
+        <div className="shrink-0 flex items-start gap-2">
           <Checkbox checked={isSelected} className="mt-1" />
+          <AppIcon
+            iconUrl={app.iconUrl}
+            displayName={app.displayName}
+            size="lg"
+            rounded="lg"
+            className="w-12 h-12 sm:w-16 sm:h-16"
+          />
         </div>
 
-        <AppIcon
-          iconUrl={app.iconUrl}
-          displayName={app.displayName}
-          size="lg"
-          rounded="lg"
-          className="w-16 h-16"
-        />
-
         <div className="flex-1 min-w-0">
-          <div className="flex items-start justify-between gap-2 mb-2">
-            <h3 className="font-semibold text-base">{app.displayName}</h3>
+          <div className="flex items-start justify-between gap-2 mb-1 sm:mb-2">
+            <h3 className="font-semibold text-sm sm:text-base">{app.displayName}</h3>
             <div className="flex gap-1 shrink-0">
               {app.isFoss && (
                 <Badge variant="secondary" className="text-xs">
@@ -164,7 +163,7 @@ export const AppCard = memo(function AppCard({
                 </Badge>
               )}
               {app.isPopular && (
-                <Badge variant="default" className="text-xs">
+                <Badge variant="default" className="text-xs hidden sm:inline-flex">
                   Popular
                 </Badge>
               )}
@@ -172,23 +171,28 @@ export const AppCard = memo(function AppCard({
           </div>
 
           {app.description && (
-            <p className="text-sm text-muted-foreground mb-3 line-clamp-3">
+            <p className="text-xs sm:text-sm text-muted-foreground mb-2 sm:mb-3 line-clamp-2 sm:line-clamp-3">
               {app.description}
             </p>
           )}
 
-          <div className="flex items-center justify-between gap-2">
-            <div className="flex flex-wrap gap-1">
-              {app.packages.map((pkg) => (
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+            <div className="flex flex-wrap gap-1 overflow-hidden">
+              {app.packages.slice(0, 6).map((pkg) => (
                 <Badge key={pkg.id} variant="outline" className="text-xs">
                   {pkg.source.name}
                 </Badge>
               ))}
+              {app.packages.length > 6 && (
+                <Badge variant="outline" className="text-xs">
+                  +{app.packages.length - 6}
+                </Badge>
+              )}
             </div>
 
             <Link href={`/apps/${app.slug}`} onClick={(e) => e.stopPropagation()}>
-              <Button variant="outline" size="sm" className="gap-1">
-                <Info className="w-4 h-4" />
+              <Button variant="outline" size="sm" className="gap-1 h-8 text-xs sm:text-sm w-full sm:w-auto">
+                <Info className="w-3 h-3 sm:w-4 sm:h-4" />
                 Details
               </Button>
             </Link>

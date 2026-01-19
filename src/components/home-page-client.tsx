@@ -42,6 +42,7 @@ export function HomePageClient({ categories, distros, initialApps, totalApps }: 
 
   // Refs
   const searchInputRef = useRef<HTMLInputElement>(null);
+  const scrollAreaViewportRef = useRef<HTMLDivElement>(null);
 
   // Debounced search for better UX
   const debouncedSearch = useDebounce(searchQuery, TIMEOUTS.DEBOUNCE_SEARCH);
@@ -111,39 +112,52 @@ export function HomePageClient({ categories, distros, initialApps, totalApps }: 
           {/* Main Content Area - Two-column layout */}
           <div className="container mx-auto px-4 py-6 sm:py-8 pb-24 sm:pb-28">
             <div className="flex gap-6">
-              {/* Category Sidebar */}
-              <CategorySidebar
-                categories={categories}
-                selectedCategory={selectedCategory}
-                onCategoryChange={setSelectedCategory}
-                isOpen={isCategoryNavOpen}
-                onToggle={toggleCategoryNav}
-              />
+              {/* Category Sidebar - Desktop only */}
+              <div className="hidden lg:block">
+                <CategorySidebar
+                  categories={categories}
+                  selectedCategory={selectedCategory}
+                  onCategoryChange={setSelectedCategory}
+                  isOpen={isCategoryNavOpen}
+                  onToggle={toggleCategoryNav}
+                />
+              </div>
 
               {/* Main Content */}
               <div className="flex-1 min-w-0">
                 {/* Mobile/Tablet: ScrollArea wrapper */}
                 <div className="lg:hidden">
-                  <ScrollArea className="h-[calc(100vh-14rem)]">
-                    <div className="space-y-4 pr-4 pb-4">
-                      {/* Filters + View Toggle Row */}
-                      <div className="flex gap-3 items-start">
-                        <div className="flex-1">
-                          <AppFilters
-                            searchQuery={searchQuery}
-                            onSearchChange={setSearchQuery}
-                            showPopular={showPopular}
-                            onTogglePopular={() => setShowPopular(!showPopular)}
-                            onClearFilters={handleClearFilters}
-                            searchInputRef={searchInputRef}
-                          />
-                        </div>
-                        <ViewToggle
-                          currentView={viewMode}
-                          onViewChange={setViewMode}
+                  {/* Sticky Filters + View Toggle Row */}
+                  <div className="sticky top-0 z-10 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 pb-3 mb-1 space-y-2">
+                    {/* Category Sidebar Toggle - Mobile only */}
+                    <CategorySidebar
+                      categories={categories}
+                      selectedCategory={selectedCategory}
+                      onCategoryChange={setSelectedCategory}
+                      isOpen={isCategoryNavOpen}
+                      onToggle={toggleCategoryNav}
+                    />
+
+                    <div className="flex gap-2 items-start">
+                      <div className="flex-1">
+                        <AppFilters
+                          searchQuery={searchQuery}
+                          onSearchChange={setSearchQuery}
+                          showPopular={showPopular}
+                          onTogglePopular={() => setShowPopular(!showPopular)}
+                          onClearFilters={handleClearFilters}
+                          searchInputRef={searchInputRef}
                         />
                       </div>
+                      <ViewToggle
+                        currentView={viewMode}
+                        onViewChange={setViewMode}
+                      />
+                    </div>
+                  </div>
 
+                  <ScrollArea className="h-[calc(100vh-21rem)]" viewportRef={scrollAreaViewportRef}>
+                    <div className="space-y-4 pr-4 pb-4">
                       {/* App Grid */}
                       <AppGrid
                         categories={categories}
@@ -152,6 +166,7 @@ export function HomePageClient({ categories, distros, initialApps, totalApps }: 
                         selectedCategory={selectedCategory}
                         searchQuery={debouncedSearch}
                         showPopular={showPopular}
+                        scrollAreaViewportRef={scrollAreaViewportRef}
                       />
                     </div>
                   </ScrollArea>
