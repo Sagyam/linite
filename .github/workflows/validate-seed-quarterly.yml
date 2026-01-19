@@ -96,7 +96,7 @@ jobs:
 
             const successRate = ((results.validPackages / results.totalPackages) * 100).toFixed(1);
 
-            const issueBody = `## 📦 Package Validation Report
+            const issueBody = `## Package Validation Report
 
 **Date:** ${results.timestamp}
 **Workflow Run:** ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}
@@ -104,8 +104,8 @@ jobs:
 ### Summary
 
 - **Total Packages:** ${results.totalPackages}
-- **Valid:** ${results.validPackages} ✅
-- **Failed:** ${results.failedPackages} ❌
+- **Valid:** ${results.validPackages}
+- **Failed:** ${results.failedPackages}
 - **Skipped Sources:** ${results.skippedSources}
 - **Success Rate:** ${successRate}%
 
