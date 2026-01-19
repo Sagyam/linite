@@ -306,7 +306,7 @@
     "source": "pacman"
   },
   {
-    "app": "iotop-c",
+    "app": "iotop",
     "identifier": "iotop-c",
     "isAvailable": true,
     "source": "pacman"

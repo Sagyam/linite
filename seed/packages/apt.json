@@ -204,7 +204,7 @@
     "source": "apt"
   },
   {
-    "app": "iotop-c",
+    "app": "iotop",
     "identifier": "iotop-c",
     "isAvailable": true,
     "source": "apt"

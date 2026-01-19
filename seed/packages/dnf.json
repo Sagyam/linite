@@ -186,7 +186,7 @@
     "source": "dnf"
   },
   {
-    "app": "iotop-c",
+    "app": "iotop",
     "identifier": "iotop-c",
     "isAvailable": true,
     "source": "dnf"
