@@ -49,6 +49,8 @@ export class DistrosRepository extends BaseRepository<Distro> {
       iconUrl: distro.iconUrl,
       basedOn: distro.basedOn,
       isPopular: distro.isPopular ?? false,
+      themeColorLight: distro.themeColorLight ?? null,
+      themeColorDark: distro.themeColorDark ?? null,
       distroSources: distro.distroSources.map((ds) => ({
         sourceId: ds.sourceId,
         priority: ds.priority ?? 0,
@@ -98,6 +100,8 @@ export class DistrosRepository extends BaseRepository<Distro> {
       iconUrl: distro.iconUrl,
       basedOn: distro.basedOn,
       isPopular: distro.isPopular ?? false,
+      themeColorLight: distro.themeColorLight ?? null,
+      themeColorDark: distro.themeColorDark ?? null,
       distroSources: distro.distroSources.map((ds) => ({
         sourceId: ds.sourceId,
         priority: ds.priority ?? 0,

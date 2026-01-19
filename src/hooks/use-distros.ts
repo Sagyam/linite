@@ -10,6 +10,8 @@ export interface Distro {
   iconUrl: string | null;
   basedOn: string | null;
   isPopular: boolean;
+  themeColorLight: string | null;
+  themeColorDark: string | null;
   distroSources?: Array<{
     sourceId: string;
     priority: number;

@@ -58,17 +58,17 @@ export function HomePageClient({ categories, distros, initialApps, totalApps }: 
   const toggleCategoryNav = useSelectionStore((state) => state.toggleCategoryNav);
 
   // Get apps for keyboard navigation
-  const { data } = useApps({
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage } = useApps({
     category: selectedCategory === 'all' ? undefined : selectedCategory,
     popular: showPopular || undefined,
     search: debouncedSearch || undefined,
   });
 
-  const apps = data?.pages.flatMap((page) => page.apps) ?? [];
+  const displayedApps = data?.pages.flatMap((page) => page.apps) ?? [];
 
   // Keyboard navigation
   const { showShortcuts, setShowShortcuts } = useKeyboardNavigation({
-    apps,
+    apps: displayedApps,
     categories,
     selectedCategory,
     onCategoryChange: setSelectedCategory,
@@ -128,6 +128,7 @@ export function HomePageClient({ categories, distros, initialApps, totalApps }: 
                   onCategoryChange={setSelectedCategory}
                   isOpen={isCategoryNavOpen}
                   onToggle={toggleCategoryNav}
+                  apps={displayedApps}
                 />
               </div>
 
@@ -144,6 +145,7 @@ export function HomePageClient({ categories, distros, initialApps, totalApps }: 
                       onCategoryChange={setSelectedCategory}
                       isOpen={isCategoryNavOpen}
                       onToggle={toggleCategoryNav}
+                      apps={displayedApps}
                     />
 
                     <div className="flex gap-2 items-start">
@@ -175,6 +177,13 @@ export function HomePageClient({ categories, distros, initialApps, totalApps }: 
                         searchQuery={debouncedSearch}
                         showPopular={showPopular}
                         scrollAreaViewportRef={scrollAreaViewportRef}
+                        apps={displayedApps}
+                        totalCount={data?.pages[0]?.pagination.total ?? totalApps ?? 0}
+                        isLoading={false}
+                        isError={false}
+                        hasNextPage={hasNextPage ?? false}
+                        isFetchingNextPage={isFetchingNextPage ?? false}
+                        fetchNextPage={fetchNextPage}
                       />
                     </div>
                   </ScrollArea>
@@ -208,6 +217,13 @@ export function HomePageClient({ categories, distros, initialApps, totalApps }: 
                     selectedCategory={selectedCategory}
                     searchQuery={debouncedSearch}
                     showPopular={showPopular}
+                    apps={displayedApps}
+                    totalCount={data?.pages[0]?.pagination.total ?? totalApps ?? 0}
+                    isLoading={false}
+                    isError={false}
+                    hasNextPage={hasNextPage ?? false}
+                    isFetchingNextPage={isFetchingNextPage ?? false}
+                    fetchNextPage={fetchNextPage}
                   />
                 </div>
               </div>

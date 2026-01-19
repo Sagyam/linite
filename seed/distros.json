@@ -5,7 +5,9 @@
     "family": "debian",
     "basedOn": "debian",
     "isPopular": true,
-    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/9/9e/UbuntuCoF.svg"
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/9/9e/UbuntuCoF.svg",
+    "themeColorLight": "#E95420",
+    "themeColorDark": "#FF6A3D"
   },
   {
     "name": "Debian",
@@ -13,7 +15,9 @@
     "family": "debian",
     "basedOn": null,
     "isPopular": true,
-    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4a/Debian-OpenLogo.svg"
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4a/Debian-OpenLogo.svg",
+    "themeColorLight": "#D70A53",
+    "themeColorDark": "#FF1F6F"
   },
   {
     "name": "Linux Mint",
@@ -21,7 +25,9 @@
     "family": "debian",
     "basedOn": "ubuntu",
     "isPopular": true,
-    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3f/Linux_Mint_logo_without_wordmark.svg"
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3f/Linux_Mint_logo_without_wordmark.svg",
+    "themeColorLight": "#87CF3E",
+    "themeColorDark": "#A0E356"
   },
   {
     "name": "Pop!_OS",
@@ -29,7 +35,9 @@
     "family": "debian",
     "basedOn": "ubuntu",
     "isPopular": true,
-    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/4/46/Pop!_OS_Icon.svg"
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/4/46/Pop!_OS_Icon.svg",
+    "themeColorLight": "#48B9C7",
+    "themeColorDark": "#63D4E2"
   },
   {
     "name": "Fedora",
@@ -37,7 +45,9 @@
     "family": "rhel",
     "basedOn": null,
     "isPopular": true,
-    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/4/41/Fedora_icon_%282021%29.svg"
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/4/41/Fedora_icon_%282021%29.svg",
+    "themeColorLight": "#294172",
+    "themeColorDark": "#3C5A95"
   },
   {
     "name": "Arch Linux",
@@ -45,7 +55,9 @@
     "family": "arch",
     "basedOn": null,
     "isPopular": true,
-    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/1/13/Arch_Linux_%22Crystal%22_icon.svg"
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/1/13/Arch_Linux_%22Crystal%22_icon.svg",
+    "themeColorLight": "#1793D1",
+    "themeColorDark": "#33A9DD"
   },
   {
     "name": "Manjaro",
@@ -53,7 +65,9 @@
     "family": "arch",
     "basedOn": "arch",
     "isPopular": true,
-    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3e/Manjaro-logo.svg"
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3e/Manjaro-logo.svg",
+    "themeColorLight": "#35BF5C",
+    "themeColorDark": "#4DD975"
   },
   {
     "name": "openSUSE",
@@ -61,7 +75,9 @@
     "family": "suse",
     "basedOn": null,
     "isPopular": false,
-    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d0/OpenSUSE_Logo.svg"
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d0/OpenSUSE_Logo.svg",
+    "themeColorLight": "#73BA25",
+    "themeColorDark": "#8DD639"
   },
   {
     "name": "NixOS",
@@ -69,7 +85,9 @@
     "family": "nixos",
     "basedOn": null,
     "isPopular": true,
-    "iconUrl": "https://nixos.wiki/images/thumb/2/20/Home-nixos-logo.png/414px-Home-nixos-logo.png"
+    "iconUrl": "https://nixos.wiki/images/thumb/2/20/Home-nixos-logo.png/414px-Home-nixos-logo.png",
+    "themeColorLight": "#5277C3",
+    "themeColorDark": "#7398E0"
   },
   {
     "name": "Windows",
@@ -77,7 +95,9 @@
     "family": "windows",
     "basedOn": null,
     "isPopular": true,
-    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/8/87/Windows_logo_-_2021.svg"
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/8/87/Windows_logo_-_2021.svg",
+    "themeColorLight": "#0078D4",
+    "themeColorDark": "#1E8FF0"
   },
   {
     "name": "Zorin OS",
@@ -85,7 +105,9 @@
     "family": "debian",
     "basedOn": "ubuntu",
     "isPopular": true,
-    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/1/14/Zorin_Logomark.svg"
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/1/14/Zorin_Logomark.svg",
+    "themeColorLight": "#0CC1F3",
+    "themeColorDark": "#2DD4FF"
   },
   {
     "name": "Elementary OS",
@@ -93,7 +115,9 @@
     "family": "debian",
     "basedOn": "ubuntu",
     "isPopular": true,
-    "iconUrl": "https://raw.githubusercontent.com/elementary/brand/master/logomark.svg"
+    "iconUrl": "https://raw.githubusercontent.com/elementary/brand/master/logomark.svg",
+    "themeColorLight": "#3689E6",
+    "themeColorDark": "#64BAFF"
   },
   {
     "name": "Nobara",
@@ -101,7 +125,9 @@
     "family": "rhel",
     "basedOn": "fedora",
     "isPopular": true,
-    "iconUrl": "https://nobaraproject.org/img/nobara-icon.png"
+    "iconUrl": "https://nobaraproject.org/img/nobara-icon.png",
+    "themeColorLight": "#FF6B6B",
+    "themeColorDark": "#FF8787"
   },
   {
     "name": "Bazzite",
@@ -109,7 +135,9 @@
     "family": "rhel",
     "basedOn": "fedora",
     "isPopular": true,
-    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a7/Bazzite_Logo.svg"
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a7/Bazzite_Logo.svg",
+    "themeColorLight": "#A020F0",
+    "themeColorDark": "#B84CFF"
   },
   {
     "name": "CachyOS",
@@ -117,6 +145,8 @@
     "family": "arch",
     "basedOn": "arch",
     "isPopular": true,
-    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b8/CachyOS_Logo.svg"
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b8/CachyOS_Logo.svg",
+    "themeColorLight": "#00D9FF",
+    "themeColorDark": "#33E4FF"
   }
 ]

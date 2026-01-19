@@ -77,6 +77,8 @@ export const categories = sqliteTable('categories', {
   icon: text('icon'),
   description: text('description'),
   displayOrder: integer('display_order').default(0),
+  colorLight: text('color_light'),
+  colorDark: text('color_dark'),
   ...timestamps,
 }, (table) => ({
   displayOrderIdx: index('categories_display_order_idx').on(table.displayOrder),
@@ -152,6 +154,8 @@ export const distros = sqliteTable('distros', {
   iconUrl: text('icon_url'),
   basedOn: text('based_on'),
   isPopular: integer('is_popular', { mode: 'boolean' }).default(false),
+  themeColorLight: text('theme_color_light'),
+  themeColorDark: text('theme_color_dark'),
   ...timestamps,
 }, (table) => ({
   isPopularIdx: index('distros_is_popular_idx').on(table.isPopular),

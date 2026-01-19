@@ -3,84 +3,112 @@
     "name": "Browsers",
     "slug": "browsers",
     "icon": "Globe",
-    "displayOrder": 1
+    "displayOrder": 1,
+    "colorLight": "#F97316",
+    "colorDark": "#FB923C"
   },
   {
     "name": "Development",
     "slug": "development",
     "icon": "Code",
-    "displayOrder": 2
+    "displayOrder": 2,
+    "colorLight": "#10B981",
+    "colorDark": "#34D399"
   },
   {
     "name": "Languages",
     "slug": "languages",
     "icon": "Binary",
-    "displayOrder": 3
+    "displayOrder": 3,
+    "colorLight": "#8B5CF6",
+    "colorDark": "#A78BFA"
   },
   {
     "name": "Media",
     "slug": "media",
     "icon": "Play",
-    "displayOrder": 4
+    "displayOrder": 4,
+    "colorLight": "#EC4899",
+    "colorDark": "#F472B6"
   },
   {
     "name": "Graphics",
     "slug": "graphics",
     "icon": "Image",
-    "displayOrder": 5
+    "displayOrder": 5,
+    "colorLight": "#06B6D4",
+    "colorDark": "#22D3EE"
   },
   {
     "name": "Office",
     "slug": "office",
     "icon": "FileText",
-    "displayOrder": 6
+    "displayOrder": 6,
+    "colorLight": "#3B82F6",
+    "colorDark": "#60A5FA"
   },
   {
     "name": "Utilities",
     "slug": "utilities",
     "icon": "Wrench",
-    "displayOrder": 7
+    "displayOrder": 7,
+    "colorLight": "#A855F7",
+    "colorDark": "#C084FC"
   },
   {
     "name": "Communication",
     "slug": "communication",
     "icon": "MessageCircle",
-    "displayOrder": 8
+    "displayOrder": 8,
+    "colorLight": "#3B82F6",
+    "colorDark": "#60A5FA"
   },
   {
     "name": "Games",
     "slug": "games",
     "icon": "Gamepad2",
-    "displayOrder": 9
+    "displayOrder": 9,
+    "colorLight": "#EF4444",
+    "colorDark": "#F87171"
   },
   {
     "name": "Security",
     "slug": "security",
     "icon": "Shield",
-    "displayOrder": 10
+    "displayOrder": 10,
+    "colorLight": "#F59E0B",
+    "colorDark": "#FBBF24"
   },
   {
     "name": "System",
     "slug": "system",
     "icon": "Settings",
-    "displayOrder": 11
+    "displayOrder": 11,
+    "colorLight": "#6B7280",
+    "colorDark": "#9CA3AF"
   },
   {
     "name": "TUI",
     "slug": "tui",
     "icon": "Terminal",
-    "displayOrder": 12
+    "displayOrder": 12,
+    "colorLight": "#14B8A6",
+    "colorDark": "#2DD4BF"
   },
   {
     "name": "CLI",
     "slug": "cli",
     "icon": "Command",
-    "displayOrder": 13
+    "displayOrder": 13,
+    "colorLight": "#06B6D4",
+    "colorDark": "#22D3EE"
   },
   {
     "name": "AI",
     "slug": "ai",
     "icon": "BrainCircuit",
-    "displayOrder": 14
+    "displayOrder": 14,
+    "colorLight": "#8B5CF6",
+    "colorDark": "#A78BFA"
   }
 ]

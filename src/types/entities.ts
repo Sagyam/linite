@@ -33,6 +33,8 @@ export interface Category {
   icon: string | null;
   description: string | null;
   displayOrder: number;
+  colorLight: string | null;
+  colorDark: string | null;
   createdAt?: Date;
   updatedAt?: Date;
 }
@@ -58,6 +60,8 @@ export interface Distro {
   iconUrl: string | null;
   basedOn: string | null;
   isPopular: boolean;
+  themeColorLight: string | null;
+  themeColorDark: string | null;
   createdAt?: Date;
   updatedAt?: Date;
 }

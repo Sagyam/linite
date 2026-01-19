@@ -31,6 +31,8 @@ export const AppCard = memo(function AppCard({
 
   const cardRef = useRef<HTMLDivElement>(null);
 
+  const categoryColor = app.category?.colorLight || app.category?.colorDark;
+
   // Auto-scroll focused card into view
   useEffect(() => {
     if (isFocused && cardRef.current) {
@@ -49,35 +51,55 @@ export const AppCard = memo(function AppCard({
     toggleApp(app.id);
   };
 
+  const cardStyle = isSelected && categoryColor
+    ? { '--tw-ring-color': categoryColor, '--tw-ring-offset-width': '2px' } as React.CSSProperties
+    : undefined;
+
+  const minimalCardStyle = isSelected && categoryColor
+    ? { '--tw-ring-color': categoryColor, '--tw-ring-offset-width': '0px' } as React.CSSProperties
+    : undefined;
+
+  const getCheckboxProps = () => {
+    if (!isSelected || !categoryColor) {
+      return {};
+    }
+    return {
+      className: '[&[data-state=checked]]:bg-[var(--checkbox-color)] [&[data-state=checked]]:border-[var(--checkbox-color)] [&[data-state=checked]]:text-white',
+      style: { '--checkbox-color': categoryColor } as React.CSSProperties,
+    };
+  };
+
   // Minimal view
   if (layout === 'minimal') {
     return (
-      <Card
+      <div
         ref={cardRef}
-        className={`p-2 sm:p-3 cursor-pointer transition-all hover:shadow-md ${
-          isSelected ? 'ring-2 ring-primary' : ''
-        } ${isFocused ? 'ring-2 ring-ring' : ''}`}
+        className={`p-2 sm:p-3 cursor-pointer transition-all hover:shadow-md rounded-lg border bg-card ${isSelected ? 'ring-2 ring-offset-0' : ''} ${isFocused ? 'ring-2 ring-ring' : ''}`}
+        style={minimalCardStyle}
         onClick={handleCardClick}
         data-app-index={index}
         tabIndex={isFocused ? 0 : -1}
       >
         <div className="flex flex-col items-center gap-1.5 sm:gap-2 relative">
-          <Checkbox
-            checked={isSelected}
-            className="absolute top-0 right-0 h-4 w-4 sm:h-5 sm:w-5"
-            aria-label={`Select ${app.displayName}`}
-          />
+          <div className="absolute top-0 right-0 z-10">
+            <Checkbox
+              checked={isSelected}
+              className="h-4 w-4 sm:h-5 sm:w-5"
+              {...getCheckboxProps()}
+              aria-label={`Select ${app.displayName}`}
+            />
+          </div>
           <AppIcon
             iconUrl={app.iconUrl}
             displayName={app.displayName}
             size="lg"
-            className="w-12 h-12 sm:w-14 sm:h-14 mt-1"
+            className="w-12 h-12 sm:w-14 sm:h-14"
           />
           <h3 className="text-xs font-medium text-center line-clamp-2 w-full px-1">
             {app.displayName}
           </h3>
         </div>
-      </Card>
+      </div>
     );
   }
 
@@ -85,15 +107,18 @@ export const AppCard = memo(function AppCard({
     return (
       <Card
         ref={cardRef}
-        className={`p-2 sm:p-3 cursor-pointer transition-all hover:shadow-md ${
-          isSelected ? 'ring-2 ring-primary' : ''
-        } ${isFocused ? 'ring-2 ring-ring' : ''}`}
+        className={`p-2 sm:p-3 cursor-pointer transition-all hover:shadow-md ${isSelected ? 'ring-2' : ''} ${isFocused ? 'ring-2 ring-ring' : ''}`}
+        style={cardStyle}
         onClick={handleCardClick}
         data-app-index={index}
         tabIndex={isFocused ? 0 : -1}
       >
         <div className="flex items-center gap-2">
-          <Checkbox checked={isSelected} className="shrink-0" />
+          <Checkbox
+            checked={isSelected}
+            className="shrink-0"
+            {...getCheckboxProps()}
+          />
 
           <AppIcon
             iconUrl={app.iconUrl}
@@ -134,16 +159,19 @@ export const AppCard = memo(function AppCard({
   return (
     <Card
       ref={cardRef}
-      className={`p-3 sm:p-4 cursor-pointer transition-all hover:shadow-md ${
-        isSelected ? 'ring-2 ring-primary' : ''
-      } ${isFocused ? 'ring-2 ring-ring' : ''}`}
+      className={`p-3 sm:p-4 cursor-pointer transition-all hover:shadow-md ${isSelected ? 'ring-2' : ''} ${isFocused ? 'ring-2 ring-ring' : ''}`}
+      style={cardStyle}
       onClick={handleCardClick}
       data-app-index={index}
       tabIndex={isFocused ? 0 : -1}
     >
       <div className="flex items-start gap-2 sm:gap-3">
         <div className="shrink-0 flex items-start gap-2">
-          <Checkbox checked={isSelected} className="mt-1" />
+          <Checkbox
+            checked={isSelected}
+            className="mt-1"
+            {...getCheckboxProps()}
+          />
           <AppIcon
             iconUrl={app.iconUrl}
             displayName={app.displayName}

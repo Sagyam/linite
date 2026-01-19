@@ -1,8 +1,10 @@
 'use client';
 
+import { useMemo } from 'react';
 import { LayoutGrid, Menu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import { Badge } from '@/components/ui/badge';
 import {
   Sheet,
   SheetContent,
@@ -11,7 +13,8 @@ import {
   SheetTrigger,
 } from '@/components/ui/sheet';
 import { getCategoryIcon } from '@/lib/category-icons';
-import type { Category } from '@/types';
+import { useSelectionStore } from '@/stores/selection-store';
+import type { Category, AppWithRelations } from '@/types';
 
 interface CategorySidebarProps {
   categories: Category[];
@@ -19,6 +22,97 @@ interface CategorySidebarProps {
   onCategoryChange: (category: string) => void;
   isOpen?: boolean;
   onToggle?: () => void;
+  apps?: AppWithRelations[];
+}
+
+interface CategoryListProps {
+  categories: Category[];
+  selectedCategory: string;
+  onCategoryChange: (category: string) => void;
+  categoryCountsMap: Map<string, number>;
+  totalSelectedCount: number;
+  onToggle?: () => void;
+  isOpen?: boolean;
+}
+
+function CategoryList({
+  categories,
+  selectedCategory,
+  onCategoryChange,
+  categoryCountsMap,
+  totalSelectedCount,
+  onToggle,
+  isOpen,
+}: CategoryListProps) {
+  return (
+    <nav className="space-y-1 p-2" role="navigation" aria-label="Category navigation">
+      <div className="relative">
+        <Button
+          variant={selectedCategory === 'all' ? 'secondary' : 'ghost'}
+          className="w-full justify-start pr-10"
+          onClick={() => {
+            onCategoryChange('all');
+            if (onToggle && isOpen) onToggle();
+          }}
+          data-category-id="all"
+          aria-current={selectedCategory === 'all' ? 'page' : undefined}
+        >
+          <LayoutGrid className="w-4 h-4 mr-2" />
+          All Apps
+        </Button>
+        {totalSelectedCount > 0 && (
+          <Badge
+            variant="secondary"
+            className="absolute right-2 top-1/2 -translate-y-1/2 h-5 min-w-[1.25rem] px-1.5 text-xs font-medium"
+          >
+            {totalSelectedCount}
+          </Badge>
+        )}
+      </div>
+      {categories.map((category) => {
+        const Icon = getCategoryIcon(category.icon);
+        const count = categoryCountsMap.get(category.id) || 0;
+        const categoryColor = category.colorLight || category.colorDark;
+
+        return (
+          <div key={category.id} className="relative">
+            {/* Color accent bar */}
+            {categoryColor && count > 0 && (
+              <div
+                className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-4/5 rounded-r"
+                style={{ backgroundColor: categoryColor }}
+              />
+            )}
+            <Button
+              variant={selectedCategory === category.id ? 'secondary' : 'ghost'}
+              className="w-full justify-start pr-10 pl-4"
+              onClick={() => {
+                onCategoryChange(category.id);
+                if (onToggle && isOpen) onToggle();
+              }}
+              data-category-id={category.id}
+              aria-current={selectedCategory === category.id ? 'page' : undefined}
+            >
+              <Icon
+                className="w-4 h-4 mr-2"
+                style={categoryColor && count > 0 ? { color: categoryColor } : undefined}
+              />
+              {category.name}
+            </Button>
+            {count > 0 && (
+              <Badge
+                variant="secondary"
+                className="absolute right-2 top-1/2 -translate-y-1/2 h-5 min-w-[1.25rem] px-1.5 text-xs font-medium"
+                style={categoryColor ? { backgroundColor: categoryColor, color: 'white' } : undefined}
+              >
+                {count}
+              </Badge>
+            )}
+          </div>
+        );
+      })}
+    </nav>
+  );
 }
 
 export function CategorySidebar({
@@ -27,48 +121,27 @@ export function CategorySidebar({
   onCategoryChange,
   isOpen = false,
   onToggle,
+  apps = [],
 }: CategorySidebarProps) {
+  const selectedApps = useSelectionStore((state) => state.selectedApps);
+
   const selectedCategoryName =
     selectedCategory === 'all'
       ? 'All Apps'
       : categories.find((c) => c.id === selectedCategory)?.name || 'All Apps';
 
-  const CategoryList = () => (
-    <nav className="space-y-1 p-2" role="navigation" aria-label="Category navigation">
-      <Button
-        variant={selectedCategory === 'all' ? 'secondary' : 'ghost'}
-        className="w-full justify-start"
-        onClick={() => {
-          onCategoryChange('all');
-          if (onToggle && isOpen) onToggle();
-        }}
-        data-category-id="all"
-        aria-current={selectedCategory === 'all' ? 'page' : undefined}
-      >
-        <LayoutGrid className="w-4 h-4 mr-2" />
-        All Apps
-      </Button>
-      {categories.map((category) => {
-        const Icon = getCategoryIcon(category.icon);
-        return (
-          <Button
-            key={category.id}
-            variant={selectedCategory === category.id ? 'secondary' : 'ghost'}
-            className="w-full justify-start"
-            onClick={() => {
-              onCategoryChange(category.id);
-              if (onToggle && isOpen) onToggle();
-            }}
-            data-category-id={category.id}
-            aria-current={selectedCategory === category.id ? 'page' : undefined}
-          >
-            <Icon className="w-4 h-4 mr-2" />
-            {category.name}
-          </Button>
-        );
-      })}
-    </nav>
-  );
+  // Calculate counts per category
+  const categoryCountsMap = useMemo(() => {
+    const counts = new Map<string, number>();
+    apps.forEach((app) => {
+      if (selectedApps.has(app.id)) {
+        counts.set(app.categoryId, (counts.get(app.categoryId) || 0) + 1);
+      }
+    });
+    return counts;
+  }, [selectedApps, apps]);
+
+  const totalSelectedCount = selectedApps.size;
 
   return (
     <>
@@ -90,7 +163,15 @@ export function CategorySidebar({
               <SheetTitle>Categories</SheetTitle>
             </SheetHeader>
             <ScrollArea className="h-full mt-4">
-              <CategoryList />
+              <CategoryList
+                categories={categories}
+                selectedCategory={selectedCategory}
+                onCategoryChange={onCategoryChange}
+                categoryCountsMap={categoryCountsMap}
+                totalSelectedCount={totalSelectedCount}
+                onToggle={onToggle}
+                isOpen={isOpen}
+              />
             </ScrollArea>
           </SheetContent>
         </Sheet>
@@ -111,7 +192,13 @@ export function CategorySidebar({
           </div>
         </div>
         <ScrollArea className="h-[calc(100vh-18rem)]">
-          <CategoryList />
+          <CategoryList
+            categories={categories}
+            selectedCategory={selectedCategory}
+            onCategoryChange={onCategoryChange}
+            categoryCountsMap={categoryCountsMap}
+            totalSelectedCount={totalSelectedCount}
+          />
         </ScrollArea>
       </aside>
     </>

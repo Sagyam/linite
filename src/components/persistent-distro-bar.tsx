@@ -96,22 +96,37 @@ export const PersistentDistroBar = memo(function PersistentDistroBar({
                 <SelectValue placeholder="Choose your Linux distribution" />
               </SelectTrigger>
               <SelectContent>
-                {sortedDistros.map((distro) => (
-                  <SelectItem key={distro.id} value={distro.slug}>
-                    <div className="flex items-center gap-2">
-                      {distro.iconUrl && (
-                        <Image
-                          src={distro.iconUrl}
-                          alt={distro.name}
-                          width={24}
-                          height={24}
-                          className="w-4 h-4 object-cover"
+                {sortedDistros.map((distro) => {
+                  const themeColor = distro.themeColorLight || distro.themeColorDark;
+                  const isSelected = selectedDistro === distro.slug;
+
+                  return (
+                    <SelectItem
+                      key={distro.id}
+                      value={distro.slug}
+                      className={isSelected && themeColor ? 'relative' : ''}
+                    >
+                      {isSelected && themeColor && (
+                        <div
+                          className="absolute inset-0 opacity-10 rounded"
+                          style={{ backgroundColor: themeColor }}
                         />
                       )}
-                      <span>{distro.name}</span>
-                    </div>
-                  </SelectItem>
-                ))}
+                      <div className="flex items-center gap-2 relative z-10">
+                        {distro.iconUrl && (
+                          <Image
+                            src={distro.iconUrl}
+                            alt={distro.name}
+                            width={24}
+                            height={24}
+                            className="w-4 h-4 object-cover"
+                          />
+                        )}
+                        <span>{distro.name}</span>
+                      </div>
+                    </SelectItem>
+                  );
+                })}
               </SelectContent>
             </Select>
           </div>

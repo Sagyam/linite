@@ -1,6 +1,12 @@
 import { z } from 'zod';
 import { slugSchema, optionalString, createUpdateSchema } from '../common';
 
+const hexColorSchema = z
+  .string()
+  .regex(/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/, 'Must be a valid hex color (e.g., #FF5733)')
+  .optional()
+  .or(z.literal(''));
+
 export const createCategorySchema = z.object({
   name: z
     .string()
@@ -14,6 +20,8 @@ export const createCategorySchema = z.object({
     .int()
     .min(0, 'Display order must be 0 or greater')
     .default(0),
+  colorLight: hexColorSchema,
+  colorDark: hexColorSchema,
 });
 
 export const updateCategorySchema = createUpdateSchema(createCategorySchema);

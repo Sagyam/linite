@@ -1,6 +1,12 @@
 import { z } from 'zod';
 import { slugSchema, optionalUrl, optionalString, createUpdateSchema } from '../common';
 
+const hexColorSchema = z
+  .string()
+  .regex(/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/, 'Must be a valid hex color (e.g., #FF5733)')
+  .optional()
+  .or(z.literal(''));
+
 export const createDistroSchema = z.object({
   name: z
     .string()
@@ -14,6 +20,8 @@ export const createDistroSchema = z.object({
   iconUrl: optionalUrl('Icon URL'),
   basedOn: optionalString(50, 'Based on'),
   isPopular: z.boolean().default(false),
+  themeColorLight: hexColorSchema,
+  themeColorDark: hexColorSchema,
 });
 
 export const updateDistroSchema = createUpdateSchema(createDistroSchema);

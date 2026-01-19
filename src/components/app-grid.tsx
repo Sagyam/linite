@@ -19,6 +19,13 @@ interface AppGridProps {
   searchQuery: string;
   showPopular: boolean;
   scrollAreaViewportRef?: React.RefObject<HTMLDivElement | null>;
+  apps?: AppWithRelations[];
+  totalCount?: number;
+  isLoading?: boolean;
+  isError?: boolean;
+  hasNextPage?: boolean;
+  isFetchingNextPage?: boolean;
+  fetchNextPage?: () => void;
 }
 
 export function AppGrid({
@@ -29,6 +36,13 @@ export function AppGrid({
   searchQuery,
   showPopular,
   scrollAreaViewportRef,
+  apps: appsProp,
+  totalCount: totalCountProp,
+  isLoading: isLoadingProp,
+  isError: isErrorProp,
+  hasNextPage: hasNextPageProp,
+  isFetchingNextPage: isFetchingNextPageProp,
+  fetchNextPage: fetchNextPageProp,
 }: AppGridProps) {
   // Get viewMode and focusedIndex from Zustand store
   const viewMode = useSelectionStore((state) => state.viewMode);
@@ -62,7 +76,10 @@ export function AppGrid({
     };
   }, [initialApps, totalApps, hasFiltersApplied]);
 
-  // Fetch apps with pagination
+  // Determine if we should use props or fetch data internally
+  const useProps = appsProp !== undefined;
+
+  // Fetch apps with pagination (only if not provided via props)
   const {
     data,
     fetchNextPage,
@@ -71,29 +88,38 @@ export function AppGrid({
     isLoading,
     isError,
   } = useApps(
-    {
+    useProps ? undefined : {
       category: debouncedCategory === 'all' ? undefined : debouncedCategory,
       popular: showPopular || undefined,
       search: debouncedSearch || undefined,
     },
-    initialData
+    useProps ? undefined : initialData
   );
 
   // Flatten all pages into single array
   const apps = useMemo(() => {
-    return data?.pages.flatMap((page) => page.apps) ?? [];
-  }, [data]);
+    return useProps ? (appsProp ?? []) : (data?.pages.flatMap((page) => page.apps) ?? []);
+  }, [useProps, appsProp, data]);
 
   // Total count from first page
-  const totalCount = data?.pages[0]?.pagination.total ?? 0;
+  const totalCount = useMemo(() => {
+    if (useProps) {
+      return totalCountProp ?? apps.length;
+    }
+    return data?.pages[0]?.pagination.total ?? 0;
+  }, [useProps, totalCountProp, apps, data]);
 
   // Intersection observer for infinite scroll
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         const [entry] = entries;
-        if (entry.isIntersecting && hasNextPage && !isFetchingNextPage) {
-          fetchNextPage();
+        const hasMore = useProps ? (hasNextPageProp ?? false) : (hasNextPage ?? false);
+        const isFetching = useProps ? (isFetchingNextPageProp ?? false) : (isFetchingNextPage ?? false);
+        const fetchFn = useProps ? fetchNextPageProp : fetchNextPage;
+        
+        if (entry.isIntersecting && hasMore && !isFetching && fetchFn) {
+          fetchFn();
         }
       },
       {
@@ -113,7 +139,7 @@ export function AppGrid({
         observer.unobserve(currentRef);
       }
     };
-  }, [hasNextPage, isFetchingNextPage, fetchNextPage, scrollAreaViewportRef]);
+  }, [useProps, hasNextPage, isFetchingNextPage, fetchNextPage, hasNextPageProp, isFetchingNextPageProp, fetchNextPageProp, scrollAreaViewportRef]);
 
   return (
     <div className="space-y-6">
@@ -143,7 +169,7 @@ export function AppGrid({
       </div>
 
       {/* Loading State */}
-      {isLoading && (
+      {(useProps ? isLoadingProp : isLoading) && (
         <div className="text-center py-12">
           <Loader2 className="w-8 h-8 animate-spin mx-auto mb-4" />
           <p className="text-muted-foreground">Loading applications...</p>
@@ -151,7 +177,7 @@ export function AppGrid({
       )}
 
       {/* Error State */}
-      {isError && (
+      {(useProps ? isErrorProp : isError) && (
         <div className="text-center py-12">
           <p className="text-destructive mb-2">Failed to load applications</p>
           <p className="text-sm text-muted-foreground">
@@ -192,17 +218,20 @@ export function AppGrid({
 
               {/* Infinite scroll trigger */}
               <div ref={loadMoreRef} className="py-8 text-center">
-                {isFetchingNextPage ? (
+                {(useProps ? isFetchingNextPageProp : isFetchingNextPage) ? (
                   <div className="flex items-center justify-center gap-2">
                     <Loader2 className="w-5 h-5 animate-spin" />
                     <span className="text-sm text-muted-foreground">
                       Loading more apps...
                     </span>
                   </div>
-                ) : hasNextPage ? (
+                ) : (useProps ? hasNextPageProp : hasNextPage) ? (
                   <Button
                     variant="outline"
-                    onClick={() => fetchNextPage()}
+                    onClick={() => {
+                      const fetchFn = useProps ? fetchNextPageProp : fetchNextPage;
+                      if (fetchFn) fetchFn();
+                    }}
                     className="gap-2"
                   >
                     Load More Apps
