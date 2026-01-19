@@ -1,8 +1,7 @@
 'use client';
 
 import { memo, useRef, useEffect } from 'react';
-import Link from 'next/link';
-import { Info } from 'lucide-react';
+import { ExternalLink } from 'lucide-react';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Checkbox } from '@/components/ui/checkbox';
@@ -44,7 +43,7 @@ export const AppCard = memo(function AppCard({
   }, [isFocused]);
 
   const handleCardClick = (e: React.MouseEvent) => {
-    // Don't toggle if clicking on the info button
+    // Don't toggle if clicking on the homepage link
     if ((e.target as HTMLElement).closest('a')) {
       return;
     }
@@ -145,11 +144,18 @@ export const AppCard = memo(function AppCard({
             </div>
           </div>
 
-          <Link href={`/apps/${app.slug}`} onClick={(e) => e.stopPropagation()}>
-            <Button variant="ghost" size="sm" className="h-8 w-8 p-0 shrink-0">
-              <Info className="w-3 h-3 sm:w-4 sm:h-4" />
-            </Button>
-          </Link>
+          {app.homepage && (
+            <a
+              href={app.homepage}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <Button variant="ghost" size="sm" className="h-8 w-8 p-0 shrink-0">
+                <ExternalLink className="w-3 h-3 sm:w-4 sm:h-4" />
+              </Button>
+            </a>
+          )}
         </div>
       </Card>
     );
@@ -218,12 +224,19 @@ export const AppCard = memo(function AppCard({
               )}
             </div>
 
-            <Link href={`/apps/${app.slug}`} onClick={(e) => e.stopPropagation()}>
-              <Button variant="outline" size="sm" className="gap-1 h-8 text-xs sm:text-sm w-full sm:w-auto">
-                <Info className="w-3 h-3 sm:w-4 sm:h-4" />
-                Details
-              </Button>
-            </Link>
+            {app.homepage && (
+              <a
+                href={app.homepage}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <Button variant="outline" size="sm" className="gap-1 h-8 text-xs sm:text-sm w-full sm:w-auto">
+                  <ExternalLink className="w-3 h-3 sm:w-4 sm:h-4" />
+                  Website
+                </Button>
+              </a>
+            )}
           </div>
         </div>
       </div>
