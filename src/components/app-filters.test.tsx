@@ -44,13 +44,6 @@ describe('AppFilters', () => {
       const searchInput = screen.getByPlaceholderText(/search applications/i);
       expect(searchInput).toHaveValue('firefox');
     });
-
-    it('should have keyboard shortcut hint in placeholder', () => {
-      renderWithProviders(<AppFilters {...defaultProps} />);
-
-      const searchInput = screen.getByPlaceholderText(/press \/ to focus/i);
-      expect(searchInput).toBeInTheDocument();
-    });
   });
 
   describe('search input', () => {

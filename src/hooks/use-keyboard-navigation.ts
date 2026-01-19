@@ -12,6 +12,8 @@ interface UseKeyboardNavigationProps {
   selectedCategory: string;
   onCategoryChange: (id: string) => void;
   searchInputRef: React.RefObject<HTMLInputElement | null>;
+  distroTriggerRef?: React.RefObject<HTMLButtonElement | null>;
+  sourceTriggerRef?: React.RefObject<HTMLButtonElement | null>;
 }
 
 export function useKeyboardNavigation({
@@ -20,6 +22,8 @@ export function useKeyboardNavigation({
   selectedCategory,
   onCategoryChange,
   searchInputRef,
+  distroTriggerRef,
+  sourceTriggerRef,
 }: UseKeyboardNavigationProps) {
   const [showShortcuts, setShowShortcuts] = useState(false);
   const [visualModeStart, setVisualModeStart] = useState<number | null>(null);
@@ -160,6 +164,18 @@ export function useKeyboardNavigation({
         case '/':
           e.preventDefault();
           searchInputRef.current?.focus();
+          break;
+
+        // Configuration: Focus distro selector
+        case 'd':
+          e.preventDefault();
+          distroTriggerRef?.current?.click();
+          break;
+
+        // Configuration: Focus source selector
+        case 's':
+          e.preventDefault();
+          sourceTriggerRef?.current?.click();
           break;
 
         // Help: Show shortcuts

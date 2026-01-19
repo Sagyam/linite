@@ -17,9 +17,15 @@ import type { Distro } from '@/hooks/use-distros';
 
 interface PersistentDistroBarProps {
   distros: Distro[];
+  distroTriggerRef?: React.RefObject<HTMLButtonElement | null>;
+  sourceTriggerRef?: React.RefObject<HTMLButtonElement | null>;
 }
 
-export const PersistentDistroBar = memo(function PersistentDistroBar({ distros }: PersistentDistroBarProps) {
+export const PersistentDistroBar = memo(function PersistentDistroBar({
+  distros,
+  distroTriggerRef,
+  sourceTriggerRef
+}: PersistentDistroBarProps) {
   // Optimize: Use selectors to subscribe only to needed state
   const selectedDistro = useSelectionStore((state) => state.selectedDistro);
   const setDistro = useSelectionStore((state) => state.setDistro);
@@ -81,9 +87,12 @@ export const PersistentDistroBar = memo(function PersistentDistroBar({ distros }
                   Required
                 </Badge>
               )}
+              <kbd className="hidden lg:inline-block px-1.5 py-0.5 text-xs font-mono font-semibold bg-muted/50 border border-border/50 rounded ml-auto">
+                d
+              </kbd>
             </div>
             <Select value={selectedDistro || ''} onValueChange={setDistro}>
-              <SelectTrigger className="h-9 bg-background">
+              <SelectTrigger ref={distroTriggerRef} className="h-9 bg-background">
                 <SelectValue placeholder="Choose your Linux distribution" />
               </SelectTrigger>
               <SelectContent>
@@ -116,6 +125,9 @@ export const PersistentDistroBar = memo(function PersistentDistroBar({ distros }
                   Package Source
                 </span>
                 <span className="text-xs text-muted-foreground">(optional)</span>
+                <kbd className="hidden lg:inline-block px-1.5 py-0.5 text-xs font-mono font-semibold bg-muted/50 border border-border/50 rounded ml-auto">
+                  s
+                </kbd>
               </div>
               <Select
                 value={sourcePreference || 'auto'}
@@ -123,7 +135,7 @@ export const PersistentDistroBar = memo(function PersistentDistroBar({ distros }
                   setSourcePreference(value === 'auto' ? null : value)
                 }
               >
-                <SelectTrigger className="h-9 bg-background">
+                <SelectTrigger ref={sourceTriggerRef} className="h-9 bg-background">
                   <SelectValue placeholder="Auto-select best source" />
                 </SelectTrigger>
                 <SelectContent>

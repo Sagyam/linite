@@ -98,7 +98,19 @@ export function CategorySidebar({
 
       {/* Desktop: Vertical sidebar */}
       <aside className="hidden lg:block w-56 shrink-0">
-        <ScrollArea className="h-[calc(100vh-16rem)]">
+        <div className="mb-2 px-2 py-1.5 bg-muted/30 rounded-md border border-border/50">
+          <div className="flex items-center justify-center gap-2 text-xs text-muted-foreground">
+            <span>Navigate:</span>
+            <kbd className="px-1.5 py-0.5 font-mono font-semibold bg-background border border-border/50 rounded">
+              h
+            </kbd>
+            <span>/</span>
+            <kbd className="px-1.5 py-0.5 font-mono font-semibold bg-background border border-border/50 rounded">
+              l
+            </kbd>
+          </div>
+        </div>
+        <ScrollArea className="h-[calc(100vh-18rem)]">
           <CategoryList />
         </ScrollArea>
       </aside>

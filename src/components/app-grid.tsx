@@ -117,6 +117,31 @@ export function AppGrid({
 
   return (
     <div className="space-y-6">
+      {/* Keyboard hints for desktop */}
+      <div className="hidden lg:flex items-center justify-end gap-4 px-2 py-1.5 bg-muted/30 rounded-md border border-border/50">
+        <div className="flex items-center gap-2 text-xs text-muted-foreground">
+          <span>Navigate:</span>
+          <kbd className="px-1.5 py-0.5 font-mono font-semibold bg-background border border-border/50 rounded">
+            j
+          </kbd>
+          <kbd className="px-1.5 py-0.5 font-mono font-semibold bg-background border border-border/50 rounded">
+            k
+          </kbd>
+        </div>
+        <div className="flex items-center gap-2 text-xs text-muted-foreground">
+          <span>Select:</span>
+          <kbd className="px-1.5 py-0.5 font-mono font-semibold bg-background border border-border/50 rounded">
+            Space
+          </kbd>
+        </div>
+        <div className="flex items-center gap-2 text-xs text-muted-foreground">
+          <span>View:</span>
+          <kbd className="px-1.5 py-0.5 font-mono font-semibold bg-background border border-border/50 rounded">
+            Tab
+          </kbd>
+        </div>
+      </div>
+
       {/* Loading State */}
       {isLoading && (
         <div className="text-center py-12">

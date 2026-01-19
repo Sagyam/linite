@@ -54,6 +54,13 @@ const shortcuts: ShortcutSection[] = [
     ],
   },
   {
+    category: 'Configuration',
+    items: [
+      { keys: ['d'], description: 'Focus distribution selector' },
+      { keys: ['s'], description: 'Focus package source selector' },
+    ],
+  },
+  {
     category: 'View Controls',
     items: [
       { keys: ['Tab'], description: 'Cycle through view modes' },

@@ -35,9 +35,12 @@ export function AppFilters({
           placeholder="Search applications..."
           value={searchQuery}
           onChange={(e) => onSearchChange(e.target.value)}
-          className="pl-9 h-11 sm:h-10 text-base sm:text-sm"
+          className="pl-9 pr-12 h-11 sm:h-10 text-base sm:text-sm"
           aria-label="Search applications"
         />
+        <kbd className="absolute right-3 top-1/2 -translate-y-1/2 px-1.5 py-0.5 text-xs font-mono font-semibold bg-muted/70 border border-border/50 rounded pointer-events-none hidden lg:inline-block">
+          /
+        </kbd>
       </div>
 
       {/* Popular Toggle - Hidden on mobile */}

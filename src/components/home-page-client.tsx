@@ -43,6 +43,8 @@ export function HomePageClient({ categories, distros, initialApps, totalApps }: 
   // Refs
   const searchInputRef = useRef<HTMLInputElement>(null);
   const scrollAreaViewportRef = useRef<HTMLDivElement>(null);
+  const distroTriggerRef = useRef<HTMLButtonElement>(null);
+  const sourceTriggerRef = useRef<HTMLButtonElement>(null);
 
   // Debounced search for better UX
   const debouncedSearch = useDebounce(searchQuery, TIMEOUTS.DEBOUNCE_SEARCH);
@@ -71,6 +73,8 @@ export function HomePageClient({ categories, distros, initialApps, totalApps }: 
     selectedCategory,
     onCategoryChange: setSelectedCategory,
     searchInputRef,
+    distroTriggerRef,
+    sourceTriggerRef,
   });
 
   const handleGenerateCommand = () => {
@@ -107,7 +111,11 @@ export function HomePageClient({ categories, distros, initialApps, totalApps }: 
           </div>
 
           {/* Persistent Distro Bar - Always Visible */}
-          <PersistentDistroBar distros={distros} />
+          <PersistentDistroBar
+            distros={distros}
+            distroTriggerRef={distroTriggerRef}
+            sourceTriggerRef={sourceTriggerRef}
+          />
 
           {/* Main Content Area - Two-column layout */}
           <div className="container mx-auto px-4 py-6 sm:py-8 pb-24 sm:pb-28">
