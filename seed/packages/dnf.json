@@ -85,7 +85,7 @@
   },
   {
     "app": "docker",
-    "identifier": "docker",
+    "identifier": "moby-engine",
     "isAvailable": true,
     "source": "dnf"
   },
@@ -386,6 +386,120 @@
   {
     "app": "zsh",
     "identifier": "zsh",
+    "isAvailable": true,
+    "source": "dnf"
+  },
+  {
+    "app": "apache",
+    "identifier": "httpd",
+    "isAvailable": true,
+    "source": "dnf"
+  },
+  {
+    "app": "nginx",
+    "identifier": "nginx",
+    "isAvailable": true,
+    "source": "dnf"
+  },
+  {
+    "app": "postgresql",
+    "identifier": "postgresql-server",
+    "isAvailable": true,
+    "source": "dnf"
+  },
+  {
+    "app": "redis",
+    "identifier": "redis",
+    "isAvailable": true,
+    "source": "dnf"
+  },
+  {
+    "app": "ansible",
+    "identifier": "ansible",
+    "isAvailable": true,
+    "source": "dnf"
+  },
+  {
+    "app": "ffmpeg",
+    "identifier": "ffmpeg",
+    "isAvailable": true,
+    "source": "dnf"
+  },
+  {
+    "app": "nmap",
+    "identifier": "nmap",
+    "isAvailable": true,
+    "source": "dnf"
+  },
+  {
+    "app": "openssh",
+    "identifier": "openssh-server",
+    "isAvailable": true,
+    "source": "dnf"
+  },
+  {
+    "app": "openvpn",
+    "identifier": "openvpn",
+    "isAvailable": true,
+    "source": "dnf"
+  },
+  {
+    "app": "wireguard",
+    "identifier": "wireguard-tools",
+    "isAvailable": true,
+    "source": "dnf"
+  },
+  {
+    "app": "wireshark",
+    "identifier": "wireshark",
+    "isAvailable": true,
+    "source": "dnf"
+  },
+  {
+    "app": "qemu",
+    "identifier": "qemu-kvm",
+    "isAvailable": true,
+    "source": "dnf"
+  },
+  {
+    "app": "virtualbox",
+    "identifier": "VirtualBox",
+    "isAvailable": true,
+    "source": "dnf"
+  },
+  {
+    "app": "vagrant",
+    "identifier": "vagrant",
+    "isAvailable": true,
+    "source": "dnf"
+  },
+  {
+    "app": "fish",
+    "identifier": "fish",
+    "isAvailable": true,
+    "source": "dnf"
+  },
+  {
+    "app": "aria2",
+    "identifier": "aria2",
+    "isAvailable": true,
+    "source": "dnf"
+  },
+  {
+    "app": "eza",
+    "identifier": "eza",
+    "isAvailable": true,
+    "source": "dnf"
+  },
+  {
+    "app": "fd",
+    "identifier": "fd-find",
+    "isAvailable": true,
+    "source": "dnf"
+  },
+  {
+    "app": "ranger",
+    "identifier": "ranger",
     "isAvailable": true,
     "source": "dnf"
   }

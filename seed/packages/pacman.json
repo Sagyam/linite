@@ -658,5 +658,107 @@
     "identifier": "zsh",
     "isAvailable": true,
     "source": "pacman"
+  },
+  {
+    "app": "fd",
+    "identifier": "fd",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
+    "app": "gh",
+    "identifier": "github-cli",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
+    "app": "nginx",
+    "identifier": "nginx",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
+    "app": "nmap",
+    "identifier": "nmap",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
+    "app": "openssh",
+    "identifier": "openssh",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
+    "app": "openvpn",
+    "identifier": "openvpn",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
+    "app": "wireguard",
+    "identifier": "wireguard-tools",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
+    "app": "ranger",
+    "identifier": "ranger",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
+    "app": "qemu",
+    "identifier": "qemu-full",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
+    "app": "postgresql",
+    "identifier": "postgresql",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
+    "app": "redis",
+    "identifier": "redis",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
+    "app": "wireshark",
+    "identifier": "wireshark-qt",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
+    "app": "micro",
+    "identifier": "micro",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
+    "app": "virt-manager",
+    "identifier": "virt-manager",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
+    "app": "virtualbox",
+    "identifier": "virtualbox",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
+    "app": "vagrant",
+    "identifier": "vagrant",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
+    "app": "steam",
+    "identifier": "steam",
+    "isAvailable": true,
+    "source": "pacman"
   }
 ]

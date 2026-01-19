@@ -538,5 +538,41 @@
     "identifier": "micro",
     "isAvailable": true,
     "source": "apt"
+  },
+  {
+    "app": "ffmpeg",
+    "identifier": "ffmpeg",
+    "isAvailable": true,
+    "source": "apt"
+  },
+  {
+    "app": "ansible",
+    "identifier": "ansible",
+    "isAvailable": true,
+    "source": "apt"
+  },
+  {
+    "app": "gh",
+    "identifier": "gh",
+    "isAvailable": true,
+    "source": "apt"
+  },
+  {
+    "app": "fish",
+    "identifier": "fish",
+    "isAvailable": true,
+    "source": "apt"
+  },
+  {
+    "app": "httpie",
+    "identifier": "httpie",
+    "isAvailable": true,
+    "source": "apt"
+  },
+  {
+    "app": "kitty",
+    "identifier": "kitty",
+    "isAvailable": true,
+    "source": "apt"
   }
 ]
