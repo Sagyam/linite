@@ -80,7 +80,7 @@
   {
     "name": "AI",
     "slug": "ai",
-    "icon": "BrainCog",
+    "icon": "BrainCircuit",
     "displayOrder": 14
   }
 ]

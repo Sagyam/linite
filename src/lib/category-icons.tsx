@@ -10,7 +10,11 @@ import {
   Shield,
   Settings,
   LayoutGrid,
-  type LucideIcon, Terminal, Command,
+  Terminal,
+  Command,
+  BrainCircuit,
+  Binary,
+  type LucideIcon,
 } from 'lucide-react';
 
 /**
@@ -29,7 +33,9 @@ const iconMap: Record<string, LucideIcon> = {
   Settings,
   LayoutGrid,
   Terminal,
-  Command
+  Command,
+  BrainCircuit,
+  Binary,
 };
 
 /**

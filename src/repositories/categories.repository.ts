@@ -18,7 +18,7 @@ export class CategoriesRepository extends BaseRepository<Category> {
    */
   async findAllOrdered(): Promise<Category[]> {
     return this.findMany({
-      orderBy: [asc(categories.displayOrder), asc(categories.name)],
+      orderBy: [asc(categories.name)],
     });
   }
 
