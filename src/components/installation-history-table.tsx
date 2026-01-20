@@ -17,7 +17,7 @@ import type { InstallationWithRelations } from '@/types/entities';
 // to avoid layout shifts and hydration issues with dynamic content
 
 async function fetchInstallations(deviceFilter?: string | null): Promise<InstallationWithRelations[]> {
-  const params = new URLSearchParams({ limit: '1000' });
+  const params = new URLSearchParams({ limit: '100' });
   if (deviceFilter) {
     params.set('deviceIdentifier', deviceFilter);
   }
