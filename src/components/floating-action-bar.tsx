@@ -7,9 +7,7 @@ import {
   ChevronUp,
   Settings2,
   AlertCircle,
-  Monitor,
-  Download,
-  Trash2,
+  Monitor
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -31,7 +29,6 @@ export const FloatingActionBar = memo(function FloatingActionBar({
   const selectedAppsSize = useSelectionStore((state) => state.selectedApps.size);
   const selectedDistro = useSelectionStore((state) => state.selectedDistro);
   const mode = useSelectionStore((state) => state.mode);
-  const toggleMode = useSelectionStore((state) => state.toggleMode);
 
   // Memoize: Cache expensive find operation (must be before early return)
   const selectedDistroObj = useMemo(
@@ -88,29 +85,6 @@ export const FloatingActionBar = memo(function FloatingActionBar({
             </div>
           </button>
 
-          {/* Center: Mode toggle */}
-          <div className="flex items-center gap-2 min-w-0">
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={toggleMode}
-              className="gap-2"
-            >
-              {mode === 'install' ? (
-                <>
-                  <Trash2 className="w-4 h-4" />
-                  <span className="hidden sm:inline">Uninstall</span>
-                  <span className="xs:hidden">Uninstall</span>
-                </>
-              ) : (
-                <>
-                  <Download className="w-4 h-4" />
-                  <span className="hidden sm:inline">Install</span>
-                  <span className="xs:hidden">Install</span>
-                </>
-              )}
-            </Button>
-          </div>
 
           {/* Right: Warning or Action */}
           {!selectedDistro ? (
