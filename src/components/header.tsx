@@ -7,7 +7,7 @@ import { ThemeToggle } from '@/components/theme-toggle';
 import { UserNav } from '@/components/dashboard/user-nav';
 import { MobileNav } from '@/components/mobile-nav';
 import { useSession } from '@/lib/auth-client';
-import { Github, Star, LogIn, Home, Shield, LibraryBig } from 'lucide-react';
+import { Github, Star, LogIn, Home, Shield, LibraryBig, Settings } from 'lucide-react';
 
 export function Header() {
   const { data: session, isPending } = useSession();
@@ -47,6 +47,14 @@ export function Header() {
                 Collections
               </Button>
             </Link>
+            {session && (
+              <Link href="/dashboard/installations">
+                <Button variant="ghost" size="sm" className="gap-2">
+                  <Settings className="h-4 w-4" />
+                  Installations
+                </Button>
+              </Link>
+            )}
             {process.env.NODE_ENV === 'development' && (
               <Link href="/admin">
                 <Button variant="ghost" size="sm" className="gap-2">

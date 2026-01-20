@@ -10,7 +10,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from '@/components/ui/sheet';
-import { Home, LibraryBig, Shield, Github, Star, LogIn, Menu } from 'lucide-react';
+import { Home, LibraryBig, Shield, Github, Star, LogIn, Menu, Settings } from 'lucide-react';
 
 interface MobileNavProps {
   isAuthenticated: boolean;
@@ -46,6 +46,14 @@ export function MobileNav({ isAuthenticated }: MobileNavProps) {
               Collections
             </Button>
           </Link>
+          {isAuthenticated && (
+            <Link href="/dashboard/installations" onClick={closeSheet}>
+              <Button variant="ghost" className="w-full justify-start gap-2">
+                <Settings className="h-4 w-4" />
+                Installations
+              </Button>
+            </Link>
+          )}
           {process.env.NODE_ENV === 'development' && (
             <Link href="/admin" onClick={closeSheet}>
               <Button variant="ghost" className="w-full justify-start gap-2">

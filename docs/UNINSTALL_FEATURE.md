@@ -368,7 +368,7 @@ Features:
 
 #### Authenticated Flow
 
-**Page**: `/src/app/admin/(dashboard)/installations/page.tsx` (NEW)
+**Page**: `/src/app/(dashboard)/installations/page.tsx` (NEW)
 
 Components needed:
 1. `InstallationHistoryTable` - Table with app, package, source, device, distro columns
@@ -461,20 +461,20 @@ Components needed:
 ### Phase 4: Frontend - Authenticated Flow (Week 3)
 
 **Tasks**:
-- [ ] Create `/src/app/admin/(dashboard)/installations/page.tsx`
-- [ ] Create `/src/components/admin/installation-history-table.tsx`
+- [ ] Create `/src/app/(dashboard)/installations/page.tsx`
+- [ ] Create `/src/components/installation-history-table.tsx`
   - Fetch and display installations
   - Device filtering
   - Delete functionality
   - Format dates (date-fns)
-- [ ] Create `/src/components/admin/device-filter.tsx`
+- [ ] Create `/src/components/device-filter.tsx`
   - Fetch user devices
   - Dropdown to filter
-- [ ] Create `/src/components/admin/add-installation-dialog.tsx`
+- [ ] Create `/src/components/add-installation-dialog.tsx`
   - Form with app, package, distro, device selectors
   - Notes field
   - Validation
-- [ ] Add navigation link to admin sidebar
+- [ ] Add navigation link to navbar
 - [ ] Test multi-device scenarios
 
 **Acceptance Criteria**:
@@ -530,10 +530,10 @@ Components needed:
 - `/src/components/command-output/cleanup-commands.tsx` (~70 lines) ✅ Created (Phase 3)
 - `/src/components/command-output/manual-uninstall-steps.tsx` (~60 lines) ✅ Created (Phase 3)
 - `/src/components/uninstall-command-dialog.tsx` (merged into command-dialog with tabs)
-- `/src/components/admin/installation-history-table.tsx` (~200 lines) ⏳ Phase 4
-- `/src/components/admin/device-filter.tsx` (~60 lines) ⏳ Phase 4
-- `/src/components/admin/add-installation-dialog.tsx` (~150 lines) ⏳ Phase 4
-- `/src/app/admin/(dashboard)/installations/page.tsx` (~100 lines) ⏳ Phase 4
+- `/src/components/installation-history-table.tsx` (~200 lines) ⏳ Phase 4
+- `/src/components/device-filter.tsx` (~60 lines) ⏳ Phase 4
+- `/src/components/add-installation-dialog.tsx` (~150 lines) ⏳ Phase 4
+- `/src/app/(dashboard)/installations/page.tsx` (~100 lines) ⏳ Phase 4
 - `/src/lib/validation/schemas/installation.schema.ts` (~50 lines) ✅ Created (Phase 2)
 - `/src/lib/validation/schemas/uninstall.schema.ts` (~30 lines) ✅ Created (Phase 2)
 
@@ -856,14 +856,14 @@ All questions have been answered:
 **Missing**: Frontend UI for installation history management
 
 **Key Files to Create**:
-1. `/src/app/admin/(dashboard)/installations/page.tsx` - Main admin page
-2. `/src/components/admin/installation-history-table.tsx` - Data table component
-3. `/src/components/admin/device-filter.tsx` - Filter dropdown
-4. `/src/components/admin/add-installation-dialog.tsx` - Add form dialog
+1. `/src/app/(dashboard)/installations/page.tsx` - Main page
+2. `/src/components/installation-history-table.tsx` - Data table component
+3. `/src/components/device-filter.tsx` - Filter dropdown
+4. `/src/components/add-installation-dialog.tsx` - Add form dialog
 
 **Key Files to Update**:
-1. Admin sidebar - Add navigation link to "Installations"
-2. Possibly create admin layout component
+1. Sidebar - Add navigation link to "Installations"
+2. Possibly create layout component
 
 **Implementation Notes**:
 - Use existing admin page patterns (see other pages in `/src/app/admin/`)
