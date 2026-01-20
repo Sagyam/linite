@@ -19,7 +19,8 @@
     "db:studio": "drizzle-kit studio",
     "db:seed": "bun run seed/seed.ts",
     "db:wipe": "bun run scripts/wipe-db.ts",
-    "db:drop": "bun run scripts/drop-schema.ts"
+    "db:drop": "bun run scripts/drop-schema.ts",
+    "db:update-sources": "bun run scripts/update-sources-uninstall.ts"
   },
   "dependencies": {
     "@azure/storage-blob": "^12.29.1",
