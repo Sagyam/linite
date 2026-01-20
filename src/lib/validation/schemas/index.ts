@@ -23,5 +23,11 @@ export * from './distro-source.schema';
 // Collection schemas
 export * from './collection.schema';
 
+// Installation schemas
+export * from './installation.schema';
+
+// Uninstall schemas
+export * from './uninstall.schema';
+
 // Common schemas
 export * from './common.schema';

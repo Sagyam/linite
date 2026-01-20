@@ -44,8 +44,12 @@ export interface Source {
   name: string;
   slug: string;
   installCmd: string;
+  removeCmd: string | null; // Uninstall command template
   requireSudo: boolean;
   setupCmd: string | null;
+  cleanupCmd: string | null; // Reverse of setupCmd
+  supportsDependencyCleanup: boolean; // If source has autoremove-style command
+  dependencyCleanupCmd: string | null; // e.g., "apt autoremove -y"
   priority: number;
   apiEndpoint: string | null;
   createdAt?: Date;
@@ -66,6 +70,12 @@ export interface Distro {
   updatedAt?: Date;
 }
 
+export interface UninstallMetadata {
+  linux?: string;
+  windows?: string;
+  manualInstructions?: string;
+}
+
 export interface Package {
   id: string;
   appId: string;
@@ -77,6 +87,9 @@ export interface Package {
   isAvailable: boolean;
   lastChecked: Date | null;
   metadata: unknown;
+  packageSetupCmd?: string | Record<string, string | null> | null;
+  packageCleanupCmd?: string | Record<string, string | null> | null; // Reverse of packageSetupCmd
+  uninstallMetadata?: UninstallMetadata | null; // For script sources
   createdAt?: Date;
   updatedAt?: Date;
 }
@@ -179,6 +192,53 @@ export interface CollectionLike {
 }
 
 // ============================================================================
+// INSTALLATION TRACKING (Authenticated Users)
+// ============================================================================
+
+export interface Installation {
+  id: string;
+  userId: string;
+  appId: string;
+  packageId: string;
+  distroId: string;
+  deviceIdentifier: string; // User-provided name: "My Laptop", "Work PC"
+  installedAt: Date;
+  notes: string | null;
+  createdAt?: Date;
+  updatedAt?: Date;
+}
+
+export interface InstallationWithRelations extends Installation {
+  user: {
+    id: string;
+    name: string | null;
+    email: string;
+  };
+  app: {
+    id: string;
+    displayName: string;
+    slug: string;
+    iconUrl: string | null;
+  };
+  package: {
+    id: string;
+    identifier: string;
+    version: string | null;
+    source: {
+      id: string;
+      name: string;
+      slug: string;
+    };
+  };
+  distro: {
+    id: string;
+    name: string;
+    slug: string;
+    iconUrl: string | null;
+  };
+}
+
+// ============================================================================
 // API RESPONSE TYPES
 // ============================================================================
 
@@ -215,6 +275,29 @@ export interface GenerateCommandResponse {
   setupCommands: string[];
   warnings: string[];
   breakdown: PackageBreakdown[];
+}
+
+export interface ManualUninstallStep {
+  appName: string;
+  instructions: string;
+}
+
+export interface GenerateUninstallCommandRequest {
+  distroSlug: string;
+  appIds: string[];
+  sourcePreference?: string;
+  nixosInstallMethod?: 'nix-shell' | 'nix-env' | 'nix-flakes';
+  includeDependencyCleanup?: boolean; // Default: false
+  includeSetupCleanup?: boolean; // Default: false
+}
+
+export interface GenerateUninstallCommandResponse {
+  commands: string[];
+  cleanupCommands: string[]; // Reverse of setupCommands
+  dependencyCleanupCommands: string[]; // apt autoremove, etc.
+  warnings: string[];
+  breakdown: PackageBreakdown[];
+  manualSteps: ManualUninstallStep[]; // For script sources
 }
 
 // ============================================================================

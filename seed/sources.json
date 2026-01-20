@@ -3,8 +3,12 @@
     "name": "Flatpak",
     "slug": "flatpak",
     "installCmd": "flatpak install -y flathub",
+    "removeCmd": "flatpak uninstall -y",
     "requireSudo": false,
     "setupCmd": "flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo",
+    "cleanupCmd": "flatpak remote-delete flathub",
+    "supportsDependencyCleanup": true,
+    "dependencyCleanupCmd": "flatpak uninstall --unused -y",
     "priority": 5,
     "apiEndpoint": "https://flathub.org/api/v2/"
   },
@@ -12,8 +16,12 @@
     "name": "Snap",
     "slug": "snap",
     "installCmd": "snap install",
+    "removeCmd": "snap remove",
     "requireSudo": true,
     "setupCmd": null,
+    "cleanupCmd": null,
+    "supportsDependencyCleanup": false,
+    "dependencyCleanupCmd": null,
     "priority": 3,
     "apiEndpoint": "https://api.snapcraft.io/v2/"
   },
@@ -21,8 +29,12 @@
     "name": "APT",
     "slug": "apt",
     "installCmd": "apt install -y",
+    "removeCmd": "apt remove -y",
     "requireSudo": true,
     "setupCmd": null,
+    "cleanupCmd": null,
+    "supportsDependencyCleanup": true,
+    "dependencyCleanupCmd": "apt autoremove -y",
     "priority": 10,
     "apiEndpoint": null
   },
@@ -30,8 +42,12 @@
     "name": "DNF",
     "slug": "dnf",
     "installCmd": "dnf install -y",
+    "removeCmd": "dnf remove -y",
     "requireSudo": true,
     "setupCmd": null,
+    "cleanupCmd": null,
+    "supportsDependencyCleanup": true,
+    "dependencyCleanupCmd": "dnf autoremove -y",
     "priority": 10,
     "apiEndpoint": null
   },
@@ -39,8 +55,12 @@
     "name": "Pacman",
     "slug": "pacman",
     "installCmd": "pacman -S --noconfirm",
+    "removeCmd": "pacman -Rns --noconfirm",
     "requireSudo": true,
     "setupCmd": null,
+    "cleanupCmd": null,
+    "supportsDependencyCleanup": false,
+    "dependencyCleanupCmd": null,
     "priority": 10,
     "apiEndpoint": null
   },
@@ -48,8 +68,12 @@
     "name": "Zypper",
     "slug": "zypper",
     "installCmd": "zypper install -y",
+    "removeCmd": "zypper remove -y",
     "requireSudo": true,
     "setupCmd": null,
+    "cleanupCmd": null,
+    "supportsDependencyCleanup": false,
+    "dependencyCleanupCmd": null,
     "priority": 10,
     "apiEndpoint": null
   },
@@ -57,8 +81,12 @@
     "name": "AUR",
     "slug": "aur",
     "installCmd": "yay -S --noconfirm",
+    "removeCmd": "yay -Rns --noconfirm",
     "requireSudo": false,
     "setupCmd": "sudo pacman -S --needed git base-devel && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si",
+    "cleanupCmd": null,
+    "supportsDependencyCleanup": false,
+    "dependencyCleanupCmd": null,
     "priority": 7,
     "apiEndpoint": "https://aur.archlinux.org/rpc/"
   },
@@ -66,8 +94,12 @@
     "name": "Homebrew",
     "slug": "homebrew",
     "installCmd": "brew install",
+    "removeCmd": "brew uninstall",
     "requireSudo": false,
     "setupCmd": "/bin/bash -c \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\"",
+    "cleanupCmd": "/bin/bash -c \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/uninstall.sh)\"",
+    "supportsDependencyCleanup": true,
+    "dependencyCleanupCmd": "brew autoremove",
     "priority": 8,
     "apiEndpoint": "https://formulae.brew.sh/api/"
   },
@@ -75,8 +107,12 @@
     "name": "Nix",
     "slug": "nix",
     "installCmd": "nix-shell -p",
+    "removeCmd": "nix-env -e",
     "requireSudo": false,
     "setupCmd": null,
+    "cleanupCmd": null,
+    "supportsDependencyCleanup": true,
+    "dependencyCleanupCmd": "nix-collect-garbage -d",
     "priority": 10,
     "apiEndpoint": "https://www.nixhub.io/v2/"
   },
@@ -84,8 +120,12 @@
     "name": "Winget",
     "slug": "winget",
     "installCmd": "winget install --silent --accept-package-agreements --accept-source-agreements",
+    "removeCmd": "winget uninstall --silent",
     "requireSudo": false,
     "setupCmd": null,
+    "cleanupCmd": null,
+    "supportsDependencyCleanup": false,
+    "dependencyCleanupCmd": null,
     "priority": 10,
     "apiEndpoint": "https://api.winget.run/"
   },
@@ -93,8 +133,12 @@
     "name": "Scoop",
     "slug": "scoop",
     "installCmd": "scoop install",
+    "removeCmd": "scoop uninstall",
     "requireSudo": false,
     "setupCmd": "Set-ExecutionPolicy RemoteSigned -Scope CurrentUser; irm get.scoop.sh | iex",
+    "cleanupCmd": null,
+    "supportsDependencyCleanup": true,
+    "dependencyCleanupCmd": "scoop cleanup *",
     "priority": 6,
     "apiEndpoint": null
   },
@@ -102,8 +146,12 @@
     "name": "Chocolatey",
     "slug": "chocolatey",
     "installCmd": "choco install -y",
+    "removeCmd": "choco uninstall -y",
     "requireSudo": false,
     "setupCmd": "Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))",
+    "cleanupCmd": null,
+    "supportsDependencyCleanup": false,
+    "dependencyCleanupCmd": null,
     "priority": 7,
     "apiEndpoint": null
   },
@@ -111,8 +159,12 @@
     "name": "Script",
     "slug": "script",
     "installCmd": "curl -fsSL {url} | bash",
+    "removeCmd": null,
     "requireSudo": false,
     "setupCmd": null,
+    "cleanupCmd": null,
+    "supportsDependencyCleanup": false,
+    "dependencyCleanupCmd": null,
     "priority": 1,
     "apiEndpoint": null
   },
@@ -120,6 +172,7 @@
     "name": "Cargo",
     "slug": "cargo",
     "installCmd": "cargo install",
+    "removeCmd": "cargo uninstall",
     "requireSudo": false,
     "setupCmd": {
       "debian": "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y && source $HOME/.cargo/env",
@@ -129,6 +182,16 @@
       "nixos": "nix-env -iA nixpkgs.cargo nixpkgs.rustc",
       "windows": "winget install --id Rustlang.Rustup"
     },
+    "cleanupCmd": {
+      "debian": "rustup self uninstall",
+      "rhel": "rustup self uninstall",
+      "arch": "rustup self uninstall",
+      "suse": "rustup self uninstall",
+      "nixos": "nix-env -e cargo rustc",
+      "windows": "winget uninstall --id Rustlang.Rustup"
+    },
+    "supportsDependencyCleanup": false,
+    "dependencyCleanupCmd": null,
     "priority": 4,
     "apiEndpoint": null
   },
@@ -136,6 +199,7 @@
     "name": "npm",
     "slug": "npm",
     "installCmd": "npm install -g",
+    "removeCmd": "npm uninstall -g",
     "requireSudo": false,
     "setupCmd": {
       "debian": "curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash - && sudo apt-get install -y nodejs",
@@ -145,6 +209,9 @@
       "nixos": "nix-env -iA nixpkgs.nodejs",
       "windows": "winget install --id OpenJS.NodeJS"
     },
+    "cleanupCmd": null,
+    "supportsDependencyCleanup": false,
+    "dependencyCleanupCmd": null,
     "priority": 4,
     "apiEndpoint": null
   },
@@ -152,6 +219,7 @@
     "name": "Go",
     "slug": "go",
     "installCmd": "go install",
+    "removeCmd": "rm -rf $GOPATH/bin/{package}",
     "requireSudo": false,
     "setupCmd": {
       "debian": "wget https://go.dev/dl/go1.21.5.linux-amd64.tar.gz && sudo tar -C /usr/local -xzf go1.21.5.linux-amd64.tar.gz && echo 'export PATH=$PATH:/usr/local/go/bin' >> ~/.bashrc && source ~/.bashrc",
@@ -161,6 +229,16 @@
       "nixos": "nix-env -iA nixpkgs.go",
       "windows": "winget install --id GoLang.Go"
     },
+    "cleanupCmd": {
+      "debian": "sudo rm -rf /usr/local/go",
+      "rhel": "sudo dnf remove -y golang",
+      "arch": "sudo pacman -Rns --noconfirm go",
+      "suse": "sudo zypper remove -y go",
+      "nixos": "nix-env -e go",
+      "windows": "winget uninstall --id GoLang.Go"
+    },
+    "supportsDependencyCleanup": false,
+    "dependencyCleanupCmd": null,
     "priority": 4,
     "apiEndpoint": null
   },
@@ -168,6 +246,7 @@
     "name": "pip",
     "slug": "pip",
     "installCmd": "pip install --user",
+    "removeCmd": "pip uninstall -y",
     "requireSudo": false,
     "setupCmd": {
       "debian": "sudo apt-get update && sudo apt-get install -y python3-pip",
@@ -177,6 +256,9 @@
       "nixos": "nix-env -iA nixpkgs.python3 nixpkgs.python3Packages.pip",
       "windows": "winget install --id Python.Python.3.12"
     },
+    "cleanupCmd": null,
+    "supportsDependencyCleanup": false,
+    "dependencyCleanupCmd": null,
     "priority": 4,
     "apiEndpoint": null
   }

@@ -24,6 +24,18 @@ export const createPackageSchema = z.object({
     ])
     .nullable()
     .optional(),
+  packageCleanupCmd: z
+    .union([
+      z.string(),
+      z.record(z.string(), z.string().nullable()),
+    ])
+    .nullable()
+    .optional(),
+  uninstallMetadata: z.object({
+    linux: z.string().optional(),
+    windows: z.string().optional(),
+    manualInstructions: z.string().optional(),
+  }).nullable().optional(),
 });
 
 export const updatePackageSchema = createUpdateSchema(createPackageSchema);

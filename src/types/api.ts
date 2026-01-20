@@ -11,7 +11,11 @@ import type {
   Package,
   DistroSource,
   AppWithRelations,
-  PackageWithRelations
+  PackageWithRelations,
+  Installation,
+  InstallationWithRelations,
+  GenerateUninstallCommandRequest,
+  GenerateUninstallCommandResponse
 } from './entities';
 
 // ============================================================================
@@ -281,3 +285,45 @@ export interface RefreshLogResponse {
 }
 
 export type GetRefreshLogsResponse = RefreshLogResponse[];
+
+// ============================================================================
+// INSTALLATION HISTORY API TYPES (Authenticated Users)
+// ============================================================================
+
+export interface GetInstallationsParams extends PaginationParams {
+  deviceIdentifier?: string;
+  appId?: string;
+  distroId?: string;
+}
+
+export type GetInstallationsResponse = InstallationWithRelations[];
+
+export interface CreateInstallationRequest {
+  appId: string;
+  packageId: string;
+  distroId: string;
+  deviceIdentifier: string;
+  notes?: string;
+}
+
+export type CreateInstallationResponse = Installation;
+
+export interface UpdateInstallationRequest {
+  deviceIdentifier?: string;
+  notes?: string;
+}
+
+export type UpdateInstallationResponse = Installation;
+
+export type GetInstallationByIdResponse = InstallationWithRelations;
+
+export interface GetUserDevicesResponse {
+  devices: string[];
+}
+
+// ============================================================================
+// UNINSTALL COMMAND GENERATION API TYPES
+// ============================================================================
+
+export type GenerateUninstallRequest = GenerateUninstallCommandRequest;
+export type GenerateUninstallResponse = GenerateUninstallCommandResponse;

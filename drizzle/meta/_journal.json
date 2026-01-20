@@ -36,6 +36,13 @@
       "when": 1768874704100,
       "tag": "0004_clean_spectrum",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "6",
+      "when": 1768918278956,
+      "tag": "0005_nifty_obadiah_stane",
+      "breakpoints": true
     }
   ]
 }

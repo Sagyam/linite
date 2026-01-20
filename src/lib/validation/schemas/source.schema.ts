@@ -11,8 +11,12 @@ export const createSourceSchema = z.object({
     .string()
     .min(1, 'Install command is required')
     .max(200, 'Install command must be less than 200 characters'),
+  removeCmd: optionalString(200, 'Remove command'),
   requireSudo: z.boolean().default(false),
   setupCmd: optionalString(500, 'Setup command'),
+  cleanupCmd: optionalString(500, 'Cleanup command'),
+  supportsDependencyCleanup: z.boolean().default(false),
+  dependencyCleanupCmd: optionalString(200, 'Dependency cleanup command'),
   priority: z
     .number()
     .int()

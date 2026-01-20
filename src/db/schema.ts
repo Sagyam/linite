@@ -112,8 +112,12 @@ export const sources = sqliteTable('sources', {
   name: text('name').notNull(),
   slug: text('slug').notNull().unique(),
   installCmd: text('install_cmd').notNull(),
+  removeCmd: text('remove_cmd'), // Uninstall command template (e.g., "apt remove -y", "flatpak uninstall -y")
   requireSudo: integer('require_sudo', { mode: 'boolean' }).default(false),
   setupCmd: text('setup_cmd', { mode: 'json' }), // Supports both string (for universal commands) and object (for distro-family-specific commands)
+  cleanupCmd: text('cleanup_cmd', { mode: 'json' }), // Reverse of setupCmd (remove PPAs, repos, remotes)
+  supportsDependencyCleanup: integer('supports_dependency_cleanup', { mode: 'boolean' }).default(false), // If source has autoremove-style command
+  dependencyCleanupCmd: text('dependency_cleanup_cmd'), // e.g., "apt autoremove -y", "dnf autoremove -y"
   priority: integer('priority').default(0),
   apiEndpoint: text('api_endpoint'),
   ...timestamps,
@@ -137,6 +141,8 @@ export const packages = sqliteTable('packages', {
   lastChecked: integer('last_checked', { mode: 'timestamp' }).$defaultFn(() => new Date()),
   metadata: text('metadata', { mode: 'json' }),
   packageSetupCmd: text('package_setup_cmd', { mode: 'json' }),
+  packageCleanupCmd: text('package_cleanup_cmd', { mode: 'json' }), // Reverse of packageSetupCmd (remove PPAs, COPR repos)
+  uninstallMetadata: text('uninstall_metadata', { mode: 'json' }), // For script sources: {linux?: string, windows?: string, manualInstructions?: string}
   ...timestamps,
 }, (table) => ({
   appIdIdx: index('packages_app_id_idx').on(table.appId),
@@ -244,6 +250,35 @@ export const collectionItems = sqliteTable('collection_items', {
   collectionAppIdx: index('collection_items_collection_app_idx').on(table.collectionId, table.appId),
 }));
 
+// ============ INSTALLATION TRACKING (Authenticated Users) ============
+
+export const installations = sqliteTable('installations', {
+  id: text('id')
+    .primaryKey()
+    .$defaultFn(() => createId()),
+  userId: text('user_id')
+    .notNull()
+    .references(() => user.id, { onDelete: 'cascade' }),
+  appId: text('app_id')
+    .notNull()
+    .references(() => apps.id, { onDelete: 'cascade' }),
+  packageId: text('package_id')
+    .notNull()
+    .references(() => packages.id, { onDelete: 'cascade' }),
+  distroId: text('distro_id')
+    .notNull()
+    .references(() => distros.id),
+  deviceIdentifier: text('device_identifier').notNull(), // User-provided name: "My Laptop", "Work PC", etc.
+  installedAt: integer('installed_at', { mode: 'timestamp' }).$defaultFn(() => new Date()),
+  notes: text('notes'), // Optional user notes
+  ...timestamps,
+}, (table) => ({
+  userIdIdx: index('installations_user_id_idx').on(table.userId),
+  appIdIdx: index('installations_app_id_idx').on(table.appId),
+  deviceIdx: index('installations_device_idx').on(table.userId, table.deviceIdentifier),
+  userAppDeviceIdx: index('installations_user_app_device_idx').on(table.userId, table.appId, table.deviceIdentifier),
+}));
+
 // ============ RELATIONS ============
 
 export const categoriesRelations = relations(categories, ({ many }) => ({
@@ -294,6 +329,7 @@ export const userRelations = relations(user, ({ many }) => ({
   sessions: many(session),
   accounts: many(account),
   collections: many(collections),
+  installations: many(installations),
 }));
 
 export const sessionRelations = relations(session, ({ one }) => ({
@@ -333,5 +369,24 @@ export const collectionItemsRelations = relations(collectionItems, ({ one }) => 
   app: one(apps, {
     fields: [collectionItems.appId],
     references: [apps.id],
+  }),
+}));
+
+export const installationsRelations = relations(installations, ({ one }) => ({
+  user: one(user, {
+    fields: [installations.userId],
+    references: [user.id],
+  }),
+  app: one(apps, {
+    fields: [installations.appId],
+    references: [apps.id],
+  }),
+  package: one(packages, {
+    fields: [installations.packageId],
+    references: [packages.id],
+  }),
+  distro: one(distros, {
+    fields: [installations.distroId],
+    references: [distros.id],
   }),
 }));

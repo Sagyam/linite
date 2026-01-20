@@ -22,6 +22,12 @@ export type {
   RefreshResult,
   RefreshOptions,
   PackageMetadata,
+  UninstallMetadata,
+  Installation,
+  InstallationWithRelations,
+  ManualUninstallStep,
+  GenerateUninstallCommandRequest,
+  GenerateUninstallCommandResponse,
 } from './entities';
 
 // API types
@@ -77,4 +83,14 @@ export type {
   TriggerRefreshRequest,
   RefreshLogResponse,
   GetRefreshLogsResponse,
+  GetInstallationsParams,
+  GetInstallationsResponse,
+  CreateInstallationRequest,
+  CreateInstallationResponse,
+  UpdateInstallationRequest,
+  UpdateInstallationResponse,
+  GetInstallationByIdResponse,
+  GetUserDevicesResponse,
+  GenerateUninstallRequest,
+  GenerateUninstallResponse,
 } from './api';
