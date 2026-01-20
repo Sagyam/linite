@@ -1,15 +1,15 @@
 [
   {
     "distro": "ubuntu",
-    "source": "apt",
+    "isDefault": true,
     "priority": 10,
-    "isDefault": true
+    "source": "apt"
   },
   {
     "distro": "ubuntu",
-    "source": "flatpak",
+    "isDefault": false,
     "priority": 5,
-    "isDefault": false
+    "source": "flatpak"
   },
   {
     "distro": "ubuntu",
@@ -18,657 +18,735 @@
     "source": "snap"
   },
   {
-    "distro": "debian",
-    "source": "apt",
-    "priority": 10,
-    "isDefault": true
+    "distro": "ubuntu",
+    "isDefault": false,
+    "priority": 4,
+    "source": "homebrew"
   },
   {
     "distro": "debian",
-    "source": "flatpak",
+    "isDefault": true,
+    "priority": 10,
+    "source": "apt"
+  },
+  {
+    "distro": "debian",
+    "isDefault": false,
     "priority": 5,
-    "isDefault": false
+    "source": "flatpak"
+  },
+  {
+    "distro": "debian",
+    "isDefault": false,
+    "priority": 4,
+    "source": "homebrew"
   },
   {
     "distro": "linuxmint",
-    "source": "apt",
+    "isDefault": true,
     "priority": 10,
-    "isDefault": true
+    "source": "apt"
   },
   {
     "distro": "linuxmint",
-    "source": "flatpak",
+    "isDefault": false,
     "priority": 5,
-    "isDefault": false
+    "source": "flatpak"
+  },
+  {
+    "distro": "linuxmint",
+    "isDefault": false,
+    "priority": 4,
+    "source": "homebrew"
   },
   {
     "distro": "pop",
-    "source": "apt",
+    "isDefault": true,
     "priority": 10,
-    "isDefault": true
+    "source": "apt"
   },
   {
     "distro": "pop",
-    "source": "flatpak",
+    "isDefault": false,
     "priority": 5,
-    "isDefault": false
+    "source": "flatpak"
+  },
+  {
+    "distro": "pop",
+    "isDefault": false,
+    "priority": 4,
+    "source": "homebrew"
   },
   {
     "distro": "fedora",
-    "source": "dnf",
+    "isDefault": true,
     "priority": 10,
-    "isDefault": true
+    "source": "dnf"
   },
   {
     "distro": "fedora",
-    "source": "flatpak",
+    "isDefault": false,
     "priority": 5,
-    "isDefault": false
+    "source": "flatpak"
+  },
+  {
+    "distro": "fedora",
+    "isDefault": false,
+    "priority": 4,
+    "source": "homebrew"
   },
   {
     "distro": "arch",
-    "source": "pacman",
+    "isDefault": true,
     "priority": 10,
-    "isDefault": true
+    "source": "pacman"
   },
   {
     "distro": "arch",
-    "source": "aur",
+    "isDefault": false,
     "priority": 7,
-    "isDefault": false
+    "source": "aur"
   },
   {
     "distro": "arch",
-    "source": "flatpak",
+    "isDefault": false,
     "priority": 3,
-    "isDefault": false
+    "source": "flatpak"
+  },
+  {
+    "distro": "arch",
+    "isDefault": false,
+    "priority": 4,
+    "source": "homebrew"
   },
   {
     "distro": "manjaro",
-    "source": "pacman",
+    "isDefault": true,
     "priority": 10,
-    "isDefault": true
+    "source": "pacman"
   },
   {
     "distro": "manjaro",
-    "source": "aur",
+    "isDefault": false,
     "priority": 7,
-    "isDefault": false
+    "source": "aur"
   },
   {
     "distro": "manjaro",
-    "source": "flatpak",
+    "isDefault": false,
     "priority": 5,
-    "isDefault": false
+    "source": "flatpak"
   },
   {
     "distro": "manjaro",
-    "source": "snap",
+    "isDefault": false,
     "priority": 3,
-    "isDefault": false
+    "source": "snap"
+  },
+  {
+    "distro": "manjaro",
+    "isDefault": false,
+    "priority": 4,
+    "source": "homebrew"
   },
   {
     "distro": "opensuse",
-    "source": "zypper",
+    "isDefault": true,
     "priority": 10,
-    "isDefault": true
+    "source": "zypper"
   },
   {
     "distro": "opensuse",
-    "source": "flatpak",
+    "isDefault": false,
     "priority": 5,
-    "isDefault": false
+    "source": "flatpak"
+  },
+  {
+    "distro": "opensuse",
+    "isDefault": false,
+    "priority": 4,
+    "source": "homebrew"
   },
   {
     "distro": "nixos",
-    "source": "nix",
+    "isDefault": true,
     "priority": 10,
-    "isDefault": true
+    "source": "nix"
   },
   {
     "distro": "nixos",
-    "source": "flatpak",
+    "isDefault": false,
     "priority": 5,
-    "isDefault": false
+    "source": "flatpak"
   },
   {
     "distro": "nixos",
-    "source": "snap",
+    "isDefault": false,
     "priority": 3,
-    "isDefault": false
+    "source": "snap"
+  },
+  {
+    "distro": "nixos",
+    "isDefault": false,
+    "priority": 4,
+    "source": "homebrew"
   },
   {
     "distro": "windows",
-    "source": "winget",
+    "isDefault": true,
     "priority": 10,
-    "isDefault": true
+    "source": "winget"
   },
   {
     "distro": "windows",
-    "source": "scoop",
+    "isDefault": false,
     "priority": 6,
-    "isDefault": false
+    "source": "scoop"
   },
   {
     "distro": "zorin",
-    "source": "apt",
+    "isDefault": true,
     "priority": 10,
-    "isDefault": true
+    "source": "apt"
   },
   {
     "distro": "zorin",
-    "source": "flatpak",
+    "isDefault": false,
     "priority": 5,
-    "isDefault": false
+    "source": "flatpak"
   },
   {
     "distro": "zorin",
-    "source": "snap",
+    "isDefault": false,
     "priority": 3,
-    "isDefault": false
+    "source": "snap"
+  },
+  {
+    "distro": "zorin",
+    "isDefault": false,
+    "priority": 4,
+    "source": "homebrew"
   },
   {
     "distro": "elementary",
-    "source": "apt",
+    "isDefault": true,
     "priority": 10,
-    "isDefault": true
+    "source": "apt"
   },
   {
     "distro": "elementary",
-    "source": "flatpak",
+    "isDefault": false,
     "priority": 8,
-    "isDefault": false
+    "source": "flatpak"
+  },
+  {
+    "distro": "elementary",
+    "isDefault": false,
+    "priority": 4,
+    "source": "homebrew"
   },
   {
     "distro": "nobara",
-    "source": "dnf",
+    "isDefault": true,
     "priority": 10,
-    "isDefault": true
+    "source": "dnf"
   },
   {
     "distro": "nobara",
-    "source": "flatpak",
+    "isDefault": false,
     "priority": 5,
-    "isDefault": false
+    "source": "flatpak"
+  },
+  {
+    "distro": "nobara",
+    "isDefault": false,
+    "priority": 4,
+    "source": "homebrew"
   },
   {
     "distro": "bazzite",
-    "source": "flatpak",
+    "isDefault": true,
     "priority": 10,
-    "isDefault": true
+    "source": "flatpak"
   },
   {
     "distro": "bazzite",
-    "source": "homebrew",
+    "isDefault": false,
     "priority": 5,
-    "isDefault": false
+    "source": "homebrew"
   },
   {
     "distro": "cachyos",
-    "source": "pacman",
+    "isDefault": true,
     "priority": 10,
-    "isDefault": true
+    "source": "pacman"
   },
   {
     "distro": "cachyos",
-    "source": "aur",
+    "isDefault": false,
     "priority": 7,
-    "isDefault": false
+    "source": "aur"
   },
   {
     "distro": "cachyos",
-    "source": "flatpak",
+    "isDefault": false,
     "priority": 3,
-    "isDefault": false
-  },
-  {
-    "distro": "ubuntu",
-    "source": "script",
-    "priority": 1,
-    "isDefault": false
-  },
-  {
-    "distro": "debian",
-    "source": "script",
-    "priority": 1,
-    "isDefault": false
-  },
-  {
-    "distro": "linuxmint",
-    "source": "script",
-    "priority": 1,
-    "isDefault": false
-  },
-  {
-    "distro": "pop",
-    "source": "script",
-    "priority": 1,
-    "isDefault": false
-  },
-  {
-    "distro": "fedora",
-    "source": "script",
-    "priority": 1,
-    "isDefault": false
-  },
-  {
-    "distro": "arch",
-    "source": "script",
-    "priority": 1,
-    "isDefault": false
-  },
-  {
-    "distro": "manjaro",
-    "source": "script",
-    "priority": 1,
-    "isDefault": false
-  },
-  {
-    "distro": "opensuse",
-    "source": "script",
-    "priority": 1,
-    "isDefault": false
-  },
-  {
-    "distro": "nixos",
-    "source": "script",
-    "priority": 1,
-    "isDefault": false
-  },
-  {
-    "distro": "windows",
-    "source": "script",
-    "priority": 1,
-    "isDefault": false
-  },
-  {
-    "distro": "zorin",
-    "source": "script",
-    "priority": 1,
-    "isDefault": false
-  },
-  {
-    "distro": "elementary",
-    "source": "script",
-    "priority": 1,
-    "isDefault": false
-  },
-  {
-    "distro": "nobara",
-    "source": "script",
-    "priority": 1,
-    "isDefault": false
-  },
-  {
-    "distro": "bazzite",
-    "source": "script",
-    "priority": 1,
-    "isDefault": false
+    "source": "flatpak"
   },
   {
     "distro": "cachyos",
-    "source": "script",
+    "isDefault": false,
+    "priority": 4,
+    "source": "homebrew"
+  },
+  {
+    "distro": "ubuntu",
+    "isDefault": false,
     "priority": 1,
-    "isDefault": false
-  },
-  {
-    "distro": "ubuntu",
-    "source": "npm",
-    "priority": 4,
-    "isDefault": false
-  },
-  {
-    "distro": "ubuntu",
-    "source": "cargo",
-    "priority": 4,
-    "isDefault": false
-  },
-  {
-    "distro": "ubuntu",
-    "source": "pip",
-    "priority": 4,
-    "isDefault": false
-  },
-  {
-    "distro": "ubuntu",
-    "source": "go",
-    "priority": 4,
-    "isDefault": false
+    "source": "script"
   },
   {
     "distro": "debian",
-    "source": "npm",
+    "isDefault": false,
+    "priority": 1,
+    "source": "script"
+  },
+  {
+    "distro": "linuxmint",
+    "isDefault": false,
+    "priority": 1,
+    "source": "script"
+  },
+  {
+    "distro": "pop",
+    "isDefault": false,
+    "priority": 1,
+    "source": "script"
+  },
+  {
+    "distro": "fedora",
+    "isDefault": false,
+    "priority": 1,
+    "source": "script"
+  },
+  {
+    "distro": "arch",
+    "isDefault": false,
+    "priority": 1,
+    "source": "script"
+  },
+  {
+    "distro": "manjaro",
+    "isDefault": false,
+    "priority": 1,
+    "source": "script"
+  },
+  {
+    "distro": "opensuse",
+    "isDefault": false,
+    "priority": 1,
+    "source": "script"
+  },
+  {
+    "distro": "nixos",
+    "isDefault": false,
+    "priority": 1,
+    "source": "script"
+  },
+  {
+    "distro": "windows",
+    "isDefault": false,
+    "priority": 1,
+    "source": "script"
+  },
+  {
+    "distro": "zorin",
+    "isDefault": false,
+    "priority": 1,
+    "source": "script"
+  },
+  {
+    "distro": "elementary",
+    "isDefault": false,
+    "priority": 1,
+    "source": "script"
+  },
+  {
+    "distro": "nobara",
+    "isDefault": false,
+    "priority": 1,
+    "source": "script"
+  },
+  {
+    "distro": "bazzite",
+    "isDefault": false,
+    "priority": 1,
+    "source": "script"
+  },
+  {
+    "distro": "cachyos",
+    "isDefault": false,
+    "priority": 1,
+    "source": "script"
+  },
+  {
+    "distro": "ubuntu",
+    "isDefault": false,
     "priority": 4,
-    "isDefault": false
+    "source": "npm"
+  },
+  {
+    "distro": "ubuntu",
+    "isDefault": false,
+    "priority": 4,
+    "source": "cargo"
+  },
+  {
+    "distro": "ubuntu",
+    "isDefault": false,
+    "priority": 4,
+    "source": "pip"
+  },
+  {
+    "distro": "ubuntu",
+    "isDefault": false,
+    "priority": 4,
+    "source": "go"
   },
   {
     "distro": "debian",
-    "source": "cargo",
+    "isDefault": false,
     "priority": 4,
-    "isDefault": false
+    "source": "npm"
   },
   {
     "distro": "debian",
-    "source": "pip",
+    "isDefault": false,
     "priority": 4,
-    "isDefault": false
+    "source": "cargo"
   },
   {
     "distro": "debian",
-    "source": "go",
+    "isDefault": false,
     "priority": 4,
-    "isDefault": false
+    "source": "pip"
+  },
+  {
+    "distro": "debian",
+    "isDefault": false,
+    "priority": 4,
+    "source": "go"
   },
   {
     "distro": "linuxmint",
-    "source": "npm",
+    "isDefault": false,
     "priority": 4,
-    "isDefault": false
+    "source": "npm"
   },
   {
     "distro": "linuxmint",
-    "source": "cargo",
+    "isDefault": false,
     "priority": 4,
-    "isDefault": false
+    "source": "cargo"
   },
   {
     "distro": "linuxmint",
-    "source": "pip",
+    "isDefault": false,
     "priority": 4,
-    "isDefault": false
+    "source": "pip"
   },
   {
     "distro": "linuxmint",
-    "source": "go",
+    "isDefault": false,
     "priority": 4,
-    "isDefault": false
+    "source": "go"
   },
   {
     "distro": "pop",
-    "source": "npm",
+    "isDefault": false,
     "priority": 4,
-    "isDefault": false
+    "source": "npm"
   },
   {
     "distro": "pop",
-    "source": "cargo",
+    "isDefault": false,
     "priority": 4,
-    "isDefault": false
+    "source": "cargo"
   },
   {
     "distro": "pop",
-    "source": "pip",
+    "isDefault": false,
     "priority": 4,
-    "isDefault": false
+    "source": "pip"
   },
   {
     "distro": "pop",
-    "source": "go",
+    "isDefault": false,
     "priority": 4,
-    "isDefault": false
+    "source": "go"
   },
   {
     "distro": "fedora",
-    "source": "npm",
+    "isDefault": false,
     "priority": 4,
-    "isDefault": false
+    "source": "npm"
   },
   {
     "distro": "fedora",
-    "source": "cargo",
+    "isDefault": false,
     "priority": 4,
-    "isDefault": false
+    "source": "cargo"
   },
   {
     "distro": "fedora",
-    "source": "pip",
+    "isDefault": false,
     "priority": 4,
-    "isDefault": false
+    "source": "pip"
   },
   {
     "distro": "fedora",
-    "source": "go",
+    "isDefault": false,
     "priority": 4,
-    "isDefault": false
+    "source": "go"
   },
   {
     "distro": "arch",
-    "source": "npm",
+    "isDefault": false,
     "priority": 4,
-    "isDefault": false
+    "source": "npm"
   },
   {
     "distro": "arch",
-    "source": "cargo",
+    "isDefault": false,
     "priority": 4,
-    "isDefault": false
+    "source": "cargo"
   },
   {
     "distro": "arch",
-    "source": "pip",
+    "isDefault": false,
     "priority": 4,
-    "isDefault": false
+    "source": "pip"
   },
   {
     "distro": "arch",
-    "source": "go",
+    "isDefault": false,
     "priority": 4,
-    "isDefault": false
+    "source": "go"
   },
   {
     "distro": "manjaro",
-    "source": "npm",
+    "isDefault": false,
     "priority": 4,
-    "isDefault": false
+    "source": "npm"
   },
   {
     "distro": "manjaro",
-    "source": "cargo",
+    "isDefault": false,
     "priority": 4,
-    "isDefault": false
+    "source": "cargo"
   },
   {
     "distro": "manjaro",
-    "source": "pip",
+    "isDefault": false,
     "priority": 4,
-    "isDefault": false
+    "source": "pip"
   },
   {
     "distro": "manjaro",
-    "source": "go",
+    "isDefault": false,
     "priority": 4,
-    "isDefault": false
+    "source": "go"
   },
   {
     "distro": "opensuse",
-    "source": "npm",
+    "isDefault": false,
     "priority": 4,
-    "isDefault": false
+    "source": "npm"
   },
   {
     "distro": "opensuse",
-    "source": "cargo",
+    "isDefault": false,
     "priority": 4,
-    "isDefault": false
+    "source": "cargo"
   },
   {
     "distro": "opensuse",
-    "source": "pip",
+    "isDefault": false,
     "priority": 4,
-    "isDefault": false
+    "source": "pip"
   },
   {
     "distro": "opensuse",
-    "source": "go",
+    "isDefault": false,
     "priority": 4,
-    "isDefault": false
+    "source": "go"
   },
   {
     "distro": "nixos",
-    "source": "npm",
+    "isDefault": false,
     "priority": 4,
-    "isDefault": false
+    "source": "npm"
   },
   {
     "distro": "nixos",
-    "source": "cargo",
+    "isDefault": false,
     "priority": 4,
-    "isDefault": false
+    "source": "cargo"
   },
   {
     "distro": "nixos",
-    "source": "pip",
+    "isDefault": false,
     "priority": 4,
-    "isDefault": false
+    "source": "pip"
   },
   {
     "distro": "nixos",
-    "source": "go",
+    "isDefault": false,
     "priority": 4,
-    "isDefault": false
+    "source": "go"
   },
   {
     "distro": "windows",
-    "source": "npm",
+    "isDefault": false,
     "priority": 4,
-    "isDefault": false
+    "source": "npm"
   },
   {
     "distro": "windows",
-    "source": "cargo",
+    "isDefault": false,
     "priority": 4,
-    "isDefault": false
+    "source": "cargo"
   },
   {
     "distro": "windows",
-    "source": "pip",
+    "isDefault": false,
     "priority": 4,
-    "isDefault": false
+    "source": "pip"
   },
   {
     "distro": "windows",
-    "source": "go",
+    "isDefault": false,
     "priority": 4,
-    "isDefault": false
+    "source": "go"
   },
   {
     "distro": "zorin",
-    "source": "npm",
+    "isDefault": false,
     "priority": 4,
-    "isDefault": false
+    "source": "npm"
   },
   {
     "distro": "zorin",
-    "source": "cargo",
+    "isDefault": false,
     "priority": 4,
-    "isDefault": false
+    "source": "cargo"
   },
   {
     "distro": "zorin",
-    "source": "pip",
+    "isDefault": false,
     "priority": 4,
-    "isDefault": false
+    "source": "pip"
   },
   {
     "distro": "zorin",
-    "source": "go",
+    "isDefault": false,
     "priority": 4,
-    "isDefault": false
+    "source": "go"
   },
   {
     "distro": "elementary",
-    "source": "npm",
+    "isDefault": false,
     "priority": 4,
-    "isDefault": false
+    "source": "npm"
   },
   {
     "distro": "elementary",
-    "source": "cargo",
+    "isDefault": false,
     "priority": 4,
-    "isDefault": false
+    "source": "cargo"
   },
   {
     "distro": "elementary",
-    "source": "pip",
+    "isDefault": false,
     "priority": 4,
-    "isDefault": false
+    "source": "pip"
   },
   {
     "distro": "elementary",
-    "source": "go",
+    "isDefault": false,
     "priority": 4,
-    "isDefault": false
+    "source": "go"
   },
   {
     "distro": "nobara",
-    "source": "npm",
+    "isDefault": false,
     "priority": 4,
-    "isDefault": false
+    "source": "npm"
   },
   {
     "distro": "nobara",
-    "source": "cargo",
+    "isDefault": false,
     "priority": 4,
-    "isDefault": false
+    "source": "cargo"
   },
   {
     "distro": "nobara",
-    "source": "pip",
+    "isDefault": false,
     "priority": 4,
-    "isDefault": false
+    "source": "pip"
   },
   {
     "distro": "nobara",
-    "source": "go",
+    "isDefault": false,
     "priority": 4,
-    "isDefault": false
+    "source": "go"
   },
   {
     "distro": "bazzite",
-    "source": "npm",
+    "isDefault": false,
     "priority": 4,
-    "isDefault": false
+    "source": "npm"
   },
   {
     "distro": "bazzite",
-    "source": "cargo",
+    "isDefault": false,
     "priority": 4,
-    "isDefault": false
+    "source": "cargo"
   },
   {
     "distro": "bazzite",
-    "source": "pip",
+    "isDefault": false,
     "priority": 4,
-    "isDefault": false
+    "source": "pip"
   },
   {
     "distro": "bazzite",
-    "source": "go",
+    "isDefault": false,
     "priority": 4,
-    "isDefault": false
+    "source": "go"
   },
   {
     "distro": "cachyos",
-    "source": "npm",
+    "isDefault": false,
     "priority": 4,
-    "isDefault": false
+    "source": "npm"
   },
   {
     "distro": "cachyos",
-    "source": "cargo",
+    "isDefault": false,
     "priority": 4,
-    "isDefault": false
+    "source": "cargo"
   },
   {
     "distro": "cachyos",
-    "source": "pip",
+    "isDefault": false,
     "priority": 4,
-    "isDefault": false
+    "source": "pip"
   },
   {
     "distro": "cachyos",
-    "source": "go",
+    "isDefault": false,
     "priority": 4,
-    "isDefault": false
+    "source": "go"
   }
 ]

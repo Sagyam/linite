@@ -57,6 +57,7 @@ Package information is synchronized every 24 hours from:
 - [Homebrew](https://formulae.brew.sh/) - Homebrew formulae
 - [NixHub](https://www.nixhub.io/) - Nix packages
 - [Winget](https://winget.run/) - Windows Package Manager
+- [Scoop](https://scoop.sh/) - Windows Package Manager
 - [Repology](https://repology.org/) - Cross-platform package tracking
 
 This ensures version numbers, licenses, and availability status stay current across all platforms.
@@ -69,17 +70,17 @@ The application database currently includes 170+ applications organized into 10 
 ### Linux Distributions
 
 **Debian Family**
-- Ubuntu: APT, Flatpak, Snap
-- Debian: APT, Flatpak
-- Linux Mint: APT, Flatpak
-- Pop!_OS: APT, Flatpak
-- Zorin OS: APT, Flatpak, Snap
-- Elementary OS: APT, Flatpak
+- Ubuntu: APT, Flatpak, Snap, Npm, Pip, Go, Cargo, Script
+- Debian: APT, Flatpak, Snap, Npm, Pip, Go, Cargo, Script
+- Linux Mint: APT, Flatpak, Script
+- Pop!_OS: APT, Flatpak, Snap, Script
+- Zorin OS: APT, Flatpak, Snap, Script
+- Elementary OS: APT, Flatpak, Snap, Script
 
 **RHEL/Fedora Family**
-- Fedora: DNF, Flatpak
-- Nobara: DNF, Flatpak
-- Bazzite: Flatpak, Homebrew
+- Fedora: DNF, Flatpak, Snap, Script
+- Nobara: DNF, Flatpak, Snap, Script
+- Bazzite: Flatpak, Homebrew, Snap, Script
 
 **Arch Family**
 - Arch Linux: Pacman, AUR, Flatpak
