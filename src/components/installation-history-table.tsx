@@ -25,7 +25,9 @@ async function fetchInstallations(deviceFilter?: string | null): Promise<Install
   const response = await fetch(`/api/installations?${params}`);
 
   if (!response.ok) {
-    throw new Error('Failed to fetch installations');
+    const errorData = await response.json().catch(() => ({}));
+    console.error('Failed to fetch installations:', response.status, errorData);
+    throw new Error(errorData.error || `Failed to fetch installations (HTTP ${response.status})`);
   }
 
   const data = await response.json();
@@ -42,6 +44,7 @@ export function InstallationHistoryTable() {
   const { data: installations, isLoading, error } = useQuery({
     queryKey: ['installations', deviceFilter],
     queryFn: () => fetchInstallations(deviceFilter),
+    retry: false,
   });
 
   const deleteMutation = useMutation({
@@ -170,7 +173,9 @@ export function InstallationHistoryTable() {
   if (error) {
     return (
       <div className="flex flex-col items-center justify-center py-16 px-4 text-center">
-        <p className="text-red-500 mb-4">Failed to load installations</p>
+        <p className="text-red-500 mb-4">
+          Failed to load installations: {error.message}
+        </p>
         <Button onClick={() => window.location.reload()}>Retry</Button>
       </div>
     );
