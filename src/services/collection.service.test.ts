@@ -84,7 +84,7 @@ vi.mock('@paralleldrive/cuid2', () => ({
   createId: vi.fn(() => 'test-id-' + Math.random().toString(36).substring(7)),
 }));
 
-import { db } from '@/db';
+import { db } from '../db';
 
 describe('Collection Service', () => {
   beforeEach(() => {

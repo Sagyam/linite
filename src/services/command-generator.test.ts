@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach, vi, type Mock } from 'vitest';
 import { generateInstallCommands } from './command-generator';
-import type { GenerateCommandRequest } from '@/types/entities';
+import type { GenerateCommandRequest } from '../types/entities';
 
 // Mock the database
 vi.mock('@/db', () => ({
@@ -16,7 +16,7 @@ vi.mock('@/db', () => ({
   },
 }));
 
-import { db } from '@/db';
+import { db } from '../db';
 
 describe('Command Generator', () => {
   beforeEach(() => {
