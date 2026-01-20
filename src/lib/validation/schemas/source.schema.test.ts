@@ -16,7 +16,10 @@ describe('source validation schemas', () => {
 
     it('should validate a complete valid source', () => {
       const result = createSourceSchema.parse(validSource);
-      expect(result).toEqual(validSource);
+      expect(result).toEqual({
+        ...validSource,
+        supportsDependencyCleanup: false, // default value
+      });
     });
 
     it('should validate minimal required fields', () => {
@@ -32,6 +35,7 @@ describe('source validation schemas', () => {
       expect(result.installCmd).toBe('apt install {package}');
       expect(result.requireSudo).toBe(false); // default
       expect(result.priority).toBe(0); // default
+      expect(result.supportsDependencyCleanup).toBe(false); // default
     });
 
     it('should require name', () => {
