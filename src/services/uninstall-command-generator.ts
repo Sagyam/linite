@@ -69,7 +69,7 @@ function resolveCleanupCmd(
   if (typeof cleanupCmd === 'string') return cleanupCmd;
 
   // If it's an object, select based on distro family
-  if (typeof cleanupCmd === 'object' && cleanupCmd !== null) {
+  if (typeof cleanupCmd === 'object') {
     return cleanupCmd[distroFamily] || cleanupCmd['*'] || null;
   }
 

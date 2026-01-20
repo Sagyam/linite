@@ -2,6 +2,7 @@ import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
 export type ViewMode = 'minimal' | 'compact' | 'detailed';
+export type CommandMode = 'install' | 'uninstall';
 
 interface SelectionState {
   // Selected app IDs
@@ -22,6 +23,9 @@ interface SelectionState {
   // View mode (minimal, compact, detailed)
   viewMode: ViewMode;
 
+  // Command mode (install or uninstall)
+  mode: CommandMode;
+
   // Keyboard navigation focused app index
   focusedAppIndex: number;
 
@@ -39,6 +43,8 @@ interface SelectionState {
   setNixosInstallMethod: (method: 'nix-shell' | 'nix-env' | 'nix-flakes' | null) => void;
   setViewMode: (mode: ViewMode) => void;
   cycleViewMode: () => void;
+  setMode: (mode: CommandMode) => void;
+  toggleMode: () => void;
   setFocusedAppIndex: (index: number) => void;
   toggleCategoryNav: () => void;
   reset: () => void;
@@ -58,6 +64,7 @@ export const useSelectionStore = create<SelectionState>()(
       sourcePreference: null,
       nixosInstallMethod: null,
       viewMode: 'minimal' as ViewMode,
+      mode: 'install' as CommandMode,
       focusedAppIndex: -1,
       isCategoryNavOpen: false,
 
@@ -128,6 +135,15 @@ export const useSelectionStore = create<SelectionState>()(
         set({ viewMode: modes[nextIndex] });
       },
 
+      setMode: (mode: CommandMode) => {
+        set({ mode });
+      },
+
+      toggleMode: () => {
+        const newMode: CommandMode = get().mode === 'install' ? 'uninstall' : 'install';
+        set({ mode: newMode });
+      },
+
       setFocusedAppIndex: (index: number) => {
         set({ focusedAppIndex: index });
       },
@@ -144,6 +160,7 @@ export const useSelectionStore = create<SelectionState>()(
           sourcePreference: null,
           nixosInstallMethod: null,
           viewMode: 'minimal' as ViewMode,
+          mode: 'install' as CommandMode,
           focusedAppIndex: -1,
           isCategoryNavOpen: false,
         });

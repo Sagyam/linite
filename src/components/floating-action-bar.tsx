@@ -8,6 +8,8 @@ import {
   Settings2,
   AlertCircle,
   Monitor,
+  Download,
+  Trash2,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -28,6 +30,8 @@ export const FloatingActionBar = memo(function FloatingActionBar({
   // Optimize: Use selectors to subscribe only to needed state
   const selectedAppsSize = useSelectionStore((state) => state.selectedApps.size);
   const selectedDistro = useSelectionStore((state) => state.selectedDistro);
+  const mode = useSelectionStore((state) => state.mode);
+  const toggleMode = useSelectionStore((state) => state.toggleMode);
 
   // Memoize: Cache expensive find operation (must be before early return)
   const selectedDistroObj = useMemo(
@@ -84,7 +88,31 @@ export const FloatingActionBar = memo(function FloatingActionBar({
             </div>
           </button>
 
-          {/* Center/Right: Warning or Action */}
+          {/* Center: Mode toggle */}
+          <div className="flex items-center gap-2 min-w-0">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={toggleMode}
+              className="gap-2"
+            >
+              {mode === 'install' ? (
+                <>
+                  <Trash2 className="w-4 h-4" />
+                  <span className="hidden sm:inline">Uninstall</span>
+                  <span className="xs:hidden">Uninstall</span>
+                </>
+              ) : (
+                <>
+                  <Download className="w-4 h-4" />
+                  <span className="hidden sm:inline">Install</span>
+                  <span className="xs:hidden">Install</span>
+                </>
+              )}
+            </Button>
+          </div>
+
+          {/* Right: Warning or Action */}
           {!selectedDistro ? (
             /* Show prominent warning when no distro selected */
             <div className="flex items-center gap-2 sm:gap-3 flex-1 sm:flex-initial min-w-0">
@@ -107,7 +135,7 @@ export const FloatingActionBar = memo(function FloatingActionBar({
               <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-md bg-primary/10 border border-primary/20 shrink-0">
                 <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
                 <span className="text-xs font-medium text-primary whitespace-nowrap">
-                  Ready to install
+                  Ready to {mode}
                 </span>
               </div>
               <Button

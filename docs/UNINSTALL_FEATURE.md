@@ -413,8 +413,8 @@ Components needed:
   - `route.ts` (GET, POST)
   - `[id]/route.ts` (GET, PATCH, DELETE)
   - `devices/route.ts` (GET)
-- [x] Write unit tests for uninstall generator (test passing)
-- [x] Write unit tests for installation service (via schema tests)
+- [] Write unit tests for uninstall generator (test passing)
+- [] Write unit tests for installation service (via schema tests)
 
 **Acceptance Criteria**:
 - ✅ All API endpoints return expected responses
