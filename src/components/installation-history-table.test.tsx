@@ -54,7 +54,7 @@ describe('InstallationHistoryTable', () => {
 
       await waitForAsync();
 
-      expect(mockFetch).toHaveBeenCalledWith('/api/installations?limit=1000');
+      expect(mockFetch).toHaveBeenCalledWith('/api/installations?limit=100');
     });
 
     it('should display installations in table', async () => {
@@ -170,7 +170,7 @@ describe('InstallationHistoryTable', () => {
 
       await waitForAsync();
 
-      expect(mockFetch).toHaveBeenCalledWith('/api/installations?limit=1000');
+      expect(mockFetch).toHaveBeenCalledWith('/api/installations?limit=100');
     });
 
     it('should handle installations with notes', async () => {
