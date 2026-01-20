@@ -456,7 +456,7 @@ Components needed:
 - [x] Run `bun run db:generate` to create migration
 - [x] Review and test migration
 - [x] Run `bun run db:push` to apply
-- [x] Update `/seed/sources.json` with uninstall commands for all 17 sources
+- [x] Update `/seed/sources.json` with uninstall commands for all 18 sources
 - [x] Add type definitions to `/src/types/entities.ts`
 - [x] Add API types to `/src/types/api.ts`
 - [x] Create validation schemas:
@@ -467,9 +467,11 @@ Components needed:
 
 **Acceptance Criteria**:
 - ✅ Migration runs successfully
-- ✅ All 17 sources have valid uninstall commands
+- ✅ All 18 sources have valid uninstall commands
 - ✅ Drizzle Studio shows new fields and tables
 - ✅ TypeScript compiles without errors
+
+**Note for Existing Databases**: After running `bun run db:push`, the new columns will be added but existing records will have null values. Run `bun run db:update-sources` to populate uninstall commands for existing sources without wiping data.
 
 ### Phase 2: Backend Services (Week 1-2)
 
@@ -809,11 +811,14 @@ bun run db:studio
 # Edit: seed/sources.json
 # Add: removeCmd, cleanupCmd, supportsDependencyCleanup, dependencyCleanupCmd
 
-# 6. (Optional) Reseed database
+# 6. (Recommended) Update existing sources with uninstall commands
+bun run db:update-sources    # Updates existing sources without wiping data
+
+# 7. (Alternative) Reseed database
 bun run db:wipe    # WARNING: Deletes all data
 bun run db:seed    # Reseeds with updated sources
 
-# 7. Verify seed data
+# 8. Verify seed data
 bun run db:studio
 # Check: All sources have removeCmd values
 ```
