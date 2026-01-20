@@ -41,10 +41,10 @@ async function wipeAzureBlobs() {
 }
 
 async function wipeDatabase() {
-  // First, wipe Azure Blob Storage
-  await wipeAzureBlobs();
+  // Skip Azure Blob Storage wipe to save costs - images will be reused
+  // await wipeAzureBlobs();
 
-  console.log('\n🗑️  Wiping database...');
+  console.log('🗑️  Wiping database (keeping Azure Blob Storage images)...');
 
   try {
     // Get all table names

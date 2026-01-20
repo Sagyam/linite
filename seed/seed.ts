@@ -85,10 +85,10 @@ async function seed() {
     }
 
     try {
-      console.log(`  ⬇️  ${distro.slug}: Downloading from ${iconUrl.substring(0, 60)}...`);
+      console.log(`  ⬇️  ${distro.slug}: Checking if already exists...`);
 
-      // Download icon from URL and upload to Azure Blob Storage
-      const uploadedUrl = await uploadImageFromUrl(iconUrl, distro.slug, 'distro-icons');
+      // Download icon from URL and upload to Azure Blob Storage (skip if already exists)
+      const uploadedUrl = await uploadImageFromUrl(iconUrl, distro.slug, 'distro-icons', true);
 
       if (uploadedUrl) {
         // Update distro's iconUrl with the Azure Blob Storage URL
@@ -164,10 +164,10 @@ async function seed() {
     }
 
     try {
-      console.log(`  ⬇️  ${app.slug}: Downloading from ${iconUrl.substring(0, 50)}...`);
+      console.log(`  ⬇️  ${app.slug}: Checking if already exists...`);
 
-      // Download icon from URL and upload to Azure Blob Storage
-      const uploadedUrl = await uploadImageFromUrl(iconUrl, app.slug);
+      // Download icon from URL and upload to Azure Blob Storage (skip if already exists)
+      const uploadedUrl = await uploadImageFromUrl(iconUrl, app.slug, 'app-icons', true);
 
       if (uploadedUrl) {
         // Update app's iconUrl with the Azure Blob Storage URL
@@ -202,12 +202,13 @@ async function seed() {
 
   // 7. Create packages
   console.log('\nCreating packages...');
-  const packageValues = packagesData.map((pkg: { app: string; source: string; identifier: string; isAvailable: boolean; metadata?: Record<string, unknown> }) => ({
+  const packageValues = packagesData.map((pkg: { app: string; source: string; identifier: string; isAvailable: boolean; metadata?: Record<string, unknown>; packageSetupCmd?: string | Record<string, string | null> }) => ({
     appId: appMap[pkg.app],
     sourceId: sourceMap[pkg.source],
     identifier: pkg.identifier,
     isAvailable: pkg.isAvailable,
     metadata: pkg.metadata ? JSON.stringify(pkg.metadata) : null,
+    packageSetupCmd: pkg.packageSetupCmd ? JSON.stringify(pkg.packageSetupCmd) : null,
   }));
 
   // Check for undefined appIds or sourceIds

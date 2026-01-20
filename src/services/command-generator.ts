@@ -19,6 +19,7 @@ interface SelectedPackage {
   installCmd: string;
   requireSudo: boolean;
   setupCmd: string | Record<string, string | null> | null; // Supports string (universal) or object (distro-family-specific)
+  packageSetupCmd: string | Record<string, string | null> | null; // Per-package setup command (e.g., PPA, COPR)
   priority: number;
   metadata?: unknown;
 }
@@ -46,6 +47,24 @@ function getNixCommandTemplate(method: 'nix-shell' | 'nix-env' | 'nix-flakes' | 
         setupCmd: null,
       };
   }
+}
+
+// Helper function to resolve setup command based on distro family
+function resolveSetupCmd(
+  setupCmd: string | Record<string, string | null> | null | undefined,
+  distroFamily: string
+): string | null {
+  if (!setupCmd) return null;
+
+  // If it's a string, return as-is (universal command)
+  if (typeof setupCmd === 'string') return setupCmd;
+
+  // If it's an object, select based on distro family
+  if (typeof setupCmd === 'object' && setupCmd !== null) {
+    return setupCmd[distroFamily] || setupCmd['*'] || null;
+  }
+
+  return null;
 }
 
 export async function generateInstallCommands(
@@ -142,6 +161,20 @@ export async function generateInstallCommands(
       (a, b) => (b.calculatedPriority ?? 0) - (a.calculatedPriority ?? 0)
     )[0];
 
+    // Parse packageSetupCmd from JSON string if needed
+    let parsedPackageSetupCmd: string | Record<string, string | null> | null = null;
+    if (bestPackage.packageSetupCmd) {
+      if (typeof bestPackage.packageSetupCmd === 'string') {
+        try {
+          parsedPackageSetupCmd = JSON.parse(bestPackage.packageSetupCmd);
+        } catch {
+          parsedPackageSetupCmd = bestPackage.packageSetupCmd;
+        }
+      } else {
+        parsedPackageSetupCmd = bestPackage.packageSetupCmd as string | Record<string, string | null>;
+      }
+    }
+
     selectedPackages.push({
       appName: app.displayName,
       packageIdentifier: bestPackage.identifier,
@@ -150,6 +183,7 @@ export async function generateInstallCommands(
       installCmd: bestPackage.source.installCmd,
       requireSudo: bestPackage.source.requireSudo ?? false,
       setupCmd: (bestPackage.source.setupCmd as string | Record<string, string | null> | null) ?? null,
+      packageSetupCmd: parsedPackageSetupCmd,
       priority: bestPackage.calculatedPriority ?? 0,
       metadata: bestPackage.metadata,
     });
@@ -226,24 +260,22 @@ export async function generateInstallCommands(
       continue; // Skip normal command generation for a script source
     }
 
-    // Add a setup command if needed (only once per source)
-    if (setupCmd && !processedSetupCmds.has(sourceSlug)) {
-      // Handle distro-family-specific setup commands
-      // setupCmd can be either:
-      // - A string (universal command that works on all distros)
-      // - An object with distro family keys (e.g., {"debian": "...", "arch": "...", "nixos": "..."})
-      let finalSetupCmd: string | null = null;
-
-      if (typeof setupCmd === 'string') {
-        // Universal command - use as-is
-        finalSetupCmd = setupCmd;
-      } else if (typeof setupCmd === 'object' && setupCmd !== null) {
-        // Distro-family-specific commands - select based on distro family
-        finalSetupCmd = setupCmd[distro.family as keyof typeof setupCmd] || setupCmd['*'] || null;
+    // Add per-package setup commands (e.g., PPAs, COPR, RPMFusion, OBS)
+    for (const pkg of pkgs) {
+      if (pkg.packageSetupCmd) {
+        const pkgSetup = resolveSetupCmd(pkg.packageSetupCmd, distro.family);
+        if (pkgSetup && !processedSetupCmds.has(pkgSetup)) {
+          setupCommands.push(pkgSetup);
+          processedSetupCmds.add(pkgSetup);
+        }
       }
+    }
 
-      if (finalSetupCmd) {
-        setupCommands.push(finalSetupCmd);
+    // Add source-level setup command if needed (only once per source)
+    if (setupCmd && !processedSetupCmds.has(sourceSlug)) {
+      const srcSetup = resolveSetupCmd(setupCmd, distro.family);
+      if (srcSetup) {
+        setupCommands.push(srcSetup);
       }
       processedSetupCmds.add(sourceSlug);
     }

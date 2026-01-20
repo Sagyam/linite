@@ -17,6 +17,13 @@ export const createPackageSchema = z.object({
   maintainer: optionalString(100, 'Maintainer'),
   isAvailable: z.boolean().default(true),
   metadata: z.record(z.string(), z.unknown()).optional(),
+  packageSetupCmd: z
+    .union([
+      z.string(),
+      z.record(z.string(), z.string().nullable()),
+    ])
+    .nullable()
+    .optional(),
 });
 
 export const updatePackageSchema = createUpdateSchema(createPackageSchema);

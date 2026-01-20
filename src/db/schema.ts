@@ -136,6 +136,7 @@ export const packages = sqliteTable('packages', {
   isAvailable: integer('is_available', { mode: 'boolean' }).default(true),
   lastChecked: integer('last_checked', { mode: 'timestamp' }).$defaultFn(() => new Date()),
   metadata: text('metadata', { mode: 'json' }),
+  packageSetupCmd: text('package_setup_cmd', { mode: 'json' }),
   ...timestamps,
 }, (table) => ({
   appIdIdx: index('packages_app_id_idx').on(table.appId),

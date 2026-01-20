@@ -634,5 +634,242 @@ describe('Command Generator', () => {
       expect(result.commands[0]).toBe('flatpak install -y flathub org.mozilla.firefox');
       expect(result.commands[0]).not.toContain('sudo');
     });
+
+    it('should include per-package setup commands (PPA for Ubuntu)', async () => {
+      const request: GenerateCommandRequest = {
+        distroSlug: 'ubuntu',
+        appIds: ['app-firefox'],
+      };
+
+      (db.query.distros.findFirst as Mock).mockResolvedValue({
+        id: 'distro-1',
+        name: 'Ubuntu',
+        slug: 'ubuntu',
+        family: 'debian',
+        distroSources: [
+          {
+            priority: 10,
+            isDefault: true,
+            source: {
+              id: 'source-1',
+              name: 'APT',
+              slug: 'apt',
+              installCmd: 'apt install -y',
+              requireSudo: true,
+              setupCmd: null,
+            },
+          },
+        ],
+      });
+
+      (db.query.apps.findMany as Mock).mockResolvedValue([
+        {
+          id: 'app-firefox',
+          displayName: 'Firefox',
+          slug: 'firefox',
+          packages: [
+            {
+              id: 'pkg-1',
+              identifier: 'firefox',
+              isAvailable: true,
+              packageSetupCmd: JSON.stringify({
+                debian: 'sudo add-apt-repository ppa:mozillateam/ppa -y && sudo apt update',
+              }),
+              source: {
+                id: 'source-1',
+                name: 'APT',
+                slug: 'apt',
+                installCmd: 'apt install -y',
+                requireSudo: true,
+                setupCmd: null,
+              },
+            },
+          ],
+        },
+      ]);
+
+      const result = await generateInstallCommands(request);
+
+      expect(result.setupCommands).toHaveLength(1);
+      expect(result.setupCommands[0]).toBe('sudo add-apt-repository ppa:mozillateam/ppa -y && sudo apt update');
+      expect(result.commands).toContain('sudo apt install -y firefox');
+    });
+
+    it('should deduplicate identical per-package setup commands', async () => {
+      const request: GenerateCommandRequest = {
+        distroSlug: 'fedora',
+        appIds: ['app-vlc', 'app-ffmpeg'],
+      };
+
+      (db.query.distros.findFirst as Mock).mockResolvedValue({
+        id: 'distro-1',
+        name: 'Fedora',
+        slug: 'fedora',
+        family: 'fedora',
+        distroSources: [
+          {
+            priority: 10,
+            isDefault: true,
+            source: {
+              id: 'source-1',
+              name: 'DNF',
+              slug: 'dnf',
+              installCmd: 'dnf install -y',
+              requireSudo: true,
+              setupCmd: null,
+            },
+          },
+        ],
+      });
+
+      const rpmFusionCmd = 'sudo dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm';
+
+      (db.query.apps.findMany as Mock).mockResolvedValue([
+        {
+          id: 'app-vlc',
+          displayName: 'VLC',
+          slug: 'vlc',
+          packages: [
+            {
+              id: 'pkg-1',
+              identifier: 'vlc',
+              isAvailable: true,
+              packageSetupCmd: JSON.stringify({ fedora: rpmFusionCmd }),
+              source: {
+                id: 'source-1',
+                name: 'DNF',
+                slug: 'dnf',
+                installCmd: 'dnf install -y',
+                requireSudo: true,
+                setupCmd: null,
+              },
+            },
+          ],
+        },
+        {
+          id: 'app-ffmpeg',
+          displayName: 'ffmpeg',
+          slug: 'ffmpeg',
+          packages: [
+            {
+              id: 'pkg-2',
+              identifier: 'ffmpeg',
+              isAvailable: true,
+              packageSetupCmd: JSON.stringify({ fedora: rpmFusionCmd }),
+              source: {
+                id: 'source-1',
+                name: 'DNF',
+                slug: 'dnf',
+                installCmd: 'dnf install -y',
+                requireSudo: true,
+                setupCmd: null,
+              },
+            },
+          ],
+        },
+      ]);
+
+      const result = await generateInstallCommands(request);
+
+      // RPMFusion should only be added once, not twice
+      expect(result.setupCommands).toHaveLength(1);
+      expect(result.setupCommands[0]).toBe(rpmFusionCmd);
+      expect(result.commands).toContain('sudo dnf install -y vlc ffmpeg');
+    });
+
+    it('should handle both per-package and source-level setup commands', async () => {
+      const request: GenerateCommandRequest = {
+        distroSlug: 'ubuntu',
+        appIds: ['app-firefox', 'app-discord'],
+      };
+
+      (db.query.distros.findFirst as Mock).mockResolvedValue({
+        id: 'distro-1',
+        name: 'Ubuntu',
+        slug: 'ubuntu',
+        family: 'debian',
+        distroSources: [
+          {
+            priority: 10,
+            isDefault: true,
+            source: {
+              id: 'source-1',
+              name: 'APT',
+              slug: 'apt',
+              installCmd: 'apt install -y',
+              requireSudo: true,
+              setupCmd: null,
+            },
+          },
+          {
+            priority: 5,
+            isDefault: false,
+            source: {
+              id: 'source-2',
+              name: 'Snap',
+              slug: 'snap',
+              installCmd: 'snap install',
+              requireSudo: true,
+              setupCmd: 'sudo apt install -y snapd',
+            },
+          },
+        ],
+      });
+
+      (db.query.apps.findMany as Mock).mockResolvedValue([
+        {
+          id: 'app-firefox',
+          displayName: 'Firefox',
+          slug: 'firefox',
+          packages: [
+            {
+              id: 'pkg-1',
+              identifier: 'firefox',
+              isAvailable: true,
+              packageSetupCmd: JSON.stringify({
+                debian: 'sudo add-apt-repository ppa:mozillateam/ppa -y && sudo apt update',
+              }),
+              source: {
+                id: 'source-1',
+                name: 'APT',
+                slug: 'apt',
+                installCmd: 'apt install -y',
+                requireSudo: true,
+                setupCmd: null,
+              },
+            },
+          ],
+        },
+        {
+          id: 'app-discord',
+          displayName: 'Discord',
+          slug: 'discord',
+          packages: [
+            {
+              id: 'pkg-2',
+              identifier: 'discord',
+              isAvailable: true,
+              packageSetupCmd: null,
+              source: {
+                id: 'source-2',
+                name: 'Snap',
+                slug: 'snap',
+                installCmd: 'snap install',
+                requireSudo: true,
+                setupCmd: 'sudo apt install -y snapd',
+              },
+            },
+          ],
+        },
+      ]);
+
+      const result = await generateInstallCommands(request);
+
+      // Should have both per-package (PPA) and source-level (snapd) setup
+      expect(result.setupCommands).toHaveLength(2);
+      expect(result.setupCommands).toContain('sudo add-apt-repository ppa:mozillateam/ppa -y && sudo apt update');
+      expect(result.setupCommands).toContain('sudo apt install -y snapd');
+      expect(result.commands).toHaveLength(2);
+    });
   });
 });

@@ -291,7 +291,10 @@
     "app": "obs",
     "identifier": "obs-studio",
     "isAvailable": true,
-    "source": "apt"
+    "source": "apt",
+    "packageSetupCmd": {
+      "debian": "sudo add-apt-repository ppa:obsproject/obs-studio -y && sudo apt update"
+    }
   },
   {
     "app": "perl",

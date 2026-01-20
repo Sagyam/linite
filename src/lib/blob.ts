@@ -234,19 +234,54 @@ async function downloadImageWithRetry(
 }
 
 /**
+ * Check if a blob exists in Azure Blob Storage
+ * @param pathname - The full pathname of the blob (e.g., 'app-icons/firefox.svg')
+ * @returns The blob URL if it exists, null otherwise
+ */
+export async function checkBlobExists(pathname: string): Promise<string | null> {
+  try {
+    const containerClient = getContainerClient();
+    const blockBlobClient = containerClient.getBlockBlobClient(pathname);
+
+    const exists = await blockBlobClient.exists();
+    if (exists) {
+      return blockBlobClient.url.split('?')[0];
+    }
+    return null;
+  } catch {
+    return null;
+  }
+}
+
+/**
  * Download an image from a URL and upload it to Azure Blob storage
  * Now with robust retry logic and Wikipedia authentication
  * @param imageUrl - The URL of the image to download
  * @param slug - The slug to use in the pathname (e.g., 'firefox', 'ubuntu')
  * @param prefix - The folder prefix for the blob (e.g., 'app-icons', 'distro-icons'). Defaults to 'app-icons'
+ * @param skipIfExists - If true, skip upload if blob already exists. Defaults to false
  * @returns The URL of the uploaded file in Azure Blob, or null if failed
  */
 export async function uploadImageFromUrl(
   imageUrl: string,
   slug: string,
-  prefix: string = 'app-icons'
+  prefix: string = 'app-icons',
+  skipIfExists: boolean = false
 ): Promise<string | null> {
   try {
+    // Check if blob already exists (optimization to skip re-uploads)
+    if (skipIfExists) {
+      // Try common extensions
+      const extensions = ['svg', 'png', 'jpg', 'webp'];
+      for (const ext of extensions) {
+        const pathname = `${prefix}/${slug}.${ext}`;
+        const existingUrl = await checkBlobExists(pathname);
+        if (existingUrl) {
+          return existingUrl;
+        }
+      }
+    }
+
     // Download the image with retry logic
     const downloadResult = await downloadImageWithRetry(imageUrl, slug);
 

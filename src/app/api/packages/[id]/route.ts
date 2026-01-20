@@ -52,6 +52,7 @@ export const PUT = createAuthValidatedApiHandler<UpdatePackageInput, RouteContex
         ...(data.maintainer !== undefined && { maintainer: data.maintainer || null }),
         ...(data.isAvailable !== undefined && { isAvailable: data.isAvailable }),
         ...(data.metadata !== undefined && { metadata: data.metadata || null }),
+        ...(data.packageSetupCmd !== undefined && { packageSetupCmd: data.packageSetupCmd || null }),
         updatedAt: new Date(),
       })
       .where(eq(packages.id, id))

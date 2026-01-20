@@ -60,6 +60,7 @@ export const POST = createAuthValidatedApiHandler(
         maintainer: data.maintainer || null,
         isAvailable: data.isAvailable ?? true,
         metadata: data.metadata || null,
+        packageSetupCmd: data.packageSetupCmd || null,
       })
       .returning()
       .then((rows) => rows[0]);

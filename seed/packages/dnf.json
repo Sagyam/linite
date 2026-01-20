@@ -51,7 +51,10 @@
     "app": "celluloid",
     "identifier": "celluloid",
     "isAvailable": true,
-    "source": "dnf"
+    "source": "dnf",
+    "packageSetupCmd": {
+      "rhel": "sudo dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm"
+    }
   },
   {
     "app": "chromium",
@@ -249,7 +252,10 @@
     "app": "mpv",
     "identifier": "mpv",
     "isAvailable": true,
-    "source": "dnf"
+    "source": "dnf",
+    "packageSetupCmd": {
+      "rhel": "sudo dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm"
+    }
   },
   {
     "app": "neovim",
@@ -273,7 +279,10 @@
     "app": "obs",
     "identifier": "obs-studio",
     "isAvailable": true,
-    "source": "dnf"
+    "source": "dnf",
+    "packageSetupCmd": {
+      "rhel": "sudo dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm"
+    }
   },
   {
     "app": "opentofu",
@@ -375,7 +384,10 @@
     "app": "vlc",
     "identifier": "vlc",
     "isAvailable": true,
-    "source": "dnf"
+    "source": "dnf",
+    "packageSetupCmd": {
+      "rhel": "sudo dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm"
+    }
   },
   {
     "app": "virt-manager",
@@ -423,7 +435,10 @@
     "app": "ffmpeg",
     "identifier": "ffmpeg",
     "isAvailable": true,
-    "source": "dnf"
+    "source": "dnf",
+    "packageSetupCmd": {
+      "rhel": "sudo dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm"
+    }
   },
   {
     "app": "nmap",
