@@ -4,6 +4,7 @@ import { Terminal, Download, Copy, Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 interface CommandHeaderProps {
+  title?: string;
   appCount: number;
   sourcePreference: string | null;
   copied: boolean;
@@ -12,6 +13,7 @@ interface CommandHeaderProps {
 }
 
 export function CommandHeader({
+  title = 'Install Command',
   appCount,
   sourcePreference,
   copied,
@@ -23,7 +25,7 @@ export function CommandHeader({
       <div>
         <h3 className="font-semibold text-lg flex items-center gap-2">
           <Terminal className="w-5 h-5" />
-          Install Command
+          {title}
         </h3>
         <p className="text-sm text-muted-foreground mt-1">
           {appCount} {appCount === 1 ? 'app' : 'apps'} selected

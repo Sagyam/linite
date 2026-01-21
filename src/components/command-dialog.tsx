@@ -15,7 +15,6 @@ import {
   TabsTrigger,
   TabsContent,
 } from '@/components/ui/tabs';
-import { Button } from '@/components/ui/button';
 import { useCommand } from '@/hooks/use-command';
 import { useUninstallCommand } from '@/hooks/use-uninstall-command';
 import { CommandOutputSkeleton } from '@/components/ui/loading-skeletons';
@@ -29,6 +28,13 @@ import { CommandWarnings } from './command-output/command-warnings';
 import { UninstallCommands } from './command-output/uninstall-commands';
 import { CleanupCommands } from './command-output/cleanup-commands';
 import { ManualUninstallSteps } from './command-output/manual-uninstall-steps';
+import {
+  generateLinuxInstallScript,
+  generateWindowsInstallScript,
+  generateLinuxUninstallScript,
+  generateWindowsUninstallScript,
+  downloadScript,
+} from '@/lib/script-generator';
 
 interface CommandDialogProps {
   open: boolean;
@@ -118,96 +124,29 @@ export function CommandDialog({ open, onOpenChange }: CommandDialogProps) {
     await copyCommand(commands[index], index);
   };
 
-   const handleDownload = () => {
-     if (!installResult) return;
+  const handleDownload = () => {
+    if (!installResult || !selectedDistro) return;
 
-     const isWindows = selectedDistro === 'windows';
-     const isNixOS = selectedDistro === 'nixos';
+    const isWindows = selectedDistro === 'windows';
+    const script = isWindows
+      ? generateWindowsInstallScript(installResult)
+      : generateLinuxInstallScript(selectedDistro, installResult);
 
-     let fullCommand: string;
-     let filename: string;
-     let mimeType: string;
+    downloadScript(script.content, script.filename, 'Script downloaded!');
+    toast.success('Script downloaded!');
+  };
 
-     if (isWindows) {
-       fullCommand = [
-         '# Linite - Bulk Package Installer',
-         '',
-         ...(installResult.setupCommands || []),
-         '',
-         ...installResult.commands,
-       ].join('\n');
-       filename = 'linite-install.ps1';
-       mimeType = 'text/plain';
-     } else {
-       const shebang = isNixOS ? '#!/run/current-system/sw/bin/bash' : '#!/bin/bash';
-       fullCommand = [
-         shebang,
-         '',
-         '# Display colorful banner',
-         'echo -e "\\033[1;36m┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓\\033[0m"',
-         'echo -e "\\033[1;36m┃\\033[0m                                                                 \\033[1;36m┃\\033[0m"',
-         'echo -e "\\033[1;36m┃\\033[1;35m  📦 Bulk Linux Package Installer\\033[1;36m                               ┃\\033[0m"',
-         'echo -e "\\033[1;36m┃\\033[1;34m  🌐 https://linite.sagyamthapa.com.np\\033[1;36m                          ┃\\033[0m"',
-         'echo -e "\\033[1;36m┃\\033[0m                                                                 \\033[1;36m┃\\033[0m"',
-         'echo -e "\\033[1;36m┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛\\033[0m"',
-         'echo',
-         '',
-         ...(installResult.setupCommands || []),
-         '',
-         ...installResult.commands,
-       ].join('\n');
-       filename = 'linite-install.sh';
-       mimeType = 'text/plain';
-     }
+  const handleDownloadUninstall = () => {
+    if (!uninstallResult || !selectedDistro) return;
 
-     const blob = new Blob([fullCommand], { type: mimeType });
-     const url = URL.createObjectURL(blob);
-     const a = document.createElement('a');
-     a.href = url;
-     a.download = filename;
-     document.body.appendChild(a);
-     a.click();
-     document.body.removeChild(a);
-     URL.revokeObjectURL(url);
-     toast.success('Script downloaded!');
-   };
+    const isWindows = selectedDistro === 'windows';
+    const script = isWindows
+      ? generateWindowsUninstallScript(uninstallResult)
+      : generateLinuxUninstallScript(selectedDistro, uninstallResult);
 
-   const handleDownloadUninstall = () => {
-     if (!uninstallResult) return;
-
-     const isNixOS = selectedDistro === 'nixos';
-
-     const shebang = isNixOS ? '#!/run/current-system/sw/bin/bash' : '#!/bin/bash';
-     const fullCommand = [
-       shebang,
-       '',
-       '# Display colorful banner',
-       'echo -e "\\033[1;36m┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓\\033[0m"',
-       'echo -e "\\033[1;36m┃\\033[0m                                                                 \\033[1;36m┃\\033[0m"',
-       'echo -e "\\033[1;36m┃\\033[1;35m  🗑️  Bulk Package Uninstaller\\033[1;36m                                  ┃\\033[0m"',
-       'echo -e "\\033[1;36m┃\\033[1;34m  🌐 https://linite.sagyamthapa.com.np\\033[1;36m                          ┃\\033[0m"',
-       'echo -e "\\033[1;36m┃\\033[0m                                                                 \\033[1;36m┃\\033[0m"',
-       'echo -e "\\033[1;36m┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛\\033[0m"',
-       'echo',
-       '',
-       ...(uninstallResult.cleanupCommands || []),
-       '',
-       ...uninstallResult.commands,
-       '',
-       ...(uninstallResult.dependencyCleanupCommands || []),
-     ].join('\n');
-
-     const blob = new Blob([fullCommand], { type: 'text/plain' });
-     const url = URL.createObjectURL(blob);
-     const a = document.createElement('a');
-     a.href = url;
-     a.download = 'linite-uninstall.sh';
-     document.body.appendChild(a);
-     a.click();
-     document.body.removeChild(a);
-     URL.revokeObjectURL(url);
-     toast.success('Uninstall script downloaded!');
-   };
+    downloadScript(script.content, script.filename, 'Uninstall script downloaded!');
+    toast.success('Uninstall script downloaded!');
+  };
 
   return (
       <Dialog open={open} onOpenChange={onOpenChange}>
@@ -225,10 +164,10 @@ export function CommandDialog({ open, onOpenChange }: CommandDialogProps) {
              <TabsTrigger value="uninstall">Uninstall</TabsTrigger>
            </TabsList>
 
-           <TabsContent value="install" className="space-y-4 mt-4">
-                {loading && <CommandOutputSkeleton />}
+           <TabsContent value="install" className="space-y-4 mt-4 h-min data-[state=inactive]:hidden" forceMount>
+                {loading && activeTab === 'install' && <CommandOutputSkeleton />}
 
-              {error && !loading && (
+              {error && !loading && activeTab === 'install' && (
                 <div className="text-center text-muted-foreground py-12">
                   <Terminal className="w-12 h-12 mx-auto mb-3 opacity-50" />
                   <p className="font-medium">Unable to generate install command</p>
@@ -240,7 +179,7 @@ export function CommandDialog({ open, onOpenChange }: CommandDialogProps) {
                 </div>
               )}
 
-              {installResult && !loading && (
+              {installResult && !loading && activeTab === 'install' && (
                 <div className="space-y-4">
                   <CommandHeader
                     appCount={selectedApps.size}
@@ -268,10 +207,10 @@ export function CommandDialog({ open, onOpenChange }: CommandDialogProps) {
               )}
             </TabsContent>
 
-           <TabsContent value="uninstall" className="space-y-4 mt-4">
-                 {loading && <CommandOutputSkeleton />}
+           <TabsContent value="uninstall" className="space-y-4 mt-4 min-h-[400px] data-[state=inactive]:hidden" forceMount>
+                 {loading && activeTab === 'uninstall' && <CommandOutputSkeleton />}
 
-               {error && !loading && (
+               {error && !loading && activeTab === 'uninstall' && (
                  <div className="text-center text-muted-foreground py-12">
                    <Terminal className="w-12 h-12 mx-auto mb-3 opacity-50" />
                    <p className="font-medium">Unable to generate uninstall commands</p>
@@ -281,39 +220,16 @@ export function CommandDialog({ open, onOpenChange }: CommandDialogProps) {
                  </div>
                )}
 
-               {uninstallResult && !loading && (
+               {uninstallResult && !loading && activeTab === 'uninstall' && (
                <div className="space-y-4">
-                 <div className="flex items-start justify-between border-b pb-4">
-                   <div>
-                     <h3 className="font-semibold text-lg flex items-center gap-2">
-                       <Terminal className="w-5 h-5" />
-                       Uninstall Commands
-                     </h3>
-                     <p className="text-sm text-muted-foreground mt-1">
-                       {selectedApps.size} {selectedApps.size === 1 ? 'app' : 'apps'} selected
-                       {sourcePreference && ` • Preferring ${sourcePreference}`}
-                     </p>
-                   </div>
-
-                   <div className="flex gap-2">
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        onClick={handleDownloadUninstall}
-                        className="gap-2"
-                      >
-                        Download
-                      </Button>
-                      <Button
-                        variant="default"
-                        size="sm"
-                        onClick={handleCopyAll}
-                        className="gap-2"
-                      >
-                        {copiedAll ? 'Copied' : 'Copy All'}
-                      </Button>
-                    </div>
-                 </div>
+                 <CommandHeader
+                   title="Uninstall Commands"
+                   appCount={selectedApps.size}
+                   sourcePreference={sourcePreference}
+                   copied={copiedAll}
+                   onCopy={handleCopyAll}
+                   onDownload={handleDownloadUninstall}
+                 />
 
                  <div className="space-y-4">
                    <CleanupCommands
