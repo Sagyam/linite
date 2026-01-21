@@ -1,6 +1,5 @@
 import { db } from '@/db';
 import type { SQL } from 'drizzle-orm';
-import type { SQLiteTable } from 'drizzle-orm/sqlite-core';
 
 /**
  * Base Repository Pattern

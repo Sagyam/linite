@@ -9,7 +9,6 @@ import { eq } from 'drizzle-orm';
 import { getRefreshStrategy } from './refresh-strategies';
 import type { RefreshResult, RefreshOptions } from '@/types/entities';
 import { uploadImageFromUrl } from '@/lib/blob';
-import { TIMEOUTS } from '@/lib/constants';
 
 // Re-export for backward compatibility
 export type { RefreshResult, RefreshOptions };

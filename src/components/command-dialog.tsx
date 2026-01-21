@@ -132,7 +132,7 @@ export function CommandDialog({ open, onOpenChange }: CommandDialogProps) {
       ? generateWindowsInstallScript(installResult)
       : generateLinuxInstallScript(selectedDistro, installResult);
 
-    downloadScript(script.content, script.filename, 'Script downloaded!');
+    downloadScript(script.content, script.filename);
     toast.success('Script downloaded!');
   };
 
@@ -144,7 +144,7 @@ export function CommandDialog({ open, onOpenChange }: CommandDialogProps) {
       ? generateWindowsUninstallScript(uninstallResult)
       : generateLinuxUninstallScript(selectedDistro, uninstallResult);
 
-    downloadScript(script.content, script.filename, 'Uninstall script downloaded!');
+    downloadScript(script.content, script.filename);
     toast.success('Uninstall script downloaded!');
   };
 

@@ -154,7 +154,7 @@ export function generateWindowsUninstallScript(
 /**
  * Helper function to download a script file
  */
-export function downloadScript(content: string, filename: string): void {
+export function downloadScript(content: string, filename: string, ): void {
   const blob = new Blob([content], { type: 'text/plain' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
