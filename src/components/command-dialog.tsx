@@ -85,13 +85,7 @@ export function CommandDialog({ open, onOpenChange }: CommandDialogProps) {
         generateUninstall(includeDependencyCleanup, includeSetupCleanup);
       }
     }
-  }, [open, activeTab, includeDependencyCleanup, includeSetupCleanup]);
-
-  useEffect(() => {
-    if (open && activeTab === 'uninstall') {
-      generateUninstall(includeDependencyCleanup, includeSetupCleanup);
-    }
-  }, [includeDependencyCleanup, includeSetupCleanup, open, activeTab]);
+  }, [open, activeTab, includeDependencyCleanup, includeSetupCleanup, selectedApps.size, selectedDistro, generateInstall, generateUninstall]);
 
   const handleCopyAll = async () => {
     if (!result) return;

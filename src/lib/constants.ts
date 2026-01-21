@@ -1,5 +1,6 @@
 export const APP_NAME = 'Linite';
 export const APP_DESCRIPTION = 'A Ninite-style bulk package installer for Linux distributions';
+export const APP_WEBSITE_URL = 'https://linite.sagyamthapa.com.np';
 
 export const SOURCE_PREFERENCES = ['auto', 'flatpak', 'native', 'snap'] as const;
 export type SourcePreference = typeof SOURCE_PREFERENCES[number];

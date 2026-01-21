@@ -1,4 +1,48 @@
 import type { GenerateCommandResponse, GenerateUninstallCommandResponse } from '@/types';
+import { APP_WEBSITE_URL } from '@/lib/constants';
+
+/**
+ * Generate Linux/Unix bash banner with colorful ASCII art
+ */
+function generateLinuxBanner(subtitle: string, subtitleColor: string = '\\033[1;32m'): string[] {
+  return [
+    'echo',
+    'echo -e "\\033[1;36m ██╗     ██╗███╗   ██╗██╗████████╗███████╗\\033[0m"',
+    'echo -e "\\033[1;36m ██║     ██║████╗  ██║██║╚══██╔══╝██╔════╝\\033[0m"',
+    'echo -e "\\033[1;35m ██║     ██║██╔██╗ ██║██║   ██║   █████╗  \\033[0m"',
+    'echo -e "\\033[1;34m ██║     ██║██║╚██╗██║██║   ██║   ██╔══╝  \\033[0m"',
+    'echo -e "\\033[1;33m ███████╗██║██║ ╚████║██║   ██║   ███████╗\\033[0m"',
+    'echo -e "\\033[1;33m ╚══════╝╚═╝╚═╝  ╚═══╝╚═╝   ╚═╝   ╚══════╝\\033[0m"',
+    'echo',
+    `echo -e "${subtitleColor} ${subtitle}\\033[0m"`,
+    `echo -e "\\033[1;36m 🌐 ${APP_WEBSITE_URL}\\033[0m"`,
+    'echo',
+    'echo -e "\\033[1;30m═══════════════════════════════════════════════════════\\033[0m"',
+    'echo',
+  ];
+}
+
+/**
+ * Generate Windows PowerShell banner with colorful ASCII art
+ */
+function generateWindowsBanner(subtitle: string, subtitleColor: string = 'Green'): string[] {
+  return [
+    'Write-Host ""',
+    'Write-Host " ██╗     ██╗███╗   ██╗██╗████████╗███████╗" -ForegroundColor Cyan',
+    'Write-Host " ██║     ██║████╗  ██║██║╚══██╔══╝██╔════╝" -ForegroundColor Cyan',
+    'Write-Host " ██║     ██║██╔██╗ ██║██║   ██║   █████╗  " -ForegroundColor Magenta',
+    'Write-Host " ██║     ██║██║╚██╗██║██║   ██║   ██╔══╝  " -ForegroundColor Blue',
+    'Write-Host " ███████╗██║██║ ╚████║██║   ██║   ███████╗" -ForegroundColor Yellow',
+    'Write-Host " ╚══════╝╚═╝╚═╝  ╚═══╝╚═╝   ╚═╝   ╚══════╝" -ForegroundColor Yellow',
+    'Write-Host ""',
+    `Write-Host " ${subtitle}" -ForegroundColor ${subtitleColor}`,
+    `Write-Host " 🌐 ${APP_WEBSITE_URL}" -ForegroundColor DarkCyan`,
+    'Write-Host ""',
+    'Write-Host "═══════════════════════════════════════════════════════" -ForegroundColor DarkGray',
+    'Write-Host ""',
+  ];
+}
+
 /**
  * Generate a Linux/Unix bash install script
  */
@@ -13,19 +57,7 @@ export function generateLinuxInstallScript(
     shebang,
     '',
     '# Display colorful LINITE ASCII art banner',
-    'echo',
-    'echo -e "\\033[1;36m ██╗     ██╗███╗   ██╗██╗████████╗███████╗\\033[0m"',
-    'echo -e "\\033[1;36m ██║     ██║████╗  ██║██║╚══██╔══╝██╔════╝\\033[0m"',
-    'echo -e "\\033[1;35m ██║     ██║██╔██╗ ██║██║   ██║   █████╗  \\033[0m"',
-    'echo -e "\\033[1;34m ██║     ██║██║╚██╗██║██║   ██║   ██╔══╝  \\033[0m"',
-    'echo -e "\\033[1;33m ███████╗██║██║ ╚████║██║   ██║   ███████╗\\033[0m"',
-    'echo -e "\\033[1;33m ╚══════╝╚═╝╚═╝  ╚═══╝╚═╝   ╚═╝   ╚══════╝\\033[0m"',
-    'echo',
-    'echo -e "\\033[1;32m 📦 Bulk Package Installer\\033[0m"',
-    'echo -e "\\033[1;36m 🌐 https://linite.sagyamthapa.com.np\\033[0m"',
-    'echo',
-    'echo -e "\\033[1;30m═══════════════════════════════════════════════════════\\033[0m"',
-    'echo',
+    ...generateLinuxBanner('📦 Bulk Package Installer'),
     '',
     ...(result.setupCommands || []),
     '',
@@ -48,19 +80,7 @@ export function generateWindowsInstallScript(
     '# Linite - Bulk Package Installer',
     '',
     '# Display colorful LINITE ASCII art banner',
-    'Write-Host ""',
-    'Write-Host " ██╗     ██╗███╗   ██╗██╗████████╗███████╗" -ForegroundColor Cyan',
-    'Write-Host " ██║     ██║████╗  ██║██║╚══██╔══╝██╔════╝" -ForegroundColor Cyan',
-    'Write-Host " ██║     ██║██╔██╗ ██║██║   ██║   █████╗  " -ForegroundColor Magenta',
-    'Write-Host " ██║     ██║██║╚██╗██║██║   ██║   ██╔══╝  " -ForegroundColor Blue',
-    'Write-Host " ███████╗██║██║ ╚████║██║   ██║   ███████╗" -ForegroundColor Yellow',
-    'Write-Host " ╚══════╝╚═╝╚═╝  ╚═══╝╚═╝   ╚═╝   ╚══════╝" -ForegroundColor Yellow',
-    'Write-Host ""',
-    'Write-Host " 📦 Bulk Package Installer" -ForegroundColor Green',
-    'Write-Host " 🌐 https://linite.sagyamthapa.com.np" -ForegroundColor DarkCyan',
-    'Write-Host ""',
-    'Write-Host "═══════════════════════════════════════════════════════" -ForegroundColor DarkGray',
-    'Write-Host ""',
+    ...generateWindowsBanner('📦 Bulk Package Installer'),
     '',
     ...(result.setupCommands || []),
     '',
@@ -87,19 +107,7 @@ export function generateLinuxUninstallScript(
     shebang,
     '',
     '# Display colorful LINITE ASCII art banner',
-    'echo',
-    'echo -e "\\033[1;36m ██╗     ██╗███╗   ██╗██╗████████╗███████╗\\033[0m"',
-    'echo -e "\\033[1;36m ██║     ██║████╗  ██║██║╚══██╔══╝██╔════╝\\033[0m"',
-    'echo -e "\\033[1;35m ██║     ██║██╔██╗ ██║██║   ██║   █████╗  \\033[0m"',
-    'echo -e "\\033[1;34m ██║     ██║██║╚██╗██║██║   ██║   ██╔══╝  \\033[0m"',
-    'echo -e "\\033[1;33m ███████╗██║██║ ╚████║██║   ██║   ███████╗\\033[0m"',
-    'echo -e "\\033[1;33m ╚══════╝╚═╝╚═╝  ╚═══╝╚═╝   ╚═╝   ╚══════╝\\033[0m"',
-    'echo',
-    'echo -e "\\033[1;31m 🗑️  Bulk Package Uninstaller\\033[0m"',
-    'echo -e "\\033[1;36m 🌐 https://linite.sagyamthapa.com.np\\033[0m"',
-    'echo',
-    'echo -e "\\033[1;30m═══════════════════════════════════════════════════════\\033[0m"',
-    'echo',
+    ...generateLinuxBanner('🗑️  Bulk Package Uninstaller', '\\033[1;31m'),
     '',
     ...(result.cleanupCommands || []),
     '',
@@ -124,19 +132,7 @@ export function generateWindowsUninstallScript(
     '# Linite - Bulk Package Uninstaller',
     '',
     '# Display colorful LINITE ASCII art banner',
-    'Write-Host ""',
-    'Write-Host " ██╗     ██╗███╗   ██╗██╗████████╗███████╗" -ForegroundColor Cyan',
-    'Write-Host " ██║     ██║████╗  ██║██║╚══██╔══╝██╔════╝" -ForegroundColor Cyan',
-    'Write-Host " ██║     ██║██╔██╗ ██║██║   ██║   █████╗  " -ForegroundColor Magenta',
-    'Write-Host " ██║     ██║██║╚██╗██║██║   ██║   ██╔══╝  " -ForegroundColor Blue',
-    'Write-Host " ███████╗██║██║ ╚████║██║   ██║   ███████╗" -ForegroundColor Yellow',
-    'Write-Host " ╚══════╝╚═╝╚═╝  ╚═══╝╚═╝   ╚═╝   ╚══════╝" -ForegroundColor Yellow',
-    'Write-Host ""',
-    'Write-Host " 🗑️  Bulk Package Uninstaller" -ForegroundColor Red',
-    'Write-Host " 🌐 https://linite.sagyamthapa.com.np" -ForegroundColor DarkCyan',
-    'Write-Host ""',
-    'Write-Host "═══════════════════════════════════════════════════════" -ForegroundColor DarkGray',
-    'Write-Host ""',
+    ...generateWindowsBanner('🗑️  Bulk Package Uninstaller', 'Red'),
     '',
     ...(result.cleanupCommands || []),
     '',

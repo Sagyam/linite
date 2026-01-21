@@ -15,6 +15,7 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
+import type { PackageBreakdown } from '@/types';
 
 interface SaveInstallationDialogProps {
   open: boolean;
@@ -84,8 +85,19 @@ export function SaveInstallationDialog({
       console.log('Breakdown from /api/generate:', breakdown);
 
       // Step 2: Create installations for each package in the breakdown
-      const installationPromises = breakdown.map(async (item: any) => {
-        const payload: any = {
+      const installationPromises = breakdown.map(async (item: PackageBreakdown) => {
+        // These fields are guaranteed to exist in breakdown from /api/generate
+        if (!item.appId || !item.packageId || !item.distroId) {
+          throw new Error('Invalid breakdown data: missing required fields');
+        }
+
+        const payload: {
+          appId: string;
+          packageId: string;
+          distroId: string;
+          deviceIdentifier: string;
+          notes?: string;
+        } = {
           appId: item.appId,
           packageId: item.packageId,
           distroId: item.distroId,

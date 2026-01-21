@@ -154,14 +154,30 @@ describe('Command Generator', () => {
 
       expect(result.warnings).toHaveLength(0);
 
-      expect(result.breakdown).toHaveLength(2);
+      expect(result.breakdown).toHaveLength(3);
       expect(result.breakdown).toContainEqual({
         source: 'APT',
-        packages: ['firefox', 'git'],
+        packages: ['firefox'],
+        appId: 'app-1',
+        appName: 'Firefox',
+        packageId: 'pkg-1',
+        distroId: 'distro-1',
+      });
+      expect(result.breakdown).toContainEqual({
+        source: 'APT',
+        packages: ['git'],
+        appId: 'app-2',
+        appName: 'Git',
+        packageId: 'pkg-3',
+        distroId: 'distro-1',
       });
       expect(result.breakdown).toContainEqual({
         source: 'Flatpak',
         packages: ['org.videolan.VLC'],
+        appId: 'app-3',
+        appName: 'VLC',
+        packageId: 'pkg-4',
+        distroId: 'distro-1',
       });
     });
 
@@ -440,6 +456,7 @@ describe('Command Generator', () => {
           displayName: 'Git',
           packages: [
             {
+              id: 'pkg-1',
               identifier: 'git',
               sourceId: 'source-1',
               isAvailable: true,
@@ -459,6 +476,7 @@ describe('Command Generator', () => {
           displayName: 'Vim',
           packages: [
             {
+              id: 'pkg-2',
               identifier: 'vim',
               sourceId: 'source-1',
               isAvailable: true,
@@ -478,6 +496,7 @@ describe('Command Generator', () => {
           displayName: 'Curl',
           packages: [
             {
+              id: 'pkg-3',
               identifier: 'curl',
               sourceId: 'source-1',
               isAvailable: true,
@@ -498,10 +517,30 @@ describe('Command Generator', () => {
 
       expect(result.commands).toHaveLength(1);
       expect(result.commands[0]).toBe('sudo apt install -y git vim curl');
-      expect(result.breakdown).toHaveLength(1);
-      expect(result.breakdown[0]).toEqual({
+      expect(result.breakdown).toHaveLength(3);
+      expect(result.breakdown).toContainEqual({
         source: 'APT',
-        packages: ['git', 'vim', 'curl'],
+        packages: ['git'],
+        appId: 'app-1',
+        appName: 'Git',
+        packageId: 'pkg-1',
+        distroId: 'distro-1',
+      });
+      expect(result.breakdown).toContainEqual({
+        source: 'APT',
+        packages: ['vim'],
+        appId: 'app-2',
+        appName: 'Vim',
+        packageId: 'pkg-2',
+        distroId: 'distro-1',
+      });
+      expect(result.breakdown).toContainEqual({
+        source: 'APT',
+        packages: ['curl'],
+        appId: 'app-3',
+        appName: 'Curl',
+        packageId: 'pkg-3',
+        distroId: 'distro-1',
       });
     });
 
