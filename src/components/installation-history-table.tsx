@@ -4,10 +4,9 @@ import { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { ColumnDef } from '@tanstack/react-table';
 import { format } from 'date-fns';
-import { Loader2, Edit } from 'lucide-react';
+import { Loader2, PackagePlus } from 'lucide-react';
 import { AdvancedDataTable } from '@/components/admin/advanced-data-table';
 import { DeviceFilter } from '@/components/device-filter';
-import { AddInstallationDialog } from '@/components/add-installation-dialog';
 import { DeleteDialog } from '@/components/admin/delete-dialog';
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
@@ -38,7 +37,6 @@ export function InstallationHistoryTable() {
   const queryClient = useQueryClient();
   const [deviceFilter, setDeviceFilter] = useState<string | null>(null);
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
-  const [addDialogOpen, setAddDialogOpen] = useState(false);
   const [selectedInstallation, setSelectedInstallation] = useState<InstallationWithRelations | null>(null);
 
   const { data: installations, isLoading, error } = useQuery({
@@ -185,15 +183,16 @@ export function InstallationHistoryTable() {
     return (
       <div className="flex flex-col items-center justify-center py-16 px-4 text-center">
         <div className="rounded-full bg-muted p-6 mb-6">
-          <Edit className="w-12 h-12 text-muted-foreground" />
+          <PackagePlus className="w-12 h-12 text-muted-foreground" />
         </div>
         <h2 className="text-2xl font-semibold mb-2">No installations yet</h2>
         <p className="text-muted-foreground mb-6 max-w-md">
-          Start tracking your app installations across multiple devices
+          Select apps from the{' '}
+          <a href="/" className="text-primary hover:underline font-medium">
+            main page
+          </a>
+          , then click "Save as Installation" in the drawer to track them here.
         </p>
-        <Button onClick={() => setAddDialogOpen(true)}>
-          Add Your First Installation
-        </Button>
       </div>
     );
   }
@@ -207,9 +206,6 @@ export function InstallationHistoryTable() {
             setDeviceFilter(device);
           }}
         />
-        <Button onClick={() => setAddDialogOpen(true)}>
-          Add Installation
-        </Button>
       </div>
 
       <AdvancedDataTable
@@ -226,15 +222,6 @@ export function InstallationHistoryTable() {
         entityName="installation"
         itemName={selectedInstallation?.app.displayName}
         onConfirm={handleConfirmDelete}
-      />
-
-      <AddInstallationDialog
-        open={addDialogOpen}
-        onOpenChange={setAddDialogOpen}
-        onSuccess={() => {
-          queryClient.invalidateQueries({ queryKey: ['installations'] });
-          queryClient.invalidateQueries({ queryKey: ['user-devices'] });
-        }}
       />
     </div>
   );

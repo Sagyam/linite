@@ -261,6 +261,11 @@ export interface PaginatedResponse<T> {
 export interface PackageBreakdown {
   source: string;
   packages: string[];
+  // Extended fields for installation tracking
+  appId?: string;
+  appName?: string;
+  packageId?: string;
+  distroId?: string;
 }
 
 export interface GenerateCommandRequest {

@@ -12,7 +12,9 @@ import type {
 export type { GenerateCommandRequest, GenerateCommandResponse, PackageBreakdown };
 
 interface SelectedPackage {
+  appId: string;
   appName: string;
+  packageId: string;
   packageIdentifier: string;
   sourceName: string;
   sourceSlug: string;
@@ -176,7 +178,9 @@ export async function generateInstallCommands(
     }
 
     selectedPackages.push({
+      appId: app.id,
       appName: app.displayName,
+      packageId: bestPackage.id,
       packageIdentifier: bestPackage.identifier,
       sourceName: bestPackage.source.name,
       sourceSlug: bestPackage.source.slug,
@@ -251,11 +255,17 @@ export async function generateInstallCommands(
         }
       }
 
-      // Add to breakdown
-      breakdown.push({
-        source: firstPkg.sourceName,
-        packages: packageIdentifiers,
-      });
+      // Add to breakdown (one entry per package for script sources)
+      for (const pkg of pkgs) {
+        breakdown.push({
+          source: pkg.sourceName,
+          packages: [pkg.packageIdentifier],
+          appId: pkg.appId,
+          appName: pkg.appName,
+          packageId: pkg.packageId,
+          distroId: distro.id,
+        });
+      }
 
       continue; // Skip normal command generation for a script source
     }
@@ -289,11 +299,17 @@ export async function generateInstallCommands(
 
     commands.push(fullCommand);
 
-    // Add to breakdown
-    breakdown.push({
-      source: firstPkg.sourceName,
-      packages: packageIdentifiers,
-    });
+    // Add to breakdown (one entry per package)
+    for (const pkg of pkgs) {
+      breakdown.push({
+        source: pkg.sourceName,
+        packages: [pkg.packageIdentifier],
+        appId: pkg.appId,
+        appName: pkg.appName,
+        packageId: pkg.packageId,
+        distroId: distro.id,
+      });
+    }
   }
 
   return {

@@ -28,9 +28,10 @@ interface HomePageClientProps {
   distros: Distro[];
   initialApps: AppWithRelations[];
   totalApps: number;
+  isAuthenticated?: boolean;
 }
 
-export function HomePageClient({ categories, distros, initialApps, totalApps }: HomePageClientProps) {
+export function HomePageClient({ categories, distros, initialApps, totalApps, isAuthenticated = false }: HomePageClientProps) {
   // Dialog/drawer state
   const [selectionDrawerOpen, setSelectionDrawerOpen] = useState(false);
   const [commandDialogOpen, setCommandDialogOpen] = useState(false);
@@ -257,6 +258,7 @@ export function HomePageClient({ categories, distros, initialApps, totalApps }: 
         <SelectionDrawer
           open={selectionDrawerOpen}
           onOpenChange={setSelectionDrawerOpen}
+          isAuthenticated={isAuthenticated}
         />
 
         <CommandDialog
