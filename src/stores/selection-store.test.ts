@@ -1,36 +1,11 @@
-import { describe, it, expect, beforeEach, afterEach } from 'vitest';
+import { describe, it, expect, beforeEach } from 'vitest';
 import { useSelectionStore } from './selection-store';
-
-// Mock localStorage
-const localStorageMock = (() => {
-  let store: Record<string, string> = {};
-
-  return {
-    getItem: (key: string) => store[key] || null,
-    setItem: (key: string, value: string) => {
-      store[key] = value;
-    },
-    removeItem: (key: string) => {
-      delete store[key];
-    },
-    clear: () => {
-      store = {};
-    },
-  };
-})();
-
-Object.defineProperty(window, 'localStorage', {
-  value: localStorageMock,
-});
 
 describe('Selection Store', () => {
   beforeEach(() => {
-    localStorageMock.clear();
+    // Clear localStorage and reset store before each test
+    localStorage.clear();
     useSelectionStore.getState().reset();
-  });
-
-  afterEach(() => {
-    localStorageMock.clear();
   });
 
   describe('initial state', () => {
@@ -489,7 +464,7 @@ describe('Selection Store', () => {
       setDistro('ubuntu');
       setSourcePreference('flatpak');
 
-      const stored = localStorageMock.getItem('linite-selection');
+      const stored = localStorage.getItem('linite-selection');
       expect(stored).toBeDefined();
 
       const parsed = JSON.parse(stored!);
@@ -513,7 +488,7 @@ describe('Selection Store', () => {
       };
 
       // Set data in localStorage
-      localStorageMock.setItem('linite-selection', JSON.stringify(mockData));
+      localStorage.setItem('linite-selection', JSON.stringify(mockData));
 
       // Manually trigger rehydration by setting apps
       const { selectApp, setDistro, setSourcePreference } = useSelectionStore.getState();
@@ -544,7 +519,7 @@ describe('Selection Store', () => {
       setDistro('ubuntu');
 
       // Get what was stored
-      const stored = localStorageMock.getItem('linite-selection');
+      const stored = localStorage.getItem('linite-selection');
       const parsed = JSON.parse(stored!);
 
       // Verify it was stored as arrays

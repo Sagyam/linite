@@ -3,29 +3,9 @@
  */
 
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
-import { renderHook, act } from '@testing-library/react';
+import { renderHook, act, waitFor } from '@testing-library/react';
 import { useInstallationKeyboardNavigation } from '@/hooks/use-installation-keyboard-navigation';
 import { useInstallationSelectionStore } from '@/stores/installation-selection-store';
-
-// Mock localStorage for the store
-const localStorageMock = (() => {
-  let store: Record<string, string> = {};
-
-  return {
-    getItem: (key: string) => store[key] || null,
-    setItem: (key: string, value: string) => {
-      store[key] = value;
-    },
-    removeItem: (key: string) => {
-      delete store[key];
-    },
-    clear: () => {
-      store = {};
-    },
-  };
-})();
-
-global.localStorage = localStorageMock as Storage;
 
 describe('useInstallationKeyboardNavigation', () => {
   const mockInstallations = [
@@ -37,7 +17,8 @@ describe('useInstallationKeyboardNavigation', () => {
   ] as const;
 
   beforeEach(() => {
-    // Reset store state
+    // Reset localStorage and store state
+    localStorage.clear();
     useInstallationSelectionStore.getState().clearSelection();
     useInstallationSelectionStore.getState().setFocusedRowIndex(-1);
   });
@@ -46,32 +27,47 @@ describe('useInstallationKeyboardNavigation', () => {
     // Reset store state after each test
     useInstallationSelectionStore.getState().clearSelection();
     useInstallationSelectionStore.getState().setFocusedRowIndex(-1);
-    localStorageMock.clear();
+    localStorage.clear();
   });
 
   describe('initial state', () => {
-    it('should initialize with showHelpDialog as false', () => {
+    it('should initialize with showHelpDialog as false', async () => {
       const { result } = renderHook(() =>
         useInstallationKeyboardNavigation(mockInstallations)
       );
+
+      // Flush all effects
+      await act(async () => {
+        await new Promise(resolve => setTimeout(resolve, 0));
+      });
 
       expect(result.current.showHelpDialog).toBe(false);
     });
 
-    it('should provide setShowHelpDialog function', () => {
+    it('should provide setShowHelpDialog function', async () => {
       const { result } = renderHook(() =>
         useInstallationKeyboardNavigation(mockInstallations)
       );
+
+      // Flush all effects
+      await act(async () => {
+        await new Promise(resolve => setTimeout(resolve, 0));
+      });
 
       expect(typeof result.current.setShowHelpDialog).toBe('function');
     });
   });
 
   describe('showHelpDialog state', () => {
-    it('should allow setting showHelpDialog to true', () => {
+    it('should allow setting showHelpDialog to true', async () => {
       const { result } = renderHook(() =>
         useInstallationKeyboardNavigation(mockInstallations)
       );
+
+      // Wait for effects to complete
+      await waitFor(() => {
+        expect(useInstallationSelectionStore.getState().focusedRowIndex).toBe(-1);
+      });
 
       act(() => {
         result.current.setShowHelpDialog(true);
@@ -80,10 +76,15 @@ describe('useInstallationKeyboardNavigation', () => {
       expect(result.current.showHelpDialog).toBe(true);
     });
 
-    it('should allow setting showHelpDialog to false', () => {
+    it('should allow setting showHelpDialog to false', async () => {
       const { result } = renderHook(() =>
         useInstallationKeyboardNavigation(mockInstallations)
       );
+
+      // Wait for effects to complete
+      await waitFor(() => {
+        expect(useInstallationSelectionStore.getState().focusedRowIndex).toBe(-1);
+      });
 
       act(() => {
         result.current.setShowHelpDialog(true);
@@ -98,12 +99,17 @@ describe('useInstallationKeyboardNavigation', () => {
   });
 
   describe('onDelete callback', () => {
-    it('should provide onDelete callback option', () => {
+    it('should provide onDelete callback option', async () => {
       const onDelete = vi.fn();
 
       renderHook(() =>
         useInstallationKeyboardNavigation(mockInstallations, { onDelete })
       );
+
+      // Wait for effects to complete
+      await waitFor(() => {
+        expect(useInstallationSelectionStore.getState().focusedRowIndex).toBe(-1);
+      });
 
       // Callback is registered, will be called on Delete key press
       // This test verifies the hook accepts the option
@@ -112,13 +118,18 @@ describe('useInstallationKeyboardNavigation', () => {
   });
 
   describe('hook lifecycle', () => {
-    it('should reset focus when installations length changes', () => {
+    it('should reset focus when installations length changes', async () => {
       const { rerender } = renderHook(
         ({ installations }) => useInstallationKeyboardNavigation(installations),
         {
           initialProps: { installations: mockInstallations },
         }
       );
+
+      // Wait for effects to complete
+      await waitFor(() => {
+        expect(useInstallationSelectionStore.getState().focusedRowIndex).toBe(-1);
+      });
 
       // Initial render resets focus to -1
       expect(useInstallationSelectionStore.getState().focusedRowIndex).toBe(-1);
@@ -140,13 +151,18 @@ describe('useInstallationKeyboardNavigation', () => {
       expect(focusedIndex).toBe(-1);
     });
 
-    it('should reset focus when installations length stays the same but array changes', () => {
+    it('should reset focus when installations length stays the same but array changes', async () => {
       const { rerender } = renderHook(
         ({ installations }) => useInstallationKeyboardNavigation(installations),
         {
           initialProps: { installations: mockInstallations },
         }
       );
+
+      // Wait for effects to complete
+      await waitFor(() => {
+        expect(useInstallationSelectionStore.getState().focusedRowIndex).toBe(-1);
+      });
 
       // Initial render resets focus to -1
       expect(useInstallationSelectionStore.getState().focusedRowIndex).toBe(-1);
@@ -176,37 +192,57 @@ describe('useInstallationKeyboardNavigation', () => {
   });
 
   describe('edge cases', () => {
-    it('should handle empty installations array', () => {
+    it('should handle empty installations array', async () => {
       const { result } = renderHook(() =>
         useInstallationKeyboardNavigation([])
       );
+
+      // Wait for effects to complete
+      await waitFor(() => {
+        expect(useInstallationSelectionStore.getState().focusedRowIndex).toBe(-1);
+      });
 
       expect(result.current.showHelpDialog).toBe(false);
       expect(typeof result.current.setShowHelpDialog).toBe('function');
     });
 
-    it('should handle single installation', () => {
+    it('should handle single installation', async () => {
       const singleInstall = [{ id: 'inst1', app: { displayName: 'App 1' } }] as const;
 
       const { result } = renderHook(() => useInstallationKeyboardNavigation(singleInstall));
 
+      // Wait for effects to complete
+      await waitFor(() => {
+        expect(useInstallationSelectionStore.getState().focusedRowIndex).toBe(-1);
+      });
+
       expect(result.current.showHelpDialog).toBe(false);
     });
 
-    it('should handle undefined onDelete', () => {
+    it('should handle undefined onDelete', async () => {
       const { result } = renderHook(() =>
         useInstallationKeyboardNavigation(mockInstallations)
       );
+
+      // Wait for effects to complete
+      await waitFor(() => {
+        expect(useInstallationSelectionStore.getState().focusedRowIndex).toBe(-1);
+      });
 
       expect(result.current.showHelpDialog).toBe(false);
     });
   });
 
   describe('unmount behavior', () => {
-    it('should clean up event listeners on unmount', () => {
+    it('should clean up event listeners on unmount', async () => {
       const { unmount } = renderHook(() =>
         useInstallationKeyboardNavigation(mockInstallations)
       );
+
+      // Wait for effects to complete
+      await waitFor(() => {
+        expect(useInstallationSelectionStore.getState().focusedRowIndex).toBe(-1);
+      });
 
       expect(() => unmount()).not.toThrow();
     });
