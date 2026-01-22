@@ -8,6 +8,7 @@ import { HelpCircle, Loader2, PackagePlus } from 'lucide-react';
 import { AdvancedDataTable } from '@/components/admin/advanced-data-table';
 import { DeviceFilter } from '@/components/device-filter';
 import { DeleteDialog } from '@/components/admin/delete-dialog';
+import { DeleteConfirmationDialog } from '@/components/delete-confirmation-dialog';
 import { InstallationKeyboardShortcutsDialog } from '@/components/installation-keyboard-shortcuts-dialog';
 import { BulkActionBar } from '@/components/bulk-action-bar';
 import { Button } from '@/components/ui/button';
@@ -101,6 +102,37 @@ export function InstallationHistoryTable() {
     },
   });
 
+  const bulkDeleteMutation = useMutation({
+    mutationFn: async (installationIds: string[]) => {
+      const response = await fetch('/api/installations/bulk-delete', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ installationIds }),
+      });
+
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.error || 'Failed to delete installations');
+      }
+
+      return response.json();
+    },
+    onSuccess: (data) => {
+      const count = data.deletedCount || selectedInstallationIds.size;
+      toast.success(`${count} installation${count !== 1 ? 's' : ''} deleted successfully`);
+      queryClient.invalidateQueries({ queryKey: ['installations'] });
+      queryClient.invalidateQueries({ queryKey: ['user-devices'] });
+      clearSelection();
+      setBulkDeleteDialogOpen(false);
+    },
+    onError: (error: Error) => {
+      toast.error(error.message);
+      // Keep selection intact on error
+    },
+  });
+
   const handleDelete = (installation: InstallationWithRelations) => {
     setSelectedInstallation(installation);
     setDeleteDialogOpen(true);
@@ -111,6 +143,25 @@ export function InstallationHistoryTable() {
       deleteMutation.mutate(selectedInstallation.id);
     }
   };
+
+  const handleBulkDelete = () => {
+    const ids = Array.from(selectedInstallationIds);
+    bulkDeleteMutation.mutate(ids);
+  };
+
+  const handleShowUninstallCommands = () => {
+    // Close delete confirmation dialog
+    setBulkDeleteDialogOpen(false);
+    // Open uninstall command dialog (Phase 6)
+    // TODO: Implement UninstallCommandDialog in Phase 6
+    setUninstallCommandDialogOpen(true);
+  };
+
+  // Get selected installations for the delete confirmation dialog
+  const selectedInstallations = useMemo(() => {
+    if (!installations) return [];
+    return installations.filter((inst) => selectedInstallationIds.has(inst.id));
+  }, [installations, selectedInstallationIds]);
 
   const columns: ColumnDef<InstallationWithRelations>[] = [
     {
@@ -254,7 +305,7 @@ export function InstallationHistoryTable() {
         selectedCount={selectedInstallationIds.size}
         onDelete={() => setBulkDeleteDialogOpen(true)}
         onClearSelection={clearSelection}
-        isDeleting={deleteMutation.isPending}
+        isDeleting={bulkDeleteMutation.isPending}
       />
 
       <div data-installation-table>
@@ -285,6 +336,14 @@ export function InstallationHistoryTable() {
         entityName="installation"
         itemName={selectedInstallation?.app.displayName}
         onConfirm={handleConfirmDelete}
+      />
+
+      <DeleteConfirmationDialog
+        open={bulkDeleteDialogOpen}
+        onOpenChange={setBulkDeleteDialogOpen}
+        installations={selectedInstallations}
+        onConfirmDelete={handleBulkDelete}
+        onShowUninstallCommands={handleShowUninstallCommands}
       />
 
       <InstallationKeyboardShortcutsDialog
