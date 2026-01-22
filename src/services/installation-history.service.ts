@@ -1,6 +1,6 @@
 import { db } from '@/db';
 import { installations } from '@/db/schema';
-import { eq, and, desc } from 'drizzle-orm';
+import { eq, and, desc, inArray } from 'drizzle-orm';
 import type {
   Installation,
   InstallationWithRelations,
@@ -216,6 +216,46 @@ export class InstallationHistoryService {
       .where(
         and(
           eq(installations.id, installationId),
+          eq(installations.userId, userId)
+        )
+      );
+  }
+
+  /**
+   * Bulk delete installation records (with user ownership check for all)
+   */
+  static async bulkDeleteInstallations(
+    installationIds: string[],
+    userId: string
+  ): Promise<void> {
+    // Verify ownership of all installations
+    const foundInstallations = await db.query.installations.findMany({
+      where: inArray(installations.id, installationIds),
+      columns: {
+        id: true,
+        userId: true,
+      },
+    });
+
+    // Check that all requested installations exist and belong to the user
+    if (foundInstallations.length !== installationIds.length) {
+      throw new Error('Some installations not found or access denied');
+    }
+
+    const allOwnedByUser = foundInstallations.every(
+      (installation) => installation.userId === userId
+    );
+
+    if (!allOwnedByUser) {
+      throw new Error('Some installations not found or access denied');
+    }
+
+    // Delete all installations in a single transaction
+    await db
+      .delete(installations)
+      .where(
+        and(
+          inArray(installations.id, installationIds),
           eq(installations.userId, userId)
         )
       );

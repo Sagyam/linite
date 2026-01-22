@@ -17,6 +17,8 @@ vi.mock('@/db', () => ({
   },
 }));
 
+import { inArray } from 'drizzle-orm';
+
 import { db } from '../db';
 
 describe('InstallationHistoryService', () => {
@@ -608,6 +610,224 @@ describe('InstallationHistoryService', () => {
 
       expect(result).toHaveLength(2);
       expect(result).toEqual(['My Laptop', 'Work PC']);
+    });
+  });
+
+  describe('bulkDeleteInstallations', () => {
+    const mockInstallationIds = ['inst-1', 'inst-2', 'inst-3'];
+
+    it('should delete multiple installations owned by user', async () => {
+      const mockInstallations = mockInstallationIds.map((id, index) => ({
+        ...mockInstallationWithRelations,
+        id,
+        userId: mockUserId,
+        appId: `app-${index}`,
+      }));
+
+      (db.query.installations.findMany as Mock).mockResolvedValue(
+        mockInstallations
+      );
+
+      (db.delete as Mock).mockReturnValue({
+        where: vi.fn().mockResolvedValue(undefined),
+      });
+
+      await InstallationHistoryService.bulkDeleteInstallations(
+        mockInstallationIds,
+        mockUserId
+      );
+
+      expect(db.query.installations.findMany).toHaveBeenCalledWith(
+        expect.objectContaining({
+          where: expect.anything(),
+        })
+      );
+      expect(db.delete).toHaveBeenCalled();
+    });
+
+    it('should verify ownership of all installations', async () => {
+      const mockInstallations = mockInstallationIds.map((id) => ({
+        ...mockInstallationWithRelations,
+        id,
+        userId: mockUserId,
+      }));
+
+      (db.query.installations.findMany as Mock).mockResolvedValue(
+        mockInstallations
+      );
+
+      (db.delete as Mock).mockReturnValue({
+        where: vi.fn().mockResolvedValue(undefined),
+      });
+
+      await InstallationHistoryService.bulkDeleteInstallations(
+        mockInstallationIds,
+        mockUserId
+      );
+
+      expect(db.query.installations.findMany).toHaveBeenCalled();
+      expect(db.delete).toHaveBeenCalled();
+    });
+
+    it('should throw error when some installations not found', async () => {
+      const partialInstallations = [
+        { ...mockInstallationWithRelations, id: 'inst-1', userId: mockUserId },
+        { ...mockInstallationWithRelations, id: 'inst-2', userId: mockUserId },
+      ];
+
+      (db.query.installations.findMany as Mock).mockResolvedValue(
+        partialInstallations
+      );
+
+      await expect(
+        InstallationHistoryService.bulkDeleteInstallations(
+          ['inst-1', 'inst-2', 'inst-3'],
+          mockUserId
+        )
+      ).rejects.toThrow('Some installations not found or access denied');
+    });
+
+    it('should throw error when installations not owned by user', async () => {
+      const mockInstallations = mockInstallationIds.map((id) => ({
+        ...mockInstallationWithRelations,
+        id,
+        userId: 'different-user-id',
+      }));
+
+      (db.query.installations.findMany as Mock).mockResolvedValue(
+        mockInstallations
+      );
+
+      await expect(
+        InstallationHistoryService.bulkDeleteInstallations(
+          mockInstallationIds,
+          mockUserId
+        )
+      ).rejects.toThrow('Some installations not found or access denied');
+    });
+
+    it('should throw error when no installations found', async () => {
+      (db.query.installations.findMany as Mock).mockResolvedValue([]);
+
+      await expect(
+        InstallationHistoryService.bulkDeleteInstallations(
+          mockInstallationIds,
+          mockUserId
+        )
+      ).rejects.toThrow('Some installations not found or access denied');
+    });
+
+    it('should handle single installation deletion', async () => {
+      const mockInstallations = [
+        { ...mockInstallationWithRelations, id: 'inst-1', userId: mockUserId },
+      ];
+
+      (db.query.installations.findMany as Mock).mockResolvedValue(
+        mockInstallations
+      );
+
+      (db.delete as Mock).mockReturnValue({
+        where: vi.fn().mockResolvedValue(undefined),
+      });
+
+      await InstallationHistoryService.bulkDeleteInstallations(
+        ['inst-1'],
+        mockUserId
+      );
+
+      expect(db.query.installations.findMany).toHaveBeenCalled();
+      expect(db.delete).toHaveBeenCalled();
+    });
+
+    it('should handle large batch of installations', async () => {
+      const largeIds = Array.from({ length: 100 }, (_, i) => `inst-${i}`);
+      const mockInstallations = largeIds.map((id) => ({
+        ...mockInstallationWithRelations,
+        id,
+        userId: mockUserId,
+      }));
+
+      (db.query.installations.findMany as Mock).mockResolvedValue(
+        mockInstallations
+      );
+
+      (db.delete as Mock).mockReturnValue({
+        where: vi.fn().mockResolvedValue(undefined),
+      });
+
+      await InstallationHistoryService.bulkDeleteInstallations(
+        largeIds,
+        mockUserId
+      );
+
+      expect(db.query.installations.findMany).toHaveBeenCalled();
+      expect(db.delete).toHaveBeenCalled();
+    });
+
+    it('should delete installations with inArray and userId conditions', async () => {
+      const mockInstallations = mockInstallationIds.map((id) => ({
+        ...mockInstallationWithRelations,
+        id,
+        userId: mockUserId,
+      }));
+
+      (db.query.installations.findMany as Mock).mockResolvedValue(
+        mockInstallations
+      );
+
+      (db.delete as Mock).mockReturnValue({
+        where: vi.fn().mockResolvedValue(undefined),
+      });
+
+      await InstallationHistoryService.bulkDeleteInstallations(
+        mockInstallationIds,
+        mockUserId
+      );
+
+      expect(db.delete).toHaveBeenCalled();
+    });
+
+    it('should return void on successful deletion', async () => {
+      const mockInstallations = mockInstallationIds.map((id) => ({
+        ...mockInstallationWithRelations,
+        id,
+        userId: mockUserId,
+      }));
+
+      (db.query.installations.findMany as Mock).mockResolvedValue(
+        mockInstallations
+      );
+
+      (db.delete as Mock).mockReturnValue({
+        where: vi.fn().mockResolvedValue(undefined),
+      });
+
+      const result = await InstallationHistoryService.bulkDeleteInstallations(
+        mockInstallationIds,
+        mockUserId
+      );
+
+      expect(result).toBeUndefined();
+    });
+
+    it('should not delete any installations when ownership check fails', async () => {
+      const partialInstallations = [
+        { ...mockInstallationWithRelations, id: 'inst-1', userId: mockUserId },
+        { ...mockInstallationWithRelations, id: 'inst-2', userId: 'other-user' },
+      ];
+
+      (db.query.installations.findMany as Mock).mockResolvedValue(
+        partialInstallations
+      );
+
+      await expect(
+        InstallationHistoryService.bulkDeleteInstallations(
+          ['inst-1', 'inst-2', 'inst-3'],
+          mockUserId
+        )
+      ).rejects.toThrow('Some installations not found or access denied');
+
+      expect(db.delete).not.toHaveBeenCalled();
     });
   });
 });
