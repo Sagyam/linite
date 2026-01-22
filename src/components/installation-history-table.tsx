@@ -9,6 +9,7 @@ import { AdvancedDataTable } from '@/components/admin/advanced-data-table';
 import { DeviceFilter } from '@/components/device-filter';
 import { DeleteDialog } from '@/components/admin/delete-dialog';
 import { InstallationKeyboardShortcutsDialog } from '@/components/installation-keyboard-shortcuts-dialog';
+import { BulkActionBar } from '@/components/bulk-action-bar';
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
 import { useInstallationSelectionStore } from '@/stores/installation-selection-store';
@@ -249,32 +250,12 @@ export function InstallationHistoryTable() {
         </Button>
       </div>
 
-      {/* Bulk Action Bar - Placeholder for Phase 4 */}
-      {selectedInstallationIds.size > 0 && (
-        <div className="fixed bottom-4 left-4 right-4 z-50 md:left-auto md:right-4 md:w-auto">
-          <div className="bg-background border shadow-lg rounded-lg p-4 flex items-center justify-between gap-4">
-            <span className="text-sm font-medium">
-              {selectedInstallationIds.size} installation{selectedInstallationIds.size !== 1 ? 's' : ''} selected
-            </span>
-            <div className="flex gap-2">
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={clearSelection}
-              >
-                Clear Selection
-              </Button>
-              <Button
-                variant="destructive"
-                size="sm"
-                onClick={() => setBulkDeleteDialogOpen(true)}
-              >
-                Delete Selected
-              </Button>
-            </div>
-          </div>
-        </div>
-      )}
+      <BulkActionBar
+        selectedCount={selectedInstallationIds.size}
+        onDelete={() => setBulkDeleteDialogOpen(true)}
+        onClearSelection={clearSelection}
+        isDeleting={deleteMutation.isPending}
+      />
 
       <div data-installation-table>
         <AdvancedDataTable
