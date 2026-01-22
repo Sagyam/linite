@@ -9,6 +9,7 @@ import { AdvancedDataTable } from '@/components/admin/advanced-data-table';
 import { DeviceFilter } from '@/components/device-filter';
 import { DeleteDialog } from '@/components/admin/delete-dialog';
 import { DeleteConfirmationDialog } from '@/components/delete-confirmation-dialog';
+import { UninstallCommandDialog } from '@/components/uninstall-command-dialog';
 import { InstallationKeyboardShortcutsDialog } from '@/components/installation-keyboard-shortcuts-dialog';
 import { BulkActionBar } from '@/components/bulk-action-bar';
 import { Button } from '@/components/ui/button';
@@ -152,9 +153,14 @@ export function InstallationHistoryTable() {
   const handleShowUninstallCommands = () => {
     // Close delete confirmation dialog
     setBulkDeleteDialogOpen(false);
-    // Open uninstall command dialog (Phase 6)
-    // TODO: Implement UninstallCommandDialog in Phase 6
+    // Open uninstall command dialog
     setUninstallCommandDialogOpen(true);
+  };
+
+  const handleUninstallCommandsComplete = () => {
+    // When uninstall dialog closes, delete the installations
+    const ids = Array.from(selectedInstallationIds);
+    bulkDeleteMutation.mutate(ids);
   };
 
   // Get selected installations for the delete confirmation dialog
@@ -344,6 +350,13 @@ export function InstallationHistoryTable() {
         installations={selectedInstallations}
         onConfirmDelete={handleBulkDelete}
         onShowUninstallCommands={handleShowUninstallCommands}
+      />
+
+      <UninstallCommandDialog
+        open={uninstallCommandDialogOpen}
+        onOpenChange={setUninstallCommandDialogOpen}
+        installations={selectedInstallations}
+        onComplete={handleUninstallCommandsComplete}
       />
 
       <InstallationKeyboardShortcutsDialog
