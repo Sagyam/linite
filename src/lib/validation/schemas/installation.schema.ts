@@ -26,6 +26,13 @@ export const getInstallationsQuerySchema = z.object({
   ...paginationQuerySchema,
 });
 
+export const bulkDeleteInstallationsSchema = z.object({
+  installationIds: z
+    .array(z.string().min(1, 'Installation ID cannot be empty'))
+    .min(1, 'At least one installation is required'),
+});
+
 export type CreateInstallationInput = z.infer<typeof createInstallationSchema>;
 export type UpdateInstallationInput = z.infer<typeof updateInstallationSchema>;
 export type GetInstallationsQuery = z.infer<typeof getInstallationsQuerySchema>;
+export type BulkDeleteInstallationsInput = z.infer<typeof bulkDeleteInstallationsSchema>;
