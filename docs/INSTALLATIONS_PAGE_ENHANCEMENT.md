@@ -356,52 +356,53 @@ git commit -m "feat(store): add installation selection store with persistence"
 
 ---
 
-### Phase 5: Delete Confirmation Flow
+### Phase 5: Delete Confirmation Flow ✅ COMPLETE
 
 #### 5.1 DeleteConfirmationDialog Component
 **File**: `/src/components/delete-confirmation-dialog.tsx`
 
-- [ ] Create component with props:
-  - [ ] `open: boolean`
-  - [ ] `onOpenChange: (open: boolean) => void`
-  - [ ] `installations: InstallationWithRelations[]`
-  - [ ] `onConfirmDelete: () => void`
-  - [ ] `onShowUninstallCommands: () => void`
-- [ ] Dialog content:
-  - [ ] Header: "Delete X installations?"
-  - [ ] List app names being deleted (max 10, then "and X more...")
-  - [ ] Warning text about permanent deletion
-- [ ] Three buttons:
-  - [ ] "Show Uninstall Commands" (primary)
-  - [ ] "Just Delete" (destructive)
-  - [ ] "Cancel" (secondary)
-- [ ] Use shadcn AlertDialog pattern
+- [x] Create component with props:
+  - [x] `open: boolean`
+  - [x] `onOpenChange: (open: boolean) => void`
+  - [x] `installations: InstallationWithRelations[]`
+  - [x] `onConfirmDelete: () => void`
+  - [x] `onShowUninstallCommands: () => void`
+- [x] Dialog content:
+  - [x] Header: "Delete X installations?"
+  - [x] List app names being deleted (max 10, then "and X more...")
+  - [x] Warning text about permanent deletion
+- [x] Three buttons:
+  - [x] "Show Uninstall Commands" (primary)
+  - [x] "Just Delete" (destructive)
+  - [x] "Cancel" (secondary)
+- [x] Use shadcn Dialog pattern (DialogDescription with asChild for valid HTML)
+- [x] Write 11 comprehensive tests
 
-**Status**: ⬜ Not Started
+**Status**: ✅ Completed
 
 ---
 
 #### 5.2 Wire Delete Flow in InstallationHistoryTable
 **File**: `/src/components/installation-history-table.tsx`
 
-- [ ] Create React Query mutation for bulk delete
-  - [ ] Call `/api/installations/bulk-delete`
-  - [ ] Pass `installationIds` array
-- [ ] Implement delete flow:
-  - [ ] Bulk delete button click → Open DeleteConfirmationDialog
-  - [ ] "Show Commands" → Open UninstallCommandDialog
-    - [ ] On UninstallCommandDialog close → Call delete mutation
-  - [ ] "Just Delete" → Call delete mutation immediately
-- [ ] On success:
-  - [ ] Invalidate `['installations']` query
-  - [ ] Invalidate `['user-devices']` query
-  - [ ] Clear selection
-  - [ ] Show success toast
-- [ ] On error:
-  - [ ] Show error toast
-  - [ ] Keep selection intact
+- [x] Create React Query mutation for bulk delete
+  - [x] Call `/api/installations/bulk-delete`
+  - [x] Pass `installationIds` array
+- [x] Implement delete flow:
+  - [x] Bulk delete button click → Open DeleteConfirmationDialog
+  - [x] "Show Commands" → Open UninstallCommandDialog (Phase 6 placeholder)
+    - [ ] On UninstallCommandDialog close → Call delete mutation (deferred to Phase 6)
+  - [x] "Just Delete" → Call delete mutation immediately
+- [x] On success:
+  - [x] Invalidate `['installations']` query
+  - [x] Invalidate `['user-devices']` query
+  - [x] Clear selection
+  - [x] Show success toast
+- [x] On error:
+  - [x] Show error toast
+  - [x] Keep selection intact
 
-**Status**: ⬜ Not Started
+**Status**: ✅ Completed
 
 ---
 
@@ -542,13 +543,14 @@ git commit -m "feat(store): add installation selection store with persistence"
 1. ✅ `/src/stores/installation-selection-store.ts`
 2. ✅ `/src/hooks/use-installation-keyboard-navigation.ts`
 3. ✅ `/src/components/bulk-action-bar.tsx`
-4. ⬜ `/src/components/delete-confirmation-dialog.tsx`
+4. ✅ `/src/components/delete-confirmation-dialog.tsx`
 5. ⬜ `/src/components/uninstall-command-dialog.tsx`
 6. ✅ `/src/components/installation-keyboard-shortcuts-dialog.tsx`
 7. ✅ `/src/app/api/installations/bulk-delete/route.ts`
 8. ✅ `/src/stores/installation-selection-store.test.ts`
 9. ✅ `/src/hooks/use-installation-keyboard-navigation.test.ts`
 10. ✅ `/src/components/bulk-action-bar.test.tsx`
+11. ✅ `/src/components/delete-confirmation-dialog.test.tsx`
 
 ### Modified Files (5)
 1. ✅ `/src/components/installation-history-table.tsx`
@@ -638,6 +640,30 @@ git commit -m "feat(store): add installation selection store with persistence"
 
 **Next Session**: Phase 5 (Delete Confirmation Flow)
 
+### Session 6 - 2026-01-22
+- ✅ Phase 5.1: DeleteConfirmationDialog Component
+  - Created DeleteConfirmationDialog with all required props
+  - Implemented installation list display (max 10 with overflow)
+  - Added warning message with AlertTriangle icon
+  - Three action buttons: Cancel, Just Delete, Show Uninstall Commands
+  - Fixed HTML validation by using asChild on DialogDescription
+  - Created 11 comprehensive tests covering all functionality
+  - All tests passing with vitest
+- ✅ Phase 5.2: Wire Delete Flow in InstallationHistoryTable
+  - Added bulkDeleteMutation for /api/installations/bulk-delete endpoint
+  - Implemented handleBulkDelete for immediate deletion
+  - Implemented handleShowUninstallCommands (Phase 6 placeholder)
+  - Integrated DeleteConfirmationDialog into component
+  - Proper error handling with toast notifications
+  - Query invalidation and selection clearing on success
+  - Selection preserved on error
+- ✅ All Phase 5 (Delete Confirmation Flow) tasks completed
+- ✅ Build successful (TypeScript compiles)
+- ✅ All 1280 tests passing (11 new tests added)
+- ✅ Committed changes: `feat(delete-flow): implement bulk delete confirmation dialog with full integration`
+
+**Next Session**: Phase 6 (Uninstall Command Dialog)
+
 ---
 
 ## Notes & Decisions
@@ -667,18 +693,18 @@ When all items are checked, the feature is complete:
 - [x] Arrow Up/Down navigates rows with visual focus indicator
 - [x] Home/End jumps to first/last row
 - [x] Space/Enter toggles selection on focused row
-- [ ] Delete key opens confirmation dialog (Phase 5)
+- [x] Delete key opens confirmation dialog
 - [x] ? opens help dialog with all shortcuts
 - [x] Checkboxes allow individual selection
 - [ ] Shift+click selects range of rows (deferred)
 - [x] Select All/Deselect All works correctly
 - [x] Bulk action bar appears when items selected
-- [ ] Delete confirmation shows two options (show commands / just delete)
-- [ ] UninstallCommandDialog shows commands for specific packages
-- [ ] Commands can be copied individually or all at once
-- [ ] Commands can be downloaded as script
-- [ ] Deletion works correctly (single and bulk)
-- [ ] Queries invalidate and UI updates after deletion
+- [x] Delete confirmation shows two options (show commands / just delete)
+- [ ] UninstallCommandDialog shows commands for specific packages (Phase 6)
+- [ ] Commands can be copied individually or all at once (Phase 6)
+- [ ] Commands can be downloaded as script (Phase 6)
+- [x] Deletion works correctly (single and bulk)
+- [x] Queries invalidate and UI updates after deletion
 
 ### UI/UX
 - [x] Table has better spacing and hover effects
@@ -713,4 +739,4 @@ None yet.
 ---
 
 **Last Updated**: 2026-01-22
-**Progress**: 60% (9/15 phases complete)
+**Progress**: 73% (11/15 phases complete)
