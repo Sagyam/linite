@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { ColumnDef } from '@tanstack/react-table';
 import { format } from 'date-fns';
@@ -10,6 +10,7 @@ import { DeviceFilter } from '@/components/device-filter';
 import { DeleteDialog } from '@/components/admin/delete-dialog';
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
+import { useInstallationSelectionStore } from '@/stores/installation-selection-store';
 import type { InstallationWithRelations } from '@/types/entities';
 
 // Using img elements instead of Next.js Image component for table cells
@@ -39,11 +40,28 @@ export function InstallationHistoryTable() {
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [selectedInstallation, setSelectedInstallation] = useState<InstallationWithRelations | null>(null);
 
+  // Bulk delete and uninstall dialogs state
+  const [bulkDeleteDialogOpen, setBulkDeleteDialogOpen] = useState(false);
+  const [uninstallCommandDialogOpen, setUninstallCommandDialogOpen] = useState(false);
+
+  // Selection store for bulk operations
+  const selectedInstallationIds = useInstallationSelectionStore((state) => state.selectedInstallationIds);
+  const focusedRowIndex = useInstallationSelectionStore((state) => state.focusedRowIndex);
+  const toggleInstallation = useInstallationSelectionStore((state) => state.toggleInstallation);
+  const selectAll = useInstallationSelectionStore((state) => state.selectAll);
+  const clearSelection = useInstallationSelectionStore((state) => state.clearSelection);
+  const setFocusedRowIndex = useInstallationSelectionStore((state) => state.setFocusedRowIndex);
+
   const { data: installations, isLoading, error } = useQuery({
     queryKey: ['installations', deviceFilter],
     queryFn: () => fetchInstallations(deviceFilter),
     retry: false,
   });
+
+  // Memoize installation IDs for select all functionality
+  const installationIds = useMemo(() => {
+    return installations?.map((inst) => inst.id) || [];
+  }, [installations]);
 
   const deleteMutation = useMutation({
     mutationFn: async (id: string) => {
@@ -208,12 +226,51 @@ export function InstallationHistoryTable() {
         />
       </div>
 
+      {/* Bulk Action Bar - Placeholder for Phase 4 */}
+      {selectedInstallationIds.size > 0 && (
+        <div className="fixed bottom-4 left-4 right-4 z-50 md:left-auto md:right-4 md:w-auto">
+          <div className="bg-background border shadow-lg rounded-lg p-4 flex items-center justify-between gap-4">
+            <span className="text-sm font-medium">
+              {selectedInstallationIds.size} installation{selectedInstallationIds.size !== 1 ? 's' : ''} selected
+            </span>
+            <div className="flex gap-2">
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={clearSelection}
+              >
+                Clear Selection
+              </Button>
+              <Button
+                variant="destructive"
+                size="sm"
+                onClick={() => setBulkDeleteDialogOpen(true)}
+              >
+                Delete Selected
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
+
       <AdvancedDataTable
         columns={columns}
         data={installations}
         onDelete={handleDelete}
         getRowId={(row) => row.id}
         globalFilterPlaceholder="Search installations..."
+        enableRowSelection={true}
+        selectedRows={selectedInstallationIds}
+        onRowSelectionChange={(newSelection) => {
+          // Update the store with the new selection
+          clearSelection();
+          newSelection.forEach((id) => {
+            toggleInstallation(id);
+          });
+        }}
+        onSelectAll={() => selectAll(installationIds)}
+        onClearSelection={clearSelection}
+        focusedRowIndex={focusedRowIndex}
       />
 
       <DeleteDialog

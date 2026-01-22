@@ -22,6 +22,7 @@ import {
 } from '@/components/ui/table';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
+import { Checkbox } from '@/components/ui/checkbox';
 import { Search, ArrowUpDown, ArrowUp, ArrowDown, Edit, Trash2, Loader2 } from 'lucide-react';
 
 interface AdvancedDataTableProps<TData> {
@@ -36,6 +37,13 @@ interface AdvancedDataTableProps<TData> {
   getRowId?: (row: TData) => string;
   enableGlobalFilter?: boolean;
   globalFilterPlaceholder?: string;
+  // Row selection props
+  enableRowSelection?: boolean;
+  selectedRows?: Set<string>;
+  onRowSelectionChange?: (ids: Set<string>) => void;
+  onSelectAll?: () => void;
+  onClearSelection?: () => void;
+  focusedRowIndex?: number;
 }
 
 export function AdvancedDataTable<TData>({
@@ -49,14 +57,83 @@ export function AdvancedDataTable<TData>({
   getRowId,
   enableGlobalFilter = true,
   globalFilterPlaceholder = 'Search...',
+  // Row selection props
+  enableRowSelection = false,
+  selectedRows = new Set<string>(),
+  onRowSelectionChange,
+  onSelectAll,
+  onClearSelection,
+  focusedRowIndex,
 }: AdvancedDataTableProps<TData>) {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [globalFilter, setGlobalFilter] = useState('');
 
-  // Add actions column if onEdit or onDelete are provided
+  // Helper function to get row ID for selection
+  const getRowIdForSelection = (row: TData): string => {
+    return getRowId ? getRowId(row) : (row as any).id;
+  };
+
+  // Helper to check if all rows are selected
+  const isAllSelected = data.length > 0 && data.every(row =>
+    selectedRows.has(getRowIdForSelection(row))
+  );
+
+  const isSomeSelected = data.some(row =>
+    selectedRows.has(getRowIdForSelection(row))
+  );
+
+  // Handle header checkbox change
+  const handleHeaderCheckboxChange = (checked: boolean | 'indeterminate') => {
+    const isChecked = checked === true;
+    if (isChecked) {
+      onSelectAll?.();
+    } else {
+      onClearSelection?.();
+    }
+  };
+
+  // Build columns array with optional selection column
   const columns: ColumnDef<TData>[] = [
+    // Add checkbox column if row selection is enabled
+    ...(enableRowSelection
+      ? [
+          {
+            id: 'select',
+            header: () => {
+              const isIndeterminate = isSomeSelected && !isAllSelected;
+              return (
+                <Checkbox
+                  checked={isAllSelected}
+                  data-state={isIndeterminate ? 'indeterminate' : undefined}
+                  onCheckedChange={handleHeaderCheckboxChange}
+                  aria-label="Select all"
+                />
+              );
+            },
+            cell: ({ row }) => (
+              <Checkbox
+                checked={selectedRows.has(getRowIdForSelection(row.original))}
+                onCheckedChange={(checked) => {
+                  const rowId = getRowIdForSelection(row.original);
+                  const newSelection = new Set(selectedRows);
+                  if (checked) {
+                    newSelection.add(rowId);
+                  } else {
+                    newSelection.delete(rowId);
+                  }
+                  onRowSelectionChange?.(newSelection);
+                }}
+                aria-label="Select row"
+              />
+            ),
+            enableSorting: false,
+            enableHiding: false,
+          } as ColumnDef<TData>,
+        ]
+      : []),
     ...columnsProp,
+    // Add actions column if onEdit or onDelete are provided
     ...(onEdit || onDelete
       ? [
           {
@@ -238,8 +315,23 @@ export function AdvancedDataTable<TData>({
             ) : (
               virtualRows.map((virtualRow) => {
                 const row = rows[virtualRow.index];
+                const rowId = getRowIdForSelection(row.original);
+                const isSelected = selectedRows.has(rowId);
+                const isFocused = focusedRowIndex === virtualRow.index;
+
                 return (
-                  <TableRow key={row.id} data-index={virtualRow.index}>
+                  <TableRow
+                    key={row.id}
+                    data-index={virtualRow.index}
+                    data-selected={isSelected}
+                    data-focused={isFocused}
+                    className={`
+                      transition-all duration-200
+                      hover:bg-muted/50
+                      ${isSelected ? 'bg-primary/10' : ''}
+                      ${isFocused ? 'border-l-4 border-l-primary' : ''}
+                    `.trim()}
+                  >
                     {row.getVisibleCells().map((cell) => (
                       <TableCell key={cell.id}>
                         {flexRender(
