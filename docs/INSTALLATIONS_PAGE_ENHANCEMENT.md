@@ -284,46 +284,49 @@ git commit -m "feat(store): add installation selection store with persistence"
 
 ---
 
-### Phase 3: Keyboard Navigation
+### Phase 3: Keyboard Navigation ✅ COMPLETE
 
 #### 3.1 Keyboard Navigation Hook
 **File**: `/src/hooks/use-installation-keyboard-navigation.ts`
 
-- [ ] Create custom hook `useInstallationKeyboardNavigation(installations: InstallationWithRelations[])`
-- [ ] Import `useInstallationSelectionStore`
-- [ ] Add state: `showHelpDialog`
-- [ ] Implement keyboard event handler:
-  - [ ] ArrowUp: Move focus up, scroll into view
-  - [ ] ArrowDown: Move focus down, scroll into view
-  - [ ] Space/Enter: Toggle selection on focused row
-  - [ ] Delete/Backspace: Trigger delete confirmation for selected items
-  - [ ] Ctrl+A: Select all visible rows
-  - [ ] Escape: Clear selection
-  - [ ] ?: Show help dialog
-- [ ] Detect input fields (don't interfere with typing)
-- [ ] Implement auto-scroll: `scrollIntoView({ behavior: 'smooth', block: 'nearest' })`
-- [ ] Return `{ showHelpDialog, setShowHelpDialog }`
-- [ ] Write unit tests: `/src/hooks/use-installation-keyboard-navigation.test.ts`
+- [x] Create custom hook `useInstallationKeyboardNavigation(installations: InstallationWithRelations[])`
+- [x] Import `useInstallationSelectionStore`
+- [x] Add state: `showHelpDialog`
+- [x] Implement keyboard event handler:
+  - [x] ArrowUp: Move focus up, scroll into view
+  - [x] ArrowDown: Move focus down, scroll into view
+  - [x] Home: Jump to first row
+  - [x] End: Jump to last row
+  - [x] Space/Enter: Toggle selection on focused row
+  - [x] Delete/Backspace: Trigger delete confirmation for selected items
+  - [x] Ctrl+A: Select all visible rows
+  - [x] Escape: Clear selection
+  - [x] ?: Show help dialog
+- [x] Detect input fields (don't interfere with typing)
+- [x] Implement auto-scroll: `scrollIntoView({ behavior: 'smooth', block: 'nearest' })`
+- [x] Return `{ showHelpDialog, setShowHelpDialog }`
+- [x] Write unit tests: `/src/hooks/use-installation-keyboard-navigation.test.ts`
+- [x] Fix data-row-index attribute in AdvancedDataTable
 
-**Status**: ⬜ Not Started
+**Status**: ✅ Completed
 
 ---
 
 #### 3.2 Keyboard Shortcuts Help Dialog
 **File**: `/src/components/installation-keyboard-shortcuts-dialog.tsx`
 
-- [ ] Create dialog component
-- [ ] Follow pattern from existing `keyboard-shortcuts-dialog.tsx`
-- [ ] Props: `open: boolean`, `onOpenChange: (open: boolean) => void`
-- [ ] List all keyboard shortcuts:
-  - Navigation (Arrow keys)
+- [x] Create dialog component
+- [x] Follow pattern from existing `keyboard-shortcuts-dialog.tsx`
+- [x] Props: `open: boolean`, `onOpenChange: (open: boolean) => void`
+- [x] List all keyboard shortcuts:
+  - Navigation (Arrow keys, Home, End)
   - Selection (Space, Enter, Ctrl+A)
   - Actions (Delete)
   - Help (?)
-- [ ] Use shadcn Dialog, Table components
-- [ ] Add keyboard shortcut notation styling
+- [x] Use shadcn Dialog, Table components
+- [x] Add keyboard shortcut notation styling
 
-**Status**: ⬜ Not Started
+**Status**: ✅ Completed
 
 ---
 
@@ -534,15 +537,15 @@ git commit -m "feat(store): add installation selection store with persistence"
 ## Files Summary
 
 ### New Files (9)
-1. ⬜ `/src/stores/installation-selection-store.ts`
-2. ⬜ `/src/hooks/use-installation-keyboard-navigation.ts`
+1. ✅ `/src/stores/installation-selection-store.ts`
+2. ✅ `/src/hooks/use-installation-keyboard-navigation.ts`
 3. ⬜ `/src/components/bulk-action-bar.tsx`
 4. ⬜ `/src/components/delete-confirmation-dialog.tsx`
 5. ⬜ `/src/components/uninstall-command-dialog.tsx`
-6. ⬜ `/src/components/installation-keyboard-shortcuts-dialog.tsx`
-7. ⬜ `/src/app/api/installations/bulk-delete/route.ts`
-8. ⬜ `/src/stores/installation-selection-store.test.ts`
-9. ⬜ `/src/hooks/use-installation-keyboard-navigation.test.ts`
+6. ✅ `/src/components/installation-keyboard-shortcuts-dialog.tsx`
+7. ✅ `/src/app/api/installations/bulk-delete/route.ts`
+8. ✅ `/src/stores/installation-selection-store.test.ts`
+9. ✅ `/src/hooks/use-installation-keyboard-navigation.test.ts`
 
 ### Modified Files (5)
 1. ✅ `/src/components/installation-history-table.tsx`
@@ -598,6 +601,23 @@ git commit -m "feat(store): add installation selection store with persistence"
 
 **Next Session**: Phase 3 (Keyboard Navigation)
 
+### Session 4 - 2026-01-22
+- ✅ Phase 3.1: Keyboard Navigation Hook
+  - Found existing implementation with ArrowUp/Down, Space/Enter, Delete, Ctrl+A, Escape, ?
+  - Added Home/End key support for jumping to first/last row
+  - Fixed data-index to data-row-index attribute for proper scrolling
+  - All 11 tests passing
+- ✅ Phase 3.2: Keyboard Shortcuts Help Dialog
+  - Already implemented with complete UI
+  - Lists all keyboard shortcuts including new Home/End keys
+  - Integrated into InstallationHistoryTable
+- ✅ All Phase 3 (Keyboard Navigation) tasks completed
+- ✅ Build successful (TypeScript compiles)
+- ✅ All 1260 tests passing
+- ✅ Committed changes: `feat(keyboard): add Home/End keys and fix data-row-index attribute`
+
+**Next Session**: Phase 4 (Bulk Actions UI)
+
 ---
 
 ## Notes & Decisions
@@ -624,12 +644,13 @@ git commit -m "feat(store): add installation selection store with persistence"
 When all items are checked, the feature is complete:
 
 ### Functionality
-- [ ] Arrow Up/Down navigates rows with visual focus indicator
-- [ ] Space/Enter toggles selection on focused row
-- [ ] Delete key opens confirmation dialog
-- [ ] ? opens help dialog with all shortcuts
+- [x] Arrow Up/Down navigates rows with visual focus indicator
+- [x] Home/End jumps to first/last row
+- [x] Space/Enter toggles selection on focused row
+- [ ] Delete key opens confirmation dialog (Phase 5)
+- [x] ? opens help dialog with all shortcuts
 - [x] Checkboxes allow individual selection
-- [ ] Shift+click selects range of rows
+- [ ] Shift+click selects range of rows (deferred)
 - [x] Select All/Deselect All works correctly
 - [x] Bulk action bar appears when items selected
 - [ ] Delete confirmation shows two options (show commands / just delete)
@@ -672,4 +693,4 @@ None yet.
 ---
 
 **Last Updated**: 2026-01-22
-**Progress**: 40% (6/15 phases complete)
+**Progress**: 53% (8/15 phases complete)
