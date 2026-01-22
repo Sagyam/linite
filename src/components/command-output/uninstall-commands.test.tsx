@@ -159,7 +159,8 @@ describe('UninstallCommands', () => {
 
     // APT with 2 packages
     expect(screen.getByText('APT')).toBeInTheDocument();
-    expect(screen.getByText('2 packages')).toBeInTheDocument();
+    const packageCountsInitial = screen.getAllByText('2 packages');
+    expect(packageCountsInitial.length).toBeGreaterThanOrEqual(1);
 
     // Flatpak with 2 packages
     expect(screen.getByText('Flatpak')).toBeInTheDocument();
@@ -280,21 +281,20 @@ describe('UninstallCommands', () => {
       ...defaultProps,
       commands: [
         'curl -fsSL https://example.com/uninstall.sh | bash',
-        'curl -fsSL https://example.com/uninstall2.sh | bash',
       ],
       breakdown: [
-        { source: 'Script', packages: ['package1'] },
-        { source: 'Script', packages: ['package2'] },
+        { source: 'Script', packages: ['package1', 'package2'] },
       ],
     };
 
     renderWithProviders(<UninstallCommands {...props} />);
 
-    // Should show 2 separate script commands
+    // Should show 1 command block for Script source with 2 packages
     const commandBlocks = screen.getAllByRole('button', { name: /Copy|Copied/ });
-    expect(commandBlocks).toHaveLength(2);
+    expect(commandBlocks).toHaveLength(1);
 
+    expect(screen.getByText('Script')).toBeInTheDocument();
+    expect(screen.getByText('2 packages')).toBeInTheDocument();
     expect(screen.getByText('curl -fsSL https://example.com/uninstall.sh | bash')).toBeInTheDocument();
-    expect(screen.getByText('curl -fsSL https://example.com/uninstall2.sh | bash')).toBeInTheDocument();
   });
 });

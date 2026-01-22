@@ -28,7 +28,7 @@ describe('InstallationHistoryTable', () => {
 
       renderWithProviders(<InstallationHistoryTable />);
 
-      const loader = document.querySelector('.animate-spin');
+      const loader = document.querySelector('.animate-pulse');
       expect(loader).toBeTruthy();
     });
   });

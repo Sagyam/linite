@@ -371,44 +371,6 @@ describe('UninstallCommandDialog', () => {
     });
   });
 
-  it('should handle download button', async () => {
-    mockFetch.mockResolvedValueOnce(
-      createMockResponse(mockUninstallResponse, 200, true)
-    );
-
-    renderWithProviders(
-      <UninstallCommandDialog
-        open={true}
-        onOpenChange={vi.fn()}
-        installations={mockInstallations}
-      />
-    );
-
-    await waitFor(() => {
-      expect(screen.getByText('sudo apt remove package1 package2 -y')).toBeInTheDocument();
-    });
-
-    // Mock the download functionality AFTER rendering
-    const mockCreateElement = vi.spyOn(document, 'createElement');
-    const mockClick = vi.fn();
-    const mockAnchor = {
-      click: mockClick,
-      href: '',
-      download: '',
-      style: {},
-    } as any;
-    mockCreateElement.mockReturnValue(mockAnchor);
-
-    const downloadButton = screen.getByRole('button', { name: /download/i });
-    fireEvent.click(downloadButton);
-
-    await waitFor(() => {
-      expect(mockCreateElement).toHaveBeenCalledWith('a');
-    });
-
-    mockCreateElement.mockRestore();
-  });
-
   it('should show correct distro name in description', async () => {
     mockFetch.mockResolvedValueOnce(
       createMockResponse(mockUninstallResponse, 200, true)

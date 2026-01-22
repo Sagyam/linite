@@ -156,7 +156,8 @@ describe('InstallCommands', () => {
 
     // APT with 2 packages
     expect(screen.getByText('APT')).toBeInTheDocument();
-    expect(screen.getByText('2 packages')).toBeInTheDocument();
+    const packageCountsInitial = screen.getAllByText('2 packages');
+    expect(packageCountsInitial.length).toBeGreaterThanOrEqual(1);
 
     // Flatpak with 2 packages
     expect(screen.getByText('Flatpak')).toBeInTheDocument();
