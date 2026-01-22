@@ -3,38 +3,45 @@
 ## Entity Relationship Diagram
 
 ```
-┌─────────────┐       ┌─────────────┐       ┌─────────────┐
-│  categories │       │    apps     │       │  packages   │
-├─────────────┤       ├─────────────┤       ├─────────────┤
-│ id (PK)     │◄──────│ categoryId  │       │ id (PK)     │
-│ name        │       │ id (PK)     │◄──────│ appId (FK)  │
-│ slug        │       │ slug        │       │ sourceId    │
-│ icon        │       │ displayName │       │ identifier  │
-│ description │       │ description │       │ version     │
-│ displayOrder│       │ iconUrl     │       │ size        │
-│ createdAt   │       │ homepage    │       │ maintainer  │
-│ updatedAt   │       │ isPopular   │       │ isAvailable │
-└─────────────┘       │ isFoss      │       │ lastChecked │
-                      │ createdAt   │       │ metadata    │
-                      │ updatedAt   │       │ createdAt   │
-                      └─────────────┘       │ updatedAt   │
-                             │              └─────────────┘
-                             │                     │
-                             ▼                     ▼
-┌─────────────┐       ┌─────────────┐       ┌─────────────┐
-│   distros   │       │distroSources│       │   sources   │
-├─────────────┤       ├─────────────┤       ├─────────────┤
-│ id (PK)     │◄──────│ distroId    │───────│ id (PK)     │
-│ name        │       │ sourceId    │       │ name        │
-│ slug        │       │ priority    │       │ slug        │
-│ family      │       │ isDefault   │       │ installCmd  │
-│ iconUrl     │       └─────────────┘       │ requireSudo │
-│ basedOn     │                             │ setupCmd    │
-│ isPopular   │                             │ priority    │
-│ createdAt   │                             │ apiEndpoint │
-│ updatedAt   │                             │ createdAt   │
-└─────────────┘                             │ updatedAt   │
-                                            └─────────────┘
+ ┌─────────────┐       ┌─────────────┐       ┌─────────────┐
+ │  categories │       │    apps     │       │  packages   │
+ ├─────────────┤       ├─────────────┤       ├─────────────┤
+ │ id (PK)     │◄──────│ categoryId  │       │ id (PK)     │
+ │ name        │       │ id (PK)     │◄──────│ appId (FK)  │
+ │ slug        │       │ slug        │       │ sourceId    │
+ │ icon        │       │ displayName │       │ identifier  │
+ │ description │       │ description │       │ version     │
+ │ displayOrder│       │ iconUrl     │       │ size        │
+ │ colorLight  │       │ homepage    │       │ maintainer  │
+ │ colorDark   │       │ isPopular   │       │ isAvailable │
+ │ createdAt   │       │ isFoss      │       │ lastChecked │
+ │ updatedAt   │       │ createdAt   │       │ metadata    │
+ └─────────────┘       │ updatedAt   │       │ packageSetup│
+                       └─────────────┘       │ packageClean│
+                              │              │ uninstallMeta│
+                              │              │ createdAt   │
+                              │              │ updatedAt   │
+                              │              └─────────────┘
+                              │                     │
+                              ▼                     ▼
+ ┌─────────────┐       ┌─────────────┐       ┌─────────────┐
+ │   distros   │       │distroSources│       │   sources   │
+ ├─────────────┤       ├─────────────┤       ├─────────────┤
+ │ id (PK)     │◄──────│ distroId    │───────│ id (PK)     │
+ │ name        │       │ sourceId    │       │ name        │
+ │ slug        │       │ priority    │       │ slug        │
+ │ family      │       │ isDefault   │       │ installCmd  │
+ │ iconUrl     │       └─────────────┘       │ removeCmd   │
+ │ basedOn     │                             │ requireSudo │
+ │ isPopular   │                             │ setupCmd    │
+ │ themeColorL │                             │ cleanupCmd  │
+ │ themeColorD │                             │ supportsDep │
+ │ createdAt   │                             │ depCleanup  │
+ │ updatedAt   │                             │ priority    │
+ └─────────────┘                             │ apiEndpoint │
+                                             │ createdAt   │
+                                             │ updatedAt   │
+                                             └─────────────┘
 
 ┌─────────────┐       ┌─────────────┐       ┌─────────────┐
 │    user     │       │   session   │       │   account   │
@@ -97,7 +104,22 @@
        │  │ createdAt       │
        │  └─────────────────┘
        │
-       └────────────────────────
+        └────────────────────────
+
+ ┌─────────────────┐
+ │  installations   │
+ ├─────────────────┤
+ │ id (PK)         │
+ │ userId (FK)      │
+ │ appId (FK)       │
+ │ packageId (FK)   │
+ │ distroId (FK)    │
+ │ deviceIdentifier │
+ │ installedAt      │
+ │ notes            │
+ │ createdAt        │
+ │ updatedAt        │
+ └─────────────────┘
 
 ┌─────────────────┐
 │  refreshLogs    │
@@ -168,6 +190,8 @@ Organizes apps into logical groups (Browsers, Development, Media, etc.)
 - **icon**: Icon identifier
 - **description**: Category description
 - **displayOrder**: Sort order for UI display
+- **colorLight**: Light mode category color (hex)
+- **colorDark**: Dark mode category color (hex)
 - **createdAt, updatedAt**: Timestamps
 - **Indexes**: displayOrder
 
@@ -197,17 +221,24 @@ Package availability per source (e.g., Firefox from Flatpak, Firefox from APT)
 - **isAvailable**: Availability flag
 - **lastChecked**: Last availability check timestamp
 - **metadata**: JSON metadata from external APIs
+- **packageSetupCmd**: Optional package-level setup (PPAs, COPR repos)
+- **packageCleanupCmd**: Reverse of packageSetupCmd (remove PPAs, repos)
+- **uninstallMetadata**: Uninstall instructions for script sources ({linux?, windows?, manualInstructions?})
 - **createdAt, updatedAt**: Timestamps
 - **Indexes**: appId, sourceId, isAvailable, (appId + sourceId)
 
 #### sources
-Package sources (Flatpak, Snap, APT, DNF, etc.) with install command templates
+Package sources (Flatpak, Snap, APT, DNF, etc.) with install/uninstall commands
 - **id**: CUID2 primary key
 - **name**: Source display name
 - **slug**: URL-friendly unique identifier
 - **installCmd**: Install command template (e.g., "flatpak install {identifier}")
+- **removeCmd**: Uninstall command template (e.g., "flatpak uninstall {identifier}")
 - **requireSudo**: Boolean flag if sudo is required
 - **setupCmd**: Optional setup command (run once before first install)
+- **cleanupCmd**: Reverse of setupCmd (remove PPAs, repos, remotes)
+- **supportsDependencyCleanup**: Boolean flag for dependency cleanup support
+- **dependencyCleanupCmd**: Dependency cleanup command (e.g., "apt autoremove -y")
 - **priority**: Global priority for source selection
 - **apiEndpoint**: External API endpoint for package data
 - **createdAt, updatedAt**: Timestamps
@@ -221,6 +252,8 @@ Linux distributions with metadata
 - **iconUrl**: Distribution logo URL
 - **basedOn**: Parent distribution (e.g., "debian" for Ubuntu)
 - **isPopular**: Featured/popular flag
+- **themeColorLight**: Light mode theme color (hex)
+- **themeColorDark**: Dark mode theme color (hex)
 - **createdAt, updatedAt**: Timestamps
 - **Indexes**: isPopular, family
 
@@ -233,6 +266,21 @@ Maps which sources are available for each distro with priority
 - **isDefault**: Boolean flag for default source
 - **NO timestamps** (junction table)
 - **Indexes**: distroId, sourceId, (distroId + sourceId)
+
+### Installation Tracking Tables (Authenticated Users)
+
+#### installations
+Track user installations across devices (for uninstall feature)
+- **id**: CUID2 primary key
+- **userId**: Foreign key to user (cascade delete)
+- **appId**: Foreign key to apps (cascade delete)
+- **packageId**: Foreign key to packages (cascade delete)
+- **distroId**: Foreign key to distros
+- **deviceIdentifier**: User-provided device name (e.g., "My Laptop")
+- **installedAt**: Installation timestamp
+- **notes**: Optional user notes
+- **createdAt, updatedAt**: Timestamps
+- **Indexes**: userId, appId, (userId + deviceIdentifier), (userId + appId + deviceIdentifier)
 
 ### Collection Tables
 
@@ -290,6 +338,7 @@ Tracks background job runs for package metadata updates
 - **Users → Sessions**: One user can have multiple sessions
 - **Users → Accounts**: One user can have multiple OAuth accounts
 - **Users → Collections**: One user can create multiple collections
+- **Users → Installations**: One user can track installations across multiple devices
 - **Users → CollectionLikes**: One user can like multiple collections
 
 ### Collections System
@@ -299,3 +348,10 @@ Tracks background job runs for package metadata updates
 
 ### Background Jobs
 - **Sources → RefreshLogs**: Track refresh jobs per source
+
+### Installation Tracking
+- **Users → Installations**: One user can track many installations
+- **Installations → Apps**: Each installation references an app
+- **Installations → Packages**: Each installation references a specific package
+- **Installations → Distros**: Each installation is for a specific distro
+- **Installations are filtered by device**: User can view installations per device

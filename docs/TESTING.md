@@ -587,5 +587,5 @@ bun test:run
 ---
 
 **Last Updated**: January 2026
-**Test Count**: 569 tests
+**Test Count**: 1175 tests
 **Coverage**: 39.6% overall

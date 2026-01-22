@@ -10,6 +10,8 @@ All endpoints follow RESTful conventions. Admin endpoints require authentication
 - Standardized middleware composition in `/src/lib/api-middleware.ts`
 - Database-level filtering (no more in-memory filtering)
 - Pagination support (limit/offset)
+- Uninstall command generation endpoint
+- Installation tracking for authenticated users
 
 **API Handler Pattern:**
 All API routes now use standardized middleware patterns:
@@ -219,6 +221,32 @@ Same as GET /api/collections/[id]
 
 ### POST /api/generate
 Generate install command
+
+### POST /api/uninstall
+Generate uninstall command
+
+**Request Body:**
+```json
+{
+  "distroSlug": "ubuntu",
+  "sourcePreference": "flatpak",
+  "appIds": ["app_id_1", "app_id_2"],
+  "includeDependencyCleanup": false,
+  "includeSetupCleanup": false
+}
+```
+
+**Response:**
+```json
+{
+  "commands": ["sudo apt remove -y git vim"],
+  "cleanupCommands": ["flatpak remote-delete flathub"],
+  "dependencyCleanupCommands": ["sudo apt autoremove -y"],
+  "warnings": [],
+  "manualSteps": [],
+  "breakdown": [...]
+}
+```
 
 **Request Body:**
 ```json
@@ -509,6 +537,7 @@ Generate or regenerate share token for collection (requires ownership)
 
 **Command Generation:**
 - `POST /api/generate` - Generate install command
+- `POST /api/uninstall` - Generate uninstall command
 
 ### Admin Endpoints (Auth Required, Admin Role)
 
@@ -568,6 +597,86 @@ Generate or regenerate share token for collection (requires ownership)
 
 **Collection Actions:**
 - `POST /api/user/collections/[id]/share` - Generate share token
+
+**Installation Tracking:**
+- `GET /api/installations` - List user's installations
+- `POST /api/installations` - Create installation
+- `GET /api/installations/[id]` - Get installation
+- `PATCH /api/installations/[id]` - Update installation
+- `DELETE /api/installations/[id]` - Delete installation
+- `GET /api/installations/devices` - Get user's devices
+
+### Installation Tracking Endpoints (Authenticated)
+
+Track and manage user installations across multiple devices.
+
+**GET /api/installations**
+List current user's installations
+
+**Query Parameters:**
+- `deviceIdentifier` - Filter by device name
+- `appId` - Filter by app ID
+- `distroId` - Filter by distro ID
+- `limit` - Number of results (default: 100)
+- `offset` - Number of results to skip (default: 0)
+
+**Response:**
+```json
+[
+  {
+    "id": "installation_id",
+    "userId": "user_id",
+    "appId": "app_id",
+    "packageId": "package_id",
+    "distroId": "distro_id",
+    "deviceIdentifier": "My Laptop",
+    "installedAt": "2025-01-05T00:00:00.000Z",
+    "notes": "Work machine",
+    "app": {...},
+    "package": {...},
+    "distro": {...}
+  }
+]
+```
+
+**POST /api/installations**
+Create a new installation record
+
+**Request Body:**
+```json
+{
+  "appId": "app_id",
+  "packageId": "package_id",
+  "distroId": "distro_id",
+  "deviceIdentifier": "My Laptop",
+  "notes": "Work machine"
+}
+```
+
+**GET /api/installations/[id]**
+Get single installation (ownership check)
+
+**PATCH /api/installations/[id]**
+Update installation (ownership check)
+
+**Request Body:**
+```json
+{
+  "deviceIdentifier": "New Device Name",
+  "notes": "Updated notes"
+}
+```
+
+**DELETE /api/installations/[id]**
+Delete installation (ownership check)
+
+**GET /api/installations/devices**
+Get list of user's devices
+
+**Response:**
+```json
+["My Laptop", "Work PC", "Home Server"]
+```
 
 ### Internal Endpoints
 
