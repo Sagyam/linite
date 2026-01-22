@@ -98,6 +98,25 @@ export function useInstallationKeyboardNavigation(
           }
           break;
 
+        // Navigation: Home (jump to first row)
+        case 'Home':
+          e.preventDefault();
+          if (installations.length > 0) {
+            setFocusedRowIndex(0);
+            scrollFocusedRowIntoView(0);
+          }
+          break;
+
+        // Navigation: End (jump to last row)
+        case 'End':
+          e.preventDefault();
+          if (installations.length > 0) {
+            const lastIndex = installations.length - 1;
+            setFocusedRowIndex(lastIndex);
+            scrollFocusedRowIntoView(lastIndex);
+          }
+          break;
+
         // Selection: Toggle selection
         case ' ':
         case 'Enter':

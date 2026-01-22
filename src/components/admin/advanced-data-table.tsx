@@ -322,7 +322,7 @@ export function AdvancedDataTable<TData>({
                 return (
                   <TableRow
                     key={row.id}
-                    data-index={virtualRow.index}
+                    data-row-index={virtualRow.index}
                     data-selected={isSelected}
                     data-focused={isFocused}
                     className={`
