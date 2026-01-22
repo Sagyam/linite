@@ -4,13 +4,15 @@ import { useState, useMemo } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { ColumnDef } from '@tanstack/react-table';
 import { format } from 'date-fns';
-import { Loader2, PackagePlus } from 'lucide-react';
+import { HelpCircle, Loader2, PackagePlus } from 'lucide-react';
 import { AdvancedDataTable } from '@/components/admin/advanced-data-table';
 import { DeviceFilter } from '@/components/device-filter';
 import { DeleteDialog } from '@/components/admin/delete-dialog';
+import { InstallationKeyboardShortcutsDialog } from '@/components/installation-keyboard-shortcuts-dialog';
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
 import { useInstallationSelectionStore } from '@/stores/installation-selection-store';
+import { useInstallationKeyboardNavigation } from '@/hooks/use-installation-keyboard-navigation';
 import type { InstallationWithRelations } from '@/types/entities';
 
 // Using img elements instead of Next.js Image component for table cells
@@ -57,6 +59,18 @@ export function InstallationHistoryTable() {
     queryFn: () => fetchInstallations(deviceFilter),
     retry: false,
   });
+
+  // Keyboard navigation hook - must come after useQuery since it uses installations data
+  const { showHelpDialog, setShowHelpDialog } = useInstallationKeyboardNavigation(
+    installations || [],
+    {
+      onDelete: () => {
+        if (selectedInstallationIds.size > 0) {
+          setBulkDeleteDialogOpen(true);
+        }
+      },
+    }
+  );
 
   // Memoize installation IDs for select all functionality
   const installationIds = useMemo(() => {
@@ -224,6 +238,15 @@ export function InstallationHistoryTable() {
             setDeviceFilter(device);
           }}
         />
+        <Button
+          variant="ghost"
+          size="icon"
+          onClick={() => setShowHelpDialog(true)}
+          className="text-muted-foreground hover:text-foreground"
+          title="Keyboard shortcuts (?)"
+        >
+          <HelpCircle className="w-5 h-5" />
+        </Button>
       </div>
 
       {/* Bulk Action Bar - Placeholder for Phase 4 */}
@@ -253,25 +276,27 @@ export function InstallationHistoryTable() {
         </div>
       )}
 
-      <AdvancedDataTable
-        columns={columns}
-        data={installations}
-        onDelete={handleDelete}
-        getRowId={(row) => row.id}
-        globalFilterPlaceholder="Search installations..."
-        enableRowSelection={true}
-        selectedRows={selectedInstallationIds}
-        onRowSelectionChange={(newSelection) => {
-          // Update the store with the new selection
-          clearSelection();
-          newSelection.forEach((id) => {
-            toggleInstallation(id);
-          });
-        }}
-        onSelectAll={() => selectAll(installationIds)}
-        onClearSelection={clearSelection}
-        focusedRowIndex={focusedRowIndex}
-      />
+      <div data-installation-table>
+        <AdvancedDataTable
+          columns={columns}
+          data={installations}
+          onDelete={handleDelete}
+          getRowId={(row) => row.id}
+          globalFilterPlaceholder="Search installations..."
+          enableRowSelection={true}
+          selectedRows={selectedInstallationIds}
+          onRowSelectionChange={(newSelection) => {
+            // Update the store with the new selection
+            clearSelection();
+            newSelection.forEach((id) => {
+              toggleInstallation(id);
+            });
+          }}
+          onSelectAll={() => selectAll(installationIds)}
+          onClearSelection={clearSelection}
+          focusedRowIndex={focusedRowIndex}
+        />
+      </div>
 
       <DeleteDialog
         open={deleteDialogOpen}
@@ -279,6 +304,11 @@ export function InstallationHistoryTable() {
         entityName="installation"
         itemName={selectedInstallation?.app.displayName}
         onConfirm={handleConfirmDelete}
+      />
+
+      <InstallationKeyboardShortcutsDialog
+        open={showHelpDialog}
+        onOpenChange={setShowHelpDialog}
       />
     </div>
   );
