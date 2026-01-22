@@ -328,12 +328,13 @@ export function AdvancedDataTable<TData>({
                     className={`
                       transition-all duration-200
                       hover:bg-muted/50
+                      border-b border-border/50
                       ${isSelected ? 'bg-primary/10' : ''}
                       ${isFocused ? 'border-l-4 border-l-primary' : ''}
                     `.trim()}
                   >
                     {row.getVisibleCells().map((cell) => (
-                      <TableCell key={cell.id}>
+                      <TableCell key={cell.id} className="py-4">
                         {flexRender(
                           cell.column.columnDef.cell,
                           cell.getContext()

@@ -18,6 +18,7 @@ interface DeleteConfirmationDialogProps {
   installations: InstallationWithRelations[];
   onConfirmDelete: () => void;
   onShowUninstallCommands: () => void;
+  isDeleting?: boolean;
 }
 
 export function DeleteConfirmationDialog({
@@ -26,6 +27,7 @@ export function DeleteConfirmationDialog({
   installations,
   onConfirmDelete,
   onShowUninstallCommands,
+  isDeleting = false,
 }: DeleteConfirmationDialogProps) {
   const displayCount = Math.min(installations.length, 10);
   const hasMore = installations.length > 10;
@@ -69,13 +71,13 @@ export function DeleteConfirmationDialog({
           </DialogDescription>
         </DialogHeader>
         <DialogFooter className="flex-col sm:flex-row gap-2">
-          <Button variant="outline" onClick={() => onOpenChange(false)}>
+          <Button variant="outline" onClick={() => onOpenChange(false)} disabled={isDeleting}>
             Cancel
           </Button>
-          <Button variant="destructive" onClick={onConfirmDelete}>
+          <Button variant="destructive" onClick={onConfirmDelete} disabled={isDeleting}>
             Just Delete
           </Button>
-          <Button onClick={onShowUninstallCommands}>
+          <Button onClick={onShowUninstallCommands} disabled={isDeleting}>
             Show Uninstall Commands
           </Button>
         </DialogFooter>

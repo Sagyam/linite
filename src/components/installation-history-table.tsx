@@ -13,6 +13,7 @@ import { UninstallCommandDialog } from '@/components/uninstall-command-dialog';
 import { InstallationKeyboardShortcutsDialog } from '@/components/installation-keyboard-shortcuts-dialog';
 import { BulkActionBar } from '@/components/bulk-action-bar';
 import { Button } from '@/components/ui/button';
+import { Skeleton } from '@/components/ui/skeleton';
 import { toast } from 'sonner';
 import { useInstallationSelectionStore } from '@/stores/installation-selection-store';
 import { useInstallationKeyboardNavigation } from '@/hooks/use-installation-keyboard-navigation';
@@ -176,15 +177,15 @@ export function InstallationHistoryTable() {
       cell: ({ row }) => {
         const app = row.original.app;
         return (
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center space-x-3">
             {app.iconUrl && (
               <img
                 src={app.iconUrl}
                 alt={app.displayName}
-                className="w-6 h-6 rounded"
+                className="w-8 h-8 rounded"
               />
             )}
-            <span className="font-medium">{app.displayName}</span>
+            <span className="font-semibold text-base">{app.displayName}</span>
           </div>
         );
       },
@@ -252,8 +253,27 @@ export function InstallationHistoryTable() {
 
   if (isLoading) {
     return (
-      <div className="flex items-center justify-center py-16">
-        <Loader2 className="w-8 h-8 animate-spin text-muted-foreground" />
+      <div className="space-y-4">
+        <div className="flex items-center justify-between">
+          <Skeleton className="h-10 w-64" />
+          <Skeleton className="h-10 w-10 rounded-full" />
+        </div>
+        <div className="rounded-md border overflow-hidden">
+          <div className="p-4 space-y-4">
+            {Array.from({ length: 5 }).map((_, i) => (
+              <div key={i} className="flex items-center space-x-4">
+                <Skeleton className="h-8 w-8 rounded" />
+                <div className="flex-1 space-y-2">
+                  <Skeleton className="h-5 w-1/3" />
+                  <Skeleton className="h-4 w-1/2" />
+                </div>
+                <Skeleton className="h-4 w-24" />
+                <Skeleton className="h-4 w-20" />
+                <Skeleton className="h-4 w-32" />
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     );
   }
@@ -271,18 +291,21 @@ export function InstallationHistoryTable() {
 
   if (!installations || installations.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center py-16 px-4 text-center">
-        <div className="rounded-full bg-muted p-6 mb-6">
-          <PackagePlus className="w-12 h-12 text-muted-foreground" />
+      <div className="flex flex-col items-center justify-center py-20 px-4 text-center">
+        <div className="rounded-full bg-muted/50 p-8 mb-6 animate-pulse">
+          <PackagePlus className="w-16 h-16 text-muted-foreground" />
         </div>
-        <h2 className="text-2xl font-semibold mb-2">No installations yet</h2>
-        <p className="text-muted-foreground mb-6 max-w-md">
-          Select apps from the{' '}
-          <a href="/" className="text-primary hover:underline font-medium">
-            main page
-          </a>
-          , then click "Save as Installation" in the drawer to track them here.
+        <h2 className="text-2xl font-semibold mb-3">No installations yet</h2>
+        <p className="text-muted-foreground mb-8 max-w-md leading-relaxed">
+          Start tracking your Linux app installations by selecting packages from the home page
+          and saving them to your installation history.
         </p>
+        <Button asChild size="lg" className="gap-2">
+          <a href="/">
+            <PackagePlus className="w-5 h-5" />
+            Browse Apps
+          </a>
+        </Button>
       </div>
     );
   }
@@ -350,6 +373,7 @@ export function InstallationHistoryTable() {
         installations={selectedInstallations}
         onConfirmDelete={handleBulkDelete}
         onShowUninstallCommands={handleShowUninstallCommands}
+        isDeleting={bulkDeleteMutation.isPending}
       />
 
       <UninstallCommandDialog
