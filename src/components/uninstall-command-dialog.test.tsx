@@ -282,8 +282,14 @@ describe('UninstallCommandDialog', () => {
       />
     );
 
+    // First wait for the commands to load
     await waitFor(() => {
-      expect(screen.getByText('Warning: This will remove the package')).toBeInTheDocument();
+      expect(screen.getByText('sudo apt remove package1 package2 -y')).toBeInTheDocument();
+    });
+
+    // Then check for warnings
+    await waitFor(() => {
+      expect(screen.getByText(/Warning:.*remove the package/)).toBeInTheDocument();
     });
   });
 
@@ -370,17 +376,6 @@ describe('UninstallCommandDialog', () => {
       createMockResponse(mockUninstallResponse, 200, true)
     );
 
-    // Mock the download functionality
-    const mockCreateElement = vi.spyOn(document, 'createElement');
-    const mockClick = vi.fn();
-    const mockAnchor = {
-      click: mockClick,
-      href: '',
-      download: '',
-      style: {},
-    } as any;
-    mockCreateElement.mockReturnValue(mockAnchor);
-
     renderWithProviders(
       <UninstallCommandDialog
         open={true}
@@ -392,6 +387,17 @@ describe('UninstallCommandDialog', () => {
     await waitFor(() => {
       expect(screen.getByText('sudo apt remove package1 package2 -y')).toBeInTheDocument();
     });
+
+    // Mock the download functionality AFTER rendering
+    const mockCreateElement = vi.spyOn(document, 'createElement');
+    const mockClick = vi.fn();
+    const mockAnchor = {
+      click: mockClick,
+      href: '',
+      download: '',
+      style: {},
+    } as any;
+    mockCreateElement.mockReturnValue(mockAnchor);
 
     const downloadButton = screen.getByRole('button', { name: /download/i });
     fireEvent.click(downloadButton);
@@ -416,7 +422,9 @@ describe('UninstallCommandDialog', () => {
       />
     );
 
-    expect(screen.getByText(/Ubuntu/)).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByText(/Ubuntu/)).toBeInTheDocument();
+    });
   });
 
   it('should show correct app count in header', async () => {
@@ -432,6 +440,12 @@ describe('UninstallCommandDialog', () => {
       />
     );
 
+    // Wait for data to load first
+    await waitFor(() => {
+      expect(screen.getByText('sudo apt remove package1 package2 -y')).toBeInTheDocument();
+    });
+
+    // Then check for app count
     await waitFor(() => {
       expect(screen.getByText(/2 apps selected/)).toBeInTheDocument();
     });
