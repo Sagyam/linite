@@ -13,6 +13,15 @@
 # testing
 /coverage
 
+# e2e testing
+/test-results/
+/playwright-report/
+/playwright/.cache/
+test.db
+test.db-shm
+test.db-wal
+.env.test.local
+
 # next.js
 /.next/
 /out/
