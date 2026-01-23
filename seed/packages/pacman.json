@@ -744,6 +744,12 @@
     "source": "pacman"
   },
   {
+    "app": " vivaldi",
+    "identifier": "vivaldi",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
     "app": "virtualbox",
     "identifier": "virtualbox",
     "isAvailable": true,

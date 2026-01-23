@@ -102,8 +102,26 @@
     "source": "snap"
   },
   {
+    "app": "emacs",
+    "identifier": "emacs",
+    "isAvailable": true,
+    "source": "snap"
+  },
+  {
     "app": "ffmpeg",
     "identifier": "ffmpeg",
+    "isAvailable": true,
+    "source": "snap"
+  },
+  {
+    "app": "flameshot",
+    "identifier": "flameshot",
+    "isAvailable": true,
+    "source": "snap"
+  },
+  {
+    "app": "floorp",
+    "identifier": "floorp",
     "isAvailable": true,
     "source": "snap"
   },
@@ -132,8 +150,20 @@
     "source": "snap"
   },
   {
+    "app": "fragments",
+    "identifier": "fragments",
+    "isAvailable": true,
+    "source": "snap"
+  },
+  {
     "app": "gimp",
     "identifier": "gimp",
+    "isAvailable": true,
+    "source": "snap"
+  },
+  {
+    "app": "gh",
+    "identifier": "gh",
     "isAvailable": true,
     "source": "snap"
   },
@@ -168,8 +198,20 @@
     "source": "snap"
   },
   {
+    "app": "helix",
+    "identifier": "helix",
+    "isAvailable": true,
+    "source": "snap"
+  },
+  {
     "app": "inkscape",
     "identifier": "inkscape",
+    "isAvailable": true,
+    "source": "snap"
+  },
+  {
+    "app": "imhex",
+    "identifier": "imhex",
     "isAvailable": true,
     "source": "snap"
   },
@@ -188,6 +230,12 @@
   {
     "app": "joplin",
     "identifier": "joplin-desktop",
+    "isAvailable": true,
+    "source": "snap"
+  },
+  {
+    "app": "joplin",
+    "identifier": "itrue-jellyfin",
     "isAvailable": true,
     "source": "snap"
   },
@@ -234,6 +282,12 @@
     "source": "snap"
   },
   {
+    "app": "mpv",
+    "identifier": "mpv",
+    "isAvailable": true,
+    "source": "snap"
+  },
+  {
     "app": "mission-center",
     "identifier": "mission-center",
     "isAvailable": true,
@@ -248,6 +302,18 @@
   {
     "app": "netbeans",
     "identifier": "netbeans",
+    "isAvailable": true,
+    "source": "snap"
+  },
+  {
+    "app": "neovim",
+    "identifier": "nvim",
+    "isAvailable": true,
+    "source": "snap"
+  },
+  {
+    "app": "nextcloud",
+    "identifier": "nextcloud",
     "isAvailable": true,
     "source": "snap"
   },
@@ -272,6 +338,12 @@
   {
     "app": "obsidian",
     "identifier": "obsidian",
+    "isAvailable": true,
+    "source": "snap"
+  },
+  {
+    "app": "ollama",
+    "identifier": "ollama",
     "isAvailable": true,
     "source": "snap"
   },
@@ -342,8 +414,20 @@
     "source": "snap"
   },
   {
+    "app": "remmina",
+    "identifier": "remmina",
+    "isAvailable": true,
+    "source": "snap"
+  },
+  {
     "app": "rider",
     "identifier": "rider",
+    "isAvailable": true,
+    "source": "snap"
+  },
+  {
+    "app": "rpcs3-emulator",
+    "identifier": "rpcs3-emulator",
     "isAvailable": true,
     "source": "snap"
   },
@@ -390,6 +474,12 @@
     "source": "snap"
   },
   {
+    "app": "sublime-text",
+    "identifier": "sublime-text",
+    "isAvailable": true,
+    "source": "snap"
+  },
+  {
     "app": "telegram",
     "identifier": "telegram-desktop",
     "isAvailable": true,
@@ -404,6 +494,12 @@
   {
     "app": "thunderbird",
     "identifier": "thunderbird",
+    "isAvailable": true,
+    "source": "snap"
+  },
+  {
+    "app": "transmission",
+    "identifier": "transmission",
     "isAvailable": true,
     "source": "snap"
   },

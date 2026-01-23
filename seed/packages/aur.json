@@ -18,8 +18,20 @@
     "source": "aur"
   },
   {
+    "app": "balena-etcher",
+    "identifier": "balena-etcher",
+    "isAvailable": true,
+    "source": "aur"
+  },
+  {
     "app": "brave",
     "identifier": "brave-bin",
+    "isAvailable": true,
+    "source": "aur"
+  },
+  {
+    "app": "bottles",
+    "identifier": "bottles",
     "isAvailable": true,
     "source": "aur"
   },
@@ -30,8 +42,26 @@
     "source": "aur"
   },
   {
+    "app": "claude-code",
+    "identifier": "claude-code",
+    "isAvailable": true,
+    "source": "aur"
+  },
+  {
     "app": "dropbox",
     "identifier": "dropbox",
+    "isAvailable": true,
+    "source": "aur"
+  },
+  {
+    "app": "darktable",
+    "identifier": "darktable-git ",
+    "isAvailable": true,
+    "source": "aur"
+  },
+  {
+    "app": "datagrip",
+    "identifier": "datagrip",
     "isAvailable": true,
     "source": "aur"
   },
@@ -42,8 +72,26 @@
     "source": "aur"
   },
   {
+    "app": "geary",
+    "identifier": "geary-git",
+    "isAvailable": true,
+    "source": "aur"
+  },
+  {
+    "app": "goland",
+    "identifier": "goland",
+    "isAvailable": true,
+    "source": "aur"
+  },
+  {
     "app": "insomnia",
     "identifier": "insomnia-bin",
+    "isAvailable": true,
+    "source": "aur"
+  },
+  {
+    "app": "intellij",
+    "identifier": "intellij-idea-ultimate-edition",
     "isAvailable": true,
     "source": "aur"
   },
@@ -92,6 +140,12 @@
   {
     "app": "opencode",
     "identifier": "opencode",
+    "isAvailable": true,
+    "source": "aur"
+  },
+  {
+    "app": "opentofu",
+    "identifier": "opentofu-bin",
     "isAvailable": true,
     "source": "aur"
   },
@@ -182,6 +236,24 @@
   {
     "app": "helix",
     "identifier": "helix-git",
+    "isAvailable": true,
+    "source": "aur"
+  },
+  {
+    "app": "heroic",
+    "identifier": "heroic-games-launcher-bin",
+    "isAvailable": true,
+    "source": "aur"
+  },
+  {
+    "app": "imhex",
+    "identifier": "imhex",
+    "isAvailable": true,
+    "source": "aur"
+  },
+  {
+    "app": "webstorm ",
+    "identifier": "webstorm ",
     "isAvailable": true,
     "source": "aur"
   },
