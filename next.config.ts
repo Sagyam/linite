@@ -12,7 +12,12 @@ const nextConfig: NextConfig = {
                 protocol: 'https',
                 hostname: 'dl.flathub.org',
             },
-        ]
+        ],
+        // Optimize for cost reduction
+        deviceSizes: [640, 750, 1080, 1920],
+        imageSizes: [16, 32, 48, 64, 96],
+        formats: ['image/webp'],
+        minimumCacheTTL: 31536000, // 1 year
     }
 };
 
