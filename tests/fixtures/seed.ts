@@ -148,6 +148,9 @@ export async function resetTestDatabase(
  * @param fixtureName - Name of the fixture to seed
  * @param data - Fixture data to seed
  */
+// Import schema for use in seed functions
+import * as schema from '@/db/schema';
+
 export async function seedFixture(
   fixtureName: string,
   data: any
@@ -155,7 +158,6 @@ export async function seedFixture(
   console.log(`Seeding fixture: ${fixtureName}`);
 
   const db = DbHelpers.getDb();
-  const { schema } = await import('@/db/schema');
 
   try {
     // Map fixture names to schema tables
@@ -180,6 +182,3 @@ export async function seedFixture(
     throw error;
   }
 }
-
-// Import schema for use in seed functions
-import * as schema from '@/db/schema';

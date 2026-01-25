@@ -1,5 +1,6 @@
 import { drizzle } from 'drizzle-orm/libsql';
 import { createClient } from '@libsql/client';
+import { eq } from 'drizzle-orm';
 import * as schema from '@/db/schema';
 
 /**
@@ -40,19 +41,18 @@ export class DbHelpers {
       // Delete in order to respect foreign key constraints
       await db.delete(schema.packages);
       await db.delete(schema.distroSources);
-      await db.delete(schema.installationApps);
       await db.delete(schema.installations);
-      await db.delete(schema.devices);
       await db.delete(schema.refreshLogs);
-      await db.delete(schema.collectionApps);
+      await db.delete(schema.collectionItems);
       await db.delete(schema.collections);
       await db.delete(schema.apps);
       await db.delete(schema.categories);
       await db.delete(schema.sources);
       await db.delete(schema.distros);
-      await db.delete(schema.user);
       await db.delete(schema.session);
       await db.delete(schema.account);
+      await db.delete(schema.verification);
+      await db.delete(schema.user);
     } catch (error) {
       console.error('Error cleaning database:', error);
       throw error;
@@ -90,8 +90,10 @@ export class DbHelpers {
         id: 'test-ubuntu',
         name: 'Ubuntu 22.04',
         slug: 'ubuntu-22-04',
-        codename: 'jammy',
-        logo: 'ubuntu.svg',
+        family: 'debian',
+        basedOn: 'debian',
+        iconUrl: 'ubuntu.svg',
+        isPopular: true,
       })
       .returning();
 
@@ -102,9 +104,15 @@ export class DbHelpers {
         id: 'test-apt',
         name: 'APT',
         slug: 'apt',
-        type: 'package_manager',
-        installMethod: 'sudo apt install -y {packages}',
-        setupCommand: null,
+        installCmd: 'apt install -y',
+        removeCmd: 'apt remove -y',
+        requireSudo: true,
+        setupCmd: null,
+        cleanupCmd: null,
+        supportsDependencyCleanup: true,
+        dependencyCleanupCmd: 'apt autoremove -y',
+        priority: 10,
+        apiEndpoint: null,
       })
       .returning();
 
@@ -120,12 +128,14 @@ export class DbHelpers {
       .insert(schema.apps)
       .values({
         id: 'test-firefox',
-        name: 'Firefox',
         slug: 'firefox',
+        displayName: 'Firefox',
         description: 'Web browser',
         categoryId: category.id,
-        homepageUrl: 'https://firefox.com',
+        homepage: 'https://firefox.com',
         iconUrl: 'https://example.com/firefox.png',
+        isPopular: false,
+        isFoss: true,
       })
       .returning();
 
@@ -133,9 +143,12 @@ export class DbHelpers {
     await db.insert(schema.packages).values({
       appId: app.id,
       sourceId: source.id,
-      packageId: 'firefox',
-      packageName: 'Firefox',
-      packageUrl: 'https://packages.ubuntu.com/firefox',
+      identifier: 'firefox',
+      version: null,
+      size: null,
+      maintainer: null,
+      isAvailable: true,
+      metadata: { url: 'https://packages.ubuntu.com/firefox' },
     });
 
     return { category, distro, source, app };
@@ -168,7 +181,7 @@ export class DbHelpers {
    */
   static async createTestApp(data: {
     id?: string;
-    name: string;
+    displayName: string;
     slug: string;
     categoryId: string;
     description?: string;
@@ -179,12 +192,14 @@ export class DbHelpers {
       .insert(schema.apps)
       .values({
         id: data.id || `test-app-${Date.now()}`,
-        name: data.name,
         slug: data.slug,
+        displayName: data.displayName,
         description: data.description || 'Test app',
         categoryId: data.categoryId,
-        homepageUrl: 'https://example.com',
+        homepage: 'https://example.com',
         iconUrl: 'https://example.com/icon.png',
+        isPopular: false,
+        isFoss: true,
       })
       .returning();
 
@@ -197,7 +212,7 @@ export class DbHelpers {
   static async createTestPackage(data: {
     appId: string;
     sourceId: string;
-    packageId: string;
+    identifier: string;
   }): Promise<any> {
     const db = this.getDb();
 
@@ -206,9 +221,12 @@ export class DbHelpers {
       .values({
         appId: data.appId,
         sourceId: data.sourceId,
-        packageId: data.packageId,
-        packageName: data.packageId,
-        packageUrl: `https://example.com/${data.packageId}`,
+        identifier: data.identifier,
+        version: null,
+        size: null,
+        maintainer: null,
+        isAvailable: true,
+        metadata: { url: `https://example.com/${data.identifier}` },
       })
       .returning();
 
@@ -220,10 +238,8 @@ export class DbHelpers {
    */
   static async getAppById(appId: string): Promise<any> {
     const db = this.getDb();
-    const result = await db.query.apps.findFirst({
-      where: (apps, { eq }) => eq(apps.id, appId),
-    });
-    return result;
+    const result = await db.select().from(schema.apps).where(eq(schema.apps.id, appId)).limit(1);
+    return result[0];
   }
 
   /**
@@ -231,7 +247,7 @@ export class DbHelpers {
    */
   static async getAllApps(): Promise<any[]> {
     const db = this.getDb();
-    const result = await db.query.apps.findMany();
+    const result = await db.select().from(schema.apps);
     return result;
   }
 
@@ -242,10 +258,10 @@ export class DbHelpers {
     const db = this.getDb();
 
     // Delete packages first (foreign key constraint)
-    await db.delete(schema.packages).where((pkg) => pkg.appId === appId);
+    await db.delete(schema.packages).where(eq(schema.packages.appId, appId));
 
     // Delete app
-    await db.delete(schema.apps).where((app) => app.id === appId);
+    await db.delete(schema.apps).where(eq(schema.apps.id, appId));
   }
 
   /**
@@ -253,9 +269,7 @@ export class DbHelpers {
    */
   static async getPackagesForApp(appId: string): Promise<any[]> {
     const db = this.getDb();
-    const result = await db.query.packages.findMany({
-      where: (packages, { eq }) => eq(packages.appId, appId),
-    });
+    const result = await db.select().from(schema.packages).where(eq(schema.packages.appId, appId));
     return result;
   }
 
@@ -264,7 +278,7 @@ export class DbHelpers {
    */
   static async isDatabaseEmpty(): Promise<boolean> {
     const db = this.getDb();
-    const apps = await db.query.apps.findMany();
+    const apps = await db.select().from(schema.apps);
     return apps.length === 0;
   }
 
@@ -281,11 +295,11 @@ export class DbHelpers {
     const db = this.getDb();
 
     const [apps, categories, distros, sources, packages] = await Promise.all([
-      db.query.apps.findMany(),
-      db.query.categories.findMany(),
-      db.query.distros.findMany(),
-      db.query.sources.findMany(),
-      db.query.packages.findMany(),
+      db.select().from(schema.apps),
+      db.select().from(schema.categories),
+      db.select().from(schema.distros),
+      db.select().from(schema.sources),
+      db.select().from(schema.packages),
     ]);
 
     return {
@@ -303,7 +317,7 @@ export class DbHelpers {
   static async verifyConnection(): Promise<boolean> {
     try {
       const db = this.getDb();
-      await db.query.apps.findMany({ limit: 1 });
+      await db.select().from(schema.apps).limit(1);
       return true;
     } catch (error) {
       console.error('Database connection failed:', error);
