@@ -630,6 +630,16 @@
     "iconUrl": "https://go.dev/blog/go-brand/Go-Logo/PNG/Go-Logo_Blue.png"
   },
   {
+    "slug": "goverlay",
+    "isPopular": false,
+    "isFoss": true,
+    "homepage": "https://github.com/benjamimgois/goverlay?tab=readme-ov-file",
+    "displayName": "Goverlay",
+    "description": "Goverlay is an easy graphical interface to configure MangoHud, vkBasalt, and OptiScaler",
+    "category": "games",
+    "iconUrl": null
+  },
+  {
     "slug": "handbrake",
     "isPopular": false,
     "isFoss": true,
@@ -1848,6 +1858,16 @@
     "description": "Lightweight and portable command-line YAML processor",
     "category": "cli",
     "iconUrl": null
+  },
+  {
+    "slug": "xournalpp",
+    "isPopular": false,
+    "isFoss": true,
+    "homepage": "https://github.com/xournalpp/xournalpp",
+    "displayName": "Xournal++",
+    "description": "Xournal++ is a handwriting notetaking software with PDF annotation support.",
+    "category": "office",
+    "iconUrl": "https://avatars.githubusercontent.com/u/5192682"
   },
   {
     "slug": "zed",

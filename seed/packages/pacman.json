@@ -282,6 +282,12 @@
     "source": "pacman"
   },
   {
+    "app": "goverlay",
+    "identifier": "goverlay",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
     "app": "handbrake",
     "identifier": "handbrake",
     "isAvailable": true,
@@ -758,6 +764,12 @@
   {
     "app": "vagrant",
     "identifier": "vagrant",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
+    "app": "xournalpp",
+    "identifier": "xournalpp",
     "isAvailable": true,
     "source": "pacman"
   },

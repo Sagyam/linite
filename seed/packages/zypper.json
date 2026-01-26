@@ -36,6 +36,12 @@
     "source": "zypper"
   },
   {
+    "app": "goverlay",
+    "identifier": "goverlay",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
     "app": "perl",
     "identifier": "perl",
     "isAvailable": true,
@@ -518,6 +524,12 @@
   {
     "app": "yq",
     "identifier": "yq",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "xournalpp",
+    "identifier": "xournalpp",
     "isAvailable": true,
     "source": "zypper"
   },

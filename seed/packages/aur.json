@@ -198,7 +198,7 @@
     "source": "aur"
   },
   {
-    "app": "spaceship-prompt",
+    "app": "spaceship",
     "identifier": "spaceship-prompt",
     "isAvailable": true,
     "source": "aur"
@@ -252,7 +252,7 @@
     "source": "aur"
   },
   {
-    "app": "webstorm ",
+    "app": "webstorm",
     "identifier": "webstorm ",
     "isAvailable": true,
     "source": "aur"

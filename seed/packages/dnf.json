@@ -517,5 +517,11 @@
     "identifier": "ranger",
     "isAvailable": true,
     "source": "dnf"
+  },
+  {
+    "app": "xournalpp",
+    "identifier": "xournalpp",
+    "isAvailable": true,
+    "source": "dnf"
   }
 ]
