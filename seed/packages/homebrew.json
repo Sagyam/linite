@@ -126,14 +126,14 @@
     "source": "homebrew"
   },
   {
-    "app": "gh",
-    "identifier": "gh",
+    "app": "gemini-cli",
+    "identifier": "gemini-cli",
     "isAvailable": true,
     "source": "homebrew"
   },
   {
-    "app": "gemini-cli",
-    "identifier": "gemini-cli",
+    "app": "gh",
+    "identifier": "gh",
     "isAvailable": true,
     "source": "homebrew"
   },

@@ -1,31 +1,19 @@
 [
   {
-    "app": "0ad",
-    "identifier": "0ad",
-    "isAvailable": true,
-    "source": "pacman"
-  },
-  {
-    "app": "ansible",
-    "identifier": "ansible",
-    "isAvailable": true,
-    "source": "pacman"
-  },
-  {
     "app": " apache",
     "identifier": "apache",
     "isAvailable": true,
     "source": "pacman"
   },
   {
-    "app": "bun",
-    "identifier": "bun",
+    "app": " vivaldi",
+    "identifier": "vivaldi",
     "isAvailable": true,
     "source": "pacman"
   },
   {
-    "app": "conky",
-    "identifier": "conky",
+    "app": "0ad",
+    "identifier": "0ad",
     "isAvailable": true,
     "source": "pacman"
   },
@@ -36,8 +24,20 @@
     "source": "pacman"
   },
   {
+    "app": "ansible",
+    "identifier": "ansible",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
     "app": "aria2",
     "identifier": "aria2",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
+    "app": "atuin",
+    "identifier": "atuin",
     "isAvailable": true,
     "source": "pacman"
   },
@@ -66,8 +66,26 @@
     "source": "pacman"
   },
   {
+    "app": "bottom",
+    "identifier": "bottom",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
+    "app": "broot",
+    "identifier": "broot",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
     "app": "btop",
     "identifier": "btop",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
+    "app": "bun",
+    "identifier": "bun",
     "isAvailable": true,
     "source": "pacman"
   },
@@ -78,14 +96,14 @@
     "source": "pacman"
   },
   {
-    "app": "cpu-x",
-    "identifier": "cpu-x",
+    "app": "celluloid",
+    "identifier": "celluloid",
     "isAvailable": true,
     "source": "pacman"
   },
   {
-    "app": "celluloid",
-    "identifier": "celluloid",
+    "app": "cheat",
+    "identifier": "cheat",
     "isAvailable": true,
     "source": "pacman"
   },
@@ -108,6 +126,18 @@
     "source": "pacman"
   },
   {
+    "app": "conky",
+    "identifier": "conky",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
+    "app": "cpu-x",
+    "identifier": "cpu-x",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
     "app": "darktable",
     "identifier": "darktable",
     "isAvailable": true,
@@ -116,6 +146,12 @@
   {
     "app": "dbeaver",
     "identifier": "dbeaver",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
+    "app": "delta",
+    "identifier": "git-delta",
     "isAvailable": true,
     "source": "pacman"
   },
@@ -144,14 +180,32 @@
     "source": "pacman"
   },
   {
-    "app": "duf",
-    "identifier": "duf",
+    "app": "dog",
+    "identifier": "dog",
     "isAvailable": true,
     "source": "pacman"
   },
   {
     "app": "dolphin-emu",
     "identifier": "dolphin-emu",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
+    "app": "duf",
+    "identifier": "duf",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
+    "app": "duf",
+    "identifier": "duf",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
+    "app": "dust",
+    "identifier": "dust",
     "isAvailable": true,
     "source": "pacman"
   },
@@ -186,6 +240,18 @@
     "source": "pacman"
   },
   {
+    "app": "fd",
+    "identifier": "fd",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
+    "app": "ffmpeg",
+    "identifier": "ffmpeg",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
     "app": "filezilla",
     "identifier": "filezilla",
     "isAvailable": true,
@@ -194,12 +260,6 @@
   {
     "app": "firefox",
     "identifier": "firefox",
-    "isAvailable": true,
-    "source": "pacman"
-  },
-  {
-    "app": "ffmpeg",
-    "identifier": "ffmpeg",
     "isAvailable": true,
     "source": "pacman"
   },
@@ -258,14 +318,20 @@
     "source": "pacman"
   },
   {
-    "app": "ghostty",
-    "identifier": "ghostty",
+    "app": "gh",
+    "identifier": "github-cli",
     "isAvailable": true,
     "source": "pacman"
   },
   {
     "app": "ghidra",
     "identifier": "ghidra",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
+    "app": "ghostty",
+    "identifier": "ghostty",
     "isAvailable": true,
     "source": "pacman"
   },
@@ -288,6 +354,12 @@
     "source": "pacman"
   },
   {
+    "app": "glances",
+    "identifier": "glances",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
     "app": "golang",
     "identifier": "go",
     "isAvailable": true,
@@ -296,6 +368,12 @@
   {
     "app": "goverlay",
     "identifier": "goverlay",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
+    "app": "gping",
+    "identifier": "gping",
     "isAvailable": true,
     "source": "pacman"
   },
@@ -390,8 +468,20 @@
     "source": "pacman"
   },
   {
+    "app": "lf",
+    "identifier": "lf",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
     "app": "libreoffice",
     "identifier": "libreoffice-fresh",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
+    "app": "lsd",
+    "identifier": "lsd",
     "isAvailable": true,
     "source": "pacman"
   },
@@ -414,8 +504,44 @@
     "source": "pacman"
   },
   {
+    "app": "mcfly",
+    "identifier": "mcfly",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
+    "app": "micro",
+    "identifier": "micro",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
+    "app": "mitmproxy",
+    "identifier": "mitmproxy",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
+    "app": "moreutils",
+    "identifier": "moreutils",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
     "app": "mpv",
     "identifier": "mpv",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
+    "app": "mtr",
+    "identifier": "mtr",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
+    "app": "navi",
+    "identifier": "navi",
     "isAvailable": true,
     "source": "pacman"
   },
@@ -426,14 +552,26 @@
     "source": "pacman"
   },
   {
-    "app": "nvtop",
-    "identifier": "nvtop",
+    "app": "nextcloud",
+    "identifier": "nextcloud-client",
     "isAvailable": true,
     "source": "pacman"
   },
   {
-    "app": "nextcloud",
-    "identifier": "nextcloud-client",
+    "app": "nginx",
+    "identifier": "nginx",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
+    "app": "nmap",
+    "identifier": "nmap",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
+    "app": "nnn",
+    "identifier": "nnn",
     "isAvailable": true,
     "source": "pacman"
   },
@@ -450,6 +588,24 @@
     "source": "pacman"
   },
   {
+    "app": "nushell",
+    "identifier": "nushell",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
+    "app": "nvtop",
+    "identifier": "nvtop",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
+    "app": "nyxt",
+    "identifier": "nyxt",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
     "app": "obs",
     "identifier": "obs-studio",
     "isAvailable": true,
@@ -462,8 +618,20 @@
     "source": "pacman"
   },
   {
+    "app": "openssh",
+    "identifier": "openssh",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
     "app": "opentofu",
     "identifier": "opentofu",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
+    "app": "openvpn",
+    "identifier": "openvpn",
     "isAvailable": true,
     "source": "pacman"
   },
@@ -480,6 +648,12 @@
     "source": "pacman"
   },
   {
+    "app": "postgresql",
+    "identifier": "postgresql",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
     "app": "python",
     "identifier": "python",
     "isAvailable": true,
@@ -492,14 +666,38 @@
     "source": "pacman"
   },
   {
+    "app": "qemu",
+    "identifier": "qemu-full",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
+    "app": "qutebrowser",
+    "identifier": "qutebrowser",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
     "app": "r-lang",
     "identifier": "r",
     "isAvailable": true,
     "source": "pacman"
   },
   {
+    "app": "ranger",
+    "identifier": "ranger",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
     "app": "rbenv",
     "identifier": "rbenv",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
+    "app": "redis",
+    "identifier": "redis",
     "isAvailable": true,
     "source": "pacman"
   },
@@ -534,6 +732,18 @@
     "source": "pacman"
   },
   {
+    "app": "sd",
+    "identifier": "sd",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
+    "app": "skim",
+    "identifier": "skim",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
     "app": "spotify",
     "identifier": "spotify-launcher",
     "isAvailable": true,
@@ -542,6 +752,12 @@
   {
     "app": "starship",
     "identifier": "starship",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
+    "app": "steam",
+    "identifier": "steam",
     "isAvailable": true,
     "source": "pacman"
   },
@@ -566,6 +782,12 @@
   {
     "app": "telegram",
     "identifier": "telegram-desktop",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
+    "app": "termshark",
+    "identifier": "termshark",
     "isAvailable": true,
     "source": "pacman"
   },
@@ -612,8 +834,32 @@
     "source": "pacman"
   },
   {
+    "app": "vagrant",
+    "identifier": "vagrant",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
     "app": "veracrypt",
     "identifier": "veracrypt",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
+    "app": "vifm",
+    "identifier": "vifm",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
+    "app": "virt-manager",
+    "identifier": "virt-manager",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
+    "app": "virtualbox",
+    "identifier": "virtualbox",
     "isAvailable": true,
     "source": "pacman"
   },
@@ -648,6 +894,30 @@
     "source": "pacman"
   },
   {
+    "app": "wireguard",
+    "identifier": "wireguard-tools",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
+    "app": "wireshark",
+    "identifier": "wireshark-qt",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
+    "app": "xh",
+    "identifier": "xh",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
+    "app": "xournalpp",
+    "identifier": "xournalpp",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
     "app": "yazi",
     "identifier": "yazi",
     "isAvailable": true,
@@ -674,276 +944,6 @@
   {
     "app": "zsh",
     "identifier": "zsh",
-    "isAvailable": true,
-    "source": "pacman"
-  },
-  {
-    "app": "fd",
-    "identifier": "fd",
-    "isAvailable": true,
-    "source": "pacman"
-  },
-  {
-    "app": "gh",
-    "identifier": "github-cli",
-    "isAvailable": true,
-    "source": "pacman"
-  },
-  {
-    "app": "nginx",
-    "identifier": "nginx",
-    "isAvailable": true,
-    "source": "pacman"
-  },
-  {
-    "app": "nmap",
-    "identifier": "nmap",
-    "isAvailable": true,
-    "source": "pacman"
-  },
-  {
-    "app": "openssh",
-    "identifier": "openssh",
-    "isAvailable": true,
-    "source": "pacman"
-  },
-  {
-    "app": "openvpn",
-    "identifier": "openvpn",
-    "isAvailable": true,
-    "source": "pacman"
-  },
-  {
-    "app": "wireguard",
-    "identifier": "wireguard-tools",
-    "isAvailable": true,
-    "source": "pacman"
-  },
-  {
-    "app": "ranger",
-    "identifier": "ranger",
-    "isAvailable": true,
-    "source": "pacman"
-  },
-  {
-    "app": "qemu",
-    "identifier": "qemu-full",
-    "isAvailable": true,
-    "source": "pacman"
-  },
-  {
-    "app": "postgresql",
-    "identifier": "postgresql",
-    "isAvailable": true,
-    "source": "pacman"
-  },
-  {
-    "app": "redis",
-    "identifier": "redis",
-    "isAvailable": true,
-    "source": "pacman"
-  },
-  {
-    "app": "wireshark",
-    "identifier": "wireshark-qt",
-    "isAvailable": true,
-    "source": "pacman"
-  },
-  {
-    "app": "micro",
-    "identifier": "micro",
-    "isAvailable": true,
-    "source": "pacman"
-  },
-  {
-    "app": "virt-manager",
-    "identifier": "virt-manager",
-    "isAvailable": true,
-    "source": "pacman"
-  },
-  {
-    "app": " vivaldi",
-    "identifier": "vivaldi",
-    "isAvailable": true,
-    "source": "pacman"
-  },
-  {
-    "app": "virtualbox",
-    "identifier": "virtualbox",
-    "isAvailable": true,
-    "source": "pacman"
-  },
-  {
-    "app": "vagrant",
-    "identifier": "vagrant",
-    "isAvailable": true,
-    "source": "pacman"
-  },
-  {
-    "app": "xournalpp",
-    "identifier": "xournalpp",
-    "isAvailable": true,
-    "source": "pacman"
-  },
-  {
-    "app": "steam",
-    "identifier": "steam",
-    "isAvailable": true,
-    "source": "pacman"
-  },
-  {
-    "app": "atuin",
-    "identifier": "atuin",
-    "isAvailable": true,
-    "source": "pacman"
-  },
-  {
-    "app": "bottom",
-    "identifier": "bottom",
-    "isAvailable": true,
-    "source": "pacman"
-  },
-  {
-    "app": "broot",
-    "identifier": "broot",
-    "isAvailable": true,
-    "source": "pacman"
-  },
-  {
-    "app": "cheat",
-    "identifier": "cheat",
-    "isAvailable": true,
-    "source": "pacman"
-  },
-  {
-    "app": "delta",
-    "identifier": "git-delta",
-    "isAvailable": true,
-    "source": "pacman"
-  },
-  {
-    "app": "dog",
-    "identifier": "dog",
-    "isAvailable": true,
-    "source": "pacman"
-  },
-  {
-    "app": "duf",
-    "identifier": "duf",
-    "isAvailable": true,
-    "source": "pacman"
-  },
-  {
-    "app": "dust",
-    "identifier": "dust",
-    "isAvailable": true,
-    "source": "pacman"
-  },
-  {
-    "app": "glances",
-    "identifier": "glances",
-    "isAvailable": true,
-    "source": "pacman"
-  },
-  {
-    "app": "gping",
-    "identifier": "gping",
-    "isAvailable": true,
-    "source": "pacman"
-  },
-  {
-    "app": "lf",
-    "identifier": "lf",
-    "isAvailable": true,
-    "source": "pacman"
-  },
-  {
-    "app": "lsd",
-    "identifier": "lsd",
-    "isAvailable": true,
-    "source": "pacman"
-  },
-  {
-    "app": "mcfly",
-    "identifier": "mcfly",
-    "isAvailable": true,
-    "source": "pacman"
-  },
-  {
-    "app": "mitmproxy",
-    "identifier": "mitmproxy",
-    "isAvailable": true,
-    "source": "pacman"
-  },
-  {
-    "app": "moreutils",
-    "identifier": "moreutils",
-    "isAvailable": true,
-    "source": "pacman"
-  },
-  {
-    "app": "mtr",
-    "identifier": "mtr",
-    "isAvailable": true,
-    "source": "pacman"
-  },
-  {
-    "app": "navi",
-    "identifier": "navi",
-    "isAvailable": true,
-    "source": "pacman"
-  },
-  {
-    "app": "nnn",
-    "identifier": "nnn",
-    "isAvailable": true,
-    "source": "pacman"
-  },
-  {
-    "app": "nushell",
-    "identifier": "nushell",
-    "isAvailable": true,
-    "source": "pacman"
-  },
-  {
-    "app": "nyxt",
-    "identifier": "nyxt",
-    "isAvailable": true,
-    "source": "pacman"
-  },
-  {
-    "app": "qutebrowser",
-    "identifier": "qutebrowser",
-    "isAvailable": true,
-    "source": "pacman"
-  },
-  {
-    "app": "sd",
-    "identifier": "sd",
-    "isAvailable": true,
-    "source": "pacman"
-  },
-  {
-    "app": "skim",
-    "identifier": "skim",
-    "isAvailable": true,
-    "source": "pacman"
-  },
-  {
-    "app": "termshark",
-    "identifier": "termshark",
-    "isAvailable": true,
-    "source": "pacman"
-  },
-  {
-    "app": "vifm",
-    "identifier": "vifm",
-    "isAvailable": true,
-    "source": "pacman"
-  },
-  {
-    "app": "xh",
-    "identifier": "xh",
     "isAvailable": true,
     "source": "pacman"
   }

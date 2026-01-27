@@ -54,18 +54,6 @@
     "source": "winget"
   },
   {
-    "app": "delta",
-    "identifier": "dandavison.delta",
-    "isAvailable": true,
-    "source": "winget"
-  },
-  {
-    "app": "nushell",
-    "identifier": "nushell",
-    "isAvailable": true,
-    "source": "winget"
-  },
-  {
     "app": "darktable",
     "identifier": "darktable.darktable",
     "isAvailable": true,
@@ -74,6 +62,12 @@
   {
     "app": "dbeaver",
     "identifier": "dbeaver.dbeaver",
+    "isAvailable": true,
+    "source": "winget"
+  },
+  {
+    "app": "delta",
+    "identifier": "dandavison.delta",
     "isAvailable": true,
     "source": "winget"
   },
@@ -96,6 +90,12 @@
     "source": "winget"
   },
   {
+    "app": "fastfetch",
+    "identifier": "fastfetch",
+    "isAvailable": true,
+    "source": "winget"
+  },
+  {
     "app": "ffmpeg",
     "identifier": "Gyan.FFmpeg",
     "isAvailable": true,
@@ -110,12 +110,6 @@
   {
     "app": "freecad",
     "identifier": "FreeCAD.FreeCAD",
-    "isAvailable": true,
-    "source": "winget"
-  },
-  {
-    "app": "fastfetch",
-    "identifier": "fastfetch",
     "isAvailable": true,
     "source": "winget"
   },
@@ -216,8 +210,8 @@
     "source": "winget"
   },
   {
-    "app": "llama.cpp",
-    "identifier": "llama.cpp",
+    "app": "lf",
+    "identifier": "gokcehan.lf",
     "isAvailable": true,
     "source": "winget"
   },
@@ -228,8 +222,8 @@
     "source": "winget"
   },
   {
-    "app": "lf",
-    "identifier": "gokcehan.lf",
+    "app": "llama.cpp",
+    "identifier": "llama.cpp",
     "isAvailable": true,
     "source": "winget"
   },
@@ -290,6 +284,12 @@
   {
     "app": "notion",
     "identifier": "Notion.Notion",
+    "isAvailable": true,
+    "source": "winget"
+  },
+  {
+    "app": "nushell",
+    "identifier": "nushell",
     "isAvailable": true,
     "source": "winget"
   },

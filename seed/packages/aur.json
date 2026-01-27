@@ -6,14 +6,14 @@
     "source": "aur"
   },
   {
-    "app": "anydesk",
-    "identifier": "anydesk-bin",
+    "app": "android-studio",
+    "identifier": "android-studio",
     "isAvailable": true,
     "source": "aur"
   },
   {
-    "app": "android-studio",
-    "identifier": "android-studio",
+    "app": "anydesk",
+    "identifier": "anydesk-bin",
     "isAvailable": true,
     "source": "aur"
   },
@@ -24,14 +24,14 @@
     "source": "aur"
   },
   {
-    "app": "brave",
-    "identifier": "brave-bin",
+    "app": "bottles",
+    "identifier": "bottles",
     "isAvailable": true,
     "source": "aur"
   },
   {
-    "app": "bottles",
-    "identifier": "bottles",
+    "app": "brave",
+    "identifier": "brave-bin",
     "isAvailable": true,
     "source": "aur"
   },
@@ -54,8 +54,8 @@
     "source": "aur"
   },
   {
-    "app": "dropbox",
-    "identifier": "dropbox",
+    "app": "cursor",
+    "identifier": "cursor-bin",
     "isAvailable": true,
     "source": "aur"
   },
@@ -68,6 +68,12 @@
   {
     "app": "datagrip",
     "identifier": "datagrip",
+    "isAvailable": true,
+    "source": "aur"
+  },
+  {
+    "app": "dropbox",
+    "identifier": "dropbox",
     "isAvailable": true,
     "source": "aur"
   },
@@ -96,6 +102,24 @@
     "source": "aur"
   },
   {
+    "app": "helix",
+    "identifier": "helix-git",
+    "isAvailable": true,
+    "source": "aur"
+  },
+  {
+    "app": "heroic",
+    "identifier": "heroic-games-launcher-bin",
+    "isAvailable": true,
+    "source": "aur"
+  },
+  {
+    "app": "imhex",
+    "identifier": "imhex",
+    "isAvailable": true,
+    "source": "aur"
+  },
+  {
     "app": "insomnia",
     "identifier": "insomnia-bin",
     "isAvailable": true,
@@ -120,14 +144,14 @@
     "source": "aur"
   },
   {
-    "app": "logseq",
-    "identifier": "logseq-desktop-bin",
+    "app": "librewolf",
+    "identifier": "librewolf-bin",
     "isAvailable": true,
     "source": "aur"
   },
   {
-    "app": "librewolf",
-    "identifier": "librewolf-bin",
+    "app": "logseq",
+    "identifier": "logseq-desktop-bin",
     "isAvailable": true,
     "source": "aur"
   },
@@ -150,14 +174,14 @@
     "source": "aur"
   },
   {
-    "app": "openshot",
-    "identifier": "openshot",
+    "app": "opencode",
+    "identifier": "opencode",
     "isAvailable": true,
     "source": "aur"
   },
   {
-    "app": "opencode",
-    "identifier": "opencode",
+    "app": "openshot",
+    "identifier": "openshot",
     "isAvailable": true,
     "source": "aur"
   },
@@ -204,12 +228,6 @@
     "source": "aur"
   },
   {
-    "app": "sublime-text",
-    "identifier": "sublime-text-4",
-    "isAvailable": true,
-    "source": "aur"
-  },
-  {
     "app": "slack",
     "identifier": "slack-desktop",
     "isAvailable": true,
@@ -218,6 +236,12 @@
   {
     "app": "spaceship",
     "identifier": "spaceship-prompt",
+    "isAvailable": true,
+    "source": "aur"
+  },
+  {
+    "app": "sublime-text",
+    "identifier": "sublime-text-4",
     "isAvailable": true,
     "source": "aur"
   },
@@ -242,30 +266,6 @@
   {
     "app": "waterfox",
     "identifier": "waterfox-bin",
-    "isAvailable": true,
-    "source": "aur"
-  },
-  {
-    "app": "cursor",
-    "identifier": "cursor-bin",
-    "isAvailable": true,
-    "source": "aur"
-  },
-  {
-    "app": "helix",
-    "identifier": "helix-git",
-    "isAvailable": true,
-    "source": "aur"
-  },
-  {
-    "app": "heroic",
-    "identifier": "heroic-games-launcher-bin",
-    "isAvailable": true,
-    "source": "aur"
-  },
-  {
-    "app": "imhex",
-    "identifier": "imhex",
     "isAvailable": true,
     "source": "aur"
   },

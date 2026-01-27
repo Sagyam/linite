@@ -180,6 +180,12 @@
     "source": "flatpak"
   },
   {
+    "app": "ghidra",
+    "identifier": "org.ghidra_sre.Ghidra",
+    "isAvailable": true,
+    "source": "flatpak"
+  },
+  {
     "app": "gimp",
     "identifier": "org.gimp.GIMP",
     "isAvailable": true,
@@ -194,12 +200,6 @@
   {
     "app": "goland",
     "identifier": "com.jetbrains.GoLand",
-    "isAvailable": true,
-    "source": "flatpak"
-  },
-  {
-    "app": "ghidra",
-    "identifier": "org.ghidra_sre.Ghidra",
     "isAvailable": true,
     "source": "flatpak"
   },
@@ -242,6 +242,12 @@
   {
     "app": "intellij",
     "identifier": "com.jetbrains.IntelliJ-IDEA-Community",
+    "isAvailable": true,
+    "source": "flatpak"
+  },
+  {
+    "app": "jan",
+    "identifier": "ai.jan.Jan",
     "isAvailable": true,
     "source": "flatpak"
   },
@@ -332,6 +338,12 @@
   {
     "app": "nextcloud",
     "identifier": "com.nextcloud.desktopclient.nextcloud",
+    "isAvailable": true,
+    "source": "flatpak"
+  },
+  {
+    "app": "nyxt",
+    "identifier": "engineer.atlas.Nyxt",
     "isAvailable": true,
     "source": "flatpak"
   },
@@ -570,32 +582,20 @@
     "source": "flatpak"
   },
   {
-    "app": "zen",
-    "identifier": "app.zen_browser.zen",
-    "isAvailable": true,
-    "source": "flatpak"
-  },
-  {
     "app": "zed",
     "identifier": "dev.zed.Zed",
     "isAvailable": true,
     "source": "flatpak"
   },
   {
+    "app": "zen",
+    "identifier": "app.zen_browser.zen",
+    "isAvailable": true,
+    "source": "flatpak"
+  },
+  {
     "app": "zoom",
     "identifier": "us.zoom.Zoom",
-    "isAvailable": true,
-    "source": "flatpak"
-  },
-  {
-    "app": "jan",
-    "identifier": "ai.jan.Jan",
-    "isAvailable": true,
-    "source": "flatpak"
-  },
-  {
-    "app": "nyxt",
-    "identifier": "engineer.atlas.Nyxt",
     "isAvailable": true,
     "source": "flatpak"
   }

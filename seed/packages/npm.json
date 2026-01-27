@@ -18,14 +18,14 @@
     "source": "npm"
   },
   {
-    "app": "pnpm",
-    "identifier": "pnpm",
+    "app": "nushell",
+    "identifier": "nushell",
     "isAvailable": true,
     "source": "npm"
   },
   {
-    "app": "nushell",
-    "identifier": "nushell",
+    "app": "pnpm",
+    "identifier": "pnpm",
     "isAvailable": true,
     "source": "npm"
   },

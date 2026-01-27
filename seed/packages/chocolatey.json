@@ -12,14 +12,14 @@
     "source": "chocolatey"
   },
   {
-    "app": "brave",
-    "identifier": "brave",
+    "app": "bottom",
+    "identifier": "bottom",
     "isAvailable": true,
     "source": "chocolatey"
   },
   {
-    "app": "bottom",
-    "identifier": "bottom",
+    "app": "brave",
+    "identifier": "brave",
     "isAvailable": true,
     "source": "chocolatey"
   },
@@ -36,6 +36,12 @@
     "source": "chocolatey"
   },
   {
+    "app": "delta",
+    "identifier": "delta",
+    "isAvailable": true,
+    "source": "chocolatey"
+  },
+  {
     "app": "discord",
     "identifier": "discord",
     "isAvailable": true,
@@ -48,20 +54,14 @@
     "source": "chocolatey"
   },
   {
-    "app": "delta",
-    "identifier": "delta",
+    "app": "fastfetch",
+    "identifier": "fastfetch",
     "isAvailable": true,
     "source": "chocolatey"
   },
   {
     "app": "ffmpeg",
     "identifier": "ffmpeg",
-    "isAvailable": true,
-    "source": "chocolatey"
-  },
-  {
-    "app": "fastfetch",
-    "identifier": "fastfetch",
     "isAvailable": true,
     "source": "chocolatey"
   },
@@ -108,14 +108,14 @@
     "source": "chocolatey"
   },
   {
-    "app": "java",
-    "identifier": "openjdk",
+    "app": "jan",
+    "identifier": "jan",
     "isAvailable": true,
     "source": "chocolatey"
   },
   {
-    "app": "jan",
-    "identifier": "jan",
+    "app": "java",
+    "identifier": "openjdk",
     "isAvailable": true,
     "source": "chocolatey"
   },
@@ -300,14 +300,14 @@
     "source": "chocolatey"
   },
   {
-    "app": "xh",
-    "identifier": "xh",
+    "app": "wireshark",
+    "identifier": "wireshark",
     "isAvailable": true,
     "source": "chocolatey"
   },
   {
-    "app": "wireshark",
-    "identifier": "wireshark",
+    "app": "xh",
+    "identifier": "xh",
     "isAvailable": true,
     "source": "chocolatey"
   },

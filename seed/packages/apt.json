@@ -6,14 +6,26 @@
     "source": "apt"
   },
   {
-    "app": "conky",
-    "identifier": "conky",
+    "app": "alacritty",
+    "identifier": "alacritty",
     "isAvailable": true,
     "source": "apt"
   },
   {
-    "app": "alacritty",
-    "identifier": "alacritty",
+    "app": "ansible",
+    "identifier": "ansible",
+    "isAvailable": true,
+    "source": "apt"
+  },
+  {
+    "app": "apache",
+    "identifier": "apache2",
+    "isAvailable": true,
+    "source": "apt"
+  },
+  {
+    "app": "aria2",
+    "identifier": "aria2",
     "isAvailable": true,
     "source": "apt"
   },
@@ -78,6 +90,12 @@
     "source": "apt"
   },
   {
+    "app": "conky",
+    "identifier": "conky",
+    "isAvailable": true,
+    "source": "apt"
+  },
+  {
     "app": "cpu-x",
     "identifier": "cpu-x",
     "isAvailable": true,
@@ -90,14 +108,14 @@
     "source": "apt"
   },
   {
-    "app": "deluge",
-    "identifier": "deluge",
+    "app": "delta",
+    "identifier": "git-delta",
     "isAvailable": true,
     "source": "apt"
   },
   {
-    "app": "delta",
-    "identifier": "git-delta",
+    "app": "deluge",
+    "identifier": "deluge",
     "isAvailable": true,
     "source": "apt"
   },
@@ -138,6 +156,18 @@
     "source": "apt"
   },
   {
+    "app": "fd",
+    "identifier": "fd-find",
+    "isAvailable": true,
+    "source": "apt"
+  },
+  {
+    "app": "ffmpeg",
+    "identifier": "ffmpeg",
+    "isAvailable": true,
+    "source": "apt"
+  },
+  {
     "app": "filezilla",
     "identifier": "filezilla",
     "isAvailable": true,
@@ -146,6 +176,12 @@
   {
     "app": "firefox",
     "identifier": "firefox",
+    "isAvailable": true,
+    "source": "apt"
+  },
+  {
+    "app": "fish",
+    "identifier": "fish",
     "isAvailable": true,
     "source": "apt"
   },
@@ -168,6 +204,12 @@
     "source": "apt"
   },
   {
+    "app": "freecad",
+    "identifier": "freecad",
+    "isAvailable": true,
+    "source": "apt"
+  },
+  {
     "app": "fzf",
     "identifier": "fzf",
     "isAvailable": true,
@@ -186,6 +228,12 @@
     "source": "apt"
   },
   {
+    "app": "gh",
+    "identifier": "gh",
+    "isAvailable": true,
+    "source": "apt"
+  },
+  {
     "app": "gimp",
     "identifier": "gimp",
     "isAvailable": true,
@@ -194,6 +242,12 @@
   {
     "app": "git",
     "identifier": "git",
+    "isAvailable": true,
+    "source": "apt"
+  },
+  {
+    "app": "glances",
+    "identifier": "glances",
     "isAvailable": true,
     "source": "apt"
   },
@@ -212,6 +266,12 @@
   {
     "app": "handbrake",
     "identifier": "handbrake",
+    "isAvailable": true,
+    "source": "apt"
+  },
+  {
+    "app": "httpie",
+    "identifier": "httpie",
     "isAvailable": true,
     "source": "apt"
   },
@@ -252,6 +312,12 @@
     "source": "apt"
   },
   {
+    "app": "kitty",
+    "identifier": "kitty",
+    "isAvailable": true,
+    "source": "apt"
+  },
+  {
     "app": "krita",
     "identifier": "krita",
     "isAvailable": true,
@@ -282,8 +348,32 @@
     "source": "apt"
   },
   {
+    "app": "micro",
+    "identifier": "micro",
+    "isAvailable": true,
+    "source": "apt"
+  },
+  {
+    "app": "mitmproxy",
+    "identifier": "mitmproxy",
+    "isAvailable": true,
+    "source": "apt"
+  },
+  {
+    "app": "moreutils",
+    "identifier": "moreutils",
+    "isAvailable": true,
+    "source": "apt"
+  },
+  {
     "app": "mpv",
     "identifier": "mpv",
+    "isAvailable": true,
+    "source": "apt"
+  },
+  {
+    "app": "mtr",
+    "identifier": "mtr",
     "isAvailable": true,
     "source": "apt"
   },
@@ -294,8 +384,20 @@
     "source": "apt"
   },
   {
-    "app": "nvtop",
-    "identifier": "nvtop",
+    "app": "nginx",
+    "identifier": "nginx",
+    "isAvailable": true,
+    "source": "apt"
+  },
+  {
+    "app": "nmap",
+    "identifier": "nmap",
+    "isAvailable": true,
+    "source": "apt"
+  },
+  {
+    "app": "nnn",
+    "identifier": "nnn",
     "isAvailable": true,
     "source": "apt"
   },
@@ -306,12 +408,36 @@
     "source": "apt"
   },
   {
+    "app": "nvtop",
+    "identifier": "nvtop",
+    "isAvailable": true,
+    "source": "apt"
+  },
+  {
+    "app": "nyxt",
+    "identifier": "nyxt",
+    "isAvailable": true,
+    "source": "apt"
+  },
+  {
     "app": "obs",
     "identifier": "obs-studio",
     "isAvailable": true,
     "packageSetupCmd": {
       "debian": "sudo add-apt-repository ppa:obsproject/obs-studio -y && sudo apt update"
     },
+    "source": "apt"
+  },
+  {
+    "app": "openssh",
+    "identifier": "openssh-server",
+    "isAvailable": true,
+    "source": "apt"
+  },
+  {
+    "app": "openvpn",
+    "identifier": "openvpn",
+    "isAvailable": true,
     "source": "apt"
   },
   {
@@ -327,14 +453,14 @@
     "source": "apt"
   },
   {
-    "app": "python",
-    "identifier": "python3",
+    "app": "postgresql",
+    "identifier": "postgresql",
     "isAvailable": true,
     "source": "apt"
   },
   {
-    "app": "qutebrowser",
-    "identifier": "qutebrowser",
+    "app": "python",
+    "identifier": "python3",
     "isAvailable": true,
     "source": "apt"
   },
@@ -345,8 +471,38 @@
     "source": "apt"
   },
   {
+    "app": "qemu",
+    "identifier": "qemu-system",
+    "isAvailable": true,
+    "source": "apt"
+  },
+  {
+    "app": "qutebrowser",
+    "identifier": "qutebrowser",
+    "isAvailable": true,
+    "source": "apt"
+  },
+  {
+    "app": "qutebrowser",
+    "identifier": "qutebrowser",
+    "isAvailable": true,
+    "source": "apt"
+  },
+  {
     "app": "r-lang",
     "identifier": "r-base",
+    "isAvailable": true,
+    "source": "apt"
+  },
+  {
+    "app": "ranger",
+    "identifier": "ranger",
+    "isAvailable": true,
+    "source": "apt"
+  },
+  {
+    "app": "redis",
+    "identifier": "redis-server",
     "isAvailable": true,
     "source": "apt"
   },
@@ -381,14 +537,14 @@
     "source": "apt"
   },
   {
-    "app": "steam",
-    "identifier": "steam",
+    "app": "s-tui",
+    "identifier": "s-tui",
     "isAvailable": true,
     "source": "apt"
   },
   {
-    "app": "s-tui",
-    "identifier": "s-tui",
+    "app": "steam",
+    "identifier": "steam",
     "isAvailable": true,
     "source": "apt"
   },
@@ -441,6 +597,30 @@
     "source": "apt"
   },
   {
+    "app": "vagrant",
+    "identifier": "vagrant",
+    "isAvailable": true,
+    "source": "apt"
+  },
+  {
+    "app": "vifm",
+    "identifier": "vifm",
+    "isAvailable": true,
+    "source": "apt"
+  },
+  {
+    "app": "virt-manager",
+    "identifier": "virt-manager",
+    "isAvailable": true,
+    "source": "apt"
+  },
+  {
+    "app": "virtualbox",
+    "identifier": "virtualbox",
+    "isAvailable": true,
+    "source": "apt"
+  },
+  {
     "app": "vlc",
     "identifier": "vlc",
     "isAvailable": true,
@@ -459,188 +639,8 @@
     "source": "apt"
   },
   {
-    "app": "zsh",
-    "identifier": "zsh",
-    "isAvailable": true,
-    "source": "apt"
-  },
-  {
-    "app": "freecad",
-    "identifier": "freecad",
-    "isAvailable": true,
-    "source": "apt"
-  },
-  {
-    "app": "postgresql",
-    "identifier": "postgresql",
-    "isAvailable": true,
-    "source": "apt"
-  },
-  {
-    "app": "redis",
-    "identifier": "redis-server",
-    "isAvailable": true,
-    "source": "apt"
-  },
-  {
-    "app": "nginx",
-    "identifier": "nginx",
-    "isAvailable": true,
-    "source": "apt"
-  },
-  {
-    "app": "apache",
-    "identifier": "apache2",
-    "isAvailable": true,
-    "source": "apt"
-  },
-  {
-    "app": "qemu",
-    "identifier": "qemu-system",
-    "isAvailable": true,
-    "source": "apt"
-  },
-  {
-    "app": "virtualbox",
-    "identifier": "virtualbox",
-    "isAvailable": true,
-    "source": "apt"
-  },
-  {
-    "app": "vagrant",
-    "identifier": "vagrant",
-    "isAvailable": true,
-    "source": "apt"
-  },
-  {
-    "app": "virt-manager",
-    "identifier": "virt-manager",
-    "isAvailable": true,
-    "source": "apt"
-  },
-  {
-    "app": "nmap",
-    "identifier": "nmap",
-    "isAvailable": true,
-    "source": "apt"
-  },
-  {
-    "app": "openssh",
-    "identifier": "openssh-server",
-    "isAvailable": true,
-    "source": "apt"
-  },
-  {
-    "app": "openvpn",
-    "identifier": "openvpn",
-    "isAvailable": true,
-    "source": "apt"
-  },
-  {
     "app": "wireguard",
     "identifier": "wireguard",
-    "isAvailable": true,
-    "source": "apt"
-  },
-  {
-    "app": "aria2",
-    "identifier": "aria2",
-    "isAvailable": true,
-    "source": "apt"
-  },
-  {
-    "app": "ranger",
-    "identifier": "ranger",
-    "isAvailable": true,
-    "source": "apt"
-  },
-  {
-    "app": "fd",
-    "identifier": "fd-find",
-    "isAvailable": true,
-    "source": "apt"
-  },
-  {
-    "app": "micro",
-    "identifier": "micro",
-    "isAvailable": true,
-    "source": "apt"
-  },
-  {
-    "app": "ffmpeg",
-    "identifier": "ffmpeg",
-    "isAvailable": true,
-    "source": "apt"
-  },
-  {
-    "app": "ansible",
-    "identifier": "ansible",
-    "isAvailable": true,
-    "source": "apt"
-  },
-  {
-    "app": "gh",
-    "identifier": "gh",
-    "isAvailable": true,
-    "source": "apt"
-  },
-  {
-    "app": "fish",
-    "identifier": "fish",
-    "isAvailable": true,
-    "source": "apt"
-  },
-  {
-    "app": "httpie",
-    "identifier": "httpie",
-    "isAvailable": true,
-    "source": "apt"
-  },
-  {
-    "app": "kitty",
-    "identifier": "kitty",
-    "isAvailable": true,
-    "source": "apt"
-  },
-  {
-    "app": "glances",
-    "identifier": "glances",
-    "isAvailable": true,
-    "source": "apt"
-  },
-  {
-    "app": "mitmproxy",
-    "identifier": "mitmproxy",
-    "isAvailable": true,
-    "source": "apt"
-  },
-  {
-    "app": "moreutils",
-    "identifier": "moreutils",
-    "isAvailable": true,
-    "source": "apt"
-  },
-  {
-    "app": "mtr",
-    "identifier": "mtr",
-    "isAvailable": true,
-    "source": "apt"
-  },
-  {
-    "app": "nnn",
-    "identifier": "nnn",
-    "isAvailable": true,
-    "source": "apt"
-  },
-  {
-    "app": "qutebrowser",
-    "identifier": "qutebrowser",
-    "isAvailable": true,
-    "source": "apt"
-  },
-  {
-    "app": "vifm",
-    "identifier": "vifm",
     "isAvailable": true,
     "source": "apt"
   },
@@ -651,8 +651,8 @@
     "source": "apt"
   },
   {
-    "app": "nyxt",
-    "identifier": "nyxt",
+    "app": "zsh",
+    "identifier": "zsh",
     "isAvailable": true,
     "source": "apt"
   }

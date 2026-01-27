@@ -6,14 +6,26 @@
     "source": "dnf"
   },
   {
-    "app": "conky",
-    "identifier": "conky",
+    "app": "alacritty",
+    "identifier": "alacritty",
     "isAvailable": true,
     "source": "dnf"
   },
   {
-    "app": "alacritty",
-    "identifier": "alacritty",
+    "app": "ansible",
+    "identifier": "ansible",
+    "isAvailable": true,
+    "source": "dnf"
+  },
+  {
+    "app": "apache",
+    "identifier": "httpd",
+    "isAvailable": true,
+    "source": "dnf"
+  },
+  {
+    "app": "aria2",
+    "identifier": "aria2",
     "isAvailable": true,
     "source": "dnf"
   },
@@ -57,6 +69,15 @@
     }
   },
   {
+    "app": "choose",
+    "identifier": "choose",
+    "isAvailable": true,
+    "source": "dnf",
+    "packageSetupCmd": {
+      "rhel": "sudo dnf copr enable atim/choose"
+    }
+  },
+  {
     "app": "chromium",
     "identifier": "chromium",
     "isAvailable": true,
@@ -65,6 +86,12 @@
   {
     "app": "clang",
     "identifier": "clang",
+    "isAvailable": true,
+    "source": "dnf"
+  },
+  {
+    "app": "conky",
+    "identifier": "conky",
     "isAvailable": true,
     "source": "dnf"
   },
@@ -93,6 +120,12 @@
     "source": "dnf"
   },
   {
+    "app": "dust",
+    "identifier": "du-dust",
+    "isAvailable": true,
+    "source": "dnf"
+  },
+  {
     "app": "emacs",
     "identifier": "emacs",
     "isAvailable": true,
@@ -105,6 +138,27 @@
     "source": "dnf"
   },
   {
+    "app": "eza",
+    "identifier": "eza",
+    "isAvailable": true,
+    "source": "dnf"
+  },
+  {
+    "app": "fd",
+    "identifier": "fd-find",
+    "isAvailable": true,
+    "source": "dnf"
+  },
+  {
+    "app": "ffmpeg",
+    "identifier": "ffmpeg",
+    "isAvailable": true,
+    "source": "dnf",
+    "packageSetupCmd": {
+      "rhel": "sudo dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm"
+    }
+  },
+  {
     "app": "filezilla",
     "identifier": "filezilla",
     "isAvailable": true,
@@ -113,6 +167,12 @@
   {
     "app": "firefox",
     "identifier": "firefox",
+    "isAvailable": true,
+    "source": "dnf"
+  },
+  {
+    "app": "fish",
+    "identifier": "fish",
     "isAvailable": true,
     "source": "dnf"
   },
@@ -141,12 +201,6 @@
     "source": "dnf"
   },
   {
-    "app": "gh",
-    "identifier": "gh",
-    "isAvailable": true,
-    "source": "dnf"
-  },
-  {
     "app": "gcc",
     "identifier": "gcc",
     "isAvailable": true,
@@ -155,6 +209,12 @@
   {
     "app": "geary",
     "identifier": "geary",
+    "isAvailable": true,
+    "source": "dnf"
+  },
+  {
+    "app": "gh",
+    "identifier": "gh",
     "isAvailable": true,
     "source": "dnf"
   },
@@ -175,6 +235,15 @@
     "identifier": "golang",
     "isAvailable": true,
     "source": "dnf"
+  },
+  {
+    "app": "gping",
+    "identifier": "gping",
+    "isAvailable": true,
+    "source": "dnf",
+    "packageSetupCmd": {
+      "rhel": "sudo dnf copr enable atim/gping"
+    }
   },
   {
     "app": "httpie",
@@ -225,6 +294,15 @@
     "source": "dnf"
   },
   {
+    "app": "lf",
+    "identifier": "lf",
+    "isAvailable": true,
+    "source": "dnf",
+    "packageSetupCmd": {
+      "rhel": "sudo dnf copr enable pennbauman/lf"
+    }
+  },
+  {
     "app": "libreoffice",
     "identifier": "libreoffice",
     "isAvailable": true,
@@ -249,6 +327,12 @@
     "source": "dnf"
   },
   {
+    "app": "moreutils",
+    "identifier": "moreutils",
+    "isAvailable": true,
+    "source": "dnf"
+  },
+  {
     "app": "mpv",
     "identifier": "mpv",
     "isAvailable": true,
@@ -258,20 +342,53 @@
     }
   },
   {
+    "app": "mtr",
+    "identifier": "mtr",
+    "isAvailable": true,
+    "source": "dnf"
+  },
+  {
     "app": "neovim",
     "identifier": "neovim",
     "isAvailable": true,
     "source": "dnf"
   },
   {
-    "app": "nvtop",
-    "identifier": "nvtop",
+    "app": "nginx",
+    "identifier": "nginx",
+    "isAvailable": true,
+    "source": "dnf"
+  },
+  {
+    "app": "nmap",
+    "identifier": "nmap",
+    "isAvailable": true,
+    "source": "dnf"
+  },
+  {
+    "app": "nnn",
+    "identifier": "nnn",
     "isAvailable": true,
     "source": "dnf"
   },
   {
     "app": "nodejs",
     "identifier": "nodejs",
+    "isAvailable": true,
+    "source": "dnf"
+  },
+  {
+    "app": "nushell",
+    "identifier": "nushell",
+    "isAvailable": true,
+    "source": "dnf",
+    "packageSetupCmd": {
+      "rhel": "sudo dnf copr enable atim/nushell"
+    }
+  },
+  {
+    "app": "nvtop",
+    "identifier": "nvtop",
     "isAvailable": true,
     "source": "dnf"
   },
@@ -285,14 +402,26 @@
     }
   },
   {
+    "app": "openshot",
+    "identifier": "openshot",
+    "isAvailable": true,
+    "source": "dnf"
+  },
+  {
+    "app": "openssh",
+    "identifier": "openssh-server",
+    "isAvailable": true,
+    "source": "dnf"
+  },
+  {
     "app": "opentofu",
     "identifier": "opentofu",
     "isAvailable": true,
     "source": "dnf"
   },
   {
-    "app": "openshot",
-    "identifier": "openshot",
+    "app": "openvpn",
+    "identifier": "openvpn",
     "isAvailable": true,
     "source": "dnf"
   },
@@ -309,6 +438,12 @@
     "source": "dnf"
   },
   {
+    "app": "postgresql",
+    "identifier": "postgresql-server",
+    "isAvailable": true,
+    "source": "dnf"
+  },
+  {
     "app": "python",
     "identifier": "python3",
     "isAvailable": true,
@@ -317,6 +452,30 @@
   {
     "app": "qbittorrent",
     "identifier": "qbittorrent",
+    "isAvailable": true,
+    "source": "dnf"
+  },
+  {
+    "app": "qemu",
+    "identifier": "qemu-kvm",
+    "isAvailable": true,
+    "source": "dnf"
+  },
+  {
+    "app": "qutebrowser",
+    "identifier": "qutebrowser",
+    "isAvailable": true,
+    "source": "dnf"
+  },
+  {
+    "app": "ranger",
+    "identifier": "ranger",
+    "isAvailable": true,
+    "source": "dnf"
+  },
+  {
+    "app": "redis",
+    "identifier": "redis",
     "isAvailable": true,
     "source": "dnf"
   },
@@ -351,6 +510,12 @@
     "source": "dnf"
   },
   {
+    "app": "skim",
+    "identifier": "skim",
+    "isAvailable": true,
+    "source": "dnf"
+  },
+  {
     "app": "supertuxkart",
     "identifier": "supertuxkart",
     "isAvailable": true,
@@ -381,13 +546,16 @@
     "source": "dnf"
   },
   {
-    "app": "vlc",
-    "identifier": "vlc",
+    "app": "vagrant",
+    "identifier": "vagrant",
     "isAvailable": true,
-    "source": "dnf",
-    "packageSetupCmd": {
-      "rhel": "sudo dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm"
-    }
+    "source": "dnf"
+  },
+  {
+    "app": "vifm",
+    "identifier": "vifm",
+    "isAvailable": true,
+    "source": "dnf"
   },
   {
     "app": "virt-manager",
@@ -396,127 +564,19 @@
     "source": "dnf"
   },
   {
-    "app": "zsh",
-    "identifier": "zsh",
+    "app": "virtualbox",
+    "identifier": "VirtualBox",
     "isAvailable": true,
     "source": "dnf"
   },
   {
-    "app": "apache",
-    "identifier": "httpd",
-    "isAvailable": true,
-    "source": "dnf"
-  },
-  {
-    "app": "nginx",
-    "identifier": "nginx",
-    "isAvailable": true,
-    "source": "dnf"
-  },
-  {
-    "app": "nnn",
-    "identifier": "nnn",
-    "isAvailable": true,
-    "source": "dnf"
-  },
-  {
-    "app": "postgresql",
-    "identifier": "postgresql-server",
-    "isAvailable": true,
-    "source": "dnf"
-  },
-  {
-    "app": "redis",
-    "identifier": "redis",
-    "isAvailable": true,
-    "source": "dnf"
-  },
-  {
-    "app": "ansible",
-    "identifier": "ansible",
-    "isAvailable": true,
-    "source": "dnf"
-  },
-  {
-    "app": "ffmpeg",
-    "identifier": "ffmpeg",
+    "app": "vlc",
+    "identifier": "vlc",
     "isAvailable": true,
     "source": "dnf",
     "packageSetupCmd": {
       "rhel": "sudo dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm"
     }
-  },
-  {
-    "app": "choose",
-    "identifier": "choose",
-    "isAvailable": true,
-    "source": "dnf",
-    "packageSetupCmd": {
-      "rhel": "sudo dnf copr enable atim/choose"
-    }
-  },
-  {
-    "app": "nushell",
-    "identifier": "nushell",
-    "isAvailable": true,
-    "source": "dnf",
-    "packageSetupCmd": {
-      "rhel": "sudo dnf copr enable atim/nushell"
-    }
-  },
-  {
-    "app": "gping",
-    "identifier": "gping",
-    "isAvailable": true,
-    "source": "dnf",
-    "packageSetupCmd": {
-      "rhel": "sudo dnf copr enable atim/gping"
-    }
-  },
-  {
-    "app": "lf",
-    "identifier": "lf",
-    "isAvailable": true,
-    "source": "dnf",
-    "packageSetupCmd": {
-      "rhel": "sudo dnf copr enable pennbauman/lf"
-    }
-  },
-  {
-    "app": "dust",
-    "identifier": "du-dust",
-    "isAvailable": true,
-    "source": "dnf"
-  },
-  {
-    "app": "moreutils",
-    "identifier": "moreutils",
-    "isAvailable": true,
-    "source": "dnf"
-  },
-  {
-    "app": "mtr",
-    "identifier": "mtr",
-    "isAvailable": true,
-    "source": "dnf"
-  },
-  {
-    "app": "nmap",
-    "identifier": "nmap",
-    "isAvailable": true,
-    "source": "dnf"
-  },
-  {
-    "app": "openssh",
-    "identifier": "openssh-server",
-    "isAvailable": true,
-    "source": "dnf"
-  },
-  {
-    "app": "openvpn",
-    "identifier": "openvpn",
-    "isAvailable": true,
-    "source": "dnf"
   },
   {
     "app": "wireguard",
@@ -531,74 +591,14 @@
     "source": "dnf"
   },
   {
-    "app": "qemu",
-    "identifier": "qemu-kvm",
-    "isAvailable": true,
-    "source": "dnf"
-  },
-  {
-    "app": "qutebrowser",
-    "identifier": "qutebrowser",
-    "isAvailable": true,
-    "source": "dnf"
-  },
-  {
-    "app": "virtualbox",
-    "identifier": "VirtualBox",
-    "isAvailable": true,
-    "source": "dnf"
-  },
-  {
-    "app": "vagrant",
-    "identifier": "vagrant",
-    "isAvailable": true,
-    "source": "dnf"
-  },
-  {
-    "app": "fish",
-    "identifier": "fish",
-    "isAvailable": true,
-    "source": "dnf"
-  },
-  {
-    "app": "aria2",
-    "identifier": "aria2",
-    "isAvailable": true,
-    "source": "dnf"
-  },
-  {
-    "app": "eza",
-    "identifier": "eza",
-    "isAvailable": true,
-    "source": "dnf"
-  },
-  {
-    "app": "fd",
-    "identifier": "fd-find",
-    "isAvailable": true,
-    "source": "dnf"
-  },
-  {
-    "app": "ranger",
-    "identifier": "ranger",
-    "isAvailable": true,
-    "source": "dnf"
-  },
-  {
     "app": "xournalpp",
     "identifier": "xournalpp",
     "isAvailable": true,
     "source": "dnf"
   },
   {
-    "app": "vifm",
-    "identifier": "vifm",
-    "isAvailable": true,
-    "source": "dnf"
-  },
-  {
-    "app": "skim",
-    "identifier": "skim",
+    "app": "zsh",
+    "identifier": "zsh",
     "isAvailable": true,
     "source": "dnf"
   }

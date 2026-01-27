@@ -1,5 +1,11 @@
 [
   {
+    "app": "",
+    "identifier": "dust",
+    "isAvailable": true,
+    "source": "scoop"
+  },
+  {
     "app": "alacritty",
     "identifier": "alacritty",
     "isAvailable": true,
@@ -24,12 +30,6 @@
     "source": "scoop"
   },
   {
-    "app": "bottom",
-    "identifier": "bottom",
-    "isAvailable": true,
-    "source": "scoop"
-  },
-  {
     "app": "balena-etcher",
     "identifier": "balena-cli",
     "isAvailable": true,
@@ -50,6 +50,12 @@
   {
     "app": "blender",
     "identifier": "blender",
+    "isAvailable": true,
+    "source": "scoop"
+  },
+  {
+    "app": "bottom",
+    "identifier": "bottom",
     "isAvailable": true,
     "source": "scoop"
   },
@@ -90,14 +96,14 @@
     "source": "scoop"
   },
   {
-    "app": "delta",
-    "identifier": "delta",
+    "app": "dbeaver",
+    "identifier": "dbeaver",
     "isAvailable": true,
     "source": "scoop"
   },
   {
-    "app": "dbeaver",
-    "identifier": "dbeaver",
+    "app": "delta",
+    "identifier": "delta",
     "isAvailable": true,
     "source": "scoop"
   },
@@ -120,8 +126,8 @@
     "source": "scoop"
   },
   {
-    "app": "",
-    "identifier": "dust",
+    "app": "fastfetch",
+    "identifier": "fastfetch",
     "isAvailable": true,
     "source": "scoop"
   },
@@ -134,12 +140,6 @@
   {
     "app": "ffmpeg",
     "identifier": "ffmpeg",
-    "isAvailable": true,
-    "source": "scoop"
-  },
-  {
-    "app": "fastfetch",
-    "identifier": "fastfetch",
     "isAvailable": true,
     "source": "scoop"
   },
@@ -216,14 +216,14 @@
     "source": "scoop"
   },
   {
-    "app": "jq",
-    "identifier": "jq",
+    "app": "jnv",
+    "identifier": "jnv",
     "isAvailable": true,
     "source": "scoop"
   },
   {
-    "app": "jnv",
-    "identifier": "jnv",
+    "app": "jq",
+    "identifier": "jq",
     "isAvailable": true,
     "source": "scoop"
   },
@@ -252,14 +252,14 @@
     "source": "scoop"
   },
   {
-    "app": "lf",
-    "identifier": "lf",
+    "app": "lazygit",
+    "identifier": "lazygit",
     "isAvailable": true,
     "source": "scoop"
   },
   {
-    "app": "lazygit",
-    "identifier": "lazygit",
+    "app": "lf",
+    "identifier": "lf",
     "isAvailable": true,
     "source": "scoop"
   },
@@ -314,6 +314,12 @@
   {
     "app": "notion",
     "identifier": "notion",
+    "isAvailable": true,
+    "source": "scoop"
+  },
+  {
+    "app": "nushell",
+    "identifier": "nu",
     "isAvailable": true,
     "source": "scoop"
   },
@@ -498,14 +504,14 @@
     "source": "scoop"
   },
   {
-    "app": "yq",
-    "identifier": "yq",
+    "app": "xh",
+    "identifier": "xh",
     "isAvailable": true,
     "source": "scoop"
   },
   {
-    "app": "xh",
-    "identifier": "xh",
+    "app": "yq",
+    "identifier": "yq",
     "isAvailable": true,
     "source": "scoop"
   },
@@ -524,12 +530,6 @@
   {
     "app": "zoxide",
     "identifier": "zoxide",
-    "isAvailable": true,
-    "source": "scoop"
-  },
-  {
-    "app": "nushell",
-    "identifier": "nu",
     "isAvailable": true,
     "source": "scoop"
   },

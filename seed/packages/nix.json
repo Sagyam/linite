@@ -1,25 +1,19 @@
 [
   {
-    "app": "audacity",
-    "identifier": "audacity",
+    "app": "alacritty",
+    "identifier": "alacritty",
     "isAvailable": true,
     "source": "nix"
   },
   {
-    "app": "conky",
-    "identifier": "conky",
+    "app": "android-studio",
+    "identifier": "android-studio-full",
     "isAvailable": true,
     "source": "nix"
   },
   {
-    "app": "cheat",
-    "identifier": "cheat",
-    "isAvailable": true,
-    "source": "nix"
-  },
-  {
-    "app": "bottom",
-    "identifier": "bottom",
+    "app": "ansible",
+    "identifier": "ansible",
     "isAvailable": true,
     "source": "nix"
   },
@@ -30,14 +24,44 @@
     "source": "nix"
   },
   {
+    "app": "audacity",
+    "identifier": "audacity",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "balena-etcher",
+    "identifier": "balena-cli",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
     "app": "bat",
     "identifier": "bat",
     "isAvailable": true,
     "source": "nix"
   },
   {
+    "app": "bitwarden",
+    "identifier": "bitwarden-desktop",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
     "app": "blender",
     "identifier": "blender",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "bottles",
+    "identifier": "bottles",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "bottom",
+    "identifier": "bottom",
     "isAvailable": true,
     "source": "nix"
   },
@@ -54,8 +78,32 @@
     "source": "nix"
   },
   {
+    "app": "bun",
+    "identifier": "bun",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "calibre",
+    "identifier": "calibre",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "cheat",
+    "identifier": "cheat",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
     "app": "chromium",
     "identifier": "chromium",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "conky",
+    "identifier": "conky",
     "isAvailable": true,
     "source": "nix"
   },
@@ -66,14 +114,50 @@
     "source": "nix"
   },
   {
-    "app": "docker",
-    "identifier": "docker",
+    "app": "cursor",
+    "identifier": "cursor-cli",
     "isAvailable": true,
     "source": "nix"
   },
   {
     "app": "delta",
     "identifier": "delta",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "deluge",
+    "identifier": "deluge",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "deno",
+    "identifier": "deno",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "discord",
+    "identifier": "discord",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "docker",
+    "identifier": "docker",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "dolphin-emu",
+    "identifier": "dolphin-emu",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "dropbox",
+    "identifier": "dropbox",
     "isAvailable": true,
     "source": "nix"
   },
@@ -96,8 +180,44 @@
     "source": "nix"
   },
   {
+    "app": "eza",
+    "identifier": "eza",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "fastfetch",
+    "identifier": "fastfetch",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "fd",
+    "identifier": "fd",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "ffmpeg",
+    "identifier": "ffmpeg",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "filezilla",
+    "identifier": "filezilla",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
     "app": "firefox",
     "identifier": "firefox",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "fish",
+    "identifier": "fish",
     "isAvailable": true,
     "source": "nix"
   },
@@ -114,26 +234,20 @@
     "source": "nix"
   },
   {
-    "app": "fastfetch",
-    "identifier": "fastfetch",
-    "isAvailable": true,
-    "source": "nix"
-  },
-  {
     "app": "gcc",
     "identifier": "gcc",
     "isAvailable": true,
     "source": "nix"
   },
   {
-    "app": "gh",
-    "identifier": "gh",
+    "app": "gemini-cli",
+    "identifier": "gemini-cli",
     "isAvailable": true,
     "source": "nix"
   },
   {
-    "app": "gemini-cli",
-    "identifier": "gemini-cli",
+    "app": "gh",
+    "identifier": "gh",
     "isAvailable": true,
     "source": "nix"
   },
@@ -162,6 +276,18 @@
     "source": "nix"
   },
   {
+    "app": "helix",
+    "identifier": "helix",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "heroic",
+    "identifier": "heroic",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
     "app": "httpie",
     "identifier": "httpie",
     "isAvailable": true,
@@ -174,254 +300,14 @@
     "source": "nix"
   },
   {
-    "app": "java",
-    "identifier": "jdk25_headless",
-    "isAvailable": true,
-    "source": "nix"
-  },
-  {
-    "app": "jq",
-    "identifier": "jq",
-    "isAvailable": true,
-    "source": "nix"
-  },
-  {
     "app": "jan",
     "identifier": "jan",
     "isAvailable": true,
     "source": "nix"
   },
   {
-    "app": "keepassxc",
-    "identifier": "keepassxc",
-    "isAvailable": true,
-    "source": "nix"
-  },
-  {
-    "app": "krita",
-    "identifier": "krita",
-    "isAvailable": true,
-    "source": "nix"
-  },
-  {
-    "app": "mpv",
-    "identifier": "mpv",
-    "isAvailable": true,
-    "source": "nix"
-  },
-  {
-    "app": "neovim",
-    "identifier": "neovim",
-    "isAvailable": true,
-    "source": "nix"
-  },
-  {
-    "app": "nodejs",
-    "identifier": "nodejs",
-    "isAvailable": true,
-    "source": "nix"
-  },
-  {
-    "app": "php",
-    "identifier": "php",
-    "isAvailable": true,
-    "source": "nix"
-  },
-  {
-    "app": "python",
-    "identifier": "python3",
-    "isAvailable": true,
-    "source": "nix"
-  },
-  {
-    "app": "ripgrep",
-    "identifier": "ripgrep",
-    "isAvailable": true,
-    "source": "nix"
-  },
-  {
-    "app": "ruby",
-    "identifier": "ruby",
-    "isAvailable": true,
-    "source": "nix"
-  },
-  {
-    "app": "rust",
-    "identifier": "rustc",
-    "isAvailable": true,
-    "source": "nix"
-  },
-  {
-    "app": "slack",
-    "identifier": "slack",
-    "isAvailable": true,
-    "source": "nix"
-  },
-  {
-    "app": "steam",
-    "identifier": "steam",
-    "isAvailable": true,
-    "source": "nix"
-  },
-  {
-    "app": "thunderbird",
-    "identifier": "thunderbird",
-    "isAvailable": true,
-    "source": "nix"
-  },
-  {
-    "app": "tldr",
-    "identifier": "tldr",
-    "isAvailable": true,
-    "source": "nix"
-  },
-  {
-    "app": "tmux",
-    "identifier": "tmux",
-    "isAvailable": true,
-    "source": "nix"
-  },
-  {
-    "app": "vlc",
-    "identifier": "vlc",
-    "isAvailable": true,
-    "source": "nix"
-  },
-  {
-    "app": "zsh",
-    "identifier": "zsh",
-    "isAvailable": true,
-    "source": "nix"
-  },
-  {
-    "app": "ungoogled-chromium",
-    "identifier": "ungoogled-chromium",
-    "isAvailable": true,
-    "source": "nix"
-  },
-  {
-    "app": "alacritty",
-    "identifier": "alacritty",
-    "isAvailable": true,
-    "source": "nix"
-  },
-  {
-    "app": "android-studio",
-    "identifier": "android-studio-full",
-    "isAvailable": true,
-    "source": "nix"
-  },
-  {
-    "app": "ansible",
-    "identifier": "ansible",
-    "isAvailable": true,
-    "source": "nix"
-  },
-  {
-    "app": "balena-etcher",
-    "identifier": "balena-cli",
-    "isAvailable": true,
-    "source": "nix"
-  },
-  {
-    "app": "bitwarden",
-    "identifier": "bitwarden-desktop",
-    "isAvailable": true,
-    "source": "nix"
-  },
-  {
-    "app": "bottles",
-    "identifier": "bottles",
-    "isAvailable": true,
-    "source": "nix"
-  },
-  {
-    "app": "bun",
-    "identifier": "bun",
-    "isAvailable": true,
-    "source": "nix"
-  },
-  {
-    "app": "calibre",
-    "identifier": "calibre",
-    "isAvailable": true,
-    "source": "nix"
-  },
-  {
-    "app": "cursor",
-    "identifier": "cursor-cli",
-    "isAvailable": true,
-    "source": "nix"
-  },
-  {
-    "app": "deluge",
-    "identifier": "deluge",
-    "isAvailable": true,
-    "source": "nix"
-  },
-  {
-    "app": "deno",
-    "identifier": "deno",
-    "isAvailable": true,
-    "source": "nix"
-  },
-  {
-    "app": "discord",
-    "identifier": "discord",
-    "isAvailable": true,
-    "source": "nix"
-  },
-  {
-    "app": "dolphin-emu",
-    "identifier": "dolphin-emu",
-    "isAvailable": true,
-    "source": "nix"
-  },
-  {
-    "app": "dropbox",
-    "identifier": "dropbox",
-    "isAvailable": true,
-    "source": "nix"
-  },
-  {
-    "app": "eza",
-    "identifier": "eza",
-    "isAvailable": true,
-    "source": "nix"
-  },
-  {
-    "app": "fd",
-    "identifier": "fd",
-    "isAvailable": true,
-    "source": "nix"
-  },
-  {
-    "app": "ffmpeg",
-    "identifier": "ffmpeg",
-    "isAvailable": true,
-    "source": "nix"
-  },
-  {
-    "app": "filezilla",
-    "identifier": "filezilla",
-    "isAvailable": true,
-    "source": "nix"
-  },
-  {
-    "app": "fish",
-    "identifier": "fish",
-    "isAvailable": true,
-    "source": "nix"
-  },
-  {
-    "app": "helix",
-    "identifier": "helix",
-    "isAvailable": true,
-    "source": "nix"
-  },
-  {
-    "app": "heroic",
-    "identifier": "heroic",
+    "app": "java",
+    "identifier": "jdk25_headless",
     "isAvailable": true,
     "source": "nix"
   },
@@ -444,14 +330,32 @@
     "source": "nix"
   },
   {
+    "app": "jq",
+    "identifier": "jq",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
     "app": "k9s",
     "identifier": "k9s",
     "isAvailable": true,
     "source": "nix"
   },
   {
+    "app": "keepassxc",
+    "identifier": "keepassxc",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
     "app": "kitty",
     "identifier": "kitty",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "krita",
+    "identifier": "krita",
     "isAvailable": true,
     "source": "nix"
   },
@@ -464,12 +368,6 @@
   {
     "app": "lazydocker",
     "identifier": "lazydocker",
-    "isAvailable": true,
-    "source": "nix"
-  },
-  {
-    "app": "llama-cpp",
-    "identifier": "llama-cpp",
     "isAvailable": true,
     "source": "nix"
   },
@@ -492,6 +390,12 @@
     "source": "nix"
   },
   {
+    "app": "llama-cpp",
+    "identifier": "llama-cpp",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
     "app": "logseq",
     "identifier": "logseq",
     "isAvailable": true,
@@ -510,14 +414,14 @@
     "source": "nix"
   },
   {
-    "app": "mega",
-    "identifier": "megasync",
+    "app": "mcfly",
+    "identifier": "mcfly",
     "isAvailable": true,
     "source": "nix"
   },
   {
-    "app": "mcfly",
-    "identifier": "mcfly",
+    "app": "mega",
+    "identifier": "megasync",
     "isAvailable": true,
     "source": "nix"
   },
@@ -528,14 +432,14 @@
     "source": "nix"
   },
   {
-    "app": "mitmproxy",
-    "identifier": "mitmproxy",
+    "app": "mission-center",
+    "identifier": "mission-center",
     "isAvailable": true,
     "source": "nix"
   },
   {
-    "app": "mission-center",
-    "identifier": "mission-center",
+    "app": "mitmproxy",
+    "identifier": "mitmproxy",
     "isAvailable": true,
     "source": "nix"
   },
@@ -548,6 +452,18 @@
   {
     "app": "moreutils",
     "identifier": "moreutils",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "mpv",
+    "identifier": "mpv",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "neovim",
+    "identifier": "neovim",
     "isAvailable": true,
     "source": "nix"
   },
@@ -570,8 +486,20 @@
     "source": "nix"
   },
   {
+    "app": "nodejs",
+    "identifier": "nodejs",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
     "app": "notion",
     "identifier": "notion",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "nushell",
+    "identifier": "nushell",
     "isAvailable": true,
     "source": "nix"
   },
@@ -600,6 +528,12 @@
     "source": "nix"
   },
   {
+    "app": "opencode",
+    "identifier": "opencode",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
     "app": "openshot",
     "identifier": "openshot-qt",
     "isAvailable": true,
@@ -618,14 +552,14 @@
     "source": "nix"
   },
   {
-    "app": "opencode",
-    "identifier": "opencode",
+    "app": "pcsx2",
+    "identifier": "pcsx2",
     "isAvailable": true,
     "source": "nix"
   },
   {
-    "app": "pcsx2",
-    "identifier": "pcsx2",
+    "app": "php",
+    "identifier": "php",
     "isAvailable": true,
     "source": "nix"
   },
@@ -644,6 +578,12 @@
   {
     "app": "postman",
     "identifier": "postman",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "python",
+    "identifier": "python3",
     "isAvailable": true,
     "source": "nix"
   },
@@ -702,6 +642,24 @@
     "source": "nix"
   },
   {
+    "app": "ripgrep",
+    "identifier": "ripgrep",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "ruby",
+    "identifier": "ruby",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "rust",
+    "identifier": "rustc",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
     "app": "rustdesk",
     "identifier": "rustdesk",
     "isAvailable": true,
@@ -720,6 +678,18 @@
     "source": "nix"
   },
   {
+    "app": "skim",
+    "identifier": "skim",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "slack",
+    "identifier": "slack",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
     "app": "spotify",
     "identifier": "spotify",
     "isAvailable": true,
@@ -732,6 +702,12 @@
     "source": "nix"
   },
   {
+    "app": "steam",
+    "identifier": "steam",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
     "app": "sublime-text",
     "identifier": "sublime4",
     "isAvailable": true,
@@ -740,12 +716,6 @@
   {
     "app": "supertuxkart",
     "identifier": "superTuxKart",
-    "isAvailable": true,
-    "source": "nix"
-  },
-  {
-    "app": "skim",
-    "identifier": "skim",
     "isAvailable": true,
     "source": "nix"
   },
@@ -768,14 +738,38 @@
     "source": "nix"
   },
   {
+    "app": "thunderbird",
+    "identifier": "thunderbird",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
     "app": "timeshift",
     "identifier": "timeshift",
     "isAvailable": true,
     "source": "nix"
   },
   {
+    "app": "tldr",
+    "identifier": "tldr",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "tmux",
+    "identifier": "tmux",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
     "app": "transmission",
     "identifier": "transmission",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "ungoogled-chromium",
+    "identifier": "ungoogled-chromium",
     "isAvailable": true,
     "source": "nix"
   },
@@ -804,6 +798,12 @@
     "source": "nix"
   },
   {
+    "app": "vifm",
+    "identifier": "vifm",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
     "app": "virt-manager",
     "identifier": "virt-manager",
     "isAvailable": true,
@@ -822,14 +822,14 @@
     "source": "nix"
   },
   {
-    "app": "vscode",
-    "identifier": "vscode",
+    "app": "vlc",
+    "identifier": "vlc",
     "isAvailable": true,
     "source": "nix"
   },
   {
-    "app": "vifm",
-    "identifier": "vifm",
+    "app": "vscode",
+    "identifier": "vscode",
     "isAvailable": true,
     "source": "nix"
   },
@@ -864,8 +864,8 @@
     "source": "nix"
   },
   {
-    "app": "nushell",
-    "identifier": "nushell",
+    "app": "xh",
+    "identifier": "xh",
     "isAvailable": true,
     "source": "nix"
   },
@@ -878,12 +878,6 @@
   {
     "app": "yq",
     "identifier": "yq",
-    "isAvailable": true,
-    "source": "nix"
-  },
-  {
-    "app": "xh",
-    "identifier": "xh",
     "isAvailable": true,
     "source": "nix"
   },
@@ -902,6 +896,12 @@
   {
     "app": "zoxide",
     "identifier": "zoxide",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "zsh",
+    "identifier": "zsh",
     "isAvailable": true,
     "source": "nix"
   }

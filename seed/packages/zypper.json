@@ -1,89 +1,5 @@
 [
   {
-    "app": "aria2",
-    "identifier": "aria2",
-    "isAvailable": true,
-    "source": "zypper"
-  },
-  {
-    "app": "bottom",
-    "identifier": "bottom",
-    "isAvailable": true,
-    "source": "zypper"
-  },
-  {
-    "app": "fastfetch",
-    "identifier": "fastfetch",
-    "isAvailable": true,
-    "source": "zypper"
-  },
-  {
-    "app": "gcc",
-    "identifier": "gcc",
-    "isAvailable": true,
-    "source": "zypper"
-  },
-  {
-    "app": "gh",
-    "identifier": "gh",
-    "isAvailable": true,
-    "source": "zypper"
-  },
-  {
-    "app": "vifm",
-    "identifier": "vifm",
-    "isAvailable": true,
-    "source": "zypper"
-  },
-  {
-    "app": "git",
-    "identifier": "git",
-    "isAvailable": true,
-    "source": "zypper"
-  },
-  {
-    "app": "golang",
-    "identifier": "go",
-    "isAvailable": true,
-    "source": "zypper"
-  },
-  {
-    "app": "goverlay",
-    "identifier": "goverlay",
-    "isAvailable": true,
-    "source": "zypper"
-  },
-  {
-    "app": "perl",
-    "identifier": "perl",
-    "isAvailable": true,
-    "source": "zypper"
-  },
-  {
-    "app": "r-lang",
-    "identifier": "R-base",
-    "isAvailable": true,
-    "source": "zypper"
-  },
-  {
-    "app": "ruby",
-    "identifier": "ruby",
-    "isAvailable": true,
-    "source": "zypper"
-  },
-  {
-    "app": "rust",
-    "identifier": "cargo",
-    "isAvailable": true,
-    "source": "zypper"
-  },
-  {
-    "app": "s-tui",
-    "identifier": "s-tui",
-    "isAvailable": true,
-    "source": "zypper"
-  },
-  {
     "app": "0ad",
     "identifier": "0ad",
     "isAvailable": true,
@@ -108,6 +24,12 @@
     "source": "zypper"
   },
   {
+    "app": "aria2",
+    "identifier": "aria2",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
     "app": "audacity",
     "identifier": "audacity",
     "isAvailable": true,
@@ -128,6 +50,12 @@
   {
     "app": "blender",
     "identifier": "blender",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "bottom",
+    "identifier": "bottom",
     "isAvailable": true,
     "source": "zypper"
   },
@@ -192,26 +120,14 @@
     "source": "zypper"
   },
   {
-    "app": "mcfly",
-    "identifier": "mcfly",
-    "isAvailable": true,
-    "source": "zypper"
-  },
-  {
-    "app": "moreutils",
-    "identifier": "moreutils",
-    "isAvailable": true,
-    "source": "zypper"
-  },
-  {
-    "app": "mtr",
-    "identifier": "mtr",
-    "isAvailable": true,
-    "source": "zypper"
-  },
-  {
     "app": "eza",
     "identifier": "eza",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "fastfetch",
+    "identifier": "fastfetch",
     "isAvailable": true,
     "source": "zypper"
   },
@@ -252,14 +168,44 @@
     "source": "zypper"
   },
   {
+    "app": "gcc",
+    "identifier": "gcc",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "gh",
+    "identifier": "gh",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
     "app": "gimp",
     "identifier": "gimp",
     "isAvailable": true,
     "source": "zypper"
   },
   {
+    "app": "git",
+    "identifier": "git",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
     "app": "godot",
     "identifier": "godot",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "golang",
+    "identifier": "go",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "goverlay",
+    "identifier": "goverlay",
     "isAvailable": true,
     "source": "zypper"
   },
@@ -342,6 +288,24 @@
     "source": "zypper"
   },
   {
+    "app": "mcfly",
+    "identifier": "mcfly",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "moreutils",
+    "identifier": "moreutils",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "mtr",
+    "identifier": "mtr",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
     "app": "nmap",
     "identifier": "nmap",
     "isAvailable": true,
@@ -396,6 +360,12 @@
     "source": "zypper"
   },
   {
+    "app": "perl",
+    "identifier": "perl",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
     "app": "pnpm",
     "identifier": "pnpm",
     "isAvailable": true,
@@ -428,6 +398,12 @@
   {
     "app": "qutebrowser",
     "identifier": "qutebrowser",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "r-lang",
+    "identifier": "R-base",
     "isAvailable": true,
     "source": "zypper"
   },
@@ -476,6 +452,24 @@
   {
     "app": "rpcs3",
     "identifier": "rpcs3",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "ruby",
+    "identifier": "ruby",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "rust",
+    "identifier": "cargo",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "s-tui",
+    "identifier": "s-tui",
     "isAvailable": true,
     "source": "zypper"
   },
@@ -534,6 +528,12 @@
     "source": "zypper"
   },
   {
+    "app": "vifm",
+    "identifier": "vifm",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
     "app": "virt-manager",
     "identifier": "virt-manager",
     "isAvailable": true,
@@ -576,6 +576,12 @@
     "source": "zypper"
   },
   {
+    "app": "xournalpp",
+    "identifier": "xournalpp",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
     "app": "yazi",
     "identifier": "yazi",
     "isAvailable": true,
@@ -584,12 +590,6 @@
   {
     "app": "yq",
     "identifier": "yq",
-    "isAvailable": true,
-    "source": "zypper"
-  },
-  {
-    "app": "xournalpp",
-    "identifier": "xournalpp",
     "isAvailable": true,
     "source": "zypper"
   },

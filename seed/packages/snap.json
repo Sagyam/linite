@@ -36,14 +36,14 @@
     "source": "snap"
   },
   {
-    "app": "bottom",
-    "identifier": "bottom",
+    "app": "blender",
+    "identifier": "blender",
     "isAvailable": true,
     "source": "snap"
   },
   {
-    "app": "blender",
-    "identifier": "blender",
+    "app": "bottom",
+    "identifier": "bottom",
     "isAvailable": true,
     "source": "snap"
   },
@@ -54,14 +54,14 @@
     "source": "snap"
   },
   {
-    "app": "chromium",
-    "identifier": "chromium",
+    "app": "cheat",
+    "identifier": "cheat",
     "isAvailable": true,
     "source": "snap"
   },
   {
-    "app": "cheat",
-    "identifier": "cheat",
+    "app": "chromium",
+    "identifier": "chromium",
     "isAvailable": true,
     "source": "snap"
   },
@@ -102,14 +102,14 @@
     "source": "snap"
   },
   {
-    "app": "dust",
-    "identifier": "dust",
+    "app": "dolphin-emu",
+    "identifier": "dolphin-emulator",
     "isAvailable": true,
     "source": "snap"
   },
   {
-    "app": "dolphin-emu",
-    "identifier": "dolphin-emulator",
+    "app": "dust",
+    "identifier": "dust",
     "isAvailable": true,
     "source": "snap"
   },
@@ -132,18 +132,6 @@
     "source": "snap"
   },
   {
-    "app": "flameshot",
-    "identifier": "flameshot",
-    "isAvailable": true,
-    "source": "snap"
-  },
-  {
-    "app": "floorp",
-    "identifier": "floorp",
-    "isAvailable": true,
-    "source": "snap"
-  },
-  {
     "app": "filezilla",
     "identifier": "filezilla",
     "isAvailable": true,
@@ -156,14 +144,20 @@
     "source": "snap"
   },
   {
-    "app": "foliate",
-    "identifier": "foliate",
+    "app": "flameshot",
+    "identifier": "flameshot",
     "isAvailable": true,
     "source": "snap"
   },
   {
-    "app": "freecad",
-    "identifier": "freecad",
+    "app": "floorp",
+    "identifier": "floorp",
+    "isAvailable": true,
+    "source": "snap"
+  },
+  {
+    "app": "foliate",
+    "identifier": "foliate",
     "isAvailable": true,
     "source": "snap"
   },
@@ -174,8 +168,8 @@
     "source": "snap"
   },
   {
-    "app": "gimp",
-    "identifier": "gimp",
+    "app": "freecad",
+    "identifier": "freecad",
     "isAvailable": true,
     "source": "snap"
   },
@@ -186,14 +180,20 @@
     "source": "snap"
   },
   {
+    "app": "ghidra",
+    "identifier": "ghidra",
+    "isAvailable": true,
+    "source": "snap"
+  },
+  {
     "app": "ghostty",
     "identifier": "ghostty",
     "isAvailable": true,
     "source": "snap"
   },
   {
-    "app": "ghidra",
-    "identifier": "ghidra",
+    "app": "gimp",
+    "identifier": "gimp",
     "isAvailable": true,
     "source": "snap"
   },
@@ -222,14 +222,14 @@
     "source": "snap"
   },
   {
-    "app": "inkscape",
-    "identifier": "inkscape",
+    "app": "imhex",
+    "identifier": "imhex",
     "isAvailable": true,
     "source": "snap"
   },
   {
-    "app": "imhex",
-    "identifier": "imhex",
+    "app": "inkscape",
+    "identifier": "inkscape",
     "isAvailable": true,
     "source": "snap"
   },
@@ -300,12 +300,6 @@
     "source": "snap"
   },
   {
-    "app": "mpv",
-    "identifier": "mpv",
-    "isAvailable": true,
-    "source": "snap"
-  },
-  {
     "app": "mission-center",
     "identifier": "mission-center",
     "isAvailable": true,
@@ -318,14 +312,20 @@
     "source": "snap"
   },
   {
-    "app": "netbeans",
-    "identifier": "netbeans",
+    "app": "mpv",
+    "identifier": "mpv",
     "isAvailable": true,
     "source": "snap"
   },
   {
     "app": "neovim",
     "identifier": "nvim",
+    "isAvailable": true,
+    "source": "snap"
+  },
+  {
+    "app": "netbeans",
+    "identifier": "netbeans",
     "isAvailable": true,
     "source": "snap"
   },
@@ -426,14 +426,14 @@
     "source": "snap"
   },
   {
-    "app": "retroarch",
-    "identifier": "retroarch",
+    "app": "remmina",
+    "identifier": "remmina",
     "isAvailable": true,
     "source": "snap"
   },
   {
-    "app": "remmina",
-    "identifier": "remmina",
+    "app": "retroarch",
+    "identifier": "retroarch",
     "isAvailable": true,
     "source": "snap"
   },
@@ -486,14 +486,14 @@
     "source": "snap"
   },
   {
-    "app": "supertuxkart",
-    "identifier": "supertuxkart",
+    "app": "sublime-text",
+    "identifier": "sublime-text",
     "isAvailable": true,
     "source": "snap"
   },
   {
-    "app": "sublime-text",
-    "identifier": "sublime-text",
+    "app": "supertuxkart",
+    "identifier": "supertuxkart",
     "isAvailable": true,
     "source": "snap"
   },
