@@ -3,7 +3,7 @@
 import { Badge } from '@/components/ui/badge';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Star, Lock, Globe } from 'lucide-react';
-import Image from 'next/image';
+import { OptimizedImage } from '@/components/ui/optimized-image';
 
 interface CollectionHeaderProps {
   name: string;
@@ -36,7 +36,7 @@ export function CollectionHeader({
           <div className="flex items-center gap-3 mb-3">
             <h1 className="text-4xl font-bold">{name}</h1>
             {iconUrl && (
-              <Image
+              <OptimizedImage
                 src={iconUrl}
                 alt={name}
                 width={48}

@@ -1,8 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import Image from 'next/image';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { OptimizedImage } from '@/components/ui/optimized-image';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
@@ -40,7 +40,7 @@ export function ScreenshotsGallery({ screenshots, appName }: ScreenshotsGalleryP
               onClick={() => setSelectedIndex(index)}
               className="relative aspect-video rounded-lg overflow-hidden border hover:border-primary transition-colors group"
             >
-              <Image
+              <OptimizedImage
                 src={screenshot}
                 alt={`${appName} screenshot ${index + 1}`}
                 fill
@@ -60,7 +60,7 @@ export function ScreenshotsGallery({ screenshots, appName }: ScreenshotsGalleryP
             {selectedIndex !== null && (
               <>
                 <div className="relative aspect-video">
-                  <Image
+                  <OptimizedImage
                     src={screenshots[selectedIndex]}
                     alt={`${appName} screenshot ${selectedIndex + 1}`}
                     fill

@@ -42,7 +42,7 @@ async function wipeAzureBlobs() {
 
 async function wipeDatabase() {
   // Skip Azure Blob Storage wipe to save costs - images will be reused
-  // await wipeAzureBlobs();
+  //await wipeAzureBlobs();
 
   console.log('🗑️  Wiping database (keeping Azure Blob Storage images)...');
 

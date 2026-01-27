@@ -88,15 +88,18 @@ async function seed() {
       console.log(`  ⬇️  ${distro.slug}: Checking if already exists...`);
 
       // Download icon from URL and upload to Azure Blob Storage (skip if already exists)
-      const uploadedUrl = await uploadImageFromUrl(iconUrl, distro.slug, 'distro-icons', true);
+      const uploadResult = await uploadImageFromUrl(iconUrl, distro.slug, 'distro-icons', true);
 
-      if (uploadedUrl) {
+      if (uploadResult) {
+        // Extract the best URL to use: prefer 64px variant for display, fallback to original for SVG
+        const urlToStore = uploadResult.variants[64] || uploadResult.original;
+
         // Update distro's iconUrl with the Azure Blob Storage URL
         const distroId = distroMap[distro.slug];
         if (distroId) {
           await db
             .update(distros)
-            .set({ iconUrl: uploadedUrl })
+            .set({ iconUrl: urlToStore })
             .where(eq(distros.id, distroId));
 
           distroIconCount++;
@@ -167,15 +170,18 @@ async function seed() {
       console.log(`  ⬇️  ${app.slug}: Checking if already exists...`);
 
       // Download icon from URL and upload to Azure Blob Storage (skip if already exists)
-      const uploadedUrl = await uploadImageFromUrl(iconUrl, app.slug, 'app-icons', true);
+      const uploadResult = await uploadImageFromUrl(iconUrl, app.slug, 'app-icons', true);
 
-      if (uploadedUrl) {
+      if (uploadResult) {
+        // Extract the best URL to use: prefer 64px variant for display, fallback to original for SVG
+        const urlToStore = uploadResult.variants[64] || uploadResult.original;
+
         // Update app's iconUrl with the Azure Blob Storage URL
         const appId = appMap[app.slug];
         if (appId) {
           await db
             .update(apps)
-            .set({ iconUrl: uploadedUrl })
+            .set({ iconUrl: urlToStore })
             .where(eq(apps.id, appId));
 
           iconCount++;

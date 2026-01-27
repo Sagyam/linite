@@ -8,7 +8,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Lock, Package, Eye, Heart, Loader2, Star } from 'lucide-react';
 import Link from 'next/link';
-import Image from 'next/image';
+import { OptimizedImage } from '@/components/ui/optimized-image';
 import type { CollectionWithRelations } from '@/types/entities';
 
 async function fetchSharedCollection(token: string): Promise<CollectionWithRelations> {
@@ -79,9 +79,11 @@ export default function SharedCollectionPage({
               <div className="flex items-center gap-3 mb-3">
                 <h1 className="text-4xl font-bold">{collection.name}</h1>
                 {collection.iconUrl && (
-                  <Image
+                  <OptimizedImage
                     src={collection.iconUrl}
                     alt={collection.name}
+                    width={48}
+                    height={48}
                     className="w-12 h-12 rounded-lg"
                   />
                 )}
@@ -180,9 +182,11 @@ export default function SharedCollectionPage({
                   <CardContent className="p-4">
                     <div className="flex items-start gap-3">
                       {item.app.iconUrl && (
-                        <Image
+                        <OptimizedImage
                           src={item.app.iconUrl}
                           alt={item.app.displayName}
+                          width={40}
+                          height={40}
                           className="w-10 h-10 rounded shrink-0"
                         />
                       )}

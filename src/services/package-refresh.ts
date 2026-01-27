@@ -214,19 +214,22 @@ export async function syncAppIcon(
     console.log(`[Icon Sync] Syncing icon for app ${appSlug} from ${iconUrl}`);
 
     // Download icon from URL and upload to Azure Blob Storage
-    const uploadedUrl = await uploadImageFromUrl(iconUrl, appSlug);
+    const uploadResult = await uploadImageFromUrl(iconUrl, appSlug);
 
-    if (uploadedUrl) {
+    if (uploadResult) {
+      // Extract the best URL to use: prefer 64px variant for display, fallback to original for SVG
+      const urlToStore = uploadResult.variants[64] || uploadResult.original;
+
       // Update app's iconUrl with the Azure Blob Storage URL
       await db
         .update(apps)
         .set({
-          iconUrl: uploadedUrl,
+          iconUrl: urlToStore,
           updatedAt: new Date(),
         })
         .where(eq(apps.id, appId));
 
-      console.log(`[Icon Sync] Successfully updated icon for app ${appSlug}: ${uploadedUrl}`);
+      console.log(`[Icon Sync] Successfully updated icon for app ${appSlug}: ${urlToStore}`);
     }
   } catch (error) {
     // Silent fail - just log and continue

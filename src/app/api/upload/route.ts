@@ -19,7 +19,10 @@ export async function POST(request: NextRequest) {
       return errorResponse('No file provided', 400);
     }
 
-    const url = await uploadImage(file, pathname || undefined);
+    const uploadResult = await uploadImage(file, pathname || undefined);
+
+    // Return the best URL to use: prefer 64px variant for display, fallback to original for SVG
+    const url = uploadResult.variants[64] || uploadResult.original;
 
     return successResponse({ url });
   } catch (error) {

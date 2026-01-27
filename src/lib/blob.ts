@@ -1,6 +1,7 @@
 import { BlobServiceClient, ContainerClient } from '@azure/storage-blob';
 import { env } from '@/lib/env';
 import { RETRY_CONFIG } from '@/lib/constants';
+import { generateImageVariants, getExtensionFromContentType, shouldOptimizeImage } from '@/lib/image-optimizer';
 
 /**
  * Parse Azure Blob Storage SAS URL to extract account, container, and token
@@ -35,16 +36,21 @@ function getContainerClient(): ContainerClient {
   return blobServiceClient.getContainerClient(containerName);
 }
 
+export interface UploadResult {
+  original: string;
+  variants: Record<number, string>;
+}
+
 /**
- * Upload an image to Azure Blob storage
+ * Upload an image to Azure Blob storage with optimized variants
  * @param file - The file to upload
  * @param pathname - Optional pathname for the file (e.g., 'app-icons/firefox.png')
- * @returns The URL of the uploaded file
+ * @returns Object with original URL and variant URLs
  */
 export async function uploadImage(
   file: File,
   pathname?: string
-): Promise<string> {
+): Promise<UploadResult> {
   // Validate file type
   const allowedTypes = ['image/png', 'image/jpeg', 'image/jpg', 'image/webp', 'image/svg+xml'];
   if (!allowedTypes.includes(file.type)) {
@@ -61,22 +67,67 @@ export async function uploadImage(
   const finalPathname = pathname || `app-icons/${Date.now()}-${file.name}`;
 
   const containerClient = getContainerClient();
-  const blockBlobClient = containerClient.getBlockBlobClient(finalPathname);
-
-  // Convert File to ArrayBuffer and upload
   const arrayBuffer = await file.arrayBuffer();
-  await blockBlobClient.uploadData(arrayBuffer, {
-    blobHTTPHeaders: {
-      blobContentType: file.type,
-    },
-  });
 
-  // Return the public URL (without SAS token for security)
-  return blockBlobClient.url.split('?')[0];
+  // Check if we should optimize this image
+  const optimize = shouldOptimizeImage(file.type);
+
+  if (optimize) {
+    // Extract base pathname (without extension) and prefix
+    const lastSlashIndex = finalPathname.lastIndexOf('/');
+    const prefix = lastSlashIndex >= 0 ? finalPathname.substring(0, lastSlashIndex) : '';
+    const filename = lastSlashIndex >= 0 ? finalPathname.substring(lastSlashIndex + 1) : finalPathname;
+    const baseFilename = filename.substring(0, filename.lastIndexOf('.'));
+    const extension = getExtensionFromContentType(file.type);
+
+    // Upload original file
+    const originalPathname = `${prefix}/${baseFilename}-original.${extension}`;
+    const originalBlobClient = containerClient.getBlockBlobClient(originalPathname);
+    await originalBlobClient.uploadData(arrayBuffer, {
+      blobHTTPHeaders: {
+        blobContentType: file.type,
+      },
+    });
+    const originalUrl = originalBlobClient.url.split('?')[0];
+
+    // Generate and upload variants
+    const { variants: imageVariants } = await generateImageVariants(arrayBuffer, file.type);
+    const variantUrls: Record<number, string> = {};
+
+    for (const variant of imageVariants) {
+      const variantPathname = `${prefix}/${baseFilename}-${variant.size}.webp`;
+      const variantBlobClient = containerClient.getBlockBlobClient(variantPathname);
+      await variantBlobClient.uploadData(variant.buffer, {
+        blobHTTPHeaders: {
+          blobContentType: 'image/webp',
+        },
+      });
+      variantUrls[variant.size] = variantBlobClient.url.split('?')[0];
+    }
+
+    return {
+      original: originalUrl,
+      variants: variantUrls,
+    };
+  } else {
+    // For SVG, just upload as-is
+    const blockBlobClient = containerClient.getBlockBlobClient(finalPathname);
+    await blockBlobClient.uploadData(arrayBuffer, {
+      blobHTTPHeaders: {
+        blobContentType: file.type,
+      },
+    });
+    const url = blockBlobClient.url.split('?')[0];
+
+    return {
+      original: url,
+      variants: {},
+    };
+  }
 }
 
 /**
- * Delete an image from Azure Blob storage
+ * Delete an image and all its variants from Azure Blob storage
  * @param url - The URL of the file to delete
  */
 export async function deleteImage(url: string): Promise<void> {
@@ -84,13 +135,58 @@ export async function deleteImage(url: string): Promise<void> {
 
   // Extract blob name from URL
   // URL format: https://linite.blob.core.windows.net/linite-icons/app-icons/firefox.png
+  // Or: https://linite.blob.core.windows.net/linite-icons/app-icons/firefox-64.webp
   const urlObj = new URL(url);
   const pathParts = urlObj.pathname.split('/');
   // Skip first two parts (empty string and container name)
   const blobName = pathParts.slice(2).join('/');
 
+  // Delete the specific blob
   const blockBlobClient = containerClient.getBlockBlobClient(blobName);
   await blockBlobClient.deleteIfExists();
+
+  // Extract base filename to delete all related files
+  // E.g., "app-icons/firefox-64.webp" -> "app-icons/firefox"
+  // Or "app-icons/firefox-original.png" -> "app-icons/firefox"
+  const lastSlashIndex = blobName.lastIndexOf('/');
+  const prefix = lastSlashIndex >= 0 ? blobName.substring(0, lastSlashIndex) : '';
+  const filename = lastSlashIndex >= 0 ? blobName.substring(lastSlashIndex + 1) : blobName;
+
+  // Extract base filename (remove size suffix or -original)
+  let baseFilename = filename;
+  if (filename.includes('-original.')) {
+    baseFilename = filename.substring(0, filename.indexOf('-original.'));
+  } else if (filename.match(/-\d+\.webp$/)) {
+    baseFilename = filename.substring(0, filename.lastIndexOf('-'));
+  } else {
+    // Legacy format without suffix - just remove extension
+    baseFilename = filename.substring(0, filename.lastIndexOf('.'));
+  }
+
+  // Delete all variants and original
+  const variantSizes = [16, 32, 48, 64, 96, 128];
+  const extensions = ['png', 'jpg', 'jpeg', 'webp', 'svg'];
+
+  // Delete variants
+  for (const size of variantSizes) {
+    const variantPath = `${prefix}/${baseFilename}-${size}.webp`;
+    const variantClient = containerClient.getBlockBlobClient(variantPath);
+    await variantClient.deleteIfExists();
+  }
+
+  // Delete original files
+  for (const ext of extensions) {
+    const originalPath = `${prefix}/${baseFilename}-original.${ext}`;
+    const originalClient = containerClient.getBlockBlobClient(originalPath);
+    await originalClient.deleteIfExists();
+  }
+
+  // Delete legacy format (single file)
+  for (const ext of extensions) {
+    const legacyPath = `${prefix}/${baseFilename}.${ext}`;
+    const legacyClient = containerClient.getBlockBlobClient(legacyPath);
+    await legacyClient.deleteIfExists();
+  }
 }
 
 /**
@@ -254,30 +350,68 @@ export async function checkBlobExists(pathname: string): Promise<string | null> 
 }
 
 /**
- * Download an image from a URL and upload it to Azure Blob storage
+ * Download an image from a URL and upload it to Azure Blob storage with optimized variants
  * Now with robust retry logic and Wikipedia authentication
  * @param imageUrl - The URL of the image to download
  * @param slug - The slug to use in the pathname (e.g., 'firefox', 'ubuntu')
  * @param prefix - The folder prefix for the blob (e.g., 'app-icons', 'distro-icons'). Defaults to 'app-icons'
  * @param skipIfExists - If true, skip upload if blob already exists. Defaults to false
- * @returns The URL of the uploaded file in Azure Blob, or null if failed
+ * @returns Upload result with original and variant URLs, or null if failed
  */
 export async function uploadImageFromUrl(
   imageUrl: string,
   slug: string,
   prefix: string = 'app-icons',
   skipIfExists: boolean = false
-): Promise<string | null> {
+): Promise<UploadResult | null> {
   try {
     // Check if blob already exists (optimization to skip re-uploads)
     if (skipIfExists) {
-      // Try common extensions
-      const extensions = ['svg', 'png', 'jpg', 'webp'];
-      for (const ext of extensions) {
+      // Try common variant patterns first (check for optimized versions)
+      const variantSizes = [16, 32, 48, 64, 96, 128];
+      const variantUrls: Record<number, string> = {};
+      let hasVariants = false;
+
+      for (const size of variantSizes) {
+        const variantPathname = `${prefix}/${slug}-${size}.webp`;
+        const existingUrl = await checkBlobExists(variantPathname);
+        if (existingUrl) {
+          variantUrls[size] = existingUrl;
+          hasVariants = true;
+        }
+      }
+
+      // If we have variants, also check for original
+      if (hasVariants) {
+        const extensions = ['svg', 'png', 'jpg', 'webp'];
+        for (const ext of extensions) {
+          const originalPathname = `${prefix}/${slug}-original.${ext}`;
+          const existingOriginal = await checkBlobExists(originalPathname);
+          if (existingOriginal) {
+            return {
+              original: existingOriginal,
+              variants: variantUrls,
+            };
+          }
+        }
+        // If no original found but we have variants, return with first variant as original
+        const firstVariant = variantUrls[64] || Object.values(variantUrls)[0];
+        return {
+          original: firstVariant || '',
+          variants: variantUrls,
+        };
+      }
+
+      // Try legacy format (single file without variants)
+      const legacyExtensions = ['svg', 'png', 'jpg', 'webp'];
+      for (const ext of legacyExtensions) {
         const pathname = `${prefix}/${slug}.${ext}`;
         const existingUrl = await checkBlobExists(pathname);
         if (existingUrl) {
-          return existingUrl;
+          return {
+            original: existingUrl,
+            variants: {},
+          };
         }
       }
     }
@@ -293,31 +427,62 @@ export async function uploadImageFromUrl(
 
     // Get the content type and determine file extension
     const contentType = response.headers.get('content-type') || 'image/png';
-    let extension = 'png';
-    if (contentType.includes('svg')) {
-      extension = 'svg';
-    } else if (contentType.includes('jpeg') || contentType.includes('jpg')) {
-      extension = 'jpg';
-    } else if (contentType.includes('webp')) {
-      extension = 'webp';
-    }
+    const extension = getExtensionFromContentType(contentType);
 
-    // Upload to Azure Blob with overwrite
-    const filename = `${slug}.${extension}`;
-    const pathname = `${prefix}/${filename}`;
+    // Check if we should optimize this image
+    const optimize = shouldOptimizeImage(contentType);
 
     try {
       const containerClient = getContainerClient();
-      const blockBlobClient = containerClient.getBlockBlobClient(pathname);
 
-      // Upload with overwrite enabled
-      await blockBlobClient.uploadData(arrayBuffer, {
-        blobHTTPHeaders: {
-          blobContentType: contentType,
-        },
-      });
+      if (optimize) {
+        // Upload original file
+        const originalPathname = `${prefix}/${slug}-original.${extension}`;
+        const originalBlobClient = containerClient.getBlockBlobClient(originalPathname);
+        await originalBlobClient.uploadData(arrayBuffer, {
+          blobHTTPHeaders: {
+            blobContentType: contentType,
+          },
+        });
+        const originalUrl = originalBlobClient.url.split('?')[0];
 
-      return blockBlobClient.url.split('?')[0];
+        // Generate and upload variants
+        const { variants: imageVariants } = await generateImageVariants(arrayBuffer, contentType);
+        const variantUrls: Record<number, string> = {};
+
+        for (const variant of imageVariants) {
+          const variantPathname = `${prefix}/${slug}-${variant.size}.webp`;
+          const variantBlobClient = containerClient.getBlockBlobClient(variantPathname);
+          await variantBlobClient.uploadData(variant.buffer, {
+            blobHTTPHeaders: {
+              blobContentType: 'image/webp',
+            },
+          });
+          variantUrls[variant.size] = variantBlobClient.url.split('?')[0];
+        }
+
+        return {
+          original: originalUrl,
+          variants: variantUrls,
+        };
+      } else {
+        // For SVG, just upload as-is
+        const filename = `${slug}.${extension}`;
+        const pathname = `${prefix}/${filename}`;
+        const blockBlobClient = containerClient.getBlockBlobClient(pathname);
+
+        await blockBlobClient.uploadData(arrayBuffer, {
+          blobHTTPHeaders: {
+            blobContentType: contentType,
+          },
+        });
+
+        const url = blockBlobClient.url.split('?')[0];
+        return {
+          original: url,
+          variants: {},
+        };
+      }
     } catch (error) {
       console.error(`  ❌ ${slug}: Azure upload failed - ${error instanceof Error ? error.message : 'Unknown error'}`);
       return null;

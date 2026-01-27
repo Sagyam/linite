@@ -1,8 +1,8 @@
 'use client';
 
 import Link from 'next/link';
-import Image from 'next/image';
 import { Button } from '@/components/ui/button';
+import { OptimizedImage } from '@/components/ui/optimized-image';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { UserNav } from '@/components/dashboard/user-nav';
 import { MobileNav } from '@/components/mobile-nav';
@@ -18,7 +18,7 @@ export function Header() {
         <div className="flex items-center justify-between">
           {/* Logo - Responsive sizing */}
           <Link href="/" className="flex items-center gap-2 md:gap-3">
-            <Image
+            <OptimizedImage
               src="/logo.svg"
               alt="Linite Logo"
               width={40}

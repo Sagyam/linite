@@ -1,8 +1,8 @@
 'use client';
 
-import Image from 'next/image';
 import { cn } from '@/lib/utils';
 import { IMAGES, ICON_SIZES } from '@/lib/constants';
+import { OptimizedImage } from '@/components/ui/optimized-image';
 
 interface AppIconProps {
   iconUrl: string | null;
@@ -35,7 +35,7 @@ export function AppIcon({
   const roundedClass = ROUNDED_MAP[rounded];
 
   return (
-    <Image
+    <OptimizedImage
       src={iconUrl || IMAGES.FALLBACK_ICON}
       alt={displayName}
       width={pixelSize}

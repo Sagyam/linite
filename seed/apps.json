@@ -1210,16 +1210,6 @@
     "iconUrl": null
   },
   {
-    "slug": "mullvad-browser",
-    "isPopular": true,
-    "isFoss": true,
-    "homepage": "https://mullvad.net/en/browser",
-    "displayName": "Mullvad Browser",
-    "description": "Privacy-focused browser from Mullvad VPN and Tor Project",
-    "category": "browsers",
-    "iconUrl": null
-  },
-  {
     "slug": "navi",
     "isPopular": true,
     "isFoss": true,

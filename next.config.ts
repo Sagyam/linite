@@ -13,11 +13,9 @@ const nextConfig: NextConfig = {
                 hostname: 'dl.flathub.org',
             },
         ],
-        // Optimize for cost reduction
-        deviceSizes: [640, 750, 1080, 1920],
-        imageSizes: [16, 32, 48, 64, 96],
-        formats: ['image/webp'],
-        minimumCacheTTL: 31536000, // 1 year
+        // We handle image optimization ourselves via pre-generated variants
+        // This bypasses Vercel's image optimization to avoid 402 payment errors
+        unoptimized: true,
     }
 };
 

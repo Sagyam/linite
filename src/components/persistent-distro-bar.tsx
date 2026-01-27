@@ -1,8 +1,8 @@
 'use client';
 
 import { useEffect, useMemo, memo } from 'react';
-import Image from 'next/image';
 import { Monitor, HelpCircle } from 'lucide-react';
+import { OptimizedImage } from '@/components/ui/optimized-image';
 import {
   Select,
   SelectContent,
@@ -114,7 +114,7 @@ export const PersistentDistroBar = memo(function PersistentDistroBar({
                       )}
                       <div className="flex items-center gap-2 relative z-10">
                         {distro.iconUrl && (
-                          <Image
+                          <OptimizedImage
                             src={distro.iconUrl}
                             alt={distro.name}
                             width={24}

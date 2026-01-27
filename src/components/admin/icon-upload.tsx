@@ -5,8 +5,8 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { toast } from 'sonner';
-import Image from 'next/image';
 import { Upload, X } from 'lucide-react';
+import { OptimizedImage } from '@/components/ui/optimized-image';
 
 interface IconUploadProps {
   iconUrl: string | null | undefined;
@@ -78,7 +78,7 @@ export function IconUpload({ iconUrl, onIconChange, label = 'Icon', pathPrefix }
       <div className="flex items-center gap-4">
         {iconUrl ? (
           <div className="relative">
-            <Image
+            <OptimizedImage
               src={iconUrl}
               alt={label}
               width={64}
