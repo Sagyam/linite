@@ -150,6 +150,12 @@
     "source": "nix"
   },
   {
+    "app": "doggo",
+    "identifier": "doggo",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
     "app": "dolphin-emu",
     "identifier": "dolphin-emu",
     "isAvailable": true,

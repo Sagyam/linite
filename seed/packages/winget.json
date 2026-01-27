@@ -90,6 +90,12 @@
     "source": "winget"
   },
   {
+    "app": "doggo",
+    "identifier": "doggo",
+    "isAvailable": true,
+    "source": "winget"
+  },
+  {
     "app": "fastfetch",
     "identifier": "fastfetch",
     "isAvailable": true,
@@ -222,7 +228,7 @@
     "source": "winget"
   },
   {
-    "app": "llama.cpp",
+    "app": "llama-cpp",
     "identifier": "llama.cpp",
     "isAvailable": true,
     "source": "winget"

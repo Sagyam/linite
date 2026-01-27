@@ -297,7 +297,7 @@
     "displayName": "Codex CLI",
     "description": "Lightweight coding agent that runs in your terminal",
     "category": "ai",
-    "iconUrl": null
+    "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/e/ef/ChatGPT-Logo.svg"
   },
   {
     "slug": "conky",

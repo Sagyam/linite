@@ -1,12 +1,12 @@
 [
   {
-    "app": " apache",
+    "app": "apache",
     "identifier": "apache",
     "isAvailable": true,
     "source": "pacman"
   },
   {
-    "app": " vivaldi",
+    "app": "vivaldi",
     "identifier": "vivaldi",
     "isAvailable": true,
     "source": "pacman"
@@ -180,8 +180,8 @@
     "source": "pacman"
   },
   {
-    "app": "dog",
-    "identifier": "dog",
+    "app": "doggo",
+    "identifier": "doggo",
     "isAvailable": true,
     "source": "pacman"
   },
@@ -348,12 +348,6 @@
     "source": "pacman"
   },
   {
-    "app": "github-cli",
-    "identifier": "github-cli",
-    "isAvailable": true,
-    "source": "pacman"
-  },
-  {
     "app": "glances",
     "identifier": "glances",
     "isAvailable": true,
@@ -414,7 +408,7 @@
     "source": "pacman"
   },
   {
-    "app": "jellyfin-server",
+    "app": "jellyfin",
     "identifier": "jellyfin-server",
     "isAvailable": true,
     "source": "pacman"

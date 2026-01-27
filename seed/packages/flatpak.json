@@ -588,7 +588,7 @@
     "source": "flatpak"
   },
   {
-    "app": "zen",
+    "app": "zen-browser",
     "identifier": "app.zen_browser.zen",
     "isAvailable": true,
     "source": "flatpak"

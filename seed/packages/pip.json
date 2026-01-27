@@ -18,12 +18,6 @@
     "source": "pip"
   },
   {
-    "app": "poetry",
-    "identifier": "poetry",
-    "isAvailable": true,
-    "source": "pip"
-  },
-  {
     "app": "ranger",
     "identifier": "ranger-fm",
     "isAvailable": true,

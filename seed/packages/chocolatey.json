@@ -30,12 +30,6 @@
     "source": "chocolatey"
   },
   {
-    "app": "curl",
-    "identifier": "curl",
-    "isAvailable": true,
-    "source": "chocolatey"
-  },
-  {
     "app": "delta",
     "identifier": "delta",
     "isAvailable": true,
@@ -270,12 +264,6 @@
     "source": "chocolatey"
   },
   {
-    "app": "vim",
-    "identifier": "vim",
-    "isAvailable": true,
-    "source": "chocolatey"
-  },
-  {
     "app": "virtualbox",
     "identifier": "virtualbox",
     "isAvailable": true,
@@ -290,12 +278,6 @@
   {
     "app": "vscode",
     "identifier": "vscode",
-    "isAvailable": true,
-    "source": "chocolatey"
-  },
-  {
-    "app": "wget",
-    "identifier": "wget",
     "isAvailable": true,
     "source": "chocolatey"
   },

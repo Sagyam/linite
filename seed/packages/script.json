@@ -63,6 +63,17 @@
     "source": "script"
   },
   {
+    "app": "doggo",
+    "identifier": "doggo",
+    "isAvailable": true,
+    "metadata": {
+      "scriptUrl": {
+        "linux": "https://raw.githubusercontent.com/mr-karan/doggo/main/install.sh"
+      }
+    },
+    "source": "script"
+  },
+  {
     "app": "jellyfin",
     "identifier": "jellyfin",
     "isAvailable": true,

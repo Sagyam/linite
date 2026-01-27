@@ -444,7 +444,7 @@
     "source": "snap"
   },
   {
-    "app": "rpcs3-emulator",
+    "app": "rpcs3",
     "identifier": "rpcs3-emulator",
     "isAvailable": true,
     "source": "snap"

@@ -12,12 +12,6 @@
     "source": "npm"
   },
   {
-    "app": "nodemon",
-    "identifier": "nodemon",
-    "isAvailable": true,
-    "source": "npm"
-  },
-  {
     "app": "nushell",
     "identifier": "nushell",
     "isAvailable": true,

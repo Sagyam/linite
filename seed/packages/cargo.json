@@ -30,12 +30,6 @@
     "source": "cargo"
   },
   {
-    "app": "dog",
-    "identifier": "dog",
-    "isAvailable": true,
-    "source": "cargo"
-  },
-  {
     "app": "duf",
     "identifier": "duf",
     "isAvailable": true,

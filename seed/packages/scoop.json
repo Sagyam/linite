@@ -1,6 +1,6 @@
 [
   {
-    "app": "",
+    "app": "dust",
     "identifier": "dust",
     "isAvailable": true,
     "source": "scoop"
@@ -122,6 +122,12 @@
   {
     "app": "docker",
     "identifier": "docker",
+    "isAvailable": true,
+    "source": "scoop"
+  },
+  {
+    "app": "doggo",
+    "identifier": "doggo",
     "isAvailable": true,
     "source": "scoop"
   },
