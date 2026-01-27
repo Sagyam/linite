@@ -12,6 +12,18 @@
     "source": "nix"
   },
   {
+    "app": "cheat",
+    "identifier": "cheat",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "bottom",
+    "identifier": "bottom",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
     "app": "aria2",
     "identifier": "aria2",
     "isAvailable": true,
@@ -60,6 +72,24 @@
     "source": "nix"
   },
   {
+    "app": "delta",
+    "identifier": "delta",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "duf",
+    "identifier": "duf",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "dust",
+    "identifier": "du-dust",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
     "app": "emacs",
     "identifier": "emacs",
     "isAvailable": true,
@@ -98,6 +128,12 @@
   {
     "app": "gh",
     "identifier": "gh",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "gemini-cli",
+    "identifier": "gemini-cli",
     "isAvailable": true,
     "source": "nix"
   },
@@ -146,6 +182,12 @@
   {
     "app": "jq",
     "identifier": "jq",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "jan",
+    "identifier": "jan",
     "isAvailable": true,
     "source": "nix"
   },
@@ -390,6 +432,12 @@
     "source": "nix"
   },
   {
+    "app": "jnv",
+    "identifier": "jnv",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
     "app": "joplin",
     "identifier": "joplin-desktop",
     "isAvailable": true,
@@ -416,6 +464,12 @@
   {
     "app": "lazydocker",
     "identifier": "lazydocker",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "llama-cpp",
+    "identifier": "llama-cpp",
     "isAvailable": true,
     "source": "nix"
   },
@@ -462,8 +516,20 @@
     "source": "nix"
   },
   {
+    "app": "mcfly",
+    "identifier": "mcfly",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
     "app": "micro",
     "identifier": "micro",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "mitmproxy",
+    "identifier": "mitmproxy",
     "isAvailable": true,
     "source": "nix"
   },
@@ -476,6 +542,12 @@
   {
     "app": "mongodb",
     "identifier": "mongodb",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "moreutils",
+    "identifier": "moreutils",
     "isAvailable": true,
     "source": "nix"
   },
@@ -588,6 +660,12 @@
     "source": "nix"
   },
   {
+    "app": "qutebrowser",
+    "identifier": "qutebrowser",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
     "app": "ranger",
     "identifier": "ranger",
     "isAvailable": true,
@@ -662,6 +740,12 @@
   {
     "app": "supertuxkart",
     "identifier": "superTuxKart",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "skim",
+    "identifier": "skim",
     "isAvailable": true,
     "source": "nix"
   },
@@ -744,6 +828,12 @@
     "source": "nix"
   },
   {
+    "app": "vifm",
+    "identifier": "vifm",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
     "app": "warzone2100",
     "identifier": "warzone2100",
     "isAvailable": true,
@@ -774,6 +864,12 @@
     "source": "nix"
   },
   {
+    "app": "nushell",
+    "identifier": "nushell",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
     "app": "yazi",
     "identifier": "yazi",
     "isAvailable": true,
@@ -782,6 +878,12 @@
   {
     "app": "yq",
     "identifier": "yq",
+    "isAvailable": true,
+    "source": "nix"
+  },
+  {
+    "app": "xh",
+    "identifier": "xh",
     "isAvailable": true,
     "source": "nix"
   },

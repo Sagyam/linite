@@ -24,6 +24,12 @@
     "source": "scoop"
   },
   {
+    "app": "bottom",
+    "identifier": "bottom",
+    "isAvailable": true,
+    "source": "scoop"
+  },
+  {
     "app": "balena-etcher",
     "identifier": "balena-cli",
     "isAvailable": true,
@@ -84,6 +90,12 @@
     "source": "scoop"
   },
   {
+    "app": "delta",
+    "identifier": "delta",
+    "isAvailable": true,
+    "source": "scoop"
+  },
+  {
     "app": "dbeaver",
     "identifier": "dbeaver",
     "isAvailable": true,
@@ -104,6 +116,12 @@
   {
     "app": "docker",
     "identifier": "docker",
+    "isAvailable": true,
+    "source": "scoop"
+  },
+  {
+    "app": "",
+    "identifier": "dust",
     "isAvailable": true,
     "source": "scoop"
   },
@@ -204,6 +222,12 @@
     "source": "scoop"
   },
   {
+    "app": "jnv",
+    "identifier": "jnv",
+    "isAvailable": true,
+    "source": "scoop"
+  },
+  {
     "app": "keepassxc",
     "identifier": "keepassxc",
     "isAvailable": true,
@@ -224,6 +248,12 @@
   {
     "app": "lazydocker",
     "identifier": "lazydocker",
+    "isAvailable": true,
+    "source": "scoop"
+  },
+  {
+    "app": "lf",
+    "identifier": "lf",
     "isAvailable": true,
     "source": "scoop"
   },
@@ -474,6 +504,12 @@
     "source": "scoop"
   },
   {
+    "app": "xh",
+    "identifier": "xh",
+    "isAvailable": true,
+    "source": "scoop"
+  },
+  {
     "app": "zed",
     "identifier": "zed",
     "isAvailable": true,
@@ -488,6 +524,12 @@
   {
     "app": "zoxide",
     "identifier": "zoxide",
+    "isAvailable": true,
+    "source": "scoop"
+  },
+  {
+    "app": "nushell",
+    "identifier": "nu",
     "isAvailable": true,
     "source": "scoop"
   },

@@ -96,6 +96,12 @@
     "source": "apt"
   },
   {
+    "app": "delta",
+    "identifier": "git-delta",
+    "isAvailable": true,
+    "source": "apt"
+  },
+  {
     "app": "docker",
     "identifier": "docker.io",
     "isAvailable": true,
@@ -104,6 +110,12 @@
   {
     "app": "dolphin-emu",
     "identifier": "dolphin-emu",
+    "isAvailable": true,
+    "source": "apt"
+  },
+  {
+    "app": "duf",
+    "identifier": "duf",
     "isAvailable": true,
     "source": "apt"
   },
@@ -188,6 +200,12 @@
   {
     "app": "golang",
     "identifier": "golang",
+    "isAvailable": true,
+    "source": "apt"
+  },
+  {
+    "app": "gping",
+    "identifier": "gping",
     "isAvailable": true,
     "source": "apt"
   },
@@ -291,10 +309,10 @@
     "app": "obs",
     "identifier": "obs-studio",
     "isAvailable": true,
-    "source": "apt",
     "packageSetupCmd": {
       "debian": "sudo add-apt-repository ppa:obsproject/obs-studio -y && sudo apt update"
-    }
+    },
+    "source": "apt"
   },
   {
     "app": "perl",
@@ -311,6 +329,12 @@
   {
     "app": "python",
     "identifier": "python3",
+    "isAvailable": true,
+    "source": "apt"
+  },
+  {
+    "app": "qutebrowser",
+    "identifier": "qutebrowser",
     "isAvailable": true,
     "source": "apt"
   },
@@ -575,6 +599,60 @@
   {
     "app": "kitty",
     "identifier": "kitty",
+    "isAvailable": true,
+    "source": "apt"
+  },
+  {
+    "app": "glances",
+    "identifier": "glances",
+    "isAvailable": true,
+    "source": "apt"
+  },
+  {
+    "app": "mitmproxy",
+    "identifier": "mitmproxy",
+    "isAvailable": true,
+    "source": "apt"
+  },
+  {
+    "app": "moreutils",
+    "identifier": "moreutils",
+    "isAvailable": true,
+    "source": "apt"
+  },
+  {
+    "app": "mtr",
+    "identifier": "mtr",
+    "isAvailable": true,
+    "source": "apt"
+  },
+  {
+    "app": "nnn",
+    "identifier": "nnn",
+    "isAvailable": true,
+    "source": "apt"
+  },
+  {
+    "app": "qutebrowser",
+    "identifier": "qutebrowser",
+    "isAvailable": true,
+    "source": "apt"
+  },
+  {
+    "app": "vifm",
+    "identifier": "vifm",
+    "isAvailable": true,
+    "source": "apt"
+  },
+  {
+    "app": "xh",
+    "identifier": "xh",
+    "isAvailable": true,
+    "source": "apt"
+  },
+  {
+    "app": "nyxt",
+    "identifier": "nyxt",
     "isAvailable": true,
     "source": "apt"
   }

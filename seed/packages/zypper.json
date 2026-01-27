@@ -6,6 +6,12 @@
     "source": "zypper"
   },
   {
+    "app": "bottom",
+    "identifier": "bottom",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
     "app": "fastfetch",
     "identifier": "fastfetch",
     "isAvailable": true,
@@ -20,6 +26,12 @@
   {
     "app": "gh",
     "identifier": "gh",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "vifm",
+    "identifier": "vifm",
     "isAvailable": true,
     "source": "zypper"
   },
@@ -168,6 +180,36 @@
     "source": "zypper"
   },
   {
+    "app": "duf",
+    "identifier": "duf",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "dust",
+    "identifier": "dust",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "mcfly",
+    "identifier": "mcfly",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "moreutils",
+    "identifier": "moreutils",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "mtr",
+    "identifier": "mtr",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
     "app": "eza",
     "identifier": "eza",
     "isAvailable": true,
@@ -306,6 +348,18 @@
     "source": "zypper"
   },
   {
+    "app": "nnn",
+    "identifier": "nnn",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "nyxt",
+    "identifier": "nyxt",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
     "app": "ollama",
     "identifier": "ollama",
     "isAvailable": true,
@@ -368,6 +422,12 @@
   {
     "app": "qemu",
     "identifier": "qemu",
+    "isAvailable": true,
+    "source": "zypper"
+  },
+  {
+    "app": "qutebrowser",
+    "identifier": "qutebrowser",
     "isAvailable": true,
     "source": "zypper"
   },

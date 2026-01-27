@@ -18,6 +18,12 @@
     "source": "chocolatey"
   },
   {
+    "app": "bottom",
+    "identifier": "bottom",
+    "isAvailable": true,
+    "source": "chocolatey"
+  },
+  {
     "app": "chrome",
     "identifier": "googlechrome",
     "isAvailable": true,
@@ -38,6 +44,12 @@
   {
     "app": "docker",
     "identifier": "docker-desktop",
+    "isAvailable": true,
+    "source": "chocolatey"
+  },
+  {
+    "app": "delta",
+    "identifier": "delta",
     "isAvailable": true,
     "source": "chocolatey"
   },
@@ -102,8 +114,26 @@
     "source": "chocolatey"
   },
   {
+    "app": "jan",
+    "identifier": "jan",
+    "isAvailable": true,
+    "source": "chocolatey"
+  },
+  {
+    "app": "jnv",
+    "identifier": "jnv",
+    "isAvailable": true,
+    "source": "chocolatey"
+  },
+  {
     "app": "kubectl",
     "identifier": "kubernetes-cli",
+    "isAvailable": true,
+    "source": "chocolatey"
+  },
+  {
+    "app": "lf",
+    "identifier": "lf",
     "isAvailable": true,
     "source": "chocolatey"
   },
@@ -164,6 +194,12 @@
   {
     "app": "python",
     "identifier": "python",
+    "isAvailable": true,
+    "source": "chocolatey"
+  },
+  {
+    "app": "qutebrowser",
+    "identifier": "qutebrowser",
     "isAvailable": true,
     "source": "chocolatey"
   },
@@ -260,6 +296,12 @@
   {
     "app": "wget",
     "identifier": "wget",
+    "isAvailable": true,
+    "source": "chocolatey"
+  },
+  {
+    "app": "xh",
+    "identifier": "xh",
     "isAvailable": true,
     "source": "chocolatey"
   },

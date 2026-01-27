@@ -144,6 +144,12 @@
     "source": "pacman"
   },
   {
+    "app": "duf",
+    "identifier": "duf",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
     "app": "dolphin-emu",
     "identifier": "dolphin-emu",
     "isAvailable": true,
@@ -242,6 +248,12 @@
   {
     "app": "geary",
     "identifier": "geary",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
+    "app": "gemini-cli",
+    "identifier": "gemini-cli",
     "isAvailable": true,
     "source": "pacman"
   },
@@ -776,6 +788,162 @@
   {
     "app": "steam",
     "identifier": "steam",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
+    "app": "atuin",
+    "identifier": "atuin",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
+    "app": "bottom",
+    "identifier": "bottom",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
+    "app": "broot",
+    "identifier": "broot",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
+    "app": "cheat",
+    "identifier": "cheat",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
+    "app": "delta",
+    "identifier": "git-delta",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
+    "app": "dog",
+    "identifier": "dog",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
+    "app": "duf",
+    "identifier": "duf",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
+    "app": "dust",
+    "identifier": "dust",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
+    "app": "glances",
+    "identifier": "glances",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
+    "app": "gping",
+    "identifier": "gping",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
+    "app": "lf",
+    "identifier": "lf",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
+    "app": "lsd",
+    "identifier": "lsd",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
+    "app": "mcfly",
+    "identifier": "mcfly",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
+    "app": "mitmproxy",
+    "identifier": "mitmproxy",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
+    "app": "moreutils",
+    "identifier": "moreutils",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
+    "app": "mtr",
+    "identifier": "mtr",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
+    "app": "navi",
+    "identifier": "navi",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
+    "app": "nnn",
+    "identifier": "nnn",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
+    "app": "nushell",
+    "identifier": "nushell",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
+    "app": "nyxt",
+    "identifier": "nyxt",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
+    "app": "qutebrowser",
+    "identifier": "qutebrowser",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
+    "app": "sd",
+    "identifier": "sd",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
+    "app": "skim",
+    "identifier": "skim",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
+    "app": "termshark",
+    "identifier": "termshark",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
+    "app": "vifm",
+    "identifier": "vifm",
+    "isAvailable": true,
+    "source": "pacman"
+  },
+  {
+    "app": "xh",
+    "identifier": "xh",
     "isAvailable": true,
     "source": "pacman"
   }

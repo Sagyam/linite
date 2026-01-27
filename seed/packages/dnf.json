@@ -414,6 +414,12 @@
     "source": "dnf"
   },
   {
+    "app": "nnn",
+    "identifier": "nnn",
+    "isAvailable": true,
+    "source": "dnf"
+  },
+  {
     "app": "postgresql",
     "identifier": "postgresql-server",
     "isAvailable": true,
@@ -439,6 +445,60 @@
     "packageSetupCmd": {
       "rhel": "sudo dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm"
     }
+  },
+  {
+    "app": "choose",
+    "identifier": "choose",
+    "isAvailable": true,
+    "source": "dnf",
+    "packageSetupCmd": {
+      "rhel": "sudo dnf copr enable atim/choose"
+    }
+  },
+  {
+    "app": "nushell",
+    "identifier": "nushell",
+    "isAvailable": true,
+    "source": "dnf",
+    "packageSetupCmd": {
+      "rhel": "sudo dnf copr enable atim/nushell"
+    }
+  },
+  {
+    "app": "gping",
+    "identifier": "gping",
+    "isAvailable": true,
+    "source": "dnf",
+    "packageSetupCmd": {
+      "rhel": "sudo dnf copr enable atim/gping"
+    }
+  },
+  {
+    "app": "lf",
+    "identifier": "lf",
+    "isAvailable": true,
+    "source": "dnf",
+    "packageSetupCmd": {
+      "rhel": "sudo dnf copr enable pennbauman/lf"
+    }
+  },
+  {
+    "app": "dust",
+    "identifier": "du-dust",
+    "isAvailable": true,
+    "source": "dnf"
+  },
+  {
+    "app": "moreutils",
+    "identifier": "moreutils",
+    "isAvailable": true,
+    "source": "dnf"
+  },
+  {
+    "app": "mtr",
+    "identifier": "mtr",
+    "isAvailable": true,
+    "source": "dnf"
   },
   {
     "app": "nmap",
@@ -473,6 +533,12 @@
   {
     "app": "qemu",
     "identifier": "qemu-kvm",
+    "isAvailable": true,
+    "source": "dnf"
+  },
+  {
+    "app": "qutebrowser",
+    "identifier": "qutebrowser",
     "isAvailable": true,
     "source": "dnf"
   },
@@ -521,6 +587,18 @@
   {
     "app": "xournalpp",
     "identifier": "xournalpp",
+    "isAvailable": true,
+    "source": "dnf"
+  },
+  {
+    "app": "vifm",
+    "identifier": "vifm",
+    "isAvailable": true,
+    "source": "dnf"
+  },
+  {
+    "app": "skim",
+    "identifier": "skim",
     "isAvailable": true,
     "source": "dnf"
   }

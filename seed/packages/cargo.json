@@ -1,7 +1,103 @@
 [
   {
+    "app": "atuin",
+    "identifier": "atuin",
+    "isAvailable": true,
+    "source": "cargo"
+  },
+  {
+    "app": "bottom",
+    "identifier": "bottom",
+    "isAvailable": true,
+    "source": "cargo"
+  },
+  {
+    "app": "broot",
+    "identifier": "broot",
+    "isAvailable": true,
+    "source": "cargo"
+  },
+  {
+    "app": "choose",
+    "identifier": "choose",
+    "isAvailable": true,
+    "source": "cargo"
+  },
+  {
+    "app": "delta",
+    "identifier": "git-delta",
+    "isAvailable": true,
+    "source": "cargo"
+  },
+  {
+    "app": "dog",
+    "identifier": "dog",
+    "isAvailable": true,
+    "source": "cargo"
+  },
+  {
+    "app": "duf",
+    "identifier": "duf",
+    "isAvailable": true,
+    "source": "cargo"
+  },
+  {
+    "app": "dust",
+    "identifier": "du-dust",
+    "isAvailable": true,
+    "source": "cargo"
+  },
+  {
     "app": "fd",
     "identifier": "fd-find",
+    "isAvailable": true,
+    "source": "cargo"
+  },
+  {
+    "app": "gping",
+    "identifier": "gping",
+    "isAvailable": true,
+    "source": "cargo"
+  },
+  {
+    "app": "jnv",
+    "identifier": "jnv",
+    "isAvailable": true,
+    "source": "cargo"
+  },
+  {
+    "app": "lsd",
+    "identifier": "lsd",
+    "isAvailable": true,
+    "source": "cargo"
+  },
+  {
+    "app": "mcfly",
+    "identifier": "mcfly",
+    "isAvailable": true,
+    "source": "cargo"
+  },
+  {
+    "app": "navi",
+    "identifier": "navi",
+    "isAvailable": true,
+    "source": "cargo"
+  },
+  {
+    "app": "nushell",
+    "identifier": "nu",
+    "isAvailable": true,
+    "source": "cargo"
+  },
+  {
+    "app": "sd",
+    "identifier": "sd",
+    "isAvailable": true,
+    "source": "cargo"
+  },
+  {
+    "app": "skim",
+    "identifier": "skim",
     "isAvailable": true,
     "source": "cargo"
   },
@@ -14,6 +110,12 @@
   {
     "app": "uv",
     "identifier": "uv",
+    "isAvailable": true,
+    "source": "cargo"
+  },
+  {
+    "app": "xh",
+    "identifier": "xh",
     "isAvailable": true,
     "source": "cargo"
   },

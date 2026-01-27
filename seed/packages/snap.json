@@ -36,6 +36,12 @@
     "source": "snap"
   },
   {
+    "app": "bottom",
+    "identifier": "bottom",
+    "isAvailable": true,
+    "source": "snap"
+  },
+  {
     "app": "blender",
     "identifier": "blender",
     "isAvailable": true,
@@ -50,6 +56,12 @@
   {
     "app": "chromium",
     "identifier": "chromium",
+    "isAvailable": true,
+    "source": "snap"
+  },
+  {
+    "app": "cheat",
+    "identifier": "cheat",
     "isAvailable": true,
     "source": "snap"
   },
@@ -86,6 +98,12 @@
   {
     "app": "docker",
     "identifier": "docker",
+    "isAvailable": true,
+    "source": "snap"
+  },
+  {
+    "app": "dust",
+    "identifier": "dust",
     "isAvailable": true,
     "source": "snap"
   },

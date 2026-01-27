@@ -586,5 +586,17 @@
     "identifier": "us.zoom.Zoom",
     "isAvailable": true,
     "source": "flatpak"
+  },
+  {
+    "app": "jan",
+    "identifier": "ai.jan.Jan",
+    "isAvailable": true,
+    "source": "flatpak"
+  },
+  {
+    "app": "nyxt",
+    "identifier": "engineer.atlas.Nyxt",
+    "isAvailable": true,
+    "source": "flatpak"
   }
 ]

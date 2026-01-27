@@ -1,11 +1,5 @@
 [
   {
-    "app": "android-studio",
-    "identifier": "android-studio",
-    "isAvailable": true,
-    "source": "homebrew"
-  },
-  {
     "app": "ansible",
     "identifier": "ansible",
     "isAvailable": true,
@@ -24,8 +18,26 @@
     "source": "homebrew"
   },
   {
+    "app": "atuin",
+    "identifier": "atuin",
+    "isAvailable": true,
+    "source": "homebrew"
+  },
+  {
     "app": "bat",
     "identifier": "bat",
+    "isAvailable": true,
+    "source": "homebrew"
+  },
+  {
+    "app": "bottom",
+    "identifier": "bottom",
+    "isAvailable": true,
+    "source": "homebrew"
+  },
+  {
+    "app": "broot",
+    "identifier": "broot",
     "isAvailable": true,
     "source": "homebrew"
   },
@@ -36,8 +48,20 @@
     "source": "homebrew"
   },
   {
-    "app": "dbeaver",
-    "identifier": "dbeaver-community",
+    "app": "cheat",
+    "identifier": "cheat",
+    "isAvailable": true,
+    "source": "homebrew"
+  },
+  {
+    "app": "choose",
+    "identifier": "choose-rust",
+    "isAvailable": true,
+    "source": "homebrew"
+  },
+  {
+    "app": "delta",
+    "identifier": "git-delta",
     "isAvailable": true,
     "source": "homebrew"
   },
@@ -48,8 +72,20 @@
     "source": "homebrew"
   },
   {
-    "app": "eclipse",
-    "identifier": "eclipse-ide",
+    "app": "dog",
+    "identifier": "dog",
+    "isAvailable": true,
+    "source": "homebrew"
+  },
+  {
+    "app": "duf",
+    "identifier": "duf",
+    "isAvailable": true,
+    "source": "homebrew"
+  },
+  {
+    "app": "dust",
+    "identifier": "dust",
     "isAvailable": true,
     "source": "homebrew"
   },
@@ -96,14 +132,20 @@
     "source": "homebrew"
   },
   {
-    "app": "ghidra",
-    "identifier": "ghidra",
+    "app": "gemini-cli",
+    "identifier": "gemini-cli",
     "isAvailable": true,
     "source": "homebrew"
   },
   {
-    "app": "ghostty",
-    "identifier": "ghostty",
+    "app": "glances",
+    "identifier": "glances",
+    "isAvailable": true,
+    "source": "homebrew"
+  },
+  {
+    "app": "gping",
+    "identifier": "gping",
     "isAvailable": true,
     "source": "homebrew"
   },
@@ -120,6 +162,12 @@
     "source": "homebrew"
   },
   {
+    "app": "jnv",
+    "identifier": "jnv",
+    "isAvailable": true,
+    "source": "homebrew"
+  },
+  {
     "app": "jq",
     "identifier": "jq",
     "isAvailable": true,
@@ -128,12 +176,6 @@
   {
     "app": "k9s",
     "identifier": "k9s",
-    "isAvailable": true,
-    "source": "homebrew"
-  },
-  {
-    "app": "kdenlive",
-    "identifier": "kdenlive",
     "isAvailable": true,
     "source": "homebrew"
   },
@@ -156,8 +198,26 @@
     "source": "homebrew"
   },
   {
-    "app": "libreoffice",
-    "identifier": "libreoffice",
+    "app": "lf",
+    "identifier": "lf",
+    "isAvailable": true,
+    "source": "homebrew"
+  },
+  {
+    "app": "llama-cpp",
+    "identifier": "llama.cpp",
+    "isAvailable": true,
+    "source": "homebrew"
+  },
+  {
+    "app": "lsd",
+    "identifier": "lsd",
+    "isAvailable": true,
+    "source": "homebrew"
+  },
+  {
+    "app": "mcfly",
+    "identifier": "mcfly",
     "isAvailable": true,
     "source": "homebrew"
   },
@@ -168,14 +228,32 @@
     "source": "homebrew"
   },
   {
-    "app": "neovim",
-    "identifier": "neovim",
+    "app": "mitmproxy",
+    "identifier": "mitmproxy",
     "isAvailable": true,
     "source": "homebrew"
   },
   {
-    "app": "netbeans",
-    "identifier": "netbeans",
+    "app": "moreutils",
+    "identifier": "moreutils",
+    "isAvailable": true,
+    "source": "homebrew"
+  },
+  {
+    "app": "mtr",
+    "identifier": "mtr",
+    "isAvailable": true,
+    "source": "homebrew"
+  },
+  {
+    "app": "navi",
+    "identifier": "navi",
+    "isAvailable": true,
+    "source": "homebrew"
+  },
+  {
+    "app": "neovim",
+    "identifier": "neovim",
     "isAvailable": true,
     "source": "homebrew"
   },
@@ -192,8 +270,14 @@
     "source": "homebrew"
   },
   {
-    "app": "opencode",
-    "identifier": "opencode",
+    "app": "nnn",
+    "identifier": "nnn",
+    "isAvailable": true,
+    "source": "homebrew"
+  },
+  {
+    "app": "nushell",
+    "identifier": "nushell",
     "isAvailable": true,
     "source": "homebrew"
   },
@@ -252,8 +336,14 @@
     "source": "homebrew"
   },
   {
-    "app": "signal",
-    "identifier": "signal",
+    "app": "sd",
+    "identifier": "sd",
+    "isAvailable": true,
+    "source": "homebrew"
+  },
+  {
+    "app": "skim",
+    "identifier": "sk",
     "isAvailable": true,
     "source": "homebrew"
   },
@@ -270,14 +360,14 @@
     "source": "homebrew"
   },
   {
-    "app": "terraform",
-    "identifier": "terraform",
+    "app": "termshark",
+    "identifier": "termshark",
     "isAvailable": true,
     "source": "homebrew"
   },
   {
-    "app": "thunderbird",
-    "identifier": "thunderbird",
+    "app": "terraform",
+    "identifier": "terraform",
     "isAvailable": true,
     "source": "homebrew"
   },
@@ -300,20 +390,14 @@
     "source": "homebrew"
   },
   {
-    "app": "vivaldi",
-    "identifier": "vivaldi",
+    "app": "vifm",
+    "identifier": "vifm",
     "isAvailable": true,
     "source": "homebrew"
   },
   {
     "app": "wireguard",
     "identifier": "wireguard-tools",
-    "isAvailable": true,
-    "source": "homebrew"
-  },
-  {
-    "app": "wireshark",
-    "identifier": "wireshark",
     "isAvailable": true,
     "source": "homebrew"
   },

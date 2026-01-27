@@ -1,5 +1,17 @@
 [
   {
+    "app": "atuin",
+    "identifier": "atuin",
+    "isAvailable": true,
+    "metadata": {
+      "note": "Sync, search and backup shell history with Atuin.",
+      "scriptUrl": {
+        "linux": "https://setup.atuin.sh"
+      }
+    },
+    "source": "script"
+  },
+  {
     "app": "bun",
     "identifier": "bun",
     "isAvailable": true,
@@ -168,6 +180,19 @@
       "scriptUrl": {
         "linux": "https://astral.sh/uv/install.sh",
         "windows": "https://astral.sh/uv/install.ps1"
+      }
+    },
+    "source": "script"
+  },
+  {
+    "app": "xh",
+    "identifier": "xh",
+    "isAvailable": true,
+    "metadata": {
+      "note": "Friendly and fast tool for sending HTTP requests ",
+      "scriptUrl": {
+        "linux": "https://raw.githubusercontent.com/ducaale/xh/master/install.sh",
+        "windows": "https://raw.githubusercontent.com/ducaale/xh/master/install.ps1"
       }
     },
     "source": "script"

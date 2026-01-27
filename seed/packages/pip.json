@@ -6,6 +6,18 @@
     "source": "pip"
   },
   {
+    "app": "glances",
+    "identifier": "glances",
+    "isAvailable": true,
+    "source": "pip"
+  },
+  {
+    "app": "mitmproxy",
+    "identifier": "mitmproxy",
+    "isAvailable": true,
+    "source": "pip"
+  },
+  {
     "app": "poetry",
     "identifier": "poetry",
     "isAvailable": true,

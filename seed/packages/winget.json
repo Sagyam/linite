@@ -54,6 +54,18 @@
     "source": "winget"
   },
   {
+    "app": "delta",
+    "identifier": "dandavison.delta",
+    "isAvailable": true,
+    "source": "winget"
+  },
+  {
+    "app": "nushell",
+    "identifier": "nushell",
+    "isAvailable": true,
+    "source": "winget"
+  },
+  {
     "app": "darktable",
     "identifier": "darktable.darktable",
     "isAvailable": true,
@@ -204,8 +216,20 @@
     "source": "winget"
   },
   {
+    "app": "llama.cpp",
+    "identifier": "llama.cpp",
+    "isAvailable": true,
+    "source": "winget"
+  },
+  {
     "app": "libreoffice",
     "identifier": "TheDocumentFoundation.LibreOffice",
+    "isAvailable": true,
+    "source": "winget"
+  },
+  {
+    "app": "lf",
+    "identifier": "gokcehan.lf",
     "isAvailable": true,
     "source": "winget"
   },
@@ -470,6 +494,12 @@
   {
     "app": "wireshark",
     "identifier": "WiresharkFoundation.Wireshark",
+    "isAvailable": true,
+    "source": "winget"
+  },
+  {
+    "app": "xh",
+    "identifier": "ducaale.xh",
     "isAvailable": true,
     "source": "winget"
   },

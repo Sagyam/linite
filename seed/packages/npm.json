@@ -1,5 +1,17 @@
 [
   {
+    "app": "codex",
+    "identifier": "@openai/codex",
+    "isAvailable": true,
+    "source": "npm"
+  },
+  {
+    "app": "gemini-cli",
+    "identifier": "@google/gemini-cli",
+    "isAvailable": true,
+    "source": "npm"
+  },
+  {
     "app": "nodemon",
     "identifier": "nodemon",
     "isAvailable": true,
@@ -8,6 +20,12 @@
   {
     "app": "pnpm",
     "identifier": "pnpm",
+    "isAvailable": true,
+    "source": "npm"
+  },
+  {
+    "app": "nushell",
+    "identifier": "nushell",
     "isAvailable": true,
     "source": "npm"
   },

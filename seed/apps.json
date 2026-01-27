@@ -70,6 +70,16 @@
     "iconUrl": null
   },
   {
+    "slug": "atuin",
+    "isPopular": true,
+    "isFoss": true,
+    "homepage": "https://atuin.sh",
+    "displayName": "Atuin",
+    "description": "Magical shell history with sync and search",
+    "category": "cli",
+    "iconUrl": "https://atuin.sh/icon.png"
+  },
+  {
     "slug": "audacity",
     "isPopular": true,
     "isFoss": true,
@@ -130,6 +140,16 @@
     "iconUrl": "https://raw.githubusercontent.com/bottlesdevs/Bottles/main/data/icons/hicolor/scalable/apps/com.usebottles.bottles.svg"
   },
   {
+    "slug": "bottom",
+    "isPopular": true,
+    "isFoss": true,
+    "homepage": "https://github.com/ClementTsang/bottom",
+    "displayName": "bottom",
+    "description": "Customizable cross-platform graphical process and system monitor",
+    "category": "tui",
+    "iconUrl": null
+  },
+  {
     "slug": "brave",
     "isPopular": true,
     "isFoss": true,
@@ -138,6 +158,16 @@
     "description": "Secure, fast and private web browser with ad blocking",
     "category": "browsers",
     "iconUrl": "https://brave.com/static-assets/images/brave-logo-sans-text.svg"
+  },
+  {
+    "slug": "broot",
+    "isPopular": true,
+    "isFoss": true,
+    "homepage": "https://dystroy.org/broot",
+    "displayName": "broot",
+    "description": "Interactive tree-view file explorer and navigator",
+    "category": "cli",
+    "iconUrl": "https://dystroy.org/broot/img/vache.svg"
   },
   {
     "slug": "btop",
@@ -190,6 +220,26 @@
     "iconUrl": "https://celluloid-player.github.io/images/celluloid.svg"
   },
   {
+    "slug": "cheat",
+    "isPopular": true,
+    "isFoss": true,
+    "homepage": "https://github.com/cheat/cheat",
+    "displayName": "cheat",
+    "description": "Create and view interactive cheatsheets on the command-line",
+    "category": "cli",
+    "iconUrl": null
+  },
+  {
+    "slug": "choose",
+    "isPopular": true,
+    "isFoss": true,
+    "homepage": "https://github.com/theryangeary/choose",
+    "displayName": "choose",
+    "description": "Human-friendly and fast alternative to cut and awk",
+    "category": "cli",
+    "iconUrl": null
+  },
+  {
     "slug": "chrome",
     "isPopular": true,
     "isFoss": false,
@@ -238,6 +288,16 @@
     "description": "Anthropic's official CLI for Claude AI coding assistant",
     "category": "ai",
     "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b0/Claude_AI_symbol.svg"
+  },
+  {
+    "slug": "codex",
+    "isPopular": true,
+    "isFoss": true,
+    "homepage": "https://github.com/openai/codex",
+    "displayName": "Codex CLI",
+    "description": "Lightweight coding agent that runs in your terminal",
+    "category": "ai",
+    "iconUrl": null
   },
   {
     "slug": "conky",
@@ -300,6 +360,16 @@
     "iconUrl": "https://dbeaver.io/wp-content/uploads/2015/09/beaver-head.png"
   },
   {
+    "slug": "delta",
+    "isPopular": true,
+    "isFoss": true,
+    "homepage": "https://github.com/dandavison/delta",
+    "displayName": "delta",
+    "description": "Syntax-highlighting pager for git, diff, grep, and blame output",
+    "category": "cli",
+    "iconUrl": null
+  },
+  {
     "slug": "deluge",
     "isPopular": true,
     "isFoss": true,
@@ -340,6 +410,16 @@
     "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a7/Docker-svgrepo-com.svg"
   },
   {
+    "slug": "doggo",
+    "isPopular": true,
+    "isFoss": true,
+    "homepage": "https://doggo.mrkaran.dev",
+    "displayName": "doggo",
+    "description": "Command-line DNS Client for Humans. Written in Golang ",
+    "category": "cli",
+    "iconUrl": null
+  },
+  {
     "slug": "dolphin-emu",
     "isPopular": true,
     "isFoss": true,
@@ -358,6 +438,26 @@
     "description": "Cloud storage and file synchronization service",
     "category": "utilities",
     "iconUrl": "https://www.vectorlogo.zone/logos/dropbox/dropbox-tile.svg"
+  },
+  {
+    "slug": "duf",
+    "isPopular": true,
+    "isFoss": true,
+    "homepage": "https://github.com/muesli/duf",
+    "displayName": "duf",
+    "description": "Disk usage/free utility with a better interface than df",
+    "category": "cli",
+    "iconUrl": null
+  },
+  {
+    "slug": "dust",
+    "isPopular": true,
+    "isFoss": true,
+    "homepage": "https://github.com/bootandy/dust",
+    "displayName": "dust",
+    "description": "More intuitive version of du written in Rust",
+    "category": "cli",
+    "iconUrl": null
   },
   {
     "slug": "eclipse",
@@ -550,6 +650,16 @@
     "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/2/26/Geary_icon.svg"
   },
   {
+    "slug": "gemini-cli",
+    "isPopular": true,
+    "isFoss": true,
+    "homepage": "https://geminicli.com",
+    "displayName": "Gemini CLI",
+    "description": "Open-source AI agent that brings Gemini into your terminal",
+    "category": "ai",
+    "iconUrl": null
+  },
+  {
     "slug": "gh",
     "isPopular": true,
     "isFoss": true,
@@ -600,6 +710,16 @@
     "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3f/Git_icon.svg"
   },
   {
+    "slug": "glances",
+    "isPopular": true,
+    "isFoss": true,
+    "homepage": "https://nicolargo.github.io/glances",
+    "displayName": "Glances",
+    "description": "Cross-platform system monitoring tool",
+    "category": "system",
+    "iconUrl": null
+  },
+  {
     "slug": "godot",
     "isPopular": true,
     "isFoss": true,
@@ -637,6 +757,16 @@
     "displayName": "Goverlay",
     "description": "Goverlay is an easy graphical interface to configure MangoHud, vkBasalt, and OptiScaler",
     "category": "games",
+    "iconUrl": null
+  },
+  {
+    "slug": "gping",
+    "isPopular": true,
+    "isFoss": true,
+    "homepage": "https://github.com/orf/gping",
+    "displayName": "gping",
+    "description": "Ping with a graph",
+    "category": "cli",
     "iconUrl": null
   },
   {
@@ -710,16 +840,6 @@
     "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/0/0d/Inkscape_Logo.svg"
   },
   {
-    "slug": "iotop",
-    "isPopular": false,
-    "isFoss": true,
-    "homepage": "https://github.com/Tomas-M/iotop",
-    "displayName": "iotop",
-    "description": "A top utility for IO ",
-    "category": "tui",
-    "iconUrl": null
-  },
-  {
     "slug": "insomnia",
     "isPopular": false,
     "isFoss": true,
@@ -740,6 +860,26 @@
     "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/9/9c/IntelliJ_IDEA_Icon.svg"
   },
   {
+    "slug": "iotop",
+    "isPopular": false,
+    "isFoss": true,
+    "homepage": "https://github.com/Tomas-M/iotop",
+    "displayName": "iotop",
+    "description": "A top utility for IO ",
+    "category": "tui",
+    "iconUrl": null
+  },
+  {
+    "slug": "jan",
+    "isPopular": true,
+    "isFoss": true,
+    "homepage": "https://www.jan.ai",
+    "displayName": "Jan",
+    "description": "Open-source ChatGPT alternative that runs 100% offline",
+    "category": "ai",
+    "iconUrl": null
+  },
+  {
     "slug": "java",
     "isPopular": true,
     "isFoss": true,
@@ -758,6 +898,16 @@
     "description": "Jellyfin is the volunteer-built media solution that puts you in control of your media. Stream to any device from your own server, with no strings attached.",
     "category": "media",
     "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/4/41/Jellyfin_-_icon-transparent.svg"
+  },
+  {
+    "slug": "jnv",
+    "isPopular": true,
+    "isFoss": true,
+    "homepage": "https://github.com/ynqa/jnv",
+    "displayName": "jnv",
+    "description": "Interactive JSON filter using jq",
+    "category": "cli",
+    "iconUrl": "https://raw.githubusercontent.com/ynqa/jnv/main/assets/jnv-light.svg"
   },
   {
     "slug": "joplin",
@@ -860,6 +1010,16 @@
     "iconUrl": null
   },
   {
+    "slug": "lf",
+    "isPopular": true,
+    "isFoss": true,
+    "homepage": "https://github.com/gokcehan/lf",
+    "displayName": "lf",
+    "description": "Terminal file manager written in Go",
+    "category": "cli",
+    "iconUrl": null
+  },
+  {
     "slug": "libreoffice",
     "isPopular": true,
     "isFoss": true,
@@ -880,6 +1040,16 @@
     "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d0/LibreWolf_icon.svg"
   },
   {
+    "slug": "llama-cpp",
+    "isPopular": true,
+    "isFoss": true,
+    "homepage": "https://github.com/ggml-org/llama.cpp",
+    "displayName": "llama.cpp",
+    "description": "LLM inference in C/C++",
+    "category": "ai",
+    "iconUrl": "https://user-images.githubusercontent.com/1991296/230134379-7181e485-c521-4d23-a0d6-f7b3b61ba524.png"
+  },
+  {
     "slug": "logseq",
     "isPopular": true,
     "isFoss": true,
@@ -888,6 +1058,16 @@
     "description": "Privacy-first knowledge management and collaboration platform",
     "category": "office",
     "iconUrl": "https://avatars.githubusercontent.com/u/63385289?s=200&v=4"
+  },
+  {
+    "slug": "lsd",
+    "isPopular": true,
+    "isFoss": true,
+    "homepage": "https://github.com/lsd-rs/lsd",
+    "displayName": "lsd",
+    "description": "Next gen ls command with colors and icons",
+    "category": "cli",
+    "iconUrl": null
   },
   {
     "slug": "lua",
@@ -918,6 +1098,16 @@
     "description": "Vulkan and OpenGL overlay for monitoring FPS, temperatures, CPU/GPU load",
     "category": "games",
     "iconUrl": "https://avatars.githubusercontent.com/u/42713625?v=4"
+  },
+  {
+    "slug": "mcfly",
+    "isPopular": true,
+    "isFoss": true,
+    "homepage": "https://github.com/cantino/mcfly",
+    "displayName": "McFly",
+    "description": "Fly through your shell history with neural network",
+    "category": "cli",
+    "iconUrl": null
   },
   {
     "slug": "mega",
@@ -970,6 +1160,16 @@
     "iconUrl": null
   },
   {
+    "slug": "mitmproxy",
+    "isPopular": true,
+    "isFoss": true,
+    "homepage": "https://www.mitmproxy.org",
+    "displayName": "mitmproxy",
+    "description": "Interactive HTTPS proxy for penetration testers",
+    "category": "security",
+    "iconUrl": null
+  },
+  {
     "slug": "mongodb",
     "isPopular": true,
     "isFoss": false,
@@ -978,6 +1178,16 @@
     "description": "Document-oriented NoSQL database",
     "category": "development",
     "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/9/93/MongoDB_Logo.svg"
+  },
+  {
+    "slug": "moreutils",
+    "isPopular": true,
+    "isFoss": true,
+    "homepage": "https://joeyh.name/code/moreutils",
+    "displayName": "moreutils",
+    "description": "Collection of useful Unix utilities",
+    "category": "cli",
+    "iconUrl": null
   },
   {
     "slug": "mpv",
@@ -990,6 +1200,36 @@
     "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/7/73/Mpv_logo_%28official%29.png"
   },
   {
+    "slug": "mtr",
+    "isPopular": true,
+    "isFoss": true,
+    "homepage": "https://github.com/traviscross/mtr",
+    "displayName": "mtr",
+    "description": "Network diagnostic tool combining traceroute and ping",
+    "category": "system",
+    "iconUrl": null
+  },
+  {
+    "slug": "mullvad-browser",
+    "isPopular": true,
+    "isFoss": true,
+    "homepage": "https://mullvad.net/en/browser",
+    "displayName": "Mullvad Browser",
+    "description": "Privacy-focused browser from Mullvad VPN and Tor Project",
+    "category": "browsers",
+    "iconUrl": null
+  },
+  {
+    "slug": "navi",
+    "isPopular": true,
+    "isFoss": true,
+    "homepage": "https://github.com/denisidoro/navi",
+    "displayName": "navi",
+    "description": "Interactive cheatsheet tool for the command-line",
+    "category": "cli",
+    "iconUrl": null
+  },
+  {
     "slug": "neovim",
     "isPopular": false,
     "isFoss": true,
@@ -998,16 +1238,6 @@
     "description": "Hyperextensible Vim-based text editor",
     "category": "development",
     "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3a/Neovim-mark.svg"
-  },
-  {
-    "slug": "nvtop",
-    "isPopular": false,
-    "isFoss": true,
-    "homepage": "https://github.com/Syllo/nvtop",
-    "displayName": "nvtop",
-    "description": "GPU & Accelerator process monitoring for AMD, Apple, Huawei, Intel, NVIDIA and Qualcomm ",
-    "category": "tui",
-    "iconUrl": null
   },
   {
     "slug": "netbeans",
@@ -1050,6 +1280,16 @@
     "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/7/73/Logo_nmap.png"
   },
   {
+    "slug": "nnn",
+    "isPopular": true,
+    "isFoss": true,
+    "homepage": "https://github.com/jarun/nnn",
+    "displayName": "nnn",
+    "description": "n³ The unorthodox terminal file manager ",
+    "category": "cli",
+    "iconUrl": null
+  },
+  {
     "slug": "nodejs",
     "isPopular": true,
     "isFoss": true,
@@ -1068,6 +1308,36 @@
     "description": "All-in-one workspace for notes, tasks, and collaboration",
     "category": "office",
     "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png"
+  },
+  {
+    "slug": "nushell",
+    "isPopular": true,
+    "isFoss": true,
+    "homepage": "https://www.nushell.sh",
+    "displayName": "Nushell",
+    "description": "Modern shell with structured data processing",
+    "category": "cli",
+    "iconUrl": "https://avatars.githubusercontent.com/u/50749515"
+  },
+  {
+    "slug": "nvtop",
+    "isPopular": false,
+    "isFoss": true,
+    "homepage": "https://github.com/Syllo/nvtop",
+    "displayName": "nvtop",
+    "description": "GPU & Accelerator process monitoring for AMD, Apple, Huawei, Intel, NVIDIA and Qualcomm ",
+    "category": "tui",
+    "iconUrl": null
+  },
+  {
+    "slug": "nyxt",
+    "isPopular": false,
+    "isFoss": true,
+    "homepage": "https://nyxt.atlas.engineer",
+    "displayName": "Nyxt",
+    "description": "Keyboard-driven web browser extensible in Lisp",
+    "category": "browsers",
+    "iconUrl": "https://nyxt.atlas.engineer/image/nyxt_square_corner_128x128.png"
   },
   {
     "slug": "obs",
@@ -1120,6 +1390,16 @@
     "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c3/ONLYOFFICE_logo_(centered).svg"
   },
   {
+    "slug": "opencode",
+    "isPopular": true,
+    "isFoss": true,
+    "homepage": "https://opencode.ai/",
+    "displayName": "opencode",
+    "description": "The open source AI coding agent",
+    "category": "ai",
+    "iconUrl": "https://opencode.ai/social-share.png"
+  },
+  {
     "slug": "openshot",
     "isPopular": true,
     "isFoss": true,
@@ -1158,16 +1438,6 @@
     "description": "Open-source VPN solution",
     "category": "system",
     "iconUrl": "https://openvpn.net/_assets/logo_dark_98a890727a.svg"
-  },
-  {
-    "slug": "opencode",
-    "isPopular": true,
-    "isFoss": true,
-    "homepage": "https://opencode.ai/",
-    "displayName": "opencode",
-    "description": "The open source AI coding agent",
-    "category": "ai",
-    "iconUrl": "https://opencode.ai/social-share.png"
   },
   {
     "slug": "opera",
@@ -1298,6 +1568,16 @@
     "description": "Generic machine emulator and virtualizer",
     "category": "development",
     "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/4/45/Qemu_logo.svg"
+  },
+  {
+    "slug": "qutebrowser",
+    "isPopular": true,
+    "isFoss": true,
+    "homepage": "https://github.com/qutebrowser/qutebrowser",
+    "displayName": "qutebrowser",
+    "description": "Keyboard-driven, vim-like browser based on Python and Qt",
+    "category": "browsers",
+    "iconUrl": "https://www.qutebrowser.org/icons/qutebrowser.svg"
   },
   {
     "slug": "r-lang",
@@ -1440,6 +1720,16 @@
     "iconUrl": null
   },
   {
+    "slug": "sd",
+    "isPopular": true,
+    "isFoss": true,
+    "homepage": "https://github.com/chmln/sd",
+    "displayName": "sd",
+    "description": "Intuitive find & replace CLI (sed alternative)",
+    "category": "cli",
+    "iconUrl": null
+  },
+  {
     "slug": "sdkman",
     "isPopular": true,
     "isFoss": true,
@@ -1468,6 +1758,16 @@
     "description": "Privacy-focused messaging app with end-to-end encryption",
     "category": "communication",
     "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/8/8d/Signal-Logo.svg"
+  },
+  {
+    "slug": "skim",
+    "isPopular": true,
+    "isFoss": true,
+    "homepage": "https://github.com/skim-rs/skim",
+    "displayName": "skim",
+    "description": "Fuzzy finder in Rust",
+    "category": "cli",
+    "iconUrl": null
   },
   {
     "slug": "slack",
@@ -1590,6 +1890,16 @@
     "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg"
   },
   {
+    "slug": "termshark",
+    "isPopular": true,
+    "isFoss": true,
+    "homepage": "https://termshark.io",
+    "displayName": "Termshark",
+    "description": "Terminal UI for tshark, inspired by Wireshark",
+    "category": "tui",
+    "iconUrl": null
+  },
+  {
     "slug": "terraform",
     "isPopular": true,
     "isFoss": false,
@@ -1708,6 +2018,16 @@
     "description": "Free open source disk encryption software",
     "category": "security",
     "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/6/6a/VeraCrypt_Logo.svg"
+  },
+  {
+    "slug": "vifm",
+    "isPopular": true,
+    "isFoss": true,
+    "homepage": "https://vifm.info",
+    "displayName": "Vifm",
+    "description": "Vim-like file manager with curses interface",
+    "category": "cli",
+    "iconUrl": null
   },
   {
     "slug": "virt-manager",
@@ -1840,6 +2160,26 @@
     "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c6/Wireshark_icon_new.png"
   },
   {
+    "slug": "xh",
+    "isPopular": true,
+    "isFoss": true,
+    "homepage": "https://github.com/ducaale/xh",
+    "displayName": "xh",
+    "description": "Friendly and fast tool for sending HTTP requests",
+    "category": "cli",
+    "iconUrl": null
+  },
+  {
+    "slug": "xournalpp",
+    "isPopular": false,
+    "isFoss": true,
+    "homepage": "https://github.com/xournalpp/xournalpp",
+    "displayName": "Xournal++",
+    "description": "Xournal++ is a handwriting notetaking software with PDF annotation support.",
+    "category": "office",
+    "iconUrl": "https://avatars.githubusercontent.com/u/5192682"
+  },
+  {
     "slug": "yazi",
     "isPopular": true,
     "isFoss": true,
@@ -1858,16 +2198,6 @@
     "description": "Lightweight and portable command-line YAML processor",
     "category": "cli",
     "iconUrl": null
-  },
-  {
-    "slug": "xournalpp",
-    "isPopular": false,
-    "isFoss": true,
-    "homepage": "https://github.com/xournalpp/xournalpp",
-    "displayName": "Xournal++",
-    "description": "Xournal++ is a handwriting notetaking software with PDF annotation support.",
-    "category": "office",
-    "iconUrl": "https://avatars.githubusercontent.com/u/5192682"
   },
   {
     "slug": "zed",
