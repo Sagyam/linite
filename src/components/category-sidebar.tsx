@@ -24,6 +24,8 @@ function useClientOnly() {
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
+    // Intentionally set state on mount to handle SSR/CSR hydration
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     setIsClient(true);
   }, []);
 

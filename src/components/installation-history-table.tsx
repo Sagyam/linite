@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useMemo } from 'react';
+import Link from 'next/link';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { ColumnDef } from '@tanstack/react-table';
 import { format } from 'date-fns';
@@ -301,10 +302,10 @@ export function InstallationHistoryTable() {
           and saving them to your installation history.
         </p>
         <Button asChild size="lg" className="gap-2">
-          <a href="/">
+          <Link href="/">
             <PackagePlus className="w-5 h-5" />
             Browse Apps
-          </a>
+          </Link>
         </Button>
       </div>
     );

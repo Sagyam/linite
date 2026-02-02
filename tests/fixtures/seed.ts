@@ -150,10 +150,25 @@ export async function resetTestDatabase(
  */
 // Import schema for use in seed functions
 import * as schema from '@/db/schema';
+import type { App, Category, Distro, Source, Package, DistroSource } from '@/types';
+
+type FixtureData =
+  | App
+  | App[]
+  | Category
+  | Category[]
+  | Distro
+  | Distro[]
+  | Source
+  | Source[]
+  | Package
+  | Package[]
+  | DistroSource
+  | DistroSource[];
 
 export async function seedFixture(
   fixtureName: string,
-  data: any
+  data: FixtureData
 ): Promise<void> {
   console.log(`Seeding fixture: ${fixtureName}`);
 
@@ -161,6 +176,7 @@ export async function seedFixture(
 
   try {
     // Map fixture names to schema tables
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const tableMap: Record<string, any> = {
       apps: schema.apps,
       categories: schema.categories,

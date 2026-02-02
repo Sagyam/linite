@@ -11,7 +11,7 @@ import { join } from 'path';
 interface App {
   slug: string;
   displayName: string;
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 interface Package {
@@ -19,7 +19,7 @@ interface Package {
   identifier: string;
   source: string;
   isAvailable: boolean;
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 interface OrphanedPackage extends Package {

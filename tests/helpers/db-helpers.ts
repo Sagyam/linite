@@ -2,6 +2,7 @@ import { drizzle } from 'drizzle-orm/libsql';
 import { createClient } from '@libsql/client';
 import { eq } from 'drizzle-orm';
 import * as schema from '@/db/schema';
+import type { App, Category, Distro, Source, Package } from '@/types';
 
 /**
  * Database Helpers - Utilities for managing test database
@@ -64,10 +65,10 @@ export class DbHelpers {
    * Creates minimal data needed for most tests
    */
   static async seedBasicData(): Promise<{
-    category: any;
-    distro: any;
-    source: any;
-    app: any;
+    category: Category;
+    distro: Distro;
+    source: Source;
+    app: App;
   }> {
     const db = this.getDb();
 
@@ -157,7 +158,15 @@ export class DbHelpers {
   /**
    * Create test user (admin)
    */
-  static async createTestAdmin(): Promise<any> {
+  static async createTestAdmin(): Promise<{
+    id: string;
+    email: string;
+    name: string;
+    emailVerified: boolean;
+    image: string | null;
+    createdAt: Date;
+    updatedAt: Date;
+  }> {
     const db = this.getDb();
 
     const [user] = await db
@@ -185,7 +194,7 @@ export class DbHelpers {
     slug: string;
     categoryId: string;
     description?: string;
-  }): Promise<any> {
+  }): Promise<App> {
     const db = this.getDb();
 
     const [app] = await db
@@ -213,7 +222,7 @@ export class DbHelpers {
     appId: string;
     sourceId: string;
     identifier: string;
-  }): Promise<any> {
+  }): Promise<Package> {
     const db = this.getDb();
 
     const [pkg] = await db
@@ -236,7 +245,7 @@ export class DbHelpers {
   /**
    * Get app by ID
    */
-  static async getAppById(appId: string): Promise<any> {
+  static async getAppById(appId: string): Promise<App | undefined> {
     const db = this.getDb();
     const result = await db.select().from(schema.apps).where(eq(schema.apps.id, appId)).limit(1);
     return result[0];
@@ -245,7 +254,7 @@ export class DbHelpers {
   /**
    * Get all apps
    */
-  static async getAllApps(): Promise<any[]> {
+  static async getAllApps(): Promise<App[]> {
     const db = this.getDb();
     const result = await db.select().from(schema.apps);
     return result;
@@ -267,7 +276,7 @@ export class DbHelpers {
   /**
    * Get packages for app
    */
-  static async getPackagesForApp(appId: string): Promise<any[]> {
+  static async getPackagesForApp(appId: string): Promise<Package[]> {
     const db = this.getDb();
     const result = await db.select().from(schema.packages).where(eq(schema.packages.appId, appId));
     return result;

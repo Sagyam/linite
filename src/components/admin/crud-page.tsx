@@ -30,7 +30,15 @@ interface CrudPageConfig<T, TFormData> {
 
   // Data hooks
   useData: () => { data: T[] };
-  useDelete: () => { mutate: (id: string, options?: any) => void };
+  useDelete: () => {
+    mutate: (
+      id: string,
+      options?: {
+        onSuccess?: () => void;
+        onError?: (error: Error) => void;
+      }
+    ) => void;
+  };
 
   // Table configuration
   columns: ColumnDef<T>[];
@@ -47,7 +55,7 @@ interface CrudPageConfig<T, TFormData> {
   deleteDescription?: (item: T) => string;
 }
 
-interface CrudTableProps<T, TFormData> extends CrudPageConfig<T, TFormData> {}
+type CrudTableProps<T, TFormData> = CrudPageConfig<T, TFormData>;
 
 function CrudTable<T, TFormData>({
   entityName,
@@ -158,7 +166,7 @@ function CrudTable<T, TFormData>({
         open={deleteDialogOpen}
         onOpenChange={closeDeleteDialog}
         entityName={entityName}
-        itemName={deletingItem ? (deletingItem as any).name : undefined}
+        itemName={deletingItem ? (deletingItem as { name?: string }).name : undefined}
         onConfirm={() => confirmDelete(deleteMutation, getRowId)}
         description={deletingItem && deleteDescription ? deleteDescription(deletingItem) : undefined}
       />

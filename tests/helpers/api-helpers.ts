@@ -21,14 +21,20 @@ export class ApiHelpers {
     endpoint: string,
     options: {
       method?: 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH';
-      data?: any;
+      data?: unknown;
       params?: Record<string, string>;
     } = {},
     token: string = 'test-auth-token'
   ): Promise<APIResponse> {
     const { method = 'GET', data, params } = options;
 
-    const config: any = {
+    interface RequestConfig {
+      headers: Record<string, string>;
+      data?: unknown;
+      params?: Record<string, string>;
+    }
+
+    const config: RequestConfig = {
       headers: {
         'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json',
@@ -84,7 +90,7 @@ export class ApiHelpers {
    * @param requiredFields - Array of required field names
    * @throws Error if any field is missing
    */
-  static validateRequiredFields(data: any, requiredFields: string[]): void {
+  static validateRequiredFields(data: Record<string, unknown>, requiredFields: string[]): void {
     const missingFields = requiredFields.filter((field) => !(field in data));
 
     if (missingFields.length > 0) {
@@ -140,7 +146,7 @@ export class ApiHelpers {
    * @param response - API response
    * @returns Parsed JSON data
    */
-  static async parseJson<T = any>(response: APIResponse): Promise<T> {
+  static async parseJson<T>(response: APIResponse): Promise<T> {
     try {
       return await response.json();
     } catch (error) {
@@ -155,22 +161,27 @@ export class ApiHelpers {
    * Validate pagination response structure
    * @param data - Response data
    */
-  static validatePaginationResponse(data: any): void {
-    this.validateRequiredFields(data, ['data', 'page', 'pageSize', 'total']);
+  static validatePaginationResponse(data: unknown): void {
+    if (typeof data !== 'object' || data === null) {
+      throw new Error('Pagination response must be an object');
+    }
 
-    if (!Array.isArray(data.data)) {
+    const paginationData = data as Record<string, unknown>;
+    this.validateRequiredFields(paginationData, ['data', 'page', 'pageSize', 'total']);
+
+    if (!Array.isArray(paginationData.data)) {
       throw new Error('Pagination data should be an array');
     }
 
-    if (typeof data.page !== 'number' || data.page < 1) {
+    if (typeof paginationData.page !== 'number' || paginationData.page < 1) {
       throw new Error('Invalid page number');
     }
 
-    if (typeof data.pageSize !== 'number' || data.pageSize < 1) {
+    if (typeof paginationData.pageSize !== 'number' || paginationData.pageSize < 1) {
       throw new Error('Invalid pageSize');
     }
 
-    if (typeof data.total !== 'number' || data.total < 0) {
+    if (typeof paginationData.total !== 'number' || paginationData.total < 0) {
       throw new Error('Invalid total');
     }
   }
@@ -179,8 +190,13 @@ export class ApiHelpers {
    * Validate error response structure
    * @param data - Response data
    */
-  static validateErrorResponse(data: any): void {
-    if (!data.error && !data.message) {
+  static validateErrorResponse(data: unknown): void {
+    if (typeof data !== 'object' || data === null) {
+      throw new Error('Error response should be an object');
+    }
+
+    const errorData = data as Record<string, unknown>;
+    if (!('error' in errorData) && !('message' in errorData)) {
       throw new Error(
         'Error response should have "error" or "message" field'
       );
@@ -198,7 +214,11 @@ export class ApiHelpers {
   static async requestWithRetry(
     request: APIRequestContext,
     endpoint: string,
-    options: any = {},
+    options: {
+      method?: 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH';
+      data?: unknown;
+      params?: Record<string, string>;
+    } = {},
     maxRetries: number = 3
   ): Promise<APIResponse> {
     let lastError: Error | null = null;
@@ -243,7 +263,7 @@ export class ApiHelpers {
       description?: string;
       category?: string;
     }
-  ): Promise<any> {
+  ): Promise<unknown> {
     const response = await this.authenticatedRequest(request, '/api/apps', {
       method: 'POST',
       data: {
@@ -285,7 +305,7 @@ export class ApiHelpers {
     appIds: string[],
     distroId: string,
     sourcePreference?: string
-  ): Promise<any> {
+  ): Promise<unknown> {
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
     const response = await request.post(`${baseUrl}/api/generate`, {
       data: {
@@ -309,7 +329,7 @@ export class ApiHelpers {
       category?: string;
       popular?: boolean;
     }
-  ): Promise<any> {
+  ): Promise<unknown> {
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
     const params = new URLSearchParams({ q: query });
 

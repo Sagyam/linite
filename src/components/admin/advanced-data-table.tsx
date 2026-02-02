@@ -71,7 +71,13 @@ export function AdvancedDataTable<TData>({
 
   // Helper function to get row ID for selection
   const getRowIdForSelection = (row: TData): string => {
-    return getRowId ? getRowId(row) : (row as any).id;
+    if (getRowId) return getRowId(row);
+
+    if (typeof row === 'object' && row !== null && 'id' in row) {
+      return String((row as { id: unknown }).id);
+    }
+
+    throw new Error('Row does not have an id property and no getRowId function provided');
   };
 
   // Helper to check if all rows are selected

@@ -252,9 +252,12 @@ export function useKeyboardNavigation({
 
   // Reset focus when apps list changes (filters applied)
   useEffect(() => {
+    // Intentionally reset state when apps list changes (e.g., after filtering)
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setFocusedAppIndex(-1);
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setVisualModeStart(null);
-  }, [apps.length, setFocusedAppIndex]);
+  }, [apps.length, setFocusedAppIndex, setVisualModeStart]);
 
   return {
     showShortcuts,
