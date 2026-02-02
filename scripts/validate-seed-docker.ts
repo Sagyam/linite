@@ -125,13 +125,15 @@ const CONTAINERS: Record<string, ContainerConfig> = {
     name: 'linite-validator-flatpak',
     image: 'ubuntu:latest',
     setupCommand: '',
-    validationCommand: (id) => ``,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    validationCommand: (_id) => ``,
   },
   snap: {
     name: 'linite-validator-snap',
     image: 'ubuntu:latest',
     setupCommand: '',
-    validationCommand: (id) => ``,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    validationCommand: (_id) => ``,
   },
 
   // Language package managers
@@ -168,7 +170,8 @@ const CONTAINERS: Record<string, ContainerConfig> = {
     name: 'linite-validator-homebrew',
     image: 'homebrew/brew:latest',
     setupCommand: '',
-    validationCommand: (id) => ``,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    validationCommand: (_id) => ``,
   },
 };
 
@@ -469,7 +472,8 @@ function printOverallSummary(results: Record<string, ValidationResult>) {
 }
 
 // Print JSON output
-function printJsonOutput(results: Record<string, ValidationResult>): void {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+function _printJsonOutput(results: Record<string, ValidationResult>): void {
   const validatedResults = Object.values(results).filter(r => !r.skipped);
   const output: JsonOutput = {
     timestamp: new Date().toISOString(),

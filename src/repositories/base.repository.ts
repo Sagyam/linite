@@ -6,7 +6,7 @@ import type { SQL } from 'drizzle-orm';
  * Provides generic CRUD operations for database entities
  */
 
-export interface FindOptions<T> {
+export interface FindOptions {
   where?: SQL;
   limit?: number;
   offset?: number;
@@ -36,7 +36,7 @@ export class BaseRepository<T> {
   /**
    * Find all records with optional filtering and pagination
    */
-  async findMany(options: FindOptions<T> = {}): Promise<T[]> {
+  async findMany(options: FindOptions = {}): Promise<T[]> {
     const { where, limit, offset, orderBy, with: withRelations } = options;
 
     const query = db.query[this.tableName as keyof typeof db.query] as { findMany: (opts: unknown) => Promise<T[]> };
@@ -56,7 +56,7 @@ export class BaseRepository<T> {
   /**
    * Find a single record by condition
    */
-  async findFirst(options: FindOptions<T>): Promise<T | undefined> {
+  async findFirst(options: FindOptions): Promise<T | undefined> {
     const query = db.query[this.tableName as keyof typeof db.query] as { findFirst: (opts: unknown) => Promise<T | undefined> };
     if (!query || typeof query.findFirst !== 'function') {
       throw new Error(`Query interface not found for table: ${this.tableName}`);
@@ -155,7 +155,7 @@ export class BaseRepository<T> {
   /**
    * Find with pagination metadata
    */
-  async findPaginated(options: FindOptions<T>): Promise<PaginatedResult<T>> {
+  async findPaginated(options: FindOptions): Promise<PaginatedResult<T>> {
     const { limit = 50, offset = 0 } = options;
 
     const [data, total] = await Promise.all([

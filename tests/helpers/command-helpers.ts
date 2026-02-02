@@ -277,7 +277,8 @@ export class CommandHelpers {
    * @param source - Source slug
    * @returns true if valid uninstall command
    */
-  static validateUninstallCommand(command: string, source: string): boolean {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  static validateUninstallCommand(command: string, _source: string): boolean {
     const uninstallActions = ['remove', 'uninstall', 'purge', '-R'];
     const parsed = this.parseCommand(command);
 

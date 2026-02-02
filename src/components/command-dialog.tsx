@@ -43,8 +43,10 @@ interface CommandDialogProps {
 
 export function CommandDialog({ open, onOpenChange }: CommandDialogProps) {
   const [activeTab, setActiveTab] = useState<'install' | 'uninstall'>('install');
-  const [includeDependencyCleanup, setIncludeDependencyCleanup] = useState(false);
-  const [includeSetupCleanup, setIncludeSetupCleanup] = useState(false);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [includeDependencyCleanup, _setIncludeDependencyCleanup] = useState(false);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [includeSetupCleanup, _setIncludeSetupCleanup] = useState(false);
 
   const mode = useSelectionStore((state) => state.mode);
 
@@ -85,7 +87,7 @@ export function CommandDialog({ open, onOpenChange }: CommandDialogProps) {
         generateUninstall(includeDependencyCleanup, includeSetupCleanup);
       }
     }
-  }, [open, activeTab, includeDependencyCleanup, includeSetupCleanup, selectedApps.size, selectedDistro]);
+  }, [open, activeTab, includeDependencyCleanup, includeSetupCleanup, selectedApps.size, selectedDistro, generateInstall, generateUninstall]);
 
   const handleCopyAll = async () => {
     if (!result) return;

@@ -59,6 +59,7 @@ export function CollectionForm({ initialData, mode }: CollectionFormProps) {
     },
   });
 
+  // eslint-disable-next-line react-hooks/incompatible-library
   const isPublic = watch('isPublic');
 
   const handleAppToggle = (appId: string) => {

@@ -1,7 +1,7 @@
 import { NextRequest } from 'next/server';
 import { successResponse, errorResponse, requireUser } from '@/lib/api-utils';
 import { InstallationHistoryService } from '@/services/installation-history.service';
-import { createAuthApiHandler, createAuthValidatedApiHandler, createQueryValidatedApiHandler } from '@/lib/api-middleware';
+import { createAuthValidatedApiHandler, createQueryValidatedApiHandler } from '@/lib/api-middleware';
 import { createInstallationSchema, getInstallationsQuerySchema } from '@/lib/validation';
 import type { GetInstallationsResponse, CreateInstallationResponse } from '@/types';
 

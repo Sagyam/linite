@@ -6,7 +6,8 @@ import { env } from '../src/lib/env';
 /**
  * Wipe all blobs from Azure Blob Storage
  */
-async function wipeAzureBlobs() {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+async function _wipeAzureBlobs() {
   console.log('🗑️  Wiping Azure Blob Storage...');
 
   try {

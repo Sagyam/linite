@@ -29,7 +29,8 @@ interface AppGridProps {
 }
 
 export function AppGrid({
-  categories,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  categories: _categories,
   initialApps,
   totalApps,
   selectedCategory,

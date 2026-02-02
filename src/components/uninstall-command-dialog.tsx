@@ -80,8 +80,10 @@ export function UninstallCommandDialog({
   installations,
   onComplete,
 }: UninstallCommandDialogProps) {
-  const [includeDependencyCleanup, setIncludeDependencyCleanup] = useState(false);
-  const [includeSetupCleanup, setIncludeSetupCleanup] = useState(false);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [includeDependencyCleanup, _setIncludeDependencyCleanup] = useState(false);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [includeSetupCleanup, _setIncludeSetupCleanup] = useState(false);
 
   // Derive data from installations
   const distroSlug = installations[0]?.distro.slug || '';
@@ -117,7 +119,7 @@ export function UninstallCommandDialog({
         includeSetupCleanup,
       });
     }
-  }, [open, includeDependencyCleanup, includeSetupCleanup]);
+  }, [open, includeDependencyCleanup, includeSetupCleanup, installations.length, allSameDistro, distroSlug, appIds, sourcePreference, mutation]);
 
   const handleCopyAll = async () => {
     if (!mutation.data) return;

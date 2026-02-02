@@ -1,7 +1,7 @@
 import { NextRequest } from 'next/server';
 import { generateUninstallCommands } from '@/services/uninstall-command-generator';
 import { generateUninstallCommandSchema } from '@/lib/validation';
-import { createPublicApiHandler, createValidatedApiHandler } from '@/lib/api-middleware';
+import { createValidatedApiHandler } from '@/lib/api-middleware';
 import { successResponse, errorResponse } from '@/lib/api-utils';
 
 export const POST = createValidatedApiHandler(

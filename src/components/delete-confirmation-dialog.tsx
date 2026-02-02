@@ -11,6 +11,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { AlertTriangle } from 'lucide-react';
 import type { InstallationWithRelations } from '@/types/entities';
+import { OptimizedImage } from '@/components/ui/optimized-image';
 
 interface DeleteConfirmationDialogProps {
   open: boolean;
@@ -52,9 +53,11 @@ export function DeleteConfirmationDialog({
                     className="flex items-center gap-2 p-3 border-b last:border-b-0"
                   >
                     {installation.app.iconUrl && (
-                      <img
+                      <OptimizedImage
                         src={installation.app.iconUrl}
                         alt={installation.app.displayName}
+                        width={24}
+                        height={24}
                         className="w-6 h-6 rounded"
                       />
                     )}

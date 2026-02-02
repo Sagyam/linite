@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { ColumnDef } from '@tanstack/react-table';
 import { format } from 'date-fns';
-import { HelpCircle, Loader2, PackagePlus } from 'lucide-react';
+import { HelpCircle, PackagePlus } from 'lucide-react';
 import { AdvancedDataTable } from '@/components/admin/advanced-data-table';
 import { DeviceFilter } from '@/components/device-filter';
 import { DeleteDialog } from '@/components/admin/delete-dialog';
@@ -19,9 +19,7 @@ import { toast } from 'sonner';
 import { useInstallationSelectionStore } from '@/stores/installation-selection-store';
 import { useInstallationKeyboardNavigation } from '@/hooks/use-installation-keyboard-navigation';
 import type { InstallationWithRelations } from '@/types/entities';
-
-// Using img elements instead of Next.js Image component for table cells
-// to avoid layout shifts and hydration issues with dynamic content
+import { OptimizedImage } from '@/components/ui/optimized-image';
 
 async function fetchInstallations(deviceFilter?: string | null): Promise<InstallationWithRelations[]> {
   const params = new URLSearchParams({ limit: '100' });
@@ -57,7 +55,6 @@ export function InstallationHistoryTable() {
   const toggleInstallation = useInstallationSelectionStore((state) => state.toggleInstallation);
   const selectAll = useInstallationSelectionStore((state) => state.selectAll);
   const clearSelection = useInstallationSelectionStore((state) => state.clearSelection);
-  const setFocusedRowIndex = useInstallationSelectionStore((state) => state.setFocusedRowIndex);
 
   const { data: installations, isLoading, error } = useQuery({
     queryKey: ['installations', deviceFilter],
@@ -180,9 +177,11 @@ export function InstallationHistoryTable() {
         return (
           <div className="flex items-center space-x-3">
             {app.iconUrl && (
-              <img
+              <OptimizedImage
                 src={app.iconUrl}
                 alt={app.displayName}
+                width={32}
+                height={32}
                 className="w-8 h-8 rounded"
               />
             )}
@@ -215,9 +214,11 @@ export function InstallationHistoryTable() {
         return (
           <div className="flex items-center space-x-2">
             {distro.iconUrl && (
-              <img
+              <OptimizedImage
                 src={distro.iconUrl}
                 alt={distro.name}
+                width={20}
+                height={20}
                 className="w-5 h-5 rounded"
               />
             )}

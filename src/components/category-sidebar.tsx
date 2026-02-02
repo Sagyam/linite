@@ -25,7 +25,7 @@ function useClientOnly() {
 
   useEffect(() => {
     // Intentionally set state on mount to handle SSR/CSR hydration
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setIsClient(true);
   }, []);
 

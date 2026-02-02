@@ -2,7 +2,6 @@
 
 import { useEffect, useState, useCallback, useRef } from 'react';
 import { useSelectionStore } from '@/stores/selection-store';
-import type { ViewMode } from '@/stores/selection-store';
 import type { App } from '@/hooks/use-apps';
 import type { Category } from '@/types';
 
@@ -248,12 +247,15 @@ export function useKeyboardNavigation({
     searchInputRef,
     visualModeStart,
     handleVisualModeSelect,
+    onGenerateCommand,
+    onViewSelection,
+    distroTriggerRef,
+    sourceTriggerRef,
   ]);
 
   // Reset focus when apps list changes (filters applied)
   useEffect(() => {
     // Intentionally reset state when apps list changes (e.g., after filtering)
-    // eslint-disable-next-line react-hooks/set-state-in-effect
     setFocusedAppIndex(-1);
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setVisualModeStart(null);

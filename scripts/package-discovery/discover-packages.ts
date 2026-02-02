@@ -189,7 +189,7 @@ async function discoverPackagesForApp(app: App, existingPackages: Map<string, Ma
     } else {
       console.log('    No results found');
     }
-  } catch (error) {
+  } catch {
     console.log('    ⚠️  Flathub search unavailable (API may be down)');
   }
 
@@ -302,7 +302,7 @@ async function discoverPackagesForApp(app: App, existingPackages: Map<string, Ma
     } else {
       console.log('    No results found');
     }
-  } catch (error) {
+  } catch {
     console.log('    ⚠️  Repology search unavailable');
   }
 

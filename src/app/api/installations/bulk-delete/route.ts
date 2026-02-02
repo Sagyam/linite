@@ -1,4 +1,3 @@
-import { NextRequest } from 'next/server';
 import { successResponse, errorResponse, requireUser } from '@/lib/api-utils';
 import { InstallationHistoryService } from '@/services/installation-history.service';
 import { createAuthValidatedApiHandler } from '@/lib/api-middleware';
