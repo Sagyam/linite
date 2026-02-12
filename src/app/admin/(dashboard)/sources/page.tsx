@@ -83,9 +83,9 @@ export default function SourcesPage() {
         name: source.name,
         slug: source.slug,
         installCommand: source.installCmd,
-        requiresSudo: source.requireSudo,
-        setupCommand: source.setupCmd || '',
-        priority: source.priority,
+        requiresSudo: source.requireSudo ?? false,
+        setupCommand: (typeof source.setupCmd === 'string' ? source.setupCmd : JSON.stringify(source.setupCmd || '')) || '',
+        priority: source.priority ?? 0,
         apiEndpoint: source.apiEndpoint || '',
       })}
       renderFormFields={(formData, setFormData) => (

@@ -377,13 +377,13 @@ describe('Snapcraft API Client', () => {
       });
 
       await expect(getSnapcraftPackageMetadata('test')).rejects.toThrow(
-        'Failed to fetch Snapcraft package metadata: Snapcraft API error: 500 Internal Server Error'
+        'Failed to fetch Snapcraft metadata: Snapcraft API error: 500 Internal Server Error'
       );
     });
 
     it('should throw error for empty snap name', async () => {
-      await expect(getSnapcraftPackageMetadata('')).rejects.toThrow('Snap name is required');
-      await expect(getSnapcraftPackageMetadata('   ')).rejects.toThrow('Snap name is required');
+      await expect(getSnapcraftPackageMetadata('')).rejects.toThrow('Identifier is required');
+      await expect(getSnapcraftPackageMetadata('   ')).rejects.toThrow('Identifier is required');
     });
 
     it('should cache metadata results', async () => {

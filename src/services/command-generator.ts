@@ -1,12 +1,22 @@
-import { db } from '@/db';
-import { apps, packages, distros } from '@/db/schema';
-import { eq, inArray } from 'drizzle-orm';
 import { parsePackageMetadata } from '@/lib/package-metadata';
 import type {
   GenerateCommandRequest,
   GenerateCommandResponse,
   PackageBreakdown,
 } from '@/types/entities';
+import {
+  getDistroWithSources,
+  getAppsWithPackages,
+  buildDistroSourceMap,
+  selectBestPackage,
+  resolveCommandByDistroFamily,
+  parseJsonField,
+  groupPackagesBySource,
+  detectOS,
+  shouldUseSudo,
+  getNixCommands,
+  buildScriptCommand,
+} from './command-generator-shared';
 
 // Re-export for backward compatibility
 export type { GenerateCommandRequest, GenerateCommandResponse, PackageBreakdown };
@@ -26,104 +36,24 @@ interface SelectedPackage {
   metadata?: unknown;
 }
 
-/**
- * Generates install commands for selected apps based on distro and source preferences
- */
-// Helper function to get Nix command templates based on installation method
-function getNixCommandTemplate(method: 'nix-shell' | 'nix-env' | 'nix-flakes' | null) {
-  switch (method) {
-    case 'nix-env':
-      return {
-        installCmd: 'nix-env -iA nixpkgs.',
-        setupCmd: 'nix-channel --update',
-      };
-    case 'nix-flakes':
-      return {
-        installCmd: 'nix profile install nixpkgs#',
-        setupCmd: 'nix-channel --update && echo "experimental-features = nix-command flakes" >> ~/.config/nix/nix.conf',
-      };
-    case 'nix-shell':
-    default:
-      return {
-        installCmd: 'nix-shell -p',
-        setupCmd: null,
-      };
-  }
-}
-
-// Helper function to resolve setup command based on distro family
-function resolveSetupCmd(
-  setupCmd: string | Record<string, string | null> | null | undefined,
-  distroFamily: string
-): string | null {
-  if (!setupCmd) return null;
-
-  // If it's a string, return as-is (universal command)
-  if (typeof setupCmd === 'string') return setupCmd;
-
-  // If it's an object, select based on distro family
-  if (typeof setupCmd === 'object' && setupCmd !== null) {
-    return setupCmd[distroFamily] || setupCmd['*'] || null;
-  }
-
-  return null;
-}
+// Alias for backward compatibility - now uses shared function
+const resolveSetupCmd = resolveCommandByDistroFamily;
 
 export async function generateInstallCommands(
   request: GenerateCommandRequest
 ): Promise<GenerateCommandResponse> {
   const { distroSlug, appIds, sourcePreference, nixosInstallMethod } = request;
 
-  // 1. Get the selected distro with its available sources
-  const distro = await db.query.distros.findFirst({
-    where: eq(distros.slug, distroSlug),
-    with: {
-      distroSources: {
-        with: {
-          source: true,
-        },
-      },
-    },
-  });
+  // 1. Get the selected distro with its available sources (SHARED FUNCTION)
+  const distro = await getDistroWithSources(distroSlug);
 
-  if (!distro) {
-    throw new Error(`Distribution not found. Please select a valid Linux distribution.`);
-  }
+  // 2. Get all selected apps with their packages (SHARED FUNCTION)
+  const selectedApps = await getAppsWithPackages(appIds);
 
-  if (!distro.distroSources || distro.distroSources.length === 0) {
-    throw new Error(`No sources configured for distro "${distro.name}"`);
-  }
+  // 3. Build a map of available sources for this distro with their priorities (SHARED FUNCTION)
+  const distroSourceMap = buildDistroSourceMap(distro.distroSources);
 
-  // 2. Get all selected apps with their packages
-  const selectedApps = await db.query.apps.findMany({
-    where: inArray(apps.id, appIds),
-    with: {
-      packages: {
-        where: eq(packages.isAvailable, true),
-        with: {
-          source: true,
-        },
-      },
-    },
-  });
-
-  if (selectedApps.length === 0) {
-    throw new Error('No apps found for the provided IDs');
-  }
-
-  // 3. Build a map of available sources for this distro with their priorities
-  const distroSourceMap = new Map(
-    distro.distroSources.map((ds) => [
-      ds.source.slug,
-      {
-        ...ds.source,
-        distroSourcePriority: ds.priority,
-        isDefault: ds.isDefault,
-      },
-    ])
-  );
-
-  // 4. Select the best package for each app
+  // 4. Select the best package for each app (USES SHARED FUNCTION)
   const selectedPackages: SelectedPackage[] = [];
   const warnings: string[] = [];
 
@@ -137,45 +67,18 @@ export async function generateInstallCommands(
       continue;
     }
 
-    // Calculate priority for each package
-    const packagesWithPriority = availablePackages.map((pkg) => {
-      const distroSource = distroSourceMap.get(pkg.source.slug)!;
-      let totalPriority = distroSource.distroSourcePriority ?? 0;
+    // Select best package using shared algorithm
+    const bestPackage = selectBestPackage(availablePackages, distroSourceMap, sourcePreference);
 
-      // Boost priority if this is the user's preferred source
-      if (sourcePreference && pkg.source.slug === sourcePreference) {
-        totalPriority += 100; // Significant boost for user preference
-      }
-
-      // Boost if this is the default source for the distro
-      if (distroSource.isDefault === true) {
-        totalPriority += 5;
-      }
-
-      return {
-        ...pkg,
-        calculatedPriority: totalPriority,
-      };
-    });
-
-    // Select the package with the highest priority
-    const bestPackage = packagesWithPriority.sort(
-      (a, b) => (b.calculatedPriority ?? 0) - (a.calculatedPriority ?? 0)
-    )[0];
-
-    // Parse packageSetupCmd from JSON string if needed
-    let parsedPackageSetupCmd: string | Record<string, string | null> | null = null;
-    if (bestPackage.packageSetupCmd) {
-      if (typeof bestPackage.packageSetupCmd === 'string') {
-        try {
-          parsedPackageSetupCmd = JSON.parse(bestPackage.packageSetupCmd);
-        } catch {
-          parsedPackageSetupCmd = bestPackage.packageSetupCmd;
-        }
-      } else {
-        parsedPackageSetupCmd = bestPackage.packageSetupCmd as string | Record<string, string | null>;
-      }
+    if (!bestPackage) {
+      warnings.push(`${app.displayName}: No package available for ${distro.name}`);
+      continue;
     }
+
+    // Parse packageSetupCmd from JSON string if needed (SHARED FUNCTION)
+    const parsedPackageSetupCmd = parseJsonField<Record<string, string | null>>(
+      bestPackage.packageSetupCmd
+    );
 
     selectedPackages.push({
       appId: app.id,
@@ -193,14 +96,8 @@ export async function generateInstallCommands(
     });
   }
 
-  // 5. Group packages by source
-  const packagesBySource = new Map<string, SelectedPackage[]>();
-
-  for (const pkg of selectedPackages) {
-    const existing = packagesBySource.get(pkg.sourceSlug) || [];
-    existing.push(pkg);
-    packagesBySource.set(pkg.sourceSlug, existing);
-  }
+  // 5. Group packages by source (SHARED FUNCTION)
+  const packagesBySource = groupPackagesBySource(selectedPackages);
 
   // 6. Generate install commands for each source
   const commands: string[] = [];
@@ -208,9 +105,8 @@ export async function generateInstallCommands(
   const breakdown: PackageBreakdown[] = [];
   const processedSetupCmds = new Set<string>();
 
-  // Determine OS based on distro (simplified logic)
-  const isWindows = distro.slug === 'windows';
-  const os = isWindows ? 'windows' : 'linux';
+  // Determine OS based on distro (SHARED FUNCTION)
+  const os = detectOS(distro.slug);
 
   for (const [sourceSlug, pkgs] of packagesBySource.entries()) {
     const firstPkg = pkgs[0];
@@ -221,9 +117,9 @@ export async function generateInstallCommands(
     let setupCmd = firstPkg.setupCmd;
 
     if (sourceSlug === 'nix' && nixosInstallMethod) {
-      const nixTemplate = getNixCommandTemplate(nixosInstallMethod);
-      installCmd = nixTemplate.installCmd;
-      setupCmd = nixTemplate.setupCmd;
+      const nixCommands = getNixCommands(nixosInstallMethod);
+      installCmd = nixCommands.installCmd || firstPkg.installCmd;
+      setupCmd = nixCommands.setupCmd;
     }
 
     // Handle script source specially
@@ -235,20 +131,8 @@ export async function generateInstallCommands(
 
         const scriptUrl = metadata.scriptUrl?.[os];
         if (scriptUrl) {
-          let scriptCommand: string;
-          if (isWindows) {
-            // Windows PowerShell command
-            if (scriptUrl.endsWith('.exe')) {
-              // Direct download and run executable
-              scriptCommand = `irm ${scriptUrl} -OutFile installer.exe; .\\installer.exe`;
-            } else {
-              // Run script directly
-              scriptCommand = `irm ${scriptUrl} | iex`;
-            }
-          } else {
-            // Linux curl command
-            scriptCommand = `curl -fsSL ${scriptUrl} | bash`;
-          }
+          // Use shared script command builder (SHARED FUNCTION)
+          const scriptCommand = buildScriptCommand(scriptUrl, os);
           commands.push(scriptCommand);
         } else {
           warnings.push(`${pkg.appName}: No install script available for ${os}`);
@@ -292,8 +176,8 @@ export async function generateInstallCommands(
 
     // Build the install command
     const packageList = packageIdentifiers.join(' ');
-    // Don't use sudo on Windows (Windows doesn't have sudo)
-    const fullCommand = firstPkg.requireSudo && !isWindows
+    // Use shared sudo logic (SHARED FUNCTION)
+    const fullCommand = shouldUseSudo(firstPkg.requireSudo, os)
       ? `sudo ${installCmd} ${packageList}`
       : `${installCmd} ${packageList}`;
 

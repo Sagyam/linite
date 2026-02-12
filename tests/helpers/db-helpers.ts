@@ -152,7 +152,12 @@ export class DbHelpers {
       metadata: { url: 'https://packages.ubuntu.com/firefox' },
     });
 
-    return { category, distro, source, app };
+    return {
+      category,
+      distro,
+      source: source as Source,
+      app
+    };
   }
 
   /**
@@ -161,11 +166,12 @@ export class DbHelpers {
   static async createTestAdmin(): Promise<{
     id: string;
     email: string;
-    name: string;
-    emailVerified: boolean;
+    name: string | null;
+    emailVerified: boolean | null;
     image: string | null;
-    createdAt: Date;
-    updatedAt: Date;
+    role: ('user' | 'admin' | 'superadmin') | null;
+    createdAt: Date | null;
+    updatedAt: Date | null;
   }> {
     const db = this.getDb();
 
@@ -239,7 +245,7 @@ export class DbHelpers {
       })
       .returning();
 
-    return pkg;
+    return pkg as Package;
   }
 
   /**
@@ -279,7 +285,7 @@ export class DbHelpers {
   static async getPackagesForApp(appId: string): Promise<Package[]> {
     const db = this.getDb();
     const result = await db.select().from(schema.packages).where(eq(schema.packages.appId, appId));
-    return result;
+    return result as Package[];
   }
 
   /**

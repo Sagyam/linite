@@ -3,11 +3,20 @@
  * Documentation: https://api.snapcraft.io/docs/
  */
 
-import { PackageSearchResult, PackageMetadata, SimpleCache } from './types';
+import { PackageSearchResult, PackageMetadata } from './types';
+import { createFlexibleApiClient } from './api-client-factory';
 
 const SNAPCRAFT_API_BASE = 'https://api.snapcraft.io/v2';
-const searchCache = new SimpleCache<PackageSearchResult[]>(15); // 15 minute cache
-const metadataCache = new SimpleCache<PackageMetadata>(15); // 15 minute cache
+const SNAPCRAFT_HEADERS = {
+  'Snap-Device-Series': '16',
+  'User-Agent': 'Linite/1.0 (Linux package installer)',
+};
+
+// Create flexible API client with caching
+const snapcraftClient = createFlexibleApiClient({
+  name: 'Snapcraft',
+  cacheTTL: 15,
+});
 
 interface SnapInfoResponse {
   'channel-map': Array<{
@@ -46,23 +55,12 @@ interface SnapInfoResponse {
  * Note: The v2 API returns minimal data in search, we fetch full details for top results
  */
 export async function searchSnapcraft(query: string): Promise<PackageSearchResult[]> {
-  if (!query || query.trim().length === 0) {
-    throw new Error('Search query is required');
-  }
-
-  const cacheKey = `snapcraft:search:${query.toLowerCase()}`;
-  const cached = searchCache.get(cacheKey);
-  if (cached) return cached;
-
-  try {
+  return snapcraftClient.cachedSearch(query, async (q) => {
     const url = new URL(`${SNAPCRAFT_API_BASE}/snaps/find`);
-    url.searchParams.set('q', query);
+    url.searchParams.set('q', q);
 
     const response = await fetch(url.toString(), {
-      headers: {
-        'Snap-Device-Series': '16',
-        'User-Agent': 'Linite/1.0 (Linux package installer)',
-      },
+      headers: SNAPCRAFT_HEADERS,
     });
 
     if (!response.ok) {
@@ -103,36 +101,17 @@ export async function searchSnapcraft(query: string): Promise<PackageSearchResul
       }
     });
 
-    const results = (await Promise.all(detailsPromises)).filter((r): r is PackageSearchResult => r !== null);
-
-    searchCache.set(cacheKey, results);
-    return results;
-  } catch (error) {
-    console.error('Snapcraft search error:', error);
-    throw new Error(
-      `Failed to search Snapcraft: ${error instanceof Error ? error.message : 'Unknown error'}`
-    );
-  }
+    return (await Promise.all(detailsPromises)).filter((r): r is PackageSearchResult => r !== null);
+  });
 }
 
 /**
  * Get detailed metadata for a specific snap
  */
 export async function getSnapcraftPackageMetadata(snapName: string): Promise<PackageMetadata | null> {
-  if (!snapName || snapName.trim().length === 0) {
-    throw new Error('Snap name is required');
-  }
-
-  const cacheKey = `snapcraft:snap:${snapName}`;
-  const cached = metadataCache.get(cacheKey);
-  if (cached) return cached;
-
-  try {
-    const response = await fetch(`${SNAPCRAFT_API_BASE}/snaps/info/${encodeURIComponent(snapName)}`, {
-      headers: {
-        'Snap-Device-Series': '16',
-        'User-Agent': 'Linite/1.0 (Linux package installer)',
-      },
+  return snapcraftClient.cachedMetadata(snapName, async (name) => {
+    const response = await fetch(`${SNAPCRAFT_API_BASE}/snaps/info/${encodeURIComponent(name)}`, {
+      headers: SNAPCRAFT_HEADERS,
     });
 
     if (!response.ok) {
@@ -150,7 +129,7 @@ export async function getSnapcraftPackageMetadata(snapName: string): Promise<Pac
     // Get the latest stable version
     const stableChannel = data['channel-map'].find((c) => c.channel.risk === 'stable');
 
-    const metadata: PackageMetadata = {
+    return {
       identifier: snap.name,
       name: snap.title || snap.name,
       summary: snap.summary,
@@ -169,33 +148,19 @@ export async function getSnapcraftPackageMetadata(snapName: string): Promise<Pac
         channels: data['channel-map'],
       },
     };
-
-    metadataCache.set(cacheKey, metadata);
-    return metadata;
-  } catch (error) {
-    console.error('Snapcraft metadata fetch error:', error);
-    throw new Error(
-      `Failed to fetch Snapcraft package metadata: ${error instanceof Error ? error.message : 'Unknown error'}`
-    );
-  }
+  });
 }
 
 /**
  * Check if a snap exists on Snapcraft
  */
 export async function checkSnapcraftAvailability(snapName: string): Promise<boolean> {
-  try {
-    const metadata = await getSnapcraftPackageMetadata(snapName);
-    return metadata !== null;
-  } catch (error) {
-    console.error('Snapcraft availability check error:', error);
-    return false;
-  }
+  return snapcraftClient.checkAvailability(snapName, () => getSnapcraftPackageMetadata(snapName));
 }
 
 /**
  * Clear the Snapcraft cache
  */
 export function clearSnapcraftCache(): void {
-  searchCache.clear(); metadataCache.clear();
+  snapcraftClient.clearCache();
 }

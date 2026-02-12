@@ -95,7 +95,7 @@ function PackagesTable() {
       version: pkg.version || '',
       size: pkg.size?.toString() || '',
       maintainer: pkg.maintainer || '',
-      isAvailable: pkg.isAvailable,
+      isAvailable: pkg.isAvailable ?? true,
     });
     setDialogOpen(true);
   };

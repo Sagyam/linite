@@ -89,38 +89,3 @@ export function successResponse<T>(data: T, status: number = 200) {
   return NextResponse.json(data, { status });
 }
 
-/**
- * Higher-order function that wraps API route handlers with automatic error handling
- * @param handler - The route handler function
- * @returns Wrapped handler with error handling
- */
-export function withErrorHandling<T = unknown>(
-  handler: (request: NextRequest, context?: T) => Promise<NextResponse>
-) {
-  return async (request: NextRequest, context?: T): Promise<NextResponse> => {
-    try {
-      return await handler(request, context);
-    } catch (error) {
-      console.error('API Error:', error);
-
-      // Handle known error types
-      if (error instanceof Error) {
-        // Check for specific error messages
-        if (error.message.includes('not found')) {
-          return errorResponse(error.message, 404);
-        }
-        if (error.message.includes('Unauthorized') || error.message.includes('unauthorized')) {
-          return errorResponse('Unauthorized', 401);
-        }
-        if (error.message.includes('UNIQUE') || error.message.includes('already exists')) {
-          return errorResponse(error.message, 409);
-        }
-
-        return errorResponse(error.message, 500);
-      }
-
-      return errorResponse('An unexpected error occurred', 500);
-    }
-  };
-}
-

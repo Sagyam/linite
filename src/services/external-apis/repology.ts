@@ -3,11 +3,20 @@
  * Documentation: https://repology.org/api
  */
 
-import { PackageSearchResult, PackageMetadata, SimpleCache } from './types';
+import { PackageSearchResult, PackageMetadata } from './types';
+import { createFlexibleApiClient } from './api-client-factory';
 
 const REPOLOGY_API_BASE = 'https://repology.org/api/v1';
-const searchCache = new SimpleCache<PackageSearchResult[]>(15); // 15 minute cache
-const metadataCache = new SimpleCache<PackageMetadata>(15); // 15 minute cache
+const REPOLOGY_HEADERS = {
+  'Accept': 'application/json',
+  'User-Agent': 'Linite/1.0 (Linux package installer; +https://github.com/yourusername/linite)',
+};
+
+// Create flexible API client with caching
+const repologyClient = createFlexibleApiClient({
+  name: 'Repology',
+  cacheTTL: 15,
+});
 
 interface RepologyProject {
   repo: string;
@@ -56,24 +65,13 @@ const REPO_TO_SOURCE_MAP: Record<string, string> = {
  * Search for a project on Repology
  */
 export async function searchRepology(projectName: string): Promise<PackageSearchResult[]> {
-  if (!projectName || projectName.trim().length === 0) {
-    throw new Error('Project name is required');
-  }
-
-  const cacheKey = `repology:search:${projectName.toLowerCase()}`;
-  const cached = searchCache.get(cacheKey);
-  if (cached) return cached;
-
-  try {
+  return repologyClient.cachedSearch(projectName, async (name) => {
     // Repology doesn't have a traditional search endpoint
     // We use the project lookup which returns packages for exact matches
     const response = await fetch(
-      `${REPOLOGY_API_BASE}/project/${encodeURIComponent(projectName)}`,
+      `${REPOLOGY_API_BASE}/project/${encodeURIComponent(name)}`,
       {
-        headers: {
-          'Accept': 'application/json',
-          'User-Agent': 'Linite/1.0 (Linux package installer; +https://github.com/yourusername/linite)',
-        },
+        headers: REPOLOGY_HEADERS,
       }
     );
 
@@ -114,14 +112,8 @@ export async function searchRepology(projectName: string): Promise<PackageSearch
       });
     }
 
-    searchCache.set(cacheKey, results);
     return results;
-  } catch (error) {
-    console.error('Repology search error:', error);
-    throw new Error(
-      `Failed to search Repology: ${error instanceof Error ? error.message : 'Unknown error'}`
-    );
-  }
+  });
 }
 
 /**
@@ -130,22 +122,11 @@ export async function searchRepology(projectName: string): Promise<PackageSearch
 export async function getRepologyProjectMetadata(
   projectName: string
 ): Promise<PackageMetadata | null> {
-  if (!projectName || projectName.trim().length === 0) {
-    throw new Error('Project name is required');
-  }
-
-  const cacheKey = `repology:project:${projectName}`;
-  const cached = metadataCache.get(cacheKey);
-  if (cached) return cached;
-
-  try {
+  return repologyClient.cachedMetadata(projectName, async (name) => {
     const response = await fetch(
-      `${REPOLOGY_API_BASE}/project/${encodeURIComponent(projectName)}`,
+      `${REPOLOGY_API_BASE}/project/${encodeURIComponent(name)}`,
       {
-        headers: {
-          'Accept': 'application/json',
-          'User-Agent': 'Linite/1.0 (Linux package installer; +https://github.com/yourusername/linite)',
-        },
+        headers: REPOLOGY_HEADERS,
       }
     );
 
@@ -165,7 +146,7 @@ export async function getRepologyProjectMetadata(
     // Find the newest version
     const newestPkg = packages.find((p) => p.status === 'newest') || packages[0];
 
-    const metadata: PackageMetadata = {
+    return {
       identifier: newestPkg.name,
       name: newestPkg.name,
       summary: newestPkg.summary,
@@ -183,15 +164,7 @@ export async function getRepologyProjectMetadata(
         })),
       },
     };
-
-    metadataCache.set(cacheKey, metadata);
-    return metadata;
-  } catch (error) {
-    console.error('Repology metadata fetch error:', error);
-    throw new Error(
-      `Failed to fetch Repology project metadata: ${error instanceof Error ? error.message : 'Unknown error'}`
-    );
-  }
+  });
 }
 
 /**
@@ -205,10 +178,7 @@ export async function getRepologyPackagesForDistro(
     const response = await fetch(
       `${REPOLOGY_API_BASE}/project/${encodeURIComponent(projectName)}`,
       {
-        headers: {
-          'Accept': 'application/json',
-          'User-Agent': 'Linite/1.0 (Linux package installer; +https://github.com/yourusername/linite)',
-        },
+        headers: REPOLOGY_HEADERS,
       }
     );
 
@@ -240,5 +210,5 @@ export async function getRepologyPackagesForDistro(
  * Clear the Repology cache
  */
 export function clearRepologyCache(): void {
-  searchCache.clear(); metadataCache.clear();
+  repologyClient.clearCache();
 }

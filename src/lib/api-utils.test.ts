@@ -5,7 +5,6 @@ import {
   requireCollectionOwnership,
   errorResponse,
   successResponse,
-  withErrorHandling,
 } from './api-utils';
 
 // Mock the auth module
@@ -153,125 +152,6 @@ describe('API Utilities', () => {
 
       const json = await response.json();
       expect(json).toEqual(data);
-    });
-  });
-
-  describe('withErrorHandling', () => {
-    it('should execute handler successfully', async () => {
-      const handler = vi.fn(async () => {
-        return NextResponse.json({ success: true });
-      });
-
-      const wrappedHandler = withErrorHandling(handler);
-      const request = new NextRequest('http://localhost/api/test');
-
-      const response = await wrappedHandler(request);
-      const json = await response.json();
-
-      expect(handler).toHaveBeenCalledWith(request, undefined);
-      expect(json).toEqual({ success: true });
-    });
-
-    it('should handle "not found" errors with 404', async () => {
-      const handler = vi.fn(async () => {
-        throw new Error('Resource not found');
-      });
-
-      const wrappedHandler = withErrorHandling(handler);
-      const request = new NextRequest('http://localhost/api/test');
-
-      const response = await wrappedHandler(request);
-
-      expect(response.status).toBe(404);
-      const json = await response.json();
-      expect(json.error).toBe('Resource not found');
-    });
-
-    it('should handle "Unauthorized" errors with 401', async () => {
-      const handler = vi.fn(async () => {
-        throw new Error('Unauthorized access');
-      });
-
-      const wrappedHandler = withErrorHandling(handler);
-      const request = new NextRequest('http://localhost/api/test');
-
-      const response = await wrappedHandler(request);
-
-      expect(response.status).toBe(401);
-      const json = await response.json();
-      expect(json.error).toBe('Unauthorized');
-    });
-
-    it('should handle "UNIQUE" constraint errors with 409', async () => {
-      const handler = vi.fn(async () => {
-        throw new Error('UNIQUE constraint failed');
-      });
-
-      const wrappedHandler = withErrorHandling(handler);
-      const request = new NextRequest('http://localhost/api/test');
-
-      const response = await wrappedHandler(request);
-
-      expect(response.status).toBe(409);
-      const json = await response.json();
-      expect(json.error).toBe('UNIQUE constraint failed');
-    });
-
-    it('should handle "already exists" errors with 409', async () => {
-      const handler = vi.fn(async () => {
-        throw new Error('User already exists');
-      });
-
-      const wrappedHandler = withErrorHandling(handler);
-      const request = new NextRequest('http://localhost/api/test');
-
-      const response = await wrappedHandler(request);
-
-      expect(response.status).toBe(409);
-    });
-
-    it('should handle generic errors with 500', async () => {
-      const handler = vi.fn(async () => {
-        throw new Error('Database connection failed');
-      });
-
-      const wrappedHandler = withErrorHandling(handler);
-      const request = new NextRequest('http://localhost/api/test');
-
-      const response = await wrappedHandler(request);
-
-      expect(response.status).toBe(500);
-      const json = await response.json();
-      expect(json.error).toBe('Database connection failed');
-    });
-
-    it('should handle non-Error throws with generic message', async () => {
-      const handler = vi.fn(async () => {
-        throw 'String error';
-      });
-
-      const wrappedHandler = withErrorHandling(handler);
-      const request = new NextRequest('http://localhost/api/test');
-
-      const response = await wrappedHandler(request);
-
-      expect(response.status).toBe(500);
-      const json = await response.json();
-      expect(json.error).toBe('An unexpected error occurred');
-    });
-
-    it('should pass context to handler', async () => {
-      const handler = vi.fn(async (_req, context) => {
-        return NextResponse.json({ context });
-      });
-
-      const wrappedHandler = withErrorHandling(handler);
-      const request = new NextRequest('http://localhost/api/test');
-      const context = { params: { id: '123' } };
-
-      await wrappedHandler(request, context);
-
-      expect(handler).toHaveBeenCalledWith(request, context);
     });
   });
 

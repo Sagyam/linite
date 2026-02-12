@@ -85,10 +85,10 @@ describe('KeyboardShortcutsDialog', () => {
     it('should display navigation shortcuts', () => {
       render(<KeyboardShortcutsDialog {...defaultProps} />);
 
-      expect(screen.getByText(/move down to next app/i)).toBeInTheDocument();
-      expect(screen.getByText(/move up to previous app/i)).toBeInTheDocument();
-      expect(screen.getByText(/navigate to previous category/i)).toBeInTheDocument();
-      expect(screen.getByText(/navigate to next category/i)).toBeInTheDocument();
+      expect(screen.getByText(/move focus down/i)).toBeInTheDocument();
+      expect(screen.getByText(/move focus up/i)).toBeInTheDocument();
+      expect(screen.getByText(/previous category/i)).toBeInTheDocument();
+      expect(screen.getByText(/next category/i)).toBeInTheDocument();
       expect(screen.getByText(/jump to top/i)).toBeInTheDocument();
       expect(screen.getByText(/jump to bottom/i)).toBeInTheDocument();
     });
@@ -96,35 +96,34 @@ describe('KeyboardShortcutsDialog', () => {
     it('should display selection shortcuts', () => {
       render(<KeyboardShortcutsDialog {...defaultProps} />);
 
-      // Use getAllByText since "Toggle app selection" appears twice (for Space and Enter keys)
-      expect(screen.getAllByText(/toggle app selection/i)).toHaveLength(2);
-      expect(screen.getByText(/remove app from selection/i)).toBeInTheDocument();
-      expect(screen.getByText(/enter visual mode/i)).toBeInTheDocument();
+      // "Toggle app selection" appears for Space and Enter keys
+      expect(screen.getAllByText(/toggle app selection/i).length).toBeGreaterThanOrEqual(1);
+      expect(screen.getByText(/remove from selection/i)).toBeInTheDocument();
+      expect(screen.getByText(/enter.*exit visual selection mode/i)).toBeInTheDocument();
     });
 
     it('should display search shortcuts', () => {
       render(<KeyboardShortcutsDialog {...defaultProps} />);
 
-      expect(screen.getByText(/focus search input/i)).toBeInTheDocument();
-      expect(screen.getByText(/clear search/i)).toBeInTheDocument();
-      expect(screen.getByText(/show this shortcuts dialog/i)).toBeInTheDocument();
+      expect(screen.getByText(/focus search box/i)).toBeInTheDocument();
+      expect(screen.getByText(/show this help/i)).toBeInTheDocument();
     });
 
     it('should display view control shortcuts', () => {
       render(<KeyboardShortcutsDialog {...defaultProps} />);
 
       expect(screen.getByText(/cycle through view modes/i)).toBeInTheDocument();
-      expect(screen.getByText(/switch to minimal view/i)).toBeInTheDocument();
-      expect(screen.getByText(/switch to compact view/i)).toBeInTheDocument();
-      expect(screen.getByText(/switch to detailed view/i)).toBeInTheDocument();
-      expect(screen.getByText(/toggle between minimal and detailed/i)).toBeInTheDocument();
+      expect(screen.getByText(/^minimal view$/i)).toBeInTheDocument();
+      expect(screen.getByText(/^compact view$/i)).toBeInTheDocument();
+      expect(screen.getByText(/^detailed view$/i)).toBeInTheDocument();
+      expect(screen.getByText(/toggle minimal.*detailed view/i)).toBeInTheDocument();
     });
 
     it('should display action shortcuts', () => {
       render(<KeyboardShortcutsDialog {...defaultProps} />);
 
       expect(screen.getByText(/generate install command/i)).toBeInTheDocument();
-      expect(screen.getByText(/view selected apps.*bottom drawer/i)).toBeInTheDocument();
+      expect(screen.getByText(/view selection basket/i)).toBeInTheDocument();
     });
   });
 

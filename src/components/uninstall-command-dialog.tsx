@@ -119,7 +119,8 @@ export function UninstallCommandDialog({
         includeSetupCleanup,
       });
     }
-  }, [open, includeDependencyCleanup, includeSetupCleanup, installations.length, allSameDistro, distroSlug, appIds, sourcePreference, mutation]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [open, includeDependencyCleanup, includeSetupCleanup, installations.length, allSameDistro, distroSlug, JSON.stringify(appIds), sourcePreference]);
 
   const handleCopyAll = async () => {
     if (!mutation.data) return;

@@ -1,51 +1,45 @@
-import { NextRequest } from 'next/server';
 import { db, distroSources } from '@/db';
-import { requireAuth, errorResponse, successResponse } from '@/lib/api-utils';
+import { errorResponse, successResponse } from '@/lib/api-utils';
+import { createPublicApiHandler, createAuthValidatedApiHandler, createAuthApiHandler } from '@/lib/api-middleware';
+import { updateDistroSourceSchema, type UpdateDistroSourceInput } from '@/lib/validation/schemas/distro-source.schema';
 import { eq } from 'drizzle-orm';
 
-// GET /api/distro-sources/[id] - Get single mapping (public)
-export async function GET(
-  request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
-) {
-  try {
-    const { id } = await params;
-    const mapping = await db.query.distroSources.findFirst({
-      where: eq(distroSources.id, id),
-      with: {
-        distro: true,
-        source: true,
-      },
-    });
-
-    if (!mapping) {
-      return errorResponse('Distro-source mapping not found', 404);
-    }
-
-    return successResponse(mapping);
-  } catch (error) {
-    console.error('Error fetching distro-source mapping:', error);
-    return errorResponse('Failed to fetch distro-source mapping', 500);
-  }
+interface RouteContext {
+  params: Promise<{ id: string }>;
 }
 
-// PUT /api/distro-sources/[id] - Update mapping (admin)
-export async function PUT(
-  request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
-) {
-  const authCheck = await requireAuth(request);
-  if (authCheck.error) return authCheck.error;
+// GET /api/distro-sources/[id] - Get single mapping (public)
+export const GET = createPublicApiHandler<RouteContext>(async (_request, context) => {
+  const { id } = await context!.params;
+  const mapping = await db.query.distroSources.findFirst({
+    where: eq(distroSources.id, id),
+    with: {
+      distro: true,
+      source: true,
+    },
+  });
 
-  try {
-    const { id } = await params;
-    const body = await request.json();
-    const { priority, isDefault } = body;
+  if (!mapping) {
+    return errorResponse('Distro-source mapping not found', 404);
+  }
+
+  return successResponse(mapping);
+});
+
+// PUT /api/distro-sources/[id] - Update mapping (admin)
+export const PUT = createAuthValidatedApiHandler<UpdateDistroSourceInput, RouteContext>(
+  updateDistroSourceSchema,
+  async (_request, data, context) => {
+    const { id } = await context!.params;
+
+    if (data.id !== id) {
+      return errorResponse('ID in body must match ID in URL', 400);
+    }
 
     const [updated] = await db.update(distroSources)
       .set({
-        ...(priority !== undefined && { priority }),
-        ...(isDefault !== undefined && { isDefault }),
+        ...(data.priority !== undefined && { priority: data.priority }),
+        ...(data.isDefault !== undefined && { isDefault: data.isDefault }),
       })
       .where(eq(distroSources.id, id))
       .returning();
@@ -55,28 +49,18 @@ export async function PUT(
     }
 
     return successResponse(updated);
-  } catch (error) {
-    console.error('Error updating distro-source mapping:', error);
-    return errorResponse('Failed to update distro-source mapping', 500);
   }
-}
+);
 
 // DELETE /api/distro-sources/[id] - Delete mapping (admin)
-export async function DELETE(
-  request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
-) {
-  const authCheck = await requireAuth(request);
-  if (authCheck.error) return authCheck.error;
+export const DELETE = createAuthApiHandler<RouteContext>(async (_request, context) => {
+  const { id } = await context!.params;
 
-  try {
-    const { id } = await params;
+  const result = await db.delete(distroSources).where(eq(distroSources.id, id)).returning();
 
-    await db.delete(distroSources).where(eq(distroSources.id, id));
-
-    return successResponse({ success: true });
-  } catch (error) {
-    console.error('Error deleting distro-source mapping:', error);
-    return errorResponse('Failed to delete distro-source mapping', 500);
+  if (result.length === 0) {
+    return errorResponse('Distro-source mapping not found', 404);
   }
-}
+
+  return successResponse({ success: true });
+});

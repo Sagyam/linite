@@ -1,6 +1,3 @@
-import { db } from '@/db';
-import { apps, packages, distros } from '@/db/schema';
-import { eq, inArray } from 'drizzle-orm';
 import type {
   GenerateUninstallCommandRequest,
   GenerateUninstallCommandResponse,
@@ -8,6 +5,18 @@ import type {
   ManualUninstallStep,
   UninstallMetadata,
 } from '@/types/entities';
+import {
+  getDistroWithSources,
+  getAppsWithPackages,
+  buildDistroSourceMap,
+  selectBestPackage,
+  resolveCommandByDistroFamily,
+  parseJsonField,
+  groupPackagesBySource,
+  detectOS,
+  shouldUseSudo,
+  getNixCommands,
+} from './command-generator-shared';
 
 // Re-export for backward compatibility
 export type {
@@ -32,49 +41,8 @@ interface SelectedPackageForUninstall {
   metadata?: unknown;
 }
 
-/**
- * Generates uninstall commands for selected apps based on distro and source preferences
- */
-
-// Helper function to get Nix uninstall command templates
-function getNixUninstallTemplate(method: 'nix-shell' | 'nix-env' | 'nix-flakes' | null) {
-  switch (method) {
-    case 'nix-env':
-      return {
-        removeCmd: 'nix-env -e',
-        cleanupCmd: 'nix-collect-garbage -d',
-      };
-    case 'nix-flakes':
-      return {
-        removeCmd: 'nix profile remove',
-        cleanupCmd: 'nix-collect-garbage -d',
-      };
-    case 'nix-shell':
-    default:
-      return {
-        removeCmd: null, // nix-shell is ephemeral, nothing to uninstall
-        cleanupCmd: null,
-      };
-  }
-}
-
-// Helper function to resolve cleanup command based on distro family
-function resolveCleanupCmd(
-  cleanupCmd: string | Record<string, string | null> | null | undefined,
-  distroFamily: string
-): string | null {
-  if (!cleanupCmd) return null;
-
-  // If it's a string, return as-is (universal command)
-  if (typeof cleanupCmd === 'string') return cleanupCmd;
-
-  // If it's an object, select based on distro family
-  if (typeof cleanupCmd === 'object') {
-    return cleanupCmd[distroFamily] || cleanupCmd['*'] || null;
-  }
-
-  return null;
-}
+// Alias for backward compatibility - now uses shared function
+const resolveCleanupCmd = resolveCommandByDistroFamily;
 
 export async function generateUninstallCommands(
   request: GenerateUninstallCommandRequest
@@ -88,56 +56,16 @@ export async function generateUninstallCommands(
     includeSetupCleanup = false,
   } = request;
 
-  // 1. Get the selected distro with its available sources
-  const distro = await db.query.distros.findFirst({
-    where: eq(distros.slug, distroSlug),
-    with: {
-      distroSources: {
-        with: {
-          source: true,
-        },
-      },
-    },
-  });
+  // 1. Get the selected distro with its available sources (SHARED FUNCTION)
+  const distro = await getDistroWithSources(distroSlug);
 
-  if (!distro) {
-    throw new Error(`Distribution not found. Please select a valid Linux distribution.`);
-  }
+  // 2. Get all selected apps with their packages (SHARED FUNCTION)
+  const selectedApps = await getAppsWithPackages(appIds);
 
-  if (!distro.distroSources || distro.distroSources.length === 0) {
-    throw new Error(`No sources configured for distro "${distro.name}"`);
-  }
+  // 3. Build a map of available sources for this distro with their priorities (SHARED FUNCTION)
+  const distroSourceMap = buildDistroSourceMap(distro.distroSources);
 
-  // 2. Get all selected apps with their packages
-  const selectedApps = await db.query.apps.findMany({
-    where: inArray(apps.id, appIds),
-    with: {
-      packages: {
-        where: eq(packages.isAvailable, true),
-        with: {
-          source: true,
-        },
-      },
-    },
-  });
-
-  if (selectedApps.length === 0) {
-    throw new Error('No apps found for the provided IDs');
-  }
-
-  // 3. Build a map of available sources for this distro with their priorities
-  const distroSourceMap = new Map(
-    distro.distroSources.map((ds) => [
-      ds.source.slug,
-      {
-        ...ds.source,
-        distroSourcePriority: ds.priority,
-        isDefault: ds.isDefault,
-      },
-    ])
-  );
-
-  // 4. Select the best package for each app (SAME algorithm as install)
+  // 4. Select the best package for each app (USES SHARED ALGORITHM)
   const selectedPackages: SelectedPackageForUninstall[] = [];
   const warnings: string[] = [];
   const manualSteps: ManualUninstallStep[] = [];
@@ -152,59 +80,23 @@ export async function generateUninstallCommands(
       continue;
     }
 
-    // Calculate priority for each package (SAME as install)
-    const packagesWithPriority = availablePackages.map((pkg) => {
-      const distroSource = distroSourceMap.get(pkg.source.slug)!;
-      let totalPriority = distroSource.distroSourcePriority ?? 0;
+    // Select best package using shared algorithm
+    const bestPackage = selectBestPackage(availablePackages, distroSourceMap, sourcePreference);
 
-      // Boost priority if this is the user's preferred source
-      if (sourcePreference && pkg.source.slug === sourcePreference) {
-        totalPriority += 100; // Significant boost for user preference
-      }
-
-      // Boost if this is the default source for the distro
-      if (distroSource.isDefault === true) {
-        totalPriority += 5;
-      }
-
-      return {
-        ...pkg,
-        calculatedPriority: totalPriority,
-      };
-    });
-
-    // Select the package with the highest priority
-    const bestPackage = packagesWithPriority.sort(
-      (a, b) => (b.calculatedPriority ?? 0) - (a.calculatedPriority ?? 0)
-    )[0];
-
-    // Parse packageCleanupCmd from JSON string if needed
-    let parsedPackageCleanupCmd: string | Record<string, string | null> | null = null;
-    if (bestPackage.packageCleanupCmd) {
-      if (typeof bestPackage.packageCleanupCmd === 'string') {
-        try {
-          parsedPackageCleanupCmd = JSON.parse(bestPackage.packageCleanupCmd);
-        } catch {
-          parsedPackageCleanupCmd = bestPackage.packageCleanupCmd;
-        }
-      } else {
-        parsedPackageCleanupCmd = bestPackage.packageCleanupCmd as string | Record<string, string | null>;
-      }
+    if (!bestPackage) {
+      warnings.push(`${app.displayName}: No package available for ${distro.name}`);
+      continue;
     }
 
-    // Parse uninstallMetadata if present
-    let parsedUninstallMetadata: UninstallMetadata | null = null;
-    if (bestPackage.uninstallMetadata) {
-      if (typeof bestPackage.uninstallMetadata === 'string') {
-        try {
-          parsedUninstallMetadata = JSON.parse(bestPackage.uninstallMetadata) as UninstallMetadata;
-        } catch {
-          parsedUninstallMetadata = null;
-        }
-      } else {
-        parsedUninstallMetadata = bestPackage.uninstallMetadata as UninstallMetadata;
-      }
-    }
+    // Parse packageCleanupCmd from JSON string if needed (SHARED FUNCTION)
+    const parsedPackageCleanupCmd = parseJsonField<Record<string, string | null>>(
+      bestPackage.packageCleanupCmd
+    );
+
+    // Parse uninstallMetadata if present (SHARED FUNCTION)
+    const parsedUninstallMetadata = parseJsonField<UninstallMetadata>(
+      bestPackage.uninstallMetadata
+    );
 
     selectedPackages.push({
       appName: app.displayName,
@@ -217,20 +109,14 @@ export async function generateUninstallCommands(
       packageCleanupCmd: parsedPackageCleanupCmd,
       supportsDependencyCleanup: bestPackage.source.supportsDependencyCleanup ?? false,
       dependencyCleanupCmd: bestPackage.source.dependencyCleanupCmd,
-      uninstallMetadata: parsedUninstallMetadata,
+      uninstallMetadata: parsedUninstallMetadata as UninstallMetadata | null,
       priority: bestPackage.calculatedPriority ?? 0,
       metadata: bestPackage.metadata,
     });
   }
 
-  // 5. Group packages by source
-  const packagesBySource = new Map<string, SelectedPackageForUninstall[]>();
-
-  for (const pkg of selectedPackages) {
-    const existing = packagesBySource.get(pkg.sourceSlug) || [];
-    existing.push(pkg);
-    packagesBySource.set(pkg.sourceSlug, existing);
-  }
+  // 5. Group packages by source (SHARED FUNCTION)
+  const packagesBySource = groupPackagesBySource(selectedPackages);
 
   // 6. Generate uninstall commands for each source
   const commands: string[] = [];
@@ -240,8 +126,7 @@ export async function generateUninstallCommands(
   const processedCleanupCmds = new Set<string>();
 
   // Determine OS based on distro
-  const isWindows = distro.slug === 'windows';
-  const os = isWindows ? 'windows' : 'linux';
+  const os = detectOS(distro.slug);
 
   for (const [sourceSlug, pkgs] of packagesBySource.entries()) {
     const firstPkg = pkgs[0];
@@ -252,9 +137,9 @@ export async function generateUninstallCommands(
     let cleanupCmd = firstPkg.cleanupCmd;
 
     if (sourceSlug === 'nix' && nixosInstallMethod) {
-      const nixTemplate = getNixUninstallTemplate(nixosInstallMethod);
-      removeCmd = nixTemplate.removeCmd;
-      cleanupCmd = nixTemplate.cleanupCmd;
+      const nixCommands = getNixCommands(nixosInstallMethod);
+      removeCmd = nixCommands.removeCmd;
+      cleanupCmd = nixCommands.cleanupCmd;
 
       // For nix-shell, warn and skip
       if (nixosInstallMethod === 'nix-shell') {
@@ -327,7 +212,7 @@ export async function generateUninstallCommands(
 
     // Build the uninstall command
     const packageList = packageIdentifiers.join(' ');
-    const fullCommand = firstPkg.requireSudo && !isWindows
+    const fullCommand = shouldUseSudo(firstPkg.requireSudo, os)
       ? `sudo ${removeCmd} ${packageList}`
       : `${removeCmd} ${packageList}`;
 
@@ -335,7 +220,7 @@ export async function generateUninstallCommands(
 
     // Add dependency cleanup if requested and supported
     if (includeDependencyCleanup && firstPkg.supportsDependencyCleanup && firstPkg.dependencyCleanupCmd) {
-      const depCleanup = firstPkg.requireSudo && !isWindows
+      const depCleanup = shouldUseSudo(firstPkg.requireSudo, os)
         ? `sudo ${firstPkg.dependencyCleanupCmd}`
         : firstPkg.dependencyCleanupCmd;
 

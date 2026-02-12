@@ -78,7 +78,7 @@ export default function DistrosPage() {
         family: distro.family,
         iconUrl: distro.iconUrl || '',
         basedOn: distro.basedOn || '',
-        isPopular: distro.isPopular,
+        isPopular: distro.isPopular ?? false,
       })}
       renderFormFields={(formData, setFormData) => (
         <>

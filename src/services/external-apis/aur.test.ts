@@ -288,8 +288,8 @@ describe('AUR API Client', () => {
     });
 
     it('should throw error for empty package name', async () => {
-      await expect(getAURPackageMetadata('')).rejects.toThrow('Package name is required');
-      await expect(getAURPackageMetadata('   ')).rejects.toThrow('Package name is required');
+      await expect(getAURPackageMetadata('')).rejects.toThrow('Identifier is required');
+      await expect(getAURPackageMetadata('   ')).rejects.toThrow('Identifier is required');
     });
 
     it('should cache metadata results', async () => {

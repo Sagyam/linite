@@ -1,4 +1,5 @@
-import { PackageSearchResult, PackageMetadata, SimpleCache } from './types';
+import { PackageSearchResult, PackageMetadata } from './types';
+import { createFlexibleApiClient } from './api-client-factory';
 
 const AUR_RPC_BASE = 'https://aur.archlinux.org/rpc';
 
@@ -35,25 +36,20 @@ interface AURPackage {
   Replaces?: string[];
 }
 
-const searchCache = new SimpleCache<PackageSearchResult[]>(15);
-const metadataCache = new SimpleCache<PackageMetadata>(15);
+// Create flexible API client with caching
+const aurClient = createFlexibleApiClient({
+  name: 'AUR',
+  cacheTTL: 15,
+});
 
 export async function searchAUR(query: string): Promise<PackageSearchResult[]> {
-  if (!query || query.trim().length === 0) {
-    throw new Error('Search query is required');
-  }
+  return aurClient.cachedSearch(query, async (q) => {
+    const url = new URL(AUR_RPC_BASE);
+    url.searchParams.set('v', '5');
+    url.searchParams.set('type', 'search');
+    url.searchParams.set('arg', q);
+    url.searchParams.set('by', 'name-desc');
 
-  const cacheKey = `aur:search:${query.toLowerCase()}`;
-  const cached = searchCache.get(cacheKey);
-  if (cached) return cached;
-
-  const url = new URL(AUR_RPC_BASE);
-  url.searchParams.set('v', '5');
-  url.searchParams.set('type', 'search');
-  url.searchParams.set('arg', query);
-  url.searchParams.set('by', 'name-desc');
-
-  try {
     const response = await fetch(url.toString(), {
       headers: {
         'Accept': 'application/json',
@@ -70,7 +66,7 @@ export async function searchAUR(query: string): Promise<PackageSearchResult[]> {
       throw new Error(`AUR API error: ${data.error}`);
     }
 
-    const results: PackageSearchResult[] = data.results.map((pkg) => ({
+    return data.results.map((pkg) => ({
       identifier: pkg.Name,
       name: pkg.Name,
       summary: pkg.Description,
@@ -80,32 +76,16 @@ export async function searchAUR(query: string): Promise<PackageSearchResult[]> {
       maintainer: pkg.Maintainer,
       source: 'aur' as const,
     }));
-
-    searchCache.set(cacheKey, results);
-    return results;
-  } catch (error) {
-    console.error('AUR search error:', error);
-    throw new Error(
-      `Failed to search AUR: ${error instanceof Error ? error.message : 'Unknown error'}`
-    );
-  }
+  });
 }
 
 export async function getAURPackageMetadata(packageName: string): Promise<PackageMetadata | null> {
-  if (!packageName || packageName.trim().length === 0) {
-    throw new Error('Package name is required');
-  }
+  return aurClient.cachedMetadata(packageName, async (name) => {
+    const url = new URL(AUR_RPC_BASE);
+    url.searchParams.set('v', '5');
+    url.searchParams.set('type', 'info');
+    url.searchParams.set('arg[]', name);
 
-  const cacheKey = `aur:identifier:${packageName}`;
-  const cached = metadataCache.get(cacheKey);
-  if (cached) return cached;
-
-  const url = new URL(AUR_RPC_BASE);
-  url.searchParams.set('v', '5');
-  url.searchParams.set('type', 'info');
-  url.searchParams.set('arg[]', packageName);
-
-  try {
     const response = await fetch(url.toString(), {
       headers: {
         'Accept': 'application/json',
@@ -128,7 +108,7 @@ export async function getAURPackageMetadata(packageName: string): Promise<Packag
 
     const pkg = data.results[0];
 
-    const metadata: PackageMetadata = {
+    return {
       identifier: pkg.Name,
       name: pkg.Name,
       summary: pkg.Description,
@@ -151,25 +131,11 @@ export async function getAURPackageMetadata(packageName: string): Promise<Packag
         optDepends: pkg.OptDepends,
       },
     };
-
-    metadataCache.set(cacheKey, metadata);
-    return metadata;
-  } catch (error) {
-    console.error('AUR metadata fetch error:', error);
-    throw new Error(
-      `Failed to fetch AUR package metadata: ${error instanceof Error ? error.message : 'Unknown error'}`
-    );
-  }
+  });
 }
 
 export async function checkAURAvailability(packageName: string): Promise<boolean> {
-  try {
-    const metadata = await getAURPackageMetadata(packageName);
-    return metadata !== null;
-  } catch (error) {
-    console.error('AUR availability check error:', error);
-    return false;
-  }
+  return aurClient.checkAvailability(packageName, () => getAURPackageMetadata(packageName));
 }
 
 export async function getAURPackagesMetadata(
@@ -236,6 +202,5 @@ export async function getAURPackagesMetadata(
 }
 
 export function clearAURCache(): void {
-  searchCache.clear();
-  metadataCache.clear();
+  aurClient.clearCache();
 }

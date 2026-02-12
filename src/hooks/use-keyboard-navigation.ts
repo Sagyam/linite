@@ -1,7 +1,8 @@
 'use client';
 
-import { useEffect, useState, useCallback, useRef } from 'react';
+import { useEffect, useState, useCallback, useRef, useMemo } from 'react';
 import { useSelectionStore } from '@/stores/selection-store';
+import { matchKeyboardCommand, isInputElement, type KeyboardCommandType } from '@/lib/keyboard-commands';
 import type { App } from '@/hooks/use-apps';
 import type { Category } from '@/types';
 
@@ -75,164 +76,70 @@ export function useKeyboardNavigation({
     }
   }, [visualModeStart, focusedAppIndex, apps, selectApp]);
 
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      // Ignore if typing in input/textarea (except Escape)
-      const target = e.target as HTMLElement;
-      const isInputField = target instanceof HTMLInputElement || target instanceof HTMLTextAreaElement;
+  // Command handler registry (EXTRACTED from switch statement)
+  const handlers = useMemo(() => {
+    const handlerMap: Record<KeyboardCommandType, () => void> = {
+      // Navigation
+      NAVIGATE_DOWN: () => setFocusedAppIndex(Math.min(focusedAppIndex + 1, apps.length - 1)),
+      NAVIGATE_UP: () => setFocusedAppIndex(Math.max(focusedAppIndex - 1, 0)),
+      NAVIGATE_PREV_CATEGORY: navigateCategoryPrev,
+      NAVIGATE_NEXT_CATEGORY: navigateCategoryNext,
+      JUMP_TO_TOP: () => setFocusedAppIndex(0),
+      JUMP_TO_TOP_DOUBLE: () => {
+        setFocusedAppIndex(0);
+        lastGPressTime.current = 0;
+      },
+      JUMP_TO_BOTTOM: () => setFocusedAppIndex(apps.length - 1),
 
-      if (isInputField && e.key !== 'Escape') {
-        return;
-      }
+      // Selection
+      TOGGLE_SELECTION: () => {
+        if (focusedAppIndex >= 0 && apps[focusedAppIndex]) {
+          toggleApp(apps[focusedAppIndex].id, apps[focusedAppIndex].categoryId);
+        }
+      },
+      REMOVE_SELECTION: () => {
+        if (focusedAppIndex >= 0 && apps[focusedAppIndex]) {
+          deselectApp(apps[focusedAppIndex].id);
+        }
+      },
+      ENTER_VISUAL_MODE: () => {
+        if (visualModeStart === null) {
+          setVisualModeStart(focusedAppIndex);
+        } else {
+          handleVisualModeSelect();
+        }
+      },
 
-      // Handle Escape key when in input
-      if (isInputField && e.key === 'Escape') {
-        e.preventDefault();
-        target.blur();
-        return;
-      }
+      // Search
+      FOCUS_SEARCH: () => searchInputRef.current?.focus(),
 
-      switch (e.key) {
-        // Navigation: Move down
-        case 'j':
-          e.preventDefault();
-          setFocusedAppIndex(Math.min(focusedAppIndex + 1, apps.length - 1));
-          break;
+      // Configuration
+      FOCUS_DISTRO: () => distroTriggerRef?.current?.click(),
+      FOCUS_SOURCE: () => sourceTriggerRef?.current?.click(),
 
-        // Navigation: Move up
-        case 'k':
-          e.preventDefault();
-          setFocusedAppIndex(Math.max(focusedAppIndex - 1, 0));
-          break;
+      // Actions
+      GENERATE_COMMAND: () => onGenerateCommand?.(),
+      VIEW_SELECTION: () => onViewSelection?.(),
 
-        // Navigation: Previous category
-        case 'h':
-          e.preventDefault();
-          navigateCategoryPrev();
-          break;
+      // View modes
+      CYCLE_VIEW_MODE: cycleViewMode,
+      VIEW_MINIMAL: () => setViewMode('minimal'),
+      VIEW_COMPACT: () => setViewMode('compact'),
+      VIEW_DETAILED: () => setViewMode('detailed'),
+      TOGGLE_MINIMAL: () => setViewMode(viewMode === 'minimal' ? 'detailed' : 'minimal'),
 
-        // Navigation: Next category
-        case 'l':
-          e.preventDefault();
-          navigateCategoryNext();
-          break;
+      // Help
+      SHOW_SHORTCUTS: () => setShowShortcuts(true),
 
-        // Navigation: Jump to top or bottom
-        case 'g':
-          if (e.shiftKey) {
-            // G - Jump to bottom
-            e.preventDefault();
-            setFocusedAppIndex(apps.length - 1);
-          } else {
-            // gg - Jump to top (double-tap detection)
-            const now = Date.now();
-            if (now - lastGPressTime.current < 500) {
-              e.preventDefault();
-              setFocusedAppIndex(0);
-              lastGPressTime.current = 0;
-            } else {
-              lastGPressTime.current = now;
-            }
-          }
-          break;
-
-        // Selection: Toggle selection
-        case ' ':
-        case 'Enter':
-          e.preventDefault();
-          if (focusedAppIndex >= 0 && apps[focusedAppIndex]) {
-            toggleApp(apps[focusedAppIndex].id, apps[focusedAppIndex].categoryId);
-          }
-          break;
-
-        // Selection: Remove from selection
-        case 'x':
-          e.preventDefault();
-          if (focusedAppIndex >= 0 && apps[focusedAppIndex]) {
-            deselectApp(apps[focusedAppIndex].id);
-          }
-          break;
-
-        // Selection: Enter visual mode
-        case 'v':
-          e.preventDefault();
-          if (visualModeStart === null) {
-            setVisualModeStart(focusedAppIndex);
-          } else {
-            handleVisualModeSelect();
-          }
-          break;
-
-        // Search: Focus search
-        case '/':
-          e.preventDefault();
-          searchInputRef.current?.focus();
-          break;
-
-        // Configuration: Focus distro selector
-        case 'd':
-          e.preventDefault();
-          distroTriggerRef?.current?.click();
-          break;
-
-        // Configuration: Focus source selector
-        case 's':
-          e.preventDefault();
-          sourceTriggerRef?.current?.click();
-          break;
-
-        // Actions: Generate command
-        case 'c':
-          e.preventDefault();
-          onGenerateCommand?.();
-          break;
-
-        // Actions: View selection drawer
-        case 'b':
-          e.preventDefault();
-          onViewSelection?.();
-          break;
-
-        // Help: Show shortcuts
-        case '?':
-          e.preventDefault();
-          setShowShortcuts(true);
-          break;
-
-        // View: Cycle view modes
-        case 'Tab':
-          e.preventDefault();
-          cycleViewMode();
-          break;
-
-        // View: Minimal
-        case '1':
-          e.preventDefault();
-          setViewMode('minimal');
-          break;
-
-        // View: Compact
-        case '2':
-          e.preventDefault();
-          setViewMode('compact');
-          break;
-
-        // View: Detailed
-        case '3':
-          e.preventDefault();
-          setViewMode('detailed');
-          break;
-
-        // View: Toggle minimal
-        case 'm':
-          e.preventDefault();
-          setViewMode(viewMode === 'minimal' ? 'detailed' : 'minimal');
-          break;
-      }
+      // Special
+      ESCAPE_INPUT: () => {
+        if (isInputElement(document.activeElement)) {
+          (document.activeElement as HTMLElement).blur();
+        }
+      },
     };
 
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    return handlerMap;
   }, [
     apps,
     focusedAppIndex,
@@ -252,6 +159,47 @@ export function useKeyboardNavigation({
     distroTriggerRef,
     sourceTriggerRef,
   ]);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      // Check if typing in input/textarea (except Escape)
+      const isInput = isInputElement(e.target);
+
+      if (isInput && e.key !== 'Escape') {
+        return;
+      }
+
+      // Handle Escape key when in input
+      if (isInput && e.key === 'Escape') {
+        e.preventDefault();
+        handlers.ESCAPE_INPUT();
+        return;
+      }
+
+      // Special handling for 'g' key (double-tap detection)
+      if (e.key === 'g' && !e.shiftKey) {
+        const now = Date.now();
+        if (now - lastGPressTime.current < 500) {
+          e.preventDefault();
+          handlers.JUMP_TO_TOP_DOUBLE();
+        } else {
+          lastGPressTime.current = now;
+        }
+        return;
+      }
+
+      // Match keyboard command using registry
+      const command = matchKeyboardCommand(e, lastGPressTime.current);
+
+      if (command && handlers[command.type]) {
+        e.preventDefault();
+        handlers[command.type]();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [handlers]);
 
   // Reset focus when apps list changes (filters applied)
   useEffect(() => {

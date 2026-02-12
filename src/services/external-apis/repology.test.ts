@@ -152,8 +152,8 @@ describe('Repology API Client', () => {
     });
 
     it('should throw error for empty project name', async () => {
-      await expect(searchRepology('')).rejects.toThrow('Project name is required');
-      await expect(searchRepology('   ')).rejects.toThrow('Project name is required');
+      await expect(searchRepology('')).rejects.toThrow('Search query is required');
+      await expect(searchRepology('   ')).rejects.toThrow('Search query is required');
     });
 
     it('should throw error on API failure', async () => {
@@ -398,7 +398,7 @@ describe('Repology API Client', () => {
     });
 
     it('should throw error for empty project name', async () => {
-      await expect(getRepologyProjectMetadata('')).rejects.toThrow('Project name is required');
+      await expect(getRepologyProjectMetadata('')).rejects.toThrow('Identifier is required');
     });
 
     it('should cache metadata results', async () => {

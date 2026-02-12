@@ -7,79 +7,38 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
+import { getCommandsByCategory } from '@/lib/keyboard-commands';
 
 interface KeyboardShortcutsDialogProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
 }
 
-interface Shortcut {
-  keys: string[];
-  description: string;
+/**
+ * Format key display (e.g., "Space" → "Space", "Shift+G" → shown with modifiers)
+ */
+function formatKeyDisplay(keys: string[], modifiers?: { shift?: boolean }): string[] {
+  if (modifiers?.shift && keys.length === 1) {
+    return ['Shift', keys[0]];
+  }
+  return keys;
 }
-
-interface ShortcutSection {
-  category: string;
-  items: Shortcut[];
-}
-
-const shortcuts: ShortcutSection[] = [
-  {
-    category: 'Navigation',
-    items: [
-      { keys: ['j'], description: 'Move down to next app' },
-      { keys: ['k'], description: 'Move up to previous app' },
-      { keys: ['h'], description: 'Navigate to previous category' },
-      { keys: ['l'], description: 'Navigate to next category' },
-      { keys: ['g', 'g'], description: 'Jump to top (first app)' },
-      { keys: ['Shift', 'G'], description: 'Jump to bottom (last app)' },
-    ],
-  },
-  {
-    category: 'Selection',
-    items: [
-      { keys: ['Space'], description: 'Toggle app selection' },
-      { keys: ['Enter'], description: 'Toggle app selection' },
-      { keys: ['x'], description: 'Remove app from selection' },
-      { keys: ['v'], description: 'Enter visual mode for range selection' },
-      { keys: ['v', 'j/k', 'Enter'], description: 'Visual mode: select range and confirm' },
-    ],
-  },
-  {
-    category: 'Search & Filters',
-    items: [
-      { keys: ['/'], description: 'Focus search input' },
-      { keys: ['Esc'], description: 'Clear search / Unfocus input' },
-      { keys: ['?'], description: 'Show this shortcuts dialog' },
-    ],
-  },
-  {
-    category: 'Configuration',
-    items: [
-      { keys: ['d'], description: 'Focus distribution selector' },
-      { keys: ['s'], description: 'Focus package source selector' },
-    ],
-  },
-  {
-    category: 'Actions',
-    items: [
-      { keys: ['c'], description: 'Generate install command' },
-      { keys: ['b'], description: 'View selected apps (bottom drawer)' },
-    ],
-  },
-  {
-    category: 'View Controls',
-    items: [
-      { keys: ['Tab'], description: 'Cycle through view modes' },
-      { keys: ['1'], description: 'Switch to minimal view' },
-      { keys: ['2'], description: 'Switch to compact view' },
-      { keys: ['3'], description: 'Switch to detailed view' },
-      { keys: ['m'], description: 'Toggle between minimal and detailed view' },
-    ],
-  },
-];
 
 export function KeyboardShortcutsDialog({ open, onOpenChange }: KeyboardShortcutsDialogProps) {
+  // Auto-generate shortcuts from registry (SINGLE SOURCE OF TRUTH)
+  const commandsByCategory = getCommandsByCategory();
+
+  // Define category display order
+  const categoryOrder = ['Navigation', 'Selection', 'Search', 'Configuration', 'Actions', 'View', 'Help'];
+
+  // Filter and sort categories
+  const sortedCategories = categoryOrder
+    .filter((cat) => commandsByCategory[cat])
+    .map((cat) => ({
+      name: cat === 'Search' ? 'Search & Filters' : cat === 'View' ? 'View Controls' : cat,
+      commands: commandsByCategory[cat],
+    }));
+
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
@@ -90,28 +49,30 @@ export function KeyboardShortcutsDialog({ open, onOpenChange }: KeyboardShortcut
           </DialogDescription>
         </DialogHeader>
         <div className="space-y-6 mt-4">
-          {shortcuts.map((section) => (
-            <div key={section.category}>
-              <h3 className="font-semibold text-lg mb-3">{section.category}</h3>
+          {sortedCategories.map((section) => (
+            <div key={section.name}>
+              <h3 className="font-semibold text-lg mb-3">{section.name}</h3>
               <div className="space-y-2">
-                {section.items.map((shortcut, i) => (
-                  <div
-                    key={i}
-                    className="flex items-center justify-between py-2 border-b last:border-b-0"
-                  >
-                    <span className="text-sm">{shortcut.description}</span>
-                    <div className="flex gap-1">
-                      {shortcut.keys.map((key, j) => (
-                        <kbd
-                          key={j}
-                          className="px-2 py-1 text-xs font-semibold bg-muted border border-border rounded"
-                        >
-                          {key}
-                        </kbd>
-                      ))}
+                {section.commands
+                  .filter((cmd) => cmd.special !== 'input-only') // Hide input-only commands
+                  .map((command, i) => (
+                    <div
+                      key={i}
+                      className="flex items-center justify-between py-2 border-b last:border-b-0"
+                    >
+                      <span className="text-sm">{command.description}</span>
+                      <div className="flex gap-1">
+                        {formatKeyDisplay(command.keys, command.modifiers).map((key, j) => (
+                          <kbd
+                            key={j}
+                            className="px-2 py-1 text-xs font-semibold bg-muted border border-border rounded"
+                          >
+                            {key}
+                          </kbd>
+                        ))}
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
               </div>
             </div>
           ))}

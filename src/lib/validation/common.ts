@@ -1,10 +1,21 @@
 import { z } from 'zod';
 
+/**
+ * Common field validators
+ */
+
+// CUID2 field validator
+export const cuid2Field = z.string().cuid2('Invalid ID format');
+
+// Slug field validator
 export const slugSchema = z
   .string()
   .min(1, 'Slug is required')
   .max(100, 'Slug must be less than 100 characters')
   .regex(/^[a-z0-9-]+$/, 'Slug must contain only lowercase letters, numbers, and hyphens');
+
+// URL field validator
+export const urlField = z.string().url('Invalid URL format');
 
 export const paginationQuerySchema = {
   limit: z
@@ -51,4 +62,19 @@ export function withPagination<T extends z.ZodRawShape>(baseSchema: T) {
     ...baseSchema,
     ...paginationQuerySchema,
   });
+}
+
+/**
+ * Validation helper: Ensure ID in request body matches ID in URL
+ * Throws an error if IDs don't match
+ *
+ * Usage in API routes:
+ * ```typescript
+ * requireIdMatch(data.id, urlId);
+ * ```
+ */
+export function requireIdMatch(bodyId: string, urlId: string): void {
+  if (bodyId !== urlId) {
+    throw new Error('ID in body must match ID in URL');
+  }
 }

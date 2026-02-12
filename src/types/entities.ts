@@ -14,11 +14,11 @@ export interface App {
   description: string | null;
   iconUrl: string | null;
   homepage: string | null;
-  isPopular: boolean;
-  isFoss: boolean;
+  isPopular: boolean | null; // Has default(false) but nullable in schema
+  isFoss: boolean | null; // Has default(true) but nullable in schema
   categoryId: string;
-  createdAt?: Date;
-  updatedAt?: Date;
+  createdAt?: Date | null;
+  updatedAt?: Date | null;
 }
 
 export interface AppWithRelations extends App {
@@ -32,11 +32,11 @@ export interface Category {
   slug: string;
   icon: string | null;
   description: string | null;
-  displayOrder: number;
+  displayOrder: number | null; // Has default(0) but nullable in schema
   colorLight: string | null;
   colorDark: string | null;
-  createdAt?: Date;
-  updatedAt?: Date;
+  createdAt?: Date | null;
+  updatedAt?: Date | null;
 }
 
 export interface Source {
@@ -45,15 +45,15 @@ export interface Source {
   slug: string;
   installCmd: string;
   removeCmd: string | null; // Uninstall command template
-  requireSudo: boolean;
-  setupCmd: string | null;
-  cleanupCmd: string | null; // Reverse of setupCmd
-  supportsDependencyCleanup: boolean; // If source has autoremove-style command
+  requireSudo: boolean | null; // Has default(false) but nullable in schema
+  setupCmd: string | Record<string, string> | null; // JSON field - can be string or object
+  cleanupCmd: string | Record<string, string> | null; // JSON field - reverse of setupCmd
+  supportsDependencyCleanup: boolean | null; // Has default(false) but nullable in schema
   dependencyCleanupCmd: string | null; // e.g., "apt autoremove -y"
-  priority: number;
+  priority: number | null; // Has default(0) but nullable in schema
   apiEndpoint: string | null;
-  createdAt?: Date;
-  updatedAt?: Date;
+  createdAt?: Date | null;
+  updatedAt?: Date | null;
 }
 
 export interface Distro {
@@ -63,11 +63,11 @@ export interface Distro {
   family: string;
   iconUrl: string | null;
   basedOn: string | null;
-  isPopular: boolean;
+  isPopular: boolean | null; // Has default(false) but nullable in schema
   themeColorLight: string | null;
   themeColorDark: string | null;
-  createdAt?: Date;
-  updatedAt?: Date;
+  createdAt?: Date | null;
+  updatedAt?: Date | null;
 }
 
 export interface UninstallMetadata {
@@ -84,14 +84,14 @@ export interface Package {
   version: string | null;
   size: number | null;
   maintainer: string | null;
-  isAvailable: boolean;
+  isAvailable: boolean | null; // Has default(true) but nullable in schema
   lastChecked: Date | null;
   metadata: unknown;
   packageSetupCmd?: string | Record<string, string | null> | null;
-  packageCleanupCmd?: string | Record<string, string | null> | null; // Reverse of packageSetupCmd
-  uninstallMetadata?: UninstallMetadata | null; // For script sources
-  createdAt?: Date;
-  updatedAt?: Date;
+  packageCleanupCmd?: string | Record<string, string | null> | null;
+  uninstallMetadata?: UninstallMetadata | null;
+  createdAt?: Date | null;
+  updatedAt?: Date | null;
 }
 
 export interface PackageWithRelations extends Package {
@@ -113,10 +113,10 @@ export interface DistroSource {
   id: string;
   distroId: string;
   sourceId: string;
-  priority: number;
-  isDefault: boolean;
-  createdAt?: Date;
-  updatedAt?: Date;
+  priority: number | null; // Has default(0) but nullable in schema
+  isDefault: boolean | null; // Has default(false) but nullable in schema
+  createdAt?: Date | null;
+  updatedAt?: Date | null;
 }
 
 export interface RefreshLog {
@@ -133,11 +133,11 @@ export interface User {
   id: string;
   email: string;
   name: string | null;
-  emailVerified: boolean;
+  emailVerified: boolean | null;
   image: string | null;
-  role: 'user' | 'admin' | 'superadmin';
-  createdAt?: Date;
-  updatedAt?: Date;
+  role: ('user' | 'admin' | 'superadmin') | null;
+  createdAt?: Date | null;
+  updatedAt?: Date | null;
 }
 
 export interface Collection {

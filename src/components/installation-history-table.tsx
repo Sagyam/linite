@@ -2,9 +2,7 @@
 
 import { useState, useMemo } from 'react';
 import Link from 'next/link';
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { ColumnDef } from '@tanstack/react-table';
-import { format } from 'date-fns';
+import { useQuery } from '@tanstack/react-query';
 import { HelpCircle, PackagePlus } from 'lucide-react';
 import { AdvancedDataTable } from '@/components/admin/advanced-data-table';
 import { DeviceFilter } from '@/components/device-filter';
@@ -15,11 +13,12 @@ import { InstallationKeyboardShortcutsDialog } from '@/components/installation-k
 import { BulkActionBar } from '@/components/bulk-action-bar';
 import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
-import { toast } from 'sonner';
 import { useInstallationSelectionStore } from '@/stores/installation-selection-store';
 import { useInstallationKeyboardNavigation } from '@/hooks/use-installation-keyboard-navigation';
+import { useInstallationMutations } from '@/components/installation-history/use-installation-mutations';
+import { useInstallationDialogs } from '@/components/installation-history/use-installation-dialogs';
+import { createInstallationColumns } from '@/components/installation-history/columns';
 import type { InstallationWithRelations } from '@/types/entities';
-import { OptimizedImage } from '@/components/ui/optimized-image';
 
 async function fetchInstallations(deviceFilter?: string | null): Promise<InstallationWithRelations[]> {
   const params = new URLSearchParams({ limit: '100' });
@@ -40,14 +39,11 @@ async function fetchInstallations(deviceFilter?: string | null): Promise<Install
 }
 
 export function InstallationHistoryTable() {
-  const queryClient = useQueryClient();
   const [deviceFilter, setDeviceFilter] = useState<string | null>(null);
-  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
-  const [selectedInstallation, setSelectedInstallation] = useState<InstallationWithRelations | null>(null);
 
-  // Bulk delete and uninstall dialogs state
-  const [bulkDeleteDialogOpen, setBulkDeleteDialogOpen] = useState(false);
-  const [uninstallCommandDialogOpen, setUninstallCommandDialogOpen] = useState(false);
+  // Custom hooks (EXTRACTED)
+  const mutations = useInstallationMutations();
+  const dialogs = useInstallationDialogs();
 
   // Selection store for bulk operations
   const selectedInstallationIds = useInstallationSelectionStore((state) => state.selectedInstallationIds);
@@ -68,7 +64,7 @@ export function InstallationHistoryTable() {
     {
       onDelete: () => {
         if (selectedInstallationIds.size > 0) {
-          setBulkDeleteDialogOpen(true);
+          dialogs.setBulkDeleteDialogOpen(true);
         }
       },
     }
@@ -79,87 +75,27 @@ export function InstallationHistoryTable() {
     return installations?.map((inst) => inst.id) || [];
   }, [installations]);
 
-  const deleteMutation = useMutation({
-    mutationFn: async (id: string) => {
-      const response = await fetch(`/api/installations/${id}`, {
-        method: 'DELETE',
-      });
-
-      if (!response.ok) {
-        const error = await response.json();
-        throw new Error(error.error || 'Failed to delete installation');
-      }
-    },
-    onSuccess: () => {
-      toast.success('Installation deleted successfully');
-      queryClient.invalidateQueries({ queryKey: ['installations'] });
-      queryClient.invalidateQueries({ queryKey: ['user-devices'] });
-      setDeleteDialogOpen(false);
-      setSelectedInstallation(null);
-    },
-    onError: (error: Error) => {
-      toast.error(error.message);
-    },
-  });
-
-  const bulkDeleteMutation = useMutation({
-    mutationFn: async (installationIds: string[]) => {
-      const response = await fetch('/api/installations/bulk-delete', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ installationIds }),
-      });
-
-      if (!response.ok) {
-        const error = await response.json();
-        throw new Error(error.error || 'Failed to delete installations');
-      }
-
-      return response.json();
-    },
-    onSuccess: (data) => {
-      const count = data.deletedCount || selectedInstallationIds.size;
-      toast.success(`${count} installation${count !== 1 ? 's' : ''} deleted successfully`);
-      queryClient.invalidateQueries({ queryKey: ['installations'] });
-      queryClient.invalidateQueries({ queryKey: ['user-devices'] });
-      clearSelection();
-      setBulkDeleteDialogOpen(false);
-    },
-    onError: (error: Error) => {
-      toast.error(error.message);
-      // Keep selection intact on error
-    },
-  });
-
-  const handleDelete = (installation: InstallationWithRelations) => {
-    setSelectedInstallation(installation);
-    setDeleteDialogOpen(true);
-  };
-
+  // Handlers (USING EXTRACTED HOOKS)
   const handleConfirmDelete = () => {
-    if (selectedInstallation) {
-      deleteMutation.mutate(selectedInstallation.id);
+    if (dialogs.selectedInstallation) {
+      mutations.deleteMutation.mutate(dialogs.selectedInstallation.id);
+      dialogs.setDeleteDialogOpen(false);
+      dialogs.setSelectedInstallation(null);
     }
   };
 
   const handleBulkDelete = () => {
     const ids = Array.from(selectedInstallationIds);
-    bulkDeleteMutation.mutate(ids);
-  };
-
-  const handleShowUninstallCommands = () => {
-    // Close delete confirmation dialog
-    setBulkDeleteDialogOpen(false);
-    // Open uninstall command dialog
-    setUninstallCommandDialogOpen(true);
+    mutations.bulkDeleteMutation.mutate(ids);
+    clearSelection();
+    dialogs.setBulkDeleteDialogOpen(false);
   };
 
   const handleUninstallCommandsComplete = () => {
     // When uninstall dialog closes, delete the installations
     const ids = Array.from(selectedInstallationIds);
-    bulkDeleteMutation.mutate(ids);
+    mutations.bulkDeleteMutation.mutate(ids);
+    clearSelection();
   };
 
   // Get selected installations for the delete confirmation dialog
@@ -168,90 +104,11 @@ export function InstallationHistoryTable() {
     return installations.filter((inst) => selectedInstallationIds.has(inst.id));
   }, [installations, selectedInstallationIds]);
 
-  const columns: ColumnDef<InstallationWithRelations>[] = [
-    {
-      accessorKey: 'app.displayName',
-      header: 'App',
-      cell: ({ row }) => {
-        const app = row.original.app;
-        return (
-          <div className="flex items-center space-x-3">
-            {app.iconUrl && (
-              <OptimizedImage
-                src={app.iconUrl}
-                alt={app.displayName}
-                width={32}
-                height={32}
-                className="w-8 h-8 rounded"
-              />
-            )}
-            <span className="font-semibold text-base">{app.displayName}</span>
-          </div>
-        );
-      },
-    },
-    {
-      accessorKey: 'package.identifier',
-      header: 'Package',
-      cell: ({ row }) => {
-        const pkg = row.original.package;
-        return (
-          <div className="space-y-0.5">
-            <div className="font-mono text-sm">{pkg.identifier}</div>
-            <div className="text-xs text-muted-foreground">
-              {pkg.version && `${pkg.version} · `}
-              {pkg.source.name}
-            </div>
-          </div>
-        );
-      },
-    },
-    {
-      accessorKey: 'distro.name',
-      header: 'Distro',
-      cell: ({ row }) => {
-        const distro = row.original.distro;
-        return (
-          <div className="flex items-center space-x-2">
-            {distro.iconUrl && (
-              <OptimizedImage
-                src={distro.iconUrl}
-                alt={distro.name}
-                width={20}
-                height={20}
-                className="w-5 h-5 rounded"
-              />
-            )}
-            <span>{distro.name}</span>
-          </div>
-        );
-      },
-    },
-    {
-      accessorKey: 'deviceIdentifier',
-      header: 'Device',
-      cell: ({ row }) => (
-        <span className="font-medium">{row.original.deviceIdentifier}</span>
-      ),
-    },
-    {
-      accessorKey: 'installedAt',
-      header: 'Installed At',
-      cell: ({ row }) => {
-        const date = new Date(row.original.installedAt);
-        return <span className="text-sm">{format(date, 'PPP')}</span>;
-      },
-    },
-    {
-      accessorKey: 'notes',
-      header: 'Notes',
-      cell: ({ row }) => (
-        <span className="text-sm text-muted-foreground">
-          {row.original.notes || '-'}
-        </span>
-      ),
-    },
-  ];
+  // Column definitions (EXTRACTED)
+  const columns = useMemo(
+    () => createInstallationColumns(dialogs.handleDelete),
+    [dialogs.handleDelete]
+  );
 
   if (isLoading) {
     return (
@@ -334,16 +191,16 @@ export function InstallationHistoryTable() {
 
       <BulkActionBar
         selectedCount={selectedInstallationIds.size}
-        onDelete={() => setBulkDeleteDialogOpen(true)}
+        onDelete={() => dialogs.setBulkDeleteDialogOpen(true)}
         onClearSelection={clearSelection}
-        isDeleting={bulkDeleteMutation.isPending}
+        isDeleting={mutations.bulkDeleteMutation.isPending}
       />
 
       <div data-installation-table>
         <AdvancedDataTable
           columns={columns}
           data={installations}
-          onDelete={handleDelete}
+          onDelete={dialogs.handleDelete}
           getRowId={(row) => row.id}
           globalFilterPlaceholder="Search installations..."
           enableRowSelection={true}
@@ -362,25 +219,25 @@ export function InstallationHistoryTable() {
       </div>
 
       <DeleteDialog
-        open={deleteDialogOpen}
-        onOpenChange={setDeleteDialogOpen}
+        open={dialogs.deleteDialogOpen}
+        onOpenChange={dialogs.setDeleteDialogOpen}
         entityName="installation"
-        itemName={selectedInstallation?.app.displayName}
+        itemName={dialogs.selectedInstallation?.app.displayName}
         onConfirm={handleConfirmDelete}
       />
 
       <DeleteConfirmationDialog
-        open={bulkDeleteDialogOpen}
-        onOpenChange={setBulkDeleteDialogOpen}
+        open={dialogs.bulkDeleteDialogOpen}
+        onOpenChange={dialogs.setBulkDeleteDialogOpen}
         installations={selectedInstallations}
         onConfirmDelete={handleBulkDelete}
-        onShowUninstallCommands={handleShowUninstallCommands}
-        isDeleting={bulkDeleteMutation.isPending}
+        onShowUninstallCommands={dialogs.handleShowUninstallCommands}
+        isDeleting={mutations.bulkDeleteMutation.isPending}
       />
 
       <UninstallCommandDialog
-        open={uninstallCommandDialogOpen}
-        onOpenChange={setUninstallCommandDialogOpen}
+        open={dialogs.uninstallCommandDialogOpen}
+        onOpenChange={dialogs.setUninstallCommandDialogOpen}
         installations={selectedInstallations}
         onComplete={handleUninstallCommandsComplete}
       />

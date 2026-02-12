@@ -60,7 +60,7 @@ export default function CategoriesPage() {
         slug: category.slug,
         icon: category.icon || '',
         description: category.description || '',
-        displayOrder: category.displayOrder,
+        displayOrder: category.displayOrder ?? 0,
       })}
       renderFormFields={(formData, setFormData) => (
         <>

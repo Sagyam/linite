@@ -10,7 +10,7 @@ interface App {
   displayName: string;
   description?: string | null;
   iconUrl?: string | null;
-  isFoss: boolean;
+  isFoss: boolean | null;
   packages: Array<{
     id: string;
     source: {

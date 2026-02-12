@@ -9,7 +9,7 @@ expect.extend({});
 // These are false positives as the store updates are intentional and properly handled
 const originalError = console.error;
 beforeAll(() => {
-  console.error = (...args: Parameters<typeof console.error>) => {
+  console.error = (...args: any[]) => {
     if (
       typeof args[0] === 'string' &&
       (args[0].includes('An update to TestComponent inside a test was not wrapped in act') ||
