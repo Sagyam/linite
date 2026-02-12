@@ -12,6 +12,10 @@ const nextConfig: NextConfig = {
                 protocol: 'https',
                 hostname: 'dl.flathub.org',
             },
+            {
+                protocol: 'https',
+                hostname: 'googleusercontent.com',
+            },
         ],
         // We handle image optimization ourselves via pre-generated variants
         // This bypasses Vercel's image optimization to avoid 402 payment errors
