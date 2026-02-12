@@ -87,7 +87,8 @@ export function CommandDialog({ open, onOpenChange }: CommandDialogProps) {
         generateUninstall(includeDependencyCleanup, includeSetupCleanup);
       }
     }
-  }, [open, activeTab, includeDependencyCleanup, includeSetupCleanup, selectedApps.size, selectedDistro, generateInstall, generateUninstall]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [open, activeTab, includeDependencyCleanup, includeSetupCleanup, selectedApps.size, selectedDistro]);
 
   const handleCopyAll = async () => {
     if (!result) return;

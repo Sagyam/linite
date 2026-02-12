@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo, useEffect, useRef } from 'react';
+import { useMemo, useEffect, useRef, useCallback } from 'react';
 import { Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { AppCard } from '@/components/app-card';
@@ -110,25 +110,25 @@ export function AppGrid({
     return data?.pages[0]?.pagination.total ?? 0;
   }, [useProps, totalCountProp, apps, data]);
 
+  // Intersection observer callback with stable reference to latest fetchNextPage
+  const handleIntersection = useCallback((entries: IntersectionObserverEntry[]) => {
+    const [entry] = entries;
+    const hasMore = useProps ? (hasNextPageProp ?? false) : (hasNextPage ?? false);
+    const isFetching = useProps ? (isFetchingNextPageProp ?? false) : (isFetchingNextPage ?? false);
+    const fetchFn = useProps ? fetchNextPageProp : fetchNextPage;
+
+    if (entry.isIntersecting && hasMore && !isFetching && fetchFn) {
+      fetchFn();
+    }
+  }, [useProps, hasNextPage, isFetchingNextPage, hasNextPageProp, isFetchingNextPageProp, fetchNextPage, fetchNextPageProp]);
+
   // Intersection observer for infinite scroll
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const [entry] = entries;
-        const hasMore = useProps ? (hasNextPageProp ?? false) : (hasNextPage ?? false);
-        const isFetching = useProps ? (isFetchingNextPageProp ?? false) : (isFetchingNextPage ?? false);
-        const fetchFn = useProps ? fetchNextPageProp : fetchNextPage;
-        
-        if (entry.isIntersecting && hasMore && !isFetching && fetchFn) {
-          fetchFn();
-        }
-      },
-      {
-        threshold: INTERSECTION_OBSERVER.THRESHOLD,
-        root: scrollAreaViewportRef?.current ?? null,
-        rootMargin: '100px',
-      }
-    );
+    const observer = new IntersectionObserver(handleIntersection, {
+      threshold: INTERSECTION_OBSERVER.THRESHOLD,
+      root: scrollAreaViewportRef?.current ?? null,
+      rootMargin: '100px',
+    });
 
     const currentRef = loadMoreRef.current;
     if (currentRef) {
@@ -140,7 +140,7 @@ export function AppGrid({
         observer.unobserve(currentRef);
       }
     };
-  }, [useProps, hasNextPage, isFetchingNextPage, fetchNextPage, hasNextPageProp, isFetchingNextPageProp, fetchNextPageProp, scrollAreaViewportRef]);
+  }, [handleIntersection, scrollAreaViewportRef]);
 
   return (
     <div className="space-y-6">

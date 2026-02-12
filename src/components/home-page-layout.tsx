@@ -108,7 +108,7 @@ export function HomePageLayout({
             </ScrollArea>
           </div>
 
-          {/* Desktop: No ScrollArea, normal flow */}
+          {/* Desktop: With ScrollArea for infinite scroll */}
           <div className="hidden lg:block space-y-4">
             {/* Filters + View Toggle Row */}
             <div className="flex gap-3 items-start">
@@ -125,8 +125,13 @@ export function HomePageLayout({
               <ViewToggle currentView={viewMode} onViewChange={setViewMode} />
             </div>
 
-            {/* Content */}
-            {children}
+            {/* Content with ScrollArea */}
+            <ScrollArea
+              className="h-[calc(100vh-16rem)]"
+              viewportRef={scrollAreaViewportRef}
+            >
+              <div className="space-y-4 pr-4 pb-4">{children}</div>
+            </ScrollArea>
           </div>
         </div>
       </div>

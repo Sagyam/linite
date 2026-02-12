@@ -414,12 +414,80 @@ describe('AppGrid', () => {
     });
 
     it('should setup IntersectionObserver for infinite scroll', () => {
+      const observeSpy = vi.fn();
+      const unobserveSpy = vi.fn();
+      const disconnectSpy = vi.fn();
+
+      class SpyIntersectionObserver {
+        callback: IntersectionObserverCallback;
+
+        constructor(callback: IntersectionObserverCallback) {
+          this.callback = callback;
+        }
+
+        observe(element: Element) {
+          observeSpy(element);
+          (element as any).__intersectionCallback = this.callback;
+        }
+
+        unobserve(element: Element) {
+          unobserveSpy(element);
+        }
+
+        disconnect() {
+          disconnectSpy();
+        }
+      }
+
+      global.IntersectionObserver = SpyIntersectionObserver as any;
+
       renderWithProviders(<AppGrid {...defaultProps} />);
 
-      // IntersectionObserver should be set up (constructor would be called)
-      // We can't easily test this without spying on the constructor
-      // Just verify the component renders
+      expect(observeSpy).toHaveBeenCalled();
       expect(screen.getByText('Firefox')).toBeInTheDocument();
+    });
+
+    it('should NOT recreate IntersectionObserver infinitely on re-renders', () => {
+      const constructorSpy = vi.fn();
+      const observeSpy = vi.fn();
+      const unobserveSpy = vi.fn();
+
+      class SpyIntersectionObserver {
+        callback: IntersectionObserverCallback;
+
+        constructor(callback: IntersectionObserverCallback) {
+          constructorSpy();
+          this.callback = callback;
+        }
+
+        observe(element: Element) {
+          observeSpy(element);
+          (element as any).__intersectionCallback = this.callback;
+        }
+
+        unobserve(element: Element) {
+          unobserveSpy(element);
+        }
+
+        disconnect() {}
+      }
+
+      global.IntersectionObserver = SpyIntersectionObserver as any;
+
+      const { rerender } = renderWithProviders(<AppGrid {...defaultProps} />);
+
+      const initialConstructorCalls = constructorSpy.mock.calls.length;
+      const initialObserveCalls = observeSpy.mock.calls.length;
+
+      // Force multiple re-renders
+      for (let i = 0; i < 5; i++) {
+        rerender(<AppGrid {...defaultProps} />);
+      }
+
+      // Observer should not be recreated for simple re-renders
+      // It should only be created once initially
+      expect(constructorSpy.mock.calls.length).toBe(initialConstructorCalls);
+      expect(observeSpy.mock.calls.length).toBe(initialObserveCalls);
     });
 
     it('should trigger fetchNextPage when scrolling into view', () => {
@@ -485,6 +553,64 @@ describe('AppGrid', () => {
       }
 
       expect(mockFetchNextPage).not.toHaveBeenCalled();
+    });
+
+    it('should use latest fetchNextPage reference in observer callback', () => {
+      const mockFetch1 = vi.fn();
+      const mockFetch2 = vi.fn();
+
+      // Initial render with first fetch function
+      mockUseApps.mockReturnValue({
+        data: {
+          pages: [
+            {
+              apps: mockApps,
+              pagination: { total: 10, limit: 3, offset: 0, hasMore: true },
+            },
+          ],
+        },
+        fetchNextPage: mockFetch1,
+        hasNextPage: true,
+        isFetchingNextPage: false,
+        isLoading: false,
+        isError: false,
+      });
+
+      const { rerender } = renderWithProviders(<AppGrid {...defaultProps} />);
+
+      // Update with second fetch function
+      mockUseApps.mockReturnValue({
+        data: {
+          pages: [
+            {
+              apps: mockApps,
+              pagination: { total: 10, limit: 3, offset: 0, hasMore: true },
+            },
+          ],
+        },
+        fetchNextPage: mockFetch2,
+        hasNextPage: true,
+        isFetchingNextPage: false,
+        isLoading: false,
+        isError: false,
+      });
+
+      rerender(<AppGrid {...defaultProps} />);
+
+      // Trigger intersection after rerender
+      const loadMoreSection = screen.getByRole('button', { name: /Load More Apps/i }).parentElement;
+
+      act(() => {
+        if ((loadMoreSection as any).__intersectionCallback) {
+          (loadMoreSection as any).__intersectionCallback([
+            { isIntersecting: true, target: loadMoreSection },
+          ]);
+        }
+      });
+
+      // Should use NEW fetch function, not old one
+      expect(mockFetch2).toHaveBeenCalled();
+      expect(mockFetch1).not.toHaveBeenCalled();
     });
 
     it('should render apps from multiple pages', () => {
