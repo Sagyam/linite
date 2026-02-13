@@ -604,6 +604,7 @@ Generate or regenerate share token for collection (requires ownership)
 - `GET /api/installations/[id]` - Get installation
 - `PATCH /api/installations/[id]` - Update installation
 - `DELETE /api/installations/[id]` - Delete installation
+- `POST /api/installations/bulk-delete` - Delete multiple installations
 - `GET /api/installations/devices` - Get user's devices
 
 ### Installation Tracking Endpoints (Authenticated)
@@ -669,6 +670,24 @@ Update installation (ownership check)
 
 **DELETE /api/installations/[id]**
 Delete installation (ownership check)
+
+**POST /api/installations/bulk-delete**
+Delete multiple installations in a single request (ownership check)
+
+**Request Body:**
+```json
+{
+  "installationIds": ["installation_id_1", "installation_id_2", "installation_id_3"]
+}
+```
+
+**Response:**
+```json
+{
+  "success": true,
+  "deletedCount": 3
+}
+```
 
 **GET /api/installations/devices**
 Get list of user's devices

@@ -69,11 +69,12 @@ export const POST = createAuthValidatedApiHandler(
 - Admin routes: All CRUD operations + `/api/packages`, `/api/distro-sources`, `/api/refresh`, `/api/upload`
 
 ### 4. File Organization
-Follow the structure in `/docs/REPOSITORY_STRUCTURE.md`:
-- Keep components organized by purpose (ui/, public components, admin/)
+Follow the established structure patterns:
+- Keep components organized by purpose (ui/, public components, admin/, dashboard/, collection/)
 - Separate business logic into `/src/services`
 - External API clients in `/src/services/external-apis`
 - Keep route handlers thin, delegate to services
+- Centralize types in `/src/types` and validation schemas in `/src/lib/validation`
 
 ### 5. Command Generation Logic
 See `/docs/API_REFERENCE.md` for the `/api/generate` endpoint spec. The algorithm:
@@ -122,7 +123,7 @@ See `.env.example` for required variables. All env vars are validated using Zod 
 - **API Docs**: `/docs/API_REFERENCE.md`
 - **Database**: `/docs/DATABASE_SCHEMA.md`
 - **Environment**: `/docs/ENVIRONMENT.md`
-- **Initial Data**: `/docs/INITIAL_DATA.md`
+- **Testing**: `/docs/TESTING.md`
 
 ## Testing
 
