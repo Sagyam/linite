@@ -1,12 +1,11 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useCallback } from 'react';
 import Link from 'next/link';
 import { useQuery } from '@tanstack/react-query';
 import { HelpCircle, PackagePlus } from 'lucide-react';
 import { AdvancedDataTable } from '@/components/admin/advanced-data-table';
 import { DeviceFilter } from '@/components/device-filter';
-import { DeleteDialog } from '@/components/admin/delete-dialog';
 import { DeleteConfirmationDialog } from '@/components/delete-confirmation-dialog';
 import { UninstallCommandDialog } from '@/components/uninstall-command-dialog';
 import { InstallationKeyboardShortcutsDialog } from '@/components/installation-keyboard-shortcuts-dialog';
@@ -76,33 +75,46 @@ export function InstallationHistoryTable() {
   }, [installations]);
 
   // Handlers (USING EXTRACTED HOOKS)
-  const handleConfirmDelete = () => {
+  const handleConfirmDelete = useCallback(() => {
     if (dialogs.selectedInstallation) {
+      // Single delete
       mutations.deleteMutation.mutate(dialogs.selectedInstallation.id);
-      dialogs.setDeleteDialogOpen(false);
+      dialogs.setDeleteConfirmDialogOpen(false);
       dialogs.setSelectedInstallation(null);
+    } else if (selectedInstallationIds.size > 0) {
+      // Bulk delete
+      const ids = Array.from(selectedInstallationIds);
+      mutations.bulkDeleteMutation.mutate(ids);
+      clearSelection();
+      dialogs.setDeleteConfirmDialogOpen(false);
     }
-  };
+  }, [dialogs, mutations.deleteMutation, mutations.bulkDeleteMutation, selectedInstallationIds, clearSelection]);
 
-  const handleBulkDelete = () => {
-    const ids = Array.from(selectedInstallationIds);
-    mutations.bulkDeleteMutation.mutate(ids);
-    clearSelection();
-    dialogs.setBulkDeleteDialogOpen(false);
-  };
+  // handleBulkDelete is now unified with handleConfirmDelete
 
-  const handleUninstallCommandsComplete = () => {
+  const handleUninstallCommandsComplete = useCallback(() => {
     // When uninstall dialog closes, delete the installations
-    const ids = Array.from(selectedInstallationIds);
-    mutations.bulkDeleteMutation.mutate(ids);
-    clearSelection();
-  };
+    if (dialogs.selectedInstallation) {
+      // Single delete after viewing uninstall commands
+      mutations.deleteMutation.mutate(dialogs.selectedInstallation.id);
+      dialogs.setSelectedInstallation(null);
+    } else if (selectedInstallationIds.size > 0) {
+      // Bulk delete after viewing uninstall commands
+      const ids = Array.from(selectedInstallationIds);
+      mutations.bulkDeleteMutation.mutate(ids);
+      clearSelection();
+    }
+  }, [dialogs, mutations.deleteMutation, mutations.bulkDeleteMutation, selectedInstallationIds, clearSelection]);
 
-  // Get selected installations for the delete confirmation dialog
-  const selectedInstallations = useMemo(() => {
+  // Get installations for the delete confirmation dialog
+  // When a single installation is selected, use that; otherwise use bulk selection
+  const installationsForDeleteDialog = useMemo(() => {
+    if (dialogs.selectedInstallation) {
+      return [dialogs.selectedInstallation];
+    }
     if (!installations) return [];
     return installations.filter((inst) => selectedInstallationIds.has(inst.id));
-  }, [installations, selectedInstallationIds]);
+  }, [installations, selectedInstallationIds, dialogs.selectedInstallation]);
 
   // Column definitions (EXTRACTED)
   const columns = useMemo(
@@ -218,27 +230,24 @@ export function InstallationHistoryTable() {
         />
       </div>
 
-      <DeleteDialog
-        open={dialogs.deleteDialogOpen}
-        onOpenChange={dialogs.setDeleteDialogOpen}
-        entityName="installation"
-        itemName={dialogs.selectedInstallation?.app.displayName}
-        onConfirm={handleConfirmDelete}
-      />
-
       <DeleteConfirmationDialog
-        open={dialogs.bulkDeleteDialogOpen}
-        onOpenChange={dialogs.setBulkDeleteDialogOpen}
-        installations={selectedInstallations}
-        onConfirmDelete={handleBulkDelete}
+        open={dialogs.deleteConfirmDialogOpen}
+        onOpenChange={(open) => {
+          dialogs.setDeleteConfirmDialogOpen(open);
+          if (!open) {
+            dialogs.setSelectedInstallation(null);
+          }
+        }}
+        installations={installationsForDeleteDialog}
+        onConfirmDelete={handleConfirmDelete}
         onShowUninstallCommands={dialogs.handleShowUninstallCommands}
-        isDeleting={mutations.bulkDeleteMutation.isPending}
+        isDeleting={mutations.deleteMutation.isPending || mutations.bulkDeleteMutation.isPending}
       />
 
       <UninstallCommandDialog
         open={dialogs.uninstallCommandDialogOpen}
         onOpenChange={dialogs.setUninstallCommandDialogOpen}
-        installations={selectedInstallations}
+        installations={installationsForDeleteDialog}
         onComplete={handleUninstallCommandsComplete}
       />
 

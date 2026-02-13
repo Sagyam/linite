@@ -58,7 +58,7 @@ export function DeleteConfirmationDialog({
                         alt={installation.app.displayName}
                         width={24}
                         height={24}
-                        className="w-6 h-6 rounded"
+                        className="w-6 h-6 rounded object-contain"
                       />
                     )}
                     <span className="font-medium">{installation.app.displayName}</span>

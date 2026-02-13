@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import {
   Sheet,
@@ -11,6 +12,7 @@ import {
   SheetTrigger,
 } from '@/components/ui/sheet';
 import { Home, LibraryBig, Shield, Github, Star, LogIn, Menu, Settings } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 interface MobileNavProps {
   isAuthenticated: boolean;
@@ -18,6 +20,7 @@ interface MobileNavProps {
 
 export function MobileNav({ isAuthenticated }: MobileNavProps) {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
 
   const closeSheet = () => setOpen(false);
 
@@ -35,20 +38,38 @@ export function MobileNav({ isAuthenticated }: MobileNavProps) {
         </SheetHeader>
         <nav className="flex flex-col gap-4 mt-6">
           <Link href="/" onClick={closeSheet}>
-            <Button variant="ghost" className="w-full justify-start gap-2">
+            <Button
+              variant="ghost"
+              className={cn(
+                'w-full justify-start gap-2',
+                pathname === '/' && 'bg-accent text-accent-foreground'
+              )}
+            >
               <Home className="h-4 w-4" />
               Home
             </Button>
           </Link>
           <Link href="/collections" onClick={closeSheet}>
-            <Button variant="ghost" className="w-full justify-start gap-2">
+            <Button
+              variant="ghost"
+              className={cn(
+                'w-full justify-start gap-2',
+                pathname.startsWith('/collections') && 'bg-accent text-accent-foreground'
+              )}
+            >
               <LibraryBig className="h-4 w-4" />
               Collections
             </Button>
           </Link>
           {isAuthenticated && (
             <Link href="/dashboard/installations" onClick={closeSheet}>
-              <Button variant="ghost" className="w-full justify-start gap-2">
+              <Button
+                variant="ghost"
+                className={cn(
+                  'w-full justify-start gap-2',
+                  pathname.startsWith('/dashboard') && 'bg-accent text-accent-foreground'
+                )}
+              >
                 <Settings className="h-4 w-4" />
                 Installations
               </Button>
@@ -56,7 +77,13 @@ export function MobileNav({ isAuthenticated }: MobileNavProps) {
           )}
           {process.env.NODE_ENV === 'development' && (
             <Link href="/admin" onClick={closeSheet}>
-              <Button variant="ghost" className="w-full justify-start gap-2">
+              <Button
+                variant="ghost"
+                className={cn(
+                  'w-full justify-start gap-2',
+                  pathname.startsWith('/admin') && 'bg-accent text-accent-foreground'
+                )}
+              >
                 <Shield className="h-4 w-4" />
                 Admin
               </Button>

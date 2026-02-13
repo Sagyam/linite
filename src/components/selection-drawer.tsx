@@ -1,8 +1,8 @@
 'use client';
 
-import { useState, useMemo } from 'react';
-import { useQuery, useQueryClient } from '@tanstack/react-query';
-import { Package2, Trash2, X, Loader2, Save } from 'lucide-react';
+import { useMemo } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import { Package2, Trash2, X, Loader2 } from 'lucide-react';
 import {
   Drawer,
   DrawerClose,
@@ -13,7 +13,6 @@ import {
 } from '@/components/ui/drawer';
 import { Button } from '@/components/ui/button';
 import { SelectedAppsList } from '@/components/selected-apps-list';
-import { SaveInstallationDialog } from '@/components/save-installation-dialog';
 import { queryKeys } from '@/lib/query-keys';
 import { apps as appsApi } from '@/lib/api-client';
 import { useSelectionStore } from '@/stores/selection-store';
@@ -21,20 +20,13 @@ import { useSelectionStore } from '@/stores/selection-store';
 interface SelectionDrawerProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
-  isAuthenticated?: boolean;
 }
 
-export function SelectionDrawer({ open, onOpenChange, isAuthenticated = false }: SelectionDrawerProps) {
-  const [saveDialogOpen, setSaveDialogOpen] = useState(false);
-  const queryClient = useQueryClient();
-
+export function SelectionDrawer({ open, onOpenChange }: SelectionDrawerProps) {
   // Optimize: Use selectors to subscribe only to needed state
   const selectedApps = useSelectionStore((state) => state.selectedApps);
   const clearApps = useSelectionStore((state) => state.clearApps);
   const deselectApp = useSelectionStore((state) => state.deselectApp);
-  const selectedDistro = useSelectionStore((state) => state.selectedDistro);
-  const sourcePreference = useSelectionStore((state) => state.sourcePreference);
-  const nixosInstallMethod = useSelectionStore((state) => state.nixosInstallMethod);
 
   // Memoize selectedAppIds to prevent infinite re-renders
   const selectedAppIds = useMemo(() => Array.from(selectedApps), [selectedApps]);
@@ -81,28 +73,15 @@ export function SelectionDrawer({ open, onOpenChange, isAuthenticated = false }:
                 <div>
                   <div className="flex items-center justify-between mb-3">
                     <h3 className="font-semibold">Selected Applications</h3>
-                    <div className="flex gap-2">
-                      {isAuthenticated && (
-                        <Button
-                          variant="default"
-                          size="sm"
-                          onClick={() => setSaveDialogOpen(true)}
-                          className="gap-2"
-                        >
-                          <Save className="w-3 h-3" />
-                          Save as Installation
-                        </Button>
-                      )}
-                      <Button
-                        variant="destructive"
-                        size="sm"
-                        onClick={clearApps}
-                        className="gap-2"
-                      >
-                        <Trash2 className="w-3 h-3" />
-                        Clear All
-                      </Button>
-                    </div>
+                    <Button
+                      variant="destructive"
+                      size="sm"
+                      onClick={clearApps}
+                      className="gap-2"
+                    >
+                      <Trash2 className="w-3 h-3" />
+                      Clear All
+                    </Button>
                   </div>
 
                   <SelectedAppsList
@@ -116,23 +95,6 @@ export function SelectionDrawer({ open, onOpenChange, isAuthenticated = false }:
           </div>
         </div>
       </DrawerContent>
-
-      <SaveInstallationDialog
-        open={saveDialogOpen}
-        onOpenChange={setSaveDialogOpen}
-        appCount={selectedApps.size}
-        selectedAppIds={selectedAppIds}
-        selectedDistro={selectedDistro}
-        sourcePreference={sourcePreference}
-        nixosInstallMethod={nixosInstallMethod}
-        onSuccess={() => {
-          // Invalidate installations queries so the installations page refreshes
-          queryClient.invalidateQueries({ queryKey: ['installations'] });
-          queryClient.invalidateQueries({ queryKey: ['user-devices'] });
-          // Optionally clear selection after saving
-          // clearApps();
-        }}
-      />
     </Drawer>
   );
 }

@@ -18,10 +18,15 @@ export interface UseDialogsReturn {
   commandDialogOpen: boolean;
   setCommandDialogOpen: (open: boolean) => void;
 
+  // Save dialog state
+  saveDialogOpen: boolean;
+  setSaveDialogOpen: (open: boolean) => void;
+
   // Handlers
   handleGenerateCommand: () => void;
   handleToggleGenerateCommand: () => void;
   handleToggleSelectionDrawer: () => void;
+  handleSaveInstallation: () => void;
 }
 
 /**
@@ -30,6 +35,7 @@ export interface UseDialogsReturn {
 export function useDialogs(): UseDialogsReturn {
   const [selectionDrawerOpen, setSelectionDrawerOpen] = useState(false);
   const [commandDialogOpen, setCommandDialogOpen] = useState(false);
+  const [saveDialogOpen, setSaveDialogOpen] = useState(false);
 
   // Get selection state from Zustand store
   const selectedAppsSize = useSelectionStore((state) => state.selectedApps.size);
@@ -67,14 +73,26 @@ export function useDialogs(): UseDialogsReturn {
 
   const toggleSelectionDrawer = handleToggleSelectionDrawer;
 
+  /**
+   * Open save installation dialog if apps and distro selected
+   */
+  const handleSaveInstallation = useCallback(() => {
+    if (selectedAppsSize > 0 && selectedDistro) {
+      setSaveDialogOpen(true);
+    }
+  }, [selectedAppsSize, selectedDistro]);
+
   return {
     selectionDrawerOpen,
     setSelectionDrawerOpen,
     toggleSelectionDrawer,
     commandDialogOpen,
     setCommandDialogOpen,
+    saveDialogOpen,
+    setSaveDialogOpen,
     handleGenerateCommand,
     handleToggleGenerateCommand,
     handleToggleSelectionDrawer,
+    handleSaveInstallation,
   };
 }

@@ -144,7 +144,7 @@ export function SaveInstallationDialog({
 
       if (successful > 0) {
         toast.success(
-          `${successful} installation${successful === 1 ? '' : 's'} saved successfully${
+          `${successful} app${successful === 1 ? '' : 's'} saved to "${deviceIdentifier.trim()}"${
             failed > 0 ? ` (${failed} failed)` : ''
           }`
         );

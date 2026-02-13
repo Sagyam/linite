@@ -1,6 +1,7 @@
 'use client';
 
-import { useRef } from 'react';
+import { useRef, useMemo } from 'react';
+import { useQueryClient } from '@tanstack/react-query';
 import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
 import { AppGrid } from '@/components/app-grid';
@@ -10,6 +11,7 @@ import { PersistentDistroBar } from '@/components/persistent-distro-bar';
 import { FloatingActionBar } from '@/components/floating-action-bar';
 import { SelectionDrawer } from '@/components/selection-drawer';
 import { CommandDialog } from '@/components/command-dialog';
+import { SaveInstallationDialog } from '@/components/save-installation-dialog';
 import { StructuredData } from '@/components/structured-data';
 import { HomePageLayout } from '@/components/home-page-layout';
 import { useKeyboardNavigation } from '@/hooks/use-keyboard-navigation';
@@ -17,6 +19,7 @@ import { useDebounce } from '@/hooks/use-debounce';
 import { useApps } from '@/hooks/use-apps';
 import { useFilters } from '@/hooks/use-filters';
 import { useDialogs } from '@/hooks/use-dialogs';
+import { useSelectionStore } from '@/stores/selection-store';
 import { TIMEOUTS } from '@/lib/constants';
 import type { Category, AppWithRelations } from '@/types';
 import type { Distro } from '@/hooks/use-distros';
@@ -33,6 +36,16 @@ export function HomePageClient({ categories, distros, initialApps, totalApps, is
   // Custom hooks for state management (EXTRACTED)
   const filters = useFilters();
   const dialogs = useDialogs();
+  const queryClient = useQueryClient();
+
+  // Selection store for save dialog
+  const selectedApps = useSelectionStore((state) => state.selectedApps);
+  const selectedDistro = useSelectionStore((state) => state.selectedDistro);
+  const sourcePreference = useSelectionStore((state) => state.sourcePreference);
+  const nixosInstallMethod = useSelectionStore((state) => state.nixosInstallMethod);
+
+  // Memoize selectedAppIds to prevent infinite re-renders
+  const selectedAppIds = useMemo(() => Array.from(selectedApps), [selectedApps]);
 
   // Refs
   const searchInputRef = useRef<HTMLInputElement>(null);
@@ -63,6 +76,7 @@ export function HomePageClient({ categories, distros, initialApps, totalApps, is
     sourceTriggerRef,
     onGenerateCommand: dialogs.handleToggleGenerateCommand,
     onViewSelection: dialogs.handleToggleSelectionDrawer,
+    onSaveInstallation: isAuthenticated ? dialogs.handleSaveInstallation : undefined,
   });
 
   return (
@@ -129,17 +143,32 @@ export function HomePageClient({ categories, distros, initialApps, totalApps, is
           distros={distros}
           onViewSelection={() => dialogs.setSelectionDrawerOpen(true)}
           onGenerateCommand={dialogs.handleGenerateCommand}
+          onSaveInstallation={dialogs.handleSaveInstallation}
+          isAuthenticated={isAuthenticated}
         />
 
         <SelectionDrawer
           open={dialogs.selectionDrawerOpen}
           onOpenChange={dialogs.setSelectionDrawerOpen}
-          isAuthenticated={isAuthenticated}
         />
 
         <CommandDialog
           open={dialogs.commandDialogOpen}
           onOpenChange={dialogs.setCommandDialogOpen}
+        />
+
+        <SaveInstallationDialog
+          open={dialogs.saveDialogOpen}
+          onOpenChange={dialogs.setSaveDialogOpen}
+          appCount={selectedApps.size}
+          selectedAppIds={selectedAppIds}
+          selectedDistro={selectedDistro}
+          sourcePreference={sourcePreference}
+          nixosInstallMethod={nixosInstallMethod}
+          onSuccess={() => {
+            queryClient.invalidateQueries({ queryKey: ['installations'] });
+            queryClient.invalidateQueries({ queryKey: ['user-devices'] });
+          }}
         />
 
         <KeyboardIndicator onClick={() => setShowShortcuts(true)} />

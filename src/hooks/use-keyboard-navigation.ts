@@ -16,6 +16,7 @@ interface UseKeyboardNavigationProps {
   sourceTriggerRef?: React.RefObject<HTMLButtonElement | null>;
   onGenerateCommand?: () => void;
   onViewSelection?: () => void;
+  onSaveInstallation?: () => void;
 }
 
 export function useKeyboardNavigation({
@@ -28,6 +29,7 @@ export function useKeyboardNavigation({
   sourceTriggerRef,
   onGenerateCommand,
   onViewSelection,
+  onSaveInstallation,
 }: UseKeyboardNavigationProps) {
   const [showShortcuts, setShowShortcuts] = useState(false);
   const [visualModeStart, setVisualModeStart] = useState<number | null>(null);
@@ -120,6 +122,7 @@ export function useKeyboardNavigation({
       // Actions
       GENERATE_COMMAND: () => onGenerateCommand?.(),
       VIEW_SELECTION: () => onViewSelection?.(),
+      SAVE_INSTALLATION: () => onSaveInstallation?.(),
 
       // View modes
       CYCLE_VIEW_MODE: cycleViewMode,
@@ -156,6 +159,7 @@ export function useKeyboardNavigation({
     handleVisualModeSelect,
     onGenerateCommand,
     onViewSelection,
+    onSaveInstallation,
     distroTriggerRef,
     sourceTriggerRef,
   ]);

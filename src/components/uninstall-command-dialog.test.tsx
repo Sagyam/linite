@@ -311,38 +311,6 @@ describe('UninstallCommandDialog', () => {
     });
   });
 
-  it('should call onComplete when dialog is closed', async () => {
-    const onComplete = vi.fn();
-    const onOpenChange = vi.fn();
-
-    mockFetch.mockResolvedValueOnce(
-      createMockResponse(mockUninstallResponse, 200, true)
-    );
-
-    renderWithProviders(
-      <UninstallCommandDialog
-        open={true}
-        onOpenChange={onOpenChange}
-        installations={mockInstallations}
-        onComplete={onComplete}
-      />
-    );
-
-    await waitFor(() => {
-      expect(screen.getByText('Uninstall Commands')).toBeInTheDocument();
-    });
-
-    // Close the dialog
-    const dialog = screen.getByRole('dialog');
-    // Simulate ESC key or dialog close
-    fireEvent.keyDown(dialog, { key: 'Escape' });
-
-    // Wait for state updates
-    await waitFor(() => {
-      expect(onOpenChange).toHaveBeenCalledWith(false);
-    });
-  });
-
   it('should handle copy all button', async () => {
     mockFetch.mockResolvedValueOnce(
       createMockResponse(mockUninstallResponse, 200, true)

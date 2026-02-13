@@ -7,7 +7,8 @@ import {
   ChevronUp,
   Settings2,
   AlertCircle,
-  Monitor
+  Monitor,
+  Save
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -18,12 +19,16 @@ interface FloatingActionBarProps {
   distros: Distro[];
   onViewSelection: () => void;
   onGenerateCommand: () => void;
+  onSaveInstallation?: () => void;
+  isAuthenticated?: boolean;
 }
 
 export const FloatingActionBar = memo(function FloatingActionBar({
   distros,
   onViewSelection,
   onGenerateCommand,
+  onSaveInstallation,
+  isAuthenticated = false,
 }: FloatingActionBarProps) {
   // Optimize: Use selectors to subscribe only to needed state
   const selectedAppsSize = useSelectionStore((state) => state.selectedApps.size);
@@ -104,14 +109,22 @@ export const FloatingActionBar = memo(function FloatingActionBar({
               </div>
             </div>
           ) : (
-            /* Show Generate button when distro is selected */
+            /* Show Generate and Save buttons when distro is selected */
             <div className="flex items-center gap-2 min-w-0">
-              <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-md bg-primary/10 border border-primary/20 shrink-0">
-                <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-                <span className="text-xs font-medium text-primary whitespace-nowrap">
-                  Ready to {mode}
-                </span>
-              </div>
+              {isAuthenticated && onSaveInstallation && (
+                <Button
+                  size="lg"
+                  onClick={onSaveInstallation}
+                  disabled={!canGenerate}
+                  className="gap-2 text-sm sm:text-base shrink-0 bg-green-600 hover:bg-green-700 text-white"
+                >
+                  <kbd className="hidden sm:inline-flex px-1.5 py-0.5 text-[10px] font-semibold bg-green-500 text-white border border-green-400/20 rounded">
+                    s
+                  </kbd>
+                  <Save className="w-4 h-4 shrink-0" />
+                  <span className="hidden sm:inline">Save</span>
+                </Button>
+              )}
               <Button
                 size="lg"
                 onClick={onGenerateCommand}
@@ -121,8 +134,8 @@ export const FloatingActionBar = memo(function FloatingActionBar({
                 <kbd className="hidden sm:inline-flex px-1.5 py-0.5 text-[10px] font-semibold bg-primary-foreground text-primary border border-primary/20 rounded">
                   c
                 </kbd>
-                <span className="hidden xs:inline">Generate Command</span>
-                <span className="xs:hidden">Generate</span>
+                <span className="hidden xs:inline">Get Commands</span>
+                <span className="xs:hidden">Get</span>
                 <ArrowRight className="w-4 h-4 shrink-0" />
               </Button>
             </div>

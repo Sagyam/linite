@@ -2,14 +2,16 @@
 
 import { useEffect, useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
-import { Terminal } from 'lucide-react';
+import { Terminal, Check, X } from 'lucide-react';
 import {
   Dialog,
   DialogContent,
   DialogDescription,
+  DialogFooter,
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
+import { Button } from '@/components/ui/button';
 import { CommandOutputSkeleton } from '@/components/ui/loading-skeletons';
 import { useClipboard, useMultiClipboard } from '@/hooks/use-clipboard';
 import { toast } from 'sonner';
@@ -151,16 +153,22 @@ export function UninstallCommandDialog({
     toast.success('Uninstall script downloaded!');
   };
 
-  const handleClose = (open: boolean) => {
-    onOpenChange(open);
-    if (!open && onComplete) {
+  const handleDismiss = () => {
+    // Just close without deleting
+    onOpenChange(false);
+  };
+
+  const handleConfirmAndDelete = () => {
+    // Close and trigger deletion
+    onOpenChange(false);
+    if (onComplete) {
       onComplete();
     }
   };
 
   if (!allSameDistro) {
     return (
-      <Dialog open={open} onOpenChange={handleClose}>
+      <Dialog open={open} onOpenChange={onOpenChange}>
         <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle>Cannot Generate Uninstall Commands</DialogTitle>
@@ -175,14 +183,24 @@ export function UninstallCommandDialog({
               Please select installations from a single distribution to generate uninstall commands.
             </p>
           </div>
+          <DialogFooter>
+            <Button variant="outline" onClick={() => onOpenChange(false)}>
+              Close
+            </Button>
+          </DialogFooter>
         </DialogContent>
       </Dialog>
     );
   }
 
   return (
-    <Dialog open={open} onOpenChange={handleClose}>
-      <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+    <Dialog open={open} onOpenChange={() => {}}>
+      <DialogContent
+        className="max-w-4xl max-h-[90vh] overflow-y-auto"
+        onEscapeKeyDown={(e) => e.preventDefault()}
+        onPointerDownOutside={(e) => e.preventDefault()}
+        onInteractOutside={(e) => e.preventDefault()}
+      >
         <DialogHeader>
           <DialogTitle>Uninstall Commands</DialogTitle>
           <DialogDescription>
@@ -245,6 +263,17 @@ export function UninstallCommandDialog({
             </div>
           )}
         </div>
+
+        <DialogFooter className="flex-col sm:flex-row gap-2 mt-4">
+          <Button variant="outline" onClick={handleDismiss} className="gap-2">
+            <X className="w-4 h-4" />
+            Dismiss
+          </Button>
+          <Button onClick={handleConfirmAndDelete} className="gap-2">
+            <Check className="w-4 h-4" />
+            I&apos;ve run the commands, delete entries
+          </Button>
+        </DialogFooter>
       </DialogContent>
     </Dialog>
   );

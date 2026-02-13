@@ -33,7 +33,7 @@ export function createInstallationColumns(
                 alt={app.displayName}
                 width={32}
                 height={32}
-                className="w-8 h-8 rounded"
+                className="w-8 h-8 rounded object-contain"
               />
             )}
             <span className="font-semibold text-base">{app.displayName}</span>
@@ -70,7 +70,7 @@ export function createInstallationColumns(
                 alt={distro.name}
                 width={20}
                 height={20}
-                className="w-5 h-5 rounded"
+                className="w-5 h-5 rounded object-contain"
               />
             )}
             <span>{distro.name}</span>

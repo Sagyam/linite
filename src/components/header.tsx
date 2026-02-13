@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { OptimizedImage } from '@/components/ui/optimized-image';
 import { ThemeToggle } from '@/components/theme-toggle';
@@ -8,9 +9,11 @@ import { UserNav } from '@/components/dashboard/user-nav';
 import { MobileNav } from '@/components/mobile-nav';
 import { useSession } from '@/lib/auth-client';
 import { Github, Star, LogIn, Home, Shield, LibraryBig, Settings } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 export function Header() {
   const { data: session, isPending } = useSession();
+  const pathname = usePathname();
 
   return (
     <header className="border-b bg-background">
@@ -36,20 +39,41 @@ export function Header() {
           {/* Desktop Navigation - Hidden on mobile */}
           <nav className="hidden md:flex items-center gap-2">
             <Link href="/">
-              <Button variant="ghost" size="sm" className="gap-2">
+              <Button
+                variant="ghost"
+                size="sm"
+                className={cn(
+                  'gap-2',
+                  pathname === '/' && 'bg-accent text-accent-foreground'
+                )}
+              >
                 <Home className="h-4 w-4" />
                 Home
               </Button>
             </Link>
             <Link href="/collections">
-              <Button variant="ghost" size="sm" className="gap-2">
+              <Button
+                variant="ghost"
+                size="sm"
+                className={cn(
+                  'gap-2',
+                  pathname.startsWith('/collections') && 'bg-accent text-accent-foreground'
+                )}
+              >
                 <LibraryBig className="h-4 w-4" />
                 Collections
               </Button>
             </Link>
             {session && (
               <Link href="/dashboard/installations">
-                <Button variant="ghost" size="sm" className="gap-2">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className={cn(
+                    'gap-2',
+                    pathname.startsWith('/dashboard') && 'bg-accent text-accent-foreground'
+                  )}
+                >
                   <Settings className="h-4 w-4" />
                   Installations
                 </Button>
@@ -57,7 +81,14 @@ export function Header() {
             )}
             {process.env.NODE_ENV === 'development' && (
               <Link href="/admin">
-                <Button variant="ghost" size="sm" className="gap-2">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className={cn(
+                    'gap-2',
+                    pathname.startsWith('/admin') && 'bg-accent text-accent-foreground'
+                  )}
+                >
                   <Shield className="h-4 w-4" />
                   Admin
                 </Button>

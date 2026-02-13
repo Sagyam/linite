@@ -32,6 +32,7 @@ export type KeyboardCommandType =
   // Actions
   | 'GENERATE_COMMAND'
   | 'VIEW_SELECTION'
+  | 'SAVE_INSTALLATION'
   // Help
   | 'SHOW_SHORTCUTS'
   // View modes
@@ -139,8 +140,8 @@ export const KEYBOARD_COMMANDS: KeyboardCommand[] = [
   },
   {
     type: 'FOCUS_SOURCE',
-    keys: ['s'],
-    description: 'Open source preference',
+    keys: ['p'],
+    description: 'Open package source preference',
     category: 'Configuration',
   },
 
@@ -155,6 +156,12 @@ export const KEYBOARD_COMMANDS: KeyboardCommand[] = [
     type: 'VIEW_SELECTION',
     keys: ['b'],
     description: 'View selection basket',
+    category: 'Actions',
+  },
+  {
+    type: 'SAVE_INSTALLATION',
+    keys: ['s'],
+    description: 'Save as installation',
     category: 'Actions',
   },
 

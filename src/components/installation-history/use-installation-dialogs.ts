@@ -2,20 +2,22 @@
  * Custom hook for managing installation dialog states
  *
  * Extracted from installation-history-table.tsx to reduce complexity
- * Manages 3 dialog states and their handlers
+ * Manages delete confirmation and uninstall command dialogs
  */
 
 import { useState, useCallback } from 'react';
 import type { InstallationWithRelations } from '@/types/entities';
 
 export interface UseInstallationDialogsReturn {
-  // Delete dialog
-  deleteDialogOpen: boolean;
-  setDeleteDialogOpen: (open: boolean) => void;
+  // Delete confirmation dialog (used for both single and bulk delete)
+  deleteConfirmDialogOpen: boolean;
+  setDeleteConfirmDialogOpen: (open: boolean) => void;
+
+  // Single installation selected for delete (null means bulk delete mode)
   selectedInstallation: InstallationWithRelations | null;
   setSelectedInstallation: (installation: InstallationWithRelations | null) => void;
 
-  // Bulk delete dialog
+  // Legacy alias for bulk delete dialog state (backwards compatibility)
   bulkDeleteDialogOpen: boolean;
   setBulkDeleteDialogOpen: (open: boolean) => void;
 
@@ -32,30 +34,33 @@ export interface UseInstallationDialogsReturn {
  * Hook to manage installation dialog states
  */
 export function useInstallationDialogs(): UseInstallationDialogsReturn {
-  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
+  const [deleteConfirmDialogOpen, setDeleteConfirmDialogOpen] = useState(false);
   const [selectedInstallation, setSelectedInstallation] = useState<InstallationWithRelations | null>(null);
-  const [bulkDeleteDialogOpen, setBulkDeleteDialogOpen] = useState(false);
   const [uninstallCommandDialogOpen, setUninstallCommandDialogOpen] = useState(false);
 
   /**
-   * Open delete dialog for a single installation
+   * Open delete confirmation dialog for a single installation
    */
   const handleDelete = useCallback((installation: InstallationWithRelations) => {
     setSelectedInstallation(installation);
-    setDeleteDialogOpen(true);
+    setDeleteConfirmDialogOpen(true);
   }, []);
 
   /**
-   * Close bulk delete dialog and open uninstall command dialog
+   * Close delete confirmation dialog and open uninstall command dialog
    */
   const handleShowUninstallCommands = useCallback(() => {
-    setBulkDeleteDialogOpen(false);
+    setDeleteConfirmDialogOpen(false);
     setUninstallCommandDialogOpen(true);
   }, []);
 
+  // Legacy aliases for backwards compatibility
+  const bulkDeleteDialogOpen = deleteConfirmDialogOpen;
+  const setBulkDeleteDialogOpen = setDeleteConfirmDialogOpen;
+
   return {
-    deleteDialogOpen,
-    setDeleteDialogOpen,
+    deleteConfirmDialogOpen,
+    setDeleteConfirmDialogOpen,
     selectedInstallation,
     setSelectedInstallation,
     bulkDeleteDialogOpen,
