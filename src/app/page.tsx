@@ -11,7 +11,7 @@ export default async function HomePage() {
   // Get headers first (must be called once)
   const headersList = await headers();
 
-  // Fetch data on the server (including first page of apps for instant load)
+  // Fetch data on the server
   const [categories, distros, initialApps, session] = await Promise.all([
     categoriesRepository.findAllOrdered(),
     distrosRepository.findAllWithSourcesNormalized(),
