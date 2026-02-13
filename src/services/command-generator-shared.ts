@@ -115,7 +115,7 @@ export interface PackageWithPriority {
 /**
  * Fetch distro with its configured sources
  *
- * SHARED between install and uninstall generators (IDENTICAL logic)
+ * SHARED between installation and uninstall generators (IDENTICAL logic)
  */
 export async function getDistroWithSources(distroSlug: string): Promise<DistroWithSources> {
   const distro = await db.query.distros.findFirst({
@@ -143,7 +143,7 @@ export async function getDistroWithSources(distroSlug: string): Promise<DistroWi
 /**
  * Fetch selected apps with their available packages
  *
- * SHARED between install and uninstall generators (IDENTICAL logic)
+ * SHARED between installation and uninstall generators (IDENTICAL logic)
  */
 export async function getAppsWithPackages(appIds: string[]): Promise<AppWithPackages[]> {
   const selectedApps = await db.query.apps.findMany({
@@ -280,8 +280,8 @@ export function resolveCommandByDistroFamily(
   // If it's a string, return as-is (universal command)
   if (typeof command === 'string') return command;
 
-  // If it's an object, select based on distro family
-  if (typeof command === 'object' && command !== null) {
+  // If it's an object, select based on the distro family
+  if (typeof command === 'object') {
     return command[distroFamily] || command['*'] || null;
   }
 
