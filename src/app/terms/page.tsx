@@ -1,4 +1,4 @@
-import { LegalDocument } from '@/components/legal-document';
+import { LegalDocument } from '@/components/common/legal-document';
 import { Metadata } from 'next';
 import Link from 'next/link';
 

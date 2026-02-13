@@ -15,11 +15,11 @@ import { Button } from '@/components/ui/button';
 import { CommandOutputSkeleton } from '@/components/ui/loading-skeletons';
 import { useClipboard, useMultiClipboard } from '@/hooks/use-clipboard';
 import { toast } from 'sonner';
-import { CommandHeader } from './command-output/command-header';
-import { UninstallCommands } from './command-output/uninstall-commands';
-import { CleanupCommands } from './command-output/cleanup-commands';
-import { ManualUninstallSteps } from './command-output/manual-uninstall-steps';
-import { CommandWarnings } from './command-output/command-warnings';
+import { CommandHeader } from '@/components/command-output/command-header';
+import { UninstallCommands } from '@/components/command-output/uninstall-commands';
+import { CleanupCommands } from '@/components/command-output/cleanup-commands';
+import { ManualUninstallSteps } from '@/components/command-output/manual-uninstall-steps';
+import { CommandWarnings } from '@/components/command-output/command-warnings';
 import {
   generateLinuxUninstallScript,
   generateWindowsUninstallScript,

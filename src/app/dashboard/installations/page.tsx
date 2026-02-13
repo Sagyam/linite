@@ -1,4 +1,4 @@
-import { InstallationHistoryTable } from '@/components/installation-history-table';
+import { InstallationHistoryTable } from '@/components/installation-history/installation-history-table';
 
 export default function InstallationsPage() {
   return (

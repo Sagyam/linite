@@ -4,7 +4,7 @@ import {
   mockGlobalFetch,
   createMockResponse,
   waitForAsync,
-} from '../test/component-utils';
+} from '@/test/component-utils';
 import { InstallationHistoryTable } from './installation-history-table';
 
 vi.mock('sonner', () => ({

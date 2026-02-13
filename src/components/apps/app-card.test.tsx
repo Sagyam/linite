@@ -6,9 +6,9 @@ import {
   createMockPackageWithRelations,
   resetStores,
   setupSelectionStore,
-} from '../test/component-utils';
+} from '@/test/component-utils';
 import { AppCard } from './app-card';
-import { useSelectionStore } from '../stores/selection-store';
+import { useSelectionStore } from '@/stores/selection-store';
 
 // Mock Next.js Link component
 vi.mock('next/link', () => ({

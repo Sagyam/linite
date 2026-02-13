@@ -1,5 +1,5 @@
 import { categoriesRepository, distrosRepository, appsRepository } from '@/repositories';
-import { HomePageClient } from '@/components/home-page-client';
+import { HomePageClient } from '@/components/layout/home-page-client';
 import { PAGINATION } from '@/lib/constants';
 import { auth } from '@/lib/auth';
 import { headers } from 'next/headers';

@@ -12,7 +12,7 @@ import {
   DrawerTitle,
 } from '@/components/ui/drawer';
 import { Button } from '@/components/ui/button';
-import { SelectedAppsList } from '@/components/selected-apps-list';
+import { SelectedAppsList } from '@/components/selection/selected-apps-list';
 import { queryKeys } from '@/lib/query-keys';
 import { apps as appsApi } from '@/lib/api-client';
 import { useSelectionStore } from '@/stores/selection-store';

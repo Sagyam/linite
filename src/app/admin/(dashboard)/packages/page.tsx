@@ -13,7 +13,7 @@ import { PackageFormDialog } from '@/components/admin/package-form-dialog';
 import { Badge } from '@/components/ui/badge';
 import { toast } from 'sonner';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { QueryErrorBoundary } from '@/components/error-boundary';
+import { QueryErrorBoundary } from '@/components/common/error-boundary';
 import { DataTableSkeleton } from '@/components/ui/loading-skeletons';
 
 function PackagesTable() {

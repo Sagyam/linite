@@ -16,7 +16,7 @@ import {
 import { signOut } from '@/lib/auth-client';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
-import { ThemeToggle } from '@/components/theme-toggle';
+import { ThemeToggle } from '@/components/common/theme-toggle';
 
 const navItems = [
   {

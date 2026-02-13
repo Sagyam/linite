@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { screen, fireEvent, waitFor } from '@testing-library/react';
-import { renderWithProviders, mockGlobalFetch, createMockResponse, mockClipboard } from '../test/component-utils';
+import { renderWithProviders, mockGlobalFetch, createMockResponse, mockClipboard } from '@/test/component-utils';
 import { UninstallCommandDialog } from './uninstall-command-dialog';
 import type { InstallationWithRelations } from '@/types/entities';
 

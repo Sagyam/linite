@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { screen, fireEvent } from '@testing-library/react';
-import { renderWithProviders } from '../test/component-utils';
+import { renderWithProviders } from '@/test/component-utils';
 import { AppFilters } from './app-filters';
 
 // Mock lucide-react icons

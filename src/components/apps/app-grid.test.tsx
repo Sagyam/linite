@@ -4,9 +4,9 @@ import {
   renderWithProviders,
   createMockAppWithRelations,
   createMockCategory,
-} from '../test/component-utils';
+} from '@/test/component-utils';
 import { AppGrid } from './app-grid';
-import { TIMEOUTS } from '../lib/constants';
+import { TIMEOUTS } from '@/lib/constants';
 
 // Mock the useApps hook
 const mockFetchNextPage = vi.fn();

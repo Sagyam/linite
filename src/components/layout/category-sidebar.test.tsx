@@ -1,7 +1,7 @@
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { CategorySidebar } from './category-sidebar';
-import { createMockCategory } from '../test/component-utils';
+import { createMockCategory } from '@/test/component-utils';
 
 // Mock lucide-react icons
 vi.mock('lucide-react', () => ({

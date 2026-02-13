@@ -5,7 +5,7 @@ import {
   mockGlobalFetch,
   createMockResponse,
   waitForAsync,
-} from '../test/component-utils';
+} from '@/test/component-utils';
 import { DeviceFilter } from './device-filter';
 
 vi.mock('sonner', () => ({

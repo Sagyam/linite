@@ -16,7 +16,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
-import { QueryErrorBoundary } from '@/components/error-boundary';
+import { QueryErrorBoundary } from '@/components/common/error-boundary';
 import { DataTableSkeleton } from '@/components/ui/loading-skeletons';
 
 interface CrudPageConfig<T, TFormData> {

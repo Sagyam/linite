@@ -3,7 +3,7 @@
 import { useMemo, useEffect, useRef, useCallback } from 'react';
 import { Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { AppCard } from '@/components/app-card';
+import { AppCard } from '@/components/apps/app-card';
 import { useApps } from '@/hooks/use-apps';
 import { useDebounce } from '@/hooks/use-debounce';
 import { useSelectionStore } from '@/stores/selection-store';

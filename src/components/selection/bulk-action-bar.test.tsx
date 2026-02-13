@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from 'vitest';
 import { screen, fireEvent } from '@testing-library/react';
-import { renderWithProviders } from '../test/component-utils';
+import { renderWithProviders } from '@/test/component-utils';
 import { BulkActionBar } from './bulk-action-bar';
 
 describe('BulkActionBar', () => {

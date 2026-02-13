@@ -5,9 +5,9 @@ import {
   createMockAppWithRelations,
   resetStores,
   setupSelectionStore,
-} from '../test/component-utils';
+} from '@/test/component-utils';
 import { SelectionDrawer } from './selection-drawer';
-import { useSelectionStore } from '../stores/selection-store';
+import { useSelectionStore } from '@/stores/selection-store';
 
 // Mock SelectedAppsList component
 vi.mock('./selected-apps-list', () => ({

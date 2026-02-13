@@ -6,9 +6,9 @@
  */
 
 import { RefObject, ReactNode } from 'react';
-import { AppFilters } from '@/components/app-filters';
-import { CategorySidebar } from '@/components/category-sidebar';
-import { ViewToggle } from '@/components/view-toggle';
+import { AppFilters } from '@/components/apps/app-filters';
+import { CategorySidebar } from '@/components/layout/category-sidebar';
+import { ViewToggle } from '@/components/common/view-toggle';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { useSelectionStore } from '@/stores/selection-store';
 import type { Category } from '@/types';

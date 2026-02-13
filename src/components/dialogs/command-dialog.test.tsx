@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { screen, waitFor } from '@testing-library/react';
-import { renderWithProviders } from '../test/component-utils';
+import { renderWithProviders } from '@/test/component-utils';
 import { CommandDialog } from './command-dialog';
 
 // Mock the hooks

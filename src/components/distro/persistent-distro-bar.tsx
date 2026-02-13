@@ -12,7 +12,7 @@ import {
 } from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
 import { useSelectionStore } from '@/stores/selection-store';
-import { NixosMethodSelector } from '@/components/nixos-method-selector';
+import { NixosMethodSelector } from '@/components/distro/nixos-method-selector';
 import type { Distro } from '@/hooks/use-distros';
 
 interface PersistentDistroBarProps {
