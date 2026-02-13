@@ -18,6 +18,12 @@
     "source": "npm"
   },
   {
+    "app": "opencode",
+    "identifier": "opencode-ai",
+    "isAvailable": true,
+    "source": "npm"
+  },
+  {
     "app": "pnpm",
     "identifier": "pnpm",
     "isAvailable": true,
