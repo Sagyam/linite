@@ -83,7 +83,6 @@ import {
   uploadImage,
   uploadImageFromUrl,
   deleteImage,
-  listImages,
   checkBlobExists,
 } from './blob';
 
@@ -214,89 +213,6 @@ describe('blob', () => {
       );
 
       expect(mockDeleteIfExists).toHaveBeenCalled();
-    });
-  });
-
-  describe('listImages', () => {
-    it('should list all images in the container', async () => {
-      const mockBlobs = [
-        {
-          name: 'app-icons/firefox-64.webp',
-          properties: {
-            contentLength: 1024,
-            createdOn: new Date('2024-01-01'),
-          },
-        },
-        {
-          name: 'app-icons/chrome-64.webp',
-          properties: {
-            contentLength: 2048,
-            createdOn: new Date('2024-01-02'),
-          },
-        },
-      ];
-
-      mockListBlobsFlat.mockReturnValue({
-        [Symbol.asyncIterator]: async function* () {
-          for (const blob of mockBlobs) {
-            yield blob;
-          }
-        },
-      });
-
-      const result = await listImages();
-
-      expect(result.blobs).toHaveLength(2);
-      expect(result.blobs[0].pathname).toBe('app-icons/firefox-64.webp');
-      expect(result.blobs[0].size).toBe(1024);
-    });
-
-    it('should use default prefix when not provided', async () => {
-      mockListBlobsFlat.mockReturnValue({
-        [Symbol.asyncIterator]: async function* () {
-          // Empty iterator
-        },
-      });
-
-      await listImages();
-
-      expect(mockListBlobsFlat).toHaveBeenCalledWith({ prefix: 'app-icons/' });
-    });
-
-    it('should use custom prefix when provided', async () => {
-      mockListBlobsFlat.mockReturnValue({
-        [Symbol.asyncIterator]: async function* () {
-          // Empty iterator
-        },
-      });
-
-      await listImages('distro-icons/');
-
-      expect(mockListBlobsFlat).toHaveBeenCalledWith({
-        prefix: 'distro-icons/',
-      });
-    });
-
-    it('should handle blobs with missing properties', async () => {
-      const mockBlobs = [
-        {
-          name: 'app-icons/test.png',
-          properties: {},
-        },
-      ];
-
-      mockListBlobsFlat.mockReturnValue({
-        [Symbol.asyncIterator]: async function* () {
-          for (const blob of mockBlobs) {
-            yield blob;
-          }
-        },
-      });
-
-      const result = await listImages();
-
-      expect(result.blobs[0].size).toBe(0);
-      expect(result.blobs[0].uploadedAt).toBeInstanceOf(Date);
     });
   });
 

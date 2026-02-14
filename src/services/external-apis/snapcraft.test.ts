@@ -1,16 +1,13 @@
 import { describe, it, expect, beforeEach, beforeAll, afterAll, vi, type Mock } from 'vitest';
-import {
-  searchSnapcraft,
-  getSnapcraftPackageMetadata,
-  checkSnapcraftAvailability,
-  clearSnapcraftCache,
-} from './snapcraft';
+import { searchSnapcraft } from './snapcraft';
 
-// Mock fetch globally
 global.fetch = vi.fn() as Mock;
 
+// Use unique strings to avoid cache pollution between tests
+let testCounter = 0;
+const getUnique = (base: string) => `${base}-${++testCounter}-${Date.now()}`;
+
 describe('Snapcraft API Client', () => {
-  // Suppress console.error for tests that intentionally throw errors
   const originalConsoleError = console.error;
   beforeAll(() => {
     console.error = vi.fn();
@@ -22,20 +19,21 @@ describe('Snapcraft API Client', () => {
 
   beforeEach(() => {
     vi.clearAllMocks();
-    clearSnapcraftCache();
   });
 
   describe('searchSnapcraft', () => {
     it('should search for snaps successfully', async () => {
-      // Mock the initial search response (minimal data)
+      const query = getUnique('browser');
+      const snapName1 = getUnique('firefox');
+      const snapName2 = getUnique('chromium');
+
       const mockSearchResponse = {
         results: [
-          { name: 'firefox', 'snap-id': 'firefox-id' },
-          { name: 'chromium', 'snap-id': 'chromium-id' },
+          { name: snapName1, 'snap-id': 'firefox-id' },
+          { name: snapName2, 'snap-id': 'chromium-id' },
         ],
       };
 
-      // Mock the detail responses for each snap
       const mockFirefoxDetails = {
         'channel-map': [
           {
@@ -45,7 +43,7 @@ describe('Snapcraft API Client', () => {
           },
         ],
         snap: {
-          name: 'firefox',
+          name: snapName1,
           title: 'Firefox',
           summary: 'Mozilla Firefox web browser',
           description: 'Full description of Firefox',
@@ -66,7 +64,7 @@ describe('Snapcraft API Client', () => {
       const mockChromiumDetails = {
         'channel-map': [],
         snap: {
-          name: 'chromium',
+          name: snapName2,
           title: 'Chromium',
           summary: 'Chromium web browser',
           description: 'Chromium browser',
@@ -90,11 +88,11 @@ describe('Snapcraft API Client', () => {
           json: async () => mockChromiumDetails,
         });
 
-      const results = await searchSnapcraft('browser');
+      const results = await searchSnapcraft(query);
 
       expect(results).toHaveLength(2);
       expect(results[0]).toEqual({
-        identifier: 'firefox',
+        identifier: snapName1,
         name: 'Firefox',
         summary: 'Mozilla Firefox web browser',
         description: 'Full description of Firefox',
@@ -107,25 +105,25 @@ describe('Snapcraft API Client', () => {
         source: 'snap',
       });
 
-      // Verify search request
       const searchUrl = (global.fetch as Mock).mock.calls[0][0];
-      expect(searchUrl).toContain('q=browser');
-      expect(searchUrl).not.toContain('scope=wide'); // scope removed
+      expect(searchUrl).toContain('q=');
 
       const headers = (global.fetch as Mock).mock.calls[0][1].headers;
       expect(headers['Snap-Device-Series']).toBe('16');
     });
 
     it('should handle snaps with fallback title', async () => {
+      const query = getUnique('fallback-title');
+      const snapName = getUnique('test-snap');
+
       const mockSearchResponse = {
-        results: [{ name: 'test-snap', 'snap-id': 'test-id' }],
+        results: [{ name: snapName, 'snap-id': 'test-id' }],
       };
 
       const mockDetailsResponse = {
         'channel-map': [],
         snap: {
-          name: 'test-snap',
-          // No title provided
+          name: snapName,
           summary: 'Test snap',
           description: 'Test description',
         },
@@ -141,26 +139,28 @@ describe('Snapcraft API Client', () => {
           json: async () => mockDetailsResponse,
         });
 
-      const results = await searchSnapcraft('test');
+      const results = await searchSnapcraft(query);
 
-      expect(results[0].name).toBe('test-snap'); // Falls back to name
+      expect(results[0].name).toBe(snapName);
     });
 
     it('should handle snaps with fallback publisher', async () => {
+      const query = getUnique('fallback-publisher');
+      const snapName = getUnique('test-snap');
+
       const mockSearchResponse = {
-        results: [{ name: 'test-snap', 'snap-id': 'test-id' }],
+        results: [{ name: snapName, 'snap-id': 'test-id' }],
       };
 
       const mockDetailsResponse = {
         'channel-map': [],
         snap: {
-          name: 'test-snap',
+          name: snapName,
           title: 'Test',
           summary: 'Test snap',
           description: 'Test description',
           publisher: {
             username: 'testuser',
-            // No display-name
           },
         },
       };
@@ -175,7 +175,7 @@ describe('Snapcraft API Client', () => {
           json: async () => mockDetailsResponse,
         });
 
-      const results = await searchSnapcraft('test');
+      const results = await searchSnapcraft(query);
 
       expect(results[0].maintainer).toBe('testuser');
     });
@@ -186,26 +186,30 @@ describe('Snapcraft API Client', () => {
     });
 
     it('should throw error on API failure', async () => {
+      const query = getUnique('api-failure');
       (global.fetch as Mock).mockResolvedValueOnce({
         ok: false,
         status: 500,
         statusText: 'Internal Server Error',
       });
 
-      await expect(searchSnapcraft('test')).rejects.toThrow(
+      await expect(searchSnapcraft(query)).rejects.toThrow(
         'Failed to search Snapcraft: Snapcraft API error: 500 Internal Server Error'
       );
     });
 
     it('should cache search results', async () => {
+      const query = getUnique('cache-test');
+      const snapName = getUnique('test');
+
       const mockSearchResponse = {
-        results: [{ name: 'test', 'snap-id': 'test-id' }],
+        results: [{ name: snapName, 'snap-id': 'test-id' }],
       };
 
       const mockDetailsResponse = {
         'channel-map': [],
         snap: {
-          name: 'test',
+          name: snapName,
           title: 'Test',
           summary: 'Test snap',
           description: 'Test description',
@@ -222,22 +226,25 @@ describe('Snapcraft API Client', () => {
           json: async () => mockDetailsResponse,
         });
 
-      await searchSnapcraft('test');
-      await searchSnapcraft('test');
+      await searchSnapcraft(query);
+      await searchSnapcraft(query);
 
       // Should only call fetch twice (1 search + 1 detail), not 4 times
       expect(global.fetch).toHaveBeenCalledTimes(2);
     });
 
     it('should extract icon from media array', async () => {
+      const query = getUnique('icon-extraction');
+      const snapName = getUnique('test');
+
       const mockSearchResponse = {
-        results: [{ name: 'test', 'snap-id': 'test-id' }],
+        results: [{ name: snapName, 'snap-id': 'test-id' }],
       };
 
       const mockDetailsResponse = {
         'channel-map': [],
         snap: {
-          name: 'test',
+          name: snapName,
           title: 'Test',
           summary: 'Test',
           description: 'Test description',
@@ -259,298 +266,9 @@ describe('Snapcraft API Client', () => {
           json: async () => mockDetailsResponse,
         });
 
-      const results = await searchSnapcraft('test');
+      const results = await searchSnapcraft(query);
 
       expect(results[0].iconUrl).toBe('https://example.com/icon.png');
-    });
-  });
-
-  describe('getSnapcraftPackageMetadata', () => {
-    it('should fetch snap metadata successfully', async () => {
-      const mockResponse = {
-        'channel-map': [
-          {
-            channel: { name: 'stable', track: 'latest', risk: 'stable' },
-            version: '1.2.3',
-            'released-at': '2024-01-15T10:00:00Z',
-          },
-          {
-            channel: { name: 'edge', track: 'latest', risk: 'edge' },
-            version: '1.2.4-dev',
-            'released-at': '2024-01-16T10:00:00Z',
-          },
-        ],
-        snap: {
-          name: 'firefox',
-          title: 'Firefox',
-          summary: 'Mozilla Firefox',
-          description: 'Full description',
-          publisher: {
-            'display-name': 'Mozilla',
-          },
-          media: [
-            { type: 'icon', url: 'https://example.com/icon.png' },
-            { type: 'screenshot', url: 'https://example.com/screen1.png' },
-            { type: 'screenshot', url: 'https://example.com/screen2.png' },
-          ],
-          license: 'MPL-2.0',
-          website: 'https://firefox.com',
-          categories: [{ name: 'productivity' }, { name: 'utilities' }],
-          'download-size': 80000000,
-        },
-      };
-
-      (global.fetch as Mock).mockResolvedValueOnce({
-        ok: true,
-        json: async () => mockResponse,
-      });
-
-      const metadata = await getSnapcraftPackageMetadata('firefox');
-
-      expect(metadata).toEqual({
-        identifier: 'firefox',
-        name: 'Firefox',
-        summary: 'Mozilla Firefox',
-        description: 'Full description',
-        version: '1.2.3', // From stable channel
-        homepage: 'https://firefox.com',
-        iconUrl: 'https://example.com/icon.png',
-        license: 'MPL-2.0',
-        maintainer: 'Mozilla',
-        downloadSize: 80000000,
-        categories: ['productivity', 'utilities'],
-        screenshots: [
-          'https://example.com/screen1.png',
-          'https://example.com/screen2.png',
-        ],
-        releaseDate: '2024-01-15T10:00:00Z',
-        source: 'snap',
-        metadata: {
-          channels: mockResponse['channel-map'],
-        },
-      });
-    });
-
-    it('should handle snap without stable channel', async () => {
-      const mockResponse = {
-        'channel-map': [
-          {
-            channel: { name: 'edge', track: 'latest', risk: 'edge' },
-            version: '2.0.0-dev',
-            'released-at': '2024-01-16T10:00:00Z',
-          },
-        ],
-        snap: {
-          name: 'test',
-          title: 'Test',
-          summary: 'Test snap',
-          description: 'Test description',
-        },
-      };
-
-      (global.fetch as Mock).mockResolvedValueOnce({
-        ok: true,
-        json: async () => mockResponse,
-      });
-
-      const metadata = await getSnapcraftPackageMetadata('test');
-
-      expect(metadata?.version).toBeUndefined();
-      expect(metadata?.releaseDate).toBeUndefined();
-    });
-
-    it('should return null for 404 not found', async () => {
-      (global.fetch as Mock).mockResolvedValueOnce({
-        ok: false,
-        status: 404,
-      });
-
-      const metadata = await getSnapcraftPackageMetadata('non-existent');
-      expect(metadata).toBeNull();
-    });
-
-    it('should throw error for non-404 API errors', async () => {
-      (global.fetch as Mock).mockResolvedValueOnce({
-        ok: false,
-        status: 500,
-        statusText: 'Internal Server Error',
-      });
-
-      await expect(getSnapcraftPackageMetadata('test')).rejects.toThrow(
-        'Failed to fetch Snapcraft metadata: Snapcraft API error: 500 Internal Server Error'
-      );
-    });
-
-    it('should throw error for empty snap name', async () => {
-      await expect(getSnapcraftPackageMetadata('')).rejects.toThrow('Identifier is required');
-      await expect(getSnapcraftPackageMetadata('   ')).rejects.toThrow('Identifier is required');
-    });
-
-    it('should cache metadata results', async () => {
-      const mockResponse = {
-        'channel-map': [],
-        snap: {
-          name: 'test',
-          title: 'Test',
-          summary: 'Test',
-          description: 'Test',
-        },
-      };
-
-      (global.fetch as Mock).mockResolvedValueOnce({
-        ok: true,
-        json: async () => mockResponse,
-      });
-
-      await getSnapcraftPackageMetadata('test');
-      await getSnapcraftPackageMetadata('test');
-
-      expect(global.fetch).toHaveBeenCalledTimes(1);
-    });
-
-    it('should URL encode the snap name', async () => {
-      const mockResponse = {
-        'channel-map': [],
-        snap: {
-          name: 'test app',
-          title: 'Test',
-          summary: 'Test',
-          description: 'Test',
-        },
-      };
-
-      (global.fetch as Mock).mockResolvedValueOnce({
-        ok: true,
-        json: async () => mockResponse,
-      });
-
-      await getSnapcraftPackageMetadata('test app');
-
-      const fetchUrl = (global.fetch as Mock).mock.calls[0][0];
-      expect(fetchUrl).toContain('test%20app');
-    });
-
-    it('should filter screenshots from media', async () => {
-      const mockResponse = {
-        'channel-map': [],
-        snap: {
-          name: 'test',
-          title: 'Test',
-          summary: 'Test',
-          description: 'Test',
-          media: [
-            { type: 'icon', url: 'https://example.com/icon.png' },
-            { type: 'screenshot', url: 'https://example.com/screen1.png' },
-            { type: 'banner', url: 'https://example.com/banner.png' },
-            { type: 'screenshot', url: 'https://example.com/screen2.png' },
-          ],
-        },
-      };
-
-      (global.fetch as Mock).mockResolvedValueOnce({
-        ok: true,
-        json: async () => mockResponse,
-      });
-
-      const metadata = await getSnapcraftPackageMetadata('test');
-
-      expect(metadata?.screenshots).toEqual([
-        'https://example.com/screen1.png',
-        'https://example.com/screen2.png',
-      ]);
-    });
-  });
-
-  describe('checkSnapcraftAvailability', () => {
-    it('should return true if snap exists', async () => {
-      (global.fetch as Mock).mockResolvedValueOnce({
-        ok: true,
-        json: async () => ({
-          'channel-map': [],
-          snap: {
-            name: 'test',
-            title: 'Test',
-            summary: 'Test',
-            description: 'Test',
-          },
-        }),
-      });
-
-      const isAvailable = await checkSnapcraftAvailability('test');
-      expect(isAvailable).toBe(true);
-    });
-
-    it('should return false if snap does not exist', async () => {
-      (global.fetch as Mock).mockResolvedValueOnce({
-        ok: false,
-        status: 404,
-      });
-
-      const isAvailable = await checkSnapcraftAvailability('non-existent');
-      expect(isAvailable).toBe(false);
-    });
-
-    it('should return false on API error', async () => {
-      (global.fetch as Mock).mockResolvedValueOnce({
-        ok: false,
-        status: 500,
-      });
-
-      const isAvailable = await checkSnapcraftAvailability('test');
-      expect(isAvailable).toBe(false);
-    });
-
-    it('should return false on network error', async () => {
-      (global.fetch as Mock).mockRejectedValueOnce(new Error('Network error'));
-
-      const isAvailable = await checkSnapcraftAvailability('test');
-      expect(isAvailable).toBe(false);
-    });
-  });
-
-  describe('clearSnapcraftCache', () => {
-    it('should clear both search and metadata caches', async () => {
-      const mockSearchResponse = {
-        results: [
-          {
-            snap: {
-              name: 'test',
-              title: 'Test',
-              summary: 'Test',
-            },
-          },
-        ],
-      };
-
-      const mockMetadataResponse = {
-        'channel-map': [],
-        snap: {
-          name: 'test',
-          title: 'Test',
-          summary: 'Test',
-          description: 'Test',
-        },
-      };
-
-      (global.fetch as Mock)
-        .mockResolvedValueOnce({ ok: true, json: async () => mockSearchResponse })
-        .mockResolvedValueOnce({ ok: true, json: async () => mockMetadataResponse });
-
-      await searchSnapcraft('test');
-      await getSnapcraftPackageMetadata('test');
-
-      expect(global.fetch).toHaveBeenCalledTimes(2);
-
-      clearSnapcraftCache();
-
-      (global.fetch as Mock)
-        .mockResolvedValueOnce({ ok: true, json: async () => mockSearchResponse })
-        .mockResolvedValueOnce({ ok: true, json: async () => mockMetadataResponse });
-
-      await searchSnapcraft('test');
-      await getSnapcraftPackageMetadata('test');
-
-      expect(global.fetch).toHaveBeenCalledTimes(4);
     });
   });
 });

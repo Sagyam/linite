@@ -40,29 +40,6 @@ export async function requireUser(request: NextRequest) {
 }
 
 /**
- * Require admin or superadmin role
- */
-export async function requireAdmin(request: NextRequest) {
-  const result = await requireAuth(request);
-  if (result.error) {
-    return result;
-  }
-
-  const user = result.user!;
-  if (user.role !== 'admin' && user.role !== 'superadmin') {
-    return {
-      error: NextResponse.json({ error: 'Forbidden: Admin access required' }, { status: 403 }),
-      user: null,
-    };
-  }
-
-  return {
-    error: null,
-    user,
-  };
-}
-
-/**
  * Check if user owns a collection
  */
 export async function requireCollectionOwnership(collectionId: string, userId: string) {

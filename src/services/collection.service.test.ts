@@ -11,7 +11,6 @@ import {
   addItemToCollection,
   removeItemFromCollection,
   incrementViewCount,
-  incrementInstallCount,
   type CreateCollectionData,
   type UpdateCollectionData,
   type ListCollectionsOptions,
@@ -793,18 +792,4 @@ describe('Collection Service', () => {
     });
   });
 
-  describe('incrementInstallCount', () => {
-    it('should increment install count', async () => {
-      const updateMock = vi.fn().mockResolvedValue(undefined);
-      (db.update as Mock).mockReturnValue({
-        set: vi.fn().mockReturnValue({
-          where: updateMock,
-        }),
-      });
-
-      await incrementInstallCount('coll-123');
-
-      expect(db.update).toHaveBeenCalled();
-    });
-  });
 });

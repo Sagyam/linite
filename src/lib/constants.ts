@@ -12,6 +12,18 @@ export const USER_ROLES = ['admin', 'superadmin'] as const;
 export type UserRole = typeof USER_ROLES[number];
 
 /**
+ * Timing configuration (in milliseconds)
+ */
+export const TIMEOUTS = {
+  /** Debounce delay for search inputs */
+  DEBOUNCE_SEARCH: 300,
+  /** Minimum delay between icon downloads (will use random delay in range) */
+  ICON_DOWNLOAD_MIN_DELAY: 200,
+  /** Maximum delay between icon downloads (will use random delay in range) */
+  ICON_DOWNLOAD_MAX_DELAY: 1000,
+} as const;
+
+/**
  * Pagination configuration
  */
 export const PAGINATION = {
@@ -24,15 +36,13 @@ export const PAGINATION = {
 } as const;
 
 /**
- * Timing configuration (in milliseconds)
+ * Intersection Observer configuration
  */
-export const TIMEOUTS = {
-  /** Debounce delay for search inputs */
-  DEBOUNCE_SEARCH: 300,
-  /** Minimum delay between icon downloads (will use random delay in range) */
-  ICON_DOWNLOAD_MIN_DELAY: 200,
-  /** Maximum delay between icon downloads (will use random delay in range) */
-  ICON_DOWNLOAD_MAX_DELAY: 1000,
+export const INTERSECTION_OBSERVER = {
+  /** Percentage of visibility before triggering (0.0 to 1.0) */
+  THRESHOLD: 0.1,
+  /** Margin around the root element for early triggering */
+  ROOT_MARGIN: '100px',
 } as const;
 
 /**
@@ -49,16 +59,6 @@ export const RETRY_CONFIG = {
   BACKOFF_MULTIPLIER: 2,
   /** Random jitter factor (0-1) to add randomness to retry delays */
   JITTER_FACTOR: 0.3,
-} as const;
-
-/**
- * Intersection Observer configuration
- */
-export const INTERSECTION_OBSERVER = {
-  /** Percentage of visibility before triggering (0.0 to 1.0) */
-  THRESHOLD: 0.1,
-  /** Margin around the root element for early triggering */
-  ROOT_MARGIN: '100px',
 } as const;
 
 /**

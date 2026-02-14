@@ -14,9 +14,6 @@ export const slugSchema = z
   .max(100, 'Slug must be less than 100 characters')
   .regex(/^[a-z0-9-]+$/, 'Slug must contain only lowercase letters, numbers, and hyphens');
 
-// URL field validator
-export const urlField = z.string().url('Invalid URL format');
-
 export const paginationQuerySchema = {
   limit: z
     .string()
@@ -50,31 +47,3 @@ export function createUpdateSchema<T extends Record<string, z.ZodTypeAny>>(creat
   });
 }
 
-export function optionalArray(maxItems?: number, fieldName?: string) {
-  const arraySchema = maxItems !== undefined
-    ? z.array(z.string()).max(maxItems, fieldName ? `Maximum ${maxItems} ${fieldName} allowed` : `Maximum ${maxItems} items allowed`)
-    : z.array(z.string());
-  return arraySchema.optional();
-}
-
-export function withPagination<T extends z.ZodRawShape>(baseSchema: T) {
-  return z.object({
-    ...baseSchema,
-    ...paginationQuerySchema,
-  });
-}
-
-/**
- * Validation helper: Ensure ID in request body matches ID in URL
- * Throws an error if IDs don't match
- *
- * Usage in API routes:
- * ```typescript
- * requireIdMatch(data.id, urlId);
- * ```
- */
-export function requireIdMatch(bodyId: string, urlId: string): void {
-  if (bodyId !== urlId) {
-    throw new Error('ID in body must match ID in URL');
-  }
-}

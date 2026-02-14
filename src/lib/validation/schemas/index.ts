@@ -28,6 +28,3 @@ export * from './installation.schema';
 
 // Uninstall schemas
 export * from './uninstall.schema';
-
-// Common schemas
-export * from './common.schema';

@@ -187,21 +187,6 @@ export const distroSources = sqliteTable('distro_sources', {
   distroSourceIdx: index('distro_sources_distro_source_idx').on(table.distroId, table.sourceId),
 }));
 
-export const refreshLogs = sqliteTable('refresh_logs', {
-  id: text('id')
-    .primaryKey()
-    .$defaultFn(() => createId()),
-  sourceId: text('source_id'),
-  status: text('status').notNull(),
-  packagesUpdated: integer('packages_updated').default(0),
-  errorMessage: text('error_message'),
-  startedAt: integer('started_at', { mode: 'timestamp' }).$defaultFn(() => new Date()),
-  completedAt: integer('completed_at', { mode: 'timestamp' }),
-}, (table) => ({
-  sourceIdIdx: index('refresh_logs_source_id_idx').on(table.sourceId),
-  startedAtIdx: index('refresh_logs_started_at_idx').on(table.startedAt),
-}));
-
 // ============ COLLECTION TABLES ============
 
 export const collections = sqliteTable('collections', {
@@ -343,13 +328,6 @@ export const accountRelations = relations(account, ({ one }) => ({
   user: one(user, {
     fields: [account.userId],
     references: [user.id],
-  }),
-}));
-
-export const refreshLogsRelations = relations(refreshLogs, ({ one }) => ({
-  source: one(sources, {
-    fields: [refreshLogs.sourceId],
-    references: [sources.id],
   }),
 }));
 

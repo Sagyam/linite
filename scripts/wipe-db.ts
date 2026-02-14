@@ -50,7 +50,6 @@ async function wipeDatabase() {
   try {
     // Get all table names
     const tables = [
-      'refresh_logs',
       'distro_sources',
       'packages',
       'apps',

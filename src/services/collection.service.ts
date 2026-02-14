@@ -413,9 +413,3 @@ export async function incrementViewCount(collectionId: string): Promise<void> {
     .where(eq(schema.collections.id, collectionId));
 }
 
-export async function incrementInstallCount(collectionId: string): Promise<void> {
-  await db
-    .update(schema.collections)
-    .set({ installCount: sql`${schema.collections.installCount} + 1` })
-    .where(eq(schema.collections.id, collectionId));
-}

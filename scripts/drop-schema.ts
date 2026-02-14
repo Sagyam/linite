@@ -8,7 +8,6 @@ async function dropSchema() {
 
   try {
     const tables = [
-      'refresh_logs',
       'distro_sources',
       'packages',
       'apps',

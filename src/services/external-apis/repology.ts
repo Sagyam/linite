@@ -3,7 +3,7 @@
  * Documentation: https://repology.org/api
  */
 
-import { PackageSearchResult, PackageMetadata } from './types';
+import { PackageSearchResult } from './types';
 import { createFlexibleApiClient } from './api-client-factory';
 
 const REPOLOGY_API_BASE = 'https://repology.org/api/v1';
@@ -116,99 +116,3 @@ export async function searchRepology(projectName: string): Promise<PackageSearch
   });
 }
 
-/**
- * Get detailed metadata for a project from Repology
- */
-export async function getRepologyProjectMetadata(
-  projectName: string
-): Promise<PackageMetadata | null> {
-  return repologyClient.cachedMetadata(projectName, async (name) => {
-    const response = await fetch(
-      `${REPOLOGY_API_BASE}/project/${encodeURIComponent(name)}`,
-      {
-        headers: REPOLOGY_HEADERS,
-      }
-    );
-
-    if (!response.ok) {
-      if (response.status === 404) {
-        return null;
-      }
-      throw new Error(`Repology API error: ${response.status} ${response.statusText}`);
-    }
-
-    const packages: RepologyProject[] = await response.json();
-
-    if (packages.length === 0) {
-      return null;
-    }
-
-    // Find the newest version
-    const newestPkg = packages.find((p) => p.status === 'newest') || packages[0];
-
-    return {
-      identifier: newestPkg.name,
-      name: newestPkg.name,
-      summary: newestPkg.summary,
-      version: newestPkg.version,
-      homepage: newestPkg.www?.[0],
-      license: newestPkg.licenses?.join(', '),
-      maintainer: newestPkg.maintainers?.[0],
-      categories: newestPkg.categories,
-      source: 'repology' as const,
-      metadata: {
-        availableRepos: packages.map((p) => ({
-          repo: p.repo,
-          version: p.version,
-          status: p.status,
-        })),
-      },
-    };
-  });
-}
-
-/**
- * Get packages for a project that are available in specific distro repos
- */
-export async function getRepologyPackagesForDistro(
-  projectName: string,
-  distroFamily: 'debian' | 'rhel' | 'arch' | 'suse'
-): Promise<RepologyProject[]> {
-  try {
-    const response = await fetch(
-      `${REPOLOGY_API_BASE}/project/${encodeURIComponent(projectName)}`,
-      {
-        headers: REPOLOGY_HEADERS,
-      }
-    );
-
-    if (!response.ok) {
-      return [];
-    }
-
-    const packages: RepologyProject[] = await response.json();
-
-    // Filter by distro family
-    const repoPatterns: Record<string, RegExp> = {
-      debian: /^(debian|ubuntu|linuxmint|pop)/i,
-      rhel: /^(fedora|centos|rhel)/i,
-      arch: /^(arch|aur|manjaro)/i,
-      suse: /^opensuse/i,
-    };
-
-    const pattern = repoPatterns[distroFamily];
-    if (!pattern) return [];
-
-    return packages.filter((pkg) => pattern.test(pkg.repo));
-  } catch (error) {
-    console.error('Repology distro packages fetch error:', error);
-    return [];
-  }
-}
-
-/**
- * Clear the Repology cache
- */
-export function clearRepologyCache(): void {
-  repologyClient.clearCache();
-}

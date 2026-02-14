@@ -1,6 +1,5 @@
 import { NextRequest } from 'next/server';
 import { z, ZodSchema } from 'zod';
-import { errorResponse } from '@/lib/api-utils';
 
 /**
  * Validation Middleware
@@ -68,60 +67,3 @@ export function validateQuery<T>(
   }
 }
 
-/**
- * Validate path parameters against a schema
- */
-export function validateParams<T>(
-  params: unknown,
-  schema: ZodSchema<T>
-): ValidationResult<T> {
-  try {
-    const data = schema.parse(params);
-    return { success: true, data };
-  } catch (error) {
-    if (error instanceof z.ZodError) {
-      const errors = (error as z.ZodError<unknown>).issues;
-      const firstError = errors[0];
-      return {
-        success: false,
-        error: firstError ? `${firstError.path.join('.')}: ${firstError.message}` : 'Validation failed',
-      };
-    }
-    return {
-      success: false,
-      error: 'Invalid parameters',
-    };
-  }
-}
-
-/**
- * Higher-order function to wrap handlers with automatic body validation
- */
-export function withBodyValidation<T, Context = unknown>(
-  schema: ZodSchema<T>,
-  handler: (request: NextRequest, data: T, context?: Context) => Promise<Response>
-) {
-  return async (request: NextRequest, context?: Context): Promise<Response> => {
-    const validation = await validateBody(request, schema);
-    if (!validation.success) {
-      return errorResponse(validation.error || 'Validation failed', 400);
-    }
-    return handler(request, validation.data!, context);
-  };
-}
-
-/**
- * Higher-order function to wrap handlers with automatic query validation
- */
-export function withQueryValidation<T, Context = unknown>(
-  schema: ZodSchema<T>,
-  handler: (request: NextRequest, query: T, context?: Context) => Promise<Response>
-) {
-  return async (request: NextRequest, context?: Context): Promise<Response> => {
-    const validation = validateQuery(request, schema);
-    if (!validation.success) {
-      return errorResponse(validation.error || 'Validation failed', 400);
-    }
-    return handler(request, validation.data!, context);
-  };
-}

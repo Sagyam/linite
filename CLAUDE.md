@@ -128,9 +128,10 @@ See `.env.example` for required variables. All env vars are validated using Zod 
 ## Testing
 
 ```bash
-bun test                  # Watch mode
-bun test:run              # Run once
-bun test:coverage         # With coverage
+bun run test:all          # Run all tests once
+bun run test:watch        # Watch mode
+bun run test:coverage     # With coverage
+bun run test:ui           # Interactive UI
 ```
 
-**239 tests passing** - Tests are co-located with source files (`*.test.ts` or `*.test.tsx`)
+Tests are co-located with source files (`*.test.ts` or `*.test.tsx`)

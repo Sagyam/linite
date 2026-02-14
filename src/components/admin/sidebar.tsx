@@ -9,7 +9,6 @@ import {
   Server,
   HardDrive,
   Layers,
-  RefreshCw,
   LogOut,
   AppWindow,
 } from 'lucide-react';
@@ -48,11 +47,6 @@ const navItems = [
     title: 'Distros',
     href: '/admin/distros',
     icon: HardDrive,
-  },
-  {
-    title: 'Refresh',
-    href: '/admin/refresh',
-    icon: RefreshCw,
   },
 ];
 

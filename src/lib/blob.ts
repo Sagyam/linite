@@ -190,31 +190,6 @@ export async function deleteImage(url: string): Promise<void> {
 }
 
 /**
- * List all images in a specific folder
- * @param prefix - The folder prefix (e.g., 'app-icons/')
- */
-export async function listImages(prefix?: string) {
-  const containerClient = getContainerClient();
-  const blobPrefix = prefix || 'app-icons/';
-
-  const blobs: Array<{ url: string; pathname: string; size: number; uploadedAt: Date }> = [];
-
-  for await (const blob of containerClient.listBlobsFlat({ prefix: blobPrefix })) {
-    if (blob.name) {
-      const blockBlobClient = containerClient.getBlockBlobClient(blob.name);
-      blobs.push({
-        url: blockBlobClient.url.split('?')[0],
-        pathname: blob.name,
-        size: blob.properties.contentLength || 0,
-        uploadedAt: blob.properties.createdOn || new Date(),
-      });
-    }
-  }
-
-  return { blobs };
-}
-
-/**
  * Calculate retry delay with exponential backoff and jitter
  * @param attemptNumber - The current retry attempt (0-indexed)
  * @returns Delay in milliseconds

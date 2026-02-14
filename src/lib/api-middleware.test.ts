@@ -22,7 +22,6 @@ import {
   createAuthApiHandler,
   createValidatedApiHandler,
   createAuthValidatedApiHandler,
-  createQueryValidatedApiHandler,
 } from './api-middleware';
 import * as apiUtils from './api-utils';
 import * as validationMiddleware from './validation/middleware';
@@ -463,63 +462,4 @@ describe('api-middleware', () => {
     });
   });
 
-  describe('createQueryValidatedApiHandler', () => {
-    const querySchema = z.object({ id: z.string() });
-
-    it('should validate query parameters and pass to handler', async () => {
-      const validatedQuery = { id: '123' };
-      mockValidateQuery.mockReturnValue({
-        success: true,
-        data: validatedQuery,
-      } as any);
-
-      const handler = vi.fn(async (_req, queryData) => {
-        expect(queryData).toEqual(validatedQuery);
-        return createSuccessResponse();
-      });
-
-      const apiHandler = createQueryValidatedApiHandler(querySchema, handler);
-      const request = createMockRequest({ url: 'http://localhost:3000/api/test?id=123' });
-
-      await apiHandler(request);
-
-      expect(mockValidateQuery).toHaveBeenCalledWith(request, querySchema);
-      expect(handler).toHaveBeenCalled();
-    });
-
-    it('should reject invalid query parameters', async () => {
-      mockValidateQuery.mockReturnValue({
-        success: false,
-        error: 'Invalid query',
-      } as any);
-
-      const handler = vi.fn().mockResolvedValue(createSuccessResponse());
-      const apiHandler = createQueryValidatedApiHandler(querySchema, handler);
-
-      const request = createMockRequest();
-      const response = await apiHandler(request);
-
-      expect(response.status).toBe(400);
-      expect(handler).not.toHaveBeenCalled();
-    });
-
-    it('should support additional config options', async () => {
-      mockValidateQuery.mockReturnValue({
-        success: true,
-        data: { id: '123' },
-      } as any);
-
-      const handler = vi.fn().mockResolvedValue(createSuccessResponse());
-      const apiHandler = createQueryValidatedApiHandler(
-        querySchema,
-        handler,
-        { requireAuth: true }
-      );
-
-      const request = createMockRequest({ url: 'http://localhost:3000/api/test?id=123' });
-      await apiHandler(request);
-
-      expect(mockRequireAuth).toHaveBeenCalled();
-    });
-  });
 });
