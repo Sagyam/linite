@@ -116,9 +116,9 @@ export const FloatingActionBar = memo(function FloatingActionBar({
                   size="lg"
                   onClick={onSaveInstallation}
                   disabled={!canGenerate}
-                  className="gap-2 text-sm sm:text-base shrink-0 bg-green-600 hover:bg-green-700 text-white"
+                  className="gap-2 text-sm sm:text-base shrink-0 bg-secondary hover:bg-secondary/20"
                 >
-                  <kbd className="hidden sm:inline-flex px-1.5 py-0.5 text-[10px] font-semibold bg-green-500 text-white border border-green-400/20 rounded">
+                  <kbd className="hidden sm:inline-flex px-1.5 py-0.5 text-[10px] font-semibold bg-accent-foreground text-muted border border-secondary rounded">
                     s
                   </kbd>
                   <Save className="w-4 h-4 shrink-0" />

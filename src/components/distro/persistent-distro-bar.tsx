@@ -141,7 +141,7 @@ export const PersistentDistroBar = memo(function PersistentDistroBar({
                 </span>
                 <span className="text-xs text-muted-foreground">(optional)</span>
                 <kbd className="hidden lg:inline-block px-1.5 py-0.5 text-xs font-mono font-semibold bg-muted/50 border border-border/50 rounded ml-auto">
-                  s
+                  p
                 </kbd>
               </div>
               <Select
