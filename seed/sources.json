@@ -5,7 +5,12 @@
     "installCmd": "flatpak install -y flathub",
     "removeCmd": "flatpak uninstall -y",
     "requireSudo": false,
-    "setupCmd": "flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo",
+    "setupCmd": {
+      "debian": "sudo apt-get update && sudo apt-get install -y flatpak && flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo",
+      "rhel": "sudo dnf install -y flatpak && flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo",
+      "arch": "sudo pacman -S --noconfirm flatpak && flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo",
+      "suse": "sudo zypper install -y flatpak && flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo"
+    },
     "cleanupCmd": "flatpak remote-delete flathub",
     "supportsDependencyCleanup": true,
     "dependencyCleanupCmd": "flatpak uninstall --unused -y",
@@ -18,7 +23,12 @@
     "installCmd": "snap install",
     "removeCmd": "snap remove",
     "requireSudo": true,
-    "setupCmd": null,
+    "setupCmd": {
+      "debian": "sudo apt-get update && sudo apt-get install -y snapd && sudo systemctl enable --now snapd.socket && sudo ln -sf /var/lib/snapd/snap /snap",
+      "rhel": "sudo dnf install -y snapd && sudo systemctl enable --now snapd.socket && sudo ln -sf /var/lib/snapd/snap /snap",
+      "arch": "sudo pacman -S --noconfirm snapd && sudo systemctl enable --now snapd.socket && sudo ln -sf /var/lib/snapd/snap /snap",
+      "suse": "sudo zypper install -y snapd && sudo systemctl enable --now snapd.socket && sudo ln -sf /var/lib/snapd/snap /snap"
+    },
     "cleanupCmd": null,
     "supportsDependencyCleanup": false,
     "dependencyCleanupCmd": null,
