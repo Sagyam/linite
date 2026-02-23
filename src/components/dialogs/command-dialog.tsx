@@ -184,6 +184,7 @@ export function CommandDialog({ open, onOpenChange }: CommandDialogProps) {
                     copied={copiedAll}
                     onCopy={handleCopyAll}
                     onDownload={handleDownload}
+                    isWindows={selectedDistro === 'windows'}
                   />
 
                   <SetupCommands
@@ -226,6 +227,7 @@ export function CommandDialog({ open, onOpenChange }: CommandDialogProps) {
                    copied={copiedAll}
                    onCopy={handleCopyAll}
                    onDownload={handleDownloadUninstall}
+                   isWindows={selectedDistro === 'windows'}
                  />
 
                  <div className="space-y-4">
