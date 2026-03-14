@@ -118,12 +118,12 @@ See `.env.example` for required variables. All env vars are validated using Zod 
 
 ## Documentation
 
-- **Getting Started**: `README.md`
-- **Architecture**: `/docs/PROJECT_OVERVIEW.md`
-- **API Docs**: `/docs/API_REFERENCE.md`
-- **Database**: `/docs/DATABASE_SCHEMA.md`
-- **Environment**: `/docs/ENVIRONMENT.md`
-- **Testing**: `/docs/TESTING.md`
+- `README.md` - Overview and setup
+- `/docs/API_REFERENCE.md` - API endpoints
+- `/docs/DATABASE_SCHEMA.md` - Database schema
+- `/docs/ENVIRONMENT.md` - Environment variables
+- `/docs/TESTING.md` - Testing guide
+- `/docs/KEYBOARD_SHORTCUTS.md` - Keyboard shortcuts
 
 ## Testing
 
