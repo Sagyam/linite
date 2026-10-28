@@ -1,73 +1,106 @@
-# Linite
+<p align="center">
+  <img src="public/logo.svg" width="140" alt="Linite logo: three picked app tiles and a terminal prompt">
+</p>
 
-<div>
-  <img src="public/logo.svg" alt="Linite Logo" width="120" height="120">
-  <p><strong>Bulk install Linux apps with a single command</strong></p>
+<h1 align="center">Linite</h1>
 
-  [![License: MIT](https://img.shields.io/github/license/sagyam/linite?style=for-the-badge)](LICENSE)
-  [![zread](https://img.shields.io/badge/Ask_Zread-_.svg?style=for-the-badge&color=00b0aa&labelColor=000000&logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTQuOTYxNTYgMS42MDAxSDIuMjQxNTZDMS44ODgxIDEuNjAwMSAxLjYwMTU2IDEuODg2NjQgMS42MDE1NiAyLjI0MDFWNC45NjAxQzEuNjAxNTYgNS4zMTM1NiAxLjg4ODEgNS42MDAxIDIuMjQxNTYgNS42MDAxSDQuOTYxNTZDNS4zMTUwMiA1LjYwMDEgNS42MDE1NiA1LjMxMzU2IDUuNjAxNTYgNC45NjAxVjIuMjQwMUM1LjYwMTU2IDEuODg2NjQgNS4zMTUwMiAxLjYwMDEgNC45NjE1NiAxLjYwMDFaIiBmaWxsPSIjZmZmIi8%2BCjxwYXRoIGQ9Ik00Ljk2MTU2IDEwLjM5OTlIMi4yNDE1NkMxLjg4ODEgMTAuMzk5OSAxLjYwMTU2IDEwLjY4NjQgMS42MDE1NiAxMS4wMzk5VjEzLjc1OTlDMS42MDE1NiAxNC4xMTM0IDEuODg4MSAxNC4zOTk5IDIuMjQxNTYgMTQuMzk5OUg0Ljk2MTU2QzUuMzE1MDIgMTQuMzk5OSA1LjYwMTU2IDE0LjExMzQgNS42MDE1NiAxMy43NTk5VjExLjAzOTlDNS42MDE1NiAxMC42ODY0IDUuMzE1MDIgMTAuMzk5OSA0Ljk2MTU2IDEwLjM5OTlaIiBmaWxsPSIjZmZmIi8%2BCjxwYXRoIGQ9Ik0xMy43NTg0IDEuNjAwMUgxMS4wMzg0QzEwLjY4NSAxLjYwMDEgMTAuMzk4NCAxLjg4NjY0IDEwLjM5ODQgMi4yNDAxVjQuOTYwMUMxMC4zOTg0IDUuMzEzNTYgMTAuNjg1IDUuNjAwMSAxMS4wMzg0IDUuNjAwMUgxMy43NTg0QzE0LjExMTkgNS42MDAxIDE0LjM5ODQgNS4zMTM1NiAxNC4zOTg0IDQuOTYwMVYyLjI0MDFDMTQuMzk4NCAxLjg4NjY0IDE0LjExMTkgMS42MDAxIDEzLjc1ODQgMS42MDAxWiIgZmlsbD0iI2ZmZiIvPgo8cGF0aCBkPSJNNCAxMkwxMiA0TDQgMTJaIiBmaWxsPSIjZmZmIi8%2BCjxwYXRoIGQ9Ik00IDEyTDEyIDQiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgo8L3N2Zz4K&logoColor=ffffff)](https://zread.ai/Sagyam/linite)
-  ![Website](https://img.shields.io/website?url=https%3A%2F%2Flinite.sagyamthapa.com.np&style=for-the-badge)
-  ![Build](https://img.shields.io/github/actions/workflow/status/sagyam/linite/ci.yml?branch=main&style=for-the-badge)
-</div>
+<h3 align="center">Pick your apps. Get one command.</h3>
 
-**[Try it](https://linite.sagyamthapa.com.np)** | [Report Bug](https://github.com/Sagyam/linite/issues) | [Request Feature](https://github.com/Sagyam/linite/issues)
+<p align="center">
+  <a href="https://linite.sagyamthapa.com.np">Try it</a> ·
+  <a href="#tour">Tour</a> ·
+  <a href="#works-with">Works with</a> ·
+  <a href="#quick-start">Quick start</a> ·
+  <a href="CONTRIBUTING.md">Contributing</a>
+</p>
 
-<img src="./public/demo.gif" alt="Linite Demo" width="800">
+<p align="center">
+  <b>A Ninite-style bulk installer for Linux.</b><br>
+  Choose your distro, tick apps from a curated catalog, and copy the apt, dnf, pacman, Flatpak or Snap command that installs them all.
+</p>
 
-## Features
+<p align="center">
+  <img src="https://img.shields.io/badge/Next.js-16-000000?style=flat-square&logo=nextdotjs&logoColor=white" alt="Next.js 16">
+  <img src="https://img.shields.io/badge/React-19-61DAFB?style=flat-square&logo=react&logoColor=black" alt="React 19">
+  <img src="https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white" alt="TypeScript">
+  <img src="https://img.shields.io/badge/Bun-1.4-000000?style=flat-square&logo=bun&logoColor=white" alt="Bun 1.4">
+  <img src="https://img.shields.io/badge/Turso-4FF8D2?style=flat-square&logo=turso&logoColor=black" alt="Turso">
+  <img src="https://img.shields.io/badge/Drizzle-C5F74F?style=flat-square&logo=drizzle&logoColor=black" alt="Drizzle ORM">
+  <br>
+  <img src="https://img.shields.io/github/actions/workflow/status/sagyam/linite/ci.yml?branch=main&style=flat-square&label=tests" alt="CI status">
+  <img src="https://img.shields.io/website?url=https%3A%2F%2Flinite.sagyamthapa.com.np&style=flat-square" alt="Website status">
+  <img src="https://img.shields.io/badge/apps-200%2B-1688c4?style=flat-square" alt="200+ apps">
+  <img src="https://img.shields.io/badge/platforms-15-1688c4?style=flat-square" alt="15 platforms">
+  <img src="https://img.shields.io/badge/license-MIT-f2b134?style=flat-square" alt="MIT license">
+</p>
 
-- **200+ curated apps** across 10 categories
-- **Multi-source support** - APT, DNF, Pacman, Flatpak, Snap, AUR, Homebrew, and more
-- **Smart package selection** - prioritizes based on distro defaults and preferences
-- **Collections** - save, share, and discover app lists
-- **Installation tracking** - track installs across devices, generate uninstall commands
-- **Daily metadata sync** - versions updated from Flathub, Snapcraft, AUR, Repology
+<p align="center">
+  <img src="docs/screenshots/demo.gif" width="960" alt="Picking five apps, choosing Fedora, getting the install command, switching to the detailed view, browsing collections, and the dark theme">
+</p>
 
-## Supported Platforms
+## Tour
 
-### Operating Systems
+<table>
+<tr>
+<td width="50%"><img src="docs/screenshots/selection.png" alt="Picking apps"><br><b>Pick.</b> Tick apps from 14 categories. The bar at the bottom keeps count.</td>
+<td width="50%"><img src="docs/screenshots/command.png" alt="The install command"><br><b>Copy.</b> One block per package manager, setup steps first, and a warning for anything your distro lacks.</td>
+</tr>
+<tr>
+<td><img src="docs/screenshots/detailed.png" alt="Detailed view"><br><b>Compare.</b> The detailed view lists every source an app ships through.</td>
+<td><img src="docs/screenshots/collections.png" alt="Collections"><br><b>Collections.</b> Start from a curated list for developers, creators or gamers.</td>
+</tr>
+<tr>
+<td><img src="docs/screenshots/collection.png" alt="A collection"><br><b>Share.</b> Save your own lists, share them, and apply one in a click.</td>
+<td><img src="docs/screenshots/home-dark.png" alt="Dark theme"><br><b>Light or dark, keyboard first.</b> <code>/</code> to search, <code>j</code> <code>k</code> to move, <code>Space</code> to pick, <code>c</code> for the command.</td>
+</tr>
+</table>
 
-![Ubuntu](https://img.shields.io/badge/Ubuntu-E95420?style=for-the-badge&logo=ubuntu&logoColor=white)
-![Debian](https://img.shields.io/badge/Debian-A81D33?style=for-the-badge&logo=debian&logoColor=white)
-![Linux Mint](https://img.shields.io/badge/Linux_Mint-87CF3E?style=for-the-badge&logo=linuxmint&logoColor=white)
-![Pop!_OS](https://img.shields.io/badge/Pop!__OS-48B9C7?style=for-the-badge&logo=popos&logoColor=white)
-![Zorin OS](https://img.shields.io/badge/Zorin_OS-15A6F0?style=for-the-badge&logo=zorin&logoColor=white)
-![Elementary OS](https://img.shields.io/badge/Elementary_OS-64BAFF?style=for-the-badge&logo=elementary&logoColor=white)
-![Fedora](https://img.shields.io/badge/Fedora-51A2DA?style=for-the-badge&logo=fedora&logoColor=white)
-![Nobara](https://img.shields.io/badge/Nobara-4A4A4A?style=for-the-badge&logo=linux&logoColor=white)
-![Bazzite](https://img.shields.io/badge/Bazzite-7B68EE?style=for-the-badge&logo=linux&logoColor=white)
-![Arch Linux](https://img.shields.io/badge/Arch_Linux-1793D1?style=for-the-badge&logo=archlinux&logoColor=white)
-![Manjaro](https://img.shields.io/badge/Manjaro-35BF5C?style=for-the-badge&logo=manjaro&logoColor=white)
-![CachyOS](https://img.shields.io/badge/CachyOS-5C2D91?style=for-the-badge&logo=archlinux&logoColor=white)
-![openSUSE](https://img.shields.io/badge/openSUSE-73BA25?style=for-the-badge&logo=opensuse&logoColor=white)
-![NixOS](https://img.shields.io/badge/NixOS-5277C3?style=for-the-badge&logo=nixos&logoColor=white)
+## Works with
 
-### Package Managers
+<p>
+  <img src="https://img.shields.io/badge/Ubuntu-E95420?style=flat-square&logo=ubuntu&logoColor=white" alt="Ubuntu">
+  <img src="https://img.shields.io/badge/Debian-A81D33?style=flat-square&logo=debian&logoColor=white" alt="Debian">
+  <img src="https://img.shields.io/badge/Linux_Mint-87CF3E?style=flat-square&logo=linuxmint&logoColor=white" alt="Linux Mint">
+  <img src="https://img.shields.io/badge/Pop!__OS-48B9C7?style=flat-square&logo=popos&logoColor=white" alt="Pop!_OS">
+  <img src="https://img.shields.io/badge/Zorin_OS-15A6F0?style=flat-square&logo=zorin&logoColor=white" alt="Zorin OS">
+  <img src="https://img.shields.io/badge/elementary_OS-64BAFF?style=flat-square&logo=elementary&logoColor=white" alt="elementary OS">
+  <img src="https://img.shields.io/badge/Fedora-51A2DA?style=flat-square&logo=fedora&logoColor=white" alt="Fedora">
+  <img src="https://img.shields.io/badge/Nobara-4A4A4A?style=flat-square&logo=linux&logoColor=white" alt="Nobara">
+  <img src="https://img.shields.io/badge/Bazzite-7B68EE?style=flat-square&logo=linux&logoColor=white" alt="Bazzite">
+  <img src="https://img.shields.io/badge/Arch_Linux-1793D1?style=flat-square&logo=archlinux&logoColor=white" alt="Arch Linux">
+  <img src="https://img.shields.io/badge/Manjaro-35BF5C?style=flat-square&logo=manjaro&logoColor=white" alt="Manjaro">
+  <img src="https://img.shields.io/badge/CachyOS-5C2D91?style=flat-square&logo=archlinux&logoColor=white" alt="CachyOS">
+  <img src="https://img.shields.io/badge/openSUSE-73BA25?style=flat-square&logo=opensuse&logoColor=white" alt="openSUSE">
+  <img src="https://img.shields.io/badge/NixOS-5277C3?style=flat-square&logo=nixos&logoColor=white" alt="NixOS">
+  <img src="https://img.shields.io/badge/Windows-0078D4?style=flat-square&logo=windows&logoColor=white" alt="Windows">
+</p>
+<p>
+  <img src="https://img.shields.io/badge/APT-A81D33?style=flat-square&logo=debian&logoColor=white" alt="APT">
+  <img src="https://img.shields.io/badge/DNF-51A2DA?style=flat-square&logo=fedora&logoColor=white" alt="DNF">
+  <img src="https://img.shields.io/badge/Pacman-1793D1?style=flat-square&logo=archlinux&logoColor=white" alt="Pacman">
+  <img src="https://img.shields.io/badge/AUR-1793D1?style=flat-square&logo=archlinux&logoColor=white" alt="AUR">
+  <img src="https://img.shields.io/badge/Zypper-73BA25?style=flat-square&logo=opensuse&logoColor=white" alt="Zypper">
+  <img src="https://img.shields.io/badge/Nix-5277C3?style=flat-square&logo=nixos&logoColor=white" alt="Nix">
+  <img src="https://img.shields.io/badge/Flatpak-4A86CF?style=flat-square&logo=flatpak&logoColor=white" alt="Flatpak">
+  <img src="https://img.shields.io/badge/Snap-82BEA0?style=flat-square&logo=snapcraft&logoColor=white" alt="Snap">
+  <img src="https://img.shields.io/badge/Homebrew-FBB040?style=flat-square&logo=homebrew&logoColor=black" alt="Homebrew">
+  <img src="https://img.shields.io/badge/Winget-0078D4?style=flat-square&logo=windows&logoColor=white" alt="Winget">
+  <img src="https://img.shields.io/badge/Scoop-6BB9F0?style=flat-square&logo=windows&logoColor=white" alt="Scoop">
+</p>
 
-![APT](https://img.shields.io/badge/APT-A81D33?style=for-the-badge&logo=debian&logoColor=white)
-![DNF](https://img.shields.io/badge/DNF-51A2DA?style=for-the-badge&logo=fedora&logoColor=white)
-![Pacman](https://img.shields.io/badge/Pacman-1793D1?style=for-the-badge&logo=archlinux&logoColor=white)
-![Zypper](https://img.shields.io/badge/Zypper-73BA25?style=for-the-badge&logo=opensuse&logoColor=white)
-![Nix](https://img.shields.io/badge/Nix-5277C3?style=for-the-badge&logo=nixos&logoColor=white)
-![Flatpak](https://img.shields.io/badge/Flatpak-4A86CF?style=for-the-badge&logo=flatpak&logoColor=white)
-![Snap](https://img.shields.io/badge/Snap-82BEA0?style=for-the-badge&logo=snapcraft&logoColor=white)
-![AUR](https://img.shields.io/badge/AUR-1793D1?style=for-the-badge&logo=archlinux&logoColor=white)
-![Homebrew](https://img.shields.io/badge/Homebrew-FBB040?style=for-the-badge&logo=homebrew&logoColor=black)
-![Winget](https://img.shields.io/badge/Winget-0078D4?style=for-the-badge&logo=windows&logoColor=white)
-![Scoop](https://img.shields.io/badge/Scoop-6BB9F0?style=for-the-badge&logo=windows&logoColor=white)
+## Quick start
 
-## Tech Stack
+```bash
+git clone https://github.com/Sagyam/linite.git
+cd linite
+bun install
+cp .env.example .env   # fill in, see docs/ENVIRONMENT.md
+bun run db:push && bun run db:seed
+bun run dev            # http://localhost:3000
+```
 
-Next.js 16, Turso (libSQL), Drizzle ORM, BetterAuth, shadcn/ui, Tailwind CSS, Azure Blob Storage, Vercel
-
-## Contributing
-
-See [CONTRIBUTING.md](CONTRIBUTING.md).
-
-## License
-
-MIT - see [LICENSE](LICENSE).
+More in [CONTRIBUTING.md](CONTRIBUTING.md) and [docs/](docs).
 
 ## Credits
 
-Inspired by [Ninite](https://ninite.com/). Data from [Flathub](https://flathub.org/), [Snapcraft](https://snapcraft.io/), [AUR](https://aur.archlinux.org/), [Homebrew](https://formulae.brew.sh/), [Repology](https://repology.org/).
+Inspired by [Ninite](https://ninite.com/). Package data from [Flathub](https://flathub.org/), [Snapcraft](https://snapcraft.io/), [AUR](https://aur.archlinux.org/), [Homebrew](https://formulae.brew.sh/) and [Repology](https://repology.org/). MIT licensed, see [LICENSE](LICENSE).
