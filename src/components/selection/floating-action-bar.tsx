@@ -129,8 +129,8 @@ export const FloatingActionBar = memo(function FloatingActionBar({
                 className="w-full sm:w-auto shrink-0"
               >
                 <kbd className="kbd hidden sm:inline-flex border-primary-foreground/30 bg-primary-foreground/15 text-primary-foreground">c</kbd>
-                <span className="hidden xs:inline">Get Commands</span>
-                <span className="xs:hidden">Get</span>
+                <span className="hidden min-[400px]:inline">Get Commands</span>
+                <span className="min-[400px]:hidden">Get</span>
                 <ArrowRight className="w-4 h-4 shrink-0" />
               </Button>
             </div>
