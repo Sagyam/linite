@@ -1,0 +1,233 @@
+/*
+ * The design language of sagyamthapa.com.np and every project linked from it.
+ *
+ * The portfolio's registry publishes this file; each project keeps a copy at src/styles/sagyam.css.
+ * Don't edit a project's copy. Change it in sagyam.github.io/registry/theme/sagyam.css, deploy the
+ * portfolio, then update each project with
+ *
+ *   bunx shadcn@latest add https://sagyamthapa.com.np/r/theme.json --overwrite
+ *
+ * Import it straight after Tailwind; a project's own tokens go after it, in its own CSS:
+ *
+ *   @import 'tailwindcss';
+ *   @import 'tw-animate-css';
+ *   @import '../styles/sagyam.css';
+ *
+ * Type: Work Sans for text, Space Grotesk for headings, JetBrains Mono for figures and code.
+ * Next.js loads them with next/font as --font-work-sans, --font-space-grotesk and
+ * --font-jetbrains-mono; elsewhere @fontsource-variable/{work-sans,space-grotesk,jetbrains-mono}
+ * supplies the family names the stacks fall back to.
+ *
+ * Colour: slate surfaces, a sky primary and an amber accent. Light is the base; `.dark` on <html>
+ * switches, set from the visitor's choice or the OS preference. `edge` is the ink for hairlines and
+ * faint overlays: navy on light, white on dark. `teal` on `teal-ink` is the chip for tags and tech
+ * names, as on the portfolio's posts. `success` is for good outcomes in text, such as a
+ * saving, and always sits beside a word or icon that says so.
+ *
+ * Charts: chart-1 to chart-8 are categorical slots, assigned in order and never cycled. Each mode's
+ * eight are validated against its card surface for colour-blind separation (the dataviz skill's
+ * validate_palette.js); slot 1 is the brand sky, 2 to 8 are the reference palette's hues and order.
+ * Light slots 3 to 5 fall under 3:1 on white, so a chart that uses them labels its marks or offers
+ * a table.
+ */
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-sans: var(--font-work-sans, "Work Sans Variable"), ui-sans-serif, system-ui, sans-serif;
+  --font-heading:
+    var(--font-space-grotesk, "Space Grotesk Variable"), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono, "JetBrains Mono Variable"), ui-monospace, monospace;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-edge: var(--edge);
+  --color-amber: var(--amber);
+  --color-teal: var(--teal);
+  --color-teal-ink: var(--teal-ink);
+  --color-success: var(--success);
+
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-chart-6: var(--chart-6);
+  --color-chart-7: var(--chart-7);
+  --color-chart-8: var(--chart-8);
+
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+@utility kbd {
+  /* A key, as in ⌘K. */
+  @apply inline-flex h-5 min-w-5 items-center justify-center whitespace-nowrap rounded border border-edge/15 bg-edge/5 px-1 font-mono text-[11px] leading-none text-foreground shadow-[inset_0_-1px_0_color-mix(in_oklab,var(--edge)_8%,transparent)];
+}
+
+@utility hero-glow {
+  /* The wash behind a page's opening section: primary from above, a touch of amber to the right. */
+  background:
+    radial-gradient(
+      60% 55% at 50% 0%,
+      color-mix(in oklab, var(--primary) 14%, transparent),
+      transparent 70%
+    ),
+    radial-gradient(
+      35% 30% at 85% 10%,
+      color-mix(in oklab, var(--amber) 8%, transparent),
+      transparent 70%
+    );
+}
+
+@utility figures {
+  /* Figures that line up in columns: tables, axis ticks, running totals. */
+  @apply font-mono tabular-nums;
+}
+
+:root {
+  color-scheme: light;
+  --radius: 0.5rem;
+  --background: hsl(210 40% 98%);
+  --foreground: hsl(222 47% 11%);
+  --card: hsl(0 0% 100%);
+  --card-foreground: hsl(222 47% 11%);
+  --popover: hsl(0 0% 100%);
+  --popover-foreground: hsl(222 47% 11%);
+  --primary: hsl(200 90% 36%);
+  --primary-foreground: hsl(0 0% 100%);
+  --secondary: hsl(210 40% 94%);
+  --secondary-foreground: hsl(222 47% 11%);
+  --muted: hsl(210 40% 94%);
+  --muted-foreground: hsl(215 19% 38%);
+  --accent: hsl(210 40% 92%);
+  --accent-foreground: hsl(222 47% 11%);
+  --destructive: hsl(0 72% 45%);
+  --destructive-foreground: hsl(0 0% 100%);
+  --border: hsl(214 32% 88%);
+  --input: hsl(214 32% 85%);
+  --ring: hsl(200 90% 36%);
+  --edge: hsl(222 47% 11%);
+  --amber: hsl(26 90% 37%);
+  --teal: #0f766e;
+  --teal-ink: #d5f5ef;
+  --success: #006300;
+  --chart-1: #0977ae;
+  --chart-2: #eb6834;
+  --chart-3: #1baf7a;
+  --chart-4: #eda100;
+  --chart-5: #e87ba4;
+  --chart-6: #008300;
+  --chart-7: #6250d6;
+  --chart-8: #e34948;
+  --sidebar: hsl(0 0% 100%);
+  --sidebar-foreground: hsl(222 47% 11%);
+  --sidebar-primary: hsl(200 90% 36%);
+  --sidebar-primary-foreground: hsl(0 0% 100%);
+  --sidebar-accent: hsl(210 40% 94%);
+  --sidebar-accent-foreground: hsl(222 47% 11%);
+  --sidebar-border: hsl(214 32% 88%);
+  --sidebar-ring: hsl(200 90% 36%);
+}
+
+.dark {
+  color-scheme: dark;
+  --background: hsl(222 84% 5%);
+  --foreground: hsl(210 40% 98%);
+  --card: hsl(215 50% 9%);
+  --card-foreground: hsl(210 40% 98%);
+  --popover: hsl(215 50% 12%);
+  --popover-foreground: hsl(210 40% 98%);
+  --primary: hsl(200 85% 65%);
+  --primary-foreground: hsl(215 50% 12%);
+  --secondary: hsl(217 33% 17%);
+  --secondary-foreground: hsl(210 40% 98%);
+  --muted: hsl(217 33% 17%);
+  --muted-foreground: hsl(215 20% 65%);
+  --accent: hsl(217 33% 22%);
+  --accent-foreground: hsl(210 40% 98%);
+  --destructive: hsl(0 72% 62%);
+  --destructive-foreground: hsl(222 47% 11%);
+  --border: hsl(217 33% 17%);
+  --input: hsl(217 33% 17%);
+  --ring: hsl(200 85% 65%);
+  --edge: hsl(0 0% 100%);
+  --amber: hsl(40 88% 58%);
+  --teal: #5de7d3;
+  --teal-ink: #132d43;
+  --success: #0ca30c;
+  --chart-1: #16a0db;
+  --chart-2: #d95926;
+  --chart-3: #199e70;
+  --chart-4: #c98500;
+  --chart-5: #d55181;
+  --chart-6: #008300;
+  --chart-7: #9085e9;
+  --chart-8: #e66767;
+  --sidebar: hsl(215 50% 9%);
+  --sidebar-foreground: hsl(210 40% 98%);
+  --sidebar-primary: hsl(200 85% 65%);
+  --sidebar-primary-foreground: hsl(215 50% 12%);
+  --sidebar-accent: hsl(217 33% 17%);
+  --sidebar-accent-foreground: hsl(210 40% 98%);
+  --sidebar-border: hsl(217 33% 17%);
+  --sidebar-ring: hsl(200 85% 65%);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    @apply scroll-smooth font-sans;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-heading;
+  }
+  ::selection {
+    background: color-mix(in oklab, var(--primary) 25%, transparent);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
