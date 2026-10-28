@@ -40,10 +40,11 @@ export function SetupCommands({ commands, copied, onCopy }: SetupCommandsProps) 
           </span>
         </Button>
       </div>
-      <div className="bg-muted rounded-md p-4 font-mono text-sm overflow-x-auto">
+      <div className="terminal">
         {commands.map((cmd, i) => (
           <div key={i} className="whitespace-pre-wrap">
-            {cmd}
+            <span className="prompt">$</span>
+            <span>{cmd}</span>
           </div>
         ))}
       </div>

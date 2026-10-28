@@ -13,15 +13,13 @@ export function KeyboardIndicator({ onClick }: KeyboardIndicatorProps) {
       variant="outline"
       size="sm"
       onClick={onClick}
-      className="fixed bottom-24 right-4 z-40 shadow-lg hidden lg:flex gap-1"
+      className="fixed bottom-28 right-5 z-40 hidden rounded-full bg-background/85 text-muted-foreground shadow-lg backdrop-blur-md lg:flex"
       title="Show keyboard shortcuts"
       aria-label="Show keyboard shortcuts"
     >
       <Keyboard className="w-4 h-4" />
-      <span>Press</span>
-      <kbd className="px-1.5 py-0.5 text-xs font-semibold bg-muted border border-border rounded">
-        ?
-      </kbd>
+      <span>Shortcuts</span>
+      <kbd className="kbd">?</kbd>
     </Button>
   );
 }

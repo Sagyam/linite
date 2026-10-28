@@ -8,6 +8,7 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Button } from '@/components/ui/button';
 import { AppIcon } from '@/components/ui/app-icon';
 import { useSelectionStore } from '@/stores/selection-store';
+import { cn } from '@/lib/utils';
 import type { ViewMode } from '@/stores/selection-store';
 import type { App } from '@/hooks/use-apps';
 
@@ -30,8 +31,6 @@ export const AppCard = memo(function AppCard({
 
   const cardRef = useRef<HTMLDivElement>(null);
 
-  const categoryColor = app.category?.colorLight || app.category?.colorDark;
-
   // Auto-scroll focused card into view
   useEffect(() => {
     if (isFocused && cardRef.current) {
@@ -50,41 +49,28 @@ export const AppCard = memo(function AppCard({
     toggleApp(app.id, app.categoryId);
   };
 
-  const cardStyle = isSelected && categoryColor
-    ? { '--tw-ring-color': categoryColor, '--tw-ring-offset-width': '2px' } as React.CSSProperties
-    : undefined;
-
-  const minimalCardStyle = isSelected && categoryColor
-    ? { '--tw-ring-color': categoryColor, '--tw-ring-offset-width': '0px' } as React.CSSProperties
-    : undefined;
-
-  const getCheckboxProps = () => {
-    if (!isSelected || !categoryColor) {
-      return {};
-    }
-    return {
-      className: '[&[data-state=checked]]:bg-[var(--checkbox-color)] [&[data-state=checked]]:border-[var(--checkbox-color)] [&[data-state=checked]]:text-white',
-      style: { '--checkbox-color': categoryColor } as React.CSSProperties,
-    };
-  };
+  // One look for every layout: a hairline card, primary ring and tint when picked, outline when focused by keyboard.
+  const cardClass = cn(
+    'cursor-pointer rounded-xl border border-edge/10 bg-card shadow-xs transition-all hover:border-edge/20 hover:shadow-md',
+    isSelected && 'border-primary/40 bg-primary/[0.04] ring-2 ring-primary/60',
+    isFocused && 'outline-2 outline-offset-2 outline-ring'
+  );
 
   // Minimal view
   if (layout === 'minimal') {
     return (
       <div
         ref={cardRef}
-        className={`p-2 sm:p-3 cursor-pointer transition-all hover:shadow-md rounded-lg border bg-card ${isSelected ? 'ring-2 ring-offset-0' : ''} ${isFocused ? 'ring-2 ring-ring' : ''}`}
-        style={minimalCardStyle}
+        className={cn(cardClass, 'p-2 sm:p-3 hover:-translate-y-0.5')}
         onClick={handleCardClick}
         data-app-index={index}
         tabIndex={isFocused ? 0 : -1}
       >
-        <div className="flex flex-col items-center gap-1.5 sm:gap-2 relative">
+        <div className="group flex flex-col items-center gap-1.5 sm:gap-2 relative">
           <div className="absolute top-0 right-0 z-10">
             <Checkbox
               checked={isSelected}
-              className="h-4 w-4 sm:h-5 sm:w-5"
-              {...getCheckboxProps()}
+              className={cn('size-4 transition-opacity', !isSelected && 'opacity-50 group-hover:opacity-100')}
               aria-label={`Select ${app.displayName}`}
             />
           </div>
@@ -94,7 +80,7 @@ export const AppCard = memo(function AppCard({
             size="lg"
             className="w-12 h-12 sm:w-14 sm:h-14"
           />
-          <h3 className="text-xs font-medium text-center line-clamp-2 w-full px-1">
+          <h3 className="text-xs font-medium text-center line-clamp-2 w-full px-1 leading-snug">
             {app.displayName}
           </h3>
         </div>
@@ -106,8 +92,7 @@ export const AppCard = memo(function AppCard({
     return (
       <Card
         ref={cardRef}
-        className={`p-2 sm:p-3 cursor-pointer transition-all hover:shadow-md ${isSelected ? 'ring-2' : ''} ${isFocused ? 'ring-2 ring-ring' : ''}`}
-        style={cardStyle}
+        className={cn(cardClass, 'p-2 sm:p-3')}
         onClick={handleCardClick}
         data-app-index={index}
         tabIndex={isFocused ? 0 : -1}
@@ -116,7 +101,6 @@ export const AppCard = memo(function AppCard({
           <Checkbox
             checked={isSelected}
             className="shrink-0"
-            {...getCheckboxProps()}
           />
 
           <AppIcon
@@ -128,10 +112,10 @@ export const AppCard = memo(function AppCard({
 
           <div className="flex-1 min-w-0">
             <div className="flex items-center justify-between gap-2">
-              <h3 className="font-semibold text-xs sm:text-sm truncate">{app.displayName}</h3>
+              <h3 className="font-medium text-xs sm:text-sm truncate">{app.displayName}</h3>
               <div className="flex gap-1 shrink-0">
                 {app.isFoss && (
-                  <Badge variant="secondary" className="text-xs px-1.5 py-0 hidden sm:inline-flex">
+                  <Badge variant="outline" className="px-1.5 py-0 hidden sm:inline-flex">
                     FOSS
                   </Badge>
                 )}
@@ -151,8 +135,8 @@ export const AppCard = memo(function AppCard({
               rel="noopener noreferrer"
               onClick={(e) => e.stopPropagation()}
             >
-              <Button variant="ghost" size="sm" className="h-8 w-8 p-0 shrink-0">
-                <ExternalLink className="w-3 h-3 sm:w-4 sm:h-4" />
+              <Button variant="ghost" size="sm" className="size-8 p-0 shrink-0 text-muted-foreground" aria-label={`${app.displayName} website`}>
+                <ExternalLink className="size-3.5" />
               </Button>
             </a>
           )}
@@ -165,8 +149,7 @@ export const AppCard = memo(function AppCard({
   return (
     <Card
       ref={cardRef}
-      className={`p-3 sm:p-4 cursor-pointer transition-all hover:shadow-md ${isSelected ? 'ring-2' : ''} ${isFocused ? 'ring-2 ring-ring' : ''}`}
-      style={cardStyle}
+      className={cn(cardClass, 'p-3 sm:p-4')}
       onClick={handleCardClick}
       data-app-index={index}
       tabIndex={isFocused ? 0 : -1}
@@ -176,7 +159,6 @@ export const AppCard = memo(function AppCard({
           <Checkbox
             checked={isSelected}
             className="mt-1"
-            {...getCheckboxProps()}
           />
           <AppIcon
             iconUrl={app.iconUrl}
@@ -189,15 +171,15 @@ export const AppCard = memo(function AppCard({
 
         <div className="flex-1 min-w-0">
           <div className="flex items-start justify-between gap-2 mb-1 sm:mb-2">
-            <h3 className="font-semibold text-sm sm:text-base">{app.displayName}</h3>
+            <h3 className="font-heading font-semibold text-sm sm:text-base">{app.displayName}</h3>
             <div className="flex gap-1 shrink-0">
               {app.isFoss && (
-                <Badge variant="secondary" className="text-xs">
+                <Badge variant="outline">
                   FOSS
                 </Badge>
               )}
               {app.isPopular && (
-                <Badge variant="default" className="text-xs hidden sm:inline-flex">
+                <Badge variant="outline" className="hidden sm:inline-flex border-amber/30 text-amber">
                   Popular
                 </Badge>
               )}
@@ -213,12 +195,12 @@ export const AppCard = memo(function AppCard({
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
             <div className="flex flex-wrap gap-1 overflow-hidden">
               {app.packages.slice(0, 6).map((pkg) => (
-                <Badge key={pkg.id} variant="outline" className="text-xs">
+                <Badge key={pkg.id} variant="secondary" className="font-mono text-[11px]">
                   {pkg.source.name}
                 </Badge>
               ))}
               {app.packages.length > 6 && (
-                <Badge variant="outline" className="text-xs">
+                <Badge variant="secondary" className="font-mono text-[11px]">
                   +{app.packages.length - 6}
                 </Badge>
               )}
@@ -231,8 +213,8 @@ export const AppCard = memo(function AppCard({
                 rel="noopener noreferrer"
                 onClick={(e) => e.stopPropagation()}
               >
-                <Button variant="outline" size="sm" className="gap-1 h-8 text-xs sm:text-sm w-full sm:w-auto">
-                  <ExternalLink className="w-3 h-3 sm:w-4 sm:h-4" />
+                <Button variant="ghost" size="sm" className="text-xs text-muted-foreground w-full sm:w-auto">
+                  <ExternalLink className="size-3.5" />
                   Website
                 </Button>
               </a>

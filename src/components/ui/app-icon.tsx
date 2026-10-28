@@ -40,7 +40,13 @@ export function AppIcon({
       alt={displayName}
       width={pixelSize}
       height={pixelSize}
-      className={cn(roundedClass, 'object-contain flex-shrink-1', className)}
+      className={cn(
+        roundedClass,
+        'object-contain flex-shrink-1',
+        // A faint light outline so dark marks (Ansible, Deno…) stay visible on dark cards.
+        'dark:drop-shadow-[0_0_1px_rgb(255_255_255/0.55)]',
+        className
+      )}
       onError={(e) => {
         e.currentTarget.src = IMAGES.FALLBACK_ICON;
       }}

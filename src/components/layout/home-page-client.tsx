@@ -86,16 +86,33 @@ export function HomePageClient({ categories, distros, initialApps, totalApps, is
         <Header />
 
         <main className="flex-1 flex flex-col">
-          {/* Hero Section - Compact and Responsive */}
-          <div className="container mx-auto px-4 py-6 sm:py-8 text-center">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4">
-              Bulk Install Apps on Linux
-            </h1>
-            <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto px-2">
-              Select apps from our curated catalog, choose your distribution,
-              and get a single command to install everything.
-            </p>
-          </div>
+          {/* Hero: kept short, the catalog is the point of the page */}
+          <section className="relative isolate overflow-hidden">
+            <div className="hero-glow pointer-events-none absolute inset-0 -z-10" />
+            <div className="mx-auto flex max-w-3xl flex-col items-center px-4 pt-10 pb-8 text-center sm:pt-14 sm:pb-10">
+              <p className="inline-flex items-center gap-2 rounded-full border border-edge/10 bg-edge/5 px-3 py-1 text-xs text-muted-foreground">
+                <span className="size-1.5 rounded-full bg-amber" />
+                {totalApps} apps · {distros.length} distros · one command
+              </p>
+              <h1 className="mt-5 font-heading text-4xl font-bold tracking-tight text-balance sm:text-5xl">
+                Pick your apps. Get <span className="text-primary">one command</span>.
+              </h1>
+              <p className="mt-4 max-w-2xl text-base leading-relaxed text-pretty text-muted-foreground sm:text-lg">
+                Choose your distribution, tick what you want from the catalog, and Linite writes the apt, dnf,
+                pacman, Flatpak or Snap command that installs it all.
+              </p>
+              <ol className="mt-6 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm text-muted-foreground">
+                {['Choose your distro', 'Pick apps', 'Copy one command'].map((step, i) => (
+                  <li key={step} className="flex items-center gap-2">
+                    <span className="flex size-5 items-center justify-center rounded-full bg-primary/10 font-mono text-[11px] font-semibold text-primary">
+                      {i + 1}
+                    </span>
+                    {step}
+                  </li>
+                ))}
+              </ol>
+            </div>
+          </section>
 
           {/* Persistent Distro Bar - Always Visible */}
           <PersistentDistroBar

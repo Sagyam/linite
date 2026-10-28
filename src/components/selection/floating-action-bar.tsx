@@ -50,30 +50,28 @@ export const FloatingActionBar = memo(function FloatingActionBar({
   const canGenerate = selectedAppsSize > 0 && selectedDistro;
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 border-t bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/80 shadow-lg">
-      <div className="container mx-auto px-3 py-3 sm:px-4 sm:py-4">
+    <div className="pointer-events-none fixed inset-x-0 bottom-3 z-50 px-3 sm:bottom-5 sm:px-4 animate-in fade-in slide-in-from-bottom-4 duration-200">
+      <div className="pointer-events-auto mx-auto max-w-3xl rounded-xl border border-edge/10 bg-background/85 p-2 shadow-2xl shadow-black/15 ring-1 ring-edge/5 backdrop-blur-md dark:shadow-black/50 sm:p-2.5">
         <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2 sm:gap-3">
           {/* Left: Selection info */}
           <button
             onClick={onViewSelection}
-            className="flex items-center gap-2 sm:gap-3 hover:bg-muted/50 px-2 py-2 sm:px-3 rounded-lg transition-colors min-w-0"
+            className="flex items-center gap-3.5 hover:bg-edge/5 px-2.5 py-1.5 rounded-lg transition-colors min-w-0"
           >
             <div className="relative shrink-0">
-              <Package2 className="w-5 h-5 sm:w-6 sm:h-6" />
+              <Package2 className="size-5 text-muted-foreground" />
               <Badge
                 variant="default"
-                className="absolute -top-2 -right-2 h-5 w-5 flex items-center justify-center p-0 text-xs"
+                className="absolute -top-2 -right-2.5 h-5 min-w-5 px-1 font-mono"
               >
                 {selectedAppsSize}
               </Badge>
             </div>
             <div className="text-left min-w-0 flex-1">
-              <p className="text-sm font-semibold truncate flex items-center gap-1.5">
+              <p className="font-heading text-sm font-semibold truncate flex items-center gap-1.5">
                 {selectedAppsSize} {selectedAppsSize === 1 ? 'app' : 'apps'}{' '}
                 selected
-                <kbd className="hidden sm:inline-flex px-1.5 py-0.5 text-[10px] font-semibold bg-muted border border-border rounded">
-                  b
-                </kbd>
+                <kbd className="kbd hidden sm:inline-flex">b</kbd>
               </p>
               <p className="text-xs text-muted-foreground flex items-center gap-1 truncate">
                 {selectedDistro ? (
@@ -95,17 +93,17 @@ export const FloatingActionBar = memo(function FloatingActionBar({
           {!selectedDistro ? (
             /* Show prominent warning when no distro selected */
             <div className="flex items-center gap-2 sm:gap-3 flex-1 sm:flex-initial min-w-0">
-              <div className="flex items-center gap-2 px-3 py-2 sm:px-4 rounded-lg bg-destructive/10 border border-destructive/20 flex-1 sm:flex-initial min-w-0">
-                <AlertCircle className="w-4 h-4 sm:w-5 sm:h-5 text-destructive shrink-0" />
+              <div className="flex items-center gap-2 px-3 py-2 rounded-lg bg-amber/10 border border-amber/25 flex-1 sm:flex-initial min-w-0">
+                <AlertCircle className="size-4 text-amber shrink-0" />
                 <div className="flex-1 min-w-0">
-                  <p className="text-xs sm:text-sm font-semibold text-destructive truncate">
-                    Select your distribution
+                  <p className="text-xs sm:text-sm font-medium text-foreground truncate">
+                    Choose your distribution
                   </p>
-                  <p className="text-xs text-destructive/80 hidden sm:block">
-                    Choose your OS in the bar above to continue
+                  <p className="text-xs text-muted-foreground hidden sm:block">
+                    In the bar above, or press <kbd className="kbd">d</kbd>
                   </p>
                 </div>
-                <Monitor className="w-4 h-4 sm:w-5 sm:h-5 text-destructive/60 hidden sm:block animate-pulse shrink-0" />
+                <Monitor className="size-4 text-amber/70 hidden sm:block shrink-0" />
               </div>
             </div>
           ) : (
@@ -116,11 +114,10 @@ export const FloatingActionBar = memo(function FloatingActionBar({
                   size="lg"
                   onClick={onSaveInstallation}
                   disabled={!canGenerate}
-                  className="gap-2 text-sm sm:text-base shrink-0 bg-secondary hover:bg-secondary/20"
+                  variant="outline"
+                  className="shrink-0"
                 >
-                  <kbd className="hidden sm:inline-flex px-1.5 py-0.5 text-[10px] font-semibold bg-accent-foreground text-muted border border-secondary rounded">
-                    s
-                  </kbd>
+                  <kbd className="kbd hidden sm:inline-flex">s</kbd>
                   <Save className="w-4 h-4 shrink-0" />
                   <span className="hidden sm:inline">Save</span>
                 </Button>
@@ -129,11 +126,9 @@ export const FloatingActionBar = memo(function FloatingActionBar({
                 size="lg"
                 onClick={onGenerateCommand}
                 disabled={!canGenerate}
-                className="gap-2 w-full sm:w-auto text-sm sm:text-base shrink-0"
+                className="w-full sm:w-auto shrink-0"
               >
-                <kbd className="hidden sm:inline-flex px-1.5 py-0.5 text-[10px] font-semibold bg-primary-foreground text-primary border border-primary/20 rounded">
-                  c
-                </kbd>
+                <kbd className="kbd hidden sm:inline-flex border-primary-foreground/30 bg-primary-foreground/15 text-primary-foreground">c</kbd>
                 <span className="hidden xs:inline">Get Commands</span>
                 <span className="xs:hidden">Get</span>
                 <ArrowRight className="w-4 h-4 shrink-0" />

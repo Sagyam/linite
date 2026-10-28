@@ -51,8 +51,8 @@ export function CleanupCommands({
                 </span>
               </Button>
             </div>
-            <div className="font-mono text-sm overflow-x-auto">
-              <div className="whitespace-pre-wrap">{cmd}</div>
+            <div className="terminal">
+              <div className="whitespace-pre-wrap"><span className="prompt">$</span><span>{cmd}</span></div>
             </div>
           </div>
         ))}

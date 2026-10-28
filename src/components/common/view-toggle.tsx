@@ -1,7 +1,6 @@
 'use client';
 
 import { Grid3x3, List, LayoutList } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 import type { ViewMode } from '@/stores/selection-store';
 
 interface ViewToggleProps {
@@ -9,60 +8,34 @@ interface ViewToggleProps {
   onViewChange: (view: ViewMode) => void;
 }
 
+const views = [
+  { value: 'minimal', label: 'Minimal', key: '1', icon: Grid3x3 },
+  { value: 'compact', label: 'Compact', key: '2', icon: List },
+  { value: 'detailed', label: 'Detailed', key: '3', icon: LayoutList },
+] as const;
+
+/** A segmented control, styled like the theme switch in the footer. */
 export function ViewToggle({ currentView, onViewChange }: ViewToggleProps) {
   return (
-    <div className="flex border rounded-md shrink-0" role="group" aria-label="View mode toggle">
-      <Button
-        variant={currentView === 'minimal' ? 'default' : 'ghost'}
-        size="sm"
-        onClick={() => onViewChange('minimal')}
-        className="rounded-none rounded-l-md h-11 sm:h-9 px-3 lg:px-3 gap-1.5"
-        title="Minimal view (Press 1)"
-        aria-label="Minimal view"
-        aria-pressed={currentView === 'minimal'}
-      >
-        <Grid3x3 className="w-4 h-4" />
-        <span className="hidden lg:inline-flex items-center gap-1">
-          <kbd className="px-1 py-0.5 text-xs font-mono font-semibold bg-muted/50 border border-border/50 rounded">
-            1
-          </kbd>
-          <span className="text-xs">Minimal</span>
-        </span>
-      </Button>
-      <Button
-        variant={currentView === 'compact' ? 'default' : 'ghost'}
-        size="sm"
-        onClick={() => onViewChange('compact')}
-        className="rounded-none h-11 sm:h-9 px-3 lg:px-3 gap-1.5"
-        title="Compact view (Press 2)"
-        aria-label="Compact view"
-        aria-pressed={currentView === 'compact'}
-      >
-        <List className="w-4 h-4" />
-        <span className="hidden lg:inline-flex items-center gap-1">
-          <kbd className="px-1 py-0.5 text-xs font-mono font-semibold bg-muted/50 border border-border/50 rounded">
-            2
-          </kbd>
-          <span className="text-xs">Compact</span>
-        </span>
-      </Button>
-      <Button
-        variant={currentView === 'detailed' ? 'default' : 'ghost'}
-        size="sm"
-        onClick={() => onViewChange('detailed')}
-        className="rounded-none rounded-r-md h-11 sm:h-9 px-3 lg:px-3 gap-1.5"
-        title="Detailed view (Press 3)"
-        aria-label="Detailed view"
-        aria-pressed={currentView === 'detailed'}
-      >
-        <LayoutList className="w-4 h-4" />
-        <span className="hidden lg:inline-flex items-center gap-1">
-          <kbd className="px-1 py-0.5 text-xs font-mono font-semibold bg-muted/50 border border-border/50 rounded">
-            3
-          </kbd>
-          <span className="text-xs">Detailed</span>
-        </span>
-      </Button>
+    <div
+      className="inline-flex shrink-0 rounded-lg border border-edge/10 bg-edge/[0.03] p-0.5"
+      role="group"
+      aria-label="View mode toggle"
+    >
+      {views.map(({ value, label, key, icon: Icon }) => (
+        <button
+          key={value}
+          type="button"
+          onClick={() => onViewChange(value)}
+          title={`${label} view (Press ${key})`}
+          aria-label={`${label} view`}
+          aria-pressed={currentView === value}
+          className="inline-flex h-10 items-center gap-1.5 rounded-md px-3 text-xs text-muted-foreground transition-colors hover:text-foreground sm:h-8 aria-pressed:bg-background aria-pressed:text-foreground aria-pressed:shadow-sm aria-pressed:ring-1 aria-pressed:ring-edge/10"
+        >
+          <Icon className="size-4" />
+          <span className="hidden lg:inline">{label}</span>
+        </button>
+      ))}
     </div>
   );
 }

@@ -74,25 +74,27 @@ export const PersistentDistroBar = memo(function PersistentDistroBar({
   }, [isNixSelected, nixosInstallMethod, setNixosInstallMethod]);
 
   return (
-    <div className="sticky top-0 z-40 border-b bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/80 shadow-sm">
-      <div className="container mx-auto px-4 py-3">
+    <div className="sticky top-14 z-40 border-y border-edge/5 bg-background/75 backdrop-blur-md">
+      <div className="mx-auto max-w-7xl px-4 py-3 sm:px-6">
         <div className="flex flex-col sm:flex-row gap-3 items-start sm:items-center">
           {/* Distro Selection - More prominent */}
           <div className="flex-1 min-w-0 w-full sm:w-auto">
             <div className="flex items-center gap-2 mb-1.5">
-              <Monitor className="w-4 h-4 text-primary" />
-              <span className="text-sm font-medium">Your Distribution</span>
+              <Monitor className="size-3.5 text-muted-foreground" />
+              <span className="text-xs font-bold tracking-widest text-muted-foreground uppercase">Distribution</span>
               {!selectedDistro && (
-                <Badge variant="destructive" className="text-xs">
+                <span className="inline-flex items-center gap-1.5 text-xs font-medium text-amber">
+                  <span className="size-1.5 rounded-full bg-amber" />
                   Required
-                </Badge>
+                </span>
               )}
-              <kbd className="hidden lg:inline-block px-1.5 py-0.5 text-xs font-mono font-semibold bg-muted/50 border border-border/50 rounded ml-auto">
-                d
-              </kbd>
+              <kbd className="kbd ml-auto hidden lg:inline-flex">d</kbd>
             </div>
             <Select value={selectedDistro || ''} onValueChange={setDistro}>
-              <SelectTrigger ref={distroTriggerRef} className="h-9 bg-background">
+              <SelectTrigger
+                ref={distroTriggerRef}
+                className={`h-9 bg-background ${selectedDistro ? '' : 'border-amber/50 ring-3 ring-amber/10'}`}
+              >
                 <SelectValue placeholder="Choose your Linux distribution" />
               </SelectTrigger>
               <SelectContent>
@@ -135,14 +137,12 @@ export const PersistentDistroBar = memo(function PersistentDistroBar({
           {selectedDistro && availableSources.length > 0 && (
             <div className="flex-1 min-w-0 w-full sm:w-auto">
               <div className="flex items-center gap-2 mb-1.5">
-                <HelpCircle className="w-4 h-4 text-muted-foreground" />
-                <span className="text-sm font-medium text-muted-foreground">
-                  Package Source
+                <HelpCircle className="size-3.5 text-muted-foreground" />
+                <span className="text-xs font-bold tracking-widest text-muted-foreground uppercase">
+                  Package source
                 </span>
-                <span className="text-xs text-muted-foreground">(optional)</span>
-                <kbd className="hidden lg:inline-block px-1.5 py-0.5 text-xs font-mono font-semibold bg-muted/50 border border-border/50 rounded ml-auto">
-                  p
-                </kbd>
+                <span className="text-xs text-muted-foreground">optional</span>
+                <kbd className="kbd ml-auto hidden lg:inline-flex">p</kbd>
               </div>
               <Select
                 value={sourcePreference || 'auto'}

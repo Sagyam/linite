@@ -57,7 +57,7 @@ export function HomePageLayout({
   const toggleCategoryNav = useSelectionStore((state) => state.toggleCategoryNav);
 
   return (
-    <div className="container mx-auto px-4 py-6 sm:py-8 pb-24 sm:pb-28">
+    <div className="mx-auto w-full max-w-7xl px-4 py-6 pb-24 sm:px-6 sm:pb-28">
       <div className="flex gap-6">
         {/* Category Sidebar - Desktop only */}
         <div className="hidden lg:block">
@@ -75,7 +75,7 @@ export function HomePageLayout({
           {/* Mobile/Tablet: ScrollArea wrapper */}
           <div className="lg:hidden">
             {/* Sticky Filters + View Toggle Row */}
-            <div className="sticky top-0 z-10 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 pb-3 mb-1 space-y-2">
+            <div className="sticky top-0 z-10 bg-background/75 backdrop-blur-md pb-3 mb-1 space-y-2">
               {/* Category Sidebar Toggle - Mobile only */}
               <CategorySidebar
                 categories={categories}

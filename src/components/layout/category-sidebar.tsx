@@ -14,6 +14,7 @@ import {
 } from '@/components/ui/sheet';
 import { getCategoryIcon } from '@/lib/category-icons';
 import { useSelectionStore } from '@/stores/selection-store';
+import { cn } from '@/lib/utils';
 import type { Category } from '@/types';
 
 /**
@@ -40,6 +41,14 @@ interface CategorySidebarProps {
   onToggle?: () => void;
 }
 
+/** A row of the list: quiet until it is the current category. */
+function itemClass(active: boolean) {
+  return cn(
+    'h-8 w-full justify-start pr-10 font-normal',
+    active ? 'bg-edge/5 font-medium text-foreground' : 'text-muted-foreground hover:text-foreground'
+  );
+}
+
 interface CategoryListProps {
   categories: Category[];
   selectedCategory: string;
@@ -60,11 +69,11 @@ function CategoryList({
   isOpen,
 }: CategoryListProps) {
   return (
-    <nav className="space-y-1 p-2" role="navigation" aria-label="Category navigation">
+    <nav className="space-y-0.5 p-1" role="navigation" aria-label="Category navigation">
       <div className="relative">
         <Button
-          variant={selectedCategory === 'all' ? 'secondary' : 'ghost'}
-          className="w-full justify-start pr-10"
+          variant="ghost"
+          className={itemClass(selectedCategory === 'all')}
           onClick={() => {
             onCategoryChange('all');
             if (onToggle && isOpen) onToggle();
@@ -72,13 +81,13 @@ function CategoryList({
           data-category-id="all"
           aria-current={selectedCategory === 'all' ? 'page' : undefined}
         >
-          <LayoutGrid className="w-4 h-4 mr-2" />
+          <LayoutGrid />
           All Apps
         </Button>
         {totalSelectedCount > 0 && (
           <Badge
-            variant="secondary"
-            className="absolute right-2 top-1/2 -translate-y-1/2 h-5 min-w-[1.25rem] px-1.5 text-xs font-medium"
+            variant="default"
+            className="absolute right-2 top-1/2 -translate-y-1/2 h-5 min-w-5 px-1.5 font-mono"
           >
             {totalSelectedCount}
           </Badge>
@@ -91,16 +100,9 @@ function CategoryList({
 
         return (
           <div key={category.id} className="relative">
-            {/* Color accent bar */}
-            {categoryColor && count > 0 && (
-              <div
-                className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-4/5 rounded-r"
-                style={{ backgroundColor: categoryColor }}
-              />
-            )}
             <Button
-              variant={selectedCategory === category.id ? 'secondary' : 'ghost'}
-              className="w-full justify-start pr-10 pl-4"
+              variant="ghost"
+              className={itemClass(selectedCategory === category.id)}
               onClick={() => {
                 onCategoryChange(category.id);
                 if (onToggle && isOpen) onToggle();
@@ -108,16 +110,13 @@ function CategoryList({
               data-category-id={category.id}
               aria-current={selectedCategory === category.id ? 'page' : undefined}
             >
-              <Icon
-                className="w-4 h-4 mr-2"
-                style={categoryColor && count > 0 ? { color: categoryColor } : undefined}
-              />
+              <Icon style={categoryColor && count > 0 ? { color: categoryColor } : undefined} />
               {category.name}
             </Button>
             {count > 0 && (
               <Badge
                 variant="secondary"
-                className="absolute right-2 top-1/2 -translate-y-1/2 h-5 min-w-[1.25rem] px-1.5 text-xs font-medium"
+                className="absolute right-2 top-1/2 -translate-y-1/2 h-5 min-w-5 px-1.5 font-mono"
                 style={categoryColor ? { backgroundColor: categoryColor, color: 'white' } : undefined}
               >
                 {count}
@@ -187,18 +186,13 @@ export function CategorySidebar({
 
       {/* Desktop: Vertical sidebar */}
       <aside className="hidden lg:block w-56 shrink-0">
-        <div className="mb-2 px-2 py-1.5 bg-muted/30 rounded-md border border-border/50">
-          <div className="flex items-center justify-center gap-2 text-xs text-muted-foreground">
-            <span>Navigate:</span>
-            <kbd className="px-1.5 py-0.5 font-mono font-semibold bg-background border border-border/50 rounded">
-              h
-            </kbd>
-            <span>/</span>
-            <kbd className="px-1.5 py-0.5 font-mono font-semibold bg-background border border-border/50 rounded">
-              l
-            </kbd>
-          </div>
-        </div>
+        <p className="mb-2 flex items-center gap-2 px-3 text-xs font-bold tracking-widest text-muted-foreground uppercase">
+          Categories
+          <span className="ml-auto flex items-center gap-1 font-normal tracking-normal normal-case">
+            <kbd className="kbd">h</kbd>
+            <kbd className="kbd">l</kbd>
+          </span>
+        </p>
         <ScrollArea className="h-[calc(100vh-18rem)]">
           {isClient ? (
             <CategoryList
