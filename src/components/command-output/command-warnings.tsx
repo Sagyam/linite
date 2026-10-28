@@ -13,10 +13,10 @@ export function CommandWarnings({ warnings }: CommandWarningsProps) {
 
   return (
     <div className="space-y-2">
-      <Badge variant="destructive">Warnings</Badge>
-      <div className="bg-destructive/10 border border-destructive/20 rounded-md p-4 text-sm space-y-1">
+      <Badge variant="outline" className="border-amber/30 text-amber">Warnings</Badge>
+      <div className="bg-amber/10 border border-amber/25 rounded-lg p-4 text-sm space-y-1">
         {warnings.map((warning, i) => (
-          <p key={i} className="text-destructive">
+          <p key={i} className="text-foreground">
             • {warning}
           </p>
         ))}

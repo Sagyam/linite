@@ -2,134 +2,83 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Button } from '@/components/ui/button';
-import { OptimizedImage } from '@/components/ui/optimized-image';
-import { ThemeToggle } from '@/components/common/theme-toggle';
+import { LogIn } from 'lucide-react';
+import { buttonVariants } from '@/components/ui/button';
+import { GithubIcon, Logo } from '@/components/common/logo';
 import { UserNav } from '@/components/dashboard/user-nav';
 import { MobileNav } from '@/components/layout/mobile-nav';
 import { useSession } from '@/lib/auth-client';
-import { Github, Star, LogIn, Home, Shield, LibraryBig, Settings } from 'lucide-react';
 import { cn } from '@/lib/utils';
+
+const REPO_URL = 'https://github.com/Sagyam/linite';
 
 export function Header() {
   const { data: session, isPending } = useSession();
   const pathname = usePathname();
 
+  const nav = [
+    { href: '/', label: 'Apps', active: pathname === '/' },
+    { href: '/collections', label: 'Collections', active: pathname.startsWith('/collections') },
+    ...(session
+      ? [{ href: '/dashboard/installations', label: 'Installations', active: pathname.startsWith('/dashboard') }]
+      : []),
+    ...(process.env.NODE_ENV === 'development'
+      ? [{ href: '/admin', label: 'Admin', active: pathname.startsWith('/admin') }]
+      : []),
+  ];
+
   return (
-    <header className="border-b bg-background">
-      <div className="container mx-auto px-4 py-3 md:py-4">
-        <div className="flex items-center justify-between">
-          {/* Logo - Responsive sizing */}
-          <Link href="/" className="flex items-center gap-2 md:gap-3">
-            <OptimizedImage
-              src="/logo.svg"
-              alt="Linite Logo"
-              width={40}
-              height={40}
-              className="w-8 h-8 md:w-10 md:h-10"
-            />
-            <div className="flex flex-col">
-              <h1 className="text-xl md:text-2xl font-bold">Linite</h1>
-              <span className="text-xs text-muted-foreground hidden sm:inline">
-                Bulk installer for Linux
-              </span>
-            </div>
-          </Link>
+    <header className="sticky top-0 z-50 border-b border-edge/5 bg-background/75 backdrop-blur-md">
+      <div className="mx-auto flex h-14 max-w-7xl items-center justify-between gap-6 px-4 sm:px-6">
+        <Link href="/" className="flex items-center gap-2.5 font-heading text-lg font-bold tracking-tight">
+          <Logo className="size-7" id="nav-logo" />
+          Linite
+        </Link>
 
-          {/* Desktop Navigation - Hidden on mobile */}
-          <nav className="hidden md:flex items-center gap-2">
-            <Link href="/">
-              <Button
-                variant="ghost"
-                size="sm"
-                className={cn(
-                  'gap-2',
-                  pathname === '/' && 'bg-accent text-accent-foreground'
-                )}
-              >
-                <Home className="h-4 w-4" />
-                Home
-              </Button>
-            </Link>
-            <Link href="/collections">
-              <Button
-                variant="ghost"
-                size="sm"
-                className={cn(
-                  'gap-2',
-                  pathname.startsWith('/collections') && 'bg-accent text-accent-foreground'
-                )}
-              >
-                <LibraryBig className="h-4 w-4" />
-                Collections
-              </Button>
-            </Link>
-            {session && (
-              <Link href="/dashboard/installations">
-                <Button
-                  variant="ghost"
-                  size="sm"
+        <nav aria-label="Main" className="hidden md:block">
+          <ul className="flex items-center gap-6 text-sm">
+            {nav.map((item) => (
+              <li key={item.href}>
+                <Link
+                  href={item.href}
+                  aria-current={item.active ? 'page' : undefined}
                   className={cn(
-                    'gap-2',
-                    pathname.startsWith('/dashboard') && 'bg-accent text-accent-foreground'
+                    'transition-colors hover:text-foreground',
+                    item.active ? 'font-medium text-foreground' : 'text-muted-foreground'
                   )}
                 >
-                  <Settings className="h-4 w-4" />
-                  Installations
-                </Button>
-              </Link>
-            )}
-            {process.env.NODE_ENV === 'development' && (
-              <Link href="/admin">
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className={cn(
-                    'gap-2',
-                    pathname.startsWith('/admin') && 'bg-accent text-accent-foreground'
-                  )}
-                >
-                  <Shield className="h-4 w-4" />
-                  Admin
-                </Button>
-              </Link>
-            )}
-            <a
-              href="https://github.com/Sagyam/linite"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Button variant="outline" size="sm" className="gap-2">
-                <Github className="h-4 w-4" />
-                <Star className="h-4 w-4" />
-                Star
-              </Button>
-            </a>
-
-            {/* Show user nav if logged in, otherwise show sign in button */}
-            {!isPending &&
-              (session ? (
-                <UserNav />
-              ) : (
-                <Link href="/login">
-                  <Button size="sm" className="gap-2">
-                    <LogIn className="h-4 w-4" />
-                    Sign In
-                  </Button>
+                  {item.label}
                 </Link>
-              ))}
+              </li>
+            ))}
+          </ul>
+        </nav>
 
-            <ThemeToggle />
-          </nav>
+        <div className="hidden items-center gap-2 md:flex">
+          <a
+            href={REPO_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={buttonVariants({ variant: 'outline', size: 'sm' })}
+          >
+            <GithubIcon />
+            GitHub
+          </a>
+          {!isPending &&
+            (session ? (
+              <UserNav />
+            ) : (
+              <Link href="/login" className={buttonVariants({ size: 'sm' })}>
+                <LogIn />
+                Sign in
+              </Link>
+            ))}
+        </div>
 
-          {/* Mobile Navigation - Shown on mobile */}
-          <div className="flex md:hidden items-center gap-2">
-            <ThemeToggle />
-            <MobileNav isAuthenticated={!!session} />
-          </div>
+        <div className="md:hidden">
+          <MobileNav isAuthenticated={!!session} />
         </div>
       </div>
     </header>
   );
 }
-

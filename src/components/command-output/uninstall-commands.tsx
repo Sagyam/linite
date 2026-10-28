@@ -76,8 +76,8 @@ export function UninstallCommands({
               </span>
             </Button>
           </div>
-          <div className="bg-muted rounded-md p-4 font-mono text-sm overflow-x-auto">
-            <div className="whitespace-pre-wrap">{commands[item.commandIndex]}</div>
+          <div className="terminal">
+            <div className="whitespace-pre-wrap"><span className="prompt">$</span><span>{commands[item.commandIndex]}</span></div>
           </div>
         </div>
       ))}

@@ -6,6 +6,7 @@ import { AppFilters } from './app-filters';
 // Mock lucide-react icons
 vi.mock('lucide-react', () => ({
   Search: () => <div data-testid="search-icon" />,
+  Star: () => <div data-testid="star-icon" />,
   X: () => <div data-testid="x-icon" />,
 }));
 

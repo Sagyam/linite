@@ -42,22 +42,25 @@ export default function CollectionsPage() {
       <Header />
 
       {/* Hero Section */}
-      <div className="border-b bg-muted/50">
-        <div className="container mx-auto py-16 px-4">
-          <div className="max-w-3xl mx-auto text-center space-y-4">
-            <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
-              Discover Collections
-            </h1>
-            <p className="text-xl text-muted-foreground">
-              Browse community-curated app collections for Linux
-            </p>
-          </div>
+      <section className="relative isolate overflow-hidden">
+        <div className="hero-glow pointer-events-none absolute inset-0 -z-10" />
+        <div className="mx-auto max-w-3xl px-4 pt-14 pb-10 text-center">
+          <p className="inline-flex items-center gap-2 rounded-full border border-edge/10 bg-edge/5 px-3 py-1 text-xs text-muted-foreground">
+            <span className="size-1.5 rounded-full bg-amber" />
+            Start from someone else&apos;s setup
+          </p>
+          <h1 className="mt-5 font-heading text-4xl font-bold tracking-tight text-balance sm:text-5xl">
+            Discover <span className="text-primary">collections</span>
+          </h1>
+          <p className="mt-4 text-lg text-pretty text-muted-foreground">
+            Curated app lists for developers, creators and gamers. Open one, tweak it, install it in one command.
+          </p>
         </div>
-      </div>
+      </section>
 
       {/* Main Content */}
-      <div className="container mx-auto py-8 px-4">
-        <div className="max-w-7xl mx-auto space-y-8">
+      <div className="mx-auto w-full max-w-7xl px-4 pb-16 sm:px-6">
+        <div className="space-y-8">
           {/* Filters */}
           <div className="flex flex-col sm:flex-row gap-4">
             <div className="relative flex-1">

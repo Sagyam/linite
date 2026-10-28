@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import {Space_Grotesk, Work_Sans, Geist_Mono} from "next/font/google";
+import { JetBrains_Mono, Space_Grotesk, Work_Sans } from "next/font/google";
 import Script from "next/script";
 import { Toaster } from '@/components/ui/sonner';
 import { ErrorBoundary } from '@/components/common/error-boundary';
@@ -7,17 +7,10 @@ import { ThemeProvider } from '@/components/common/theme-provider';
 import { QueryProvider } from '@/providers/query-provider';
 import "./globals.css";
 
-const spaceGrotesk = Space_Grotesk({subsets:['latin'],variable:'--font-sans'});
-
-const workSans = Work_Sans({
-  variable: "--font-work-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-    variable: "--font-geist-mono",
-    subsets: ["latin"],
-});
+// The type of sagyamthapa.com.np: Work Sans for text, Space Grotesk for headings, JetBrains Mono for commands.
+const workSans = Work_Sans({ variable: "--font-work-sans", subsets: ["latin"] });
+const spaceGrotesk = Space_Grotesk({ variable: "--font-space-grotesk", subsets: ["latin"] });
+const jetbrainsMono = JetBrains_Mono({ variable: "--font-jetbrains-mono", subsets: ["latin"] });
 
 export const metadata: Metadata = {
   metadataBase: new URL('http://linite.sagyamthapa.com.np'),
@@ -56,7 +49,7 @@ export const metadata: Metadata = {
       { url: '/favicon.svg', type: 'image/svg+xml' },
     ],
     shortcut: '/favicon.svg',
-    apple: '/logo.svg',
+    apple: '/apple-touch-icon.png',
   },
   manifest: '/manifest.json',
   openGraph: {
@@ -106,10 +99,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={spaceGrotesk.variable} suppressHydrationWarning>
-      <body
-        className={`${workSans.variable} ${geistMono.variable} antialiased`}
-      >
+    <html
+      lang="en"
+      className={`${workSans.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable}`}
+      suppressHydrationWarning
+    >
+      <body>
         <Script
           defer
           src="/stats/script.js"
